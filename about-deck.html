@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About DECK - 육대근 | ADX Work Lab</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Canvas container for particle animation -->
+    <div id="canvas-container"></div>
+
+    <!-- Fixed Header -->
+    <header class="fixed top-0 left-0 w-full bg-opacity-90 backdrop-blur-md bg-slate-900 z-50 border-b border-gray-700">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="https://static.wixstatic.com/shapes/19032f_f7c6dea85bc441bbb8158f63dff3c39f.svg" alt="ADX Work Lab Logo" class="h-10 w-auto mr-2">
+                <span class="text-2xl font-bold">ADX work lab.</span>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Home</a>
+                                    <a href="about-deck.html" class="nav-link text-blue-400 transition-colors">About</a>
+                    <a href="index.html#projects" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Projects</a>
+                <a href="index.html#contact" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-gray-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Navigation -->
+        <nav id="mobile-menu" class="md:hidden bg-slate-900 border-t border-gray-700 hidden">
+            <div class="px-4 py-2 space-y-2">
+                <a href="index.html" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Home</a>
+                                    <a href="about-deck.html" class="block py-2 text-blue-400 transition-colors">About</a>
+                    <a href="index.html#projects" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Projects</a>
+                <a href="index.html#contact" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="section gradient-bg flex items-center justify-center px-4 min-h-screen">
+        <div class="content text-center max-w-4xl mx-auto">
+            <div class="mb-8">
+                <div class="w-32 h-32 mx-auto mb-6">
+                    <img src="deck-avatar.jpg" alt="육대근 프로필" class="w-32 h-32 rounded-full object-cover border-4 border-blue-600 shadow-lg">
+                </div>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
+                <span class="text-gradient">육대근 (Yook Dae-geun)</span>
+            </h1>
+            <h2 class="text-xl md:text-2xl text-blue-400 mb-8 font-light">
+                ADX Work Lab 대표
+            </h2>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-gray-300">
+                AI 기술과 창의적 사고의 융합을 통해 혁신적인 솔루션을 개발하고, 
+                30여 기업과 기관에 AI 교육을 제공한 전문가입니다.
+            </p>
+            <a href="#education" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-medium transition-colors">
+                자세히 알아보기
+            </a>
+        </div>
+    </section>
+
+    <!-- Education & Certifications Section -->
+    <section id="education" class="section gradient-bg px-4 py-24">
+        <div class="content max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-4 text-center">
+                <span class="text-gradient">학력 및 자격증</span>
+            </h2>
+            <p class="text-center text-xl mb-12 max-w-3xl mx-auto">
+                체계적인 학습과 지속적인 전문성 개발을 통한 AI 분야 전문가 양성
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 학력 -->
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="rounded-full bg-blue-600 p-3 mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path d="M12 14l9-5-9-5-9 5 9 5z" />
+                                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-400">학력</h3>
+                    </div>
+                    
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-medium text-lg">기술융합 MICE mini MBA</p>
+                                <p class="text-sm text-blue-400 mb-2">서강대학교 경영전문대학원</p>
+                                <p class="text-sm text-gray-400">기술과 경영의 융합, MICE 산업 전문성</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-medium text-lg">디지털콘텐츠 mini MBA</p>
+                                <p class="text-sm text-blue-400 mb-2">서강대학교 경영전문대학원</p>
+                                <p class="text-sm text-gray-400">디지털 콘텐츠 산업 분석 및 전략</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-medium text-lg">예술경영학사</p>
+                                <p class="text-sm text-blue-400 mb-2">AI융합과정 이수</p>
+                                <p class="text-sm text-gray-400">문화기술, 버추얼AI콘텐츠전문가 과정</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- 자격증 -->
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-center mb-6">
+                        <div class="rounded-full bg-blue-600 p-3 mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-blue-400">자격증</h3>
+                    </div>
+                    
+                    <ul class="space-y-6">
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-medium text-lg">DX 전문컨설턴트 2급</p>
+                                <p class="text-sm text-gray-400">디지털 전환 컨설팅 전문성</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-medium text-lg">프롬프트 엔지니어링 자격검정 AI PD 1급 (전국최우수)</p>
+                                <p class="text-sm text-gray-400 mb-2">AI 프롬프트 엔지니어링 전문성</p>
+                                <span class="inline-block bg-yellow-600 text-yellow-100 text-xs px-2 py-1 rounded-full">전국최우수</span>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-medium text-lg">Microsoft 인증</p>
+                                <p class="text-sm text-gray-400">Generative AI, Data Analysis, Project Manager</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-500 mr-2 mt-1 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <div>
+                                <p class="font-medium text-lg">Vanderbilt University</p>
+                                <p class="text-sm text-gray-400">Prompt Engineering Certified</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Philosophy Section -->
+    <section id="philosophy" class="section gradient-bg px-4 py-24">
+        <div class="content max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center">
+                <span class="text-gradient">전문가 철학</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card p-8 rounded-xl text-center">
+                    <div class="rounded-full bg-blue-600 p-4 mx-auto mb-6 w-20 h-20 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">실무 중심 교육</h3>
+                    <p class="text-gray-300">이론보다는 바로 적용 가능한 실무 중심의 AI 교육을 통해 실질적인 가치를 전달합니다.</p>
+                </div>
+                
+                <div class="card p-8 rounded-xl text-center">
+                    <div class="rounded-full bg-blue-600 p-4 mx-auto mb-6 w-20 h-20 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">창의적 융합</h3>
+                    <p class="text-gray-300">AI 기술과 예술, 비즈니스의 창의적 융합을 통해 혁신적인 솔루션을 개발합니다.</p>
+                </div>
+                
+                <div class="card p-8 rounded-xl text-center">
+                    <div class="rounded-full bg-blue-600 p-4 mx-auto mb-6 w-20 h-20 flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-blue-400">지속적 성장</h3>
+                    <p class="text-gray-300">끊임없는 학습과 연구를 통해 최신 AI 트렌드를 반영한 전문성을 유지합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Detailed Testimonials Section -->
+    <section id="testimonials" class="section gradient-bg px-4 py-24">
+        <div class="content max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-4 text-center">
+                <span class="text-gradient">상세 참여자 후기</span>
+            </h2>
+            <p class="text-center text-xl mb-12 max-w-3xl mx-auto">
+                30여 기업과 기관에서 진행한 AI 교육 워크숍 참여자들의 생생한 후기
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 후기 1 -->
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                        <div>
+                            <p class="italic mb-4">
+                                "실제 업무에서 바로 활용할 수 있는 AI 도구와 팁을 배울 수 있었습니다. 복잡했던 작업들이 자동화되니 업무 효율이 눈에 띄게 향상되었어요!"
+                            </p>
+                            <p class="font-medium">김○○, 스타트업 팀 리더</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 후기 2 -->
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                        <div>
+                            <p class="italic mb-4">
+                                "이론뿐만 아니라 실습 중심으로 강의가 진행되어 배우는 내용이 명확하고 이해가 쉬웠습니다. 업무에서 바로 적용 가능했던 최고의 강의였습니다."
+                            </p>
+                            <p class="font-medium">박○○, IT 기업 매니저</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 후기 3 -->
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                        <div>
+                            <p class="italic mb-4">
+                                "AI를 비즈니스에 접목할 때 필요한 전략과 실제 사례를 배울 수 있어서 너무 유익했습니다. 특히 다양한 산업에서의 AI 활용 사례가 큰 도움이 되었습니다."
+                            </p>
+                            <p class="font-medium">이○○, 경영 컨설턴트</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 후기 4 -->
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                        <div>
+                            <p class="italic mb-4">
+                                "전략적인 관점에서 AI를 이해할 수 있었던 강의였습니다. 강사의 경험에서 나온 인사이트가 정말 가치 있었습니다."
+                            </p>
+                            <p class="font-medium">정○○, 광고 대행사 기획 팀장</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 후기 5 -->
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                        <div>
+                            <p class="italic mb-4">
+                                "고품질 이미지, 영상 제작을 AI로 쉽게 구현할 수 있다는 걸 알게 되었습니다. 특히, 프롬프트 작성법은 정말 신세계였어요!"
+                            </p>
+                            <p class="font-medium">최○○, 마케팅 전문가</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 후기 6 -->
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                        <div>
+                            <p class="italic mb-4">
+                                "단순히 기술을 배우는 게 아니라 창의적인 콘텐츠 제작 방법까지 가르쳐 주셔서 큰 도움이 됐습니다. 바로 프로젝트에 적용했어요!"
+                            </p>
+                            <p class="font-medium">한○○, 콘텐츠 디자이너</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 후기 7 -->
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                        <div>
+                            <p class="italic mb-4">
+                                "AI를 활용한 미디어아트 제작은 처음이었는데, 강의 덕분에 AI 도구를 통해 나만의 작품을 만들 수 있었습니다. 디지털 아트의 새로운 가능성을 본 시간이었어요!"
+                            </p>
+                            <p class="font-medium">박○○, 미디어 아티스트</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 후기 8 -->
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                        <div>
+                            <p class="italic mb-4">
+                                "AI와 예술의 만남이 이렇게 흥미롭고 창의적일 줄 몰랐습니다. 특히 실습 위주의 강의가 실질적으로 큰 도움이 되었습니다."
+                            </p>
+                            <p class="font-medium">김○○, 미디어아트 기획자</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 후기 9 -->
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                        <div>
+                            <p class="italic mb-4">
+                                "전문적인 코딩 지식 없이도 AI로 아트 작품을 제작할 수 있는 방법을 배웠습니다. 창의적인 아이디어를 바로 구현할 수 있어 놀라웠어요!"
+                            </p>
+                            <p class="font-medium">이○○, 그래픽 디자이너</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 후기 10 -->
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                        <div>
+                            <p class="italic mb-4">
+                                "AI로 미디어아트를 만들면서 기술과 예술이 융합하는 경험을 할 수 있었습니다. 강사님이 제공한 예제와 실습 자료가 실질적이고 활용도가 높았습니다."
+                            </p>
+                            <p class="font-medium">오○○, 멀티미디어 디자이너</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 후기 11 -->
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                        <div>
+                            <p class="italic mb-4">
+                                "단순히 기술을 배우는 것을 넘어 AI 미디어아트의 철학과 트렌드까지 이해할 수 있었던 깊이 있는 강의였습니다. 이런 강의를 찾고 있던 저에게 딱 맞는 시간이었어요!"
+                            </p>
+                            <p class="font-medium">최○○, 전시 큐레이터</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 후기 12 -->
+                <div class="card p-8 rounded-xl">
+                    <div class="flex items-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-500 mr-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                        </svg>
+                        <div>
+                            <p class="italic mb-4">
+                                "워크숍에서 배운 AI 활용법을 회사 프로젝트에 바로 적용했더니 동료들이 놀라워했어요. 실무진에게 꼭 필요한 실용적인 내용들이었습니다."
+                            </p>
+                            <p class="font-medium">김○○, 프로젝트 매니저</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="mt-16 grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-blue-400 mb-2">30+</div>
+                    <p class="text-gray-300">협력 기업 및 기관</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-blue-400 mb-2">500+</div>
+                    <p class="text-gray-300">교육 참여자</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-blue-400 mb-2">100%</div>
+                    <p class="text-gray-300">교육 만족도</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-4xl font-bold text-blue-400 mb-2">24시간</div>
+                    <p class="text-gray-300">평균 응답 시간</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="section gradient-bg px-4 py-24">
+        <div class="content max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-6">
+                <span class="text-gradient">함께 AI의 미래를 만들어가요</span>
+            </h2>
+            <p class="text-xl mb-8 text-gray-300">
+                AI 교육, 컨설팅, 프로젝트 협업에 대한 문의는 언제든 환영합니다.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="index.html#contact" class="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-medium transition-colors">
+                    문의하기
+                </a>
+                <a href="index.html#projects" class="px-8 py-3 border border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white rounded-full font-medium transition-colors">
+                    프로젝트 보기
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 border-t border-gray-700 py-12">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <a href="index.html" class="flex items-center">
+                        <img src="https://static.wixstatic.com/shapes/19032f_f7c6dea85bc441bbb8158f63dff3c39f.svg" alt="ADX Work Lab Logo" class="h-10 w-auto mr-2">
+                        <span class="text-2xl font-bold">ADX work lab.</span>
+                    </a>
+                    <p class="mt-2 text-gray-400">AI experience and transformation</p>
+                </div>
+                
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">&copy; 2025 ADX Work Lab. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html> 
