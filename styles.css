@@ -147,4 +147,124 @@ body {
     .project-card {
         height: 200px;
     }
+}
+
+/* Modal styles for better mobile experience and readability */
+#miceModal {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+#miceModal:not(.hidden) {
+    opacity: 1;
+}
+
+#miceModal .bg-slate-800 {
+    background: rgba(30, 41, 59, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+/* Mobile-specific modal styles */
+@media (max-width: 768px) {
+    #miceModal {
+        padding: 1rem;
+        align-items: flex-start;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    #miceModal .bg-slate-800 {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        max-height: none;
+        border-radius: 1rem;
+        background: rgba(15, 23, 42, 0.98);
+    }
+    
+    #miceModal .p-8 {
+        padding: 1.5rem;
+    }
+    
+    /* Close button improvements for mobile */
+    #miceModal button[onclick="closeMiceModal()"] {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        width: 2.5rem;
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 1.5rem;
+        z-index: 10;
+    }
+    
+    #miceModal button[onclick="closeMiceModal()"]:hover {
+        background: rgba(0, 0, 0, 0.7);
+        border-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* Modal content improvements for mobile */
+    #miceModal .text-3xl {
+        font-size: 1.875rem;
+        line-height: 1.2;
+        margin-right: 3rem;
+    }
+    
+    #miceModal .grid-cols-1.md\\:grid-cols-2 {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    #miceModal .card {
+        background: rgba(16, 23, 42, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Tablet-specific modal styles */
+@media (min-width: 769px) and (max-width: 1024px) {
+    #miceModal .bg-slate-800 {
+        max-width: 90%;
+    }
+    
+    #miceModal .p-8 {
+        padding: 2rem;
+    }
+}
+
+/* Enhanced contrast for better readability */
+#miceModal .text-gray-300 {
+    color: #e2e8f0;
+}
+
+#miceModal .text-gray-400 {
+    color: #cbd5e1;
+}
+
+/* Improved scrollbar styling for modal content */
+#miceModal .overflow-y-auto::-webkit-scrollbar {
+    width: 6px;
+}
+
+#miceModal .overflow-y-auto::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+#miceModal .overflow-y-auto::-webkit-scrollbar-thumb {
+    background: rgba(59, 130, 246, 0.5);
+    border-radius: 3px;
+}
+
+#miceModal .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 130, 246, 0.7);
 } 

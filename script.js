@@ -377,24 +377,58 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Modal functions
 function openMiceModal() {
-    document.getElementById('miceModal').classList.remove('hidden');
-    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+    const modal = document.getElementById('miceModal');
+    modal.classList.remove('hidden');
+    
+    // Prevent background scrolling on mobile
+    document.body.style.overflow = 'hidden';
+    document.body.style.position = 'fixed';
+    document.body.style.width = '100%';
+    
+    // Smooth fade-in animation
+    requestAnimationFrame(() => {
+        modal.style.opacity = '0';
+        modal.style.transition = 'opacity 0.3s ease';
+        requestAnimationFrame(() => {
+            modal.style.opacity = '1';
+        });
+    });
 }
 
 function closeMiceModal() {
-    document.getElementById('miceModal').classList.add('hidden');
-    document.body.style.overflow = 'auto'; // Restore scrolling
+    const modal = document.getElementById('miceModal');
+    
+    // Smooth fade-out animation
+    modal.style.opacity = '0';
+    
+    setTimeout(() => {
+        modal.classList.add('hidden');
+        
+        // Restore scrolling
+        document.body.style.overflow = 'auto';
+        document.body.style.position = 'static';
+        document.body.style.width = 'auto';
+    }, 300);
 }
 
 // Close modal when clicking outside or pressing Escape
 document.addEventListener('DOMContentLoaded', function() {
     const modal = document.getElementById('miceModal');
     if (modal) {
+        // Close modal when clicking outside
         modal.addEventListener('click', function(e) {
             if (e.target === modal) {
                 closeMiceModal();
             }
         });
+        
+        // Prevent modal content clicks from closing modal
+        const modalContent = modal.querySelector('.bg-slate-800');
+        if (modalContent) {
+            modalContent.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
     }
     
     // Close modal with Escape key
@@ -403,4 +437,27 @@ document.addEventListener('DOMContentLoaded', function() {
             closeMiceModal();
         }
     });
+    
+    // Touch event handling for better mobile experience
+    let touchStartY = 0;
+    let touchStartX = 0;
+    
+    if (modal) {
+        modal.addEventListener('touchstart', function(e) {
+            touchStartY = e.touches[0].clientY;
+            touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+        
+        modal.addEventListener('touchend', function(e) {
+            const touchEndY = e.changedTouches[0].clientY;
+            const touchEndX = e.changedTouches[0].clientX;
+            const deltaY = Math.abs(touchEndY - touchStartY);
+            const deltaX = Math.abs(touchEndX - touchStartX);
+            
+            // If it's a tap (not a scroll), and target is the modal background
+            if (deltaY < 10 && deltaX < 10 && e.target === modal) {
+                closeMiceModal();
+            }
+        }, { passive: true });
+    }
 });
