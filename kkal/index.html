@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>깔.깔.깔 | 미디어아트 복합 감각 체험 전시</title>
+  <meta name="description" content="미디어아트 중심의 복합 감각 체험 전시 '깔.깔.깔' — 당신의 깔, 아직도 거기 있나요? 2025.08.27–09.03 서교동 스페이스 458" />
+  <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <nav class="nav" aria-label="주요">
+      <a class="brand" href="#home" aria-label="KKAL 전시 홈">KKAL KKAL KKAL</a>
+      <button class="nav-toggle" aria-controls="nav-menu" aria-expanded="false">☰</button>
+      <ul id="nav-menu" class="menu">
+        <li><a href="#about">전시 소개</a></li>
+        <li><a href="#interactive">인터랙티브</a></li>
+        <li><a href="#artists">작가/작품</a></li>
+        <li><a href="#visit">관람 안내</a></li>
+        <li><a href="#poster">포스터</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="home" class="main">
+    <!-- Hero: video background -->
+    <section class="hero" aria-label="히어로 섹션">
+      <div class="video-bg" aria-hidden="true">
+        <video class="bg-video" autoplay muted loop playsinline webkit-playsinline>
+          <source src="video.mp4" type="video/mp4" />
+        </video>
+      </div>
+      <div class="hero-overlay">
+        <p class="overline">미디어아트 중심의 복합 감각 체험 전시</p>
+        <h1 class="display">깔.깔.깔</h1>
+        <p class="tagline">당신의 깔, 아직도 거기 있나요?</p>
+        <p class="meta">2025.08.27 – 09.02 | 서교동 스페이스 458</p>
+        <div class="cta-row">
+          <a class="btn btn-neon" href="#interactive">나의 깔, 생성하기</a>
+          <a class="btn btn-outline" href="#about">전시 읽기</a>
+        </div>
+      </div>
+      <!-- Diagonal typographic accent -->
+      <div class="kkal-ribbon" aria-hidden="true">
+        <span>KKAL</span><span>KKAL</span><span>KKAL</span><span>KKAL</span>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section about">
+      <div class="container">
+        <h2>전시 개요</h2>
+        <p>감각이 넘치는 시대, 우리는 왜 더 흐릿해지는가? ‘깔.깔.깔’은 한국어 고유의 감각적 단어 ‘색깔·맛깔·멋깔’에서 파생된 ‘깔’을 중심으로, 개인의 정서와 감각의 결, 자기다움을 탐색하는 미디어아트 전시입니다.</p>
+        <ul class="kv">
+          <li><strong>일시</strong> 2025.08.27 – 09.02</li>
+          <li><strong>장소</strong> 서교동 스페이스 458</li>
+          <li><strong>슬로건</strong> 당신의 깔, 아직도 거기 있나요?</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- p5.js Interactive -->
+    <section id="interactive" class="section interactive" aria-label="인터랙티브 캔버스">
+      <div class="container narrow">
+        <h2>나의 깔을 깨우는 인터랙티브</h2>
+        <p>마우스/터치로 회전과 밀도를 조절하며 네온 리듬을 체험해보세요.</p>
+      </div>
+      <div id="p5-holder" class="p5-holder" role="img" aria-label="포스터 톤의 네온 링이 회전하며 반응하는 인터랙티브 시각"></div>
+    </section>
+
+    <!-- Artists & Works -->
+    <section id="artists" class="section artists">
+      <div class="container">
+        <h2>작가 및 작품</h2>
+        <div class="grid works">
+          <article class="work">
+            <h3>육대근 — 상상유랑 (Le Voyage dans l'Imagination)</h3>
+            <p>관객의 단어가 실시간으로 소리·빛·공간으로 변전하는 1채널 몰입형 미디어아트. 아나모픽 포털과 제스처 반응으로 매 순간 개인화된 우주를 생성합니다.</p>
+            <p class="tech">Gemini, Imagen4, MiDaS Depth, TouchDesigner, Suno AI, MediaPipe</p>
+          </article>
+          <article class="work">
+            <h3>장인표 — 그림자의 온도</h3>
+            <p>빛이 비추는 순간 드러나는 숨은 그림자. 색이 흐르는 LED와 구조물이 만들어내는 감정의 층위를 경험합니다.</p>
+            <p class="tech">LED 컬러 시퀀싱, 구조물 설치</p>
+          </article>
+          <article class="work">
+            <h3>정현희 — 혼백.exe</h3>
+            <p>샤머니즘의 미학을 미래 기술과 결합한 SF 애니메이션. 데이터가 된 영혼과 디지털 의례의 세계.</p>
+            <p class="tech">Unreal Engine, AI 작곡</p>
+          </article>
+          <article class="work">
+            <h3>팀도파민 — RE:PERSONA</h3>
+            <p>움직임과 에너지를 실시간 시각화하는 몰입형 인터랙션. 나의 리듬이 공간의 패턴이 됩니다.</p>
+            <p class="tech">TouchDesigner, Kinect, 열 감지 카메라, 3면 모니터</p>
+          </article>
+          <article class="work">
+            <h3>타로타로스 — GOD DOES NOT BLINK</h3>
+            <p>VR 속 윤리적 딜레마 체험. 관객의 선택 데이터가 통계로 제시되며 AI 시대의 불완전한 판단을 탐구합니다.</p>
+            <p class="tech">Unreal Engine VR, Meta Quest 3</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Poster -->
+    <section id="poster" class="section poster">
+      <div class="container narrow">
+        <h2>공식 포스터</h2>
+        <figure>
+          <video src="poster.mp4" controls playsinline muted loop aria-label="전시 깔.깔.깔 공식 포스터 영상"></video>
+          <figcaption>타이포 컬러를 사이트 테마에 적용</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Visit -->
+    <section id="visit" class="section visit">
+      <div class="container">
+        <h2>관람 안내</h2>
+        <ul class="kv">
+          <li><strong>일시</strong> 2025.08.27(수) – 09.02(화) 11:00–19:00</li>
+          <li><strong>장소</strong> 서울 마포구 동교로17길 37, 스페이스 458</li>
+        </ul>
+        <p class="note">혼잡 시 일부 작품은 대기 시간이 있을 수 있습니다.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>© 2025 깔.깔.깔 Exhibition</p>
+    </div>
+  </footer>
+
+  <!-- Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.2/lib/p5.min.js"></script>
+  <!-- Scripts -->
+  <script src="js/sketch.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

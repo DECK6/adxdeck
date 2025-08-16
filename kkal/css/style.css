@@ -1,0 +1,97 @@
+/* Theme Colors inspired by the poster */
+:root{
+  --bg:#0a0a0a;
+  --bg-deep:#000000;
+  --neon-lime:#D7FF2F; /* KKAL 텍스트 형광 라임 */
+  --cyan:#6DE7F2;      /* 포스터 상단 작가명 계열 */
+  --magenta:#D56BFF;
+  --yellow:#FFD43B;
+  --white:#f6f8fa;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; font-family:'Noto Sans KR', system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif; color:var(--white); background:radial-gradient(1200px 600px at 10% 80%, rgba(215,255,47,0.08), transparent), linear-gradient(90deg, var(--bg), var(--bg-deep));
+}
+
+/* Header */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(0,0,0,0.5);backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid rgba(255,255,255,0.06)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:1100px;margin:0 auto;padding:0.6rem 1rem}
+.brand{font-family:'Black Han Sans', sans-serif;font-size:1.6rem;letter-spacing:0.02em;color:var(--neon-lime);text-decoration:none}
+.menu{list-style:none;display:flex;gap:1rem;margin:0;padding:0}
+.menu a{color:var(--white);text-decoration:none;font-weight:500}
+.menu a:hover{color:var(--cyan)}
+.nav-toggle{display:none;background:none;border:none;color:#fff;font-size:1.2rem}
+
+@media (max-width:840px){
+  .nav{flex-wrap:wrap}
+  .nav-toggle{display:block}
+  .menu{width:100%;display:none;flex-direction:column;padding:0.5rem 0}
+  .menu.open{display:flex}
+}
+
+/* Hero */
+.hero{position:relative;min-height:88vh;display:grid;place-items:center;overflow:hidden;border-bottom:1px solid rgba(255,255,255,0.08)}
+.video-bg{position:absolute;inset:0;overflow:hidden}
+.bg-video{width:100%;height:100%;object-fit:cover;filter:contrast(110%) saturate(130%) brightness(90%)}
+.hero-overlay{position:relative;z-index:1;text-align:center;padding:2rem 1rem}
+.overline{letter-spacing:0.4em;color:var(--white);opacity:.9;margin:0 0 .6rem;font-size:.8rem}
+.display{font-family:'Black Han Sans', sans-serif;font-size:clamp(3rem,7vw,8rem);line-height:1;margin:0;color:var(--cyan);text-shadow:0 0 18px rgba(109,231,242,.3)}
+.tagline{font-size:clamp(1rem,2.2vw,1.4rem);color:var(--white);opacity:.95;margin:.6rem 0 1rem}
+.meta{color:var(--neon-lime);font-weight:700;letter-spacing:.06em;margin-bottom:1.2rem}
+.cta-row{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-block;padding:.7rem 1.1rem;border-radius:100px;text-decoration:none;font-weight:700;letter-spacing:.02em}
+.btn-neon{background:var(--neon-lime);color:#000}
+.btn-neon:hover{filter:brightness(0.94)}
+.btn-outline{border:2px solid var(--cyan);color:var(--cyan)}
+.btn-outline:hover{background:rgba(109,231,242,0.1)}
+
+/* Diagonal KKAL ribbon */
+.kkal-ribbon{position:absolute;right:-6vw;bottom:-6vh;transform:rotate(-20deg);display:flex;gap:3vw;z-index:1;opacity:.9;pointer-events:none}
+.kkal-ribbon span{font-family:'Black Han Sans', sans-serif;color:var(--neon-lime);font-size:clamp(3rem,12vw,14rem);line-height:0.8;text-shadow:0 0 12px rgba(215,255,47,.18)}
+
+/* Sections */
+.section{padding:6rem 1rem}
+.section h2{font-family:'Black Han Sans', sans-serif;color:var(--cyan);font-size:clamp(1.8rem,4vw,3rem);margin:0 0 1rem}
+.section p{line-height:1.8}
+.container{max-width:1100px;margin:0 auto}
+.container.narrow{max-width:820px}
+
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:.6rem 1rem;padding:0;margin:1rem 0 2rem;list-style:none}
+.kv li{background:linear-gradient(90deg, rgba(213,107,255,.16), rgba(109,231,242,.12));border:1px solid rgba(255,255,255,.08);padding:.7rem 1rem;border-radius:12px}
+.kv strong{color:var(--neon-lime)}
+
+.still{margin:2rem auto 0}
+.still img{width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.still figcaption{opacity:.8;text-align:center;margin-top:.6rem}
+
+/* Interactive */
+.interactive{background:
+  radial-gradient(900px 600px at 0% 100%, rgba(213,107,255,.12), transparent 60%),
+  radial-gradient(600px 400px at 70% 0%, rgba(109,231,242,.12), transparent 60%),
+  linear-gradient(180deg, rgba(255,255,255,.02), transparent 10%),
+  var(--bg-deep);
+  border-top:1px solid rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.seed-form{display:flex;gap:.6rem;align-items:center;margin:1rem 0 1.4rem}
+.seed-form input{flex:1;min-width:160px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:12px;color:#fff;padding:.7rem .9rem}
+.seed-form label{opacity:.9}
+.p5-holder{position:relative;width:min(1200px,92vw);height:60vh;margin:0 auto;border-radius:18px;border:1px solid rgba(255,255,255,.14);overflow:hidden;background:radial-gradient(1200px 600px at 10% 90%, rgba(215,255,47,0.05), transparent), #000}
+
+/* Works */
+.grid{display:grid;gap:1.4rem}
+.grid.works{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.work{padding:1rem;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,.03), transparent)}
+.work h3{margin:.2rem 0 0.6rem;color:var(--neon-lime)}
+.work .tech{font-size:.9rem;opacity:.85;color:var(--cyan)}
+
+/* Poster */
+.poster img{width:100%;height:auto;border-radius:18px;border:1px solid rgba(255,255,255,.12)}
+
+/* Visit */
+.note{opacity:.8}
+
+/* Footer */
+.footer{padding:2rem 1rem;border-top:1px solid rgba(255,255,255,.08);text-align:center;opacity:.9}
