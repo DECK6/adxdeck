@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advisory & Academy - ADX Work Lab</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="canvas-container"></div>
+
+  <header class="fixed top-0 left-0 w-full bg-opacity-90 backdrop-blur-md bg-slate-900 z-50 border-b border-gray-700">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <a href="index.html" class="flex items-center">
+          <img src="https://static.wixstatic.com/shapes/19032f_f7c6dea85bc441bbb8158f63dff3c39f.svg" alt="ADX Work Lab Logo" class="h-10 w-auto mr-2">
+          <span class="text-2xl font-bold">ADX work lab.</span>
+        </a>
+      </div>
+      <nav class="hidden md:flex space-x-8">
+        <a href="index.html#projects" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Work</a>
+        <a href="advisory.html" class="nav-link text-blue-400 transition-colors">Advisory</a>
+        <a href="index.html#contact" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
+      </nav>
+      <button id="mobile-menu-btn" class="md:hidden text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+    <nav id="mobile-menu" class="md:hidden bg-slate-900 border-t border-gray-700 hidden">
+      <div class="px-4 py-2 space-y-2">
+        <a href="index.html#projects" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Work</a>
+        <a href="advisory.html" class="block py-2 text-blue-400 transition-colors">Advisory</a>
+        <a href="index.html#contact" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="pt-24">
+    <!-- Hero -->
+    <section class="section gradient-bg px-4 py-16">
+      <div class="content max-w-6xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold mb-4"><span class="text-gradient">Advisory & Academy</span></h1>
+        <p class="text-gray-300 text-lg max-w-3xl">현장형 강의와 컨설팅으로 조직의 변화를 가속합니다. 아래 탭에서 Consulting, Courses, Speaking 정보를 확인하세요.</p>
+      </div>
+    </section>
+
+    <!-- Tabs -->
+    <section class="section gradient-bg px-4 py-8">
+      <div class="content max-w-6xl mx-auto">
+        <div class="card rounded-xl p-4 mb-6">
+          <div class="flex flex-wrap gap-2">
+            <button class="px-4 py-2 rounded-full text-white bg-blue-600" onclick="showTab('consulting')">Consulting</button>
+            <button class="px-4 py-2 rounded-full text-blue-400 border border-blue-600 hover:bg-blue-600 hover:text-white" onclick="showTab('courses')">Courses</button>
+            <button class="px-4 py-2 rounded-full text-blue-400 border border-blue-600 hover:bg-blue-600 hover:text-white" onclick="showTab('speaking')">Speaking</button>
+          </div>
+        </div>
+
+        <!-- Consulting -->
+        <div id="tab-consulting" class="tab-section">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="card p-6 rounded-xl">
+              <h2 class="text-2xl font-bold text-blue-400 mb-3">컨설팅 패키지</h2>
+              <ul class="text-gray-300 space-y-3 text-sm">
+                <li><strong>Discovery Sprint(2주)</strong>: 현황/목표/리스크 진단 + PoC 제안</li>
+                <li><strong>Tech Due Diligence(3~4주)</strong>: 설계/벤더/장비 검토 리포트</li>
+                <li><strong>Advisory Retainer(3/6개월)</strong>: 월 x시간 자문/리뷰</li>
+              </ul>
+            </div>
+            <div class="card p-6 rounded-xl">
+              <h2 class="text-2xl font-bold text-blue-400 mb-3">프로세스</h2>
+              <ol class="list-decimal list-inside text-gray-300 space-y-2 text-sm">
+                <li>Discovery: 이해관계자 인터뷰/요구정의</li>
+                <li>Analysis: 기술/현장 타당성·리스크 검토</li>
+                <li>Roadmap: 실행안/일정/예산 범위 제안</li>
+              </ol>
+            </div>
+          </div>
+          <div class="mt-6 text-center">
+            <a href="index.html#contact" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-medium transition-colors">컨설팅 상담 문의</a>
+          </div>
+        </div>
+
+        <!-- Courses -->
+        <div id="tab-courses" class="tab-section hidden">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="card p-6 rounded-xl">
+              <h3 class="text-lg font-semibold text-blue-300">실시간 엔진 입문</h3>
+              <p class="text-sm text-gray-400">TouchDesigner/Unreal/Three.js 개론과 실습</p>
+            </div>
+            <div class="card p-6 rounded-xl">
+              <h3 class="text-lg font-semibold text-blue-300">제네레이티브 아트</h3>
+              <p class="text-sm text-gray-400">프롬프트/GLSL/노이즈/필드 기반 생성</p>
+            </div>
+            <div class="card p-6 rounded-xl">
+              <h3 class="text-lg font-semibold text-blue-300">미디어 설치 운영</h3>
+              <p class="text-sm text-gray-400">장비/안전/품질/오퍼레이션 표준</p>
+            </div>
+          </div>
+          <div class="mt-6 text-center">
+            <a href="index.html#contact" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-medium transition-colors">강의·워크숍 상담</a>
+          </div>
+        </div>
+
+        <!-- Speaking -->
+        <div id="tab-speaking" class="tab-section hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="card p-6 rounded-xl">
+              <h2 class="text-2xl font-bold text-blue-400 mb-3">키노트 주제</h2>
+              <ul class="text-gray-300 text-sm space-y-2">
+                <li>실시간/제네레이티브 미디어의 현재와 미래</li>
+                <li>AI x 콘텐츠/전시/브랜드 경험</li>
+                <li>현장형 운영과 품질/안전의 표준</li>
+              </ul>
+            </div>
+            <div class="card p-6 rounded-xl">
+              <h2 class="text-2xl font-bold text-blue-400 mb-3">초청 안내</h2>
+              <p class="text-gray-300 text-sm">행사 개요/청중/시간/예산범위를 알려주세요. 맞춤 제안을 드립니다.</p>
+            </div>
+          </div>
+          <div class="mt-6 text-center">
+            <a href="index.html#contact" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-medium transition-colors">강연 초청 문의</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-slate-900 border-t border-gray-700 py-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <a href="index.html" class="flex items-center">
+            <img src="https://static.wixstatic.com/shapes/19032f_f7c6dea85bc441bbb8158f63dff3c39f.svg" alt="ADX Work Lab Logo" class="h-10 w-auto mr-2">
+            <span class="text-2xl font-bold">ADX work lab.</span>
+          </a>
+          <p class="mt-2 text-gray-400">AI experience and transformation</p>
+        </div>
+        <div class="text-center md:text-right">
+          <p class="text-gray-400">&copy; 2025 ADX Work Lab. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function showTab(name) {
+      const sections = ['consulting','courses','speaking'];
+      sections.forEach(s => {
+        const el = document.getElementById('tab-' + s);
+        if (!el) return;
+        if (s === name) {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+    }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

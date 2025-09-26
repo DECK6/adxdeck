@@ -22,9 +22,8 @@
             
             <!-- Desktop Navigation -->
             <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Home</a>
-                                    <a href="about-deck.html" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">About</a>
-                    <a href="#projects" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Projects</a>
+                <a href="#projects" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Work</a>
+                <a href="advisory.html" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Advisory</a>
                 <a href="#contact" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
             </nav>
             
@@ -39,29 +38,51 @@
         <!-- Mobile Navigation -->
         <nav id="mobile-menu" class="md:hidden bg-slate-900 border-t border-gray-700 hidden">
             <div class="px-4 py-2 space-y-2">
-                <a href="#home" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Home</a>
-                                    <a href="about-deck.html" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">About</a>
-                    <a href="#projects" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Projects</a>
+                <a href="#projects" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Work</a>
+                <a href="advisory.html" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Advisory</a>
                 <a href="#contact" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
-        </div>
+            </div>
         </nav>
     </header>
 
     <!-- Intro Section -->
     <section id="home" class="section gradient-bg flex items-center justify-center px-4 min-h-screen">
-        <div class="content text-center max-w-4xl mx-auto">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 typing-effect">
-                ADX work lab.
-            </h1>
-            <h2 id="changing-title" class="text-xl md:text-2xl text-blue-400 mb-8 font-light">
-                Expert in AI experience and transformation.
-            </h2>
-            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-gray-300">
-                전문가 그룹과 함께하는 혁신적인 AI 경험으로 비즈니스를 변화시키는 여정에 함께합니다
-            </p>
-            <a href="#about" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-medium transition-colors">
-                더 알아보기
-            </a>
+        <div class="content w-full max-w-6xl mx-auto">
+            <h1 class="text-5xl md:text-7xl font-bold mb-10 text-center typing-effect">ADX work lab.</h1>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Media Art side -->
+                <div class="card p-8 rounded-xl h-full flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold mb-3 text-blue-400">Media Art</h2>
+                        <p class="text-gray-300 mb-4">실시간·제네레이티브로 살아있는 공간 경험을 만듭니다.</p>
+                        <ul class="list-disc list-inside text-gray-400 text-sm space-y-1 mb-6">
+                            <li>인터랙티브 설치·전시 · 프로젝션/LED</li>
+                            <li>실시간 엔진/센서 융합 · 제네레이티브 콘텐츠</li>
+                            <li>현장 운영 표준 · 품질/안전 관리</li>
+                        </ul>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="#projects" class="px-5 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-medium transition-colors">Work 보기</a>
+                        <a href="#contact" class="px-5 py-3 border border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white rounded-full font-medium transition-colors">프로젝트 상담</a>
+                    </div>
+                </div>
+                <!-- Advisory & Academy side -->
+                <div class="card p-8 rounded-xl h-full flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-2xl md:text-3xl font-bold mb-3 text-blue-400">Advisory & Academy</h2>
+                        <p class="text-gray-300 mb-4">현장형 강의·컨설팅으로 조직의 변화를 가속합니다.</p>
+                        <ul class="list-disc list-inside text-gray-400 text-sm space-y-1 mb-6">
+                            <li>Consulting: Discovery/DDD/로드맵</li>
+                            <li>Courses: 실시간 엔진·제네레이티브·운영</li>
+                            <li>Speaking: 키노트/세미나/패널</li>
+                        </ul>
+                    </div>
+                    <div class="flex gap-3">
+                        <a href="advisory.html" class="px-5 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-medium transition-colors">Advisory 보기</a>
+                        <a href="#contact" class="px-5 py-3 border border-blue-600 text-blue-400 hover:bg-blue-600 hover:text-white rounded-full font-medium transition-colors">강의·컨설팅 상담</a>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -337,7 +358,7 @@
                 <span class="text-gradient">문의하기</span>
             </h2>
             <p class="text-center text-xl mb-12">
-                AI 프로젝트나 교육에 대한 문의사항이 있으시면 언제든 연락주세요.
+                AI 프로젝트, 강의·컨설팅에 대한 문의사항이 있으시면 언제든 연락주세요. 기존 문의 절차는 그대로 유지됩니다.
             </p>
             
             <div class="max-w-2xl mx-auto">
