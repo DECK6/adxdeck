@@ -25,17 +25,17 @@ body {
 
 /* Increase spacing on large screens for hero cards */
 @media (min-width: 1024px) {
-    #home .grid { gap: 3rem; }
+    #focus .grid { gap: 3rem; }
 }
 
 /* Extra breathing room on very large screens */
 @media (min-width: 1440px) {
-    #home .grid { gap: 3.5rem; }
+    #focus .grid { gap: 3.5rem; }
 }
 
 /* More breathing room on mobile */
 @media (max-width: 768px) {
-    #home .card { margin-bottom: 1rem; }
+    #focus .card { margin-bottom: 1rem; }
 }
 
 #canvas-container {
@@ -67,16 +67,16 @@ body {
 }
 
 /* Add subtle separation between hero cards */
-.section#home .card {
+.section#focus .card {
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
 /* Add a vertical divider between hero columns on large screens */
 @media (min-width: 1024px) {
-    #home .grid {
+    #focus .grid {
         position: relative;
     }
-    #home .grid::before {
+    #focus .grid::before {
         content: "";
         position: absolute;
         top: 0;
