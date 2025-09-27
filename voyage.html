@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>상상유랑 — Le Voyage dans l’Imagination | ADX Work Lab</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="canvas-container"></div>
+
+  <!-- Header -->
+  <header class="fixed top-0 left-0 w-full bg-opacity-90 backdrop-blur-md bg-slate-900 z-50 border-b border-gray-700">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center">
+        <a href="index.html" class="flex items-center">
+          <img src="https://static.wixstatic.com/shapes/19032f_f7c6dea85bc441bbb8158f63dff3c39f.svg" alt="ADX Work Lab Logo" class="h-10 w-auto mr-2" />
+          <span class="text-2xl font-bold">ADX work lab.</span>
+        </a>
+      </div>
+      <nav class="hidden md:flex space-x-8">
+        <a href="index.html#projects" class="nav-link text-blue-400 transition-colors">Work</a>
+        <a href="advisory.html" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Advisory</a>
+        <a href="index.html#contact" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
+      </nav>
+      <button id="mobile-menu-btn" class="md:hidden text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+    <nav id="mobile-menu" class="md:hidden bg-slate-900 border-t border-gray-700 hidden">
+      <div class="px-4 py-2 space-y-2">
+        <a href="index.html#projects" class="block py-2 text-blue-400 transition-colors">Work</a>
+        <a href="advisory.html" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Advisory</a>
+        <a href="index.html#contact" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="pt-24">
+    <!-- Hero -->
+    <section class="section gradient-bg px-4 min-h-screen flex items-center justify-center">
+      <div class="content text-center max-w-4xl mx-auto">
+        <h1 class="text-4xl md:text-6xl font-extrabold mb-4"><span class="text-gradient">상상유랑 — Le Voyage dans l’Imagination</span></h1>
+        <p class="text-xl md:text-2xl text-blue-400 mb-8 font-light">“당신의 한 단어가 세계를 연다.”</p>
+        <a href="#experience" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-medium transition-colors">체험 시작 / Start</a>
+      </div>
+    </section>
+
+    <!-- Experience Video Placeholder -->
+    <section id="experience" class="section gradient-bg px-4 py-24">
+      <div class="content max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Experience Video</h2>
+        <p class="text-center text-gray-400 mb-8">전시 체험 영상 플레이스홀더 (추후 임베드/파일 교체)</p>
+        <div class="card rounded-xl overflow-hidden max-w-4xl mx-auto">
+          <div class="relative w-full" style="padding-top: 56.25%; background: rgba(59,130,246,0.15);">
+            <div class="absolute inset-0 flex items-center justify-center text-gray-300">
+              <div class="text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-3 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-5.197-3.03A1 1 0 008 9.03v5.94a1 1 0 001.555.832l5.197-3.03a1 1 0 000-1.664z"/>
+                </svg>
+                <p class="text-sm">영상 자리 (16:9)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section class="section gradient-bg px-4 py-24">
+      <div class="content max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">About</h2>
+        <p class="text-lg md:text-xl text-gray-200 text-center">“언어가 이미지·음악·깊이로 변환되어, 벽 너머로 현재형 풍경이 열립니다. 관람자는 목격자가 아니라 유랑자가 됩니다.”</p>
+      </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="section gradient-bg px-4 py-24">
+      <div class="content max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">How it Works</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="card p-6 rounded-xl">
+            <h3 class="text-xl font-semibold text-blue-300 mb-2">1. 입력: 단어 1–3개</h3>
+            <p class="text-gray-300 text-sm">관람자가 제시한 짧은 언어 입력이 여정을 시작합니다.</p>
+          </div>
+          <div class="card p-6 rounded-xl">
+            <h3 class="text-xl font-semibold text-blue-300 mb-2">2. 생성: LLM → 이미지/음악, MiDaS 뎁스</h3>
+            <p class="text-gray-300 text-sm">LLM으로 해석한 의미를 바탕으로 이미지·음악을 생성하고, MiDaS로 깊이 정보를 구성합니다.</p>
+          </div>
+          <div class="card p-6 rounded-xl">
+            <h3 class="text-xl font-semibold text-blue-300 mb-2">3. 몰입: 포인트클라우드·오디오리액티브·카메라 시점 반응</h3>
+            <p class="text-gray-300 text-sm">깊이 기반 포인트클라우드, 오디오 리액티브, 카메라/제스처 반응으로 몰입형 풍경을 완성합니다.</p>
+          </div>
+        </div>
+        <p class="text-gray-400 text-sm mt-6 text-center">(설명) 동일 파이프라인을 유지한 채, 출력은 멀티채널 동기화로 확장됩니다.</p>
+      </div>
+    </section>
+
+    <!-- Formats (확장) -->
+    <section class="section gradient-bg px-4 py-24">
+      <div class="content max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Formats (확장)</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="card p-6 rounded-xl">
+            <h3 class="text-lg font-semibold text-blue-300">Single Channel (현재)</h3>
+            <p class="text-gray-300 text-sm">한 면 포털 연출</p>
+          </div>
+          <div class="card p-6 rounded-xl">
+            <h3 class="text-lg font-semibold text-blue-300">Triple Channel (파노라마)</h3>
+            <p class="text-gray-300 text-sm">좌/정면/우 180° 몰입</p>
+          </div>
+          <div class="card p-6 rounded-xl">
+            <h3 class="text-lg font-semibold text-blue-300">Quad Channel (3면 + 바닥)</h3>
+            <p class="text-gray-300 text-sm">방 전체 확장, 바닥 인터랙션 연동</p>
+          </div>
+        </div>
+        <p class="text-gray-400 text-sm mt-6 text-center">문의 시 전시장 규모/예산에 맞춰 모드 제안</p>
+      </div>
+    </section>
+
+    <!-- Image Gallery Placeholder -->
+    <section class="section gradient-bg px-4 py-24">
+      <div class="content max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-center">Images</h2>
+        <p class="text-center text-gray-400 mb-8">전시 이미지 플레이스홀더 (스틸/스케치/컨셉)</p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="card rounded-xl h-48 flex items-center justify-center text-gray-400">이미지 #1</div>
+          <div class="card rounded-xl h-48 flex items-center justify-center text-gray-400">이미지 #2</div>
+          <div class="card rounded-xl h-48 flex items-center justify-center text-gray-400">이미지 #3</div>
+          <div class="card rounded-xl h-48 flex items-center justify-center text-gray-400">이미지 #4</div>
+          <div class="card rounded-xl h-48 flex items-center justify-center text-gray-400">이미지 #5</div>
+          <div class="card rounded-xl h-48 flex items-center justify-center text-gray-400">이미지 #6</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience (Flow) -->
+    <section class="section gradient-bg px-4 py-24">
+      <div class="content max-w-6xl mx-auto">
+        <h2 class="text-3xl md:text-4xl font-bold mb-10 text-center">Experience</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="card p-6 rounded-xl">
+            <h3 class="text-xl font-semibold text-blue-300 mb-2">전개</h3>
+            <ul class="text-gray-300 text-sm space-y-2">
+              <li>벽 복원(로딩) → 붕괴(개방) → 세계가 펼쳐짐</li>
+              <li>움직임·손짓에 따라 시점과 입자 궤적, 음악이 함께 변주</li>
+            </ul>
+          </div>
+          <div class="card p-6 rounded-xl">
+            <h3 class="text-xl font-semibold text-blue-300 mb-2">상호작용</h3>
+            <ul class="text-gray-300 text-sm space-y-2">
+              <li>카메라 시점/제스처 입력으로 시점 이동·입자 반응</li>
+              <li>오디오 리액티브: 생성 음악과 시각 요소의 동기화</li>
+            </ul>
+          </div>
+        </div>
+        <div class="text-center mt-10">
+          <a href="index.html#contact" class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-medium transition-colors">전시 문의</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-slate-900 border-t border-gray-700 py-12">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        <div class="mb-4 md:mb-0">
+          <a href="index.html" class="flex items-center">
+            <img src="https://static.wixstatic.com/shapes/19032f_f7c6dea85bc441bbb8158f63dff3c39f.svg" alt="ADX Work Lab Logo" class="h-10 w-auto mr-2" />
+            <span class="text-2xl font-bold">ADX work lab.</span>
+          </a>
+          <p class="mt-2 text-gray-400">AI experience and transformation</p>
+        </div>
+        <div class="text-center md:text-right">
+          <p class="text-gray-400">&copy; 2025 ADX Work Lab. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
