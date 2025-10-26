@@ -275,6 +275,9 @@
     </footer>
 
     <script>
+        // GitHub Raw URL 기본 경로
+        const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/DECK6/adxdeck/refs/heads/main/hsg/data/';
+
         // TXT 파일 목록
         const txtFiles = [
             { id: '03', name: '03_기관_문서규정_요약.txt', desc: '문서 작성 표준 및 규정 요약' },
@@ -288,59 +291,29 @@
             { id: '11', name: '11_정책자료_요약_보도자료용.txt', desc: '스마트 버스정류장 보도자료 기초자료' }
         ];
 
-        // 파일 경로 생성 - 여러 방법 시도
-        function getFilePath(filename) {
-            const hostname = window.location.hostname;
-            const pathname = window.location.pathname;
-            
-            // GitHub Pages인 경우 여러 경로 시도
-            if (hostname.includes('github.io')) {
-                // 방법 1: 상대 경로 (가장 안전)
-                const basePath = pathname.endsWith('/') ? pathname : pathname + '/';
-                return `${basePath}data/${filename}`;
+        // CSV 다운로드
+        async function downloadCSV(filename) {
+            try {
+                const url = GITHUB_RAW_BASE + filename;
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('파일을 찾을 수 없습니다');
+                
+                const blob = await response.blob();
+                const link = document.createElement('a');
+                link.href = window.URL.createObjectURL(blob);
+                link.download = filename;
+                link.click();
+                window.URL.revokeObjectURL(link.href);
+            } catch (error) {
+                alert('다운로드 실패: ' + error.message);
             }
-            
-            // 로컬
-            const basePath = pathname.substring(0, pathname.lastIndexOf('/') + 1);
-            return `${basePath}data/${filename}`;
-        }
-        
-        // GitHub Raw URL 생성 (정확한 경로)
-        function getRawFilePath(filename) {
-            return `https://raw.githubusercontent.com/DECK6/adxdeck/refs/heads/main/hsg/data/${filename}`;
-        }
-        
-        // 여러 URL 시도하여 파일 다운로드
-        async function tryMultiplePaths(filename) {
-            const paths = [
-                getRawFilePath(filename), // GitHub Raw URL을 첫 번째로
-                getFilePath(filename),
-                `./data/${filename}`,
-                `data/${filename}`,
-                `https://DECK6.github.io/adxdeck/hsg/data/${filename}`
-            ];
-            
-            for (const path of paths) {
-                try {
-                    console.log(`시도 중: ${path}`);
-                    const response = await fetch(path);
-                    if (response.ok) {
-                        console.log(`✅ 성공: ${path}`);
-                        return { path, response };
-                    }
-                } catch (error) {
-                    console.log(`❌ 실패: ${path}`);
-                }
-            }
-            
-            throw new Error('모든 경로에서 파일을 찾을 수 없습니다.');
         }
 
         // 프롬프트 데이터 로드 및 렌더링
         async function loadPrompts() {
             try {
-                const result = await tryMultiplePaths('prompts.json');
-                const data = await result.response.json();
+                const response = await fetch(GITHUB_RAW_BASE + 'prompts.json');
+                const data = await response.json();
                 const container = document.getElementById('prompts-container');
                 
                 data.prompts.forEach(prompt => {
@@ -349,13 +322,6 @@
                 });
             } catch (error) {
                 console.error('Error loading prompts:', error);
-                const container = document.getElementById('prompts-container');
-                container.innerHTML = `
-                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded">
-                        <p class="font-bold">프롬프트 로드 실패</p>
-                        <p class="text-sm">파일 경로를 확인해주세요. GitHub 저장소에 data/prompts.json 파일이 있는지 확인하세요.</p>
-                    </div>
-                `;
             }
         }
 
@@ -364,7 +330,6 @@
             const card = document.createElement('div');
             card.className = 'prompt-card bg-white rounded-xl shadow-lg p-6';
             
-            // 필요한 데이터 파일 태그 생성
             const requiredDataTags = prompt.required_data.map(file => 
                 `<span class="required-data-tag"><i class="fas fa-file mr-1"></i>${file}</span>`
             ).join('');
@@ -406,7 +371,6 @@
                 </div>
             `;
             
-            // 복사 버튼 이벤트 추가
             const copyBtn = card.querySelector('.copy-btn');
             copyBtn.addEventListener('click', () => copyPrompt(prompt.id, prompt.prompt, copyBtn));
             
@@ -419,8 +383,8 @@
             
             for (const file of txtFiles) {
                 try {
-                    const result = await tryMultiplePaths(file.name);
-                    const content = await result.response.text();
+                    const response = await fetch(GITHUB_RAW_BASE + file.name);
+                    const content = await response.text();
                     
                     const fileCard = createFileCard(file, content);
                     container.appendChild(fileCard);
@@ -461,7 +425,6 @@
                 </div>
             `;
             
-            // 복사 버튼 이벤트 추가
             const copyBtn = card.querySelector('.copy-btn');
             copyBtn.addEventListener('click', () => copyToClipboard(file.id, content, copyBtn));
             
@@ -525,44 +488,20 @@
             }
         }
 
-        // CSV 파일 다운로드
-        async function downloadCSV(filename) {
-            try {
-                const result = await tryMultiplePaths(filename);
-                
-                const blob = await result.response.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = filename;
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-                
-                console.log(`✅ 다운로드 성공: ${filename}`);
-            } catch (error) {
-                console.error('CSV 다운로드 실패:', error);
-                alert(`파일 다운로드에 실패했습니다.\n\n다음을 확인해주세요:\n1. GitHub 저장소 구조: adxdeck/hsg/data/${filename}\n2. 파일이 업로드되어 있는지\n3. 저장소가 Public인지\n\n브라우저 콘솔(F12)에서 자세한 오류를 확인하세요.`);
-            }
-        }
-
         // 탭 전환
         document.querySelectorAll('.nav-tab').forEach(tab => {
             tab.addEventListener('click', () => {
                 const tabName = tab.dataset.tab;
                 
-                // 모든 탭 비활성화
                 document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
                 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
                 
-                // 선택된 탭 활성화
                 tab.classList.add('active');
                 document.getElementById(`${tabName}-tab`).classList.add('active');
             });
         });
 
-        // 페이지 로드 시 프롬프트와 TXT 파일 로드
+        // 페이지 로드 시 실행
         document.addEventListener('DOMContentLoaded', () => {
             loadPrompts();
             loadTxtFiles();
