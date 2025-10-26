@@ -288,19 +288,59 @@
             { id: '11', name: '11_정책자료_요약_보도자료용.txt', desc: '스마트 버스정류장 보도자료 기초자료' }
         ];
 
-        // 현재 경로 기반 URL 생성
+        // 파일 경로 생성 - 여러 방법 시도
         function getFilePath(filename) {
-            const basePath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
-            const fullPath = `${basePath}data/${filename}`;
-            console.log(`파일 경로: ${fullPath}`); // 디버깅용
-            return fullPath;
+            const hostname = window.location.hostname;
+            const pathname = window.location.pathname;
+            
+            // GitHub Pages인 경우 여러 경로 시도
+            if (hostname.includes('github.io')) {
+                // 방법 1: 상대 경로 (가장 안전)
+                const basePath = pathname.endsWith('/') ? pathname : pathname + '/';
+                return `${basePath}data/${filename}`;
+            }
+            
+            // 로컬
+            const basePath = pathname.substring(0, pathname.lastIndexOf('/') + 1);
+            return `${basePath}data/${filename}`;
+        }
+        
+        // GitHub Raw URL 생성 (정확한 경로)
+        function getRawFilePath(filename) {
+            return `https://raw.githubusercontent.com/DECK6/adxdeck/refs/heads/main/hsg/data/${filename}`;
+        }
+        
+        // 여러 URL 시도하여 파일 다운로드
+        async function tryMultiplePaths(filename) {
+            const paths = [
+                getRawFilePath(filename), // GitHub Raw URL을 첫 번째로
+                getFilePath(filename),
+                `./data/${filename}`,
+                `data/${filename}`,
+                `https://DECK6.github.io/adxdeck/hsg/data/${filename}`
+            ];
+            
+            for (const path of paths) {
+                try {
+                    console.log(`시도 중: ${path}`);
+                    const response = await fetch(path);
+                    if (response.ok) {
+                        console.log(`✅ 성공: ${path}`);
+                        return { path, response };
+                    }
+                } catch (error) {
+                    console.log(`❌ 실패: ${path}`);
+                }
+            }
+            
+            throw new Error('모든 경로에서 파일을 찾을 수 없습니다.');
         }
 
         // 프롬프트 데이터 로드 및 렌더링
         async function loadPrompts() {
             try {
-                const response = await fetch(getFilePath('prompts.json'));
-                const data = await response.json();
+                const result = await tryMultiplePaths('prompts.json');
+                const data = await result.response.json();
                 const container = document.getElementById('prompts-container');
                 
                 data.prompts.forEach(prompt => {
@@ -309,6 +349,13 @@
                 });
             } catch (error) {
                 console.error('Error loading prompts:', error);
+                const container = document.getElementById('prompts-container');
+                container.innerHTML = `
+                    <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded">
+                        <p class="font-bold">프롬프트 로드 실패</p>
+                        <p class="text-sm">파일 경로를 확인해주세요. GitHub 저장소에 data/prompts.json 파일이 있는지 확인하세요.</p>
+                    </div>
+                `;
             }
         }
 
@@ -372,8 +419,8 @@
             
             for (const file of txtFiles) {
                 try {
-                    const response = await fetch(getFilePath(file.name));
-                    const content = await response.text();
+                    const result = await tryMultiplePaths(file.name);
+                    const content = await result.response.text();
                     
                     const fileCard = createFileCard(file, content);
                     container.appendChild(fileCard);
@@ -478,19 +525,12 @@
             }
         }
 
-        // CSV 파일 다운로드 (대체 방법)
+        // CSV 파일 다운로드
         async function downloadCSV(filename) {
             try {
-                const filePath = getFilePath(filename);
+                const result = await tryMultiplePaths(filename);
                 
-                const response = await fetch(filePath);
-                
-                // 404 에러 체크
-                if (!response.ok) {
-                    throw new Error(`파일을 찾을 수 없습니다: ${response.status}`);
-                }
-                
-                const blob = await response.blob();
+                const blob = await result.response.blob();
                 const url = window.URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
@@ -499,9 +539,11 @@
                 a.click();
                 window.URL.revokeObjectURL(url);
                 document.body.removeChild(a);
+                
+                console.log(`✅ 다운로드 성공: ${filename}`);
             } catch (error) {
                 console.error('CSV 다운로드 실패:', error);
-                alert(`파일 다운로드에 실패했습니다.\n${error.message}\n\n파일 경로를 확인해주세요.`);
+                alert(`파일 다운로드에 실패했습니다.\n\n다음을 확인해주세요:\n1. GitHub 저장소 구조: adxdeck/hsg/data/${filename}\n2. 파일이 업로드되어 있는지\n3. 저장소가 Public인지\n\n브라우저 콘솔(F12)에서 자세한 오류를 확인하세요.`);
             }
         }
 
