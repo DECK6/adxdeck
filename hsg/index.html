@@ -1,523 +1,135 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>횡성군청 ChatGPT 활용 교육 실습자료</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>횡성군청 ChatGPT 활용 교육</title>
+
+    <!-- 전체 페이지를 외부 서비스로 바로 보여주기 위한 기본 스타일 -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
-        
-        body {
-            font-family: 'Noto Sans KR', sans-serif;
+        /* 기본 리셋 */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #000;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans KR", sans-serif;
+            color: #fff;
         }
-        
-        .file-card, .prompt-card {
-            transition: all 0.3s ease;
+
+        /* iframe이 전체 화면을 차지하도록 */
+        .frame-wrapper {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #000;
         }
-        
-        .file-card:hover, .prompt-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
-        
-        .code-box {
-            position: relative;
-            background: #1e293b;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        
-        .code-content {
-            max-height: 300px;
-            overflow-y: auto;
-            padding: 1.5rem;
-            color: #e2e8f0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.875rem;
-            line-height: 1.6;
-            white-space: pre-wrap;
-            word-break: break-all;
-        }
-        
-        .prompt-box {
-            position: relative;
-            background: #0f172a;
-            border-radius: 8px;
-            overflow: hidden;
-            border: 2px solid #3b82f6;
-        }
-        
-        .prompt-content {
-            max-height: 400px;
-            overflow-y: auto;
-            padding: 1.5rem;
-            color: #e2e8f0;
-            font-family: 'Courier New', monospace;
-            font-size: 0.875rem;
-            line-height: 1.8;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-        
-        .copy-btn {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            transition: all 0.2s ease;
-            z-index: 10;
-        }
-        
-        .copy-btn:hover {
-            transform: scale(1.05);
-        }
-        
-        .copied {
-            background: #10b981 !important;
-        }
-        
-        .badge {
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-        }
-        
-        .csv-badge {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-        
-        .txt-badge {
-            background: #fef3c7;
-            color: #92400e;
-        }
-        
-        .prompt-badge {
-            background: #ddd6fe;
-            color: #5b21b6;
-        }
-        
-        .required-data-tag {
-            display: inline-block;
-            background: #eff6ff;
-            color: #1e40af;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            margin: 0.125rem;
-        }
-        
-        .nav-tabs {
-            border-bottom: 2px solid #e5e7eb;
-        }
-        
-        .nav-tab {
-            padding: 1rem 1.5rem;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
-            font-weight: 500;
-        }
-        
-        .nav-tab:hover {
-            background: #f3f4f6;
-        }
-        
-        .nav-tab.active {
-            border-bottom-color: #3b82f6;
-            color: #3b82f6;
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
             display: block;
+            background-color: #000;
+        }
+
+        /* iframe이 막혔을 때 나타나는 안내 메시지 */
+        .fallback-message {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+            background-color: #000;
+        }
+
+        .fallback-message h1 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            margin: 0 0 0.75rem 0;
+        }
+
+        .fallback-message p {
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: #9ca3af;
+            margin: 0 0 1rem 0;
+        }
+
+        .fallback-link {
+            display: inline-block;
+            background-color: #3b82f6;
+            color: #fff;
+            font-size: 0.875rem;
+            font-weight: 600;
+            line-height: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+        }
+
+        .fallback-link:active,
+        .fallback-link:focus,
+        .fallback-link:hover {
+            background-color: #2563eb;
         }
     </style>
-</head>
-<body class="bg-gradient-to-br from-blue-50 to-indigo-50 min-h-screen">
-    <!-- Header -->
-    <header class="bg-white shadow-md sticky top-0 z-50">
-        <div class="container mx-auto px-4 py-6">
-            <div class="flex items-center justify-between">
-                <div>
-                    <h1 class="text-3xl font-bold text-gray-800">
-                        <i class="fas fa-graduation-cap text-blue-600 mr-2"></i>
-                        횡성군청 ChatGPT 활용 교육
-                    </h1>
-                    <p class="text-gray-600 mt-2">실습용 데이터 및 프롬프트 제공 페이지</p>
-                </div>
-                <div class="text-right">
-                    <div class="text-sm text-gray-500">총 11개 파일 + 8개 프롬프트</div>
-                    <div class="text-xs text-gray-400">CSV 2개 | TXT 9개 | Lab 8개</div>
-                </div>
-            </div>
-        </div>
-    </header>
 
-    <!-- Navigation Tabs -->
-    <div class="bg-white shadow-sm sticky top-[104px] z-40">
-        <div class="container mx-auto px-4">
-            <div class="nav-tabs flex space-x-1">
-                <div class="nav-tab active" data-tab="prompts">
-                    <i class="fas fa-comment-dots mr-2"></i>실습 프롬프트
-                </div>
-                <div class="nav-tab" data-tab="data">
-                    <i class="fas fa-database mr-2"></i>실습 데이터
-                </div>
-            </div>
+    <!-- 만약 iframe이 차단된 브라우저/정책이면 바로 해당 주소로 리다이렉트 -->
+    <noscript>
+        <meta http-equiv="refresh" content="0; url=https://aydluyfp.gensparkspace.com" />
+    </noscript>
+</head>
+<body>
+    <div class="frame-wrapper">
+        <iframe
+            id="extFrame"
+            src="https://aydluyfp.gensparkspace.com"
+            allowfullscreen
+            referrerpolicy="no-referrer"
+        ></iframe>
+
+        <!-- iframe이 차단된 경우를 위한 접근성/수동 fallback -->
+        <div class="fallback-message" id="fallback" style="display:none;">
+            <h1>페이지를 불러오는 중입니다…</h1>
+            <p>
+                이 화면이 계속 보인다면<br />
+                보안 정책 때문에 직접 임베드(iframe) 로딩이 차단된 상태일 수 있습니다.<br />
+                아래 버튼을 눌러 직접 접속해주세요.
+            </p>
+            <a class="fallback-link" href="https://aydluyfp.gensparkspace.com" target="_blank" rel="noopener noreferrer">
+                페이지로 이동
+            </a>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 py-8">
-        <!-- Info Banner -->
-        <div class="bg-blue-100 border-l-4 border-blue-500 text-blue-700 p-4 mb-8 rounded-r-lg">
-            <div class="flex items-start">
-                <i class="fas fa-info-circle text-2xl mr-3 mt-1"></i>
-                <div>
-                    <h3 class="font-semibold mb-1">사용 안내</h3>
-                    <ul class="text-sm space-y-1">
-                        <li>• <strong>프롬프트</strong>: 복사 버튼을 클릭하여 ChatGPT에 붙여넣으세요</li>
-                        <li>• <strong>CSV 파일</strong>: 다운로드 버튼을 클릭하여 파일을 저장 후 ChatGPT에 업로드하세요</li>
-                        <li>• <strong>TXT 파일</strong>: 복사 버튼을 클릭하여 내용을 클립보드에 복사하세요</li>
-                        <li>• 각 프롬프트에는 필요한 데이터 파일이 표시되어 있습니다</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tab Content: Prompts -->
-        <div id="prompts-tab" class="tab-content active">
-            <section>
-                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                    <i class="fas fa-comment-dots text-purple-600 mr-2"></i>
-                    실습 프롬프트 (Lab별)
-                </h2>
-                <div id="prompts-container" class="space-y-6"></div>
-            </section>
-        </div>
-
-        <!-- Tab Content: Data Files -->
-        <div id="data-tab" class="tab-content">
-            <!-- CSV Files Section -->
-            <section class="mb-12">
-                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                    <i class="fas fa-table text-blue-600 mr-2"></i>
-                    CSV 파일 (다운로드)
-                </h2>
-                <div class="grid md:grid-cols-2 gap-6">
-                    <!-- CSV File 1 -->
-                    <div class="file-card bg-white rounded-xl shadow-lg p-6">
-                        <div class="flex items-start justify-between mb-4">
-                            <div>
-                                <span class="badge csv-badge">CSV</span>
-                                <h3 class="text-lg font-semibold text-gray-800 mt-2">01_민원_현황_샘플.csv</h3>
-                                <p class="text-sm text-gray-500 mt-1">민원 접수 및 처리 현황 데이터</p>
-                            </div>
-                            <i class="fas fa-file-csv text-4xl text-blue-500"></i>
-                        </div>
-                        <div class="text-sm text-gray-600 mb-4">
-                            <i class="fas fa-info-circle mr-1"></i>
-                            파일 크기: 4 KB
-                        </div>
-
-                        <!-- 수정: 버튼을 절대 경로 <a> 링크로 변경 -->
-                        <a  href="https://www.genspark.ai/api/code_sandbox_light/preview/6327a4e0-6e0c-49b2-ba07-54caaf0a7587/data/01_민원_현황_샘플.csv"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition text-sm">
-                            <i class="fas fa-download mr-2"></i>
-                            다운로드
-                        </a>
-                    </div>
-
-                    <!-- CSV File 2 -->
-                    <div class="file-card bg-white rounded-xl shadow-lg p-6">
-                        <div class="flex items-start justify-between mb-4">
-                            <div>
-                                <span class="badge csv-badge">CSV</span>
-                                <h3 class="text-lg font-semibold text-gray-800 mt-2">02_사업_집행_현황.csv</h3>
-                                <p class="text-sm text-gray-500 mt-1">사업별 예산 집행 현황 데이터</p>
-                            </div>
-                            <i class="fas fa-file-csv text-4xl text-blue-500"></i>
-                        </div>
-                        <div class="text-sm text-gray-600 mb-4">
-                            <i class="fas fa-info-circle mr-1"></i>
-                            파일 크기: 2 KB
-                        </div>
-
-                        <!-- 수정: 버튼을 절대 경로 <a> 링크로 변경 -->
-                        <a  href="https://www.genspark.ai/api/code_sandbox_light/preview/6327a4e0-6e0c-49b2-ba07-54caaf0a7587/data/02_사업_집행_현황.csv"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition text-sm">
-                            <i class="fas fa-download mr-2"></i>
-                            다운로드
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- TXT Files Section -->
-            <section>
-                <h2 class="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                    <i class="fas fa-file-alt text-yellow-600 mr-2"></i>
-                    TXT 파일 (복사하기)
-                </h2>
-                <div class="grid md:grid-cols-1 gap-6">
-                    <div id="txt-files-container"></div>
-                </div>
-            </section>
-        </div>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6 mt-12">
-        <div class="container mx-auto px-4 text-center">
-            <p class="text-sm">횡성군청 ChatGPT 활용 교육 실습자료</p>
-            <p class="text-xs text-gray-400 mt-2">© 2025 ADX Work Lab. All rights reserved.</p>
-        </div>
-    </footer>
-
     <script>
-        // GitHub Raw URL 기본 경로
-        // 수정: refs/main -> refs/heads/main 으로 통일
-        const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/DECK6/adxdeck/refs/heads/main/hsg/data/';
+        // 로드 감시해서 iframe이 제대로 안 뜨면 fallback 메시지 노출
+        (function () {
+            const iframe = document.getElementById("extFrame");
+            const fallback = document.getElementById("fallback");
 
-        // TXT 파일 목록
-        const txtFiles = [
-            { id: '03', name: '03_기관_문서규정_요약.txt', desc: '문서 작성 표준 및 규정 요약' },
-            { id: '04', name: '04_템플릿_표준목차.txt', desc: '보고서 표준 목차 템플릿' },
-            { id: '05', name: '05_보고서_초안.txt', desc: '월간 민원·집행 현황 보고서 초안' },
-            { id: '06', name: '06_PII_포함_민원메모.txt', desc: '개인정보 포함 민원 상담 메모' },
-            { id: '07', name: '07_정책_요약.txt', desc: '배수로 무상 정비 지원사업 정책 요약' },
-            { id: '08', name: '08_정책_변경포인트.txt', desc: '정책 변경 사항 안내' },
-            { id: '09', name: '09_민원_raw.txt', desc: '배수로 정비 지원 민원 원본' },
-            { id: '10', name: '10_회의메모_raw.txt', desc: '현안 TF 회의 메모' },
-            { id: '11', name: '11_정책자료_요약_보도자료용.txt', desc: '스마트 버스정류장 보도자료 기초자료' }
-        ];
+            let loaded = false;
 
-        // ▼ 기존 downloadCSV 함수는 더 이상 CSV 버튼에서 사용하지 않지만
-        //   다른 코드에 영향은 없으니 그대로 둡니다.
-        async function downloadCSV(filename) {
-            try {
-                const url = GITHUB_RAW_BASE + filename;
-                const response = await fetch(url);
-                if (!response.ok) throw new Error('파일을 찾을 수 없습니다');
-                
-                const blob = await response.blob();
-                const link = document.createElement('a');
-                link.href = window.URL.createObjectURL(blob);
-                link.download = filename;
-                link.click();
-                window.URL.revokeObjectURL(link.href);
-            } catch (error) {
-                alert('다운로드 실패: ' + error.message);
-            }
-        }
-
-        // 프롬프트 데이터 로드 및 렌더링
-        async function loadPrompts() {
-            try {
-                const response = await fetch(GITHUB_RAW_BASE + 'prompts.json');
-                const data = await response.json();
-                const container = document.getElementById('prompts-container');
-                
-                data.prompts.forEach(prompt => {
-                    const promptCard = createPromptCard(prompt);
-                    container.appendChild(promptCard);
-                });
-            } catch (error) {
-                console.error('Error loading prompts:', error);
-            }
-        }
-
-        // 프롬프트 카드 생성
-        function createPromptCard(prompt) {
-            const card = document.createElement('div');
-            card.className = 'prompt-card bg-white rounded-xl shadow-lg p-6';
-            
-            const requiredDataTags = prompt.required_data.map(file => 
-                `<span class="required-data-tag"><i class="fas fa-file mr-1"></i>${file}</span>`
-            ).join('');
-            
-            card.innerHTML = `
-                <div class="mb-4">
-                    <div class="flex items-start justify-between mb-3">
-                        <div class="flex-1">
-                            <span class="badge prompt-badge">${prompt.category}</span>
-                            <h3 class="text-xl font-bold text-gray-800 mt-2">${prompt.title}</h3>
-                            <p class="text-sm text-gray-600 mt-2">${prompt.description}</p>
-                        </div>
-                        <i class="fas fa-comment-dots text-4xl text-purple-500 ml-4"></i>
-                    </div>
-                    
-                    <div class="mt-3">
-                        <p class="text-sm font-semibold text-gray-700 mb-2">
-                            <i class="fas fa-paperclip mr-1"></i>필요한 데이터:
-                        </p>
-                        <div class="flex flex-wrap gap-1">
-                            ${requiredDataTags}
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="prompt-box mb-4">
-                    <button class="copy-btn bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold py-2 px-4 rounded-lg" data-prompt-id="${prompt.id}">
-                        <i class="fas fa-copy mr-1"></i>
-                        프롬프트 복사
-                    </button>
-                    <pre class="prompt-content" id="prompt-${prompt.id}">${escapeHtml(prompt.prompt)}</pre>
-                </div>
-                
-                <div class="flex gap-2">
-                    <button class="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg transition text-sm" onclick="togglePromptView('prompt-${prompt.id}')">
-                        <i class="fas fa-expand-alt mr-1"></i>
-                        전체보기
-                    </button>
-                </div>
-            `;
-            
-            const copyBtn = card.querySelector('.copy-btn');
-            copyBtn.addEventListener('click', () => copyPrompt(prompt.id, prompt.prompt, copyBtn));
-            
-            return card;
-        }
-
-        // TXT 파일 로드 및 렌더링
-        async function loadTxtFiles() {
-            const container = document.getElementById('txt-files-container');
-            
-            for (const file of txtFiles) {
-                try {
-                    const response = await fetch(GITHUB_RAW_BASE + file.name);
-                    const content = await response.text();
-                    
-                    const fileCard = createFileCard(file, content);
-                    container.appendChild(fileCard);
-                } catch (error) {
-                    console.error(`Error loading ${file.name}:`, error);
-                }
-            }
-        }
-
-        // 파일 카드 생성
-        function createFileCard(file, content) {
-            const card = document.createElement('div');
-            card.className = 'file-card bg-white rounded-xl shadow-lg p-6';
-            
-            const fileSize = new Blob([content]).size;
-            const fileSizeKB = (fileSize / 1024).toFixed(1);
-            
-            card.innerHTML = `
-                <div class="flex items-start justify-between mb-4">
-                    <div class="flex-1">
-                        <span class="badge txt-badge">TXT</span>
-                        <h3 class="text-lg font-semibold text-gray-800 mt-2">${file.name}</h3>
-                        <p class="text-sm text-gray-500 mt-1">${file.desc}</p>
-                        <div class="text-sm text-gray-600 mt-2">
-                            <i class="fas fa-info-circle mr-1"></i>
-                            파일 크기: ${fileSizeKB} KB | 줄 수: ${content.split('\n').length}
-                        </div>
-                    </div>
-                    <i class="fas fa-file-alt text-4xl text-yellow-500"></i>
-                </div>
-                
-                <div class="code-box mb-4">
-                    <button class="copy-btn bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-2 px-4 rounded-lg" data-file-id="${file.id}">
-                        <i class="fas fa-copy mr-1"></i>
-                        복사
-                    </button>
-                    <pre class="code-content" id="content-${file.id}">${escapeHtml(content)}</pre>
-                </div>
-            `;
-            
-            const copyBtn = card.querySelector('.copy-btn');
-            copyBtn.addEventListener('click', () => copyToClipboard(file.id, content, copyBtn));
-            
-            return card;
-        }
-
-        // HTML 특수문자 이스케이프
-        function escapeHtml(text) {
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        // 프롬프트 복사
-        async function copyPrompt(promptId, content, button) {
-            try {
-                await navigator.clipboard.writeText(content);
-                
-                const originalHtml = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-check mr-1"></i>복사됨!';
-                button.classList.add('copied');
-                
-                setTimeout(() => {
-                    button.innerHTML = originalHtml;
-                    button.classList.remove('copied');
-                }, 2000);
-                
-            } catch (err) {
-                console.error('복사 실패:', err);
-                alert('복사에 실패했습니다. 다시 시도해주세요.');
-            }
-        }
-
-        // TXT 복사
-        async function copyToClipboard(fileId, content, button) {
-            try {
-                await navigator.clipboard.writeText(content);
-                
-                const originalHtml = button.innerHTML;
-                button.innerHTML = '<i class="fas fa-check mr-1"></i>복사됨!';
-                button.classList.add('copied');
-                
-                setTimeout(() => {
-                    button.innerHTML = originalHtml;
-                    button.classList.remove('copied');
-                }, 2000);
-                
-            } catch (err) {
-                console.error('복사 실패:', err);
-                alert('복사에 실패했습니다. 다시 시도해주세요.');
-            }
-        }
-
-        // 프롬프트 전체보기 토글
-        function togglePromptView(contentId) {
-            const content = document.getElementById(contentId);
-            if (content.style.maxHeight === 'none') {
-                content.style.maxHeight = '400px';
-            } else {
-                content.style.maxHeight = 'none';
-            }
-        }
-
-        // 탭 전환
-        document.querySelectorAll('.nav-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                const tabName = tab.dataset.tab;
-                
-                document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-                
-                tab.classList.add('active');
-                document.getElementById(`${tabName}-tab`).classList.add('active');
+            // 정상 로드되면 loaded = true
+            iframe.addEventListener("load", () => {
+                loaded = true;
             });
-        });
 
-        // 페이지 로드 시 실행
-        document.addEventListener('DOMContentLoaded', () => {
-            loadPrompts();
-            loadTxtFiles();
-        });
+            // 일정 시간 안에 안 뜨면 차단된 걸로 보고 fallback 안내 활성화
+            window.addEventListener("load", () => {
+                setTimeout(() => {
+                    if (!loaded) {
+                        fallback.style.display = "flex";
+                    }
+                }, 1500);
+            });
+        })();
     </script>
 </body>
 </html>
