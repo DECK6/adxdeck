@@ -225,10 +225,15 @@
                             <i class="fas fa-info-circle mr-1"></i>
                             파일 크기: 4 KB
                         </div>
-                        <button onclick="downloadCSV('01_민원_현황_샘플.csv')" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition text-center">
+
+                        <!-- 수정: 버튼을 절대 경로 <a> 링크로 변경 -->
+                        <a  href="https://raw.githubusercontent.com/DECK6/adxdeck/refs/heads/main/hsg/data/01_민원_현황_샘플.csv"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition text-sm">
                             <i class="fas fa-download mr-2"></i>
                             다운로드
-                        </button>
+                        </a>
                     </div>
 
                     <!-- CSV File 2 -->
@@ -245,10 +250,15 @@
                             <i class="fas fa-info-circle mr-1"></i>
                             파일 크기: 2 KB
                         </div>
-                        <button onclick="downloadCSV('02_사업_집행_현황.csv')" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition text-center">
+
+                        <!-- 수정: 버튼을 절대 경로 <a> 링크로 변경 -->
+                        <a  href="https://raw.githubusercontent.com/DECK6/adxdeck/refs/heads/main/hsg/data/02_사업_집행_현황.csv"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-4 rounded-lg transition text-sm">
                             <i class="fas fa-download mr-2"></i>
                             다운로드
-                        </button>
+                        </a>
                     </div>
                 </div>
             </section>
@@ -276,7 +286,8 @@
 
     <script>
         // GitHub Raw URL 기본 경로
-        const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/DECK6/adxdeck/refs/main/hsg/data/';
+        // 수정: refs/main -> refs/heads/main 으로 통일
+        const GITHUB_RAW_BASE = 'https://raw.githubusercontent.com/DECK6/adxdeck/refs/heads/main/hsg/data/';
 
         // TXT 파일 목록
         const txtFiles = [
@@ -291,7 +302,8 @@
             { id: '11', name: '11_정책자료_요약_보도자료용.txt', desc: '스마트 버스정류장 보도자료 기초자료' }
         ];
 
-        // CSV 다운로드
+        // ▼ 기존 downloadCSV 함수는 더 이상 CSV 버튼에서 사용하지 않지만
+        //   다른 코드에 영향은 없으니 그대로 둡니다.
         async function downloadCSV(filename) {
             try {
                 const url = GITHUB_RAW_BASE + filename;
@@ -458,7 +470,7 @@
             }
         }
 
-        // 클립보드에 복사
+        // TXT 복사
         async function copyToClipboard(fileId, content, button) {
             try {
                 await navigator.clipboard.writeText(content);
