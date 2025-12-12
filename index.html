@@ -1,668 +1,695 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html class="dark" lang="ko">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADX Worklab - AI Media Art & Video Content Agency</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>ADX Worklab | AI Generative Art</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", // Neon Cyan/Electric Blue
+                        "primary-hover": "#00C2CC",
+                        "background-light": "#000000",
+                        "background-dark": "#000000",
+                        "card-dark": "#0A0A0A",
+                        "accent-green": "#39FF14", // Neon Green
+                        "accent-purple": "#BC13FE", // Neon Purple
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                    },
+                    backgroundImage: {
+                        'hero-glow': 'radial-gradient(circle at center, rgba(0, 240, 255, 0.1) 0%, rgba(0,0,0,0) 70%)',
+                        'grid-pattern': "linear-gradient(to right, #1a1a1a 1px, transparent 1px), linear-gradient(to bottom, #1a1a1a 1px, transparent 1px)",
+                    }
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', 'Inter', sans-serif;
+            background-color: #000000;
+            color: #e5e7eb;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 0px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00F0FF;
+        }
+
+        .neon-text {
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3);
+        }
+
+        .neon-border {
+            box-shadow: 0 0 5px rgba(0, 240, 255, 0.2), inset 0 0 5px rgba(0, 240, 255, 0.1);
+        }
+
+        .card-hover-effect {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .card-hover-effect:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
+            border-color: #00F0FF;
+        }
+
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, #111 1px, transparent 1px), linear-gradient(to bottom, #111 1px, transparent 1px);
+        }
+    </style>
 </head>
 
-<body>
-    <!-- Canvas container for particle animation -->
-    <div id="canvas-container"></div>
-
-    <!-- Fixed Header -->
-    <header class="fixed top-0 left-0 w-full bg-opacity-90 backdrop-blur-md bg-slate-900 z-50 border-b border-gray-700">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="https://static.wixstatic.com/shapes/19032f_f7c6dea85bc441bbb8158f63dff3c39f.svg"
-                    alt="ADX Work Lab Logo" class="h-10 w-auto mr-2">
-                <span class="text-2xl font-bold">ADX Worklab</span>
+<body class="bg-black text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <span
+                        class="material-symbols-outlined text-4xl text-[#00F0FF] group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">change_history</span>
+                    <span
+                        class="font-bold text-xl tracking-wide text-white group-hover:text-[#00F0FF] transition-colors">ADX
+                        Worklab</span>
+                </div>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors hover:drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]"
+                        href="#agency">AI Agency</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#39FF14] transition-colors hover:drop-shadow-[0_0_5px_rgba(57,255,20,0.5)]"
+                        href="#academy">AI Academy</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors hover:drop-shadow-[0_0_5px_rgba(188,19,254,0.5)]"
+                        href="#contact">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-gray-400 hover:text-[#00F0FF]">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
             </div>
-
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex space-x-8">
-                <a href="#home" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Home</a>
-                <a href="about-deck.html" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">About</a>
-                <a href="#projects" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Projects</a>
-                <a href="#contact" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
-            </nav>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-gray-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
         </div>
-
-        <!-- Mobile Navigation -->
-        <nav id="mobile-menu" class="md:hidden bg-slate-900 border-t border-gray-700 hidden">
-            <div class="px-4 py-2 space-y-2">
-                <a href="#home" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Home</a>
-                <a href="about-deck.html"
-                    class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">About</a>
-                <a href="#projects" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Projects</a>
-                <a href="#contact" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
+    </nav>
+    <header class="relative pt-32 pb-24 lg:pt-48 lg:pb-40 overflow-hidden bg-black">
+        <div class="absolute inset-0 pointer-events-none overflow-hidden">
+            <div
+                class="absolute inset-0 bg-[linear-gradient(to_right,#00F0FF05_1px,transparent_1px),linear-gradient(to_bottom,#00F0FF05_1px,transparent_1px)] bg-[size:30px_30px] opacity-40">
             </div>
-        </nav>
-    </header>
-
-    <!-- Intro Section -->
-    <section id="home" class="section gradient-bg flex items-center justify-center px-4 min-h-screen">
-        <div class="content text-center max-w-4xl mx-auto">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 typing-effect">
-                ADX Worklab
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000000_90%)] z-10"></div>
+            <div
+                class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#00F0FF] rounded-full blur-[150px] opacity-10 mix-blend-screen">
+            </div>
+            <div
+                class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#39FF14] rounded-full blur-[150px] opacity-10 mix-blend-screen">
+            </div>
+            <div
+                class="absolute top-[30%] right-[20%] w-[400px] h-[400px] bg-[#BC13FE] rounded-full blur-[120px] opacity-10 mix-blend-screen">
+            </div>
+            <div
+                class="absolute inset-0 opacity-10 bg-[repeating-linear-gradient(90deg,#000_0px,#000_1px,transparent_1px,transparent_3px)] pointer-events-none">
+            </div>
+            <div
+                class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgNDBMMDQwIDAgMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30 mix-blend-color-dodge grayscale-0">
+            </div>
+        </div>
+        <div class="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
+            <div
+                class="inline-block mb-4 px-3 py-1 border border-[#00F0FF]/30 rounded-full bg-[#00F0FF]/5 backdrop-blur-sm">
+                <span class="text-[#00F0FF] text-xs font-mono tracking-widest uppercase">High Contrast
+                    Intelligence</span>
+            </div>
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-8 text-white drop-shadow-2xl leading-[0.9]">
+                <span
+                    class="block text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500">AI
+                    X MEDIA</span>
+                <span class="block text-[#00F0FF] neon-text mt-2">ART &amp; FUTURE</span>
             </h1>
-            <h2 id="changing-title" class="text-xl md:text-2xl text-blue-400 mb-8 font-light">
-                AI Media Art & Video Content Agency
-            </h2>
-            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto text-gray-300">
-                AI 기술과 예술적 감각의 결합으로<br>세상에 없던 새로운 시각적 경험과 가치를 창조합니다
+            <p class="mt-8 text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-light">
+                Redefining the boundaries of visual experience through<br class="hidden md:block" />
+                <span class="text-white font-medium">Generative Algorithms</span> and <span
+                    class="text-white font-medium">Machine Intelligence</span>.
             </p>
-            <a href="#about"
-                class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-medium transition-colors">
-                더 알아보기
-            </a>
+            <div class="mt-12 flex flex-col sm:flex-row justify-center gap-6">
+                <a class="group relative px-8 py-4 bg-transparent border border-[#00F0FF] text-[#00F0FF] font-bold uppercase tracking-wider hover:bg-[#00F0FF] hover:text-black transition-all duration-300"
+                    href="#agency">
+                    <span
+                        class="absolute inset-0 bg-[#00F0FF]/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    <span class="relative flex items-center gap-2">Explore Projects <span
+                            class="material-symbols-outlined text-lg">arrow_forward</span></span>
+                </a>
+                <a class="px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+                    href="#academy">
+                    Academy
+                </a>
+            </div>
         </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section gradient-bg px-4 py-24">
-        <div class="content max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold mb-4 text-center">
-                <span class="text-gradient">ADX Worklab</span>
-            </h2>
-            <p class="text-center text-xl mb-12 max-w-3xl mx-auto">
-                AI 기술을 활용한 독창적인 미디어아트와 고퀄리티 영상 콘텐츠를 제작합니다
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+    </header>
+    <section class="py-24 bg-black border-t border-white/5 relative" id="agency">
+        <div
+            class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#00F0FF]/5 to-transparent pointer-events-none">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div
+                class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b border-[#333] pb-6">
                 <div>
-                    <div class="card p-8 rounded-xl h-full">
-                        <h3 class="text-2xl font-bold mb-4 text-blue-400">우리의 비전</h3>
-                        <p class="text-gray-300 mb-6">
-                            ADX Worklab은 최신 생성형 AI 기술과 크리에이티브를 융합하여, 브랜드의 이야기를 가장 매력적인 비주얼과 영상으로 구현하는 AI 콘텐츠 에이전시입니다.
-                        </p>
-
-                        <div class="mt-8">
-                            <div class="flex items-center mb-2">
-                                <span class="text-sm text-gray-300 w-32">AI 미디어아트</span>
-                                <div class="skill-bar flex-1">
-                                    <div class="skill-progress" data-width="95%"></div>
-                                </div>
-                                <span class="text-sm text-gray-300 ml-2">95%</span>
-                            </div>
-                            <div class="flex items-center mb-2">
-                                <span class="text-sm text-gray-300 w-32">영상 콘텐츠 제작</span>
-                                <div class="skill-bar flex-1">
-                                    <div class="skill-progress" data-width="95%"></div>
-                                </div>
-                                <span class="text-sm text-gray-300 ml-2">95%</span>
-                            </div>
-                            <div class="flex items-center mb-2">
-                                <span class="text-sm text-gray-300 w-32">생성형 AI 기술</span>
-                                <div class="skill-bar flex-1">
-                                    <div class="skill-progress" data-width="90%"></div>
-                                </div>
-                                <span class="text-sm text-gray-300 ml-2">90%</span>
-                            </div>
+                    <h2 class="text-5xl md:text-5xl font-black mb-2 tracking-tighter text-white">MEDIA ART &amp;
+                        VIDEO<span class="text-[#00F0FF]">.</span></h2>
+                    <p class="text-gray-500 font-mono text-sm tracking-widest uppercase">/// Cutting-Edge Projects &amp;
+                        Talent</p>
+                </div>
+                <a class="hidden md:flex items-center gap-2 text-sm font-bold text-[#00F0FF] hover:text-white transition-colors mt-4 md:mt-0 uppercase tracking-wider"
+                    href="#">
+                    View All Projects <span class="material-symbols-outlined text-lg">arrow_outward</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="group relative bg-[#050505] overflow-hidden border border-[#222] hover:border-[#00F0FF] transition-all duration-300 card-hover-effect">
+                    <div class="aspect-video w-full bg-black relative overflow-hidden border-b border-[#222]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10"></div>
+                        <div
+                            class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#00F0FF]/20 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center z-20">
+                            <span
+                                class="material-symbols-outlined text-white text-5xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">auto_awesome</span>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwaDQwdjQwSDB6IiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMCwgMjQwLCAyNTUsIDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==')] opacity-20">
                         </div>
                     </div>
+                    <div class="p-6">
+                        <h3
+                            class="font-bold text-xl mb-2 text-white group-hover:text-[#00F0FF] transition-colors font-display">
+                            Light Tunnel</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Immersive light installation powered by AI
+                            algorithms reacting to sound.</p>
+                    </div>
                 </div>
-
+                <div
+                    class="group relative bg-[#050505] overflow-hidden border border-[#222] hover:border-[#00F0FF] transition-all duration-300 card-hover-effect">
+                    <div class="aspect-video w-full bg-black relative overflow-hidden border-b border-[#222]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10"></div>
+                        <div
+                            class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#00F0FF]/20 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center z-20">
+                            <span
+                                class="material-symbols-outlined text-white text-5xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">movie_filter</span>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwaDQwdjQwSDB6IiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMCwgMjQwLCAyNTUsIDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==')] opacity-20">
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="font-bold text-xl mb-2 text-white group-hover:text-[#00F0FF] transition-colors font-display">
+                            Generative Video</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">High-end commercial video production using
+                            advanced generative models.</p>
+                    </div>
+                </div>
+                <div
+                    class="group relative bg-[#050505] overflow-hidden border border-[#222] hover:border-[#00F0FF] transition-all duration-300 card-hover-effect">
+                    <div class="aspect-video w-full bg-black relative overflow-hidden border-b border-[#222]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10"></div>
+                        <div
+                            class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#00F0FF]/20 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center z-20">
+                            <span
+                                class="material-symbols-outlined text-white text-5xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">smart_toy</span>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwaDQwdjQwSDB6IiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMCwgMjQwLCAyNTUsIDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==')] opacity-20">
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="font-bold text-xl mb-2 text-white group-hover:text-[#00F0FF] transition-colors font-display">
+                            Robotic Art</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Interactive robotic installations that create
+                            art in real-time.</p>
+                    </div>
+                </div>
+                <div
+                    class="group relative bg-[#050505] overflow-hidden border border-[#222] hover:border-[#00F0FF] transition-all duration-300 card-hover-effect">
+                    <div class="aspect-video w-full bg-black relative overflow-hidden border-b border-[#222]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10"></div>
+                        <div
+                            class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#BC13FE]/20 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center z-20">
+                            <span
+                                class="material-symbols-outlined text-white text-5xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">blur_on</span>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwaDQwdjQwSDB6IiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMTg4LCAxOSwgMjU0LCAwLjEpIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=')] opacity-20">
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="font-bold text-xl mb-2 text-white group-hover:text-[#BC13FE] transition-colors font-display">
+                            Cosmic Art</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Visualizing the cosmos through AI-interpreted
+                            data streams.</p>
+                    </div>
+                </div>
+                <div
+                    class="group relative bg-[#050505] overflow-hidden border border-[#222] hover:border-[#00F0FF] transition-all duration-300 card-hover-effect">
+                    <div class="aspect-video w-full bg-black relative overflow-hidden border-b border-[#222]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10"></div>
+                        <div
+                            class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#39FF14]/20 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center z-20">
+                            <span
+                                class="material-symbols-outlined text-white text-5xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">landscape</span>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwaDQwdjQwSDB6IiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoNTcsIDI1NSwgMjAsIDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvc3ZnPg==')] opacity-20">
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="font-bold text-xl mb-2 text-white group-hover:text-[#39FF14] transition-colors font-display">
+                            Digital Nature</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Recreating natural landscapes in digital form
+                            for virtual environments.</p>
+                    </div>
+                </div>
+                <div
+                    class="group relative bg-[#050505] overflow-hidden border border-[#222] hover:border-[#00F0FF] transition-all duration-300 card-hover-effect">
+                    <div class="aspect-video w-full bg-black relative overflow-hidden border-b border-[#222]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10"></div>
+                        <div
+                            class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500">
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center z-20">
+                            <span
+                                class="material-symbols-outlined text-white text-5xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">light_mode</span>
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgdmlld0JveD0iMCAwIDQwIDQwIj48cGF0aCBkPSJNMCAwaDQwdjQwSDB6IiBmaWxsPSJub25lIiBzdHJva2U9InJnYmEoMjU1LCAyNTUsIDI1NSwgMC4xKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9zdmc+')] opacity-20">
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3
+                            class="font-bold text-xl mb-2 text-white group-hover:text-white transition-colors font-display">
+                            Focus Art</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed">Minimalist generative art focused on attention
+                            and mindfulness.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-[#050505] border-t border-white/5 relative overflow-hidden" id="academy">
+        <div
+            class="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-[#BC13FE]/5 to-transparent pointer-events-none">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div
+                class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b border-[#333] pb-6">
                 <div>
-                    <div class="card p-8 rounded-xl h-full">
-                        <h3 class="text-2xl font-bold mb-4 text-blue-400">전문 분야</h3>
-                        <div class="grid grid-cols-1 gap-6">
-                            <!-- AI 미디어아트 제작 -->
-                            <div class="flex items-center space-x-4">
-                                <div
-                                    class="rounded-full bg-blue-900 bg-opacity-50 p-4 flex items-center justify-center w-16 h-16 flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-semibold text-blue-300">AI 미디어아트</h4>
-                                    <p class="text-sm text-gray-400">전시, 공연, 공간을 위한 몰입형 아트워크</p>
-                                </div>
-                            </div>
-
-                            <!-- AI 비주얼 콘텐츠 제작 -->
-                            <div class="flex items-center space-x-4">
-                                <div
-                                    class="rounded-full bg-blue-900 bg-opacity-50 p-4 flex items-center justify-center w-16 h-16 flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-semibold text-blue-300">AI 영상 콘텐츠</h4>
-                                    <p class="text-sm text-gray-400">브랜드 필름, 광고, 뮤직비디오 제작</p>
-                                </div>
-                            </div>
-
-                            <!-- 부가 서비스 -->
-                            <div class="flex items-center space-x-4">
-                                <div
-                                    class="rounded-full bg-blue-900 bg-opacity-50 p-4 flex items-center justify-center w-16 h-16 flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19.428 15.428a2 2 0 00-1.022-.547l-2.384-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-semibold text-blue-300">교육 및 솔루션 (부가 서비스)</h4>
-                                    <p class="text-sm text-gray-400">기업 AI 교육 및 자동화 개발 서비스</p>
-                                </div>
-                            </div>
+                    <h2 class="text-5xl font-black mb-2 tracking-tighter text-white">AI Experience Program<span
+                            class="text-[#BC13FE]">.</span></h2>
+                    <p class="text-gray-500 font-mono text-sm tracking-widest uppercase">/// Master the future of
+                        creation</p>
+                </div>
+                <a class="hidden md:flex items-center gap-2 text-sm font-bold text-[#BC13FE] hover:text-white transition-colors mt-4 md:mt-0 uppercase tracking-wider"
+                    href="#">
+                    View Curriculum <span class="material-symbols-outlined text-lg">arrow_outward</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div
+                    class="group relative bg-black rounded-sm overflow-hidden border border-[#222] hover:border-[#BC13FE] transition-all duration-300 card-hover-effect">
+                    <div class="aspect-video w-full bg-[#111] relative overflow-hidden border-b border-[#222]">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-[#BC13FE]/20 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500">
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span
+                                class="material-symbols-outlined text-white/50 text-5xl group-hover:text-[#BC13FE] transition-colors duration-300">school</span>
+                        </div>
+                        <div
+                            class="absolute bottom-3 left-3 bg-[#BC13FE] text-black text-[10px] font-bold px-2 py-1 uppercase tracking-wider">
+                            Course 01</div>
+                    </div>
+                    <div class="p-6 relative">
+                        <div
+                            class="absolute top-0 right-0 w-8 h-8 border-t border-r border-[#BC13FE] opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3
+                                class="font-bold text-xl text-white group-hover:text-[#BC13FE] transition-colors font-display">
+                                Generative Video</h3>
+                            <span
+                                class="text-[10px] bg-[#1a1a1a] text-gray-400 px-2 py-1 border border-white/10 font-mono">4
+                                Weeks</span>
+                        </div>
+                        <p class="text-sm text-gray-500 leading-relaxed mb-4">Master the art of creating video content
+                            using the latest AI tools and workflows.</p>
+                        <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+                            <div class="text-[10px] text-gray-500 font-mono uppercase tracking-wider">Next Batch: June
+                                2024</div>
+                            <span
+                                class="material-symbols-outlined text-[#BC13FE] text-sm opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all">arrow_forward</span>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Company Values Section -->
-            <div class="card p-8 rounded-xl">
-                <h3 class="text-2xl font-bold mb-6 text-center text-blue-400">핵심 가치</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                    <div>
+                <div
+                    class="group relative bg-black rounded-sm overflow-hidden border border-[#222] hover:border-[#00F0FF] transition-all duration-300 card-hover-effect">
+                    <div class="aspect-video w-full bg-[#111] relative overflow-hidden border-b border-[#222]">
                         <div
-                            class="rounded-full bg-blue-600 p-3 mx-auto mb-4 w-16 h-16 flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
+                            class="absolute inset-0 bg-gradient-to-br from-[#00F0FF]/20 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500">
                         </div>
-                        <h4 class="text-lg font-semibold mb-2">크리에이티브</h4>
-                        <p class="text-gray-400">상상을 현실로 만드는 독창적인 기획력</p>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span
+                                class="material-symbols-outlined text-white/50 text-5xl group-hover:text-[#00F0FF] transition-colors duration-300">touch_app</span>
+                        </div>
+                        <div
+                            class="absolute bottom-3 left-3 bg-[#00F0FF] text-black text-[10px] font-bold px-2 py-1 uppercase tracking-wider">
+                            Course 02</div>
                     </div>
-                    <div>
+                    <div class="p-6 relative">
                         <div
-                            class="rounded-full bg-blue-600 p-3 mx-auto mb-4 w-16 h-16 flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                            </svg>
+                            class="absolute top-0 right-0 w-8 h-8 border-t border-r border-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity">
                         </div>
-                        <h4 class="text-lg font-semibold mb-2">협력</h4>
-                        <p class="text-gray-400">고객과의 긴밀한 협업을 통한 맞춤형 서비스</p>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3
+                                class="font-bold text-xl text-white group-hover:text-[#00F0FF] transition-colors font-display">
+                                Interactive Art</h3>
+                            <span
+                                class="text-[10px] bg-[#1a1a1a] text-gray-400 px-2 py-1 border border-white/10 font-mono">8
+                                Weeks</span>
+                        </div>
+                        <p class="text-sm text-gray-500 leading-relaxed mb-4">Learn to build interactive installations
+                            responsive to human presence.</p>
+                        <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+                            <div class="text-[10px] text-gray-500 font-mono uppercase tracking-wider">Next Batch: July
+                                2024</div>
+                            <span
+                                class="material-symbols-outlined text-[#00F0FF] text-sm opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all">arrow_forward</span>
+                        </div>
                     </div>
-                    <div>
+                </div>
+                <div
+                    class="group relative bg-black rounded-sm overflow-hidden border border-[#222] hover:border-[#39FF14] transition-all duration-300 card-hover-effect">
+                    <div class="aspect-video w-full bg-[#111] relative overflow-hidden border-b border-[#222]">
                         <div
-                            class="rounded-full bg-blue-600 p-3 mx-auto mb-4 w-16 h-16 flex items-center justify-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-                            </svg>
+                            class="absolute inset-0 bg-gradient-to-br from-[#39FF14]/20 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500">
                         </div>
-                        <h4 class="text-lg font-semibold mb-2">퀄리티</h4>
-                        <p class="text-gray-400">압도적인 시각적 경험과 완성도 높은 결과물</p>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span
+                                class="material-symbols-outlined text-white/50 text-5xl group-hover:text-[#39FF14] transition-colors duration-300">precision_manufacturing</span>
+                        </div>
+                        <div
+                            class="absolute bottom-3 left-3 bg-[#39FF14] text-black text-[10px] font-bold px-2 py-1 uppercase tracking-wider">
+                            Course 03</div>
+                    </div>
+                    <div class="p-6 relative">
+                        <div
+                            class="absolute top-0 right-0 w-8 h-8 border-t border-r border-[#39FF14] opacity-0 group-hover:opacity-100 transition-opacity">
+                        </div>
+                        <div class="flex justify-between items-start mb-3">
+                            <h3
+                                class="font-bold text-xl text-white group-hover:text-[#39FF14] transition-colors font-display">
+                                Robotic Art Commer.</h3>
+                            <span
+                                class="text-[10px] bg-[#1a1a1a] text-gray-400 px-2 py-1 border border-white/10 font-mono">12
+                                Weeks</span>
+                        </div>
+                        <p class="text-sm text-gray-500 leading-relaxed mb-4">Advanced course on commercializing robotic
+                            art for exhibitions and retail.</p>
+                        <div class="pt-4 border-t border-white/5 flex justify-between items-center">
+                            <div class="text-[10px] text-gray-500 font-mono uppercase tracking-wider">Next Batch: August
+                                2024</div>
+                            <span
+                                class="material-symbols-outlined text-[#39FF14] text-sm opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all">arrow_forward</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section gradient-bg px-4 py-24">
-        <div class="content max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold mb-4 text-center">
-                <span class="text-gradient">프로젝트</span>
-            </h2>
-            <p class="text-center text-xl mb-12 max-w-3xl mx-auto">
-                AI 기술로 완성된 혁신적인 미디어아트와 영상 콘텐츠를 소개합니다.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- 프로젝트 카드 1 -->
-                <div class="project-card rounded-xl overflow-hidden"
-                    style="background-image: url('https://static.wixstatic.com/media/11062b_d8c8c150557a41fb986c6162f2556939~mv2.jpg/v1/fill/w_147,h_90,al_c,q_80,usm_0.66_1.00_0.01,blur_2,enc_avif,quality_auto/11062b_d8c8c150557a41fb986c6162f2556939~mv2.jpg');">
-                    <div class="project-overlay" style="bottom: 0;">
-                        <h3 class="text-xl font-bold mb-2 text-white">AI X 미디어아트</h3>
-                        <p class="text-gray-200 text-center">
-                            AI 기술을 활용한 혁신적인<br>미디어아트 전시 프로젝트
-                        </p>
-                        <a href="#contact"
-                            class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors inline-block">
-                            Coming Soon
-                        </a>
+    <section class="py-24 bg-black border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+                <div>
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="h-10 w-1 bg-[#00F0FF] shadow-[0_0_10px_#00F0FF]"></div>
+                        <h3 class="text-2xl font-black text-white tracking-tight uppercase">AI LECTURE</h3>
                     </div>
-                </div>
-
-                <!-- 프로젝트 카드 2 -->
-                <div class="project-card rounded-xl overflow-hidden" style="background-color: #0f1a2e;">
-                    <div class="project-overlay" style="bottom: 0;">
-                        <h3 class="text-xl font-bold mb-2 text-white">AI 교육 워크숍</h3>
-                        <p class="text-gray-200 text-center">
-                            SBS A&T, 한국콘텐츠진흥원등<br>30여 기업, 기관, 학교와 함께한 AI 교육
-                        </p>
-                        <a href="#contact"
-                            class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors inline-block">
-                            섭외 문의
-                        </a>
-                    </div>
-                </div>
-
-                <!-- 프로젝트 카드 3 -->
-                <div class="project-card rounded-xl overflow-hidden" style="background-color: #122240;">
-                    <div class="project-overlay" style="bottom: 0;">
-                        <h3 class="text-xl font-bold mb-2 text-white">행사/MICE 산업의 AI 혁신</h3>
-                        <p class="text-gray-200 text-center">
-                            행사 및 컨벤션 산업의 AI 기술 적용 사례
-                        </p>
-                        <button onclick="openMiceModal()"
-                            class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors inline-block">
-                            자세히 보기
-                        </button>
-                    </div>
-                </div>
-
-                <!-- 추가 프로젝트 카드 (Coming Soon) -->
-                <div class="project-card rounded-xl overflow-hidden flex items-center justify-center"
-                    style="background-color: #0d1527;">
-                    <div class="text-center p-6">
-                        <div class="rounded-full bg-blue-900 bg-opacity-30 p-4 inline-flex mx-auto mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 text-white">Coming Soon</h3>
-                        <p class="text-gray-400">새로운 프로젝트가 곧 공개됩니다</p>
-                    </div>
-                </div>
-
-                <!-- 추가 프로젝트 카드 (Coming Soon) -->
-                <div class="project-card rounded-xl overflow-hidden flex items-center justify-center"
-                    style="background-color: #0d1527;">
-                    <div class="text-center p-6">
-                        <div class="rounded-full bg-blue-900 bg-opacity-30 p-4 inline-flex mx-auto mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 text-white">Coming Soon</h3>
-                        <p class="text-gray-400">새로운 프로젝트가 곧 공개됩니다</p>
-                    </div>
-                </div>
-
-                <!-- 추가 프로젝트 카드 (Coming Soon) -->
-                <div class="project-card rounded-xl overflow-hidden flex items-center justify-center"
-                    style="background-color: #0d1527;">
-                    <div class="text-center p-6">
-                        <div class="rounded-full bg-blue-900 bg-opacity-30 p-4 inline-flex mx-auto mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-blue-400" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 text-white">Coming Soon</h3>
-                        <p class="text-gray-400">새로운 프로젝트가 곧 공개됩니다</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Workshop Testimonials Section -->
-            <div class="mt-16">
-                <h3 class="text-3xl font-bold mb-8 text-center text-blue-400">워크숍 참여자 후기</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Testimonial cards -->
-                    <div class="card p-6 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4">
-                                <span class="text-white font-bold">김</span>
-                            </div>
+                    <div class="space-y-4">
+                        <div
+                            class="group flex items-center justify-between p-5 bg-[#0A0A0A] border border-[#222] hover:border-[#00F0FF] transition-all hover:translate-x-2 duration-300 cursor-pointer">
                             <div>
-                                <p class="font-semibold">김○○ IT팀장</p>
-                                <p class="text-sm text-gray-400">대기업 IT부서</p>
+                                <h4
+                                    class="font-bold text-white text-base mb-1 group-hover:text-[#00F0FF] transition-colors">
+                                    Robotic Art</h4>
+                                <p class="text-xs text-gray-500 font-mono">Kinetic Sculptures</p>
                             </div>
+                            <span
+                                class="material-symbols-outlined text-gray-600 group-hover:text-[#00F0FF] transition-colors">chevron_right</span>
                         </div>
-                        <p class="text-gray-300">"실무에 바로 적용할 수 있는 구체적인 AI 활용법을 배웠습니다. 특히 프롬프트 엔지니어링 부분이 매우 유용했어요."</p>
-                    </div>
-
-                    <div class="card p-6 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4">
-                                <span class="text-white font-bold">박</span>
-                            </div>
+                        <div
+                            class="group flex items-center justify-between p-5 bg-[#0A0A0A] border border-[#222] hover:border-[#00F0FF] transition-all hover:translate-x-2 duration-300 cursor-pointer">
                             <div>
-                                <p class="font-semibold">박○○ 컨설턴트</p>
-                                <p class="text-sm text-gray-400">경영컨설팅회사</p>
+                                <h4
+                                    class="font-bold text-white text-base mb-1 group-hover:text-[#00F0FF] transition-colors">
+                                    Light Tunnels</h4>
+                                <p class="text-xs text-gray-500 font-mono">Immersive Experience</p>
                             </div>
+                            <span
+                                class="material-symbols-outlined text-gray-600 group-hover:text-[#00F0FF] transition-colors">chevron_right</span>
                         </div>
-                        <p class="text-gray-300">"AI를 활용한 업무 자동화 방법을 배워서 효율성이 크게 향상되었습니다. 강사님의 실무 경험이 정말 도움이 되었어요."</p>
-                    </div>
-
-                    <div class="card p-6 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4">
-                                <span class="text-white font-bold">이</span>
-                            </div>
+                        <div
+                            class="group flex items-center justify-between p-5 bg-[#0A0A0A] border border-[#222] hover:border-[#00F0FF] transition-all hover:translate-x-2 duration-300 cursor-pointer">
                             <div>
-                                <p class="font-semibold">이○○ 마케팅 매니저</p>
-                                <p class="text-sm text-gray-400">스타트업</p>
+                                <h4
+                                    class="font-bold text-white text-base mb-1 group-hover:text-[#00F0FF] transition-colors">
+                                    Robotic Art</h4>
+                                <p class="text-xs text-gray-500 font-mono">Interactive Display</p>
                             </div>
+                            <span
+                                class="material-symbols-outlined text-gray-600 group-hover:text-[#00F0FF] transition-colors">chevron_right</span>
                         </div>
-                        <p class="text-gray-300">"생성형 AI를 활용한 마케팅 콘텐츠 제작법을 익혔습니다. 워크숍 후 업무 속도가 3배 빨라졌어요!"</p>
+                        <div
+                            class="group flex items-center justify-between p-5 bg-[#0A0A0A] border border-[#222] hover:border-[#00F0FF] transition-all hover:translate-x-2 duration-300 cursor-pointer">
+                            <div>
+                                <h4
+                                    class="font-bold text-white text-base mb-1 group-hover:text-[#00F0FF] transition-colors">
+                                    Team III</h4>
+                                <p class="text-xs text-gray-500 font-mono">Collaborative Projects</p>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-gray-600 group-hover:text-[#00F0FF] transition-colors">chevron_right</span>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="h-10 w-1 bg-[#BC13FE] shadow-[0_0_10px_#BC13FE]"></div>
+                        <h3 class="text-2xl font-black text-white tracking-tight uppercase">AI Automation</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div
+                            class="group flex items-center justify-between p-5 bg-[#0A0A0A] border border-[#222] hover:border-[#BC13FE] transition-all hover:translate-x-2 duration-300 cursor-pointer">
+                            <div>
+                                <h4
+                                    class="font-bold text-white text-base mb-1 group-hover:text-[#BC13FE] transition-colors">
+                                    Solutions &amp; Tools</h4>
+                                <p class="text-xs text-gray-500 font-mono">Workflow Optimization</p>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-gray-600 group-hover:text-[#BC13FE] transition-colors">chevron_right</span>
+                        </div>
+                        <div
+                            class="group flex items-center justify-between p-5 bg-[#0A0A0A] border border-[#222] hover:border-[#BC13FE] transition-all hover:translate-x-2 duration-300 cursor-pointer">
+                            <div>
+                                <h4
+                                    class="font-bold text-white text-base mb-1 group-hover:text-[#BC13FE] transition-colors">
+                                    Robotic Art</h4>
+                                <p class="text-xs text-gray-500 font-mono">Automated Installation</p>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-gray-600 group-hover:text-[#BC13FE] transition-colors">chevron_right</span>
+                        </div>
+                        <div
+                            class="group flex items-center justify-between p-5 bg-[#0A0A0A] border border-[#222] hover:border-[#BC13FE] transition-all hover:translate-x-2 duration-300 cursor-pointer">
+                            <div>
+                                <h4
+                                    class="font-bold text-white text-base mb-1 group-hover:text-[#BC13FE] transition-colors">
+                                    Solutions &amp; Tools</h4>
+                                <p class="text-xs text-gray-500 font-mono">Enterprise AI</p>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-gray-600 group-hover:text-[#BC13FE] transition-colors">chevron_right</span>
+                        </div>
+                        <div
+                            class="group flex items-center justify-between p-5 bg-[#0A0A0A] border border-[#222] hover:border-[#BC13FE] transition-all hover:translate-x-2 duration-300 cursor-pointer">
+                            <div>
+                                <h4
+                                    class="font-bold text-white text-base mb-1 group-hover:text-[#BC13FE] transition-colors">
+                                    Roadmap Art</h4>
+                                <p class="text-xs text-gray-500 font-mono">Strategic Planning</p>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-gray-600 group-hover:text-[#BC13FE] transition-colors">chevron_right</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section gradient-bg px-4 py-24">
-        <div class="content max-w-4xl mx-auto">
-            <h2 class="text-4xl font-bold mb-4 text-center">
-                <span class="text-gradient">문의하기</span>
-            </h2>
-            <p class="text-center text-xl mb-12">
-                AI 프로젝트나 교육에 대한 문의사항이 있으시면 언제든 연락주세요.
-            </p>
-
-            <div class="max-w-2xl mx-auto">
-                <!-- Contact Form -->
-                <div class="card p-8 rounded-xl">
-                    <h3 class="text-2xl font-bold mb-6 text-blue-400">메시지 보내기</h3>
-
-                    <!-- 성공 메시지 -->
-                    <div id="success-message"
-                        class="hidden mb-6 p-4 bg-green-900 bg-opacity-50 border border-green-600 rounded-lg">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-400 mr-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <p class="text-green-300 font-medium">메시지가 성공적으로 전송되었습니다!</p>
+    <section class="py-24 bg-[#050505] relative overflow-hidden border-t border-white/5" id="contact">
+        <div class="absolute inset-0 z-0 opacity-20 pointer-events-none"
+            style="background-image: radial-gradient(#222 1px, transparent 1px); background-size: 20px 20px;"></div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black mb-4 text-white uppercase tracking-tight">Contact Us</h2>
+                <p class="text-gray-500 max-w-lg mx-auto">Have questions about our AI projects or education programs?
+                    Let's build the future together.</p>
+            </div>
+            <div class="bg-black rounded-sm border border-[#222] shadow-[0_0_50px_rgba(0,0,0,0.5)] p-1">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-0">
+                    <div class="md:col-span-2 bg-[#0A0A0A] border-r border-[#222] p-8 relative overflow-hidden">
+                        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#00F0FF] to-[#39FF14]">
                         </div>
-                        <p class="text-green-400 text-sm mt-2">24시간 이내에 답변드리겠습니다.</p>
-                    </div>
-
-                    <!-- 에러 메시지 -->
-                    <div id="error-message"
-                        class="hidden mb-6 p-4 bg-red-900 bg-opacity-50 border border-red-600 rounded-lg">
-                        <div class="flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-400 mr-2" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                            <p class="text-red-300 font-medium">전송 중 오류가 발생했습니다.</p>
-                        </div>
-                        <p class="text-red-400 text-sm mt-2">잠시 후 다시 시도해주세요.</p>
-                    </div>
-
-                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST"
-                        onsubmit="return submitContactForm(event)">
-                        <!-- Web3Forms 설정 -->
-                        <input type="hidden" name="access_key" value="26f85e2a-19ba-4dd7-93bf-ccfeed97d009">
-                        <input type="hidden" name="subject" value="ADX Worklab 새로운 문의">
-                        <input type="hidden" name="from_name" value="ADX Worklab 웹사이트">
-
-                        <div class="mb-4">
-                            <label for="name" class="block text-sm font-medium mb-2">이름 *</label>
-                            <input type="text" id="name" name="name" required
-                                class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition-colors">
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="email" class="block text-sm font-medium mb-2">이메일 *</label>
-                            <input type="email" id="email" name="email" required
-                                class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition-colors">
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="phone" class="block text-sm font-medium mb-2">연락처 (선택)</label>
-                            <input type="tel" id="phone" name="phone"
-                                class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                                placeholder="010-0000-0000">
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="inquiry_type" class="block text-sm font-medium mb-2">문의 유형 *</label>
-                            <select id="inquiry_type" name="inquiry_type" required
-                                class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition-colors">
-                                <option value="">선택해주세요</option>
-                                <option value="미디어아트 제작">🎨 미디어아트 제작 의뢰</option>
-                                <option value="영상 콘텐츠 제작">🎬 영상 콘텐츠 제작 의뢰</option>
-                                <option value="AI 교육 문의">🎓 AI 교육 문의 (부가 서비스)</option>
-                                <option value="프로젝트 협업">🤝 프로젝트 협업</option>
-                                <option value="기타">💬 기타</option>
-                            </select>
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="company" class="block text-sm font-medium mb-2">회사/기관명 (선택)</label>
-                            <input type="text" id="company" name="company"
-                                class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
-                                placeholder="소속 회사나 기관명을 입력해주세요">
-                        </div>
-
-                        <div class="mb-6">
-                            <label for="message" class="block text-sm font-medium mb-2">메시지 *</label>
-                            <textarea id="message" name="message" rows="5" required
-                                class="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 transition-colors resize-none"
-                                placeholder="문의하실 내용을 자세히 작성해주세요..."></textarea>
-                            <p class="text-gray-400 text-xs mt-1">* 필수 입력 항목</p>
-                        </div>
-
-                        <!-- Honeypot for spam protection -->
-                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-
-                        <button type="submit" id="submit-btn"
-                            class="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed rounded-lg text-white font-medium transition-colors flex items-center justify-center">
-                            <span id="submit-text">메시지 전송</span>
-                            <svg id="loading-spinner" class="hidden animate-spin ml-2 h-4 w-4 text-white"
-                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                    stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor"
-                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                </path>
-                            </svg>
-                        </button>
-
-                        <!-- 응답 안내 및 환영 메시지 -->
-                        <div class="mt-6 space-y-4">
-                            <div class="text-center">
-                                <p class="text-gray-400 text-sm flex items-center justify-center">
-                                    ⏰ <span class="mx-2">평일 24시간 이내 답변</span> | 📱 <span class="mx-2">급한 문의는 연락처를
-                                        남겨주세요</span>
-                                </p>
+                        <div class="relative z-10 h-full flex flex-col justify-between">
+                            <div>
+                                <div class="text-white text-lg font-bold mb-1">Get in Touch</div>
+                                <div class="text-gray-500 text-xs font-mono">We usually respond within 24 hours.</div>
                             </div>
-
-                            <div class="p-4 bg-blue-900 bg-opacity-30 rounded-lg text-center">
-                                <p class="text-sm text-blue-300">
-                                    🎯 <strong>미디어아트, 영상 제작, AI 교육</strong>에 대한 모든 문의를 환영합니다.
-                                    <br>빠른 시일 내에 답변드리겠습니다.
-                                </p>
+                            <div class="my-10 flex justify-center">
+                                <span
+                                    class="material-symbols-outlined text-[#00F0FF] text-6xl drop-shadow-[0_0_10px_rgba(0,240,255,0.5)]">alternate_email</span>
+                            </div>
+                            <div>
+                                <div class="text-gray-400 text-sm mb-2"><span
+                                        class="material-symbols-outlined text-xs mr-2 align-middle">location_on</span>
+                                    Seoul, South Korea</div>
+                                <div class="text-gray-400 text-sm"><span
+                                        class="material-symbols-outlined text-xs mr-2 align-middle">mail</span>
+                                    hello@adxworklab.com</div>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                    <div class="md:col-span-3 p-8 bg-black">
+                        <form class="space-y-6">
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="group">
+                                    <label
+                                        class="block text-xs font-mono text-gray-500 mb-2 uppercase tracking-wider group-focus-within:text-[#00F0FF]">Name</label>
+                                    <input
+                                        class="w-full bg-[#0A0A0A] border border-[#333] rounded-none px-4 py-3 text-sm focus:ring-0 focus:border-[#00F0FF] text-white placeholder-gray-700 transition-colors"
+                                        type="text" />
+                                </div>
+                                <div class="group">
+                                    <label
+                                        class="block text-xs font-mono text-gray-500 mb-2 uppercase tracking-wider group-focus-within:text-[#00F0FF]">Email</label>
+                                    <input
+                                        class="w-full bg-[#0A0A0A] border border-[#333] rounded-none px-4 py-3 text-sm focus:ring-0 focus:border-[#00F0FF] text-white placeholder-gray-700 transition-colors"
+                                        type="email" />
+                                </div>
+                            </div>
+                            <div class="group">
+                                <label
+                                    class="block text-xs font-mono text-gray-500 mb-2 uppercase tracking-wider group-focus-within:text-[#00F0FF]">Message</label>
+                                <textarea
+                                    class="w-full bg-[#0A0A0A] border border-[#333] rounded-none px-4 py-3 text-sm focus:ring-0 focus:border-[#00F0FF] text-white placeholder-gray-700 transition-colors"
+                                    rows="4"></textarea>
+                            </div>
+                            <div class="pt-2">
+                                <button
+                                    class="w-full bg-white hover:bg-[#00F0FF] text-black font-bold py-4 px-8 uppercase tracking-widest text-xs transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)]"
+                                    type="submit">
+                                    Send Message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-gray-700 py-12">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-4 md:mb-0">
-                    <a href="#home" class="flex items-center">
-                        <img src="https://static.wixstatic.com/shapes/19032f_f7c6dea85bc441bbb8158f63dff3c39f.svg"
-                            alt="ADX Work Lab Logo" class="h-10 w-auto mr-2">
-                        <span class="text-2xl font-bold">ADX Worklab</span>
-                    </a>
-                    <p class="mt-2 text-gray-400">AI Media Art & Video Content Agency</p>
+    <footer class="bg-black text-white pt-20 pb-10 border-t border-[#1a1a1a]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-16">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-4xl text-[#333]">change_history</span>
+                    <div>
+                        <span class="font-bold text-2xl tracking-tighter block">ADX Worklab</span>
+                        <span class="text-[10px] text-gray-600 uppercase tracking-widest">Est. 2024</span>
+                    </div>
                 </div>
-
-                <div class="text-center md:text-right">
-                    <p class="text-gray-400">&copy; 2025 ADX Worklab. All rights reserved.</p>
+                <div class="flex gap-8">
+                    <a class="text-gray-500 hover:text-[#00F0FF] transition-colors" href="#"><i
+                            class="material-symbols-outlined">public</i></a>
+                    <a class="text-gray-500 hover:text-[#00F0FF] transition-colors" href="#"><i
+                            class="material-symbols-outlined">photo_camera</i></a>
+                    <a class="text-gray-500 hover:text-[#00F0FF] transition-colors" href="#"><i
+                            class="material-symbols-outlined">smart_display</i></a>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-[#1a1a1a] pt-12">
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-widest mb-4">Sitemap</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a class="hover:text-[#00F0FF] transition-colors" href="#">Home</a></li>
+                        <li><a class="hover:text-[#00F0FF] transition-colors" href="#agency">Agency</a></li>
+                        <li><a class="hover:text-[#00F0FF] transition-colors" href="#academy">Academy</a></li>
+                        <li><a class="hover:text-[#00F0FF] transition-colors" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-xs font-bold text-white uppercase tracking-widest mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><a class="hover:text-[#00F0FF] transition-colors" href="#">Privacy Policy</a></li>
+                        <li><a class="hover:text-[#00F0FF] transition-colors" href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-span-2 md:text-right">
+                    <p class="text-[10px] text-gray-700 font-mono">
+                        DESIGNED FOR THE FUTURE.<br />
+                        © 2025 ADX Worklab. All rights reserved.
+                    </p>
                 </div>
             </div>
         </div>
     </footer>
-
-    <!-- MICE 프로젝트 상세 모달 -->
-    <div id="miceModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
-        <div class="bg-slate-800 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
-            <div class="p-8">
-                <div class="flex justify-between items-start mb-6">
-                    <h2 class="text-3xl font-bold text-gradient pr-4">행사/MICE 산업의 AI 혁신</h2>
-                    <button onclick="closeMiceModal()"
-                        class="text-gray-400 hover:text-white text-2xl transition-colors flex-shrink-0"
-                        aria-label="모달 닫기">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                            stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
-                </div>
-
-                <p class="text-xl text-gray-300 mb-8">
-                    행사 및 컨벤션 산업의 AI 기술 적용 사례
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- AI 브랜디드 콘텐츠 제작 -->
-                    <div class="card p-6 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="rounded-full bg-blue-600 p-3 mr-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                            </div>
-                            <h3 class="text-lg font-bold text-blue-400">AI 브랜디드 콘텐츠 제작</h3>
-                        </div>
-                        <p class="text-gray-300 text-sm">브랜드 정체성을 반영한 AI 기반 콘텐츠 자동 생성</p>
-                    </div>
-
-                    <!-- RFP 분석 솔루션 -->
-                    <div class="card p-6 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="rounded-full bg-blue-600 p-3 mr-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                </svg>
-                            </div>
-                            <h3 class="text-lg font-bold text-blue-400">AI RFP 분석 솔루션</h3>
-                        </div>
-                        <p class="text-gray-300 text-sm">AI의 RFP 분석을 통한 입찰 경쟁 제안서 초안 작성</p>
-                    </div>
-
-                    <!-- AI 안전관리 매뉴얼 -->
-                    <div class="card p-6 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="rounded-full bg-blue-600 p-3 mr-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                </svg>
-                            </div>
-                            <h3 class="text-lg font-bold text-blue-400">AI 안전관리 매뉴얼</h3>
-                        </div>
-                        <p class="text-gray-300 text-sm">법령과 행정안전부, 베뉴별 매뉴얼 기반 행사 맞춤형 AI 안전관리 매뉴얼 자동화</p>
-                    </div>
-
-                    <!-- AI 공모전 이미지 생성 -->
-                    <div class="card p-6 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="rounded-full bg-blue-600 p-3 mr-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                </svg>
-                            </div>
-                            <h3 class="text-lg font-bold text-blue-400">AI 공모전 이미지 생성</h3>
-                        </div>
-                        <p class="text-gray-300 text-sm">공모전 및 경진대회용 AI 이미지 자동 생성 솔루션</p>
-                    </div>
-
-                    <!-- AI 게임 캐릭터 생성 -->
-                    <div class="card p-6 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="rounded-full bg-blue-600 p-3 mr-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            </div>
-                            <h3 class="text-lg font-bold text-blue-400">AI 게임 캐릭터 생성</h3>
-                        </div>
-                        <p class="text-gray-300 text-sm">사용자 외형에 맞춘 AI 게임 캐릭터 생성 체험</p>
-                    </div>
-
-                    <!-- AI 응원영상 제작 -->
-                    <div class="card p-6 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="rounded-full bg-blue-600 p-3 mr-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                                </svg>
-                            </div>
-                            <h3 class="text-lg font-bold text-blue-400">AI 응원영상 자동 제작</h3>
-                        </div>
-                        <p class="text-gray-300 text-sm">이벤트 맞춤형 AI 응원영상 자동 제작 솔루션</p>
-                    </div>
-
-                    <!-- AI 자동 작곡 -->
-                    <div class="card p-6 rounded-xl">
-                        <div class="flex items-center mb-4">
-                            <div class="rounded-full bg-blue-600 p-3 mr-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-                                    viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
-                                </svg>
-                            </div>
-                            <h3 class="text-lg font-bold text-blue-400">AI 자동 작곡 솔루션</h3>
-                        </div>
-                        <p class="text-gray-300 text-sm">행사 테마별 AI 자동 작곡 솔루션</p>
-                    </div>
-                </div>
-
-                <div class="mt-8 text-center">
-                    <a href="#contact" onclick="closeMiceModal()"
-                        class="inline-block px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-full text-white font-medium transition-colors">
-                        프로젝트 문의하기
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script src="script.js"></script>
 </body>
 
 </html>

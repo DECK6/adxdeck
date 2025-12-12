@@ -163,20 +163,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const titleElement = document.getElementById('changing-title');
     if (titleElement) {
         const originalText = "AI Media Art & Video Content Agency";
-        const aiWords = ["Media Art", "Video Content", "Creative Solution", "Digital Experience", "Generative Art", "Brand Film"];
+        const keywords = [
+            "Interactive Art",
+            "Spatial Experience",
+            "Neural Cinema",
+            "Generative Facade"
+        ];
 
         let index = 0;
 
         setInterval(() => {
-            let currentText = originalText.replace("Media Art & Video Content Agency", aiWords[index]);
-            titleElement.textContent = currentText;
+            titleElement.textContent = keywords[index];
+            titleElement.classList.add('fade-in-up'); // Re-trigger animation if possible, or just text update
 
-            index = (index + 1) % aiWords.length;
-        }, 2000);
+            index = (index + 1) % keywords.length;
+        }, 2500);
     }
 });
 
-// 파티클 애니메이션
+// Advanced Interactive Art: Neural Network Simulation
 (function () {
     const container = document.getElementById('canvas-container');
     if (!container) return;
@@ -185,139 +190,127 @@ document.addEventListener('DOMContentLoaded', function () {
     container.appendChild(canvas);
 
     const ctx = canvas.getContext('2d');
-    let particlesArray = [];
+    let particles = [];
+    let connections = [];
 
-    // 반응형 캔버스 크기 설정
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    window.addEventListener('resize', function () {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    });
-
-    // 마우스 위치
-    let mouse = {
-        x: null,
-        y: null,
-        radius: 150
+    // Configuration
+    const config = {
+        particleCount: 100,
+        connectionDistance: 150,
+        mouseRadius: 200,
+        baseSpeed: 0.5,
+        color: '255, 255, 255' // White for monochrome
     };
 
-    window.addEventListener('mousemove', function (event) {
-        mouse.x = event.x;
-        mouse.y = event.y;
+    // Resize handling
+    function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        initParticles();
+    }
+
+    window.addEventListener('resize', resize);
+
+    // Mouse interaction
+    let mouse = { x: null, y: null };
+
+    window.addEventListener('mousemove', e => {
+        mouse.x = e.x;
+        mouse.y = e.y;
     });
 
-    // 파티클 클래스
+    window.addEventListener('mouseleave', () => {
+        mouse.x = null;
+        mouse.y = null;
+    });
+
     class Particle {
-        constructor(x, y, directionX, directionY, size, color) {
-            this.x = x;
-            this.y = y;
-            this.directionX = directionX;
-            this.directionY = directionY;
-            this.size = size;
-            this.color = color;
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * config.baseSpeed;
+            this.vy = (Math.random() - 0.5) * config.baseSpeed;
+            this.size = Math.random() * 2 + 1;
         }
 
-        // 파티클 그리기
+        update() {
+            // Move
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Bounce off edges
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+            // Mouse interaction (Repel/Attract)
+            if (mouse.x != null) {
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < config.mouseRadius) {
+                    const forceDirectionX = dx / distance;
+                    const forceDirectionY = dy / distance;
+                    const force = (config.mouseRadius - distance) / config.mouseRadius;
+                    const directionX = forceDirectionX * force * this.size;
+                    const directionY = forceDirectionY * force * this.size;
+
+                    this.x -= directionX; // Repel
+                    this.y -= directionY;
+                }
+            }
+        }
+
         draw() {
             ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-            ctx.fillStyle = this.color;
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(${config.color}, 0.5)`;
             ctx.fill();
         }
+    }
 
-        // 위치 업데이트 및 충돌 감지
-        update() {
-            // 화면 경계 체크
-            if (this.x > canvas.width || this.x < 0) {
-                this.directionX = -this.directionX;
-            }
-            if (this.y > canvas.height || this.y < 0) {
-                this.directionY = -this.directionY;
-            }
-
-            // 마우스와의 충돌 검사
-            let dx = mouse.x - this.x;
-            let dy = mouse.y - this.y;
-            let distance = Math.sqrt(dx * dx + dy * dy);
-
-            if (distance < mouse.radius) {
-                if (mouse.x < this.x && this.x < canvas.width - this.size * 10) {
-                    this.x += 5;
-                }
-                if (mouse.x > this.x && this.x > this.size * 10) {
-                    this.x -= 5;
-                }
-                if (mouse.y < this.y && this.y < canvas.height - this.size * 10) {
-                    this.y += 5;
-                }
-                if (mouse.y > this.y && this.y > this.size * 10) {
-                    this.y -= 5;
-                }
-            }
-
-            // 이동
-            this.x += this.directionX;
-            this.y += this.directionY;
-
-            // 그리기
-            this.draw();
+    function initParticles() {
+        particles = [];
+        config.particleCount = (canvas.width * canvas.height) / 15000; // Responsive count
+        for (let i = 0; i < config.particleCount; i++) {
+            particles.push(new Particle());
         }
     }
 
-    // 파티클 초기화
-    function init() {
-        particlesArray = [];
+    function drawConnections() {
+        for (let a = 0; a < particles.length; a++) {
+            for (let b = a; b < particles.length; b++) {
+                let dx = particles[a].x - particles[b].x;
+                let dy = particles[a].y - particles[b].y;
+                let distance = Math.sqrt(dx * dx + dy * dy);
 
-        let numberOfParticles = (canvas.width * canvas.height) / 9000;
-        for (let i = 0; i < numberOfParticles; i++) {
-            let size = (Math.random() * 3) + 1;
-            let x = (Math.random() * ((canvas.width - size * 2) - (size * 2)) + size * 2);
-            let y = (Math.random() * ((canvas.height - size * 2) - (size * 2)) + size * 2);
-            let directionX = (Math.random() * 2) - 1;
-            let directionY = (Math.random() * 2) - 1;
-            let color = 'rgba(255, 255, 255, ' + (Math.random() * 0.3 + 0.1) + ')';
-
-            particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
-        }
-    }
-
-    // 파티클 연결선 그리기
-    function connect() {
-        let opacityValue = 1;
-
-        for (let a = 0; a < particlesArray.length; a++) {
-            for (let b = a; b < particlesArray.length; b++) {
-                let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) +
-                    ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-
-                if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-                    opacityValue = 1 - (distance / 20000);
-                    ctx.strokeStyle = 'rgba(255, 255, 255, ' + (opacityValue * 0.5) + ')';
+                if (distance < config.connectionDistance) {
+                    let opacity = 1 - (distance / config.connectionDistance);
+                    ctx.strokeStyle = `rgba(${config.color}, ${opacity * 0.2})`;
                     ctx.lineWidth = 1;
                     ctx.beginPath();
-                    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                    ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                    ctx.moveTo(particles[a].x, particles[a].y);
+                    ctx.lineTo(particles[b].x, particles[b].y);
                     ctx.stroke();
                 }
             }
         }
     }
 
-    // 애니메이션 루프
     function animate() {
-        requestAnimationFrame(animate);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        for (let i = 0; i < particlesArray.length; i++) {
-            particlesArray[i].update();
-        }
-        connect();
+        particles.forEach(p => {
+            p.update();
+            p.draw();
+        });
+
+        drawConnections();
+        requestAnimationFrame(animate);
     }
 
-    // 실행
-    init();
+    // Initialize
+    resize();
     animate();
 })();
 
