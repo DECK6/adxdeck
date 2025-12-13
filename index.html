@@ -14,6 +14,8 @@
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
         rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.1/p5.js"></script>
+    <script src="sketch.js"></script>
     <script>
         tailwind.config = {
             darkMode: "class",
@@ -45,10 +47,35 @@
             font-family: 'Noto Sans KR', 'Inter', sans-serif;
             background-color: #000000;
             color: #e5e7eb;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
 
         html {
             scroll-behavior: smooth;
+        }
+
+        /* Canvas background z-index fix */
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #hero {
+            position: relative;
+            z-index: 10;
+            background: transparent;
+            /* Ensure transparency so canvas shows through */
+        }
+
+        .section-bg {
+            background-color: rgba(0, 0, 0, 0.8);
+            /* Add semi-transparent background to other sections to ensure readability */
         }
 
         ::-webkit-scrollbar {
@@ -94,6 +121,9 @@
 </head>
 
 <body class="bg-black text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <!-- Container for p5.js canvas if needed specific placement, otherwise sketch.js handles it -->
+    <div id="hero-canvas-container" class="absolute inset-0 pointer-events-none z-0"></div>
+
     <nav class="fixed w-full z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
