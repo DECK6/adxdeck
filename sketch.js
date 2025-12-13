@@ -61,7 +61,15 @@ function draw() {
 	theShader.setUniform("move", moves);
 	theShader.setUniform("pointerCount", mouseIsPressed ? 1 : 0);
 	theShader.setUniform("zoom", zoom);
-	rect(0, 0, width, height);
+	// Draw a quad covering the screen with normalized coordinates (0..1)
+	// The vertex shader expects 0..1 to map to -1..1 clip space
+	noStroke();
+	beginShape();
+	vertex(0, 0);
+	vertex(1, 0);
+	vertex(1, 1);
+	vertex(0, 1);
+	endShape(CLOSE);
 }
 
 // (Override removed for compatibility with p5.js v1.9.4)
