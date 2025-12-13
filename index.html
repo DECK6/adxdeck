@@ -602,27 +602,55 @@
                             <div>
                                 <div class="text-gray-400 text-sm mb-2"><span
                                         class="material-symbols-outlined text-xs mr-2 align-middle">location_on</span>
-                                    Seoul, South Korea</div>
-                                <div class="text-gray-400 text-sm"><span
+                                    Incheon, South Korea</div>
+                                <!-- <div class="text-gray-400 text-sm"><span
                                         class="material-symbols-outlined text-xs mr-2 align-middle">mail</span>
-                                    hello@adxworklab.com</div>
+                                    hello@adxworklab.com</div> -->
                             </div>
                         </div>
                     </div>
                     <div class="md:col-span-3 p-8 bg-black">
-                        <form class="space-y-6">
+                        <!-- Success Message -->
+                        <div id="success-message"
+                            class="hidden mb-6 p-4 bg-[#00F0FF]/10 border border-[#00F0FF] rounded-sm">
+                            <div class="flex items-center">
+                                <span class="material-symbols-outlined text-[#00F0FF] mr-2">check_circle</span>
+                                <p class="text-[#00F0FF] font-medium font-mono text-sm uppercase tracking-wider">Message
+                                    Sent Successfully</p>
+                            </div>
+                            <p class="text-gray-400 text-xs mt-2 font-mono">We will respond within 24 hours.</p>
+                        </div>
+
+                        <!-- Error Message -->
+                        <div id="error-message" class="hidden mb-6 p-4 bg-red-900/20 border border-red-500 rounded-sm">
+                            <div class="flex items-center">
+                                <span class="material-symbols-outlined text-red-500 mr-2">error</span>
+                                <p class="text-red-500 font-medium font-mono text-sm uppercase tracking-wider">
+                                    Transmission Failed</p>
+                            </div>
+                            <p class="text-red-400 text-xs mt-2 font-mono">Please try again later.</p>
+                        </div>
+
+                        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST"
+                            onsubmit="return submitContactForm(event)" class="space-y-6">
+                            <input type="hidden" name="access_key" value="26f85e2a-19ba-4dd7-93bf-ccfeed97d009">
+                            <input type="hidden" name="subject" value="ADX Worklab New Inquiry">
+                            <input type="hidden" name="from_name" value="ADX Worklab Website">
+                            <!-- Optional spam protection -->
+                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                             <div class="grid grid-cols-2 gap-6">
                                 <div class="group">
                                     <label
                                         class="block text-xs font-mono text-gray-500 mb-2 uppercase tracking-wider group-focus-within:text-[#00F0FF]">Name</label>
-                                    <input
+                                    <input id="name" name="name" required
                                         class="w-full bg-[#0A0A0A] border border-[#333] rounded-none px-4 py-3 text-sm focus:ring-0 focus:border-[#00F0FF] text-white placeholder-gray-700 transition-colors"
                                         type="text" />
                                 </div>
                                 <div class="group">
                                     <label
                                         class="block text-xs font-mono text-gray-500 mb-2 uppercase tracking-wider group-focus-within:text-[#00F0FF]">Email</label>
-                                    <input
+                                    <input id="email" name="email" required
                                         class="w-full bg-[#0A0A0A] border border-[#333] rounded-none px-4 py-3 text-sm focus:ring-0 focus:border-[#00F0FF] text-white placeholder-gray-700 transition-colors"
                                         type="email" />
                                 </div>
@@ -630,15 +658,23 @@
                             <div class="group">
                                 <label
                                     class="block text-xs font-mono text-gray-500 mb-2 uppercase tracking-wider group-focus-within:text-[#00F0FF]">Message</label>
-                                <textarea
+                                <textarea id="message" name="message" required
                                     class="w-full bg-[#0A0A0A] border border-[#333] rounded-none px-4 py-3 text-sm focus:ring-0 focus:border-[#00F0FF] text-white placeholder-gray-700 transition-colors"
                                     rows="4"></textarea>
                             </div>
                             <div class="pt-2">
-                                <button
-                                    class="w-full bg-white hover:bg-[#00F0FF] text-black font-bold py-4 px-8 uppercase tracking-widest text-xs transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)]"
+                                <button id="submit-btn"
+                                    class="w-full bg-white hover:bg-[#00F0FF] text-black font-bold py-4 px-8 uppercase tracking-widest text-xs transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] flex items-center justify-center gap-2"
                                     type="submit">
-                                    Send Message
+                                    <span id="submit-text">Send Message</span>
+                                    <svg id="loading-spinner" class="hidden animate-spin h-4 w-4 text-black"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                            stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor"
+                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                        </path>
+                                    </svg>
                                 </button>
                             </div>
                         </form>
