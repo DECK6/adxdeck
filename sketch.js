@@ -69,8 +69,8 @@ vec2 map(vec3 p) {
 	// flip axis for second link and move apart a fair bit
 	vec3 u=p.zyx+vec3(0,2.25,0);
 	// calculate domain repetition for each of the two links
-	p.y-=clamp(round(p.y/n),-3.,3.)*n;
-	u.y-=clamp(round(u.y/n),-3.,3.)*n;
+	p.y-=clamp(round(p.y/n),-2.,2.)*n;
+	u.y-=clamp(round(u.y/n),-2.,2.)*n;
 	// distance calculation
 	float
 	d=abs(link(p,.7,.3,.77))-.04,
