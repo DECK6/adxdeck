@@ -9,6 +9,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -17,49 +19,57 @@
     <div id="canvas-container"></div>
 
     <!-- Fixed Header -->
-    <header class="fixed top-0 left-0 w-full bg-opacity-90 backdrop-blur-md bg-slate-900 z-50 border-b border-gray-700">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="https://static.wixstatic.com/shapes/19032f_f7c6dea85bc441bbb8158f63dff3c39f.svg"
-                    alt="ADX Work Lab Logo" class="h-10 w-auto mr-2">
-                <span class="text-2xl font-bold">ADX work lab.</span>
+    <!-- Standardized Navigation -->
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <a href="index.html"><img src="dexa_logo.jpg" alt="DEXA Logo"
+                            class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"></a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors hover:drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]"
+                        href="index.html">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors hover:drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]"
+                        href="index.html#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#39FF14] transition-colors hover:drop-shadow-[0_0_5px_rgba(57,255,20,0.5)]"
+                        href="index.html#solutions">SOLUTIONS</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] hover:text-[#00F0FF] transition-colors hover:drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]"
+                        href="about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors hover:drop-shadow-[0_0_5px_rgba(188,19,254,0.5)]"
+                        href="index.html#contact">CONTACT</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-400 hover:text-[#00F0FF]">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                </div>
             </div>
-
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex space-x-8">
-                <a href="index.html" class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Home</a>
-                <a href="about-deck.html" class="nav-link text-blue-400 transition-colors">About</a>
-                <a href="index.html#projects"
-                    class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Projects</a>
-                <a href="index.html#contact"
-                    class="nav-link text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
-            </nav>
-
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-gray-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                </svg>
-            </button>
         </div>
 
         <!-- Mobile Navigation -->
-        <nav id="mobile-menu" class="md:hidden bg-slate-900 border-t border-gray-700 hidden">
+        <nav id="mobile-menu" class="md:hidden bg-black border-t border-white/10 hidden">
             <div class="px-4 py-2 space-y-2">
-                <a href="index.html" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Home</a>
-                <a href="about-deck.html" class="block py-2 text-blue-400 transition-colors">About</a>
-                <a href="index.html#projects"
-                    class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Projects</a>
+                <a href="index.html" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">HOME</a>
+                <a href="index.html#studio"
+                    class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">STUDIO</a>
+                <a href="index.html#solutions"
+                    class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">SOLUTIONS</a>
+                <a href="about-deck.html"
+                    class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">ABOUT</a>
                 <a href="index.html#contact"
-                    class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
+                    class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">CONTACT</a>
             </div>
         </nav>
-    </header>
+    </nav>
 
     <!-- Hero Section -->
     <section id="hero"
-        class="section gradient-bg flex items-center justify-center px-4 min-h-screen relative overflow-hidden">
+        class="section gradient-bg flex items-center justify-center px-4 min-h-screen relative overflow-hidden pt-32">
         <div class="absolute inset-0 pointer-events-none">
             <div
                 class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#00F0FF] rounded-full blur-[150px] opacity-10 mix-blend-screen">
@@ -69,194 +79,187 @@
             </div>
         </div>
         <div class="content text-center max-w-4xl mx-auto relative z-10">
-            <div class="mb-8">
-                <div class="w-40 h-40 mx-auto mb-6 relative group">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-[#00F0FF] to-[#BC13FE] rounded-full blur opacity-75 group-hover:opacity-100 transition duration-500">
-                    </div>
-                    <img src="deck-avatar.jpg" alt="Yuk Dae-geun Profile"
-                        class="relative w-40 h-40 rounded-full object-cover border-2 border-white/10 shadow-2xl">
-                </div>
-            </div>
+
             <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tighter text-white">
-                Yuk Dae-geun <span class="text-[#00F0FF]">(DECK)</span>
+                Where AI Meets Art, <span class="text-[#00F0FF]">DEXA</span>
             </h1>
-            <h2 class="text-xl md:text-2xl text-gray-400 mb-8 font-mono uppercase tracking-widest">
-                ADX Work Lab Representative
-            </h2>
             <p class="text-lg md:text-xl mb-12 max-w-3xl mx-auto text-gray-300 leading-relaxed">
-                Merging <span class="text-[#00F0FF]">AI Technology</span> with <span class="text-[#BC13FE]">Creative
-                    Thinking</span> to develop innovative solutions.
+                기술의 언어를 예술의 경험으로 번역합니다.<br class="hidden md:block">
+                DEXA는 AI 기술과 미디어아트를 융합하여 상상을 현실로 구현하는 크리에이티브 그룹입니다.
             </p>
 
-            <!-- Career History Section -->
-            <div class="mb-16 mt-12 text-left bg-white/5 p-8 rounded-2xl border border-white/10 backdrop-blur-sm">
-                <h3 class="text-xl text-[#00F0FF] font-mono mb-6 uppercase tracking-widest text-center">Career History
-                </h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 text-gray-300">
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <span class="text-[#BC13FE] mr-3 mt-1">●</span>
-                            <span>Korea Creative Content Agency (KOCCA) NCA 3rd Batch Facilitator</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-[#BC13FE] mr-3 mt-1">●</span>
-                            <span>Google.org AI Opportunity Fund: Asia-Pacific / Trainer</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-[#BC13FE] mr-3 mt-1">●</span>
-                            <span>Incheon Citizen Professor / Arts & Culture</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-[#BC13FE] mr-3 mt-1">●</span>
-                            <span>Gwangju Metropolitan Council AI Testbed Special Committee Policy Advisor</span>
-                        </li>
-                    </ul>
-                    <ul class="space-y-3">
-                        <li class="flex items-start">
-                            <span class="text-gray-500 mr-3 mt-1">●</span>
-                            <span class="text-gray-400">(Ex) DNMD Creative Director, DX Lab</span>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-gray-500 mr-3 mt-1">●</span>
-                            <span class="text-gray-400">(Ex) Gunpo Cultural Foundation, Gunpo City Festival General
-                                Director</span>
-                        </li>
-                    </ul>
+            <!-- Director Profile Section -->
+            <div class="mb-24 text-left grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="relative group">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-r from-[#00F0FF] to-[#BC13FE] rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500">
+                    </div>
+                    <!-- Placeholder for Director Image - Using existing avatar for now, or could use a placeholder -->
+                    <img src="deck-avatar.jpg" alt="Yuk Dae-geun Profile"
+                        class="relative w-full aspect-[4/5] object-cover rounded-2xl border-2 border-white/10 shadow-2xl grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Yuk Dae-geun (DECK)</h2>
+                    <h3 class="text-xl text-[#00F0FF] font-mono mb-6 tracking-widest">Founder & Director, DEXA</h3>
+                    <p class="text-lg text-gray-300 italic mb-8 border-l-4 border-[#BC13FE] pl-4">
+                        "Architect of Experience on the Deck"
+                    </p>
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        Deck(육대근)은 기술적 데이터와 예술적 감성을 융합하는 Media Art & AI Director입니다.
+                        Google.org, 삼성전자, 루이비통 등 글로벌 브랜드와의 협업부터 국책 기관의 AI 자문까지,
+                        기술과 예술, 비즈니스의 경계를 넘나들며 독보적인 솔루션을 제시해왔습니다.
+                    </p>
+
+                    <div class="space-y-4">
+                        <h4
+                            class="text-sm font-bold text-white uppercase tracking-widest border-b border-white/10 pb-2 mb-4">
+                            Career History</h4>
+                        <ul class="space-y-2 text-sm text-gray-400">
+                            <li><span class="text-[#00F0FF] mr-2">●</span> Korea Creative Content Agency (KOCCA) | New
+                                Contents Academy Facilitator</li>
+                            <li><span class="text-[#00F0FF] mr-2">●</span> Google.org AI Opportunity Fund: Asia-Pacific
+                                | Trainer</li>
+                            <li><span class="text-[#00F0FF] mr-2">●</span> Gwangju Metropolitan Council | AI Testbed
+                                Special Committee Policy Advisor</li>
+                            <li><span class="text-[#00F0FF] mr-2">●</span> Incheon Metropolitan City | Incheon Citizen
+                                Professor (Arts & Culture)</li>
+                            <li><span class="text-gray-600 mr-2">●</span> (Ex) Gunpo Cultural Foundation | Gunpo City
+                                Festival General Director</li>
+                            <li><span class="text-gray-600 mr-2">●</span> (Ex) DNMD | Creative Director, DX Lab</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-            <!-- Partners Section -->
-            <div class="mt-8 border-t border-white/10 pt-12">
-                <p class="text-sm text-gray-500 font-mono uppercase tracking-widest mb-8">Trusted Partners</p>
-                <div class="flex flex-wrap justify-center gap-4 md:gap-8 opacity-70">
-                    <span class="text-gray-400 hover:text-white transition-colors">Google.org</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">Samsung Electronics</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">SK Telecom</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">SK Innovation</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">SBS A&T</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">KOCCA</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">Ministry of SMEs and Startups</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">Ministry of Environment</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">BIFAN</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">Gwangju City Council</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">Incheon Citizen Professor</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">Supreme Prosecutors' Office</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">Incheon Customs</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">Gangwon Province</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">Gyeonggi HRD</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">Hoengseong-gun Office</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">GPTers.org</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">AITY</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">AI x SEED</span>
-                    <span class="text-gray-600">/</span>
-                    <span class="text-gray-400 hover:text-white transition-colors">And many more...</span>
+            <!-- Philosophy Section -->
+            <div class="mb-24 text-left">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-16">
+                    <span class="text-gradient">Philosophy</span>
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div
+                        class="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-[#00F0FF] transition-colors group">
+                        <div
+                            class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-[#00F0FF] mb-4">
+                            D</div>
+                        <h3 class="text-lg font-bold text-white mb-2">Deck's Perspective</h3>
+                        <p class="text-sm text-gray-400">작가 Deck만의 독창적인 기술 해석과 연출</p>
+                    </div>
+                    <div
+                        class="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-[#BC13FE] transition-colors group">
+                        <div
+                            class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-[#BC13FE] mb-4">
+                            E</div>
+                        <h3 class="text-lg font-bold text-white mb-2">Emotional Tech</h3>
+                        <p class="text-sm text-gray-400">차가운 기술을 통해 전달하는 뜨거운 감동</p>
+                    </div>
+                    <div
+                        class="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-[#00F0FF] transition-colors group">
+                        <div
+                            class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-[#00F0FF] mb-4">
+                            X</div>
+                        <h3 class="text-lg font-bold text-white mb-2">X-over Thinking</h3>
+                        <p class="text-sm text-gray-400">장르, 매체, 온/오프라인의 경계를 허무는 융합적 사고</p>
+                    </div>
+                    <div
+                        class="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-[#BC13FE] transition-colors group">
+                        <div
+                            class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-[#BC13FE] mb-4">
+                            A</div>
+                        <h3 class="text-lg font-bold text-white mb-2">Advanced Output</h3>
+                        <p class="text-sm text-gray-400">실무와 현장에 즉시 적용 가능한 최상의 퀄리티</p>
+                    </div>
                 </div>
             </div>
+
+
         </div>
     </section>
 
     <!-- Key Projects Section -->
-    <section id="projects-history" class="section gradient-bg px-4 py-12 bg-black/50" style="min-height: auto;">
+    <section id="projects-history" class="section gradient-bg px-4 py-20 bg-black/50" style="min-height: auto;">
         <div class="content max-w-6xl mx-auto">
             <h2 class="text-4xl font-bold mb-16 text-center">
-                <span class="text-gradient">Key Projects</span>
+                <span class="text-gradient">Selected Works</span>
             </h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <!-- Festival & Events -->
-                <div class="relative group">
+                <!-- Media Art & Creative Direction -->
+                <div class="relative group h-full">
                     <div
                         class="absolute -inset-1 bg-gradient-to-r from-[#00F0FF] to-[#BC13FE] rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000">
                     </div>
-                    <div class="relative h-full bg-[#0A0A0A] p-8 rounded-lg border border-white/10">
+                    <div class="relative h-full bg-[#0A0A0A] p-8 rounded-lg border border-white/10 flex flex-col">
                         <div class="flex items-center mb-8">
-                            <span class="material-symbols-outlined text-[#00F0FF] text-3xl mr-4">festival</span>
-                            <h3 class="text-2xl font-bold text-white">Festival & Event</h3>
+                            <span class="material-symbols-outlined text-[#00F0FF] text-3xl mr-4">palette</span>
+                            <h3 class="text-2xl font-bold text-white">Media Art & Creative Direction</h3>
                         </div>
-                        <ul class="space-y-4">
+                        <ul class="space-y-4 flex-grow">
                             <li class="flex items-start group/item">
                                 <span class="text-[#00F0FF] mr-3 mt-1.5 text-xs">▶</span>
                                 <span class="text-gray-300 group-hover/item:text-white transition-colors">Digital Media
-                                    Art Festival PRECTXE Production</span>
-                            </li>
-                            <li class="flex items-start group/item">
-                                <span class="text-[#00F0FF] mr-3 mt-1.5 text-xs">▶</span>
-                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Music Showcase
-                                    Festival ZandariFesta Production</span>
+                                    Art Festival 'PRECTXE' | General Production</span>
                             </li>
                             <li class="flex items-start group/item">
                                 <span class="text-[#00F0FF] mr-3 mt-1.5 text-xs">▶</span>
                                 <span class="text-gray-300 group-hover/item:text-white transition-colors">Bucheon Art
-                                    Bunker B39 General Operations (Waste Incinerator Cultural Regeneration)</span>
+                                    Bunker B39 | General Operations (Waste Incinerator Cultural Regeneration)</span>
                             </li>
                             <li class="flex items-start group/item">
                                 <span class="text-[#00F0FF] mr-3 mt-1.5 text-xs">▶</span>
-                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Louis Vuitton
-                                    x BTS 2021 F/W collection</span>
-                            </li>
-                            <li class="flex items-start group/item">
-                                <span class="text-[#00F0FF] mr-3 mt-1.5 text-xs">▶</span>
-                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Netflix Movie
-                                    'Kill Boksoon'</span>
+                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Music Showcase
+                                    Festival 'Zandari Festa' | General Production</span>
                             </li>
                             <li class="flex items-start group/item">
                                 <span class="text-[#00F0FF] mr-3 mt-1.5 text-xs">▶</span>
                                 <span class="text-gray-300 group-hover/item:text-white transition-colors">Overseas Music
-                                    Festival Exchange (SXSW, Milano Expo, Liverpool Sound City, V-ROX, etc.)</span>
+                                    Festival Exchange | SXSW(USA), Milano Expo(Italy), Liverpool Sound City(UK),
+                                    V-ROX(Russia)</span>
+                            </li>
+                            <li class="flex items-start group/item">
+                                <span class="text-[#00F0FF] mr-3 mt-1.5 text-xs">▶</span>
+                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Netflix Movie
+                                    'Kill Boksoon' | Location Operation</span>
+                            </li>
+                            <li class="flex items-start group/item">
+                                <span class="text-[#00F0FF] mr-3 mt-1.5 text-xs">▶</span>
+                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Louis Vuitton
+                                    x BTS 2021 F/W Collection | Location Operation</span>
                             </li>
                         </ul>
                     </div>
                 </div>
 
-                <!-- Development -->
-                <div class="relative group">
+                <!-- AI Solutions & Development -->
+                <div class="relative group h-full">
                     <div
                         class="absolute -inset-1 bg-gradient-to-r from-[#BC13FE] to-[#00F0FF] rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000">
                     </div>
-                    <div class="relative h-full bg-[#0A0A0A] p-8 rounded-lg border border-white/10">
+                    <div class="relative h-full bg-[#0A0A0A] p-8 rounded-lg border border-white/10 flex flex-col">
                         <div class="flex items-center mb-8">
-                            <span class="material-symbols-outlined text-[#BC13FE] text-3xl mr-4">code</span>
-                            <h3 class="text-2xl font-bold text-white">Development</h3>
+                            <span class="material-symbols-outlined text-[#BC13FE] text-3xl mr-4">smart_toy</span>
+                            <h3 class="text-2xl font-bold text-white">AI Solutions & Development</h3>
                         </div>
-                        <ul class="space-y-4">
+                        <ul class="space-y-4 flex-grow">
                             <li class="flex items-start group/item">
                                 <span class="text-[#BC13FE] mr-3 mt-1.5 text-xs">▶</span>
                                 <span class="text-gray-300 group-hover/item:text-white transition-colors">RFP-based
-                                    Proposal Draft Generation AI Solution Development</span>
+                                    Proposal Generation | AI Solution Development</span>
                             </li>
                             <li class="flex items-start group/item">
                                 <span class="text-[#BC13FE] mr-3 mt-1.5 text-xs">▶</span>
                                 <span class="text-gray-300 group-hover/item:text-white transition-colors">Computer
-                                    Vision-based Crowd Monitoring Solution Development</span>
+                                    Vision-based Crowd Monitoring | Safety Solution Development</span>
                             </li>
                             <li class="flex items-start group/item">
                                 <span class="text-[#BC13FE] mr-3 mt-1.5 text-xs">▶</span>
                                 <span class="text-gray-300 group-hover/item:text-white transition-colors">Press Release
-                                    & AAR Automation Solution Development</span>
+                                    & AAR Automation | Business Efficiency Solution</span>
                             </li>
                             <li class="flex items-start group/item">
                                 <span class="text-[#BC13FE] mr-3 mt-1.5 text-xs">▶</span>
-                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Various AI
-                                    Experience Program Development</span>
+                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Interactive AI
+                                    Experience Programs | Development & UX Design</span>
                             </li>
                         </ul>
                     </div>
@@ -265,15 +268,61 @@
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section id="stats" class="section bg-black px-4 py-8 border-b border-white/5" style="min-height: auto;">
+    <!-- Trust & Connect Section - Trust logos move here -->
+    <section id="trust" class="section bg-black px-4 py-16 border-b border-white/5" style="min-height: auto;">
         <div class="content max-w-6xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <p class="text-sm text-center text-gray-500 font-mono uppercase tracking-widest mb-12">Trusted Partners</p>
+            <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm md:text-base opacity-70 mb-16 px-4">
+                <span class="text-gray-400 hover:text-white transition-colors">Google.org</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">Samsung Electronics</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">SK Telecom</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">SK Innovation</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">SBS A&T</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">KOCCA</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">Ministry of SMEs and Startups</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">Ministry of Environment</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">BIFAN</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">Gwangju City Council</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">Supreme Prosecutors' Office</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">Incheon Customs</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">Gangwon Province</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">Gyeonggi HRD</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">Hoengseong-gun Office</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">Gimpo-si</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">Peyongteak-si</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">GPTers.org</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">AITY</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">AI x SEED</span>
+                <span class="text-gray-600">/</span>
+                <span class="text-gray-400 hover:text-white transition-colors">And many more...</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Switched to 3 columns to look better -->
                 <div class="text-center group">
                     <div
                         class="text-4xl font-bold text-[#00F0FF] mb-2 font-mono group-hover:scale-110 transition-transform">
                         30+</div>
-                    <p class="text-gray-400 text-xs uppercase tracking-widest">Partnerships</p>
+                    <p class="text-gray-400 text-xs uppercase tracking-widest">Global Partners</p>
                 </div>
                 <div class="text-center group">
                     <div
@@ -287,12 +336,14 @@
                         95%</div>
                     <p class="text-gray-400 text-xs uppercase tracking-widest">Satisfaction</p>
                 </div>
-                <div class="text-center group">
-                    <div
-                        class="text-4xl font-bold text-[#BC13FE] mb-2 font-mono group-hover:scale-110 transition-transform">
-                        24h</div>
-                    <p class="text-gray-400 text-xs uppercase tracking-widest">Response Time</p>
-                </div>
+            </div>
+
+            <div class="mt-20 text-center">
+                <h3 class="text-2xl font-bold text-white mb-8">Ready to visualize your imagination?</h3>
+                <a href="#contact"
+                    class="inline-block px-10 py-4 bg-white hover:bg-[#00F0FF] text-black font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)]">
+                    Contact Us
+                </a>
             </div>
         </div>
     </section>
