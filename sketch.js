@@ -1,11 +1,8 @@
 /*
-  Background Color Interaction Shader
-  - Object: Smooth Amorphous Glass Sphere (Transparent, No Ripples)
-  - Lighting: Left-side source, sharp distortion
-  - Interaction: 
-	* Default: Warm/Gold background lights
-	* Click: Cool/Blue background lights
-	* The sphere reflects this environmental change.
+  Desaturated Glass Reflection
+  - Background: Strong Warm/Cool shift remains.
+  - Sphere: Reflections are now mostly WHITE with only a subtle hint of color.
+  - Result: Looks like high-end clear glass, not colored plastic.
 */
 
 let theShader, moves = [0, 0], zoom = 0, dpr = Math.max(1, 0.5 * window.devicePixelRatio), ww = window.innerWidth, wh = window.innerHeight, startRandom;
@@ -27,7 +24,7 @@ uniform float time;
 uniform vec2 resolution;
 uniform vec2 move;
 uniform float zoom;
-uniform float clickStr; // 배경 색상 제어 변수
+uniform float clickStr;
 
 #define FC gl_FragCoord.xy
 #define R resolution
@@ -55,7 +52,7 @@ float scratch(vec2 uv) {
     return clamp(1.-l,.0,1.);
 }
 
-// --- Map Function (Smooth Sphere) ---
+// --- Map Function ---
 vec2 map(vec3 p) {
     // [Floor]
     float floorDist = -(p.z - 12.0);
@@ -122,13 +119,18 @@ vec3 scene() {
     vec3 col = vec3(0);
     float dd=.0, at=.0, side=1., e=1., bnz=.0, k=mix(.7,1.,rnd(uv+T*.01));
 
-    // --- Color Definition (Interaction) ---
-    // Warm: 오렌지/골드, Cool: 사이버 블루/청록
-    vec3 warmColor = vec3(1.0, 0.6, 0.3); 
-    vec3 coolColor = vec3(0.2, 0.6, 1.0);
+    // --- Color Temperature Logic ---
     
-    // 현재 조명 색상 계산
-    vec3 currentLightColor = mix(warmColor, coolColor, clickStr);
+    // Background Colors (Strong)
+    vec3 warmColor = vec3(1.0, 0.7, 0.3); 
+    vec3 coolColor = vec3(0.2, 0.7, 1.0);
+    
+    // Current Background Tint
+    vec3 currentTint = mix(warmColor, coolColor, clickStr);
+
+    // Sphere Reflection Tint (Desaturated)
+    // 배경색을 흰색과 8:2 비율로 섞어 채도를 뺍니다.
+    vec3 sphereTint = mix(vec3(1.0), currentTint, 0.25);
 
     // Raymarching
     for (int i; i++<80;) {
@@ -138,7 +140,7 @@ vec3 scene() {
         if (abs(d.x) < 1e-3) {
             vec3 n = norm(p) * side;
             
-            // 조명 위치 (왼쪽)
+            // Light Position (Left)
             vec3 lp = vec3(-8.0, 5.0, -5.0);
             vec3 l = N(lp - p);
             if (dot(l, n) < .0) l = -l;
@@ -147,22 +149,15 @@ vec3 scene() {
             if (d.y < 0.5) {
                 float shd = bnz++ < 1. ? shadow(p + n * 5e-2, lp) : 1.;
                 vec3 floorP = p;
-                floorP.x -= T * 5.; // Movement
+                floorP.x -= T * 5.; 
                 
-                // Pattern Shape
                 float w = sin(floorP.x) - cos(floorP.y);
                 
-                // 기존의 하드코딩된 색상 대신 currentLightColor를 적용
-                // 패턴의 강약(Shape)만 추출
-                float patternIntensity = 0.0;
-                patternIntensity += S(1., 1.5, w);       // Core
-                patternIntensity += S(1., 1.2, w) * 0.5; // Rim
-                patternIntensity += S(.5, 3.2, w) * 0.2; // Glow
+                // Core is White, Glow is Colored
+                vec3 lightCore = vec3(S(1.0, 1.5, w));
+                vec3 lightGlow = vec3(S(0.5, 3.2, w)) * currentTint;
                 
-                // 색상 적용
-                vec3 floorCol = patternIntensity * currentLightColor;
-                
-                // 스크래치 질감 추가
+                vec3 floorCol = (lightCore + lightGlow * 1.5); 
                 floorCol += step(scratch(uv), 1.-7e-7) * 0.2;
                 
                 col += floorCol * shd;
@@ -170,13 +165,14 @@ vec3 scene() {
             } 
             // ID 1: Glass Sphere
             else {
-                // Sphere reflects the "light source" which creates the background
                 float fres = pow(clamp(1.0 + dot(rd, n), 0.0, 1.0), 4.0);
                 float spec = pow(clamp(dot(reflect(rd, n), l), 0.0, 1.0), 128.0);
 
-                // 구체의 하이라이트도 현재 조명 색상을 따라감
-                col += spec * 3.0 * currentLightColor * e;
-                col += fres * 1.5 * currentLightColor * e;
+                // 구체 반사: 
+                // spec * 4.0 -> 순수한 흰색 반사광 (강함)
+                // fres * 2.0 * sphereTint -> 가장자리는 아주 은은한 미색 (채도 낮음)
+                col += spec * 4.0 * e; 
+                col += fres * 2.0 * sphereTint * e; 
 
                 e *= .95; 
                 
@@ -206,9 +202,9 @@ void main() {
     float t = min(time*.3, 1.);
     col = mix(vec3(0), col, t);
     
-    // Monochrome Intro (Warm tone emphasis)
-    // 인트로가 끝나면 원래 색(col)이 나오므로 인터랙션 색상이 적용됨
-    col = mix(vec3(dot(col, vec3(.21,.71,.07))) * vec3(.8,.9,1), col, pow(t, 5.));
+    // Monochrome Intro
+    vec3 mono = vec3(dot(col, vec3(.21,.71,.07)));
+    col = mix(mono, col, pow(t, 5.));
     
     O = vec4(col, 1);
 }
@@ -250,9 +246,9 @@ function setup() {
 function draw() {
 	shader(theShader);
 
-	// Interaction Logic: Click to Cool (1.0), Release to Warm (0.0)
+	// Interaction
 	let targetIntensity = mouseIsPressed ? 1.0 : 0.0;
-	clickIntensity = lerp(clickIntensity, targetIntensity, 0.05); // Smooth transition
+	clickIntensity = lerp(clickIntensity, targetIntensity, 0.05);
 
 	theShader.setUniform("resolution", [width, height]);
 	theShader.setUniform("time", millis() / 1000.0);
@@ -260,7 +256,6 @@ function draw() {
 	theShader.setUniform("pointerCount", mouseIsPressed ? 1 : 0);
 	theShader.setUniform("zoom", zoom);
 
-	// Pass color control value
 	theShader.setUniform("clickStr", clickIntensity);
 
 	noStroke();
