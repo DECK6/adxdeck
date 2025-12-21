@@ -1,16 +1,16 @@
 /*
-  Variable Frequency Glass Sphere
-  - Default: Smooth amorphous sphere (Freq = 0)
-  - Click Interaction: Surface ripple frequency interpolates from 0 to 20
-  - Visual: Transitions from clear liquid to textured glass
-  - Last Updated: 2025-12-21 (Force Deploy)
+  Background Color Interaction Shader
+  - Object: Smooth Amorphous Glass Sphere (Transparent, No Ripples)
+  - Lighting: Left-side source, sharp distortion
+  - Interaction: 
+	* Default: Warm/Gold background lights
+	* Click: Cool/Blue background lights
+	* The sphere reflects this environmental change.
 */
 
 let theShader, moves = [0, 0], zoom = 0, dpr = Math.max(1, 0.5 * window.devicePixelRatio), ww = window.innerWidth, wh = window.innerHeight, startRandom;
 let myCanvas;
-
-// 리플 주파수 변수 (JS에서 제어)
-let currentRippleFreq = 0;
+let clickIntensity = 0.0; // 0.0(Warm) ~ 1.0(Cool)
 
 const VERT_SRC = `#version 300 es
 precision highp float;
@@ -27,9 +27,7 @@ uniform float time;
 uniform vec2 resolution;
 uniform vec2 move;
 uniform float zoom;
-
-// JS에서 전달받는 리플 주파수 (0.0 ~ 20.0)
-uniform float rippleFreq; 
+uniform float clickStr; // 배경 색상 제어 변수
 
 #define FC gl_FragCoord.xy
 #define R resolution
@@ -57,9 +55,9 @@ float scratch(vec2 uv) {
     return clamp(1.-l,.0,1.);
 }
 
-// --- Map Function ---
+// --- Map Function (Smooth Sphere) ---
 vec2 map(vec3 p) {
-    // [Floor] Original Logic
+    // [Floor]
     float floorDist = -(p.z - 12.0);
 
     // [Sphere]
@@ -67,30 +65,18 @@ vec2 map(vec3 p) {
     q.x -= 2.4; 
     q.y -= 0.5; 
 
-    // A. Shape Distortion (형태의 큰 일렁임 - 항상 작동)
-    // 기본 상태가 너무 정적이지 않도록 형태 자체는 계속 움직이게 둡니다.
+    // Amorphous Distortion
     float anim = T * 1.5;
     float distStr = 0.6;
     float bigDistortion = sin(q.x*3.0 + anim) * sin(q.y*2.5 + anim*1.2) * sin(q.z*3.2 + anim*0.8);
 
-    // B. Micro-Texture (Ripple Effect) - 인터랙션 적용 부분
-    // rippleFreq가 0이면 sin(0)이 되어 리플이 완전히 사라짐 (매끈함)
-    // rippleFreq가 20까지 증가하면 자글자글해짐
-    float ripples = sin(q.x * rippleFreq) * sin(q.y * rippleFreq) * sin(q.z * rippleFreq);
-    
-    // 텍스처 깊이 (주파수가 높을수록 텍스처가 촘촘히 박힘)
-    float textureStr = 0.02; 
-
-    // SDF Calculation
+    // SDF
     float sphereRadius = 0.7;
     float sphere = length(q) - sphereRadius;
-    
-    sphere += bigDistortion * distStr; // 큰 왜곡 적용
-    sphere += ripples * textureStr;    // 리플 텍스처 적용
-    
-    sphere *= 0.5; // Lipschitz correction
+    sphere += bigDistortion * distStr;
+    sphere *= 0.5; 
 
-    // [Union]
+    // Union
     vec2 res = vec2(floorDist, 0.0);
     if(sphere < res.x) {
         res = vec2(sphere, 1.0);
@@ -129,45 +115,70 @@ float shadow(vec3 p, vec3 lp) {
 vec3 scene() {
     vec2 uv=(FC-.5*R)/MN;
     
+    // Camera
     vec3 p = vec3(0, 0, -2.0 - 2.0 * S(10., -10., 10. * zoom));
     vec3 rd = N(vec3(uv, .7)); 
 
     vec3 col = vec3(0);
     float dd=.0, at=.0, side=1., e=1., bnz=.0, k=mix(.7,1.,rnd(uv+T*.01));
 
+    // --- Color Definition (Interaction) ---
+    // Warm: 오렌지/골드, Cool: 사이버 블루/청록
+    vec3 warmColor = vec3(1.0, 0.6, 0.3); 
+    vec3 coolColor = vec3(0.2, 0.6, 1.0);
+    
+    // 현재 조명 색상 계산
+    vec3 currentLightColor = mix(warmColor, coolColor, clickStr);
+
+    // Raymarching
     for (int i; i++<80;) {
         vec2 d = map(p);
         d.x *= side;
 
         if (abs(d.x) < 1e-3) {
             vec3 n = norm(p) * side;
-            vec3 lp = vec3(16, 2, -20);
+            
+            // 조명 위치 (왼쪽)
+            vec3 lp = vec3(-8.0, 5.0, -5.0);
             vec3 l = N(lp - p);
             if (dot(l, n) < .0) l = -l;
 
-            if (d.y < 0.5) { // Floor (ID 0)
+            // ID 0: Floor (Background Pattern)
+            if (d.y < 0.5) {
                 float shd = bnz++ < 1. ? shadow(p + n * 5e-2, lp) : 1.;
                 vec3 floorP = p;
-                floorP.x -= T * 5.;
+                floorP.x -= T * 5.; // Movement
+                
+                // Pattern Shape
                 float w = sin(floorP.x) - cos(floorP.y);
                 
-                vec3 floorCol = vec3(0);
-                floorCol += S(1., 1.5, w);
-                floorCol.r += S(1., 1.2, w);
-                floorCol.g += S(.5, 3.2, w);
-                floorCol += step(scratch(uv), 1.-7e-7) * .2;
+                // 기존의 하드코딩된 색상 대신 currentLightColor를 적용
+                // 패턴의 강약(Shape)만 추출
+                float patternIntensity = 0.0;
+                patternIntensity += S(1., 1.5, w);       // Core
+                patternIntensity += S(1., 1.2, w) * 0.5; // Rim
+                patternIntensity += S(.5, 3.2, w) * 0.2; // Glow
+                
+                // 색상 적용
+                vec3 floorCol = patternIntensity * currentLightColor;
+                
+                // 스크래치 질감 추가
+                floorCol += step(scratch(uv), 1.-7e-7) * 0.2;
                 
                 col += floorCol * shd;
                 break;
-            } else { // Sphere (ID 1)
-                float dif = clamp(dot(l, n), .0, 1.);
-                float fres = pow(clamp(1. + dot(rd, n), .0, 1.), 4.);
-                float spec = pow(clamp(dot(reflect(rd, n), l), .0, 1.), 60.);
+            } 
+            // ID 1: Glass Sphere
+            else {
+                // Sphere reflects the "light source" which creates the background
+                float fres = pow(clamp(1.0 + dot(rd, n), 0.0, 1.0), 4.0);
+                float spec = pow(clamp(dot(reflect(rd, n), l), 0.0, 1.0), 128.0);
 
-                col += spec * 2.5 * e;
-                col += fres * 1.0 * vec3(0.7, 0.8, 1.0) * e;
+                // 구체의 하이라이트도 현재 조명 색상을 따라감
+                col += spec * 3.0 * currentLightColor * e;
+                col += fres * 1.5 * currentLightColor * e;
 
-                e *= .95;
+                e *= .95; 
                 
                 side = -side;
                 vec3 rdo = refract(rd, n, 1.0 + side * 0.45);
@@ -194,6 +205,9 @@ void main() {
     
     float t = min(time*.3, 1.);
     col = mix(vec3(0), col, t);
+    
+    // Monochrome Intro (Warm tone emphasis)
+    // 인트로가 끝나면 원래 색(col)이 나오므로 인터랙션 색상이 적용됨
     col = mix(vec3(dot(col, vec3(.21,.71,.07))) * vec3(.8,.9,1), col, pow(t, 5.));
     
     O = vec4(col, 1);
@@ -236,12 +250,9 @@ function setup() {
 function draw() {
 	shader(theShader);
 
-	// --- 인터랙션 로직 수정 ---
-	// 목표 주파수: 클릭 시 20.0, 떼면 0.0
-	let targetFreq = mouseIsPressed ? 20.0 : 0.0;
-
-	// 부드러운 전환 (Lerp)
-	currentRippleFreq = lerp(currentRippleFreq, targetFreq, 0.05);
+	// Interaction Logic: Click to Cool (1.0), Release to Warm (0.0)
+	let targetIntensity = mouseIsPressed ? 1.0 : 0.0;
+	clickIntensity = lerp(clickIntensity, targetIntensity, 0.05); // Smooth transition
 
 	theShader.setUniform("resolution", [width, height]);
 	theShader.setUniform("time", millis() / 1000.0);
@@ -249,8 +260,8 @@ function draw() {
 	theShader.setUniform("pointerCount", mouseIsPressed ? 1 : 0);
 	theShader.setUniform("zoom", zoom);
 
-	// 계산된 주파수를 쉐이더로 전달
-	theShader.setUniform("rippleFreq", currentRippleFreq);
+	// Pass color control value
+	theShader.setUniform("clickStr", clickIntensity);
 
 	noStroke();
 	beginShape();
