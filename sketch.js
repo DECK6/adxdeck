@@ -1,18 +1,15 @@
 /*
-It is a 3D shader made for the weekly Creative Coding Challenge
-(https://openprocessing.org/curation/78544) on the theme "Marching".
-
-There is a light ray marching through a scene made of signed
-distance fields. 
-
-Translucency and surface distortion are the main reasons one would
-choose a raymarcher over a mesh-based renderer.
-
-Raphaël, this time you can zoom. I have mapped the mouse wheel.
+  Variable Frequency Glass Sphere
+  - Default: Smooth amorphous sphere (Freq = 0)
+  - Click Interaction: Surface ripple frequency interpolates from 0 to 20
+  - Visual: Transitions from clear liquid to textured glass
 */
 
 let theShader, moves = [0, 0], zoom = 0, dpr = Math.max(1, 0.5 * window.devicePixelRatio), ww = window.innerWidth, wh = window.innerHeight, startRandom;
 let myCanvas;
+
+// 리플 주파수 변수 (JS에서 제어)
+let currentRippleFreq = 0;
 
 const VERT_SRC = `#version 300 es
 precision highp float;
@@ -23,232 +20,187 @@ void main() {
 `;
 
 const FRAG_SRC = `#version 300 es
-/*********
-* made by Matthias Hurrle (@atzedent)
-* Tip: For syntax highlighting, paste the code here:
-* https://shadered.org/app?fork=4Y3P9GQID0
-*/ 
 precision highp float;
 out vec4 O;
 uniform float time;
 uniform vec2 resolution;
 uniform vec2 move;
 uniform float zoom;
+
+// JS에서 전달받는 리플 주파수 (0.0 ~ 20.0)
+uniform float rippleFreq; 
+
 #define FC gl_FragCoord.xy
 #define R resolution
 #define T time
 #define N normalize
 #define S smoothstep
 #define MN min(R.x,R.y)
-// fast (unprecise) 2D rotation
+
+// --- Utilities ---
 #define rot(a) mat2(cos((a)-vec4(0,11,33,0)))
-// Rotates the camera
-void cam(inout vec3 p) {
-	p.yx*=rot(-.42);
-	p.yz*=rot(cos(1.6+move.y*6.3/MN));
-	p.xz*=rot(T*.2-move.x*6.3/MN);
-}
-// Returns the signed distance function of a single chain link
-float link(vec3 p, float r1, float r2, float h) {
-	// add ripples
-	p+=sin(p*vec3(80,1,1))*.005;
-	// elongate along y-axis
-	p.y-=clamp(p.y,-h,h);
-	// torus
-	vec2 c=vec2(length(p.xy)-r1, p.z);
-	return length(c)-r2;
-}
-// Returns the distance to the scene at point p and its associated object-id
-vec2 map(vec3 p) {
-	// spacing of the domain repetition
-	const float n=4.5;
-	// pre-calculate floor with original point
-	float floor=-(p.z-12.);
-	// animate camera around chain
-	cam(p);
-	// flip axis for second link and move apart a fair bit
-	vec3 u=p.zyx+vec3(0,2.25,0);
-	// calculate domain repetition for each of the two links
-	p.y-=clamp(round(p.y/n),-2.,2.)*n;
-	u.y-=clamp(round(u.y/n),-2.,2.)*n;
-	// distance calculation
-	float
-	d=abs(link(p,.7,.3,.77))-.04,
-	e=abs(link(u,.7,.3,.77))-.04;
-	// union of floor and links
-	vec2 a=vec2(floor,0), b=vec2(min(d,e),1);
-	a=a.x<b.x?a:b;
-	return a;
-}
-// Returns the normal of the surface at the given point
-vec3 norm(vec3 p) {
-	float h=1e-2; vec2 k=vec2(-1,1);
-	return N(
-		k.xyy*map(p+k.xyy*h).x+
-		k.yxy*map(p+k.yxy*h).x+
-		k.yyx*map(p+k.yyx*h).x+
-		k.xxx*map(p+k.xxx*h).x
-	);
-}
-// Returns a pseudo random number for a given point (white noise)
+
 float rnd(vec2 p) {
-	p=fract(p*vec2(12.9898,78.233));
-	p+=dot(p,p+34.56);
-	return fract(p.x*p.y);
+    p=fract(p*vec2(12.9898,78.233));
+    p+=dot(p,p+34.56);
+    return fract(p.x*p.y);
 }
-// Returns the shadow value of the given point with the given light position
-float shadow(vec3 p, vec3 lp) {
-	float shd=1., maxd=length(lp-p);
-	vec3 l=normalize(lp-p);
-	for (float i=1e-2; i<maxd;) {
-		float d=map(p+l*i).x;
-		if (d<1e-2) {
-			shd=.0;
-			break;
-		}
-		shd=min(shd,64.*d/i);
-		i+=d;
-	}
-	return shd;
-}
-// Returns a scratch pattern at the given point
+
 float scratch(vec2 uv) {
-  float x=uv.x+T*1e1,
-  rx=rnd(vec2(x)),
-  l=step(1.-7e-4,sin(x*1e3*(rx*1e-2+1e-2))),
-  y=uv.y+T*9e-4,
-  ry=rnd(vec2(y));
-  l*=sin(y*1e3*ry);
-  return clamp(1.-l,.0,1.);
+    float x=uv.x+T*1e1,
+    rx=rnd(vec2(x)),
+    l=step(1.-7e-4,sin(x*1e3*(rx*1e-2+1e-2))),
+    y=uv.y+T*9e-4,
+    ry=rnd(vec2(y));
+    l*=sin(y*1e3*ry);
+    return clamp(1.-l,.0,1.);
 }
-// render the scene
+
+// --- Map Function ---
+vec2 map(vec3 p) {
+    // [Floor] Original Logic
+    float floorDist = -(p.z - 12.0);
+
+    // [Sphere]
+    vec3 q = p;
+    q.x -= 2.4; 
+    q.y -= 0.5; 
+
+    // A. Shape Distortion (형태의 큰 일렁임 - 항상 작동)
+    // 기본 상태가 너무 정적이지 않도록 형태 자체는 계속 움직이게 둡니다.
+    float anim = T * 1.5;
+    float distStr = 0.6;
+    float bigDistortion = sin(q.x*3.0 + anim) * sin(q.y*2.5 + anim*1.2) * sin(q.z*3.2 + anim*0.8);
+
+    // B. Micro-Texture (Ripple Effect) - 인터랙션 적용 부분
+    // rippleFreq가 0이면 sin(0)이 되어 리플이 완전히 사라짐 (매끈함)
+    // rippleFreq가 20까지 증가하면 자글자글해짐
+    float ripples = sin(q.x * rippleFreq) * sin(q.y * rippleFreq) * sin(q.z * rippleFreq);
+    
+    // 텍스처 깊이 (주파수가 높을수록 텍스처가 촘촘히 박힘)
+    float textureStr = 0.02; 
+
+    // SDF Calculation
+    float sphereRadius = 0.7;
+    float sphere = length(q) - sphereRadius;
+    
+    sphere += bigDistortion * distStr; // 큰 왜곡 적용
+    sphere += ripples * textureStr;    // 리플 텍스처 적용
+    
+    sphere *= 0.5; // Lipschitz correction
+
+    // [Union]
+    vec2 res = vec2(floorDist, 0.0);
+    if(sphere < res.x) {
+        res = vec2(sphere, 1.0);
+    }
+    return res;
+}
+
+// Normals
+vec3 norm(vec3 p) {
+    float h=1e-2; vec2 k=vec2(-1,1);
+    return N(
+        k.xyy*map(p+k.xyy*h).x+
+        k.yxy*map(p+k.yxy*h).x+
+        k.yyx*map(p+k.yyx*h).x+
+        k.xxx*map(p+k.xxx*h).x
+    );
+}
+
+// Shadows
+float shadow(vec3 p, vec3 lp) {
+    float shd=1., maxd=length(lp-p);
+    vec3 l=normalize(lp-p);
+    for (float i=1e-2; i<maxd;) {
+        float d=map(p+l*i).x;
+        if (d<1e-2) {
+            shd=.0;
+            break;
+        }
+        shd=min(shd,64.*d/i);
+        i+=d;
+    }
+    return shd;
+}
+
+// --- Scene Render ---
 vec3 scene() {
-	// normalize the canvas dimensions (-.5/.5)
-	vec2 uv=(FC-.5*R)/MN;
-    uv.x -= 0.35; // Shift center to the right
-	// shortest or longest component of the unit vector depending on orientation
-	float mn=R.x>R.y?max(abs(uv.x),abs(uv.y)):min(abs(uv.x),abs(uv.y));
-	// initialize the color vector
-	vec3 col=vec3(0),
-	// place the camera at two units in front of the scene and allow smooth zooming
-	p=vec3(0,0,-2.-2.*S(10.,-10.,10.*zoom)),
-	// construct a fish-eye lense
-	rd=N(vec3(uv,.7+S(.0,3.2,max(dot(mn,mn),.0))));
-	// keep track of distance, glow, side...
-	float dd=.0, at=.0, side=1., e=1., bnz=.0, k=mix(.7,1.,rnd(uv+T*.01));
-	// raymarching loop
-	for (int i; i++<80;) {
-		// get distance and material
-		vec2 d=map(p);
-		// multiply distance by side (inside or outside the link)
-		d.x*=side;
-		// ray has hit a surface
-		if (abs(d.x)<1e-3) {
-			// calculate surface normal, place light and normalize light vector
-			vec3 n=norm(p)*side, lp=vec3(16,2,-20), l=N(lp-p);
-			// invert light vector if inside a link
-			if (dot(l,n)<.0) l=-l;
-			// calculate diffuse light, fresnel, specular light and shadows
-			float dif=clamp(dot(l,n),.0,1.), fres=pow(clamp(1.+dot(rd,n),.0,1.),5.),
-			spec=d.y<1.?.0:pow(clamp(dot(reflect(rd,n),l),.0,1.),128.),
-			// calculate shadow only once (the first time)
-			shd=bnz++<1.?shadow(p+n*5e-2,lp):1.;
-			// add diffuse light dpending on the material (harder if it is a link)
-			col+=pow(dif,d.y<1.?5.:15.)*.85*vec3(.4,.9,1);
-			// darken by a factor indicating the level of transparancy
-			col*=e;
-			// add specular light
-			col+=1e2*spec;
-			// add a shimmer to surfaces at a shallow angle
-			col+=3.*fres*vec3(.4,.9,1);
-			// reduce the factor so that lower layers can be darkened
-			e*=.95;
-			// darken and add some grain
-			col*=.75*k;
-			// shade floor
-			if (d.y<1.) {
-				// add the chain's shadow
-				col*=shd;
-				// add movement to the right
-				p.x-=T*5.;
-				// generate a pattern
-				float w=sin(p.x)-cos(p.y);
-				// add the pattern
-				col+=S(1.,1.5,w);
-				// add scaled version to the red channel for a red outline
-				col.r+=S(1.,1.2,w);
-				// add scaled version to the green channel turn color back to yellow
-				col.g+=S(.5,3.2,w);
-				// add scratch effect
-				col+=step(scratch(uv),1.-7e-7)*.2;
-				// exit the raymarcher since we already hit the floor
-				break;
-			}
-			// flip sides since we will transition from outside to inside or vice versa
-			side=-side;
-			// refract the ray according to the side
-			vec3 rdo=refract(rd,n,1.+side*.25);
-			// instead of refraction calculate the reflection if the surface is at a shallow angle
-			if (dot(rdo,rdo)==.0) rdo=reflect(rd,n);
-			// set the ray direction according to the pre-calculated ray
-			rd=rdo;
-			// offset the distance to avoid artifacts
-			d.x=5e-2;
-		}
-		// keep track of the overall distance the ray travelled through the scene
-		dd+=d.x;
-		// accumulate glow for the glass effect
-		at+=.05*(.05/dd*k);
-		// advance the ray
-		p+=rd*d.x;
-	}
-	// increase the glow
-	at*=5.;
-	// add the glow and tint it
-	col+=at*at*at*at*vec3(.4,.9,1);
-	// return the color of the scene
-	return col;
+    vec2 uv=(FC-.5*R)/MN;
+    
+    vec3 p = vec3(0, 0, -2.0 - 2.0 * S(10., -10., 10. * zoom));
+    vec3 rd = N(vec3(uv, .7)); 
+
+    vec3 col = vec3(0);
+    float dd=.0, at=.0, side=1., e=1., bnz=.0, k=mix(.7,1.,rnd(uv+T*.01));
+
+    for (int i; i++<80;) {
+        vec2 d = map(p);
+        d.x *= side;
+
+        if (abs(d.x) < 1e-3) {
+            vec3 n = norm(p) * side;
+            vec3 lp = vec3(16, 2, -20);
+            vec3 l = N(lp - p);
+            if (dot(l, n) < .0) l = -l;
+
+            if (d.y < 0.5) { // Floor (ID 0)
+                float shd = bnz++ < 1. ? shadow(p + n * 5e-2, lp) : 1.;
+                vec3 floorP = p;
+                floorP.x -= T * 5.;
+                float w = sin(floorP.x) - cos(floorP.y);
+                
+                vec3 floorCol = vec3(0);
+                floorCol += S(1., 1.5, w);
+                floorCol.r += S(1., 1.2, w);
+                floorCol.g += S(.5, 3.2, w);
+                floorCol += step(scratch(uv), 1.-7e-7) * .2;
+                
+                col += floorCol * shd;
+                break;
+            } else { // Sphere (ID 1)
+                float dif = clamp(dot(l, n), .0, 1.);
+                float fres = pow(clamp(1. + dot(rd, n), .0, 1.), 4.);
+                float spec = pow(clamp(dot(reflect(rd, n), l), .0, 1.), 60.);
+
+                col += spec * 2.5 * e;
+                col += fres * 1.0 * vec3(0.7, 0.8, 1.0) * e;
+
+                e *= .95;
+                
+                side = -side;
+                vec3 rdo = refract(rd, n, 1.0 + side * 0.45);
+                if (dot(rdo, rdo) == .0) rdo = reflect(rd, n);
+                rd = rdo;
+                d.x = 5e-2;
+            }
+        }
+        
+        dd += d.x;
+        p += rd * d.x;
+    }
+    return col;
 }
-// The main entry of the fragment shader
+
 void main() {
-	// calculate the output color
-	vec3 col=scene();
-	// calculate a vignette and add it to the output color
-	vec2 uv=FC/R*2.-1.;
-	uv*=.95;
-	uv*=uv*uv*uv*uv;
-	float v=pow(dot(uv,uv),.8);
-	col=mix(col,vec3(0),v);
-	// calculate the animation time for the intro
-	float t=min(time*.3,1.);
-	// animate from black
-	col=mix(vec3(0),col,t);
-	// animate from monochrome
-	col=mix(vec3(dot(col,vec3(.21,.71,.07)))*vec3(.8,.9,1),col,pow(t,5.));
-	// output the final color
-	O=vec4(col,1);
+    vec3 col = scene();
+    
+    vec2 uv = FC/R*2.-1.;
+    uv *= .95;
+    uv *= uv*uv*uv*uv;
+    float v = pow(dot(uv,uv),.8);
+    col = mix(col, vec3(0), v);
+    
+    float t = min(time*.3, 1.);
+    col = mix(vec3(0), col, t);
+    col = mix(vec3(dot(col, vec3(.21,.71,.07))) * vec3(.8,.9,1), col, pow(t, 5.));
+    
+    O = vec4(col, 1);
 }
 `;
 
-function mouseMove() {
-	if (!mouseIsPressed) return;
-	moves[0] += mouseX - pmouseX;
-	moves[1] += pmouseY - mouseY;
-}
-
-function mouseWheel(e) {
-	zoom = lerp(
-		zoom,
-		max(-1, min(1, zoom + e.delta)),
-		0.05
-	);
-}
-
 function windowResized() {
-	ww = window.innerWidth; wh = window.innerHeight;
-	resizeCanvas(ww, wh);
-
-	// Ensure fallback styles persist on resize
+	resizeCanvas(window.innerWidth, window.innerHeight);
 	if (myCanvas) {
 		myCanvas.style('position', 'fixed');
 		myCanvas.style('top', '0');
@@ -261,48 +213,43 @@ function windowResized() {
 
 function setup() {
 	pixelDensity(1);
-	myCanvas = createCanvas(ww, wh, WEBGL);
+	myCanvas = createCanvas(window.innerWidth, window.innerHeight, WEBGL);
 
-	// Explicitly set styles to ensure visibility
 	myCanvas.style('position', 'fixed');
 	myCanvas.style('top', '0');
 	myCanvas.style('left', '0');
 	myCanvas.style('z-index', '-1');
 	myCanvas.style('width', '100vw');
 	myCanvas.style('height', '100vh');
-	// Force black background on canvas to avoid white flashes
 	myCanvas.style('background-color', '#000000');
 
 	startRandom = Math.random();
-
-	// Create shader from inlined sources
 	theShader = createShader(VERT_SRC, FRAG_SRC);
 
-	// Attach canvas to the hero section instead of default body if possible
 	let heroSection = document.getElementById('hero-canvas-container');
 	if (heroSection) {
-		console.log("AdxDeck: Attaching canvas to #hero-canvas-container");
 		myCanvas.parent('hero-canvas-container');
-	} else {
-		console.error("AdxDeck: #hero-canvas-container NOT FOUND. Canvas appended to body.");
 	}
 }
 
 function draw() {
 	shader(theShader);
-	mouseMove();
+
+	// --- 인터랙션 로직 수정 ---
+	// 목표 주파수: 클릭 시 20.0, 떼면 0.0
+	let targetFreq = mouseIsPressed ? 20.0 : 0.0;
+
+	// 부드러운 전환 (Lerp)
+	currentRippleFreq = lerp(currentRippleFreq, targetFreq, 0.05);
+
 	theShader.setUniform("resolution", [width, height]);
 	theShader.setUniform("time", millis() / 1000.0);
 	theShader.setUniform("move", moves);
 	theShader.setUniform("pointerCount", mouseIsPressed ? 1 : 0);
 	theShader.setUniform("zoom", zoom);
 
-	// Draw full screen quad
-	// Attempting to match user provided rect logic but typically WebGL needs -1 to 1 mapping in shader
-	// The user's vertex shader does: gl_Position=vec4(aPosition*2.-1., 1.0);
-	// p5 rect(0,0,w,h) likely sends 0..w coordinates.
-	// If I use beginShape/vertex I can control 0..1 normalization easily.
-	// Let's stick to the normalized 0..1 quad which works with the vert shader "aPosition * 2.0 - 1.0"
+	// 계산된 주파수를 쉐이더로 전달
+	theShader.setUniform("rippleFreq", currentRippleFreq);
 
 	noStroke();
 	beginShape();
