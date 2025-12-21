@@ -3,6 +3,7 @@
   - Default: Smooth amorphous sphere (Freq = 0)
   - Click Interaction: Surface ripple frequency interpolates from 0 to 20
   - Visual: Transitions from clear liquid to textured glass
+  - Last Updated: 2025-12-21 (Force Deploy)
 */
 
 let theShader, moves = [0, 0], zoom = 0, dpr = Math.max(1, 0.5 * window.devicePixelRatio), ww = window.innerWidth, wh = window.innerHeight, startRandom;
