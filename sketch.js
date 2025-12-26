@@ -1,10 +1,3 @@
-/*
-  Desaturated Glass Reflection
-  - Background: Strong Warm/Cool shift remains.
-  - Sphere: Reflections are now mostly WHITE with only a subtle hint of color.
-  - Result: Looks like high-end clear glass, not colored plastic.
-*/
-
 let theShader, moves = [0, 0], zoom = 0, dpr = Math.max(1, 0.5 * window.devicePixelRatio), ww = window.innerWidth, wh = window.innerHeight, startRandom;
 let myCanvas;
 let clickIntensity = 0.0; // 0.0(Warm) ~ 1.0(Cool)
