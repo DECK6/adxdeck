@@ -123,6 +123,16 @@
             background-size: 40px 40px;
             background-image: linear-gradient(to right, #111 1px, transparent 1px), linear-gradient(to bottom, #111 1px, transparent 1px);
         }
+
+        /* Video Modal Styles */
+        #video-modal {
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .modal-content {
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+        }
     </style>
 </head>
 
@@ -273,132 +283,98 @@
                     View All Projects <span class="material-symbols-outlined text-lg">arrow_outward</span>
                 </a> -->
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Project 01 -->
-                <div
-                    class="group relative bg-[#050505] overflow-hidden border border-[#222] hover:border-[#00F0FF] transition-all duration-300 card-hover-effect">
-                    <div class="aspect-video w-full bg-black relative overflow-hidden border-b border-[#222]">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10"></div>
-                        <div
-                            class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#E50914]/20 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-                        <div class="absolute inset-0 flex items-center justify-center z-20">
-                            <span
-                                class="material-symbols-outlined text-white text-5xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">view_in_ar</span>
-                        </div>
+            <!-- Dynamic Project Grid Container -->
+            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Data will be loaded from projects.json -->
+                <div class="col-span-3 text-center py-20">
+                    <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#00F0FF]">
                     </div>
-                    <div class="p-6">
-                        <h3
-                            class="font-bold text-xl mb-2 text-white group-hover:text-[#00F0FF] transition-colors font-display">
-                            상상유랑 le voyage dans l'imagenation</h3>
-                        <p class="text-sm text-gray-500 leading-relaxed">텍스트가 공간으로 확장되는 이머시브 전시</p>
-                    </div>
-                </div>
-                <!-- Project 02 -->
-                <div
-                    class="group relative bg-[#050505] overflow-hidden border border-[#222] hover:border-[#00F0FF] transition-all duration-300 card-hover-effect">
-                    <div class="aspect-video w-full bg-black relative overflow-hidden border-b border-[#222]">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10"></div>
-                        <div
-                            class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#BC13FE]/20 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-                        <div class="absolute inset-0 flex items-center justify-center z-20">
-                            <span
-                                class="material-symbols-outlined text-white text-5xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">animation</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3
-                            class="font-bold text-xl mb-2 text-white group-hover:text-[#00F0FF] transition-colors font-display">
-                            Generative Anamorphic Media</h3>
-                        <p class="text-sm text-gray-500 leading-relaxed">생성형 AI를 활용한 아나모픽 컨텐츠 제작</p>
-                    </div>
-                </div>
-                <!-- Project 03 -->
-                <div
-                    class="group relative bg-[#050505] overflow-hidden border border-[#222] hover:border-[#00F0FF] transition-all duration-300 card-hover-effect">
-                    <div class="aspect-video w-full bg-black relative overflow-hidden border-b border-[#222]">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10"></div>
-                        <div
-                            class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#BC13FE]/20 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-                        <div class="absolute inset-0 flex items-center justify-center z-20">
-                            <span
-                                class="material-symbols-outlined text-white text-5xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">architecture</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3
-                            class="font-bold text-xl mb-2 text-white group-hover:text-[#00F0FF] transition-colors font-display">
-                            Immersive Installation</h3>
-                        <p class="text-sm text-gray-500 leading-relaxed">Interactive Media Art & Projection Mapping
-                            (Bucheon Art Bunker B39).</p>
-                    </div>
-                </div>
-                <!-- Project 04 -->
-                <div
-                    class="group relative bg-[#050505] overflow-hidden border border-[#222] hover:border-[#00F0FF] transition-all duration-300 card-hover-effect">
-                    <div class="aspect-video w-full bg-black relative overflow-hidden border-b border-[#222]">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10"></div>
-                        <div
-                            class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#39FF14]/20 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-                        <div class="absolute inset-0 flex items-center justify-center z-20">
-                            <span
-                                class="material-symbols-outlined text-white text-5xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">festival</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3
-                            class="font-bold text-xl mb-2 text-white group-hover:text-[#00F0FF] transition-colors font-display">
-                            PRECTXE Festival</h3>
-                        <p class="text-sm text-gray-500 leading-relaxed">Digital Media Art Festival General Production.
-                        </p>
-                    </div>
-                </div>
-                <!-- Project 05 -->
-                <div
-                    class="group relative bg-[#050505] overflow-hidden border border-[#222] hover:border-[#00F0FF] transition-all duration-300 card-hover-effect">
-                    <div class="aspect-video w-full bg-black relative overflow-hidden border-b border-[#222]">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10"></div>
-                        <div
-                            class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#00F0FF]/20 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-                        <div class="absolute inset-0 flex items-center justify-center z-20">
-                            <span
-                                class="material-symbols-outlined text-white text-5xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">equalizer</span>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3
-                            class="font-bold text-xl mb-2 text-white group-hover:text-[#00F0FF] transition-colors font-display">
-                            Zandari Festa</h3>
-                        <p class="text-sm text-gray-500 leading-relaxed">Global Music Festival Creative Direction.</p>
-                    </div>
-                </div>
-                <!-- Project 06 -->
-                <div
-                    class="group relative bg-[#050505] overflow-hidden border border-[#222] hover:border-[#00F0FF] transition-all duration-300 card-hover-effect">
-                    <div class="aspect-video w-full bg-black relative overflow-hidden border-b border-[#222]">
-                        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/80 z-10"></div>
-                        <div
-                            class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#BC13FE]/20 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500">
-                        </div>
-                        <div class="absolute inset-0 flex items-center justify-center z-20">
-                            <span
-                                class="material-symbols-outlined text-white text-5xl group-hover:scale-110 transition-transform duration-300 drop-shadow-[0_0_15px_rgba(255,255,255,0.5)]">arrow_forward</span>
-                        </div>
-                    </div>
-                    <div class="p-6 bg-black/50 h-full flex items-center justify-center">
-                        <a href="#"
-                            class="font-bold text-2xl mb-2 text-white group-hover:text-[#00F0FF] transition-colors font-display uppercase tracking-widest text-center">
-                            View More<br />Projects
-                        </a>
-                    </div>
+                    <p class="mt-4 text-gray-500 font-mono text-xs">Loading Projects...</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Upcoming Works Section -->
+    <section class="py-16 bg-[#030303] border-t border-white/5 relative" id="upcoming">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex items-end mb-8 border-b border-[#222] pb-4">
+                <div>
+                    <h3 class="text-2xl font-bold mb-1 tracking-tight text-gray-300">Upcoming Works<span
+                            class="text-[#BC13FE]">.</span></h3>
+                    <p class="text-gray-600 font-mono text-xs tracking-widest uppercase">/// R&D LAB PREVIEWS</p>
+                </div>
+            </div>
+            <!-- Dynamic Upcoming Grid Container -->
+            <div id="upcoming-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Data will be loaded from projects.json -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cinematic Video Modal -->
+    <div id="video-modal"
+        class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-500 flex items-center justify-center bg-black/95">
+
+        <!-- Close Button -->
+        <button onclick="closeVideoModal()"
+            class="absolute top-8 right-8 z-[110] text-white hover:text-[#00F0FF] transition-colors group">
+            <span
+                class="material-symbols-outlined text-4xl group-hover:rotate-90 transition-transform duration-300">close</span>
+        </button>
+
+        <div
+            class="modal-content relative w-full h-full md:w-[90%] md:h-[90%] max-w-7xl mx-auto flex flex-col md:flex-row bg-[#050505] overflow-hidden rounded-sm border border-[#333]">
+
+            <!-- Video Container (Left/Top) -->
+            <div class="w-full md:w-3/4 h-[50vh] md:h-full bg-black relative flex items-center justify-center group">
+                <div id="modal-video-container" class="w-full h-full">
+                    <!-- Video will be injected here -->
+                </div>
+                <!-- Video Controls Overlay -->
+                <div
+                    class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div class="flex items-center gap-4">
+                        <button id="modal-play-btn" class="text-white hover:text-[#00F0FF]">
+                            <span class="material-symbols-outlined text-3xl">play_arrow</span>
+                        </button>
+                        <div class="text-xs font-mono text-gray-400">
+                            <span id="video-current-time">00:00</span> / <span id="video-duration">00:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info Container (Right/Bottom) -->
+            <div
+                class="w-full md:w-1/4 h-[50vh] md:h-full bg-[#0A0A0A] p-8 md:p-12 overflow-y-auto border-l border-[#222]">
+                <div class="h-full flex flex-col">
+                    <div class="mb-8">
+                        <span id="modal-category"
+                            class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Category</span>
+                    </div>
+
+                    <h2 id="modal-title" class="text-3xl md:text-4xl font-black text-white mb-2 leading-tight">Project
+                        Title</h2>
+                    <h3 id="modal-subtitle" class="text-xl text-gray-400 font-light mb-8 font-display">English Title
+                    </h3>
+
+                    <p id="modal-description"
+                        class="text-gray-300 leading-relaxed mb-12 text-sm md:text-base border-l-2 border-[#333] pl-4">
+                        Description goes here.
+                    </p>
+
+                    <div class="mt-auto">
+                        <h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Tech Stack</h4>
+                        <div id="modal-tags" class="flex flex-wrap gap-2">
+                            <!-- Tags injected here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <section class="py-24 bg-[#050505] border-t border-white/5 relative overflow-hidden" id="solutions">
         <div
             class="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-[#BC13FE]/5 to-transparent pointer-events-none">
@@ -417,103 +393,13 @@
                     View Curriculum <span class="material-symbols-outlined text-lg">arrow_outward</span>
                 </a>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Card 01 -->
-                <div
-                    class="group relative bg-black rounded-sm overflow-hidden border border-[#222] hover:border-[#BC13FE] transition-all duration-300 card-hover-effect">
-                    <div class="aspect-video w-full bg-[#111] relative overflow-hidden border-b border-[#222]">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-[#BC13FE]/20 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500">
-                        </div>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span
-                                class="material-symbols-outlined text-white/50 text-5xl group-hover:text-[#BC13FE] transition-colors duration-300">school</span>
-                        </div>
+            <!-- Dynamic Academy Grid Container -->
+            <div id="academy-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Data will be loaded from projects.json -->
+                <div class="col-span-3 text-center py-20">
+                    <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#BC13FE]">
                     </div>
-                    <div class="p-6 relative">
-                        <div
-                            class="absolute top-0 right-0 w-8 h-8 border-t border-r border-[#BC13FE] opacity-0 group-hover:opacity-100 transition-opacity">
-                        </div>
-                        <div class="flex justify-between items-start mb-3">
-                            <h3
-                                class="font-bold text-xl text-white group-hover:text-[#BC13FE] transition-colors font-display">
-                                Generative AI Workshop</h3>
-                            <span
-                                class="text-[10px] bg-[#1a1a1a] text-gray-400 px-2 py-1 border border-white/10 font-mono">KOCCA
-                                / Corporate</span>
-                        </div>
-                        <p class="text-sm text-gray-500 leading-relaxed mb-4">Midjourney, Stable Diffusion 등을 활용한 이미지/영상
-                            생성 실무 워크숍.</p>
-                        <div class="pt-4 border-t border-white/5 flex justify-between items-center">
-                            <div class="text-[10px] text-gray-500 font-mono uppercase tracking-wider">Course 01</div>
-                            <span
-                                class="material-symbols-outlined text-[#BC13FE] text-sm opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all">arrow_forward</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 02 -->
-                <div
-                    class="group relative bg-black rounded-sm overflow-hidden border border-[#222] hover:border-[#00F0FF] transition-all duration-300 card-hover-effect">
-                    <div class="aspect-video w-full bg-[#111] relative overflow-hidden border-b border-[#222]">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-[#00F0FF]/20 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500">
-                        </div>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span
-                                class="material-symbols-outlined text-white/50 text-5xl group-hover:text-[#00F0FF] transition-colors duration-300">settings_suggest</span>
-                        </div>
-                    </div>
-                    <div class="p-6 relative">
-                        <div
-                            class="absolute top-0 right-0 w-8 h-8 border-t border-r border-[#00F0FF] opacity-0 group-hover:opacity-100 transition-opacity">
-                        </div>
-                        <div class="flex justify-between items-start mb-3">
-                            <h3
-                                class="font-bold text-xl text-white group-hover:text-[#00F0FF] transition-colors font-display">
-                                AI Business Automation</h3>
-                            <span
-                                class="text-[10px] bg-[#1a1a1a] text-gray-400 px-2 py-1 border border-white/10 font-mono">Productivity</span>
-                        </div>
-                        <p class="text-sm text-gray-500 leading-relaxed mb-4">ChatGPT, Make.com을 활용한 업무 자동화 및 생산성 혁신 강의.
-                        </p>
-                        <div class="pt-4 border-t border-white/5 flex justify-between items-center">
-                            <div class="text-[10px] text-gray-500 font-mono uppercase tracking-wider">Course 02</div>
-                            <span
-                                class="material-symbols-outlined text-[#00F0FF] text-sm opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all">arrow_forward</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Card 03 -->
-                <div
-                    class="group relative bg-black rounded-sm overflow-hidden border border-[#222] hover:border-[#39FF14] transition-all duration-300 card-hover-effect">
-                    <div class="aspect-video w-full bg-[#111] relative overflow-hidden border-b border-[#222]">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-br from-[#39FF14]/20 to-transparent opacity-0 group-hover:opacity-40 transition-opacity duration-500">
-                        </div>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <span
-                                class="material-symbols-outlined text-white/50 text-5xl group-hover:text-[#39FF14] transition-colors duration-300">chat</span>
-                        </div>
-                    </div>
-                    <div class="p-6 relative">
-                        <div
-                            class="absolute top-0 right-0 w-8 h-8 border-t border-r border-[#39FF14] opacity-0 group-hover:opacity-100 transition-opacity">
-                        </div>
-                        <div class="flex justify-between items-start mb-3">
-                            <h3
-                                class="font-bold text-xl text-white group-hover:text-[#39FF14] transition-colors font-display">
-                                Prompt Engineering</h3>
-                            <span
-                                class="text-[10px] bg-[#1a1a1a] text-gray-400 px-2 py-1 border border-white/10 font-mono">Master
-                                Class</span>
-                        </div>
-                        <p class="text-sm text-gray-500 leading-relaxed mb-4">AI와 소통하는 언어를 배우는 프롬프트 엔지니어링 마스터 클래스.</p>
-                        <div class="pt-4 border-t border-white/5 flex justify-between items-center">
-                            <div class="text-[10px] text-gray-500 font-mono uppercase tracking-wider">Course 03</div>
-                            <span
-                                class="material-symbols-outlined text-[#39FF14] text-sm opacity-0 group-hover:opacity-100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all">arrow_forward</span>
-                        </div>
-                    </div>
+                    <p class="mt-4 text-gray-500 font-mono text-xs">Loading Curriculum...</p>
                 </div>
             </div>
         </div>
