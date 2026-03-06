@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lecture Flow Timer</title>
+    <meta
+      name="description"
+      content="강의용 세션 타이머. 휴식, 점심, 실습 세션을 선택하고 종료 시간 또는 지속 시간으로 운영할 수 있습니다."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="immersive-app">
+      <section class="stage-frame" id="stageFrame">
+        <canvas id="artCanvas" aria-hidden="true"></canvas>
+
+        <div class="stage-core">
+          <div class="center-display">
+            <span id="countdownValue" class="countdown-value">00:10:00</span>
+            <div class="progress-ring" id="progressRing">
+              <span id="progressValue">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="hudLayer" class="hud-layer">
+          <header class="hud-top revealable">
+            <div class="meta-inline">
+              <span id="sessionBadge" class="session-badge">휴식</span>
+              <span id="modeBadge" class="mode-badge">지속</span>
+            </div>
+            <span id="statusLine" class="status-line">대기</span>
+            <span id="nowClock" class="clock-time">00:00:00</span>
+          </header>
+
+          <aside class="hud-side hud-left revealable">
+            <div id="sessionGrid" class="session-grid">
+              <button class="session-card" data-session="break" type="button">
+                <span class="session-mark">BR</span>
+                <strong>휴식</strong>
+                <span class="session-chip">10m</span>
+              </button>
+              <button class="session-card" data-session="lunch" type="button">
+                <span class="session-mark">LN</span>
+                <strong>점심</strong>
+                <span class="session-chip">60m</span>
+              </button>
+              <button class="session-card" data-session="practice" type="button">
+                <span class="session-mark">PR</span>
+                <strong>실습</strong>
+                <span class="session-chip">45m</span>
+              </button>
+            </div>
+          </aside>
+
+          <aside class="hud-side hud-right revealable">
+            <div class="timing-toggle" role="tablist" aria-label="타이머 설정 방식">
+              <button
+                id="durationModeButton"
+                class="toggle-button active"
+                type="button"
+                data-mode="duration"
+                role="tab"
+                aria-selected="true"
+              >
+                지속
+              </button>
+              <button
+                id="endTimeModeButton"
+                class="toggle-button"
+                type="button"
+                data-mode="endTime"
+                role="tab"
+                aria-selected="false"
+              >
+                종료
+              </button>
+            </div>
+
+            <div id="durationFields" class="field-cluster">
+              <label class="field-block" for="hoursInput">
+                <span>H</span>
+                <input id="hoursInput" type="number" min="0" max="23" value="0" inputmode="numeric" />
+              </label>
+              <label class="field-block" for="minutesInput">
+                <span>M</span>
+                <input id="minutesInput" type="number" min="0" max="59" value="10" inputmode="numeric" />
+              </label>
+              <label class="field-block" for="secondsInput">
+                <span>S</span>
+                <input id="secondsInput" type="number" min="0" max="59" value="0" inputmode="numeric" />
+              </label>
+            </div>
+
+            <div id="endTimeField" class="field-cluster hidden">
+              <label class="field-wide" for="endTimeInput">
+                <span>END</span>
+                <input id="endTimeInput" type="time" step="60" />
+              </label>
+            </div>
+
+            <div class="meta-stack">
+              <article class="meta-card">
+                <span class="meta-label">끝</span>
+                <strong id="targetTimeValue">오늘 00:10</strong>
+              </article>
+              <article class="meta-card">
+                <span class="meta-label">길이</span>
+                <strong id="durationValue">10분</strong>
+              </article>
+            </div>
+          </aside>
+
+          <footer class="hud-bottom revealable">
+            <div class="action-row">
+              <button id="startButton" class="action-button primary" type="button">시작</button>
+              <button id="pauseButton" class="action-button secondary" type="button" disabled>정지</button>
+              <button id="stopButton" class="action-button ghost" type="button" disabled>리셋</button>
+            </div>
+          </footer>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
