@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>페이지 이동 중...</title>
+    <script>
+      (function () {
+        const path = window.location.pathname.replace(/\/+$/, "");
+        if (path === "/timer") {
+          window.location.replace("/timer/");
+          return;
+        }
+      })();
+    </script>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+        background: #f6f8ff;
+        color: #1f2440;
+      }
+      .card {
+        background: #fff;
+        border-radius: 14px;
+        border: 1px solid #e3e8ff;
+        padding: 18px 20px;
+        text-align: center;
+        box-shadow: 0 10px 24px rgba(52, 60, 120, 0.1);
+      }
+      a {
+        color: #4f61ff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <p>요청하신 페이지를 찾을 수 없습니다.</p>
+      <p><a href="/timer/">강의 타이머로 이동</a></p>
+      <p><a href="/">메인으로 이동</a></p>
+    </div>
+  </body>
+</html>
