@@ -490,7 +490,7 @@ const PORTFOLIO_DATA = [
         "title": "상상유랑",
         "englishTitle": "le voyage dans l'imagenation",
         "category": "Immersive Exhibition",
-        "description": "텍스트가 공간으로 확장되는 이머시브 전시",
+        "description": "1채널 파일럿 전시, 458 갤러리 — 텍스트가 공간으로 확장되는 이머시브 전시",
         "tags": ["Media Art", "Interactive"],
         "icon": "view_in_ar",
         "color": "from-[#E50914]",
@@ -509,6 +509,58 @@ const PORTFOLIO_DATA = [
         "color": "from-[#39FF14]",
         "image": "prectxe.png",
         "size": "large"
+    },
+    {
+        "id": "project-04",
+        "section": "work",
+        "title": "손의 잔향",
+        "englishTitle": "Afterimage of the Hand",
+        "category": "Generative Data Visualization",
+        "description": "회화적 선의 축적과 표면 — Rokkaku 작가의 핸드페인팅 감각을 전시 데이터 기반 520개 스트로크 시스템으로 복원. 토탈미술관 AI해커톤 선정작, 베를린 P61갤러리 전시",
+        "tags": ["Data Visualization", "Canvas 2D", "Total Museum", "Berlin P61"],
+        "icon": "gesture",
+        "color": "from-[#BC13FE]",
+        "image": "hand_afterimage.jpg",
+        "size": "normal"
+    },
+    {
+        "id": "project-05",
+        "section": "work",
+        "title": "혼돈의 호흡",
+        "englishTitle": "Breath of Chaos",
+        "category": "Generative Data Visualization",
+        "description": "입자 군집의 구성과 순환 — 108점의 작품 색채, 서울 겨울 기후, 관람객 통계를 9,000개 큐브 입자로 재구성. 토탈미술관 AI해커톤 선정작, 베를린 P61갤러리 전시",
+        "tags": ["Data Visualization", "Three.js", "Total Museum", "Berlin P61"],
+        "icon": "blur_on",
+        "color": "from-[#00F0FF]",
+        "image": "breath_of_chaos.jpg",
+        "size": "normal"
+    },
+    {
+        "id": "project-06",
+        "section": "work",
+        "title": "소각장의 크리스마스",
+        "englishTitle": "Christmas at the Incinerator",
+        "category": "Interactive Exhibition",
+        "description": "장소특정적 인터랙티브 체험 전시 — 부천아트벙커 B39",
+        "tags": ["Site-Specific", "Interactive"],
+        "icon": "celebration",
+        "color": "from-[#E50914]",
+        "image": "christmas_b39.jpg",
+        "size": "normal"
+    },
+    {
+        "id": "project-07",
+        "section": "work",
+        "title": "잔광",
+        "englishTitle": "Afterglow",
+        "category": "Permanent Installation",
+        "description": "장소특정적 상설 인스톨레이션 — 부천아트벙커 B39",
+        "tags": ["Site-Specific", "Installation"],
+        "icon": "flare",
+        "color": "from-[#39FF14]",
+        "image": "afterglow_b39.jpg",
+        "size": "normal"
     },
     {
         "id": "project-03",
@@ -534,19 +586,6 @@ const PORTFOLIO_DATA = [
         "icon": "animation",
         "color": "from-[#BC13FE]",
         "video": "assets/videos/project02.mp4",
-        "size": "normal"
-    },
-    {
-        "id": "upcoming-02",
-        "section": "upcoming",
-        "title": "Immersive Installation",
-        "englishTitle": "",
-        "category": "Interactive Media Art",
-        "description": "Interactive Media Art & Projection Mapping (Bucheon Art Bunker B39)",
-        "tags": ["Installation", "Projection Mapping"],
-        "icon": "architecture",
-        "color": "from-[#BC13FE]",
-        "video": "assets/videos/project03.mp4",
         "size": "normal"
     },
     {
