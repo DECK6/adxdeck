@@ -1,0 +1,24 @@
+name: Build Blog Index
+
+on:
+  push:
+    paths:
+      - 'blog/posts/**'
+      - 'blog/build.js'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Generate posts.json
+        run: node blog/build.js
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add blog/posts.json
+          git diff --cached --quiet || git commit -m "chore: auto-generate blog posts.json"
+          git push

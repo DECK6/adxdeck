@@ -953,3 +953,92 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+// ==========================================
+// Blog Preview on Main Page
+// ==========================================
+async function loadBlogPosts() {
+    try {
+        const res = await fetch('blog/posts.json');
+        if (!res.ok) throw new Error('Fetch failed');
+        return await res.json();
+    } catch (e) {
+        console.warn('Blog posts.json load failed:', e);
+        return [];
+    }
+}
+
+function renderBlogPreview(posts) {
+    const grid = document.getElementById('blog-preview-grid');
+    if (!grid) return;
+
+    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const latest = posts.slice(0, 3);
+
+    grid.innerHTML = '';
+
+    const categoryColors = {
+        'Tech': '#00F0FF',
+        'Article': '#00F0FF',
+        'Project': '#BC13FE',
+        'Thought': '#39FF14',
+        'News': '#E50914',
+    };
+
+    latest.forEach((post, index) => {
+        const color = categoryColors[post.category] || '#00F0FF';
+        const date = new Date(post.date + 'T00:00:00').toLocaleDateString('ko-KR', {
+            year: 'numeric', month: 'long', day: 'numeric'
+        });
+
+        const card = document.createElement('a');
+        card.href = `blog/post.html?slug=${post.slug}`;
+        card.className = 'group bg-[#0A0A0A] border border-white/10 rounded-xl overflow-hidden card-hover-effect block fade-in-up';
+        card.style.animationDelay = `${index * 100}ms`;
+
+        card.innerHTML = `
+            ${post.thumbnail
+                ? `<div class="aspect-video overflow-hidden bg-[#111]">
+                    <img src="${post.thumbnail}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                   </div>`
+                : `<div class="aspect-video bg-gradient-to-br from-[#111] to-[#0A0A0A] flex items-center justify-center relative overflow-hidden">
+                    <div class="absolute inset-0 opacity-20" style="background: radial-gradient(circle at 30% 40%, ${color}22, transparent 70%)"></div>
+                    <span class="material-symbols-outlined text-5xl text-gray-800 group-hover:text-[${color}] transition-colors duration-300">article</span>
+                   </div>`
+            }
+            <div class="p-6">
+                <div class="flex items-center gap-3 mb-3">
+                    <span class="text-xs font-mono uppercase tracking-widest px-2 py-0.5 rounded-sm border"
+                        style="color: ${color}; border-color: ${color}33; background: ${color}11">
+                        ${post.category}
+                    </span>
+                    <span class="text-xs text-gray-600 font-mono">${date}</span>
+                </div>
+                <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#00F0FF] transition-colors leading-snug">
+                    ${post.title}
+                </h3>
+                <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">
+                    ${post.description}
+                </p>
+                <div class="flex flex-wrap gap-1.5 mt-4">
+                    ${post.tags.map(tag => `<span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">${tag}</span>`).join('')}
+                </div>
+                <div class="mt-4 flex items-center gap-1 text-xs font-mono text-gray-600 group-hover:text-[#00F0FF] transition-colors">
+                    Read more <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </div>
+            </div>`;
+
+        grid.appendChild(card);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', async function () {
+    const grid = document.getElementById('blog-preview-grid');
+    if (!grid) return;
+    const posts = await loadBlogPosts();
+    if (posts.length) {
+        renderBlogPreview(posts);
+    } else {
+        grid.innerHTML = '';
+    }
+});
