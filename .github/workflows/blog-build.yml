@@ -6,6 +6,9 @@ on:
       - 'blog/posts/**'
       - 'blog/build.js'
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
