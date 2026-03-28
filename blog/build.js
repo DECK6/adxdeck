@@ -95,7 +95,29 @@ function categoryFromTags(tags) {
     return 'Post';
 }
 
+function slugToAscii(slug) {
+    // Convert Korean slug to simple ASCII for GitHub Pages compatibility
+    return slug
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')  // strip accents
+        .replace(/[^\x00-\x7F]/g, '')  // remove non-ASCII
+        .replace(/--+/g, '-')
+        .replace(/^-|-$/g, '')
+        .toLowerCase() || 'post';
+}
+
+function escapeHtml(str) {
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 // --- Main ---
+
+const BUILT_DIR = path.join(__dirname, 'posts', '_built');
+if (!fs.existsSync(BUILT_DIR)) fs.mkdirSync(BUILT_DIR, { recursive: true });
+
+// Clean old built files
+fs.readdirSync(BUILT_DIR).filter(f => f.endsWith('.md')).forEach(f => {
+    fs.unlinkSync(path.join(BUILT_DIR, f));
+});
 
 const files = fs.readdirSync(POSTS_DIR).filter(f => f.endsWith('.md'));
 
@@ -104,10 +126,8 @@ const posts = files.map(filename => {
     const { meta, body } = parseFrontmatter(content);
 
     const tags = Array.isArray(meta.tags) ? meta.tags : [];
-    // Filter out generic tags
     const displayTags = tags.filter(t => !['article', 'project', 'thought', 'tutorial', 'post'].includes(t));
 
-    // Title priority: frontmatter title → first # heading → first alias → filename
     let title = meta.title;
     if (!title) {
         const headingMatch = body.match(/^#\s+(.+)$/m);
@@ -117,11 +137,32 @@ const posts = files.map(filename => {
         title = (Array.isArray(meta.aliases) ? meta.aliases[0] : null) || filename.replace(/\.md$/, '');
     }
 
+    // Build ASCII slug: prefer English alias → title ASCII parts → hash fallback
+    const aliases = Array.isArray(meta.aliases) ? meta.aliases : [];
+    const englishAlias = aliases.find(a => /^[a-zA-Z0-9\s\-_&]+$/.test(a));
+
+    let asciiSlug;
+    if (englishAlias) {
+        asciiSlug = fileToSlug(englishAlias).toLowerCase();
+    } else {
+        asciiSlug = slugToAscii(fileToSlug(filename));
+    }
+
+    if (asciiSlug.length < 3) {
+        asciiSlug = 'post-' + Buffer.from(filename).toString('hex').slice(0, 8);
+    }
+
+    // Copy .md to _built/ with ASCII filename (GitHub Pages can't serve Korean filenames)
+    fs.copyFileSync(
+        path.join(POSTS_DIR, filename),
+        path.join(BUILT_DIR, asciiSlug + '.md')
+    );
+
     return {
-        slug: fileToSlug(filename),
-        file: filename,
+        slug: asciiSlug,
+        file: '_built/' + asciiSlug + '.md',
         title,
-        description: extractDescription(body),
+        description: escapeHtml(extractDescription(body)),
         category: categoryFromTags(tags),
         tags: displayTags,
         date: meta['date created'] || meta['date modified'] || new Date().toISOString().split('T')[0],
@@ -136,4 +177,4 @@ posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 fs.writeFileSync(OUTPUT, JSON.stringify(posts, null, 2), 'utf8');
 
 console.log(`✓ Generated posts.json — ${posts.length} post(s)`);
-posts.forEach(p => console.log(`  ${p.date}  ${p.category.padEnd(8)}  ${p.title}`));
+posts.forEach(p => console.log(`  ${p.date}  ${p.slug.padEnd(20)}  ${p.title}`));

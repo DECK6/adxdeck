@@ -1,7 +1,7 @@
 [
   {
-    "slug": "AI와-미디어아트의-현재와-미래",
-    "file": "AI와-미디어아트의-현재와-미래.md",
+    "slug": "ai-and-media-art",
+    "file": "_built/ai-and-media-art.md",
     "title": "AI와 미디어아트의 현재와 미래",
     "description": "미디어아트에서 기술은 언제나 이중적 위치를 점해왔다. 기술은 작품을 구현하는 도구이면서 동시에 작품이 질문하는 대상이었다. 비디오아트가 텔레비전이라는 매체 자체를 해부했듯, 인터랙티브 아트가 인간과 기계의 경계를 탐...",
     "category": "Article",
@@ -18,10 +18,10 @@
     "author": "육대근"
   },
   {
-    "slug": "잔광-Afterglow",
-    "file": "잔광 (Afterglow).md",
+    "slug": "afterglow",
+    "file": "_built/afterglow.md",
     "title": "잔광 (Afterglow)",
-    "description": "<잔광(Afterglow)>은 부천아트벙커B39의 유인송풍실에 설치된 장소특정적 조명 작품이다.",
+    "description": "&lt;잔광(Afterglow)&gt;은 부천아트벙커B39의 유인송풍실에 설치된 장소특정적 조명 작품이다.",
     "category": "Project",
     "tags": [
       "media-art",

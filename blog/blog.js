@@ -180,15 +180,13 @@
             `<span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">${tag}</span>`
         ).join('');
 
-        // Fetch markdown — try encoded filename, then raw, then BLOG_CONTENT global
+        // Fetch markdown content
         const filename = post.file || (slug + '.md');
         let mdText = null;
-        for (const url of [POSTS_DIR + encodeURIComponent(filename), POSTS_DIR + filename]) {
-            try {
-                const res = await fetch(url);
-                if (res.ok) { mdText = await res.text(); break; }
-            } catch (e) { /* next */ }
-        }
+        try {
+            const res = await fetch(POSTS_DIR + filename);
+            if (res.ok) mdText = await res.text();
+        } catch (e) { /* fallback below */ }
         if (!mdText && typeof BLOG_CONTENT !== 'undefined' && BLOG_CONTENT[slug]) {
             mdText = BLOG_CONTENT[slug];
         }
