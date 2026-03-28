@@ -21,7 +21,7 @@
     "slug": "afterglow",
     "file": "_built/afterglow.md",
     "title": "잔광 (Afterglow)",
-    "description": "&lt;잔광(Afterglow)&gt;은 부천아트벙커B39의 유인송풍실에 설치된 장소특정적 조명 작품이다.",
+    "description": "!잔광 (Afterglow) - 부천아트벙커B39 유인송풍실",
     "category": "Project",
     "tags": [
       "media-art",
@@ -31,7 +31,7 @@
       "immersive"
     ],
     "date": "2021-12-01",
-    "thumbnail": "",
+    "thumbnail": "images/afterglow.jpg",
     "author": "육대근"
   }
 ]

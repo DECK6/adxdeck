@@ -19,9 +19,12 @@ tags:
 CMDS: "[[📚 731 Digital Art and Design]]"
 index: "[[🏷 Project Notes]]"
 status: completed
+thumbnail: images/afterglow.jpg
 ---
 
 # 잔광 (Afterglow)
+
+![잔광 (Afterglow) - 부천아트벙커B39 유인송풍실](images/afterglow.jpg)
 
 > [!info] 작품 개요
 > - **작품명**: 잔광 (Afterglow)
