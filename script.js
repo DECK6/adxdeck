@@ -999,7 +999,7 @@ function renderBlogPreview(posts) {
         card.innerHTML = `
             ${post.thumbnail
                 ? `<div class="aspect-video overflow-hidden bg-[#111]">
-                    <img src="${post.thumbnail}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <img src="blog/${post.thumbnail}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                    </div>`
                 : `<div class="aspect-video bg-gradient-to-br from-[#111] to-[#0A0A0A] flex items-center justify-center relative overflow-hidden">
                     <div class="absolute inset-0 opacity-20" style="background: radial-gradient(circle at 30% 40%, ${color}22, transparent 70%)"></div>
