@@ -1,0 +1,2147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 이미지·영상 제작 — 한양여대 시각디자인과 특강</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;900&display=swap');
+
+    :root {
+      --cream: #F5F0EB;
+      --warm-bg: #FAF7F4;
+      --beige: #E8DDD3;
+      --camel: #C4956A;
+      --walnut: #8B5E3C;
+      --charcoal: #333333;
+      --soft-black: #1a1a1a;
+      --card-shadow: 0 2px 20px rgba(139, 94, 60, 0.08);
+      --card-hover: 0 8px 40px rgba(139, 94, 60, 0.15);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --indigo: #3B4CCA;
+      --indigo-soft: rgba(59,76,202,0.08);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Noto Sans KR', -apple-system, sans-serif;
+      background: var(--warm-bg);
+      color: var(--charcoal);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Navigation ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(250, 247, 244, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(232, 221, 211, 0.6);
+      transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 2px 30px rgba(0,0,0,0.06); }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 64px;
+    }
+    .nav-logo { font-weight: 700; font-size: 1rem; color: var(--walnut); letter-spacing: -0.02em; }
+    .nav-links { display: flex; gap: 0.25rem; }
+    .nav-links a {
+      color: var(--charcoal); text-decoration: none;
+      font-size: 0.85rem; font-weight: 500;
+      padding: 0.4rem 0.8rem; border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active { background: var(--beige); color: var(--walnut); }
+    .hamburger { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+    .hamburger span { display: block; width: 20px; height: 2px; background: var(--charcoal); margin: 5px 0; transition: 0.3s; }
+
+    /* ── Hero ── */
+    .hero {
+      padding: 10rem 2rem 6rem; text-align: center;
+      background: linear-gradient(180deg, #F5F0EB 0%, var(--warm-bg) 100%);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+      background: radial-gradient(ellipse at 30% 50%, rgba(196,149,106,0.08) 0%, transparent 50%),
+                  radial-gradient(ellipse at 70% 50%, rgba(139,94,60,0.05) 0%, transparent 50%);
+      animation: float 20s ease-in-out infinite;
+    }
+    @keyframes float { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-2%, 2%); } }
+    .hero-content { position: relative; z-index: 1; }
+    .hero-badge {
+      display: inline-block; background: var(--beige); color: var(--walnut);
+      font-size: 0.8rem; font-weight: 600; padding: 0.4rem 1.2rem;
+      border-radius: 100px; margin-bottom: 1.5rem; letter-spacing: 0.02em;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 900; line-height: 1.25;
+      color: var(--soft-black); margin-bottom: 1.5rem; letter-spacing: -0.03em;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--camel), var(--walnut));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero p { font-size: 1.1rem; color: #666; max-width: 650px; margin: 0 auto 2.5rem; line-height: 1.8; }
+    .hero-meta { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+    .hero-meta-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; color: #888; }
+    .hero-meta-item svg { width: 18px; height: 18px; stroke: var(--camel); }
+    .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.9rem 2rem; border-radius: 100px;
+      font-size: 0.95rem; font-weight: 600; font-family: inherit;
+      text-decoration: none; cursor: pointer; transition: all 0.3s;
+    }
+    .btn-primary { background: var(--walnut); color: #fff; border: none; }
+    .btn-primary:hover { background: #7a5234; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,94,60,0.3); }
+    .btn-secondary { background: transparent; color: var(--walnut); border: 1.5px solid var(--beige); }
+    .btn-secondary:hover { background: var(--beige); transform: translateY(-2px); }
+
+    /* ── Section ── */
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; color: var(--camel);
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800;
+      line-height: 1.3; margin-bottom: 1rem; letter-spacing: -0.02em;
+    }
+    .section-desc { color: #777; font-size: 1rem; max-width: 700px; line-height: 1.8; margin-bottom: 3rem; }
+
+    /* ── Sub-section ── */
+    .sub-section { margin-bottom: 3rem; }
+    .sub-section h3 {
+      font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem;
+      padding-bottom: 0.5rem; border-bottom: 2px solid var(--beige);
+    }
+    .sub-section h4 {
+      font-size: 0.95rem; font-weight: 700; color: var(--walnut);
+      margin: 1.5rem 0 0.8rem;
+    }
+    .sub-section h5 {
+      font-size: 0.88rem; font-weight: 600; color: var(--charcoal);
+      margin: 1.2rem 0 0.6rem;
+    }
+    .sub-section p { font-size: 0.92rem; color: #555; line-height: 1.8; margin-bottom: 0.8rem; }
+    .sub-section ul, .sub-section ol { padding-left: 1.2rem; margin-bottom: 1rem; }
+    .sub-section li { font-size: 0.9rem; line-height: 1.7; margin-bottom: 0.3rem; color: #555; }
+
+    /* ── Tables ── */
+    .data-table {
+      width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; font-size: 0.88rem;
+    }
+    .data-table th {
+      background: var(--cream); font-weight: 600; text-align: left;
+      padding: 0.7rem 1rem; border-bottom: 2px solid var(--beige);
+      color: var(--walnut); font-size: 0.8rem; letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: 0.7rem 1rem; border-bottom: 1px solid rgba(232,221,211,0.5);
+      vertical-align: top;
+    }
+    .data-table tr:hover td { background: rgba(245,240,235,0.5); }
+    .data-table td:first-child { font-weight: 500; }
+
+    /* ── Stat Cards ── */
+    .stat-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem; margin: 1.5rem 0;
+    }
+    .stat-card {
+      background: #fff; border-radius: var(--radius-sm); padding: 1.5rem;
+      border: 1px solid var(--beige); text-align: center; transition: all 0.3s;
+    }
+    .stat-card:hover { transform: translateY(-2px); box-shadow: var(--card-shadow); }
+    .stat-num { font-size: 1.8rem; font-weight: 900; color: var(--walnut); line-height: 1.2; }
+    .stat-label { font-size: 0.78rem; color: #888; margin-top: 0.3rem; line-height: 1.4; }
+    .stat-src { font-size: 0.65rem; color: #bbb; margin-top: 0.3rem; }
+
+    /* ── Case Cards ── */
+    .case-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem; margin: 1.5rem 0;
+    }
+    .case-card {
+      background: #fff; border-radius: var(--radius); padding: 1.8rem;
+      border: 1px solid var(--beige); transition: all 0.3s;
+    }
+    .case-card:hover { transform: translateY(-2px); box-shadow: var(--card-hover); }
+    .case-card h4 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .case-card p { font-size: 0.85rem; color: #777; line-height: 1.7; }
+    .case-card .case-tag {
+      display: inline-block; font-size: 0.68rem; font-weight: 600;
+      padding: 0.2rem 0.6rem; border-radius: 4px; margin-bottom: 0.8rem;
+    }
+    .case-tag.global { background: #E8F0E8; color: #4a7a4a; }
+    .case-tag.korea { background: #F0E8E0; color: #8a6a4a; }
+    .case-tag.brand { background: #E8E0F0; color: #6a4a8a; }
+
+    /* ── Tip/Warning/Quote Boxes ── */
+    .tip-box {
+      background: linear-gradient(135deg, rgba(196,149,106,0.08), rgba(139,94,60,0.05));
+      border-left: 3px solid var(--camel);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1.2rem 1.5rem; margin: 1.5rem 0;
+    }
+    .tip-box strong { color: var(--walnut); }
+    .tip-box p { font-size: 0.88rem; color: #666; line-height: 1.7; margin: 0; }
+    .warning-box {
+      background: linear-gradient(135deg, rgba(220,100,60,0.06), rgba(200,80,50,0.03));
+      border-left: 3px solid #D4644A;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1.2rem 1.5rem; margin: 1.5rem 0;
+    }
+    .warning-box strong { color: #C05535; }
+    .warning-box p { font-size: 0.88rem; color: #666; line-height: 1.7; margin: 0; }
+    .quote-box {
+      background: var(--cream); border-left: 3px solid var(--beige);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1.2rem 1.5rem; margin: 1.5rem 0; font-style: italic;
+    }
+    .quote-box p { font-size: 0.9rem; color: #666; line-height: 1.8; margin: 0; }
+    .quote-box .attr { font-size: 0.78rem; color: #999; font-style: normal; margin-top: 0.5rem; }
+
+    /* ── Prompt Box ── */
+    .prompt-box {
+      background: var(--soft-black); color: #e0d5ca;
+      border-radius: var(--radius-sm); padding: 1.5rem;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.82rem; line-height: 1.8; overflow-x: auto;
+      margin: 1rem 0; position: relative; white-space: pre-wrap;
+    }
+    .prompt-box::before {
+      content: 'PROMPT';
+      position: absolute; top: 0.6rem; right: 0.8rem;
+      font-size: 0.6rem; font-weight: 700;
+      color: rgba(196,149,106,0.4); letter-spacing: 0.1em;
+      font-family: 'Noto Sans KR', sans-serif;
+    }
+
+    /* ── Code/Diagram Box ── */
+    .diagram-box {
+      background: var(--cream); border: 1px solid var(--beige);
+      border-radius: var(--radius-sm); padding: 1.5rem;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.78rem; line-height: 1.7; overflow-x: auto;
+      margin: 1rem 0; white-space: pre;
+    }
+
+    /* ── Workflow Diagram ── */
+    .workflow-visual {
+      background: #fff; border-radius: var(--radius); padding: 2rem;
+      border: 1px solid var(--beige); margin: 1.5rem 0; text-align: center;
+    }
+    .workflow-visual .flow-row {
+      display: flex; justify-content: center; align-items: center;
+      gap: 0.5rem; flex-wrap: wrap; margin: 0.5rem 0;
+    }
+    .flow-item {
+      padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.82rem; font-weight: 600;
+    }
+    .flow-ai { background: rgba(196,149,106,0.15); color: var(--walnut); }
+    .flow-human { background: rgba(59,76,202,0.08); color: var(--indigo); }
+    .flow-arrow { color: #ccc; font-size: 1.2rem; }
+
+    /* ── Part Card ── */
+    .part-card {
+      background: #fff; border-radius: var(--radius); padding: 2rem;
+      border: 1px solid var(--beige); margin-bottom: 2rem; transition: border-color 0.3s;
+    }
+    .part-card:hover { border-color: var(--camel); }
+    .part-number {
+      font-size: 0.7rem; font-weight: 700; color: var(--camel);
+      letter-spacing: 0.08em; margin-bottom: 0.5rem;
+    }
+    .part-card > h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.8rem; border: none; padding: 0; }
+
+    /* ── Key Points ── */
+    .key-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 0.8rem; margin: 1rem 0; }
+    .key-point {
+      background: var(--cream); padding: 1rem 1.2rem; border-radius: var(--radius-sm);
+      font-size: 0.85rem; line-height: 1.5; border-left: 3px solid var(--beige);
+    }
+    .key-point strong { color: var(--walnut); font-weight: 600; }
+
+    /* ── Practice Cards ── */
+    .practice-card {
+      background: #fff; border-radius: var(--radius); padding: 2rem;
+      border: 1px solid var(--beige); margin-bottom: 1.5rem;
+      position: relative; overflow: hidden; transition: all 0.3s;
+    }
+    .practice-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--camel), var(--walnut));
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .practice-card:hover::before { opacity: 1; }
+    .practice-card:hover { transform: translateY(-2px); box-shadow: var(--card-hover); }
+    .practice-num {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--camel), var(--walnut));
+      color: #fff; font-weight: 700; font-size: 0.85rem;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;
+    }
+    .practice-card h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .practice-time { font-size: 0.78rem; color: var(--camel); font-weight: 600; margin-bottom: 0.8rem; }
+
+    /* ── Timeline ── */
+    .timeline { margin-top: 1.5rem; }
+    .timeline-item {
+      display: grid; grid-template-columns: 100px 1fr;
+      gap: 1.5rem; padding: 1rem 0;
+      border-bottom: 1px solid rgba(232,221,211,0.5);
+    }
+    .timeline-item:last-child { border-bottom: none; }
+    .timeline-time { font-size: 0.82rem; font-weight: 700; color: var(--camel); padding-top: 0.1rem; }
+    .timeline-content h4 { font-size: 0.92rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .timeline-content p { font-size: 0.82rem; color: #999; }
+    .timeline-tag {
+      display: inline-block; font-size: 0.68rem; font-weight: 600;
+      padding: 0.15rem 0.5rem; border-radius: 4px; margin-left: 0.5rem;
+    }
+    .tag-lecture { background: #E8F0E8; color: #4a7a4a; }
+    .tag-practice { background: #E8E0F0; color: #6a4a8a; }
+    .tag-share { background: #F0E8E0; color: #8a6a4a; }
+
+    /* ── Resources ── */
+    .resources-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;
+    }
+    .resource-group {
+      background: #fff; border-radius: var(--radius); padding: 1.8rem; border: 1px solid var(--beige);
+    }
+    .resource-group h4 { font-size: 0.9rem; font-weight: 700; color: var(--walnut); margin-bottom: 1rem; }
+    .resource-link {
+      display: block; padding: 0.5rem 0; color: var(--charcoal); text-decoration: none;
+      font-size: 0.85rem; border-bottom: 1px solid rgba(232,221,211,0.3); transition: color 0.2s;
+    }
+    .resource-link:last-child { border-bottom: none; }
+    .resource-link:hover { color: var(--walnut); }
+    .resource-link::before { content: '\2192\00a0'; color: var(--camel); }
+
+    /* ── Copy Button ── */
+    .copy-btn {
+      position: absolute; top: 0.5rem; right: 0.8rem;
+      background: rgba(196,149,106,0.15); border: none;
+      color: #e0d5ca; font-size: 0.65rem; font-weight: 600;
+      padding: 0.3rem 0.6rem; border-radius: 4px;
+      cursor: pointer; font-family: 'Noto Sans KR', sans-serif; transition: background 0.2s;
+    }
+    .copy-btn:hover { background: rgba(196,149,106,0.3); }
+
+    /* ── Scroll top ── */
+    .scroll-top {
+      position: fixed; bottom: 2rem; right: 2rem;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--walnut); color: #fff; border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: all 0.3s; z-index: 99;
+      box-shadow: 0 4px 15px rgba(139,94,60,0.3);
+    }
+    .scroll-top.visible { opacity: 1; visibility: visible; }
+    .scroll-top:hover { transform: translateY(-3px); }
+
+    /* ── Keyword Table (compact) ── */
+    .keyword-table { width: 100%; border-collapse: collapse; margin: 0.8rem 0; font-size: 0.82rem; }
+    .keyword-table th {
+      background: var(--cream); font-weight: 600; text-align: left;
+      padding: 0.5rem 0.8rem; border-bottom: 2px solid var(--beige);
+      color: var(--walnut); font-size: 0.75rem;
+    }
+    .keyword-table td {
+      padding: 0.5rem 0.8rem; border-bottom: 1px solid rgba(232,221,211,0.4);
+      vertical-align: top;
+    }
+    .keyword-table code {
+      background: var(--cream); padding: 0.15rem 0.4rem; border-radius: 3px;
+      font-size: 0.78rem; color: var(--walnut);
+    }
+
+    /* ── Images ── */
+    .hero-image {
+      width: 100%; max-width: 900px; margin: 2rem auto 0;
+      border-radius: var(--radius); overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+    }
+    .hero-image img { width: 100%; display: block; }
+
+    .section-image {
+      width: 100%; border-radius: var(--radius); overflow: hidden;
+      margin: 1.5rem 0; box-shadow: var(--card-shadow);
+    }
+    .section-image img { width: 100%; display: block; }
+    .section-image figcaption {
+      padding: 0.6rem 1rem; background: var(--cream);
+      font-size: 0.75rem; color: #999; text-align: center;
+    }
+
+    .case-card .card-img {
+      width: calc(100% + 3.6rem); height: 180px; object-fit: cover;
+      border-radius: var(--radius) var(--radius) 0 0;
+      margin: -1.8rem -1.8rem 1.2rem;
+      display: block;
+    }
+
+    .tool-screenshot {
+      width: 100%; border-radius: var(--radius-sm); overflow: hidden;
+      margin: 1rem 0; border: 1px solid var(--beige);
+    }
+    .tool-screenshot img { width: 100%; display: block; }
+    .tool-screenshot .caption {
+      padding: 0.5rem 0.8rem; background: var(--cream);
+      font-size: 0.72rem; color: #999;
+    }
+
+    .img-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin: 1.5rem 0;
+    }
+    .img-grid figure {
+      border-radius: var(--radius-sm); overflow: hidden;
+      border: 1px solid var(--beige); background: #fff;
+    }
+    .img-grid figure img { width: 100%; display: block; }
+    .img-grid figcaption {
+      padding: 0.6rem 1rem; font-size: 0.78rem; color: #888;
+    }
+
+    .example-showcase {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem; margin: 1.5rem 0;
+    }
+    .showcase-item {
+      border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--beige); background: #fff;
+      transition: all 0.3s;
+    }
+    .showcase-item:hover { transform: translateY(-3px); box-shadow: var(--card-hover); }
+    .showcase-item img { width: 100%; display: block; }
+    .showcase-item .showcase-caption {
+      padding: 1rem 1.2rem;
+    }
+    .showcase-item .showcase-caption h5 { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.3rem; }
+    .showcase-item .showcase-caption p { font-size: 0.78rem; color: #888; line-height: 1.5; }
+
+    .full-width-img {
+      width: 100%; border-radius: var(--radius); overflow: hidden;
+      margin: 1.5rem 0; border: 1px solid var(--beige);
+    }
+    .full-width-img img { width: 100%; display: block; }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center; padding: 3rem 2rem; border-top: 1px solid var(--beige);
+      color: #aaa; font-size: 0.82rem;
+    }
+    footer a { color: var(--camel); text-decoration: none; }
+
+    /* ── Accordion ── */
+    .accordion { margin-top: 1rem; }
+    .accordion-item { border: 1px solid var(--beige); border-radius: var(--radius-sm); margin-bottom: 0.5rem; overflow: hidden; }
+    .accordion-header {
+      width: 100%; background: none; border: none;
+      font-family: inherit; font-size: 0.9rem; font-weight: 600;
+      color: var(--charcoal); padding: 1rem 1.2rem;
+      text-align: left; cursor: pointer;
+      display: flex; align-items: center; justify-content: space-between; transition: background 0.2s;
+    }
+    .accordion-header:hover { background: var(--cream); }
+    .accordion-header .arrow { transition: transform 0.3s; font-size: 0.7rem; color: var(--camel); }
+    .accordion-item.open .accordion-header .arrow { transform: rotate(180deg); }
+    .accordion-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .accordion-body-inner { padding: 0 1.2rem 1.2rem; }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 64px; left: 0; right: 0;
+        background: rgba(250,247,244,0.98); backdrop-filter: blur(20px);
+        padding: 1rem; border-bottom: 1px solid var(--beige);
+      }
+      .hamburger { display: block; }
+      .hero { padding: 8rem 1.5rem 4rem; }
+      section { padding: 3.5rem 1.5rem; }
+      .stat-grid { grid-template-columns: repeat(2, 1fr); }
+      .case-grid { grid-template-columns: 1fr; }
+      .hero-meta { gap: 1rem; }
+      .timeline-item { grid-template-columns: 80px 1fr; gap: 1rem; }
+      .data-table { font-size: 0.78rem; }
+      .data-table th, .data-table td { padding: 0.5rem 0.6rem; }
+      .keyword-table { font-size: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">AI x Visual Design</div>
+    <div class="nav-links" id="navLinks">
+      <a href="#part1">Part 1</a>
+      <a href="#part2">Part 2</a>
+      <a href="#part3">Part 3</a>
+      <a href="#part4">Part 4</a>
+      <a href="#part5">Part 5</a>
+      <a href="#resources">Resources</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="메뉴">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero" id="top">
+  <div class="hero-content">
+    <span class="hero-badge">2026 Special Lecture</span>
+    <h1>AI로 여는<br><em>시각디자인</em>의 새로운 도구</h1>
+    <p>Nano Banana 2 &amp; Pro로 AI 이미지를 생성하고, Seedance 2.0으로 모션을 만드는 — 시각디자인 전공자를 위한 실전 특강</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        한양여대 시각디자인과
+      </div>
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        실습 중심 특강
+      </div>
+      <div class="hero-meta-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        Nano Banana · Seedance
+      </div>
+    </div>
+    <div class="hero-actions">
+      <a href="#part1" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        강의 시작하기
+      </a>
+      <a href="#timetable" class="btn btn-secondary">타임테이블</a>
+    </div>
+    <div class="hero-image">
+      <img src="images/hero-generated.png" alt="전통 아트 도구에서 AI 디지털로의 전환을 상징하는 비주얼">
+    </div>
+  </div>
+</header>
+
+<!-- Overview -->
+<section id="overview">
+  <div class="container">
+    <p class="section-label">Overview</p>
+    <h2 class="section-title">강의 개요</h2>
+    <table class="data-table">
+      <tbody>
+        <tr><td>대상</td><td>한양여대 시각디자인과 학생</td></tr>
+        <tr><td>주제</td><td>AI 이미지·영상 제작 도구 실습</td></tr>
+        <tr><td>키워드</td><td>Nano Banana 2, Nano Banana Pro, Seedance 2.0</td></tr>
+        <tr><td>목표</td><td>AI를 디자인 워크플로우의 일부로 활용하는 실무 역량</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- PART 1 -->
+<!-- ============================================================ -->
+<section id="part1" style="background: #fff;">
+  <div class="container">
+    <p class="section-label">Part 1</p>
+    <h2 class="section-title">왜 지금, AI인가? — 산업 현장의 실제 변화</h2>
+
+    <!-- 1-1 숫자 -->
+    <div class="sub-section">
+      <h3>1-1. 숫자로 보는 변화</h3>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-num">49%</div>
+          <div class="stat-label">크리에이티브 전문가<br>매일 AI 사용</div>
+          <div class="stat-src">Envato 2025 (1,780명)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">72%</div>
+          <div class="stat-label">디자이너<br>AI 도구 사용률</div>
+          <div class="stat-src">Figma 2025 (906명)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">340%</div>
+          <div class="stat-label">AI 크리에이티브 직종<br>증가율 (18개월)</div>
+          <div class="stat-src">LinkedIn 2025</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">18배</div>
+          <div class="stat-label">GenAI 디자인 시장 성장<br>$741M → $13.9B</div>
+          <div class="stat-src">Grand View Research</div>
+        </div>
+      </div>
+      <div class="tip-box">
+        <strong>핵심 메시지</strong>
+        <p>AI를 쓸지 말지의 문제가 아니라, <strong>어떻게 잘 쓸 것인가</strong>의 문제.</p>
+      </div>
+    </div>
+
+    <!-- 1-2 글로벌 에이전시 -->
+    <div class="sub-section">
+      <h3>1-2. 글로벌 에이전시의 AI 전환</h3>
+      <div class="case-grid">
+        <div class="case-card">
+          <img class="card-img" src="images/wpp-open.jpg" alt="WPP Open Pro AI 플랫폼">
+          <span class="case-tag global">GLOBAL</span>
+          <h4>WPP — 세계 최대 광고그룹의 변신</h4>
+          <p><strong>WPP Open / Open Pro</strong>: AI 통합 운영체제 출시. 글로벌 프로덕션을 단일 AI 유닛으로 통합. Coca-Cola, L'Oréal 등 대형 클라이언트 AI 워크플로우 적용.</p>
+        </div>
+        <div class="case-card">
+          <img class="card-img" src="images/superside-ai.jpg" alt="Superside AI 디자인 포트폴리오">
+          <span class="case-tag global">GLOBAL</span>
+          <h4>Superside — AI-네이티브 에이전시</h4>
+          <p>200+ AI 디자인 프로젝트 수행. <strong>Human-AI 하이브리드 모델</strong>: AI가 초안 → 디자이너가 정제. 리드타임 80% 단축 사례 다수.</p>
+        </div>
+        <div class="case-card">
+          <span class="case-tag global">GLOBAL</span>
+          <h4>Monks (구 Media.Monks) — Pre-production 혁신</h4>
+          <p>스토리보딩, 세트 디자인, 무드보드를 AI로 자동화. 촬영 전 시각화 비용 대폭 절감.</p>
+        </div>
+        <div class="case-card">
+          <img class="card-img" src="images/dentsu-ai.jpg" alt="Dentsu AI 자동화 타임라인">
+          <span class="case-tag global">GLOBAL</span>
+          <h4>Dentsu — QA 자동화</h4>
+          <p>크리에이티브 QA 과정: <strong>8시간 → 2분</strong> (240배 단축)</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1-3 브랜드 캠페인 -->
+    <div class="sub-section">
+      <h3>1-3. 브랜드 캠페인 — 실전 사례</h3>
+      <div class="case-grid">
+        <div class="case-card">
+          <img class="card-img" src="images/coca-cola-ai.jpg" alt="Coca-Cola Create Real Magic AI 캠페인">
+          <span class="case-tag brand">BRAND</span>
+          <h4>Coca-Cola "Create Real Magic"</h4>
+          <p>GPT-4 + DALL-E 기반 소비자 참여 캠페인. 사용자가 직접 AI로 코카콜라 광고 이미지 제작. 업계 대표 AI 마케팅 성공 사례.</p>
+        </div>
+        <div class="case-card">
+          <img class="card-img" src="images/nike-ai.jpg" alt="Nike x Travis Scott AI 광고">
+          <span class="case-tag brand">BRAND</span>
+          <h4>Nike — AI 활용의 교과서</h4>
+          <p>Travis Scott 광고: Midjourney로 <strong>5,000장+</strong> 이미지 생성 후 선별. 올림픽 A.I.R. 프로젝트: 선수 데이터 기반 AI 맞춤 디자인. Serena Williams AI 영상: <strong>1억 뷰+</strong> 달성.</p>
+        </div>
+        <div class="case-card">
+          <img class="card-img" src="images/toys-r-us-sora.jpg" alt="Toys R Us Sora AI 브랜드 필름">
+          <span class="case-tag brand">BRAND</span>
+          <h4>Toys "R" Us — AI 브랜드 필름</h4>
+          <p>Sora(OpenAI)로 제작한 브랜드 스토리 영상. AI 영상 제작의 상업적 가능성 입증.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1-4 한국 사례 -->
+    <div class="sub-section">
+      <h3>1-4. 한국 사례 — 우리 업계의 변화</h3>
+      <div class="case-grid">
+        <div class="case-card">
+          <img class="card-img" src="images/samsung-life-ai.jpg" alt="삼성생명 AI 광고">
+          <span class="case-tag korea">KOREA</span>
+          <h4>제일기획 — 삼성생명 100% AI 광고</h4>
+          <p><strong>1만 장</strong> AI 이미지 생성, <strong>3개월</strong> 제작기간. 기존 촬영 프로세스 전면 대체. 비용 절감 + 크리에이티브 가능성 확장.</p>
+        </div>
+        <div class="case-card">
+          <img class="card-img" src="images/hyundai-ai.jpg" alt="현대자동차 AI 광고">
+          <span class="case-tag korea">KOREA</span>
+          <h4>이노션 — 현대자동차 "영원히 달리는 자동차"</h4>
+          <p><strong>100% AI</strong>로 제작된 TV 광고. <strong>15개 이상</strong> AI 기술 복합 활용. 광고계 최초 수준의 전면 AI 프로덕션.</p>
+        </div>
+        <div class="case-card">
+          <img class="card-img" src="images/daehong-ai-studio.jpg" alt="대홍기획 AI Studio">
+          <span class="case-tag korea">KOREA</span>
+          <h4>대홍기획 — AI Studio 신설</h4>
+          <p>국내 유일 <strong>논슈팅필름 스튜디오</strong> (카메라 없는 영상 제작). AI 기반 크리에이티브 전담 조직.</p>
+        </div>
+        <div class="case-card">
+          <span class="case-tag korea">KOREA</span>
+          <h4>그 외 브랜드 사례</h4>
+          <p><strong>우리카드</strong>: AI 생성 이미지 광고 캠페인. <strong>하이모</strong>: AI 기반 비주얼 제작. <strong>제이키즈</strong>: AI 활용 브랜드 콘텐츠.</p>
+        </div>
+      </div>
+      <div class="tip-box">
+        <strong>한국디자인진흥원</strong>
+        <p>2024년 「디자인 산업 AI 인력 실태조사」 보고서 발간. 디자인 현장의 AI 도입 현황과 인력 수요 변화를 공식 조사.</p>
+      </div>
+    </div>
+
+    <!-- 1-5 AI는 도구다 -->
+    <div class="sub-section">
+      <h3>1-5. AI는 도구다 — "끝내는 것"이 아닌 "함께하는 것"</h3>
+      <div class="full-width-img" style="margin-bottom: 1.5rem;">
+        <img src="images/design-studio.jpg" alt="현대 디자인 스튜디오">
+      </div>
+
+      <h4>학술 연구가 증명하는 AI 협업 효과</h4>
+      <ul>
+        <li>AI 협업이 <strong>모든 창의성 차원에서 성과 향상</strong> (초보=영감, 숙련=디테일)</li>
+        <li>800명 대상 실험: AI 갤러리가 <strong>더 깊은 몰입</strong>과 <strong>더 나은 결과</strong> 유발</li>
+        <li>WEF(세계경제포럼): "AI는 인간 창의성에 <strong>봉사</strong>해야 한다"</li>
+      </ul>
+
+      <h4>실무에서의 AI 포지션</h4>
+      <div class="workflow-visual">
+        <p style="font-size: 0.8rem; font-weight: 600; color: #999; margin-bottom: 1rem;">디자인 워크플로우</p>
+        <div class="flow-row">
+          <span class="flow-item flow-ai">아이디어 AI</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-item flow-ai">리서치 AI</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-item flow-ai">시안 AI</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-item flow-human">정제 Human</span>
+          <span class="flow-arrow">→</span>
+          <span class="flow-item flow-human">최종 Human</span>
+        </div>
+        <p style="font-size: 0.75rem; color: #aaa; margin-top: 1rem;">← AI가 가속하는 영역 → &nbsp;&nbsp; ← 사람이 완성하는 영역 →</p>
+      </div>
+
+      <table class="data-table">
+        <thead><tr><th>AI가 잘하는 것</th><th>사람이 잘하는 것</th></tr></thead>
+        <tbody>
+          <tr><td>대량 시안 빠르게 생성</td><td>브랜드 맥락 이해</td></tr>
+          <tr><td>레퍼런스 기반 변형</td><td>감성적 판단</td></tr>
+          <tr><td>스타일 일관성 유지</td><td>클라이언트 커뮤니케이션</td></tr>
+          <tr><td>반복 작업 자동화</td><td>전략적 의사결정</td></tr>
+          <tr><td>텍스트-이미지 변환</td><td>윤리적 판단</td></tr>
+        </tbody>
+      </table>
+
+      <div class="quote-box">
+        <p>"AI는 연필이 아니라 <strong>전동 드릴</strong>이다. 연필을 잡을 줄 아는 사람이 전동 드릴을 쓰면 더 빨라지지만, 전동 드릴만으로 명작이 나오진 않는다."</p>
+      </div>
+    </div>
+
+    <!-- 1-6 새로 생기는 직무들 -->
+    <div class="sub-section">
+      <h3>1-6. 새로 생기는 직무들</h3>
+      <table class="data-table">
+        <thead><tr><th>직무</th><th>역할</th></tr></thead>
+        <tbody>
+          <tr><td><strong>AI Art Director</strong></td><td>AI 생성물의 방향성과 품질 관리</td></tr>
+          <tr><td><strong>Prompt Designer</strong></td><td>최적의 프롬프트 설계 및 워크플로우 구축</td></tr>
+          <tr><td><strong>AI Creative Technologist</strong></td><td>AI 도구와 기존 디자인 파이프라인 연결</td></tr>
+          <tr><td><strong>AI QA Specialist</strong></td><td>AI 생성물의 브랜드 가이드라인 준수 확인</td></tr>
+          <tr><td><strong>Synthetic Media Producer</strong></td><td>AI 영상/음성 콘텐츠 기획·제작</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 1-7 AI를 안 배우면 -->
+    <div class="sub-section">
+      <h3>1-7. AI를 안 배우면 생기는 일 — 데이터가 말하는 현실</h3>
+
+      <h4>채용 시장의 양극화</h4>
+      <table class="data-table">
+        <thead><tr><th>지표</th><th>수치</th><th>출처</th></tr></thead>
+        <tbody>
+          <tr><td>AI 스킬 보유 직무 임금 프리미엄</td><td><strong>+56%</strong> (전년 25%에서 2배↑)</td><td>PwC 2025</td></tr>
+          <tr><td>그래픽 디자인 채용 공고 감소</td><td><strong>-18.49%</strong></td><td>Brookings Institution</td></tr>
+          <tr><td>3D 모델링 채용 공고 감소</td><td><strong>-15.57%</strong></td><td>Brookings Institution</td></tr>
+          <tr><td>AI 비채택 프리랜서 수입 변화</td><td><strong>-5% 하락</strong></td><td>ScienceDirect 2024</td></tr>
+          <tr><td>AI 채택 프리랜서 수입 변화</td><td><strong>+44% 증가</strong></td><td>Upwork 2025</td></tr>
+        </tbody>
+      </table>
+
+      <div class="warning-box">
+        <strong>직설적으로 말하면</strong>
+        <p>AI를 안 쓰는 그래픽 디자이너의 채용 시장은 <strong>이미 18.5% 줄었다</strong>. AI를 쓰는 디자이너는 <strong>56% 더 높은 임금</strong>을 받는다. 이 격차는 매년 벌어지고 있다.</p>
+      </div>
+
+      <h4>프리랜서 시장의 분기점</h4>
+      <ul>
+        <li>Fiverr 활성 바이어 수 2024년 <strong>10% 감소</strong> — 단순 디자인 외주가 AI로 대체되는 중</li>
+        <li>Upwork AI 관련 프리랜서 작업량 Q4 2024 <strong>전년 대비 60% 증가</strong> — AI를 쓸 줄 아는 프리랜서로 수요 이동</li>
+        <li>글쓰기/번역 등 대체 가능 스킬 수요 <strong>20~50% 감소</strong></li>
+      </ul>
+
+      <div class="quote-box">
+        <p>"2025년에 수입이 늘어날 프리랜서는 최고의 AI 프롬프팅 스킬을 가진 사람이 아니라, <strong>AI를 인간의 니즈에 맞는 결과물로 연결할 줄 아는 사람</strong>이다."</p>
+        <div class="attr">— Eric Verdeyen, 크리에이티브 프리랜서 수입 분석 (2024)</div>
+      </div>
+    </div>
+
+    <!-- 1-8 기본 스킬 -->
+    <div class="sub-section">
+      <h3>1-8. AI는 이미 "기본 스킬"이 되고 있다</h3>
+
+      <h4>미국 광고 에이전시의 현재 (2026년 1월)</h4>
+      <ul>
+        <li><strong>91%</strong>가 AI 도구를 적극 사용하거나 탐색 중 (Campaign US)</li>
+        <li><strong>67%</strong>의 디자인 에이전시가 AI를 일상 업무에 통합 (WiFi Talents)</li>
+        <li>그러나 <strong>5%만</strong> 실험을 넘어 진정한 경쟁 우위 구축 (Spark AI) → 잘 쓰는 사람이 희소</li>
+      </ul>
+
+      <h4>디자인 도구 자체가 AI를 내장</h4>
+      <div class="img-grid">
+        <figure>
+          <img src="images/adobe-firefly.jpg" alt="Adobe Photoshop Generative Fill 인터페이스">
+          <figcaption>Adobe Photoshop — Generative Fill (Firefly + Gemini 모델 선택)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/figma-make.jpg" alt="Figma Make AI 디자인 기능">
+          <figcaption>Figma Make — 텍스트 설명만으로 디자인 목업 생성</figcaption>
+        </figure>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>도구</th><th>AI 통합 현황</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Adobe Photoshop</strong></td><td>Generative Fill이 <strong>가장 많이 쓰는 기능</strong> 1위 등극</td></tr>
+          <tr><td><strong>Adobe Firefly</strong></td><td>Image Model 5 (4K), Generate Soundtrack, Generate Speech, AI 영상 편집</td></tr>
+          <tr><td><strong>Figma</strong></td><td>Figma Make — 자동 디자인 목업, 레이아웃 제안, UI 카피 작성. $100K+ 고객의 <strong>30%</strong>가 주간 사용</td></tr>
+          <tr><td><strong>Canva</strong></td><td>Magic Studio — Magic Write, Edit, Expand, Eraser 등 전 기능 AI화</td></tr>
+        </tbody>
+      </table>
+
+      <div class="tip-box">
+        <strong>핵심</strong>
+        <p>Photoshop, Figma, Canva — <strong>여러분이 앞으로 쓸 모든 디자인 도구에 AI가 이미 내장</strong>되어 있다. AI를 모르면 도구의 절반을 못 쓰는 것과 같다.</p>
+      </div>
+
+      <h4>Adobe Firefly 진화 타임라인</h4>
+      <table class="data-table">
+        <thead><tr><th>시기</th><th>주요 이벤트</th></tr></thead>
+        <tbody>
+          <tr><td>2023.03</td><td>Firefly 베타 출시 (이미지 생성, 텍스트 효과)</td></tr>
+          <tr><td>2023.10</td><td>Firefly Image 2 → Photoshop Generative Fill 통합</td></tr>
+          <tr><td>2024</td><td>Firefly Image 3, Creative Cloud 전면 통합</td></tr>
+          <tr><td>2025.04</td><td>Firefly Boards (멀티플레이어 생성형 캔버스)</td></tr>
+          <tr><td>2025.10</td><td>Image Model 5 (4K), AI 사운드트랙/음성 생성, AI 영상 편집</td></tr>
+          <tr><td>2025.11</td><td><strong>Nano Banana Pro 직접 통합</strong> (Photoshop + Firefly)</td></tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.88rem; color: #777;">→ 2년 만에 이미지 생성 → 영상 편집 → 음성/사운드까지. <strong>Adobe의 모든 제품이 AI-first로 전환 중.</strong></p>
+
+      <h4>Figma의 AI 전환</h4>
+      <table class="data-table">
+        <thead><tr><th>시기</th><th>주요 이벤트</th></tr></thead>
+        <tbody>
+          <tr><td>2025.05</td><td>AI 기반 사이트/앱 프로토타입 자동 생성</td></tr>
+          <tr><td>2025.07</td><td><strong>Figma Make</strong> 출시 — 텍스트 설명만으로 디자인 목업 생성</td></tr>
+          <tr><td>2025 Q3</td><td>Make이 <strong>신규 고객 유치의 핵심 동인</strong></td></tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.88rem; color: #777;">→ Figma 시장점유율: UI/UX 카테고리 <strong>80~90%</strong>. 사실상 업계 표준 도구가 AI를 중심에 놓음.</p>
+    </div>
+
+    <!-- 1-9 디자인 교육 -->
+    <div class="sub-section">
+      <h3>1-9. 디자인 교육이 바뀌고 있다</h3>
+
+      <h4>해외 디자인 명문대의 변화</h4>
+      <div class="img-grid">
+        <figure>
+          <img src="images/risd-ai.jpg" alt="RISD 캠퍼스">
+          <figcaption>RISD — "Art and Computation" BFA 학위 신설</figcaption>
+        </figure>
+        <figure>
+          <img src="images/kookmin-ai.jpg" alt="국민대학교 AI디자인학과">
+          <figcaption>국민대학교 — AI디자인학과 신설</figcaption>
+        </figure>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>학교</th><th>변화 내용</th></tr></thead>
+        <tbody>
+          <tr><td><strong>RISD</strong> (미국)</td><td>"Art and Computation" BFA 학위 신설 — 로보틱스, AI, 생성 아트, 이머시브 미디어 포함</td></tr>
+          <tr><td><strong>RISD</strong></td><td>교수진 대상 "Critical Thinking &amp; Making with AI" 3일 집중 교육 (2025.02)</td></tr>
+          <tr><td><strong>RISD</strong></td><td>평생교육: "Understanding and Exploring AI" 과정 운영</td></tr>
+        </tbody>
+      </table>
+
+      <h4>한국의 변화</h4>
+      <table class="data-table">
+        <thead><tr><th>기관</th><th>변화 내용</th></tr></thead>
+        <tbody>
+          <tr><td><strong>국민대학교</strong></td><td><strong>AI디자인학과</strong> 신설 — AI 기반 생성적 디자인 중심 교과과정</td></tr>
+          <tr><td><strong>한양사이버대</strong></td><td><strong>AI산업디자인학과</strong> 신설 — IoT, 로봇, AI, 빅데이터 활용 디자이너 양성</td></tr>
+          <tr><td><strong>한국디자인진흥원</strong></td><td>2024 「디자인 산업분야 생성형 AI 활용 인력실태 및 교육훈련 수요조사」 발간</td></tr>
+        </tbody>
+      </table>
+
+      <h4>AI 디자인 자격증 등장</h4>
+      <ul>
+        <li><strong>AI-PDTQ</strong> (AI Product Design Technique Qualification): 생성형 AI의 프로덕트 디자인 실무 적용 능력 인증</li>
+        <li><strong>AI-GDTQ</strong> (AI Graphic Design Technique Qualification): 그래픽 디자인에서의 AI 활용 역량 공식 인증</li>
+      </ul>
+
+      <div class="tip-box">
+        <strong>시사점</strong>
+        <p>국민대는 이미 <strong>AI디자인학과</strong>를 만들었다. RISD는 <strong>AI를 정규 학위 과정에 포함</strong>시켰다. 자격증도 나왔다. <strong>AI는 선택이 아니라 기본 교양이 되고 있다.</strong></p>
+      </div>
+    </div>
+
+    <!-- 1-10 예측 -->
+    <div class="sub-section">
+      <h3>1-10. 예측: 앞으로 3년</h3>
+
+      <h4>시장 전망</h4>
+      <table class="data-table">
+        <thead><tr><th>전망</th><th>수치</th><th>출처</th></tr></thead>
+        <tbody>
+          <tr><td>전 세계 AI 지출 (2026)</td><td><strong>$2조 이상</strong></td><td>Gartner</td></tr>
+          <tr><td>AI 에이전트 운영 기업 (2027)</td><td><strong>86%</strong></td><td>Gartner</td></tr>
+          <tr><td>AI 기반 디자인 도구 시장 (2035)</td><td><strong>$340.9억</strong> (현재 $83.2억, 4배↑)</td><td>Market Research Future</td></tr>
+          <tr><td>생성형 AI 경제적 가치</td><td><strong>$2.6조 ~ $4.4조</strong></td><td>McKinsey</td></tr>
+          <tr><td>현재 기술로 자동화 가능한 업무 비율</td><td><strong>60~70%</strong></td><td>McKinsey</td></tr>
+        </tbody>
+      </table>
+
+      <h4>AI 활용 시 생산성 데이터</h4>
+      <table class="data-table">
+        <thead><tr><th>지표</th><th>수치</th><th>출처</th></tr></thead>
+        <tbody>
+          <tr><td>AI 활용 크리에이티브의 주당 절약 시간</td><td><strong>최대 11시간</strong></td><td>WiFi Talents</td></tr>
+          <tr><td>AI 초기 드래프팅으로 프로젝트당 절약</td><td><strong>3시간</strong></td><td>Cogenius</td></tr>
+          <tr><td>AI 활용 직원 평균 생산성 향상</td><td><strong>40%</strong></td><td>Apollo Technical</td></tr>
+          <tr><td>AI 고노출 산업 매출 성장률</td><td><strong>27%</strong> (vs AI 저노출 9%, 3배↑)</td><td>PwC</td></tr>
+          <tr><td>Mattel: AI로 제품 컨셉 이미지 생성량</td><td><strong>기존 대비 4배</strong></td><td>McKinsey</td></tr>
+          <tr><td>에이전시 56%가 AI 도입 후 효율 향상 체감</td><td><strong>56%</strong></td><td>WiFi Talents</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 1-11 현장의 목소리 -->
+    <div class="sub-section">
+      <h3>1-11. 현장의 목소리</h3>
+
+      <div class="img-grid">
+        <figure>
+          <img src="images/envato-report.jpg" alt="Envato Beyond Adoption 리포트">
+          <figcaption>Envato "Beyond Adoption" 글로벌 리포트 (2025)</figcaption>
+        </figure>
+        <figure>
+          <img src="images/figma-ai-report.jpg" alt="Figma 2025 AI Report">
+          <figcaption>Figma 2025 AI Report (2,500명, 7개국)</figcaption>
+        </figure>
+      </div>
+      <h4>Envato "Beyond Adoption" 글로벌 리포트 (2025.11, 1,780명)</h4>
+      <table class="data-table">
+        <thead><tr><th>응답</th><th>비율</th></tr></thead>
+        <tbody>
+          <tr><td>매일 클라이언트 작업에 AI 사용</td><td><strong>49%</strong></td></tr>
+          <tr><td>6개월 전보다 AI 사용량 "상당히" 증가</td><td><strong>50%</strong></td></tr>
+          <tr><td>AI 중심 크리에이티브 산업에 <strong>"준비 안 됨"</strong></td><td><strong>69%</strong></td></tr>
+          <tr><td>클라이언트에게 말 안 하고 AI 사용한 경험</td><td><strong>58%</strong></td></tr>
+        </tbody>
+      </table>
+
+      <div class="warning-box">
+        <strong>69%가 "준비 안 됐다"</strong>
+        <p>크리에이티브 전문가 10명 중 7명이 AI 시대에 준비가 안 됐다고 느낀다. <strong>지금 배우면 상위 31%에 들어간다.</strong></p>
+      </div>
+
+      <h4>Figma 2025 AI Report (2,500명, 7개국)</h4>
+      <table class="data-table">
+        <thead><tr><th>발견</th><th>수치</th></tr></thead>
+        <tbody>
+          <tr><td>"AI가 업무 효율을 크게 높인다"</td><td><strong>78%</strong></td></tr>
+          <tr><td>"AI 제품에서 디자인이 기존보다 <strong>더 중요</strong>"</td><td><strong>52%</strong></td></tr>
+          <tr><td>핵심 디자인 작업에 AI 사용하는 디자이너</td><td><strong>31%</strong> (개발자 59% 대비 낮음)</td></tr>
+          <tr><td>올해 AI 기반 제품 출시</td><td><strong>1/3</strong> (전년 대비 50%↑)</td></tr>
+        </tbody>
+      </table>
+
+      <div class="tip-box">
+        <strong>디자이너에게 유리한 데이터</strong>
+        <p>Figma 조사에서 52%가 "AI 시대에 디자인이 <strong>더 중요해진다</strong>"고 답했다. AI가 디자이너를 대체하는 게 아니라, <strong>AI를 잘 다루는 디자이너의 가치가 올라간다.</strong></p>
+      </div>
+    </div>
+
+    <!-- 1-12 결론 -->
+    <div class="sub-section">
+      <h3>1-12. 결론: AI는 포토샵이다</h3>
+      <div class="full-width-img" style="margin-bottom: 1.5rem;">
+        <img src="images/university-lecture.jpg" alt="대학 강의실">
+      </div>
+
+      <div class="diagram-box">┌─────────────────────────────────────────────────────┐
+│                   역사는 반복된다                      │
+│                                                      │
+│  1990년대: "포토샵? 손으로 그리는 게 진짜 디자인이지"    │
+│  → 2000년대: 포토샵 못 하면 취업 불가                  │
+│                                                      │
+│  2020년대: "AI? 직접 만드는 게 진짜 디자인이지"         │
+│  → 2030년대: AI 못 쓰면 취업 불가 (?)                  │
+│                                                      │
+│  차이점: 포토샵은 10년 걸렸다. AI는 2~3년이면 된다.     │
+└─────────────────────────────────────────────────────┘</div>
+
+      <table class="data-table">
+        <thead><tr><th>시대</th><th>필수 스킬</th><th>도입까지 걸린 시간</th></tr></thead>
+        <tbody>
+          <tr><td>1990s</td><td>포토샵, 일러스트레이터</td><td>~10년</td></tr>
+          <tr><td>2010s</td><td>UI/UX, Figma, 반응형 디자인</td><td>~5년</td></tr>
+          <tr><td>2020s</td><td><strong>AI 이미지/영상 생성, 프롬프트 설계</strong></td><td><strong>~2~3년</strong></td></tr>
+        </tbody>
+      </table>
+
+      <div class="quote-box">
+        <p>"AI를 배우지 않는 디자이너가 대체되는 게 아니다. <strong>AI를 배운 디자이너에게</strong> 대체되는 것이다."</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- PART 2 -->
+<!-- ============================================================ -->
+<section id="part2">
+  <div class="container">
+    <p class="section-label">Part 2</p>
+    <h2 class="section-title">AI 이미지 — Nano Banana 2 &amp; Pro</h2>
+
+    <!-- 2-1 개요 -->
+    <div class="sub-section">
+      <h3>2-1. Nano Banana 시리즈 개요</h3>
+      <p>Google DeepMind가 Gemini 모델 위에 구축한 AI 이미지 생성/편집 모델</p>
+      <div class="full-width-img">
+        <img src="images/nano-banana-example.jpg" alt="Nano Banana Pro 이미지 생성 예시">
+      </div>
+      <table class="data-table">
+        <thead><tr><th>모델</th><th>기반 엔진</th><th>출시일</th><th>포지셔닝</th></tr></thead>
+        <tbody>
+          <tr><td>Nano Banana (초대)</td><td>Gemini 2.5 Flash Image</td><td>2025.08</td><td>빠른 생성, 바이럴 (3D 피규어 등)</td></tr>
+          <tr><td><strong>Nano Banana Pro</strong></td><td>Gemini 3 Pro Image</td><td>2025.11.20</td><td>고품질, 4K, 추론 기반</td></tr>
+          <tr><td><strong>Nano Banana 2</strong></td><td>Gemini 3.1 Flash Image</td><td>2026.02.26</td><td>Pro 기능 + Flash 속도</td></tr>
+        </tbody>
+      </table>
+      <ul>
+        <li>출시 후 Gemini 앱에 <strong>1,000만 신규 사용자</strong> 유입</li>
+        <li>몇 주 만에 <strong>2억 건 이상</strong> 이미지 편집</li>
+      </ul>
+    </div>
+
+    <!-- 2-2 핵심 기능 비교 -->
+    <div class="sub-section">
+      <h3>2-2. 핵심 기능 비교</h3>
+
+      <h4>Nano Banana Pro — 최고 품질</h4>
+      <div class="tool-screenshot">
+        <img src="images/nano-banana-text.jpg" alt="Nano Banana Pro 한글 텍스트 렌더링 예시">
+        <div class="caption">Nano Banana Pro — 한글 텍스트 렌더링 (업계 최강 수준)</div>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>기능</th><th>설명</th></tr></thead>
+        <tbody>
+          <tr><td>네이티브 4K</td><td>1K/2K/4K 해상도 직접 생성</td></tr>
+          <tr><td>텍스트 렌더링</td><td><strong>한글 포함</strong> 다국어 텍스트 정확 렌더링 (업계 최강)</td></tr>
+          <tr><td>14장 레퍼런스</td><td>스타일 가이드, 로고, 컬러 팔레트, 캐릭터 시트 동시 로드</td></tr>
+          <tr><td>Google Search 연동</td><td>실시간 지식 기반 정확한 렌더링</td></tr>
+          <tr><td>64K 컨텍스트</td><td>긴 구조화 프롬프트, 다단계 워크플로우</td></tr>
+          <tr><td>캐릭터 일관성</td><td>연속 장면에서 캐릭터 정체성 유지</td></tr>
+        </tbody>
+      </table>
+
+      <h4>Nano Banana 2 — 속도 + 품질 균형</h4>
+      <table class="data-table">
+        <thead><tr><th>기능</th><th>설명</th></tr></thead>
+        <tbody>
+          <tr><td>3~5초 생성</td><td>Flash 기반 극적 속도</td></tr>
+          <tr><td>Pro급 기능</td><td>Pro 수준을 Flash 속도로</td></tr>
+          <tr><td>캐릭터 5명 + 오브젝트 14개</td><td>다중 이미지 간 일관성 유지</td></tr>
+          <tr><td>실시간 웹 검색</td><td>시각 참조 자동 반영</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2-3 경쟁 도구 비교 -->
+    <div class="sub-section">
+      <h3>2-3. 경쟁 도구 비교표</h3>
+      <table class="data-table">
+        <thead><tr><th>항목</th><th>Nano Banana 2</th><th>Nano Banana Pro</th><th>Midjourney V7</th><th>GPT Image</th><th>FLUX.2</th></tr></thead>
+        <tbody>
+          <tr><td>속도</td><td>⚡ 3~5초</td><td>10~15초</td><td>10~30초</td><td>5~15초</td><td>5~10초</td></tr>
+          <tr><td>최대 해상도</td><td>4K</td><td>4K</td><td>2K+</td><td>2K</td><td>2K+</td></tr>
+          <tr><td>텍스트 렌더링</td><td>★★★★</td><td>★★★★★</td><td>★★★</td><td>★★★★</td><td>★★★</td></tr>
+          <tr><td>편집 기능</td><td>내장</td><td>내장</td><td>제한적</td><td>내장</td><td>제한적</td></tr>
+          <tr><td>가격</td><td>$0.067/장</td><td>$0.134/장</td><td>$10~120/월</td><td>GPT Plus</td><td>다양</td></tr>
+          <tr><td>강점</td><td>속도+범용</td><td>품질+텍스트</td><td>예술적 스타일</td><td>정확한 묘사</td><td>오픈소스</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2-4 실무 활용 시나리오 -->
+    <div class="sub-section">
+      <h3>2-4. 디자인 실무 활용 시나리오</h3>
+      <div class="example-showcase" style="margin-bottom: 1.5rem;">
+        <div class="showcase-item">
+          <img src="images/brand-mockup-example.png" alt="AI로 생성한 브랜드 아이덴티티 목업">
+          <div class="showcase-caption">
+            <h5>AI 생성 브랜드 목업 예시</h5>
+            <p>Nano Banana Pro로 생성한 브랜드 아이덴티티 목업 — 명함, 토트백, 패키지</p>
+          </div>
+        </div>
+        <div class="showcase-item">
+          <img src="images/poster-example.png" alt="AI로 생성한 졸업전시 포스터">
+          <div class="showcase-caption">
+            <h5>AI 생성 포스터 예시</h5>
+            <p>졸업 전시 포스터 '시선의 경계' — 한글 텍스트 + 기하학적 디자인</p>
+          </div>
+        </div>
+      </div>
+      <div class="case-grid">
+        <div class="case-card">
+          <h4>시나리오 A: 브랜드 시안 빠른 생성</h4>
+          <p>브랜드 가이드라인(로고, 컬러, 폰트) 레퍼런스로 업로드 → "이 브랜드 스타일로 SNS 배너 만들어줘" → 5~10개 시안 빠르게 생성 → 클라이언트 피드백 → 정제</p>
+        </div>
+        <div class="case-card">
+          <h4>시나리오 B: 포스터 내 텍스트 디자인</h4>
+          <p><strong>한글 텍스트 렌더링</strong> 활용. 이미지와 타이포그래피가 통합된 포스터 시안. Pro의 4K 출력으로 인쇄 품질 확보.</p>
+        </div>
+        <div class="case-card">
+          <h4>시나리오 C: 캐릭터 일관성 시리즈</h4>
+          <p>캐릭터 시트 레퍼런스 업로드 → 다양한 장면/포즈/배경으로 시리즈 생성. 웹툰, 동화책, 브랜드 마스코트 활용.</p>
+        </div>
+        <div class="case-card">
+          <h4>시나리오 D: Adobe 연동 워크플로우</h4>
+          <p>Nano Banana Pro → <strong>Adobe Firefly/Photoshop</strong> 직접 통합. Firefly에서 레퍼런스 업로드 → Firefly Boards에서 캠페인 시각화 → Generative Fill 연동.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2-5 접근 방법 -->
+    <div class="sub-section">
+      <h3>2-5. 접근 방법</h3>
+      <table class="data-table">
+        <thead><tr><th>방법</th><th>비용</th><th>적합한 사용</th></tr></thead>
+        <tbody>
+          <tr><td>Gemini 앱 (무료)</td><td>0원 (하루 ~20장, 1K)</td><td>학습, 실습</td></tr>
+          <tr><td>Gemini 앱 (구독)</td><td>$19.99~$124.99/월</td><td>일상 작업</td></tr>
+          <tr><td>Google AI Studio</td><td>API 종량제</td><td>대량 생성, 자동화</td></tr>
+          <tr><td>Adobe Firefly</td><td>Adobe 구독</td><td>디자인 워크플로우 통합</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 2-6 프롬프트 잘 쓰는 법 -->
+    <div class="sub-section">
+      <h3>2-6. 이미지 프롬프트 잘 쓰는 법</h3>
+      <p>프롬프트는 "AI에게 말 거는 것"이 아니라, <strong>완성된 이미지를 글로 묘사하는 것</strong>이다.</p>
+      <div class="full-width-img" style="margin-bottom: 1rem;">
+        <img src="images/poster-design.jpg" alt="미니멀 포스터 디자인 예시">
+      </div>
+
+      <div class="full-width-img">
+        <img src="images/before-after-ai.png" alt="AI 포스터 디자인 전후 비교 — 스케치에서 완성까지">
+      </div>
+
+      <h4>핵심 마인드셋: "완성 이미지 디스크라이브"</h4>
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>❌ 초보의 프롬프트:
+"예쁜 포스터 만들어줘"
+
+✅ 프로의 프롬프트:
+"흰색 배경 위에 네이비 컬러의 산세리프 한글 타이틀 '시선의 경계'가
+중앙 상단에 크게 배치되어 있다. 타이틀 아래로 금색 기하학적 선들이
+대각선으로 교차하며 화면을 분할한다. 하단에는 작은 영문 서브타이틀
+'HANYANG WOMEN'S UNIVERSITY VISUAL DESIGN 2026'이 있다.
+전체적으로 미니멀하고 세련된 분위기. 4K 인쇄용 해상도."</div>
+
+      <div class="tip-box">
+        <strong>핵심 원칙</strong>
+        <p><strong>이미 완성된 이미지가 눈앞에 있다고 상상하고, 그것을 제3자에게 설명하듯 써라.</strong> 이것이 좋은 프롬프트의 비결이다.</p>
+      </div>
+
+      <h4>프롬프트 해부학 — 7가지 구성 요소</h4>
+      <table class="data-table">
+        <thead><tr><th>#</th><th>요소</th><th>설명</th><th>예시</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>주제 (Subject)</strong></td><td>무엇이 그려져야 하는가</td><td>"a Korean woman in her 20s holding a coffee cup"</td></tr>
+          <tr><td>2</td><td><strong>구도 (Composition)</strong></td><td>어디에 어떻게 배치되는가</td><td>"centered, rule of thirds, close-up portrait"</td></tr>
+          <tr><td>3</td><td><strong>스타일 (Style)</strong></td><td>어떤 시각적 느낌인가</td><td>"minimalist, flat design, editorial photography"</td></tr>
+          <tr><td>4</td><td><strong>색감 (Color)</strong></td><td>색상 팔레트</td><td>"muted earth tones, navy and gold, monochrome"</td></tr>
+          <tr><td>5</td><td><strong>조명 (Lighting)</strong></td><td>빛의 방향과 분위기</td><td>"soft natural light, golden hour, studio rim light"</td></tr>
+          <tr><td>6</td><td><strong>텍스트 (Text)</strong></td><td>이미지 안에 들어갈 글자</td><td>"title text '시선의 경계' in bold sans-serif"</td></tr>
+          <tr><td>7</td><td><strong>기술 사양 (Tech Spec)</strong></td><td>해상도, 비율, 용도</td><td>"4K, 16:9 aspect ratio, print-ready"</td></tr>
+        </tbody>
+      </table>
+
+      <h4>프롬프트 공식</h4>
+      <div class="diagram-box">[주제] + [구도/배치] + [스타일] + [색감] + [조명] + [텍스트] + [기술 사양]</div>
+
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>A minimalist poster design [스타일] featuring abstract geometric shapes
+[주제] arranged diagonally across the frame [구도]. Color palette of
+deep navy, white, and metallic gold accents [색감]. Soft gradient
+lighting from top-left [조명]. Bold Korean title "시선의 경계" centered
+at the top [텍스트]. 4K resolution, vertical A2 poster format [기술 사양].</div>
+    </div>
+
+    <!-- 스타일 키워드 사전 -->
+    <div class="sub-section">
+      <h3>스타일 키워드 사전 — 시각디자인 전공자용</h3>
+
+      <h4>사진/포토그래피 스타일</h4>
+      <table class="keyword-table">
+        <thead><tr><th>키워드</th><th>결과</th></tr></thead>
+        <tbody>
+          <tr><td><code>editorial photography</code></td><td>잡지 에디토리얼 느낌</td></tr>
+          <tr><td><code>product photography, white background</code></td><td>깔끔한 제품 촬영</td></tr>
+          <tr><td><code>street photography, candid</code></td><td>자연스러운 거리 사진</td></tr>
+          <tr><td><code>fashion photography, high-end</code></td><td>하이엔드 패션 화보</td></tr>
+          <tr><td><code>architectural photography</code></td><td>건축 사진</td></tr>
+          <tr><td><code>flat lay photography</code></td><td>위에서 내려다본 배치</td></tr>
+          <tr><td><code>cinematic still, anamorphic lens</code></td><td>영화적 스틸컷</td></tr>
+          <tr><td><code>shot on Hasselblad, medium format</code></td><td>중형 카메라 질감</td></tr>
+        </tbody>
+      </table>
+
+      <h4>그래픽/일러스트 스타일</h4>
+      <table class="keyword-table">
+        <thead><tr><th>키워드</th><th>결과</th></tr></thead>
+        <tbody>
+          <tr><td><code>flat design, vector style</code></td><td>플랫 벡터</td></tr>
+          <tr><td><code>isometric illustration</code></td><td>아이소메트릭</td></tr>
+          <tr><td><code>line art, minimal</code></td><td>라인 드로잉</td></tr>
+          <tr><td><code>watercolor illustration</code></td><td>수채화</td></tr>
+          <tr><td><code>paper cut-out style, layered</code></td><td>페이퍼 컷아웃</td></tr>
+          <tr><td><code>risograph print, grain texture</code></td><td>리소그래프 인쇄</td></tr>
+          <tr><td><code>screen print, limited color</code></td><td>실크스크린</td></tr>
+          <tr><td><code>collage, mixed media</code></td><td>콜라주</td></tr>
+          <tr><td><code>3D render, clay material</code></td><td>클레이 3D</td></tr>
+          <tr><td><code>glassmorphism, frosted glass</code></td><td>글래스모피즘</td></tr>
+          <tr><td><code>brutalist design</code></td><td>브루탈리즘</td></tr>
+        </tbody>
+      </table>
+
+      <h4>파인아트 스타일</h4>
+      <table class="keyword-table">
+        <thead><tr><th>키워드</th><th>결과</th></tr></thead>
+        <tbody>
+          <tr><td><code>oil painting, impasto technique</code></td><td>유화 임파스토</td></tr>
+          <tr><td><code>in the style of Bauhaus</code></td><td>바우하우스</td></tr>
+          <tr><td><code>Swiss design, International Typographic Style</code></td><td>스위스 타이포그래피</td></tr>
+          <tr><td><code>Art Deco, geometric patterns</code></td><td>아르데코</td></tr>
+          <tr><td><code>Japanese woodblock print, ukiyo-e</code></td><td>우키요에</td></tr>
+          <tr><td><code>Korean ink wash painting, 수묵화</code></td><td>수묵화</td></tr>
+        </tbody>
+      </table>
+
+      <h4>분위기/무드</h4>
+      <table class="keyword-table">
+        <thead><tr><th>키워드</th><th>결과</th></tr></thead>
+        <tbody>
+          <tr><td><code>ethereal, dreamy</code></td><td>몽환적</td></tr>
+          <tr><td><code>moody, dramatic</code></td><td>무거운 분위기</td></tr>
+          <tr><td><code>clean, sophisticated</code></td><td>깔끔하고 세련된</td></tr>
+          <tr><td><code>vibrant, energetic</code></td><td>활기찬</td></tr>
+          <tr><td><code>nostalgic, retro</code></td><td>레트로 향수</td></tr>
+          <tr><td><code>futuristic, sci-fi</code></td><td>미래지향적</td></tr>
+          <tr><td><code>organic, natural</code></td><td>자연스러운</td></tr>
+          <tr><td><code>luxurious, premium</code></td><td>고급스러운</td></tr>
+        </tbody>
+      </table>
+
+      <h4>조명 키워드 상세</h4>
+      <table class="keyword-table">
+        <thead><tr><th>키워드</th><th>효과</th><th>추천 용도</th></tr></thead>
+        <tbody>
+          <tr><td><code>soft natural light</code></td><td>부드러운 자연광</td><td>인물, 제품</td></tr>
+          <tr><td><code>golden hour lighting</code></td><td>따뜻한 황금빛</td><td>감성적 장면</td></tr>
+          <tr><td><code>studio lighting, three-point</code></td><td>스튜디오 3점 조명</td><td>제품, 인물</td></tr>
+          <tr><td><code>rim light, backlit</code></td><td>역광, 윤곽광</td><td>드라마틱한 실루엣</td></tr>
+          <tr><td><code>neon lighting, colorful</code></td><td>네온 조명</td><td>사이버펑크, 나이트</td></tr>
+          <tr><td><code>overhead light, top-down</code></td><td>위에서 내려오는 빛</td><td>음식, 플랫레이</td></tr>
+          <tr><td><code>volumetric lighting, god rays</code></td><td>볼류메트릭 빛줄기</td><td>신비로운 분위기</td></tr>
+          <tr><td><code>low-key lighting, chiaroscuro</code></td><td>명암 대비 강한</td><td>아트, 드라마</td></tr>
+          <tr><td><code>diffused overcast light</code></td><td>흐린 날 부드러운 빛</td><td>패션, 미니멀</td></tr>
+        </tbody>
+      </table>
+
+      <h4>구도/카메라 키워드</h4>
+      <table class="keyword-table">
+        <thead><tr><th>키워드</th><th>효과</th></tr></thead>
+        <tbody>
+          <tr><td><code>close-up</code>, <code>extreme close-up</code></td><td>클로즈업</td></tr>
+          <tr><td><code>medium shot</code>, <code>full body shot</code></td><td>미디엄 / 풀바디</td></tr>
+          <tr><td><code>bird's eye view</code>, <code>top-down</code></td><td>조감도</td></tr>
+          <tr><td><code>low angle</code>, <code>worm's eye view</code></td><td>로우앵글 (위압적)</td></tr>
+          <tr><td><code>Dutch angle</code>, <code>tilted frame</code></td><td>기울어진 프레임 (긴장감)</td></tr>
+          <tr><td><code>wide angle</code>, <code>panoramic</code></td><td>와이드</td></tr>
+          <tr><td><code>symmetrical composition</code></td><td>대칭 구도</td></tr>
+          <tr><td><code>rule of thirds</code></td><td>삼분법</td></tr>
+          <tr><td><code>negative space, minimal</code></td><td>여백 활용</td></tr>
+          <tr><td><code>centered composition</code></td><td>중앙 정렬</td></tr>
+          <tr><td><code>depth of field, bokeh</code></td><td>아웃포커스 보케</td></tr>
+        </tbody>
+      </table>
+
+      <h4>흔한 실수 &amp; 해결법</h4>
+      <table class="data-table">
+        <thead><tr><th>❌ 실수</th><th>✅ 해결</th></tr></thead>
+        <tbody>
+          <tr><td>"예쁜 포스터"</td><td>→ 구체적 스타일/색감/구도 지정</td></tr>
+          <tr><td>"좋은 느낌으로"</td><td>→ "clean, sophisticated, minimalist"</td></tr>
+          <tr><td>한 문장에 모든 것</td><td>→ 요소별로 끊어서 작성</td></tr>
+          <tr><td>모호한 색상 ("밝은 색")</td><td>→ "pastel pink #FFB6C1, soft mint #98FB98"</td></tr>
+          <tr><td>스타일 혼재 ("사실적이면서 만화풍")</td><td>→ 하나의 스타일을 명확히 선택</td></tr>
+          <tr><td>텍스트 지정 없이 "글자 넣어줘"</td><td>→ 정확한 문구, 폰트 스타일, 위치 지정</td></tr>
+          <tr><td>해상도/비율 미지정</td><td>→ "4K, 3:4 vertical, print-ready" 명시</td></tr>
+        </tbody>
+      </table>
+
+      <h4>레벨업: 반복 정제 (Iterative Refinement)</h4>
+      <p>좋은 이미지는 한 번에 나오지 않는다. <strong>반복 수정</strong>이 핵심이다.</p>
+      <div class="diagram-box">Round 1: 전체 구도와 분위기 잡기
+  "Minimalist poster, navy and gold, geometric shapes, 4K"
+  → 결과 확인: 구도는 좋은데 색감이 너무 어둡다
+
+Round 2: 색감 조정
+  "같은 구도인데, gold를 더 밝게, 배경을 off-white로 바꿔줘"
+  → 결과 확인: 색감은 좋은데 텍스트가 필요하다
+
+Round 3: 텍스트 추가
+  "한글 타이틀 '시선의 경계'를 상단 중앙에 bold sans-serif로 추가"
+  → 결과 확인: 거의 완성, 세부 조정
+
+Round 4: 최종 정제
+  "타이틀 크기를 20% 키우고, 하단에 작은 영문 서브타이틀 추가"
+  → 완성!</div>
+
+      <div class="tip-box">
+        <strong>실무 팁</strong>
+        <p>처음부터 완벽한 프롬프트를 쓰려 하지 마라. <strong>대략적인 방향 → 점진적 수정</strong>이 훨씬 효율적이다. 이것이 실제 디자인 프로세스(스케치 → 시안 → 정제)와 동일한 흐름이다.</p>
+      </div>
+    </div>
+
+    <!-- 범용 프롬프트 원칙 -->
+    <div class="sub-section">
+      <h3>모델이 바뀌어도 남는 노하우 — 범용 프롬프트 원칙</h3>
+      <p>Nano Banana, Midjourney, GPT Image, FLUX — 도구는 6개월마다 바뀐다. 하지만 <strong>좋은 프롬프트를 쓰는 능력은 어떤 모델에서든 통한다.</strong></p>
+
+      <div class="full-width-img">
+        <img src="images/design-student.png" alt="AI 도구로 작업 중인 디자인 전공 학생">
+      </div>
+
+      <!-- 원칙 1 -->
+      <div class="part-card">
+        <span class="part-number">원칙 1</span>
+        <h3>시각적 사고를 글로 번역하라 — 디자이너의 최대 무기</h3>
+        <p style="font-size:0.9rem; color:#555; line-height:1.7;">디자이너가 비전공자보다 AI를 잘 쓸 수 있는 이유:</p>
+        <div class="diagram-box">비전공자의 머릿속:  "멋진 포스터"  →  프롬프트: "멋진 포스터"
+                    (이미지 없음)       (정보 없음)
+
+디자이너의 머릿속:  구도, 색감, 타이포, 여백, 시선 흐름
+                    →  프롬프트: 이 모든 걸 구체적으로 서술</div>
+
+        <table class="keyword-table">
+          <thead><tr><th>디자인 지식</th><th>프롬프트로 번역하면</th></tr></thead>
+          <tbody>
+            <tr><td><strong>그리드 시스템</strong></td><td>"centered composition, aligned to thirds, balanced whitespace"</td></tr>
+            <tr><td><strong>색채학</strong></td><td>"complementary colors: deep navy against warm amber, 70-20-10 rule"</td></tr>
+            <tr><td><strong>타이포그래피</strong></td><td>"large bold sans-serif title, small light-weight body text, clear hierarchy"</td></tr>
+            <tr><td><strong>시선 흐름</strong></td><td>"eye flow from top-left title → center visual → bottom-right CTA"</td></tr>
+            <tr><td><strong>여백의 미</strong></td><td>"generous negative space around the subject, breathing room, uncluttered"</td></tr>
+            <tr><td><strong>대비와 강조</strong></td><td>"high contrast between foreground subject and muted background"</td></tr>
+            <tr><td><strong>질감과 물성</strong></td><td>"matte paper texture, soft grain, tactile organic feel"</td></tr>
+          </tbody>
+        </table>
+
+        <div class="quote-box">
+          <p>"프롬프트 엔지니어링은 결국 <strong>시각 언어를 텍스트 언어로 번역하는 것</strong>이다. 시각 언어를 가장 잘 아는 사람이 시각디자인 전공자다. 여러분이 이미 가진 지식이 곧 AI 시대의 경쟁력이다."</p>
+        </div>
+      </div>
+
+      <!-- 원칙 2 -->
+      <div class="part-card">
+        <span class="part-number">원칙 2</span>
+        <h3>빼는 것이 더하는 것보다 중요하다 — 네거티브 프롬프트 사고법</h3>
+        <table class="keyword-table">
+          <thead><tr><th>모델</th><th>네거티브 프롬프트 방법</th></tr></thead>
+          <tbody>
+            <tr><td>Midjourney</td><td><code>--no text, --no watermark</code></td></tr>
+            <tr><td>Stable Diffusion / FLUX</td><td><code>negative_prompt:</code> 파라미터</td></tr>
+            <tr><td>Nano Banana / GPT Image</td><td>프롬프트 안에 "without ~", "no ~" 명시</td></tr>
+            <tr><td>모든 모델 공통</td><td>"avoid ~", "do not include ~"</td></tr>
+          </tbody>
+        </table>
+        <div class="prompt-box">
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>Without: watermark, text overlay, blurry, low quality,
+distorted hands, extra fingers, cropped, border, frame,
+logo, signature, noise, grain (unless intentional)</div>
+        <div class="tip-box">
+          <strong>디자이너 팁</strong>
+          <p>AI가 자꾸 넣는 원치 않는 요소(워터마크, 이상한 텍스트, 프레임)를 알아두고 선제적으로 빼라. <strong>"깨끗한 캔버스"를 확보한 뒤 원하는 요소만 넣는 것</strong>이 효율적이다.</p>
+        </div>
+      </div>
+
+      <!-- 원칙 3 -->
+      <div class="part-card">
+        <span class="part-number">원칙 3</span>
+        <h3>프롬프트에도 "레이어"가 있다</h3>
+        <p style="font-size:0.9rem; color:#555;">포토샵에서 레이어를 쌓듯, 프롬프트도 레이어로 사고하면 제어력이 올라간다.</p>
+        <div class="diagram-box">┌─────────────────────────────────────┐
+│  Layer 5: 기술 사양                  │  "4K, 3:4, print-ready"
+├─────────────────────────────────────┤
+│  Layer 4: 분위기/무드                │  "sophisticated, calm, premium"
+├─────────────────────────────────────┤
+│  Layer 3: 조명 + 색감               │  "soft diffused light, navy &amp; gold"
+├─────────────────────────────────────┤
+│  Layer 2: 구도 + 배치               │  "centered, negative space, eye flow"
+├─────────────────────────────────────┤
+│  Layer 1: 주제 + 스타일             │  "minimalist poster, geometric shapes"
+└─────────────────────────────────────┘</div>
+        <ul>
+          <li>결과가 안 나올 때 → 어느 레이어가 문제인지 파악 → 그 레이어만 수정</li>
+          <li>한 번에 모든 레이어를 바꾸면 뭐가 문제였는지 모른다</li>
+          <li><strong>한 번에 하나의 레이어만 조정</strong> = 디자인의 A/B 테스트</li>
+        </ul>
+      </div>
+
+      <!-- 원칙 4 -->
+      <div class="part-card">
+        <span class="part-number">원칙 4</span>
+        <h3>구체성의 스펙트럼</h3>
+        <div class="diagram-box">추상적 ◄─────────────────────────────────► 구체적
+
+20%                50%                   90%
+"dreamy            "dreamy portrait       "Close-up portrait of a
+portrait"           of a woman,            Korean woman in her 20s,
+                    soft pastel            soft smile, wearing a cream
+                    colors,                knit sweater. Pastel pink
+                    natural light"         background. Shot on 85mm
+                                           lens, f/1.8 shallow depth
+                                           of field. Soft window
+                                           light from camera-left.
+                                           Subtle warm color grading."</div>
+        <table class="data-table">
+          <thead><tr><th>구체성 수준</th><th>언제 쓰나</th></tr></thead>
+          <tbody>
+            <tr><td><strong>20~30% (추상적)</strong></td><td>영감 탐색, 예상치 못한 결과를 원할 때, 브레인스토밍</td></tr>
+            <tr><td><strong>50~60% (중간)</strong></td><td>방향은 정했지만 AI의 해석 여지를 남기고 싶을 때</td></tr>
+            <tr><td><strong>80~90% (구체적)</strong></td><td>머릿속에 정확한 이미지가 있을 때, 최종 시안</td></tr>
+          </tbody>
+        </table>
+        <div class="tip-box">
+          <strong>프로의 워크플로우</strong>
+          <p><strong>추상적으로 시작 → 마음에 드는 방향 발견 → 점점 구체화.</strong> 처음부터 90%로 쓰면 AI의 창의적 해석을 놓친다. 처음엔 넓게, 나중에 좁게.</p>
+        </div>
+      </div>
+
+      <!-- 원칙 5 -->
+      <div class="part-card">
+        <span class="part-number">원칙 5</span>
+        <h3>"같은 뜻, 다른 단어"가 결과를 바꾼다 — 동의어 실험</h3>
+        <table class="keyword-table">
+          <thead><tr><th>개념</th><th>버전 A</th><th>버전 B</th><th>차이</th></tr></thead>
+          <tbody>
+            <tr><td>밝은</td><td><code>bright</code></td><td><code>luminous</code></td><td>bright=선명, luminous=은은한 빛</td></tr>
+            <tr><td>오래된</td><td><code>old</code></td><td><code>vintage</code> / <code>antique</code> / <code>weathered</code></td><td>뉘앙스 전부 다름</td></tr>
+            <tr><td>부드러운</td><td><code>soft</code></td><td><code>gentle</code> / <code>delicate</code> / <code>subtle</code></td><td>soft=촉각, gentle=감성, delicate=섬세</td></tr>
+            <tr><td>어두운</td><td><code>dark</code></td><td><code>moody</code> / <code>noir</code> / <code>shadowy</code> / <code>dim</code></td><td>각각 다른 분위기</td></tr>
+            <tr><td>깨끗한</td><td><code>clean</code></td><td><code>minimal</code> / <code>pristine</code> / <code>polished</code></td><td>미니멀 vs 새것 vs 광택</td></tr>
+          </tbody>
+        </table>
+        <div class="tip-box">
+          <strong>실습 과제</strong>
+          <p><strong>같은 프롬프트에서 형용사 1개만 바꿔보기.</strong> "soft"를 "gentle"로, "bright"를 "luminous"로. 결과가 어떻게 달라지는지 관찰하는 것이 프롬프트 감각을 키우는 최고의 훈련이다.</p>
+        </div>
+      </div>
+
+      <!-- 원칙 6 -->
+      <div class="part-card">
+        <span class="part-number">원칙 6</span>
+        <h3>참조점(Anchor)을 활용하라</h3>
+        <p style="font-size:0.9rem; color:#555;">AI에게 추상적 지시 대신 <strong>구체적 참조점</strong>을 주면 정확도가 극적으로 올라간다.</p>
+        <table class="keyword-table">
+          <thead><tr><th>참조점 유형</th><th>예시</th><th>효과</th></tr></thead>
+          <tbody>
+            <tr><td><strong>작가/감독 참조</strong></td><td>"in the style of Wes Anderson color palette"</td><td>파스텔+대칭</td></tr>
+            <tr><td><strong>시대 참조</strong></td><td>"1960s Swiss poster design"</td><td>특정 시대 미감</td></tr>
+            <tr><td><strong>매체 참조</strong></td><td>"looks like a Vogue Korea editorial spread"</td><td>매거진 퀄리티</td></tr>
+            <tr><td><strong>소재 참조</strong></td><td>"printed on thick cotton paper with letterpress"</td><td>물성 + 질감</td></tr>
+            <tr><td><strong>카메라/렌즈 참조</strong></td><td>"shot on Fujifilm X-T5, 35mm f/1.4"</td><td>특정 색감+보케</td></tr>
+            <tr><td><strong>인쇄 기법 참조</strong></td><td>"risograph two-color print, slight misregistration"</td><td>인쇄 질감</td></tr>
+          </tbody>
+        </table>
+        <div class="prompt-box">
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>❌ "레트로 느낌 포스터"
+✅ "1970s Polish film poster style, limited color silkscreen,
+    hand-drawn typography, bold geometric shapes"</div>
+        <div class="warning-box">
+          <strong>주의사항</strong>
+          <p>실존 작가 이름을 쓸 때는 <strong>스타일 참조</strong>임을 명확히 하라. "by Saul Bass"보다 "inspired by the graphic style of Saul Bass-era film posters"가 윤리적으로도, 결과적으로도 낫다.</p>
+        </div>
+      </div>
+
+      <!-- 원칙 7 -->
+      <div class="part-card">
+        <span class="part-number">원칙 7</span>
+        <h3>프롬프트 디버깅 — 원하는 결과가 안 나올 때</h3>
+        <div class="diagram-box">문제 진단 플로우차트:
+
+결과가 마음에 안 든다
+├─ 주제가 틀렸다 → 주제 묘사를 더 구체적으로
+├─ 스타일이 틀렸다 → 스타일 키워드 교체 (동의어 실험)
+├─ 구도가 틀렸다 → 카메라/구도 키워드 추가
+├─ 색감이 틀렸다 → 구체적 색상명/헥스코드 사용
+├─ 불필요한 요소가 있다 → 네거티브 프롬프트 추가
+├─ 전체적으로 품질이 낮다 → 품질 부스터 키워드 추가
+└─ 뭐가 문제인지 모르겠다 → 프롬프트를 절반으로 줄여서 테스트</div>
+        <h5>품질 부스터 키워드 (대부분의 모델에서 작동):</h5>
+        <div class="prompt-box">
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>high quality, highly detailed, professional, award-winning,
+masterful, sharp focus, well-composed, balanced</div>
+        <p style="font-size:0.88rem; color:#555;"><strong>최후의 수단: 절반으로 줄이기</strong> — 프롬프트가 너무 길면 AI가 요소 간 충돌을 일으킨다. 프롬프트를 반으로 줄여서 기본 결과를 확인한 뒤, 하나씩 다시 추가하며 어느 지점에서 품질이 떨어지는지 찾는다.</p>
+      </div>
+
+      <!-- 원칙 8 -->
+      <div class="part-card">
+        <span class="part-number">원칙 8</span>
+        <h3>모델 간 프롬프트 이식법</h3>
+        <table class="data-table">
+          <thead><tr><th>요소</th><th>Nano Banana</th><th>Midjourney</th><th>GPT Image</th></tr></thead>
+          <tbody>
+            <tr><td>프롬프트 언어</td><td>영어 권장 (한국어도 가능)</td><td>영어 필수</td><td>한국어도 잘 이해</td></tr>
+            <tr><td>프롬프트 길이</td><td>길어도 OK (64K 컨텍스트)</td><td>짧고 키워드 중심</td><td>대화체, 자연어 OK</td></tr>
+            <tr><td>스타일 지정</td><td>키워드 나열</td><td><code>--style</code>, <code>--stylize</code> 파라미터</td><td>자연어 설명</td></tr>
+            <tr><td>비율 지정</td><td>프롬프트 내 텍스트</td><td><code>--ar 16:9</code></td><td>프롬프트 내 텍스트</td></tr>
+            <tr><td>네거티브</td><td>"without ~" 텍스트</td><td><code>--no ~</code></td><td>"~는 빼줘" 자연어</td></tr>
+            <tr><td>레퍼런스</td><td>이미지 최대 14장 업로드</td><td><code>--sref</code>, <code>--cref</code> URL</td><td>이미지 업로드</td></tr>
+            <tr><td>강점</td><td>편집, 텍스트, 속도</td><td>예술적 스타일, 미감</td><td>지시 이해도, 대화형 수정</td></tr>
+          </tbody>
+        </table>
+        <h5>이식 전략:</h5>
+        <ol style="font-size: 0.88rem; color: #555; line-height: 1.7;">
+          <li><strong>핵심 골격은 유지</strong>: 주제 + 스타일 + 색감 + 구도 = 모든 모델 공통</li>
+          <li><strong>모델별 문법만 변환</strong>: 파라미터 형식, 길이, 언어만 조정</li>
+          <li><strong>같은 컨셉을 2~3개 모델에 넣어보기</strong>: 각 모델의 해석 차이에서 배움</li>
+        </ol>
+        <div class="prompt-box">
+          <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>[공통 골격]
+"Minimalist exhibition poster, geometric shapes,
+navy and gold, Swiss typography style, 4K"
+
+[Nano Banana]
+위 골격 + 레퍼런스 이미지 업로드 + 한글 텍스트 지정
+
+[Midjourney]
+위 골격 + --ar 2:3 --stylize 200 --no watermark text
+
+[GPT Image]
+"전시 포스터를 만들어줘. 미니멀한 기하학적 디자인,
+네이비와 골드 컬러, 스위스 타이포그래피 스타일로.
+세로 비율, 4K 해상도."</div>
+      </div>
+
+      <!-- 원칙 9 -->
+      <div class="part-card">
+        <span class="part-number">원칙 9</span>
+        <h3>프롬프트 라이브러리를 만들어라</h3>
+        <p style="font-size:0.9rem; color:#555;">프로 디자이너가 무드보드와 레퍼런스 폴더를 관리하듯, <strong>잘 된 프롬프트를 수집하고 분류</strong>하는 습관이 가장 큰 차이를 만든다.</p>
+        <div class="diagram-box">📁 내 프롬프트 라이브러리
+├── 📂 포스터
+│   ├── 전시 포스터_미니멀.txt
+│   ├── 이벤트 포스터_다이내믹.txt
+│   └── 영화 포스터_시네마틱.txt
+├── 📂 제품
+│   ├── 화장품_클린뷰티.txt
+│   ├── 전자기기_프리미엄.txt
+│   └── 식음료_내추럴.txt
+├── 📂 브랜딩
+│   ├── 로고 목업_미니멀.txt
+│   └── 패키지_고급.txt
+├── 📂 스타일 프리셋
+│   ├── 조명_골든아워.txt
+│   ├── 조명_스튜디오.txt
+│   ├── 색감_파스텔.txt
+│   └── 색감_모노크롬.txt
+└── 📂 네거티브 프리셋
+    ├── 기본_클린업.txt
+    └── 사진_퀄리티업.txt</div>
+        <table class="data-table">
+          <thead><tr><th>저장할 것</th><th>이유</th></tr></thead>
+          <tbody>
+            <tr><td>결과가 좋았던 프롬프트 원문</td><td>재사용 &amp; 변형</td></tr>
+            <tr><td>어떤 키워드를 바꿨더니 좋아졌는지</td><td>학습 기록</td></tr>
+            <tr><td>모델별 차이점 메모</td><td>모델 전환 시 참고</td></tr>
+            <tr><td>자주 쓰는 스타일 프리셋</td><td>효율화</td></tr>
+          </tbody>
+        </table>
+        <div class="tip-box">
+          <strong>핵심</strong>
+          <p><strong>프롬프트 라이브러리 = 디자이너의 AI 레퍼런스 북.</strong> 좋은 레퍼런스를 많이 가진 디자이너가 좋은 결과를 내듯, 좋은 프롬프트를 많이 가진 디자이너가 AI를 잘 쓴다.</p>
+        </div>
+      </div>
+
+      <!-- 원칙 10 -->
+      <div class="part-card">
+        <span class="part-number">원칙 10</span>
+        <h3>디자이너의 눈 — AI가 절대 대체 못하는 것</h3>
+        <div class="diagram-box">AI가 생성 → 디자이너가 판단
+
+      AI 생성물 10개
+      ┌──┬──┬──┬──┬──┬──┬──┬──┬──┬──┐
+      │ 1│ 2│ 3│ 4│ 5│ 6│ 7│ 8│ 9│10│
+      └──┴──┴──┴──┴──┴──┴──┴──┴──┴──┘
+                    │
+          디자이너의 눈 (큐레이션)
+                    │
+              ┌─────┴─────┐
+              │  3번 선택   │  ← 이 판단이 핵심 가치
+              │  + 수정 지시│
+              └───────────┘</div>
+        <p style="font-size:0.9rem; color:#555;"><strong>AI는 "생성"을 하고, 디자이너는 "선택"과 "판단"을 한다.</strong></p>
+        <table class="data-table">
+          <thead><tr><th>디자이너만 할 수 있는 것</th><th>왜 AI가 못하는가</th></tr></thead>
+          <tbody>
+            <tr><td>"이 시안이 브랜드에 맞는지" 판단</td><td>브랜드 맥락 이해 부족</td></tr>
+            <tr><td>"이 구도가 시선을 잘 이끄는지" 평가</td><td>인간 시지각 이해 한계</td></tr>
+            <tr><td>"이 색감이 타겟 고객에게 먹히는지" 결정</td><td>마케팅 맥락 부재</td></tr>
+            <tr><td>"이건 트렌디한데 1년 뒤에도 괜찮을지" 예측</td><td>시대 감각 부족</td></tr>
+            <tr><td>"클라이언트가 진짜 원하는 건 이거다" 해석</td><td>비언어적 소통 불가</td></tr>
+            <tr><td>10개 중 "이게 제일 낫다"고 고르기</td><td>미적 판단 기준 부족</td></tr>
+          </tbody>
+        </table>
+        <div class="quote-box">
+          <p>"AI 시대에 디자이너의 가치는 '만드는 손'이 아니라 <strong>'고르는 눈'</strong>에 있다. 그 눈은 디자인 교육과 실무 경험에서만 길러진다. 여러분이 지금 배우고 있는 것이 바로 그것이다."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Nano Banana 전용 팁 -->
+    <div class="sub-section">
+      <h3>Nano Banana 전용 프롬프팅 팁</h3>
+
+      <h4>레퍼런스 이미지 활용법 (Nano Banana의 최대 강점)</h4>
+      <table class="data-table">
+        <thead><tr><th>전략</th><th>방법</th><th>효과</th></tr></thead>
+        <tbody>
+          <tr><td><strong>스타일 트랜스퍼</strong></td><td>좋아하는 디자인 레퍼런스 업로드 + "이 스타일로 [새 주제] 만들어줘"</td><td>스타일 일관성</td></tr>
+          <tr><td><strong>컬러 팔레트 지정</strong></td><td>컬러칩/팔레트 이미지 업로드 + "이 색감으로"</td><td>정확한 색상</td></tr>
+          <tr><td><strong>로고/브랜드 적용</strong></td><td>로고 파일 업로드 + "이 브랜드 아이덴티티로 배너 만들어줘"</td><td>브랜드 일관성</td></tr>
+          <tr><td><strong>레이아웃 참조</strong></td><td>레이아웃 스케치/와이어프레임 업로드 + "이 구도로 실제 디자인"</td><td>구도 제어</td></tr>
+          <tr><td><strong>캐릭터 시트</strong></td><td>캐릭터 정면/측면 업로드 + "이 캐릭터가 [장면]에 있는 모습"</td><td>캐릭터 일관성</td></tr>
+        </tbody>
+      </table>
+
+      <h4>한글 텍스트 렌더링 (Nano Banana Pro 특화)</h4>
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>✅ 좋은 예:
+"포스터 상단 중앙에 '디자인의 미래'라는 한글 텍스트를
+bold sans-serif 스타일로, 네이비 컬러로 크게 배치.
+자간은 넓게, 행간은 좁게."
+
+❌ 나쁜 예:
+"한글 텍스트 넣어줘"</div>
+
+      <table class="data-table">
+        <thead><tr><th>텍스트 프롬프트 요소</th><th>지정해야 할 것</th></tr></thead>
+        <tbody>
+          <tr><td><strong>문구</strong></td><td>정확한 텍스트 (따옴표로 감싸기)</td></tr>
+          <tr><td><strong>위치</strong></td><td>상단/중앙/하단/좌측/우측</td></tr>
+          <tr><td><strong>크기</strong></td><td>크게/작게/화면의 1/3 등</td></tr>
+          <tr><td><strong>폰트 느낌</strong></td><td>bold, thin, serif, sans-serif, handwritten</td></tr>
+          <tr><td><strong>색상</strong></td><td>구체적 색상명 또는 헥스코드</td></tr>
+          <tr><td><strong>효과</strong></td><td>그림자, 외곽선, 그라데이션, 3D 등</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 실전 프롬프트 템플릿 5종 -->
+    <div class="sub-section">
+      <h3>실전 프롬프트 템플릿 5종</h3>
+
+      <h4>1. 제품 광고 이미지</h4>
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>Product photography of [제품명] on a [배경 설명].
+Shot from [각도]. [조명 설명].
+Clean, minimal composition with plenty of negative space.
+[브랜드 컬러] color accents.
+Text overlay: "[카피 문구]" in [폰트 스타일] at [위치].
+4K, 1:1 square format for Instagram.</div>
+
+      <h4>2. 이벤트/전시 포스터</h4>
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>[스타일] poster design for [이벤트명].
+Main visual: [주요 비주얼 요소 상세 묘사].
+Color palette: [색상 1], [색상 2], [색상 3].
+Typography: title "[제목]" in [폰트 스타일],
+subtitle "[부제]" in [폰트 스타일].
+Layout: [레이아웃 설명].
+[세로/가로] A2 poster format, print-ready resolution.</div>
+
+      <h4>3. SNS 배너/카드뉴스</h4>
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>Social media [배너/카드] design, [가로:세로 비율].
+Background: [배경 설명].
+Main element: [주요 요소].
+Text: "[메인 카피]" in large [폰트 스타일],
+"[서브 카피]" in smaller text below.
+Brand colors: [색상]. Clean, modern, scroll-stopping.</div>
+
+      <h4>4. 브랜드 아이덴티티 목업</h4>
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>Brand identity mockup showing [로고/제품명] applied to
+[목업 대상: business card, tote bag, signage, packaging].
+[스타일: minimal, luxurious, playful] aesthetic.
+[소재: matte paper, kraft paper, glossy] material.
+Overhead flat lay arrangement on [배경].
+Soft studio lighting, slight shadow.</div>
+
+      <h4>5. 캐릭터/마스코트</h4>
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>[스타일: cute, modern, geometric] character design of [캐릭터 설명].
+[표정/포즈] expression.
+Color scheme: [색상].
+Simple background: [배경].
+Consistent with [브랜드/프로젝트] visual identity.
+Full body, front-facing, centered composition.</div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- PART 3 -->
+<!-- ============================================================ -->
+<section id="part3" style="background: #fff;">
+  <div class="container">
+    <p class="section-label">Part 3</p>
+    <h2 class="section-title">AI 영상 — Seedance 2.0</h2>
+
+    <!-- 3-1 개요 -->
+    <div class="sub-section">
+      <h3>3-1. Seedance 2.0 개요</h3>
+      <p>ByteDance Seed 연구팀이 개발한 멀티모달 AI 영상 생성 모델. <strong>2026년 현재 AI 영상 벤치마크 1위</strong> (Artificial Analysis Video Arena)</p>
+      <div class="full-width-img">
+        <img src="images/seedance-example.jpg" alt="Seedance 2.0 AI 생성 영상 스틸프레임">
+      </div>
+      <table class="data-table">
+        <thead><tr><th>항목</th><th>스펙</th></tr></thead>
+        <tbody>
+          <tr><td>개발사</td><td>ByteDance (TikTok/CapCut 모회사)</td></tr>
+          <tr><td>출시</td><td>2026년 2월</td></tr>
+          <tr><td>최대 길이</td><td>15초</td></tr>
+          <tr><td>최대 해상도</td><td>1080p</td></tr>
+          <tr><td>입력</td><td>이미지 9개 + 영상 3개 + 오디오 3개 + 텍스트</td></tr>
+          <tr><td>특징</td><td><strong>네이티브 오디오 동시 생성</strong> (업계 최초 수준)</td></tr>
+          <tr><td>립싱크</td><td>8개+ 언어 지원 (한국어 포함)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3-2 핵심 차별점 -->
+    <div class="sub-section">
+      <h3>3-2. 핵심 차별점</h3>
+      <div class="key-points" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+        <div class="key-point">
+          <strong>디렉터 레벨 컨트롤</strong><br>
+          카메라 무빙 지정: 돌리줌, 랙포커스, 트래킹샷, POV 전환, 핸드헬드. 조명, 그림자, 캐릭터 모션 프롬프트로 직접 제어. 멀티샷 스토리텔링 가능.
+        </div>
+        <div class="key-point">
+          <strong>영상 + 오디오 동시 생성</strong><br>
+          별도 사운드 작업 없이 영상과 싱크된 오디오 자동 생성. 효과음, 배경음, 대사까지 동시 처리. 사운드 디자인 단계 대폭 간소화.
+        </div>
+        <div class="key-point">
+          <strong>멀티모달 입력</strong><br>
+          한 번의 생성에 이미지 + 영상 + 오디오 + 텍스트 동시 참조. 레퍼런스 기반 정밀 제어 가능.
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-3 경쟁 모델 비교 -->
+    <div class="sub-section">
+      <h3>3-3. 경쟁 모델 비교</h3>
+      <table class="data-table">
+        <thead><tr><th>항목</th><th>Seedance 2.0</th><th>Sora 2 (OpenAI)</th><th>Kling 3.0</th><th>Runway Gen-4.5</th></tr></thead>
+        <tbody>
+          <tr><td>벤치마크 순위</td><td><strong>1위</strong></td><td>3위</td><td>2위</td><td>4위</td></tr>
+          <tr><td>최대 길이</td><td>15초</td><td>~20초</td><td>~10초</td><td>~10초</td></tr>
+          <tr><td>오디오 동시생성</td><td>✅</td><td>❌</td><td>❌</td><td>❌</td></tr>
+          <tr><td>카메라 컨트롤</td><td>★★★★★</td><td>★★★★</td><td>★★★</td><td>★★★★</td></tr>
+          <tr><td>인체 동작</td><td>★★★★</td><td>★★★★</td><td>★★★★★</td><td>★★★</td></tr>
+          <tr><td>물리 시뮬레이션</td><td>★★★</td><td>★★★★★</td><td>★★★</td><td>★★★</td></tr>
+          <tr><td>추천 용도</td><td>종합 영상·광고</td><td>스토리 내러티브</td><td>액션/댄스</td><td>영화 후반작업</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 3-4 실무 활용 시나리오 -->
+    <div class="sub-section">
+      <h3>3-4. 디자인 실무 활용 시나리오</h3>
+      <div class="case-grid">
+        <div class="case-card">
+          <h4>시나리오 A: 브랜드 영상 프로토타이핑</h4>
+          <p>브랜드 이미지 + 무드보드 레퍼런스 업로드 → 카메라 무빙, 분위기 지정 → 15초 콘셉트 영상 생성 → 클라이언트 시안으로 제시 → 본 촬영 가이드로 활용</p>
+        </div>
+        <div class="case-card">
+          <h4>시나리오 B: 소셜 미디어 숏폼</h4>
+          <p>제품 사진 → 제품 소개 영상 자동 생성 → 오디오 동시 생성으로 BGM까지 원스톱. TikTok/Instagram Reels용 콘텐츠 빠른 제작.</p>
+        </div>
+        <div class="case-card">
+          <h4>시나리오 C: 포트폴리오 모션 그래픽</h4>
+          <p>포스터/일러스트 → 모션 그래픽으로 변환. 정적 디자인에 생동감 부여. 졸업 전시, 포트폴리오 강화.</p>
+        </div>
+        <div class="case-card">
+          <h4>시나리오 D: 이머시브 미디어 아트</h4>
+          <p>참조 이미지 + 오디오 기반 몰입형 영상 소스 생성. 공간 설치, 프로젝션 맵핑용 소재. TouchDesigner 등과 결합 가능.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3-5 접근 방법 -->
+    <div class="sub-section">
+      <h3>3-5. 접근 방법</h3>
+      <div class="tool-screenshot">
+        <img src="images/dreamina-ui.jpg" alt="Dreamina UI 인터페이스">
+        <div class="caption">Dreamina — Seedance 2.0 영상 생성 인터페이스</div>
+      </div>
+      <table class="data-table">
+        <thead><tr><th>플랫폼</th><th>접근성</th><th>비용</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Dreamina</strong> (dreamina.capcut.com)</td><td>글로벌 웹</td><td>월 ~$9.60부터</td></tr>
+          <tr><td><strong>CapCut Pro</strong></td><td>데스크톱/모바일</td><td>CapCut 구독에 포함</td></tr>
+          <tr><td>지멍/샤오윈취에 (중국)</td><td>중국 전용</td><td>무료 일일 크레딧</td></tr>
+        </tbody>
+      </table>
+
+      <div class="warning-box">
+        <strong>저작권 유의사항</strong>
+        <p>Seedance 2.0은 출시 직후 유명인/캐릭터 무단 활용 바이럴로 디즈니, MPA, 파라마운트 등에서 저작권 침해 중단 요청. 현재 IP 보호 워터마킹 강화됨. <strong>실습 시 저작권 있는 캐릭터/인물 사용 금지.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- PART 4 -->
+<!-- ============================================================ -->
+<section id="part4">
+  <div class="container">
+    <p class="section-label">Part 4</p>
+    <h2 class="section-title">실습 워크숍</h2>
+
+    <!-- 실습 1 -->
+    <div class="practice-card">
+      <div class="practice-num">1</div>
+      <h4>Nano Banana 2로 디자인 시안 만들기</h4>
+      <div class="practice-time">소요시간: 30분 | 준비물: Gemini 앱 접속 (무료 계정)</div>
+      <p style="font-size:0.9rem; color:#555; margin-bottom:1rem;"><strong>실습 과제</strong>: "한양여대 시각디자인과 졸업 전시 포스터" AI 시안 제작</p>
+      <div class="tool-screenshot" style="margin-bottom:1rem;">
+        <img src="images/gemini-app.jpg" alt="Gemini 앱 이미지 생성 인터페이스">
+        <div class="caption">Gemini 앱 — 이미지 생성 및 편집 인터페이스</div>
+      </div>
+
+      <table class="data-table">
+        <thead><tr><th>단계</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td>Step 1</td><td>Gemini 앱 접속 → 이미지 생성 모드</td></tr>
+          <tr><td>Step 2</td><td>간단한 프롬프트로 첫 이미지 생성</td></tr>
+          <tr><td>Step 3</td><td>프롬프트 정교화 — 스타일, 색감, 레이아웃 지정</td></tr>
+          <tr><td>Step 4</td><td>레퍼런스 이미지 업로드하여 스타일 가이드 적용</td></tr>
+          <tr><td>Step 5</td><td>한글 텍스트 포함된 포스터 시안 생성</td></tr>
+          <tr><td>Step 6</td><td>마음에 드는 시안 선택 → 편집 기능으로 세부 수정</td></tr>
+        </tbody>
+      </table>
+
+      <h5 style="margin-top:1.2rem; color: var(--walnut);">프롬프팅 팁:</h5>
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>Korean university graduation exhibition poster for Visual Design department.
+Title: "시선의 경계" in bold Korean typography.
+Style: minimalist, modern, sophisticated.
+Color palette: deep navy, white, gold accent.
+Include abstract geometric shapes representing the boundary between
+analog and digital design.
+4K resolution, print-ready quality.</div>
+    </div>
+
+    <!-- 실습 2 -->
+    <div class="practice-card">
+      <div class="practice-num">2</div>
+      <h4>Seedance 2.0으로 모션 만들기</h4>
+      <div class="practice-time">소요시간: 30분 | 준비물: Dreamina (dreamina.capcut.com) 접속</div>
+      <p style="font-size:0.9rem; color:#555; margin-bottom:1rem;"><strong>실습 과제</strong>: 실습 1에서 만든 포스터를 모션 그래픽으로 변환</p>
+      <div class="tool-screenshot" style="margin-bottom:1rem;">
+        <img src="images/dreamina-ui.jpg" alt="Dreamina 영상 생성 인터페이스">
+        <div class="caption">Dreamina — AI 영상 생성 인터페이스 (프롬프트 입력 → 영상 생성)</div>
+      </div>
+
+      <table class="data-table">
+        <thead><tr><th>단계</th><th>내용</th></tr></thead>
+        <tbody>
+          <tr><td>Step 1</td><td>Dreamina 접속 → 영상 생성 모드</td></tr>
+          <tr><td>Step 2</td><td>실습 1의 포스터 이미지 업로드</td></tr>
+          <tr><td>Step 3</td><td>카메라 무빙 지정 (슬로우 줌인, 패럴랙스 등)</td></tr>
+          <tr><td>Step 4</td><td>분위기/배경음 프롬프트 추가</td></tr>
+          <tr><td>Step 5</td><td>영상 생성 → 결과 확인</td></tr>
+          <tr><td>Step 6</td><td>프롬프트 수정하여 다른 버전 생성 → 비교</td></tr>
+        </tbody>
+      </table>
+
+      <h5 style="margin-top:1.2rem; color: var(--walnut);">프롬프팅 팁:</h5>
+      <div class="prompt-box">
+        <button class="copy-btn" onclick="copyPrompt(this)">Copy</button>Slow cinematic zoom into the poster. Geometric shapes gently rotate
+and shift. Subtle particle effects in gold. Camera: slow dolly zoom.
+Mood: elegant, sophisticated. Audio: ambient electronic, minimal.</div>
+    </div>
+
+    <!-- 실습 3 -->
+    <div class="practice-card">
+      <div class="practice-num">3</div>
+      <h4>통합 워크플로우 (이미지 → 영상)</h4>
+      <div class="practice-time">소요시간: 20분 (시간 여유 시)</div>
+      <div class="full-width-img" style="margin-bottom:1rem;">
+        <img src="images/motion-graphics.jpg" alt="모션 그래픽 영상 편집">
+      </div>
+      <ol style="font-size:0.9rem; color:#555; line-height:1.8; padding-left:1.2rem;">
+        <li>Nano Banana 2로 3장 시리즈 이미지 생성 (같은 캐릭터/스타일)</li>
+        <li>Seedance 2.0에 시리즈 이미지 업로드</li>
+        <li>연속 장면으로 15초 스토리 영상 생성</li>
+        <li>결과물 공유 및 피드백</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- PART 5 -->
+<!-- ============================================================ -->
+<section id="part5" style="background: #fff;">
+  <div class="container">
+    <p class="section-label">Part 5</p>
+    <h2 class="section-title">마무리 — 디자이너로서의 AI 전략</h2>
+
+    <!-- 5-1 경쟁력 -->
+    <div class="sub-section">
+      <h3>5-1. AI 시대 디자이너의 경쟁력</h3>
+      <div class="full-width-img" style="margin-bottom: 1.5rem;">
+        <img src="images/ai-creativity.jpg" alt="AI와 창의성의 결합">
+      </div>
+      <div class="diagram-box">❌ "AI가 대신해줄 텐데 디자인 배워서 뭐하지?"
+✅ "디자인을 아는 사람이 AI를 쓰면 아무도 못 따라온다"</div>
+      <table class="data-table">
+        <thead><tr><th>기존 경쟁력</th><th>AI 시대 추가 경쟁력</th></tr></thead>
+        <tbody>
+          <tr><td>시각적 감각</td><td>+ AI 프롬프트 설계 능력</td></tr>
+          <tr><td>타이포그래피</td><td>+ AI 텍스트 렌더링 최적화</td></tr>
+          <tr><td>레이아웃</td><td>+ AI 시안 대량 생성 → 큐레이션</td></tr>
+          <tr><td>브랜딩</td><td>+ AI 일관성 제어 (캐릭터, 스타일)</td></tr>
+          <tr><td>모션 그래픽</td><td>+ AI 영상 프로토타이핑</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 5-2 지금 바로 -->
+    <div class="sub-section">
+      <h3>5-2. 지금 바로 할 수 있는 3가지</h3>
+      <div class="key-points">
+        <div class="key-point">
+          <strong>1. Gemini 앱에서 매일 1장 생성해보기</strong><br>
+          프롬프트 감각 키우기
+        </div>
+        <div class="key-point">
+          <strong>2. 자기 작업물을 AI로 확장하기</strong><br>
+          정적 → 모션, 1장 → 시리즈
+        </div>
+        <div class="key-point">
+          <strong>3. 포트폴리오에 AI 협업 프로세스 포함하기</strong><br>
+          "AI+나"의 워크플로우 자체가 경쟁력
+        </div>
+      </div>
+    </div>
+
+    <!-- 5-3 추천 리소스 -->
+    <div class="sub-section" id="resources">
+      <h3>5-3. 추천 리소스</h3>
+      <div class="resources-grid">
+        <div class="resource-group">
+          <h4>AI 이미지</h4>
+          <a href="https://gemini.google.com" class="resource-link" target="_blank">Gemini 앱 — Nano Banana 2 무료 실습</a>
+          <a href="https://firefly.adobe.com" class="resource-link" target="_blank">Adobe Firefly — Nano Banana Pro + Adobe 통합</a>
+          <a href="https://aistudio.google.com" class="resource-link" target="_blank">Google AI Studio — API 기반 고급 활용</a>
+        </div>
+        <div class="resource-group">
+          <h4>AI 영상</h4>
+          <a href="https://dreamina.capcut.com" class="resource-link" target="_blank">Dreamina — Seedance 2.0 영상 생성</a>
+          <a href="https://www.capcut.com" class="resource-link" target="_blank">CapCut — Seedance 2.0 + 편집 통합</a>
+        </div>
+        <div class="resource-group">
+          <h4>참고 문서</h4>
+          <a href="https://blog.google/innovation-and-ai/technology/ai/nano-banana-2/" class="resource-link" target="_blank">Nano Banana 2 공식 (Google Blog)</a>
+          <a href="https://blog.google/innovation-and-ai/products/nano-banana-pro/" class="resource-link" target="_blank">Nano Banana Pro 공식 (Google Blog)</a>
+          <a href="https://seed.bytedance.com/en/seedance2_0" class="resource-link" target="_blank">Seedance 2.0 공식 (ByteDance)</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================ -->
+<!-- TIMETABLE -->
+<!-- ============================================================ -->
+<section id="timetable">
+  <div class="container">
+    <p class="section-label">Timetable</p>
+    <h2 class="section-title">강의 타임테이블 (3시간)</h2>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-time">00:00</div>
+        <div class="timeline-content">
+          <h4>Part 1 — 산업 현장의 AI 변화 <span class="timeline-tag tag-lecture">강의</span></h4>
+          <p>왜 시각디자인과에서 AI를? (40분)</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">00:40</div>
+        <div class="timeline-content">
+          <h4>Part 2 — Nano Banana 2 &amp; Pro 소개 <span class="timeline-tag tag-lecture">강의</span></h4>
+          <p>핵심 기능, 프롬프트 작성법 (30분)</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">01:10</div>
+        <div class="timeline-content">
+          <h4>실습 1 — Nano Banana 2로 포스터 시안 <span class="timeline-tag tag-practice">실습</span></h4>
+          <p>졸업 전시 포스터 AI 시안 제작 (30분)</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">01:40</div>
+        <div class="timeline-content">
+          <h4>휴식 <span class="timeline-tag tag-share">Break</span></h4>
+          <p>10분</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">01:50</div>
+        <div class="timeline-content">
+          <h4>Part 3 — Seedance 2.0 소개 <span class="timeline-tag tag-lecture">강의</span></h4>
+          <p>AI 영상 생성, 핵심 차별점 (20분)</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">02:10</div>
+        <div class="timeline-content">
+          <h4>실습 2 — Seedance 2.0으로 모션 만들기 <span class="timeline-tag tag-practice">실습</span></h4>
+          <p>포스터 → 모션 그래픽 변환 (30분)</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">02:40</div>
+        <div class="timeline-content">
+          <h4>실습 3 — 통합 워크플로우 <span class="timeline-tag tag-practice">실습</span></h4>
+          <p>이미지 → 영상 통합 (15분, 시간 여유 시)</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-time">02:55</div>
+        <div class="timeline-content">
+          <h4>Part 5 — 마무리 <span class="timeline-tag tag-share">공유</span></h4>
+          <p>AI 시대 디자이너 전략 (5분)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer>
+  <p>AI 이미지·영상 제작 — 시각디자인의 새로운 도구</p>
+  <p style="margin-top: 0.3rem;">한양여대 시각디자인과 특강 | 강사: 육대근</p>
+</footer>
+
+<!-- Scroll to top -->
+<button class="scroll-top" id="scrollTop" aria-label="맨 위로">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script>
+  // Nav scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('navLinks');
+  hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Scroll to top
+  const scrollTop = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollTop.classList.toggle('visible', window.scrollY > 400);
+  });
+  scrollTop.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  // Active nav link
+  const sections = document.querySelectorAll('section[id]');
+  const navItems = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(section => {
+      const top = section.offsetTop - 100;
+      if (window.scrollY >= top) current = section.getAttribute('id');
+    });
+    navItems.forEach(a => {
+      a.classList.remove('active');
+      if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+    });
+  });
+
+  // Copy prompt
+  function copyPrompt(btn) {
+    const box = btn.closest('.prompt-box');
+    const text = box.textContent.replace('Copy', '').trim();
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 1500);
+    });
+  }
+
+  // Accordion
+  document.querySelectorAll('.accordion-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+      const body = item.querySelector('.accordion-body');
+      const isOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.accordion-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.accordion-body').style.maxHeight = null;
+      });
+
+      if (!isOpen) {
+        item.classList.add('open');
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+</body>
+</html>
