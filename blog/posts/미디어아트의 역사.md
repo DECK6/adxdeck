@@ -21,8 +21,6 @@ status: completed
 
 # 미디어아트의 역사
 
-이 글은 1920년대 전위예술부터 2020년대 AI아트까지, 미디어아트를 장치의 연대기가 아니라 감각과 매체 조건을 다시 설계해 온 역사로 읽기 위해 정리한 블로그용 버전이다. 한국 미디어아트의 궤적과 핵심 이론 전환점까지 포함하되, 본문은 `## 12`까지로 한정해 한 번에 읽기 쉽게 다듬었다.
-
 ![History of Media Art cover](images/history-of-media-art-cover.svg)
 
 ## 1. 개요
@@ -302,4 +300,3 @@ AI아트는 결국 이미지 생성의 혁신이면서 동시에 미디어아트
 - 계보 압축: [[Marshall McLuhan]] → [[Jack Burnham]] → [[Rosalind Krauss]] → [[Lev Manovich]] → [[Karen Barad]].
 - 실천과 교차하는 키워드: [[Apparatus]], [[Aura]], [[Technical Image]], [[Database vs Narrative]], [[Cyborg]], [[post-media]].
 - 핵심 질문: 매체는 무엇을 확장하고, 장치는 무엇을 절단하며, 소프트웨어는 무엇을 자연화하고, AI는 무엇을 다시 배치하는가.
-
