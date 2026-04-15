@@ -1,0 +1,106 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="80" x2="1480" y2="820" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F4EFE7"/>
+      <stop offset="0.55" stop-color="#E8E0D5"/>
+      <stop offset="1" stop-color="#D7CBBB"/>
+    </linearGradient>
+    <linearGradient id="screenA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#79F5FF"/>
+      <stop offset="1" stop-color="#00A9C4"/>
+    </linearGradient>
+    <linearGradient id="screenB" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFB77D"/>
+      <stop offset="1" stop-color="#F05C3C"/>
+    </linearGradient>
+    <linearGradient id="screenC" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#203A5B"/>
+      <stop offset="1" stop-color="#0B1320"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="720" y1="250" x2="1440" y2="680" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0E243D"/>
+      <stop offset="0.45" stop-color="#0B96A6"/>
+      <stop offset="1" stop-color="#E35E41"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" stroke="#11243A" stroke-opacity="0.08" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+
+  <g opacity="0.12">
+    <circle cx="1280" cy="180" r="150" fill="#0D9FB5"/>
+    <circle cx="1360" cy="720" r="180" fill="#E26949"/>
+    <circle cx="360" cy="160" r="110" fill="#0B1B2D"/>
+  </g>
+
+  <g>
+    <path d="M740 660 C860 580 930 700 1030 620 C1120 548 1200 700 1300 600 C1360 540 1415 566 1460 530" stroke="url(#signal)" stroke-width="7" stroke-linecap="round"/>
+    <path d="M720 720 C840 648 938 754 1030 682 C1135 600 1232 742 1332 662 C1400 608 1440 620 1470 600" stroke="#16314D" stroke-opacity="0.55" stroke-width="3" stroke-linecap="round"/>
+    <path d="M760 300 C885 224 1010 382 1146 302 C1240 246 1324 298 1436 224" stroke="#E56A4C" stroke-opacity="0.72" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <g fill="#102237" opacity="0.9">
+    <rect x="195" y="620" width="420" height="32" rx="16"/>
+    <rect x="254" y="560" width="304" height="38" rx="18"/>
+  </g>
+
+  <g transform="translate(158 162)">
+    <rect x="88" y="0" width="200" height="92" rx="18" fill="#13263A"/>
+    <rect x="102" y="14" width="172" height="64" rx="10" fill="url(#screenA)"/>
+
+    <rect x="26" y="104" width="324" height="110" rx="20" fill="#13263A"/>
+    <rect x="42" y="120" width="292" height="78" rx="12" fill="url(#screenB)"/>
+
+    <rect x="78" y="228" width="220" height="102" rx="18" fill="#13263A"/>
+    <rect x="92" y="242" width="192" height="74" rx="10" fill="url(#screenC)"/>
+
+    <rect x="0" y="340" width="376" height="124" rx="24" fill="#13263A"/>
+    <rect x="18" y="358" width="340" height="88" rx="14" fill="url(#screenA)"/>
+
+    <rect x="76" y="476" width="228" height="106" rx="20" fill="#13263A"/>
+    <rect x="90" y="490" width="200" height="78" rx="12" fill="url(#screenB)"/>
+
+    <g fill="#DCE7EF" opacity="0.82">
+      <circle cx="256" cy="46" r="4"/>
+      <circle cx="314" cy="158" r="4"/>
+      <circle cx="266" cy="280" r="4"/>
+      <circle cx="338" cy="402" r="4"/>
+      <circle cx="272" cy="532" r="4"/>
+    </g>
+  </g>
+
+  <g stroke="#102237" stroke-width="2" opacity="0.72">
+    <line x1="720" y1="760" x2="1460" y2="760"/>
+    <line x1="846" y1="748" x2="846" y2="774"/>
+    <line x1="980" y1="748" x2="980" y2="774"/>
+    <line x1="1114" y1="748" x2="1114" y2="774"/>
+    <line x1="1248" y1="748" x2="1248" y2="774"/>
+    <line x1="1382" y1="748" x2="1382" y2="774"/>
+  </g>
+
+  <g fill="#102237">
+    <text x="720" y="168" font-family="Arial, Helvetica, sans-serif" font-size="28" letter-spacing="4.8">KOREAN MEDIA ART</text>
+    <text x="720" y="266" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="92" letter-spacing="1.6">FROM PAIK</text>
+    <text x="720" y="360" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="104" letter-spacing="1.6">TO AI</text>
+    <text x="724" y="424" font-family="Arial, Helvetica, sans-serif" font-size="30" opacity="0.82">A generational map of screens, cities, systems, and immersion</text>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#1A3654" opacity="0.9">
+    <text x="814" y="810">1963</text>
+    <text x="950" y="810">1988</text>
+    <text x="1084" y="810">2000</text>
+    <text x="1216" y="810">2010s</text>
+    <text x="1350" y="810">2020s</text>
+  </g>
+
+  <g font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#355575" opacity="0.82">
+    <text x="780" y="730">VIDEO ART</text>
+    <text x="930" y="730">MONITOR TOWER</text>
+    <text x="1072" y="730">BIENNALE</text>
+    <text x="1218" y="730">POST-INTERNET</text>
+    <text x="1364" y="730">AI</text>
+  </g>
+</svg>
