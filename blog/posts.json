@@ -1,5 +1,23 @@
 [
   {
+    "slug": "gpt-image-2-vs-nano-banana-2",
+    "file": "_built/gpt-image-2-vs-nano-banana-2.md",
+    "title": "GPT Image 2는 정말 Nano Banana 2를 넘었나: LM Arena `duct-tape`가 보여준 것",
+    "description": "2026년 4월 초부터 이미지 생성 커뮤니티가 갑자기 술렁이기 시작했다. LM Arena에 정체를 숨긴 모델이 몇 개 올라왔고, 이름은 묘하게도 `maskingtape-alpha`, `gaffertape-alpha`...",
+    "category": "Article",
+    "tags": [
+      "AI",
+      "image-generation",
+      "OpenAI",
+      "Google",
+      "GPT-Image-2",
+      "Nano-Banana-2"
+    ],
+    "date": "2026-04-16",
+    "thumbnail": "images/gpt-image-2-duct-tape-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "history-of-media-art",
     "file": "_built/history-of-media-art.md",
     "title": "미디어아트의 역사",
