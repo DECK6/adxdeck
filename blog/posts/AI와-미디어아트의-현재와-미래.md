@@ -15,12 +15,15 @@ tags:
   - immersive
   - creative-coding
   - data-art
+thumbnail: images/ai-and-media-art-cover.png
 CMDS: "[[📚 731 Digital Art and Design]]"
 index: "[[🏷 Draft Article]]"
 status: inProgress
 ---
 
 # AI와 미디어아트의 현재와 미래
+
+![AI와 미디어아트의 현재와 미래](images/ai-and-media-art-cover.png)
 
 ## 1. 도구에서 매체로 — AI의 위상 변화
 
