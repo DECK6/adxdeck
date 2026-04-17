@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>작동적 이미지란 무엇인가: 기계는 왜 인간 없이 이미지를 보는가 | DEXA Blog</title>
+    <meta name="description" content="작동적 이미지 개념을 통해 인간이 보기 위한 이미지와 기계가 작동하기 위해 사용하는 이미지의 차이를 설명하고, AI와 감시 시대의 미디어아트를 읽는 방법을 정리한다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/what-is-operational-image/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="작동적 이미지란 무엇인가: 기계는 왜 인간 없이 이미지를 보는가" />
+    <meta property="og:description" content="작동적 이미지 개념을 통해 인간이 보기 위한 이미지와 기계가 작동하기 위해 사용하는 이미지의 차이를 설명하고, AI와 감시 시대의 미디어아트를 읽는 방법을 정리한다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/what-is-operational-image/" />
+    <meta property="og:image" content="https://dexa.art/dexa_logo.jpg" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-04-17" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="operational-image" />
+    <meta property="article:tag" content="machine-vision" />
+    <meta property="article:tag" content="theory" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="작동적 이미지란 무엇인가: 기계는 왜 인간 없이 이미지를 보는가" />
+    <meta name="twitter:description" content="작동적 이미지 개념을 통해 인간이 보기 위한 이미지와 기계가 작동하기 위해 사용하는 이미지의 차이를 설명하고, AI와 감시 시대의 미디어아트를 읽는 방법을 정리한다." />
+    <meta name="twitter:image" content="https://dexa.art/dexa_logo.jpg" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"작동적 이미지란 무엇인가: 기계는 왜 인간 없이 이미지를 보는가","description":"작동적 이미지 개념을 통해 인간이 보기 위한 이미지와 기계가 작동하기 위해 사용하는 이미지의 차이를 설명하고, AI와 감시 시대의 미디어아트를 읽는 방법을 정리한다.","image":"https://dexa.art/dexa_logo.jpg","datePublished":"2026-04-17","dateModified":"2026-04-17","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/what-is-operational-image/"},"keywords":"media-art, operational-image, machine-vision, theory"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 4월 17일</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">operational-image</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">machine-vision</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">theory</span></div>
+            </div>
+            <div class="prose-dexa">
+<h1>작동적 이미지란 무엇인가: 기계는 왜 인간 없이 이미지를 보는가</h1>
+<p>우리는 보통 이미지를 &quot;누군가가 보기 위해 만들어진 것&quot;이라고 생각한다. 사진은 감상하기 위해 찍고, 영상은 보기 위해 재생하며, 화면은 사람의 시선을 붙잡기 위해 설계된다고 여긴다. 하지만 지금 우리를 둘러싼 이미지 가운데 상당수는 애초에 인간의 감상을 목적으로 하지 않는다. 자율주행차의 비전 시스템, 공항의 얼굴 인식 장치, 드론의 표적 추적 화면, 의료 AI의 판독용 스캔 이미지는 사람이 보기 전에 이미 기계가 먼저 읽고 판단하는 이미지들이다.</p>
+<p>이런 이미지를 설명하는 개념이 바로 작동적 이미지(operational image)다. 이 개념은 단순히 &quot;기계가 만든 이미지&quot;를 뜻하지 않는다. 더 정확히 말하면, 기계가 어떤 작동을 수행하기 위해 생성하고 처리하며 사용하는 이미지를 가리킨다. 이미지는 더 이상 재현이나 감상의 대상만이 아니라, 분류와 추적, 표적화와 제어를 수행하는 연산의 일부가 된다.</p>
+<h2>이미지는 더 이상 보여 주기만 하지 않는다</h2>
+<p>전통적으로 이미지는 재현의 문제로 다뤄졌다. 무엇을 어떻게 보여 주는가, 얼마나 사실적으로 재현하는가, 어떤 관점에서 세계를 구성하는가가 핵심 질문이었다. 하지만 작동적 이미지는 이 프레임을 비껴간다. 여기서 중요한 것은 이미지가 무엇을 닮았는가보다, 그 이미지가 무엇을 하게 만드는가다.</p>
+<p>예를 들어 자율주행차 카메라는 도로를 &quot;아름답게&quot; 보여 줄 필요가 없다. 그것이 차선과 보행자, 신호등, 장애물을 얼마나 빠르고 정확하게 구분하느냐가 더 중요하다. 드론 비전 역시 누군가에게 풍경을 감상하게 하려는 것이 아니라, 목표를 식별하고 추적하고 명령 체계에 정보를 전달하기 위해 존재한다. 이런 이미지에서는 의미가 보기의 차원보다 작동의 차원에서 결정된다.</p>
+<h2>Farocki가 먼저 본 변화</h2>
+<p>작동적 이미지라는 개념을 본격적으로 밀어 올린 인물은 Harun Farocki다. 그는 <em>Eye/Machine</em> 삼부작에서 걸프전의 스마트 폭탄 영상을 분석하며, 인간이 보기 위한 것이 아닌 기계의 작동을 위한 이미지가 이미 우리 시대의 핵심 시각 체계가 되었다고 지적했다.</p>
+<p>Farocki가 중요했던 이유는 단지 새로운 기술 사례를 모았기 때문이 아니다. 그는 이 이미지들이 &quot;이미지의 정의 자체&quot;를 바꾸고 있다는 점을 포착했다. 과거에는 이미지가 현실을 보여 주는 창처럼 이해되었다면, 이제는 현실에 개입하고 현실을 분류하고 현실을 수정하는 기계적 행위의 일부가 된 것이다. 이미지는 표상에서 연산으로 이동한다.</p>
+<p>이 지점은 미디어아트를 공부할 때 특히 중요하다. 왜냐하면 많은 학생들이 여전히 이미지를 &quot;보는 대상&quot;으로만 이해하기 때문이다. 하지만 오늘날의 이미지 문화는 보는 이미지와 작동하는 이미지가 복잡하게 얽혀 있다. 우리가 화면에서 보는 최종 결과 뒤에는 이미 수많은 기계적 이미지 판단이 선행된다.</p>
+<h2>AI 시대에 작동적 이미지는 왜 더 중요해졌나</h2>
+<p>작동적 이미지라는 개념은 AI 시대에 들어와 더 강력해졌다. 오늘날 비전 모델은 이미지를 분류하고, 객체를 감지하고, 얼굴을 인식하고, 이상 징후를 탐지한다. 이 과정에서 이미지는 인간의 시선을 위해 존재하는 것이 아니라 모델의 판단 구조 안에서 하나의 입력값으로 기능한다.</p>
+<p>이때 중요한 것은 인간이 이 이미지를 &quot;나중에&quot; 보게 된다는 사실이다. 즉 우리는 종종 기계가 먼저 읽고 난 뒤에야 시각 정보를 접한다. 플랫폼의 추천 시스템, 감시 카메라의 이상 행동 감지, 병원 AI의 판독 보조, 물류 센터의 자동 분류는 모두 이런 선행적 기계 보기 위에서 작동한다. 이미지는 인간이 해석하는 대상이기 전에, 기계가 수행하는 절차의 일부가 된다.</p>
+<p>그래서 작동적 이미지는 단순한 기술 개념이 아니라 정치적 개념이기도 하다. 누가 먼저 보는가, 누가 분류하는가, 누가 판단의 기준을 설계하는가의 문제가 이미지 안으로 들어오기 때문이다.</p>
+<h2>인간이 보지 않는 이미지의 시대</h2>
+<p>이 개념은 Trevor Paglen의 &quot;보이지 않는 이미지&quot; 문제의식과도 강하게 연결된다. 오늘날 세계에는 인간이 직접 보지 않는 이미지가 압도적으로 많다. 서버 안의 감시 프레임, 산업용 비전 시스템의 판정 이미지, 광고 최적화용 분석 이미지, 군사 정찰 이미지처럼 대부분의 이미지는 인간 감상의 장으로 나오기 전에 이미 계산과 제어를 위해 쓰인다.</p>
+<p>이 변화는 이미지 문화를 이해하는 기본 전제를 바꾼다. 이미지가 널리 유통되는 사회가 아니라, 이미지가 먼저 계산되는 사회가 된 것이다. 우리는 여전히 인스타그램 사진이나 영상 플랫폼을 중심으로 이미지 문화를 말하지만, 실제로는 비가시적인 기계용 이미지 인프라가 훨씬 더 넓은 층위를 차지한다.</p>
+<h2>미디어아트는 이 변화를 어떻게 다루는가</h2>
+<p>미디어아트는 작동적 이미지를 단순히 기술 사례로 가져오는 데서 멈추지 않는다. 오히려 인간이 보지 않던 시각 체계를 다시 드러내고, 거꾸로 비평하고, 재구성하는 장르로 작동한다. Farocki의 작업은 그 출발점이었고, 이후 Forensic Architecture, Trevor Paglen, Memo Akten 같은 작가와 집단이 이 흐름을 확장해 왔다.</p>
+<p>이들의 작업은 대체로 두 가지 방향으로 나뉜다. 하나는 기계적 보기 체계를 폭로하는 방향이다. 감시 시스템과 AI 비전이 어떤 기준으로 대상을 읽는지, 그 과정이 얼마나 불투명하고 권력적인지를 보여 준다. 다른 하나는 그 체계를 역이용하는 방향이다. 감시 이미지, 위성 이미지, 분석 이미지를 다시 조합해 국가 폭력이나 플랫폼 권력을 역추적하는 것이다.</p>
+<p>이 지점에서 미디어아트는 매우 중요한 역할을 한다. 기술 기업과 국가 시스템이 보통 작동적 이미지를 효율과 정확성의 언어로 설명한다면, 미디어아트는 그것이 감각과 권력, 윤리와 통제의 문제라는 사실을 다시 전면화하기 때문이다.</p>
+<h2>작동적 이미지는 한국에서도 현실적 개념이다</h2>
+<p>이 개념은 한국 맥락에서도 추상적이지 않다. 한국은 CCTV 밀도, 얼굴 인식 적용, 산업 자동화, 의료 AI, 스마트시티 실험이 매우 빠르게 확장된 환경이다. 다시 말해 인간의 시야보다 기계적 시야가 더 두텁게 도시를 조직하는 사회에 가깝다.</p>
+<p>이런 조건에서 작동적 이미지 개념은 한국의 미디어아트와 디자인, 브랜딩, AX 프로젝트를 읽는 데도 유용하다. 예를 들어 AI 비전 기반 인터페이스를 도입할 때 그것을 단순한 UX 개선이나 자동화 효율로만 볼 수는 없다. 그 시스템은 결국 누가 누구를 어떤 기준으로 식별하고 분류하는가의 문제를 함께 끌고 오기 때문이다.</p>
+<p>즉 작동적 이미지는 미디어이론의 추상 개념이 아니라, 지금 한국 사회의 시각 인프라를 이해하기 위한 실전 개념에 가깝다.</p>
+<h2>이 개념만으로 충분할까</h2>
+<p>물론 작동적 이미지 개념에도 한계는 있다. 모든 이미지를 기계용 이미지라는 틀로만 읽으면 인간의 감상과 정동, 상징과 서사 같은 층위가 과도하게 지워질 수 있다. 또 &quot;기계가 본다&quot;는 표현이 마치 기계가 독립된 주체처럼 행동하는 것처럼 들릴 위험도 있다. 실제로는 언제나 그 뒤에 기업, 군사 시스템, 데이터셋, 정책, 자본 구조가 있다.</p>
+<p>그래서 작동적 이미지는 출발점으로는 매우 강력하지만, 그것만으로는 충분하지 않다. Surveillance Aesthetics, Invisible Images, Interface, Protocol 같은 개념과 함께 읽을 때 더 입체적인 분석이 가능하다.</p>
+<h2>마무리</h2>
+<p>작동적 이미지는 인간이 보기 위한 이미지와 기계가 작동하기 위해 사용하는 이미지 사이의 차이를 드러내는 개념이다. 그리고 이 차이는 오늘날 점점 더 중요해지고 있다. 이미지는 더 이상 단지 우리에게 세계를 보여 주는 창이 아니라, 세계를 분류하고 통제하고 반응하게 만드는 시스템의 일부가 되었기 때문이다.</p>
+<p>미디어아트를 공부하거나 AI 시대의 시각문화를 비평하려면 이제 &quot;무엇이 보이는가&quot;만 물어서는 부족하다. 그보다 먼저 &quot;이 이미지는 누구를 위해 존재하는가, 그리고 무엇을 작동시키는가&quot;를 물어야 한다. 작동적 이미지라는 개념은 바로 그 질문을 시작하게 만드는 좋은 출발점이다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/what-is-latent-space/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>잠재공간이란 무엇인가: AI 이미지는 어디에서 오는가</span></a>
+                <a id="next-post" href="/blog/posts/what-is-intermedia/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span>인터미디어란 무엇인가: 장르 사이에서 태어나는 예술</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

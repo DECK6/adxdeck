@@ -151,6 +151,10 @@
         const slug = getSlugFromURL();
         if (!slug) { window.location.href = 'index.html'; return; }
 
+        // Legacy query-string viewer now forwards to the static SEO URL.
+        window.location.replace(`/blog/posts/${encodeURIComponent(slug)}/`);
+        return;
+
         const posts = await fetchPosts();
         posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 

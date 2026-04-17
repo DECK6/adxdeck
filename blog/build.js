@@ -125,15 +125,21 @@ function cleanWikiLinks(md) {
     return md;
 }
 
+function normalizeContentUrl(url) {
+    if (/^(https?:|mailto:|tel:|#|\/)/i.test(url)) return url;
+    const normalized = url.replace(/^\.?\//, '').replace(/^blog\//, '');
+    return `/blog/${normalized}`;
+}
+
 function renderInline(text) {
     // Escape HTML first
     let out = escapeHtml(text);
     // Images: ![alt](url)
     out = out.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_m, alt, url) =>
-        `<img src="${escapeAttr(url)}" alt="${escapeAttr(alt)}" loading="lazy">`);
+        `<img src="${escapeAttr(normalizeContentUrl(url))}" alt="${escapeAttr(alt)}" loading="lazy">`);
     // Links: [text](url)
     out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_m, txt, url) =>
-        `<a href="${escapeAttr(url)}">${txt}</a>`);
+        `<a href="${escapeAttr(normalizeContentUrl(url))}">${txt}</a>`);
     // Bold: **text**
     out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
     // Italic: *text*

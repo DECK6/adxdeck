@@ -32,6 +32,22 @@
     "author": "육대근"
   },
   {
+    "slug": "what-is-operational-image",
+    "file": "_built/what-is-operational-image.md",
+    "title": "작동적 이미지란 무엇인가: 기계는 왜 인간 없이 이미지를 보는가",
+    "description": "작동적 이미지 개념을 통해 인간이 보기 위한 이미지와 기계가 작동하기 위해 사용하는 이미지의 차이를 설명하고, AI와 감시 시대의 미디어아트를 읽는 방법을 정리한다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "operational-image",
+      "machine-vision",
+      "theory"
+    ],
+    "date": "2026-04-17",
+    "thumbnail": "",
+    "author": "육대근"
+  },
+  {
     "slug": "what-is-latent-space",
     "file": "_built/what-is-latent-space.md",
     "title": "잠재공간이란 무엇인가: AI 이미지는 어디에서 오는가",

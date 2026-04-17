@@ -992,7 +992,7 @@ function renderBlogPreview(posts) {
         });
 
         const card = document.createElement('a');
-        card.href = `blog/post.html?slug=${post.slug}`;
+        card.href = `blog/posts/${post.slug}/`;
         card.className = 'group bg-[#0A0A0A] border border-white/10 rounded-xl overflow-hidden card-hover-effect block fade-in-up';
         card.style.animationDelay = `${index * 100}ms`;
 
