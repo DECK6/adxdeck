@@ -6,8 +6,8 @@ aliases:
 description: "Draft blog article examining whether LM Arena's duct-tape image models suggest GPT Image 2 has overtaken Nano Banana 2. Focuses on text rendering, prompt adherence, workflow fit, and the limits of current community evidence."
 author:
   - "[[육대근]]"
-date created: 2026-04-16
-date modified: 2026-04-16
+date created: 2026-04-30
+date modified: 2026-04-30
 tags:
   - article
   - AI

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>생성예술이란 무엇인가: 작가는 결과 대신 규칙을 설계한다 | DEXA Blog</title>
+    <meta name="description" content="생성예술의 계보를 정리하며 작가가 결과물보다 시스템과 규칙을 설계하는 창작 방식이 왜 중요한지 설명한다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/what-is-generative-art/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="생성예술이란 무엇인가: 작가는 결과 대신 규칙을 설계한다" />
+    <meta property="og:description" content="생성예술의 계보를 정리하며 작가가 결과물보다 시스템과 규칙을 설계하는 창작 방식이 왜 중요한지 설명한다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/what-is-generative-art/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/what-is-generative-art-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-04-17" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="generative-art" />
+    <meta property="article:tag" content="creative-coding" />
+    <meta property="article:tag" content="ai-art" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="생성예술이란 무엇인가: 작가는 결과 대신 규칙을 설계한다" />
+    <meta name="twitter:description" content="생성예술의 계보를 정리하며 작가가 결과물보다 시스템과 규칙을 설계하는 창작 방식이 왜 중요한지 설명한다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/what-is-generative-art-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"생성예술이란 무엇인가: 작가는 결과 대신 규칙을 설계한다","description":"생성예술의 계보를 정리하며 작가가 결과물보다 시스템과 규칙을 설계하는 창작 방식이 왜 중요한지 설명한다.","image":"https://dexa.art/blog/images/what-is-generative-art-cover.png","datePublished":"2026-04-17","dateModified":"2026-04-17","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/what-is-generative-art/"},"keywords":"media-art, generative-art, creative-coding, ai-art"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 4월 17일</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">generative-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">creative-coding</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-art</span></div>
+            </div>
+            <div class="prose-dexa">
+<h1>생성예술이란 무엇인가: 작가는 결과 대신 규칙을 설계한다</h1>
+<p><img src="/blog/images/what-is-generative-art-cover.png" alt="생성예술이란 무엇인가" loading="lazy"></p>
+<p>생성예술은 작가가 결과물을 직접 하나씩 만드는 대신, 결과를 만들어 내는 시스템을 설계하는 예술이다. 여기서 작품은 완성된 한 장의 이미지나 한 편의 영상만이 아니다. 규칙, 알고리즘, 우연성, 피드백 구조, 실행 환경 자체가 작품의 핵심이 된다.</p>
+<p>이 개념이 중요한 이유는 오늘날 AI 이미지나 크리에이티브 코딩을 이해할 때 거의 필수적인 출발점이기 때문이다. 많은 사람이 생성예술을 최근 유행처럼 생각하지만, 실제로 그 역사는 훨씬 오래되었고, 오히려 AI 열풍은 이 계보를 다시 전면으로 끌어올린 사건에 가깝다.</p>
+<h2>생성예술의 핵심은 자율성이다</h2>
+<p>필립 갤랜터가 정리했듯이 생성예술의 요점은 시스템이 일정 수준의 자율성을 가지고 결과를 결정한다는 데 있다. 작가는 모든 디테일을 직접 확정하지 않는다. 대신 규칙과 조건을 세팅하고, 그 안에서 작품이 변주되도록 만든다.</p>
+<p>그래서 생성예술은 단순히 컴퓨터를 사용하는 예술과 다르다. 포토샵으로 이미지를 만드는 일은 디지털 작업일 수 있지만, 자동 변주와 자율적 생성 구조가 없다면 엄밀한 의미의 생성예술은 아닐 수 있다. 중요한 것은 도구가 아니라 시스템의 작동 원리다.</p>
+<h2>계보는 AI보다 훨씬 오래됐다</h2>
+<p>생성예술의 뿌리는 알고리즘 이전에도 있었다. 존 케이지는 우연성과 규칙을 작곡 구조로 끌어들였고, 솔 르윗은 지시문을 통해 작품의 실행을 다른 사람과 시스템에 넘겼다. 이후 컴퓨터 아트의 초기 작가들은 수학적 규칙과 플로터를 활용해 드로잉을 만들었고, 그 흐름은 크리에이티브 코딩과 실시간 오디오비주얼 작업으로 이어졌다.</p>
+<p>즉 생성예술은 &quot;AI가 알아서 만들어 준 그림&quot;보다 훨씬 넓은 개념이다. 우연을 설계하는 방식, 규칙의 공간을 만드는 방식, 반복과 변이를 창작의 핵심으로 삼는 방식 전체가 여기에 포함된다.</p>
+<h2>왜 생성예술은 늘 작가성 논쟁을 불러오는가</h2>
+<p>이 장르는 자연스럽게 질문을 만든다. 작품을 만든 것은 누구인가. 코드를 짠 사람인가, 실행된 시스템인가, 랜덤 함수인가, 학습된 모델인가. 하지만 이 질문은 생성예술의 약점이 아니라 오히려 중심 주제다. 생성예술은 애초에 저작을 단일한 손의 표현으로 보지 않는다.</p>
+<p>작가의 역할은 결과물을 직접 고르는 데서만 나오지 않는다. 어떤 규칙을 설계했는지, 어떤 우연성을 허용했는지, 무엇을 시스템의 자유로 남겨 두었는지에 따라 작가성은 다르게 형성된다. 좋은 생성예술은 책임을 시스템에 떠넘기는 것이 아니라, 시스템 설계 자체를 미학적 판단으로 끌어들인다.</p>
+<h2>AI 이미지 시대에 생성예술을 다시 읽어야 하는 이유</h2>
+<p>요즘 생성예술은 거의 곧바로 생성형 AI와 연결된다. 맞는 연결이지만, 여기서 개념을 좁히면 오히려 중요한 것을 놓친다. AI는 생성예술의 한 극단이지만 전부는 아니다. 오히려 생성예술의 긴 계보를 이해하면 AI를 더 정확하게 볼 수 있다.</p>
+<p>예를 들어 프롬프트만 던지고 결과를 소비하는 것과, 모델의 편향과 변이 구조를 의식하며 여러 단계의 규칙을 설계하는 것은 전혀 다른 실천이다. 생성예술의 관점은 바로 이 차이를 분명하게 해 준다. 핵심은 결과의 화려함이 아니라 생성 조건을 어떻게 다루는가다.</p>
+<h2>미디어아트에서 생성예술은 가장 강력한 실천 중 하나다</h2>
+<p>미디어아트는 원래부터 시간, 피드백, 반응, 우연성을 다루는 장르였다. 그 때문에 생성예술과의 친연성이 매우 크다. 프로세싱과 TouchDesigner, 오디오 리액티브 비주얼, 데이터 기반 설치, 실시간 시뮬레이션, 알고리즘 드로잉은 모두 생성예술의 확장판이라고 볼 수 있다.</p>
+<p>이 장르가 강력한 이유는 결과보다 관계를 보여 주기 때문이다. 화면에 보이는 이미지는 단지 최종 산출물이 아니라, 규칙과 계산과 환경 조건이 서로 만나 만든 순간적 상태다. 그래서 생성예술은 완성형 오브제보다 살아 있는 시스템에 더 가깝다.</p>
+<h2>한국 맥락에서 생성예술이 자주 오해되는 지점</h2>
+<p>한국에서는 생성예술이 종종 &quot;랜덤 효과를 주는 그래픽&quot; 정도로 좁혀서 이해되거나, 반대로 &quot;AI가 그려 준 이미지&quot; 전체로 과도하게 확장되곤 한다. 하지만 둘 다 충분하지 않다. 생성예술은 결과가 자동으로 나왔다는 사실보다, 어떤 시스템이 어떤 규칙으로 결과를 만들었는지에 더 큰 비중을 둔다.</p>
+<p>교육과 실무에서도 이 차이는 중요하다. 학생이나 디자이너가 단순히 도구의 자동 기능을 쓰는 데서 멈추지 않고, 생성 규칙을 직접 설계하기 시작할 때 비로소 생성예술적 사고가 생긴다. 그 순간 창작자는 스타일 소비자가 아니라 시스템 설계자가 된다.</p>
+<h2>마무리</h2>
+<p>생성예술은 작가가 손을 떼는 예술이 아니다. 오히려 결과물을 직접 만드는 대신, 결과가 생겨나는 조건을 더 정밀하게 설계하는 예술이다. 여기서 중요한 것은 예쁜 우연이 아니라 자율성을 어떻게 배치하느냐, 규칙과 변이를 어떻게 조율하느냐다.</p>
+<p>그래서 생성예술은 AI 시대에 더 중요해졌다. 우리는 이제 단순히 무엇을 만들 것인가보다, 무엇이 스스로 만들어지도록 설계할 것인가를 묻는 시대에 들어와 있기 때문이다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/what-is-intermedia/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>인터미디어란 무엇인가: 장르 사이에서 태어나는 예술</span></a>
+                <a id="next-post" href="/blog/posts/why-immersion-became-the-core-language-of-media-art/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span>몰입은 왜 미디어아트의 핵심 언어가 되었나</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

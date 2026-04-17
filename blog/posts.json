@@ -1,5 +1,103 @@
 [
   {
+    "slug": "gpt-image-2-vs-nano-banana-2",
+    "file": "_built/gpt-image-2-vs-nano-banana-2.md",
+    "title": "GPT Image 2는 정말 Nano Banana 2를 넘었나: LM Arena `duct-tape`가 보여준 것",
+    "description": "Draft blog article examining whether LM Arena's duct-tape image models suggest GPT Image 2 has overtaken Nano Banana 2. Focuses on text rendering, prompt adherence, workflow fit, and the limits of current community evidence.",
+    "category": "Article",
+    "tags": [
+      "AI",
+      "image-generation",
+      "OpenAI",
+      "Google",
+      "GPT-Image-2",
+      "Nano-Banana-2"
+    ],
+    "date": "2026-04-30",
+    "thumbnail": "images/gpt-image-2-duct-tape-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "why-poor-images-matter",
+    "file": "_built/why-poor-images-matter.md",
+    "title": "가난한 이미지는 왜 더 멀리 퍼지는가: 히토 슈타이얼의 Poor Image 다시 읽기",
+    "description": "히토 슈타이얼의 Poor Image 개념을 통해 저해상도 이미지가 왜 디지털 시대의 정치와 유통을 이해하는 핵심인지 설명한다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "poor-image",
+      "digital-image",
+      "hito-steyerl"
+    ],
+    "date": "2026-04-17",
+    "thumbnail": "images/why-poor-images-matter-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "what-is-optical-unconscious",
+    "file": "_built/what-is-optical-unconscious.md",
+    "title": "광학적 무의식이란 무엇인가: 카메라는 인간이 못 본 세계를 어떻게 드러내는가",
+    "description": "광학적 무의식 개념을 통해 카메라와 센서가 인간의 맨눈으로는 포착되지 않던 시각적 층위를 어떻게 드러내는지 설명한다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "optical-unconscious",
+      "image-theory",
+      "benjamin"
+    ],
+    "date": "2026-04-17",
+    "thumbnail": "images/what-is-optical-unconscious-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "what-is-glitch-aesthetics",
+    "file": "_built/what-is-glitch-aesthetics.md",
+    "title": "글리치 미학이란 무엇인가: 오류는 어떻게 디지털 시대의 스타일이 되었나",
+    "description": "글리치 미학이 단순한 오류 효과가 아니라 디지털 시스템의 숨겨진 물질성과 권력을 드러내는 비평적 형식임을 설명한다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "glitch",
+      "digital-image",
+      "post-digital"
+    ],
+    "date": "2026-04-17",
+    "thumbnail": "images/what-is-glitch-aesthetics-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "what-is-technical-image",
+    "file": "_built/what-is-technical-image.md",
+    "title": "기술적 이미지란 무엇인가: 카메라는 왜 세계를 자동 번역하는가",
+    "description": "기술적 이미지 개념을 통해 사진, 디지털 이미지, AI 이미지가 왜 단순한 재현이 아니라 장치와 프로그램의 산물인지 설명한다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "technical-image",
+      "image-theory",
+      "flusser"
+    ],
+    "date": "2026-04-17",
+    "thumbnail": "images/what-is-technical-image-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "what-is-data-colonialism",
+    "file": "_built/what-is-data-colonialism.md",
+    "title": "데이터 식민주의란 무엇인가: AI는 왜 새로운 추출 산업처럼 보이는가",
+    "description": "데이터 식민주의 개념을 통해 플랫폼과 AI 산업이 인간의 삶을 어떻게 추출 가능한 자원으로 바꾸는지 설명한다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "data-colonialism",
+      "AI",
+      "critical-theory"
+    ],
+    "date": "2026-04-17",
+    "thumbnail": "images/what-is-data-colonialism-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "why-immersion-became-the-core-language-of-media-art",
     "file": "_built/why-immersion-became-the-core-language-of-media-art.md",
     "title": "몰입은 왜 미디어아트의 핵심 언어가 되었나",
@@ -16,6 +114,22 @@
     "author": "육대근"
   },
   {
+    "slug": "what-is-generative-art",
+    "file": "_built/what-is-generative-art.md",
+    "title": "생성예술이란 무엇인가: 작가는 결과 대신 규칙을 설계한다",
+    "description": "생성예술의 계보를 정리하며 작가가 결과물보다 시스템과 규칙을 설계하는 창작 방식이 왜 중요한지 설명한다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "ai-art"
+    ],
+    "date": "2026-04-17",
+    "thumbnail": "images/what-is-generative-art-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "what-is-intermedia",
     "file": "_built/what-is-intermedia.md",
     "title": "인터미디어란 무엇인가: 장르 사이에서 태어나는 예술",
@@ -29,6 +143,22 @@
     ],
     "date": "2026-04-17",
     "thumbnail": "images/intermedia-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "what-is-interface",
+    "file": "_built/what-is-interface.md",
+    "title": "인터페이스란 무엇인가: 우리는 화면을 보는가, 규칙을 만지는가",
+    "description": "인터페이스를 단순한 화면 디자인이 아니라 인간과 시스템의 관계를 조직하는 문화적 규칙으로 설명한다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "interface",
+      "software",
+      "screen-culture"
+    ],
+    "date": "2026-04-17",
+    "thumbnail": "images/what-is-interface-cover.png",
     "author": "육대근"
   },
   {
@@ -80,6 +210,22 @@
     "author": "육대근"
   },
   {
+    "slug": "what-is-control-society",
+    "file": "_built/what-is-control-society.md",
+    "title": "통제사회란 무엇인가: 감시 이후의 권력은 어떻게 우리를 조정하는가",
+    "description": "들뢰즈의 통제사회 개념을 바탕으로 플랫폼, 점수화, 추천, 맞춤형 조정이 어떻게 새로운 권력 형식이 되는지 설명한다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "control-society",
+      "surveillance",
+      "platform"
+    ],
+    "date": "2026-04-17",
+    "thumbnail": "images/what-is-control-society-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "what-is-post-digital",
     "file": "_built/what-is-post-digital.md",
     "title": "포스트디지털이란 무엇인가: 디지털이 너무 익숙해진 시대의 예술",
@@ -96,21 +242,35 @@
     "author": "육대근"
   },
   {
-    "slug": "gpt-image-2-vs-nano-banana-2",
-    "file": "_built/gpt-image-2-vs-nano-banana-2.md",
-    "title": "GPT Image 2는 정말 Nano Banana 2를 넘었나: LM Arena `duct-tape`가 보여준 것",
-    "description": "Draft blog article examining whether LM Arena's duct-tape image models suggest GPT Image 2 has overtaken Nano Banana 2. Focuses on text rendering, prompt adherence, workflow fit, and the limits of current community evidence.",
+    "slug": "what-is-protocol",
+    "file": "_built/what-is-protocol.md",
+    "title": "프로토콜이란 무엇인가: 네트워크는 왜 자유로워 보이면서도 통제적인가",
+    "description": "프로토콜을 기술 문서가 아니라 네트워크 시대의 보이지 않는 통치 형식으로 읽고, 미디어아트 실무와 연결해 설명한다.",
     "category": "Article",
     "tags": [
-      "AI",
-      "image-generation",
-      "OpenAI",
-      "Google",
-      "GPT-Image-2",
-      "Nano-Banana-2"
+      "media-art",
+      "protocol",
+      "network",
+      "software"
     ],
-    "date": "2026-04-16",
-    "thumbnail": "images/gpt-image-2-duct-tape-cover.png",
+    "date": "2026-04-17",
+    "thumbnail": "images/what-is-protocol-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "what-is-expanded-cinema",
+    "file": "_built/what-is-expanded-cinema.md",
+    "title": "확장영화란 무엇인가: 영화는 어떻게 스크린 밖으로 나왔는가",
+    "description": "확장영화 개념을 통해 단일 스크린 영화가 어떻게 설치, 퍼포먼스, 몰입 환경으로 확장되었는지 설명한다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "expanded-cinema",
+      "cinema",
+      "installation"
+    ],
+    "date": "2026-04-17",
+    "thumbnail": "images/what-is-expanded-cinema-cover.png",
     "author": "육대근"
   },
   {

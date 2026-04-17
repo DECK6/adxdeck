@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>프로토콜이란 무엇인가: 네트워크는 왜 자유로워 보이면서도 통제적인가 | DEXA Blog</title>
+    <meta name="description" content="프로토콜을 기술 문서가 아니라 네트워크 시대의 보이지 않는 통치 형식으로 읽고, 미디어아트 실무와 연결해 설명한다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/what-is-protocol/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="프로토콜이란 무엇인가: 네트워크는 왜 자유로워 보이면서도 통제적인가" />
+    <meta property="og:description" content="프로토콜을 기술 문서가 아니라 네트워크 시대의 보이지 않는 통치 형식으로 읽고, 미디어아트 실무와 연결해 설명한다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/what-is-protocol/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/what-is-protocol-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-04-17" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="protocol" />
+    <meta property="article:tag" content="network" />
+    <meta property="article:tag" content="software" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="프로토콜이란 무엇인가: 네트워크는 왜 자유로워 보이면서도 통제적인가" />
+    <meta name="twitter:description" content="프로토콜을 기술 문서가 아니라 네트워크 시대의 보이지 않는 통치 형식으로 읽고, 미디어아트 실무와 연결해 설명한다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/what-is-protocol-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"프로토콜이란 무엇인가: 네트워크는 왜 자유로워 보이면서도 통제적인가","description":"프로토콜을 기술 문서가 아니라 네트워크 시대의 보이지 않는 통치 형식으로 읽고, 미디어아트 실무와 연결해 설명한다.","image":"https://dexa.art/blog/images/what-is-protocol-cover.png","datePublished":"2026-04-17","dateModified":"2026-04-17","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/what-is-protocol/"},"keywords":"media-art, protocol, network, software"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 4월 17일</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">protocol</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">network</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">software</span></div>
+            </div>
+            <div class="prose-dexa">
+<h1>프로토콜이란 무엇인가: 네트워크는 왜 자유로워 보이면서도 통제적인가</h1>
+<p><img src="/blog/images/what-is-protocol-cover.png" alt="프로토콜이란 무엇인가" loading="lazy"></p>
+<p>인터넷은 흔히 자유로운 연결의 공간으로 묘사된다. 어디서든 접속하고, 누구와도 연결되고, 정보가 흐르는 열린 세계처럼 보인다. 하지만 실제로 네트워크는 무한한 자유 위에서 돌아가지 않는다. 오히려 매우 엄격한 규칙과 표준, 인증 절차 위에서만 작동한다. 이 규칙의 집합을 우리는 프로토콜이라고 부른다.</p>
+<p>프로토콜은 단순히 TCP/IP나 HTTP 같은 기술 용어에 머물지 않는다. 더 넓게 보면, 무엇이 연결 가능하고 어떤 형식으로만 통신할 수 있으며 누가 접속 권한을 얻는지를 정하는 질서다. 그래서 프로토콜은 기술 문서이면서 동시에 권력의 형식이다.</p>
+<h2>네트워크의 개방성은 항상 조건부다</h2>
+<p>프로토콜은 연결을 가능하게 한다. 같은 규칙을 따르는 장치와 시스템은 서로 데이터를 주고받을 수 있다. 이 점에서 프로토콜은 개방성을 만든다. 하지만 동시에 그 개방성은 매우 조건적이다. 정해진 포맷을 따르지 않으면 접속할 수 없고, 인증 규칙을 통과하지 못하면 접근할 수 없다. 개방은 자유의 다른 이름이 아니라 표준 준수의 결과다.</p>
+<p>이것이 프로토콜의 역설이다. 네트워크는 유연해 보이지만, 실제로는 규칙을 따르는 존재에게만 열려 있다. 다시 말해 프로토콜은 연결의 언어이자 배제의 언어다.</p>
+<h2>알렉산더 갤러웨이가 본 프로토콜의 정치성</h2>
+<p>알렉산더 갤러웨이는 프로토콜을 네트워크 시대의 통제 형식으로 읽었다. 여기서 중요한 것은 중앙에서 누가 직접 명령하지 않아도 질서가 유지된다는 점이다. 참여자들은 프로토콜을 따르기 때문에 연결될 수 있고, 바로 그 이유로 스스로 통치 구조 안에 들어간다.</p>
+<p>이는 전통적인 명령 체계와 다르다. 누군가가 &quot;하지 마&quot;라고 직접 말하지 않아도, 애초에 규격 밖의 요청은 처리되지 않는다. 서버는 응답하지 않고, API는 에러를 반환하고, 업로드는 거부된다. 통제는 금지 명령의 형태보다 규칙 설계의 형태로 더 자주 나타난다.</p>
+<h2>미디어아트 실무에서 프로토콜은 너무 현실적인 문제다</h2>
+<p>프로토콜을 추상적 이론처럼 느끼기 쉽지만, 실제 전시와 공연 현장에서는 매우 구체적이다. 센서와 사운드, 조명과 프로젝션, 서버와 클라이언트, LED 월과 제어 콘솔이 서로 통신하려면 늘 어떤 프로토콜이 필요하다. OSC, MIDI, DMX, NDI, WebSocket 같은 규격은 작품의 기술적 기초일 뿐 아니라 시간 구조와 반응 방식 자체를 결정한다.</p>
+<p>현장에서 흔히 말하는 &quot;세팅 문제&quot;나 &quot;장비가 안 맞는다&quot;는 상황도 대부분 프로토콜 문제다. 어떤 포맷을 지원하는지, 어떤 신호를 받아들이는지, 어느 쪽이 마스터인지에 따라 작품 경험이 달라진다. 즉 프로토콜은 미학 바깥의 기술적 사소함이 아니라, 작품의 가능 조건이다.</p>
+<h2>플랫폼도 결국 프로토콜 위에서 권력을 행사한다</h2>
+<p>소셜 미디어와 AI 플랫폼 역시 자신만의 프로토콜을 갖고 있다. 업로드 포맷, API 접근 권한, 피드 노출 로직, 인증 정책, 저작권 필터링 구조는 모두 사용자의 행동과 작품의 유통 조건을 바꾼다. 플랫폼은 자유로운 창작 공간처럼 보이지만, 실제로는 아주 정교한 프로토콜 구조 위에서 무엇이 보이고 무엇이 차단될지를 결정한다.</p>
+<p>그래서 요즘의 미디어 작업은 화면 안의 결과물만으로 분석하면 부족하다. 어떤 플랫폼 규칙이 그 형식을 가능하게 했는지, 어떤 포맷과 호출 제한이 작업의 범위를 정했는지를 같이 봐야 한다. 프로토콜은 눈에 잘 보이지 않지만, 실제로는 작품의 형태를 강하게 밀어붙인다.</p>
+<h2>프로토콜은 인터페이스 뒤에 숨어 있다</h2>
+<p>인터페이스가 우리가 직접 만지는 표면이라면, 프로토콜은 그 뒤에서 접속을 조직하는 규칙이다. 사용자는 버튼을 누르지만, 실제로는 요청 패킷이 오가고 인증 토큰이 확인되고 파일 형식이 검사된다. 인터페이스가 경험의 전면이라면, 프로토콜은 그 경험이 성립하는 보이지 않는 문법이다.</p>
+<p>이 둘을 분리해서 보면 종종 중요한 것을 놓친다. 매끄러운 인터페이스가 제공하는 자유로움은 사실 복잡한 프로토콜 체계를 완벽하게 숨긴 결과일 수 있기 때문이다. 그래서 네트워크 시대의 비평은 표면과 규칙을 함께 읽어야 한다.</p>
+<h2>한국 맥락에서는 왜 이 개념이 더 실무적일까</h2>
+<p>한국의 미디어아트 현장과 상업 프로젝트 환경은 장치 간 연결 밀도가 매우 높다. 공공 디스플레이, 공연장 제어 시스템, 온라인 스트리밍, 플랫폼 업로드 규격, 모바일 인증 구조까지 모든 것이 프로토콜 위에서 돌아간다. 그런데도 많은 경우 이를 순수 기술 영역으로만 취급하고, 미학이나 비평과 분리해 생각한다.</p>
+<p>실제로는 정반대다. 전시장에서 어떤 장면이 실시간으로 반응하고 어떤 데이터가 지연되며 어떤 인터랙션이 막히는가는 모두 프로토콜 설계의 결과다. 이 규칙을 이해하지 못하면 작업의 경험을 절반밖에 읽지 못한다.</p>
+<h2>마무리</h2>
+<p>프로토콜은 네트워크를 움직이는 기술 규칙이면서, 동시에 디지털 시대의 보이지 않는 질서다. 연결을 가능하게 한다는 점에서 열려 있지만, 바로 그 연결을 특정 형식으로만 허용한다는 점에서 통제적이기도 하다.</p>
+<p>그래서 프로토콜을 이해하는 일은 엔지니어링 지식을 보완하는 수준에 그치지 않는다. 그것은 오늘날의 미디어가 어떻게 작동하고, 어떤 자유가 실제로는 어떤 규칙 위에서만 가능한지를 읽어 내는 비평적 감각을 기르는 일이다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/what-is-expanded-cinema/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>확장영화란 무엇인가: 영화는 어떻게 스크린 밖으로 나왔는가</span></a>
+                <a id="next-post" href="/blog/posts/what-is-post-digital/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span>포스트디지털이란 무엇인가: 디지털이 너무 익숙해진 시대의 예술</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
