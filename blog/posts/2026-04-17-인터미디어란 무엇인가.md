@@ -15,10 +15,13 @@ tags:
   - fluxus
   - theory
 description: "Dick Higgins의 인터미디어 개념을 바탕으로, 미디어아트가 왜 단일 장르가 아니라 장르 사이에서 태어나는 예술인지 설명한다."
+thumbnail: images/intermedia-cover.webp
 status: completed
 ---
 
 # 인터미디어란 무엇인가: 장르 사이에서 태어나는 예술
+
+![인터미디어란 무엇인가](images/intermedia-cover.webp)
 
 미디어아트를 처음 접한 사람들은 종종 이렇게 묻는다. "이건 영상인가요, 설치인가요, 퍼포먼스인가요?" 그런데 좋은 미디어아트일수록 이 질문에 하나로 답하기 어렵다. 영상이면서 조각이고, 사운드 작업이면서 퍼포먼스이며, 코드 기반 시스템이면서 공간 설치인 경우가 많기 때문이다.
 
