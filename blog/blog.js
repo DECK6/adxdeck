@@ -106,7 +106,7 @@
         posts.forEach(post => {
             const color = getCategoryColor(post.category);
             const card = document.createElement('a');
-            card.href = `post.html?slug=${encodeURIComponent(post.slug)}`;
+            card.href = `posts/${encodeURIComponent(post.slug)}/`;
             card.className = 'post-card card-hover-effect block bg-[#0A0A0A] border border-white/10 rounded-xl overflow-hidden group';
             card.dataset.category = post.category;
 
@@ -211,13 +211,13 @@
 
             if (postIndex < posts.length - 1) {
                 const prev = posts[postIndex + 1];
-                prevLink.href = `post.html?slug=${encodeURIComponent(prev.slug)}`;
+                prevLink.href = `/blog/posts/${encodeURIComponent(prev.slug)}/`;
                 document.getElementById('prev-title').textContent = prev.title;
             } else { prevLink.style.visibility = 'hidden'; }
 
             if (postIndex > 0) {
                 const next = posts[postIndex - 1];
-                nextLink.href = `post.html?slug=${encodeURIComponent(next.slug)}`;
+                nextLink.href = `/blog/posts/${encodeURIComponent(next.slug)}/`;
                 document.getElementById('next-title').textContent = next.title;
             } else { nextLink.style.visibility = 'hidden'; }
         }

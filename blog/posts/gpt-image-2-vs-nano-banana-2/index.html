@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPT Image 2는 정말 Nano Banana 2를 넘었나: LM Arena `duct-tape`가 보여준 것 | DEXA Blog</title>
+    <meta name="description" content="Draft blog article examining whether LM Arena's duct-tape image models suggest GPT Image 2 has overtaken Nano Banana 2. Focuses on text rendering, prompt adherence, workflow fit, and the limits of current community evidence." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/gpt-image-2-vs-nano-banana-2/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="GPT Image 2는 정말 Nano Banana 2를 넘었나: LM Arena `duct-tape`가 보여준 것" />
+    <meta property="og:description" content="Draft blog article examining whether LM Arena's duct-tape image models suggest GPT Image 2 has overtaken Nano Banana 2. Focuses on text rendering, prompt adherence, workflow fit, and the limits of current community evidence." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/gpt-image-2-vs-nano-banana-2/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/gpt-image-2-duct-tape-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-04-16" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="AI" />
+    <meta property="article:tag" content="image-generation" />
+    <meta property="article:tag" content="OpenAI" />
+    <meta property="article:tag" content="Google" />
+    <meta property="article:tag" content="GPT-Image-2" />
+    <meta property="article:tag" content="Nano-Banana-2" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GPT Image 2는 정말 Nano Banana 2를 넘었나: LM Arena `duct-tape`가 보여준 것" />
+    <meta name="twitter:description" content="Draft blog article examining whether LM Arena's duct-tape image models suggest GPT Image 2 has overtaken Nano Banana 2. Focuses on text rendering, prompt adherence, workflow fit, and the limits of current community evidence." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/gpt-image-2-duct-tape-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"GPT Image 2는 정말 Nano Banana 2를 넘었나: LM Arena `duct-tape`가 보여준 것","description":"Draft blog article examining whether LM Arena's duct-tape image models suggest GPT Image 2 has overtaken Nano Banana 2. Focuses on text rendering, prompt adherence, workflow fit, and the limits of current community evidence.","image":"https://dexa.art/blog/images/gpt-image-2-duct-tape-cover.png","datePublished":"2026-04-16","dateModified":"2026-04-16","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/gpt-image-2-vs-nano-banana-2/"},"keywords":"AI, image-generation, OpenAI, Google, GPT-Image-2, Nano-Banana-2"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 4월 16일</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">AI</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">image-generation</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">OpenAI</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">Google</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">GPT-Image-2</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">Nano-Banana-2</span></div>
+            </div>
+            <div class="prose-dexa">
+<h1>GPT Image 2는 정말 Nano Banana 2를 넘었나: LM Arena <code>duct-tape</code>가 보여준 것</h1>
+<p>2026년 4월 초부터 이미지 생성 커뮤니티가 갑자기 술렁이기 시작했다. LM Arena에 정체를 숨긴 모델이 몇 개 올라왔고, 이름은 묘하게도 <code>maskingtape-alpha</code>, <code>gaffertape-alpha</code>, <code>packingtape-alpha</code>, 그리고 나중에는 <code>duct-tape-1</code>, <code>duct-tape-2</code>, <code>duct-tape-3</code>처럼 붙었다. 문제는 결과물이었다. 사람들은 곧 이 모델들이 OpenAI의 차기 이미지 모델, 즉 <code>GPT Image 2</code>일 가능성이 높다고 보기 시작했다.</p>
+<p>왜 이렇게 빠르게 반응했을까. 이유는 단순하다. 지금까지 이미지 모델이 가장 자주 무너졌던 지점, 즉 텍스트 렌더링과 복잡한 프롬프트 제약 준수에서 유난히 강해 보였기 때문이다. 반대로 Google의 <code>Nano Banana 2</code>는 이미 공식 제품으로 자리 잡고 있고, 빠른 생성과 편집, 현지화, 스토리보드 흐름 같은 실전 워크플로에서 꽤 분명한 장점을 갖고 있다. 그래서 이 비교는 단순히 &quot;누가 더 예쁜 그림을 그리나&quot;의 문제가 아니다. 어떤 작업에서 어느 모델이 더 실무적인가의 문제에 가깝다.</p>
+<p><img src="images/gpt-image-2-duct-tape-cover.png" alt="GPT Image 2 duct-tape cover" loading="lazy"></p>
+<p>이 글은 2026년 3월 17일부터 2026년 4월 16일까지의 Reddit, X, YouTube 중심 반응과 Google의 공식 Nano Banana 2 문서를 함께 읽고 정리한 블로그 초안이다. 결론부터 말하면, <code>GPT Image 2</code>는 적어도 커뮤니티가 가장 답답해하던 영역에서 분명히 인상적인 신호를 만들고 있다. 하지만 그걸 곧바로 &quot;Nano Banana 2를 완전히 이겼다&quot;로 말하기에는 아직 이르다.</p>
+<h2>왜 <code>duct-tape</code> 루머가 이렇게 크게 번졌나</h2>
+<p>이번 이슈가 커진 가장 큰 이유는 OpenAI가 공식 발표를 하기 전에 사람들이 먼저 결과물을 통해 모델의 성격을 추론했다는 점이다. 2026년 4월 3일 <code>r/singularity</code>에는 <code>GPT-IMAGE-2 Likely on LMarena</code>라는 글이 올라왔고, 2026년 4월 15일에는 다시 <code>GPT-IMAGE-2 is back on LMarena</code>라는 글이 올라왔다. 같은 시기 X에서는 <code>@levelsio</code>, <code>@DataChaz</code>, <code>@Bunnsuck</code>, <code>@yaelkroy</code> 같은 계정들이 하나같이 비슷한 말을 반복했다. 텍스트가 유난히 잘 들어가고, UI 화면이나 사인, 문서처럼 기존 모델이 자주 망가뜨리던 이미지가 훨씬 자연스럽게 나온다는 것이다.</p>
+<p>이 반응은 단순한 과장만으로 보기 어렵다. 서로 다른 계정들이 같은 종류의 강점을 반복해서 짚고 있기 때문이다. 특히 이번에는 &quot;사진이 더 예쁘다&quot; 같은 취향형 코멘트보다 &quot;텍스트가 깨지지 않는다&quot;, &quot;그래픽 디자인 작업에 더 쓸 만하다&quot;, &quot;구조적 프롬프트를 한 번에 맞춘다&quot;처럼 검증 가능한 표현이 더 많이 나왔다. 이 차이가 중요하다. 이미지 생성 모델의 과장은 대개 미감에서 나오는데, 이번 루머는 오히려 실무형 문제에서 시작됐기 때문이다.</p>
+<h2>커뮤니티가 가장 먼저 본 차이: 텍스트</h2>
+<p>이번 비교에서 가장 반복적으로 등장한 단어는 단연 <code>text rendering</code>이었다. X에서는 <code>flawless text rendering</code>, <code>clean text rendering</code>, <code>UI text &amp; spelling</code>, <code>perfect handwritten text</code> 같은 표현이 연달아 나왔고, Reddit에서는 <code>graphic design/text work</code>에서 특히 좋다는 식의 반응이 이어졌다. 이건 그냥 장점 하나가 아니다. 이미지 생성 모델이 오랫동안 해결하지 못했던 병목이다.</p>
+<p>왜 이게 중요할까. 실제 실무에서 텍스트가 깨지면 바로 못 쓰는 이미지가 많기 때문이다. 인포그래픽, 포스터, 안내판, 소셜 피드 목업, 패키지, 브랜드 시안, 광고 크리에이티브, 다국어 현지화 이미지가 전부 여기에 걸린다. 배경이 예쁘고 조명이 좋아도, 제목 하나가 틀리고 숫자 하나가 깨지면 결과물은 바로 폐기된다. 그래서 텍스트 정확도가 높아졌다는 반응은 단순한 감탄이 아니라 &quot;이제 이 모델을 업무 흐름 안에 넣어볼 수 있겠다&quot;는 신호에 가깝다.</p>
+<p>실제로 커뮤니티가 공유한 샘플도 이 방향으로 기울어 있었다. F1 차량 진화 과정을 보여주는 인포그래픽, UI 화면, 문서형 이미지, 표지판, 일본어 텍스트가 들어간 비교 이미지 같은 것들이 자주 등장했다. 최근 이미지 모델 담론이 &quot;누가 더 영화 같은 그림을 뽑느냐&quot;에서 &quot;누가 더 바로 써먹을 수 있느냐&quot;로 옮겨가고 있다는 뜻이기도 하다.</p>
+<h2>두 번째 차이: 복잡한 프롬프트를 얼마나 정확히 따르나</h2>
+<p>이번 <code>duct-tape</code> 담론이 정말 강했던 지점은 one-shot 정확도였다. 대표적인 사례가 X에서 공유된 책장 테스트다. <code>@chetaslua</code>는 나무 책장 3단에 위에서부터 1권, 3권, 7권을 정확히 배치하는 프롬프트를 올렸고, <code>duct-tape-2</code>가 이 테스트를 한 번에 풀었다고 말했다. 비교 대상에는 <code>Nano Banana 2</code>, <code>Nano Banana Pro</code>, <code>GPT-image-1.5</code>가 함께 있었다.</p>
+<p>이런 테스트가 왜 의미가 있을까. 이미지 생성 모델은 분위기와 질감은 그럴듯하게 만들 수 있어도, 객체 개수, 위치, 순서, 계층 구조처럼 사람이 쉽게 검증할 수 있는 조건에서는 자주 흔들린다. 특히 &quot;왼쪽은 2개, 가운데는 4개, 오른쪽은 1개&quot; 같은 프롬프트는 문장 이해와 장면 배치를 동시에 요구한다. 여기서 one-shot 성공이 늘어난다는 건 단순히 똑똑해졌다는 말보다, 사람이 모델을 제어하기 쉬워졌다는 뜻에 가깝다.</p>
+<p>이건 곧 이미지 생성의 사용법 자체를 바꾼다. 예전에는 멋진 이미지를 얻기 위해 여러 번 돌리고, 리롤하고, 제약을 나눠서 쓰고, 운에 기대는 부분이 컸다. 하지만 복잡한 제약을 한 번에 맞추는 능력이 높아지면, 이미지 생성은 점점 &quot;감으로 던지는 툴&quot;이 아니라 &quot;명세를 넣으면 결과가 나오는 툴&quot;에 가까워진다. 특히 제품 시안, 교육용 다이어그램, 데이터 설명 이미지, UI 설계, 마케팅 목업에서는 이 차이가 훨씬 크게 체감될 가능성이 높다.</p>
+<h2>세 번째 차이: 월드 지식과 장면 논리</h2>
+<p>또 하나 자주 언급된 포인트는 <code>world knowledge</code>였다. 여기서 말하는 월드 지식은 단순한 상식 테스트가 아니다. 실제 사물, 브랜드, 도시, 장면 규칙, 물체 구조, 문서 레이아웃 같은 현실 지식을 얼마나 장면 안에 자연스럽게 녹여 넣느냐의 문제다. 커뮤니티는 <code>GPT Image 2</code>가 브랜드 디테일, 사인 구조, 화면 구성, 장면 논리에서 기존 모델보다 덜 어색하다고 느낀 듯하다.</p>
+<p>이건 포토리얼 담론과도 연결된다. 많은 사람이 이번 모델을 보며 <code>photorealism</code>을 말했지만, 그 핵심은 단순히 &quot;더 선명하다&quot;가 아니다. 현실처럼 보이는 디테일이 이전보다 더 많은 층위에서 맞아떨어진다는 쪽에 가깝다. 예를 들어 표지판이라면 글자 모양만 맞는 것이 아니라, 재질과 부착 방식과 환경광이 함께 자연스러워야 한다. UI라면 버튼 모양만 그럴듯한 게 아니라, 정보 위계와 간격과 글자 크기가 전부 맞아야 한다. 월드 지식은 결국 현실성의 구조다.</p>
+<p>그래서 이번 루머에서 사람들이 유난히 <code>사인</code>, <code>문서</code>, <code>UI</code>, <code>인포그래픽</code>, <code>브랜드 디테일</code>을 많이 공유한 것이다. 이건 이미지 생성 모델의 미적 성능을 넘어, 정보 밀도가 있는 이미지 생성으로 축이 이동하고 있다는 신호다.</p>
+<h2>그런데도 Nano Banana 2가 끝난 건 아니다</h2>
+<p>이쯤 되면 <code>GPT Image 2</code>가 다 이긴 것처럼 들릴 수 있다. 하지만 이 해석은 너무 빠르다. <code>Nano Banana 2</code>는 애초에 포지셔닝이 다르다. Google은 2026년 2월 26일 공식 블로그에서 <code>Nano Banana 2</code>를 <code>Gemini 3.1 Flash Image</code>로 설명하면서, 빠른 생성과 빠른 편집, 인포그래픽 제작, 이미지 내 번역과 현지화, 여러 캐릭터와 오브젝트의 일관성 유지, 다양한 비율과 해상도 제어를 핵심 기능으로 내세웠다.</p>
+<p>이건 굉장히 중요한 차이다. <code>GPT Image 2</code>가 커뮤니티에서 &quot;이거 생각보다 훨씬 잘 맞춘다&quot;라는 반응을 끌어내는 모델이라면, <code>Nano Banana 2</code>는 이미 Google 제품군 안에서 편집과 반복, 검색 기반 보강, 현지화, 광고 제작, Flow, Search, Gemini 앱, API까지 연결된 실전형 모델이다. 즉 한 장의 결과만 놓고 보면 <code>GPT Image 2</code>가 더 놀라워 보일 수 있지만, 빠르게 수정하고 여러 버전을 만들고 워크플로 안에 넣는 문제에서는 <code>Nano Banana 2</code>가 여전히 강하다.</p>
+<p>이 차이는 실제로 작업 방식에서 드러난다. 예를 들어 광고 소재를 세로형, 정방형, 와이드형으로 여러 버전 뽑아야 하거나, 같은 캐릭터를 여러 컷에서 유지해야 하거나, 영어 이미지를 한국어 버전으로 현지화해야 하거나, 여러 장을 빠르게 수정해 비교해야 할 때는 <code>Nano Banana 2</code> 쪽 메시지가 훨씬 명확하다. 반대로 한 번에 텍스트와 제약을 강하게 맞춰야 하는 인포그래픽, 패키지, 사인, UI 목업 쪽은 최근 커뮤니티 반응만 놓고 보면 <code>GPT Image 2</code>가 더 매력적으로 보인다.</p>
+<h2>가장 중요한 반례도 있다</h2>
+<p>무조건 <code>GPT Image 2</code> 승리라고 말하기 어려운 이유는 실제 반례가 존재하기 때문이다. 2026년 4월 15일 X에서 <code>@patelnamra573</code>는 <code>duct-tape-1/2/3</code>와 <code>Nano Banana 2</code>, <code>Nano Banana Pro</code>를 같은 <code>maze puzzle</code> 테스트에 넣었고, 결과적으로 <code>GPT Image v2</code> 계열은 전부 실패했으며 <code>NB Pro</code>만 정답을 냈다고 적었다. 즉 텍스트와 구조적 제약에는 강해 보여도, 모든 종류의 시각 추론 문제에서 압도적이라고 말할 수는 없다.</p>
+<p>여기에 또 하나의 혼선이 있다. SNS에서는 <code>Nano Banana 2</code>와 <code>Nano Banana Pro</code>가 자주 같은 진영으로 묶여 비교된다. 그래서 커뮤니티의 말만 곧이곧대로 읽으면 &quot;Nano Banana&quot;가 하나의 단일 모델처럼 보이지만, 실제로는 속도형 워크플로를 겨냥한 <code>Nano Banana 2</code>와 고정밀 작업을 겨냥한 <code>Nano Banana Pro</code>는 포지션이 다르다. 따라서 &quot;GPT Image 2가 Nano Banana를 넘었다&quot;는 문장을 볼 때는, 정확히 무엇과 비교했는지부터 다시 봐야 한다.</p>
+<h2>그래서 지금 시점의 실무 결론은 무엇인가</h2>
+<p>2026년 4월 16일 기준으로 가장 안전한 결론은 이렇다. <code>GPT Image 2</code>는 적어도 커뮤니티가 가장 오래 답답해했던 영역, 즉 텍스트가 들어가는 이미지와 복잡한 조건을 갖는 장면에서 상당히 강한 신호를 만들고 있다. 이건 우연한 한두 장의 성공이라기보다, 여러 계정과 포스트가 비슷한 포인트를 반복한다는 점에서 의미가 있다. 특히 그래픽 디자인, 사인, 인포그래픽, UI 목업, 브랜드 시안 같은 분야에서 기대치가 빠르게 올라가고 있다.</p>
+<p>하지만 <code>Nano Banana 2</code>는 여전히 별개의 장점이 있다. 속도, 편집 루프, 현지화, 스토리보드, 캐릭터 일관성, Google 제품군과의 통합은 이미 공식 문서와 제품 배치로 확인되는 강점이다. 그러므로 지금 이 비교를 &quot;새 왕이 나왔다&quot;로 읽기보다, 이미지 생성 모델이 두 갈래로 분화하고 있다고 보는 편이 더 정확하다. 하나는 텍스트와 제약을 더 정확히 다루는 방향이고, 다른 하나는 더 빠르고 넓은 워크플로에 스며드는 방향이다.</p>
+<p>실제로 모델을 써야 하는 사람이라면 질문을 이렇게 바꾸는 게 좋다. &quot;누가 더 좋지?&quot;가 아니라, &quot;내가 지금 만들려는 결과가 정보 밀도와 텍스트 정확도를 요구하나, 아니면 빠른 반복과 워크플로 통합을 요구하나?&quot; 이 질문으로 가면 <code>GPT Image 2</code>와 <code>Nano Banana 2</code>의 차이는 훨씬 선명하게 보인다.</p>
+<h2>마무리</h2>
+<p>이번 <code>duct-tape</code> 사태가 흥미로운 이유는 단순히 또 하나의 리크가 터졌기 때문이 아니다. 사람들이 처음으로 이미지 생성 모델을 보고 &quot;이제 진짜 텍스트와 구조적 디자인 작업도 맡겨볼 수 있겠다&quot;는 반응을 꽤 강하게 보였기 때문이다. 만약 이 인상이 공식 출시 후에도 유지된다면, <code>GPT Image 2</code>는 미감 중심 경쟁을 넘어 그래픽 실무 중심 경쟁의 판을 바꾸는 모델이 될 수 있다.</p>
+<p>다만 아직은 루머와 체험담이 공식 문서보다 앞서 있는 단계다. 그래서 지금 필요한 태도는 과열된 승자 선언이 아니라, 어떤 작업에서 무엇이 정말 달라졌는지를 더 차분하게 보는 일이다. 그 기준으로 보면, <code>duct-tape</code>가 보여준 가장 중요한 변화는 화질보다 텍스트다. 그리고 바로 그 지점 때문에 이 모델은 단순한 신기함이 아니라, 실제로 의미 있는 업데이트처럼 보인다.</p>
+<h2>참고</h2>
+<ul><li>Google Blog, <code>Nano Banana 2: Combining Pro capabilities with lightning-fast speed</code>, 2026-02-26</li><li>Reddit <code>r/singularity</code>, <code>GPT-IMAGE-2 Likely on LMarena</code>, 2026-04-03</li><li>Reddit <code>r/singularity</code>, <code>GPT-IMAGE-2 is back on LMarena</code>, 2026-04-15</li><li>Reddit <code>r/OpenAI</code>, <code>The new image model is better than Nano Banana 2 in many scenarios</code>, 2026-04-06</li><li>Reddit <code>r/ChatGPT</code>, <code>Image 2 is crazy good.</code>, 2026-04-08</li><li>X <code>@chetaslua</code>, bookshelf one-shot test, 2026-04-15</li><li>X <code>@old_pgmrs_will</code>, Japanese text detail comparison, 2026-04-11</li><li>X <code>@levelsio</code>, leak and text rendering summary, 2026-04-04</li><li>YouTube <code>Joseph Martin</code>, <code>I Tested EVERY AI Image Model so You Don't Have to...</code>, 2026-03-29</li><li>YouTube <code>AI Tech Pro</code>, <code>Nano Banana 2 vs Flux vs GPT Image Models</code>, 2026-03-18</li></ul>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/history-of-media-art/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>미디어아트의 역사</span></a>
+                <a id="next-post" href="/blog/posts/what-is-post-digital/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span>포스트디지털이란 무엇인가: 디지털이 너무 익숙해진 시대의 예술</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
