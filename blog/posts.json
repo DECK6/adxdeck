@@ -1,5 +1,85 @@
 [
   {
+    "slug": "why-immersion-became-the-core-language-of-media-art",
+    "file": "_built/why-immersion-became-the-core-language-of-media-art.md",
+    "title": "몰입은 왜 미디어아트의 핵심 언어가 되었나",
+    "description": "미디어아트를 설명할 때 가장 자주 등장하는 단어 가운데 하나가 \"몰입\"이다. 그런데 이 말을 너무 쉽게 쓰면, 금세 \"큰 화면\", \"압도적인 영상\", \"사진 찍기 좋은 전시\" 정도로 축소된다. 실제로 몰입은 단순한 ...",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "immersion",
+      "installation",
+      "theory"
+    ],
+    "date": "2026-04-17",
+    "thumbnail": "",
+    "author": "육대근"
+  },
+  {
+    "slug": "what-is-intermedia",
+    "file": "_built/what-is-intermedia.md",
+    "title": "인터미디어란 무엇인가: 장르 사이에서 태어나는 예술",
+    "description": "미디어아트를 처음 접한 사람들은 종종 이렇게 묻는다. \"이건 영상인가요, 설치인가요, 퍼포먼스인가요?\" 그런데 좋은 미디어아트일수록 이 질문에 하나로 답하기 어렵다. 영상이면서 조각이고, 사운드 작업이면서 퍼포먼스이...",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "intermedia",
+      "fluxus",
+      "theory"
+    ],
+    "date": "2026-04-17",
+    "thumbnail": "",
+    "author": "육대근"
+  },
+  {
+    "slug": "what-is-latent-space",
+    "file": "_built/what-is-latent-space.md",
+    "title": "잠재공간이란 무엇인가: AI 이미지는 어디에서 오는가",
+    "description": "생성형 AI를 설명할 때 많은 사람이 프롬프트에 집중한다. 어떤 문장을 넣었는지, 어떤 스타일을 지정했는지, 어떤 모델을 골랐는지가 중요해 보이기 때문이다. 하지만 실제로 이미지를 만들어 내는 핵심은 프롬프트 그 자...",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "ai-art",
+      "latent-space",
+      "theory"
+    ],
+    "date": "2026-04-17",
+    "thumbnail": "",
+    "author": "육대근"
+  },
+  {
+    "slug": "what-is-remediation",
+    "file": "_built/what-is-remediation.md",
+    "title": "재매개란 무엇인가: 새 미디어는 왜 늘 옛 미디어를 다시 부르는가",
+    "description": "새로운 미디어가 등장할 때마다 우리는 종종 \"완전히 새로운 시대\"라는 말을 쉽게 쓴다. 하지만 조금만 더 들여다보면, 대부분의 새 미디어는 이전 미디어를 버리기보다 다시 불러오고, 흡수하고, 변형하면서 자신을 정당화...",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "remediation",
+      "digital-media",
+      "theory"
+    ],
+    "date": "2026-04-17",
+    "thumbnail": "",
+    "author": "육대근"
+  },
+  {
+    "slug": "what-is-post-digital",
+    "file": "_built/what-is-post-digital.md",
+    "title": "포스트디지털이란 무엇인가: 디지털이 너무 익숙해진 시대의 예술",
+    "description": "한때 디지털은 미래 그 자체처럼 여겨졌다. 더 빠르고, 더 깨끗하고, 더 정교한 기술이 예술의 진보를 약속하는 것처럼 보였다. 하지만 지금은 상황이 다르다. 디지털은 너무 흔해져서 더 이상 놀라운 것이 아니다. 스마...",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "post-digital",
+      "aesthetics",
+      "theory"
+    ],
+    "date": "2026-04-17",
+    "thumbnail": "",
+    "author": "육대근"
+  },
+  {
     "slug": "gpt-image-2-vs-nano-banana-2",
     "file": "_built/gpt-image-2-vs-nano-banana-2.md",
     "title": "GPT Image 2는 정말 Nano Banana 2를 넘었나: LM Arena `duct-tape`가 보여준 것",
