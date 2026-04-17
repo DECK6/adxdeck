@@ -15,13 +15,13 @@ tags:
   - installation
   - theory
 description: "몰입 개념을 파노라마에서 XR, 이머시브 전시까지 이어지는 흐름 속에서 정리하고, 왜 오늘날 미디어아트의 핵심 언어가 되었는지 설명한다."
-thumbnail: images/immersion-cover.webp
+thumbnail: images/immersion-cover.png
 status: completed
 ---
 
 # 몰입은 왜 미디어아트의 핵심 언어가 되었나
 
-![몰입은 왜 미디어아트의 핵심 언어가 되었나](images/immersion-cover.webp)
+![몰입은 왜 미디어아트의 핵심 언어가 되었나](images/immersion-cover.png)
 
 미디어아트를 설명할 때 가장 자주 등장하는 단어 가운데 하나가 "몰입"이다. 그런데 이 말을 너무 쉽게 쓰면, 금세 "큰 화면", "압도적인 영상", "사진 찍기 좋은 전시" 정도로 축소된다. 실제로 몰입은 단순한 시각 효과가 아니라, 관객의 위치와 감각 구조를 다시 설계하는 방식에 가깝다.
 

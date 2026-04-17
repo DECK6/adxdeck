@@ -63,10 +63,12 @@ function extractDescription(body, maxLen = 120) {
         const trimmed = line.trim();
         if (!trimmed) continue;
         if (trimmed.startsWith('#')) continue;
+        if (trimmed.startsWith('![')) continue;
         if (trimmed.startsWith('>')) continue;
         if (trimmed.startsWith('---')) continue;
         // Clean markdown formatting
         const clean = trimmed
+            .replace(/^!\[([^\]]*)\]\([^)]+\)$/, '$1')
             .replace(/\*\*(.+?)\*\*/g, '$1')
             .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
             .replace(/\[\[([^\]]+)\]\]/g, '$1');

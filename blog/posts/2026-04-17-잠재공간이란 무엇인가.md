@@ -15,13 +15,13 @@ tags:
   - latent-space
   - theory
 description: "잠재공간 개념을 쉽게 풀어 설명하고, 왜 그것이 생성형 AI 시대 미디어아트의 핵심 미학 개념이 되었는지 정리한다."
-thumbnail: images/latent-space-cover.webp
+thumbnail: images/latent-space-cover.png
 status: completed
 ---
 
 # 잠재공간이란 무엇인가: AI 이미지는 어디에서 오는가
 
-![잠재공간이란 무엇인가](images/latent-space-cover.webp)
+![잠재공간이란 무엇인가](images/latent-space-cover.png)
 
 생성형 AI를 설명할 때 많은 사람이 프롬프트에 집중한다. 어떤 문장을 넣었는지, 어떤 스타일을 지정했는지, 어떤 모델을 골랐는지가 중요해 보이기 때문이다. 하지만 실제로 이미지를 만들어 내는 핵심은 프롬프트 그 자체가 아니라, 모델 내부에 형성된 "잠재공간(latent space)"에 있다.
 
