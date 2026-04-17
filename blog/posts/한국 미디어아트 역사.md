@@ -15,7 +15,7 @@ tags:
   - art-history
   - digital-art
   - immersive
-thumbnail: images/history-of-korean-media-art-cover.svg
+thumbnail: images/history-of-korean-media-art-cover.png
 status: completed
 ---
 
@@ -25,7 +25,7 @@ status: completed
 원문 중 6번과 7번 항목은 제외했고, 10번까지만 남겼다.
 백남준의 1963년 개인전, 1984년 위성 프로젝트, 1988년 《다다익선》, 서울미디어시티비엔날레의 전신과 출범 시점, 아르떼뮤지엄의 2020년 제주 개관, 일부 작가 약력은 공개된 기관 자료와 작가 공식 페이지를 다시 대조해 문장을 정리했다.
 
-![History of Korean Media Art cover](images/history-of-korean-media-art-cover.svg)
+![History of Korean Media Art cover](images/history-of-korean-media-art-cover.png)
 
 ## 1. 개요 — 한국 미디어아트의 독특한 위치
 

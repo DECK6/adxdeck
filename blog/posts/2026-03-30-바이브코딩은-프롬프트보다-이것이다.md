@@ -16,7 +16,7 @@ tags:
   - claude-code
   - openclaw
   - harness-engineering
-thumbnail: images/vibe-coding-workspace-cover.jpg
+thumbnail: images/vibe-coding-workspace-cover.png
 CMDS: "[[📚 620 Generative AI]]"
 index: "[[🏷 Draft Article]]"
 status: completed

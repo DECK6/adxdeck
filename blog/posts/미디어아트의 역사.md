@@ -15,13 +15,13 @@ tags:
   - new-media
   - digital-art
   - generative-art
-thumbnail: images/history-of-media-art-cover.svg
+thumbnail: images/history-of-media-art-cover.png
 status: completed
 ---
 
 # 미디어아트의 역사
 
-![History of Media Art cover](images/history-of-media-art-cover.svg)
+![History of Media Art cover](images/history-of-media-art-cover.png)
 
 ## 1. 개요
 
