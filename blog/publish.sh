@@ -20,7 +20,7 @@ fi
 
 node blog/build.js
 
-git add -A -- blog/posts blog/images blog/posts.json blog/index.html blog/post.html blog/blog.js blog/build.js blog/publish.sh blog/BLOG-GUIDE.md script.js sitemap.xml robots.txt
+git add -A -- index.html about-deck.html blog/posts blog/images blog/posts.json blog/index.html blog/post.html blog/blog.js blog/build.js blog/publish.sh blog/BLOG-GUIDE.md script.js sitemap.xml robots.txt
 
 if git diff --cached --quiet; then
   echo "No blog publish changes to commit."

@@ -86,6 +86,19 @@ function fileToSlug(filename) {
         .replace(/^-|-$/g, '');
 }
 
+function normalizePostDate(filename, meta) {
+    const today = new Date().toISOString().split('T')[0];
+    const explicit = meta['date created'] || meta['date modified'] || '';
+    const filenameDateMatch = filename.match(/^(\d{4}-\d{2}-\d{2})/);
+    const filenameDate = filenameDateMatch ? filenameDateMatch[1] : '';
+
+    const candidate = explicit || filenameDate || today;
+    if (candidate > today) {
+        return filenameDate && filenameDate <= today ? filenameDate : today;
+    }
+    return candidate;
+}
+
 function categoryFromTags(tags) {
     if (!Array.isArray(tags)) return 'Post';
     if (tags.includes('article')) return 'Article';
@@ -483,7 +496,7 @@ const posts = files.map(filename => {
         description: descriptionRaw,
         category: categoryFromTags(tags),
         tags: displayTags,
-        date: meta['date created'] || meta['date modified'] || new Date().toISOString().split('T')[0],
+        date: normalizePostDate(filename, meta),
         thumbnail: meta.thumbnail || '',
         author: Array.isArray(meta.author) ? meta.author[0] : (meta.author || 'Deck'),
         _body: body

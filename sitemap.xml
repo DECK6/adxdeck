@@ -13,11 +13,6 @@
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://dexa.art/blog/posts/gpt-image-2-vs-nano-banana-2/</loc>
-    <lastmod>2026-04-30</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
     <loc>https://dexa.art/blog/posts/why-poor-images-matter/</loc>
     <lastmod>2026-04-17</lastmod>
     <priority>0.8</priority>
@@ -95,6 +90,11 @@
   <url>
     <loc>https://dexa.art/blog/posts/what-is-expanded-cinema/</loc>
     <lastmod>2026-04-17</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dexa.art/blog/posts/gpt-image-2-vs-nano-banana-2/</loc>
+    <lastmod>2026-04-16</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
