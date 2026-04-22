@@ -1,5 +1,92 @@
 [
   {
+    "slug": "when-media-becomes-environment",
+    "file": "_built/when-media-becomes-environment.md",
+    "title": "매체는 언제 환경이 되는가: 미디어 생태학의 시선",
+    "description": "미디어 생태학을 통해 매체를 콘텐츠의 그릇이 아니라 감각과 생활 리듬, 사회적 관계를 재조직하는 환경으로 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "ecology",
+      "mcluhan",
+      "interface",
+      "digital-culture"
+    ],
+    "date": "2026-04-22",
+    "thumbnail": "images/when-media-becomes-environment-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "when-images-become-regimes",
+    "file": "_built/when-images-become-regimes.md",
+    "title": "보이는 것은 어떻게 체제가 되는가: 스펙터클과 주의의 정치학",
+    "description": "스펙터클을 단순한 시각적 화려함이 아니라 이미지와 연출된 경험이 주의와 욕망, 사회적 관계를 조직하는 체제로 설명한다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "spectacle",
+      "critical-theory",
+      "platform",
+      "immersion"
+    ],
+    "date": "2026-04-22",
+    "thumbnail": "images/when-images-become-regimes-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "art-after-the-object",
+    "file": "_built/art-after-the-object.md",
+    "title": "오브제 이후의 예술: 시스템 미학이 남긴 전환",
+    "description": "잭 번햄의 시스템 미학을 통해 작품을 사물보다 관계, 운영, 피드백, 유지보수의 체계로 읽는 전환을 살펴본다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "theory",
+      "systems",
+      "cybernetics",
+      "jack-burnham"
+    ],
+    "date": "2026-04-22",
+    "thumbnail": "images/art-after-the-object-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "why-presence-survives-reproduction",
+    "file": "_built/why-presence-survives-reproduction.md",
+    "title": "원본은 사라져도 현존은 남는가: 아우라 이후의 예술",
+    "description": "복제 시대 이후에도 왜 사람들은 여전히 현장성과 유일한 경험을 원하고, 전시는 다시 아우라를 연출하는지 살펴본다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "benjamin",
+      "aura",
+      "reproduction",
+      "aesthetics"
+    ],
+    "date": "2026-04-22",
+    "thumbnail": "images/why-presence-survives-reproduction-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "the-art-of-feedback",
+    "file": "_built/the-art-of-feedback.md",
+    "title": "피드백의 예술: 사이버네틱스는 어떻게 미디어아트를 재정의했나",
+    "description": "사이버네틱스를 통해 작품을 고정된 오브제가 아니라 입력과 반응, 조정과 통제가 반복되는 시스템으로 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "theory",
+      "systems",
+      "cybernetics",
+      "feedback",
+      "interactivity"
+    ],
+    "date": "2026-04-22",
+    "thumbnail": "images/the-art-of-feedback-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "why-poor-images-matter",
     "file": "_built/why-poor-images-matter.md",
     "title": "가난한 이미지는 왜 더 멀리 퍼지는가: 히토 슈타이얼의 Poor Image 다시 읽기",
