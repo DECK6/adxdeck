@@ -3,7 +3,7 @@ type: article
 title: "예술은 왜 오브제보다 시스템이 되었는가: 사이버네틱스의 귀환"
 aliases:
   - "예술은 왜 오브제보다 시스템이 되었는가"
-  - "What Is Cybernetics"
+  - "When Art Became Systems"
 author:
   - "[[육대근]]"
 date created: 2026-04-22
@@ -15,10 +15,13 @@ tags:
   - systems
   - feedback
 description: "Public-facing article explaining cybernetics as the logic of feedback, control, and self-regulating systems in media art. Use it when introducing interactive art, systems aesthetics, or real-time responsive installations."
+thumbnail: images/cybernetics-cover.png
 status: completed
 ---
 
 # 예술은 왜 오브제보다 시스템이 되었는가: 사이버네틱스의 귀환
+
+![예술은 왜 오브제보다 시스템이 되었는가](images/cybernetics-cover.png)
 
 미디어아트의 핵심을 한 단어로 줄이면 많은 사람이 기술이라고 답할 것이다. 하지만 조금 더 정확한 답은 시스템이다. 미디어아트의 많은 작업은 단순히 새로운 기계를 들여오는 것이 아니라, 입력과 반응, 오류와 수정, 관객과 환경이 서로 영향을 주고받는 구조를 만든다. 이 구조를 이해하게 해 주는 가장 오래된 언어 중 하나가 사이버네틱스다.
 
@@ -47,4 +50,3 @@ status: completed
 - 이 작업의 핵심은 이미지인가, 아니면 그 이미지를 바꾸는 피드백 구조인가.
 - 관객은 시스템의 외부에 있는가, 아니면 이미 그 일부로 편입되어 있는가.
 - AI와 인터랙션을 도입할 때 우리는 통제를 포기하는가, 아니면 더 높은 수준의 통제를 설계하는가.
-

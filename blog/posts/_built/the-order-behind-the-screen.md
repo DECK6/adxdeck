@@ -3,7 +3,7 @@ type: article
 title: "보이는 화면 뒤에 누가 질서를 설계하는가: 장치라는 문제"
 aliases:
   - "보이는 화면 뒤에 누가 질서를 설계하는가"
-  - "What Is Apparatus"
+  - "The Order Behind the Screen"
 author:
   - "[[육대근]]"
 date created: 2026-04-22
@@ -15,10 +15,13 @@ tags:
   - theory
   - AI
 description: "Public-facing article explaining apparatus as the hidden system of devices, institutions, interfaces, and rules behind media art and AI. Use it when introducing device critique, platform power, or exhibition systems to a general audience."
+thumbnail: images/apparatus-cover.png
 status: completed
 ---
 
 # 보이는 화면 뒤에 누가 질서를 설계하는가: 장치라는 문제
+
+![보이는 화면 뒤에 누가 질서를 설계하는가](images/apparatus-cover.png)
 
 미디어아트를 볼 때 우리는 자주 화면, 센서, 조명, 인터랙션 같은 눈에 띄는 요소부터 본다. 하지만 어떤 작업이 관객을 어디에 세우고, 무엇을 만지게 하고, 어떤 반응을 정상으로 간주하며, 무엇을 보지 못하게 만드는지는 표면만으로 설명되지 않는다. 바로 이때 필요한 말이 장치, 더 정확히는 apparatus다.
 
@@ -47,4 +50,3 @@ status: completed
 - 이 작업은 무엇을 보여 주는가보다, 무엇을 보게 만들고 무엇을 보지 못하게 만드는가.
 - 관객은 정말 자유롭게 참여하는가, 아니면 이미 설계된 역할을 수행하는가.
 - 편리하고 직관적인 인터페이스는 누구에게 편리하며, 누구를 기본 사용자에서 제외하는가.
-

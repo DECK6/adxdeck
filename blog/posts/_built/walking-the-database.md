@@ -3,7 +3,7 @@ type: article
 title: "우리는 이야기를 보는가, 데이터베이스를 걷는가: 서사 이후의 디지털 형식"
 aliases:
   - "우리는 이야기를 보는가, 데이터베이스를 걷는가"
-  - "What Is Database vs Narrative"
+  - "Walking the Database"
 author:
   - "[[육대근]]"
 date created: 2026-04-22
@@ -15,10 +15,13 @@ tags:
   - narrative
   - digital-culture
 description: "Public-facing article explaining database and narrative as competing yet intertwined cultural logics in digital media. Use it when introducing archives, platform feeds, AI datasets, or non-linear interactive works."
+thumbnail: images/database-vs-narrative-cover.png
 status: completed
 ---
 
 # 우리는 이야기를 보는가, 데이터베이스를 걷는가: 서사 이후의 디지털 형식
+
+![우리는 이야기를 보는가, 데이터베이스를 걷는가](images/database-vs-narrative-cover.png)
 
 책과 영화의 시대에 우리는 이야기를 따라간다. 시작이 있고, 전개가 있고, 결말이 있다. 하지만 플랫폼과 검색, 추천 피드와 아카이브, 게임과 인터랙티브 설치의 시대에 경험은 점점 덜 선형적이 된다. 우리는 무엇이 다음 장면인지 기다리기보다, 무엇을 클릭할지 고르고 무엇을 넘길지 결정하며, 서로 다른 경로를 즉석에서 만들어 낸다. 바로 이때 데이터베이스와 서사라는 구분이 중요해진다.
 
@@ -47,4 +50,3 @@ status: completed
 - 이 작품의 핵심 경험은 이야기를 따라가는 일인가, 아니면 경로를 선택하는 일인가.
 - 데이터 구조는 배경으로 숨겨져 있는가, 아니면 작품의 형식으로 드러나는가.
 - AI 시대의 창작에서 우리는 결과를 감상하는가, 아니면 데이터베이스가 압축한 가능성의 일부를 보고 있는가.
-
