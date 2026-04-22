@@ -3,7 +3,7 @@ type: article
 title: "자유처럼 보이는 규칙들: 프로토콜은 어떻게 네트워크를 통치하나"
 aliases:
   - "자유처럼 보이는 규칙들"
-  - "What Is Protocol"
+  - "How Protocol Governs the Network"
 author:
   - "[[육대근]]"
 date created: 2026-04-17
@@ -14,7 +14,7 @@ tags:
   - protocol
   - network
   - software
-description: "프로토콜을 단순 기술 표준이 아니라 네트워크 공간의 행동을 가능하게 하면서 제한하는 보이지 않는 통치 구조로 읽는다."
+description: "Public-facing essay on protocol as the hidden rule system that enables connection while quietly governing behavior across networks, platforms, and AI interfaces."
 thumbnail: images/what-is-protocol-cover.png
 status: completed
 ---
