@@ -1,5 +1,21 @@
 [
   {
+    "slug": "2026-04-22",
+    "file": "_built/2026-04-22.md",
+    "title": "김아영은 왜 미래 도시를 배달 노동자의 몸으로 다시 쓰는가",
+    "description": "Public-facing essay on Ayoung Kim as a key Korean media artist who turns platform labor, algorithmic governance, and multiverse storytelling into a worldbuilding practice for contemporary moving-image art.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "korean-media-art",
+      "worldbuilding",
+      "algorithmic-governance"
+    ],
+    "date": "2026-04-22",
+    "thumbnail": "images/ayoung-kim-courier-worlds-cover.svg",
+    "author": "육대근"
+  },
+  {
     "slug": "walking-the-database",
     "file": "_built/walking-the-database.md",
     "title": "우리는 이야기를 보는가, 데이터베이스를 걷는가: 서사 이후의 디지털 형식",
