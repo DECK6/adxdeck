@@ -1,5 +1,37 @@
 [
   {
+    "slug": "what-is-database-vs-narrative",
+    "file": "_built/what-is-database-vs-narrative.md",
+    "title": "우리는 이야기를 보는가, 데이터베이스를 걷는가: 서사 이후의 디지털 형식",
+    "description": "Public-facing article explaining database and narrative as competing yet intertwined cultural logics in digital media. Use it when introducing archives, platform feeds, AI datasets, or non-linear interactive works.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "database",
+      "narrative",
+      "digital-culture"
+    ],
+    "date": "2026-04-22",
+    "thumbnail": "",
+    "author": "육대근"
+  },
+  {
+    "slug": "what-is-liveness",
+    "file": "_built/what-is-liveness.md",
+    "title": "지금 여기라는 감각은 어떻게 만들어지는가: 라이브니스 이후의 퍼포먼스",
+    "description": "Public-facing article explaining liveness as a constructed sense of real-time presence in performance and media art. Use it when introducing streaming, live coding, VJing, or AI-assisted realtime performance.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "liveness",
+      "performance",
+      "real-time"
+    ],
+    "date": "2026-04-22",
+    "thumbnail": "",
+    "author": "육대근"
+  },
+  {
     "slug": "when-media-becomes-environment",
     "file": "_built/when-media-becomes-environment.md",
     "title": "매체는 언제 환경이 되는가: 미디어 생태학의 시선",
@@ -35,6 +67,22 @@
     "author": "육대근"
   },
   {
+    "slug": "what-is-cybernetics",
+    "file": "_built/what-is-cybernetics.md",
+    "title": "예술은 왜 오브제보다 시스템이 되었는가: 사이버네틱스의 귀환",
+    "description": "Public-facing article explaining cybernetics as the logic of feedback, control, and self-regulating systems in media art. Use it when introducing interactive art, systems aesthetics, or real-time responsive installations.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "cybernetics",
+      "systems",
+      "feedback"
+    ],
+    "date": "2026-04-22",
+    "thumbnail": "",
+    "author": "육대근"
+  },
+  {
     "slug": "art-after-the-object",
     "file": "_built/art-after-the-object.md",
     "title": "오브제 이후의 예술: 시스템 미학이 남긴 전환",
@@ -66,6 +114,38 @@
     ],
     "date": "2026-04-22",
     "thumbnail": "images/why-presence-survives-reproduction-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "what-is-apparatus",
+    "file": "_built/what-is-apparatus.md",
+    "title": "보이는 화면 뒤에 누가 질서를 설계하는가: 장치라는 문제",
+    "description": "Public-facing article explaining apparatus as the hidden system of devices, institutions, interfaces, and rules behind media art and AI. Use it when introducing device critique, platform power, or exhibition systems to a general audience.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "apparatus",
+      "theory",
+      "AI"
+    ],
+    "date": "2026-04-22",
+    "thumbnail": "",
+    "author": "육대근"
+  },
+  {
+    "slug": "what-is-embodiment",
+    "file": "_built/what-is-embodiment.md",
+    "title": "몸 없는 인터페이스는 왜 자꾸 실패하는가: 체화의 미학",
+    "description": "Public-facing article explaining embodiment as the idea that perception and meaning arise through bodily experience rather than detached mind. Use it when introducing VR, haptics, interactive installation, or body-responsive media art.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "embodiment",
+      "body",
+      "interface"
+    ],
+    "date": "2026-04-22",
+    "thumbnail": "",
     "author": "육대근"
   },
   {
