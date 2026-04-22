@@ -6,7 +6,7 @@ aliases:
   - "How Protocol Governs the Network"
 author:
   - "[[육대근]]"
-date created: 2026-04-17
+date created: 2026-04-22
 date modified: 2026-04-22
 tags:
   - article

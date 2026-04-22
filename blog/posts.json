@@ -149,6 +149,22 @@
     "author": "육대근"
   },
   {
+    "slug": "how-protocol-governs-the-network",
+    "file": "_built/how-protocol-governs-the-network.md",
+    "title": "자유처럼 보이는 규칙들: 프로토콜은 어떻게 네트워크를 통치하나",
+    "description": "Public-facing essay on protocol as the hidden rule system that enables connection while quietly governing behavior across networks, platforms, and AI interfaces.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "protocol",
+      "network",
+      "software"
+    ],
+    "date": "2026-04-22",
+    "thumbnail": "images/what-is-protocol-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "the-art-of-feedback",
     "file": "_built/the-art-of-feedback.md",
     "title": "피드백의 예술: 사이버네틱스는 어떻게 미디어아트를 재정의했나",
@@ -388,22 +404,6 @@
     ],
     "date": "2026-04-17",
     "thumbnail": "images/post-digital-cover.png",
-    "author": "육대근"
-  },
-  {
-    "slug": "how-protocol-governs-the-network",
-    "file": "_built/how-protocol-governs-the-network.md",
-    "title": "자유처럼 보이는 규칙들: 프로토콜은 어떻게 네트워크를 통치하나",
-    "description": "Public-facing essay on protocol as the hidden rule system that enables connection while quietly governing behavior across networks, platforms, and AI interfaces.",
-    "category": "Article",
-    "tags": [
-      "media-art",
-      "protocol",
-      "network",
-      "software"
-    ],
-    "date": "2026-04-17",
-    "thumbnail": "images/what-is-protocol-cover.png",
     "author": "육대근"
   },
   {
