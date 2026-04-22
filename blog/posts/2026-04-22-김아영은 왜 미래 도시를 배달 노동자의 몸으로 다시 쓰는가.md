@@ -3,7 +3,7 @@ type: article
 title: "김아영은 왜 미래 도시를 배달 노동자의 몸으로 다시 쓰는가"
 aliases:
   - "김아영은 왜 미래 도시를 배달 노동자의 몸으로 다시 쓰는가"
-  - "Why Ayoung Kim Rewrites the Future City Through the Courier's Body"
+  - "Ayoung Kim Rewrites the Future City Through Courier Labor"
 author:
   - "[[육대근]]"
 date created: 2026-04-22
