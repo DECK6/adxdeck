@@ -199,6 +199,24 @@
     "author": "육대근"
   },
   {
+    "slug": "how-convenience-trains-us",
+    "file": "_built/how-convenience-trains-us.md",
+    "title": "편리함은 어떻게 우리를 길들이는가: 웬디 천과 소프트웨어 습관의 정치",
+    "description": "웬디 천의 작업을 따라가며 소프트웨어와 플랫폼이 자유를 약속하는 동시에 습관, 반복, 데이터 분류를 통해 우리를 길들이는 방식을 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "wendy-chun",
+      "software-studies",
+      "platform",
+      "data-politics"
+    ],
+    "date": "2026-04-22",
+    "thumbnail": "images/how-convenience-trains-us-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "why-poor-images-matter",
     "file": "_built/why-poor-images-matter.md",
     "title": "가난한 이미지는 왜 더 멀리 퍼지는가: 히토 슈타이얼의 Poor Image 다시 읽기",
