@@ -105,8 +105,8 @@
   {
     "slug": "what-is-optical-unconscious",
     "file": "_built/what-is-optical-unconscious.md",
-    "title": "광학적 무의식이란 무엇인가: 카메라는 인간이 못 본 세계를 어떻게 드러내는가",
-    "description": "광학적 무의식 개념을 통해 카메라와 센서가 인간의 맨눈으로는 포착되지 않던 시각적 층위를 어떻게 드러내는지 설명한다.",
+    "title": "카메라는 눈보다 먼저 무엇을 보는가: 광학적 무의식의 장면들",
+    "description": "카메라와 센서가 인간의 맨눈으로는 포착되지 않던 시간과 움직임의 층위를 드러내며 시각의 정의를 바꾸는 방식을 살펴본다.",
     "category": "Article",
     "tags": [
       "media-art",
@@ -121,8 +121,8 @@
   {
     "slug": "what-is-glitch-aesthetics",
     "file": "_built/what-is-glitch-aesthetics.md",
-    "title": "글리치 미학이란 무엇인가: 오류는 어떻게 디지털 시대의 스타일이 되었나",
-    "description": "글리치 미학이 단순한 오류 효과가 아니라 디지털 시스템의 숨겨진 물질성과 권력을 드러내는 비평적 형식임을 설명한다.",
+    "title": "오류가 스타일이 되는 순간: 글리치 미학의 정치성",
+    "description": "글리치를 장식 효과가 아니라 디지털 시스템의 숨겨진 규칙과 취약성을 드러내는 비평적 미학으로 본다.",
     "category": "Article",
     "tags": [
       "media-art",
@@ -137,8 +137,8 @@
   {
     "slug": "what-is-technical-image",
     "file": "_built/what-is-technical-image.md",
-    "title": "기술적 이미지란 무엇인가: 카메라는 왜 세계를 자동 번역하는가",
-    "description": "기술적 이미지 개념을 통해 사진, 디지털 이미지, AI 이미지가 왜 단순한 재현이 아니라 장치와 프로그램의 산물인지 설명한다.",
+    "title": "이미지는 언제 장치의 언어가 되는가: 기술적 이미지 다시 읽기",
+    "description": "사진, 디지털 이미지, AI 이미지가 세계의 직접 재현이 아니라 장치와 프로그램이 만든 변환물임을 다시 살핀다.",
     "category": "Article",
     "tags": [
       "media-art",
@@ -153,8 +153,8 @@
   {
     "slug": "what-is-data-colonialism",
     "file": "_built/what-is-data-colonialism.md",
-    "title": "데이터 식민주의란 무엇인가: AI는 왜 새로운 추출 산업처럼 보이는가",
-    "description": "데이터 식민주의 개념을 통해 플랫폼과 AI 산업이 인간의 삶을 어떻게 추출 가능한 자원으로 바꾸는지 설명한다.",
+    "title": "AI는 무엇을 채굴하고 있는가: 데이터 식민주의의 구조",
+    "description": "플랫폼과 AI 산업이 인간의 행동과 관계, 언어를 어떻게 자원처럼 추출하고 축적하는지 데이터 식민주의의 관점에서 읽는다.",
     "category": "Article",
     "tags": [
       "media-art",
@@ -185,8 +185,8 @@
   {
     "slug": "what-is-generative-art",
     "file": "_built/what-is-generative-art.md",
-    "title": "생성예술이란 무엇인가: 작가는 결과 대신 규칙을 설계한다",
-    "description": "생성예술의 계보를 정리하며 작가가 결과물보다 시스템과 규칙을 설계하는 창작 방식이 왜 중요한지 설명한다.",
+    "title": "작품보다 규칙을 쓰는 사람들: 생성예술의 오래된 미래",
+    "description": "생성예술을 결과물보다 규칙과 확률, 시스템 설계에 무게를 두는 창작 방식으로 다시 읽는다.",
     "category": "Article",
     "tags": [
       "media-art",
@@ -201,8 +201,8 @@
   {
     "slug": "what-is-intermedia",
     "file": "_built/what-is-intermedia.md",
-    "title": "인터미디어란 무엇인가: 장르 사이에서 태어나는 예술",
-    "description": "Dick Higgins의 인터미디어 개념을 바탕으로, 미디어아트가 왜 단일 장르가 아니라 장르 사이에서 태어나는 예술인지 설명한다.",
+    "title": "장르 사이에서 태어나는 형식들: 인터미디어 이후의 예술",
+    "description": "인터미디어를 단순한 장르 혼합이 아니라 서로 다른 매체의 경계를 흔들며 새로운 형식을 발생시키는 사고방식으로 읽는다.",
     "category": "Article",
     "tags": [
       "media-art",
@@ -217,8 +217,8 @@
   {
     "slug": "what-is-interface",
     "file": "_built/what-is-interface.md",
-    "title": "인터페이스란 무엇인가: 우리는 화면을 보는가, 규칙을 만지는가",
-    "description": "인터페이스를 단순한 화면 디자인이 아니라 인간과 시스템의 관계를 조직하는 문화적 규칙으로 설명한다.",
+    "title": "우리는 화면을 만지는가, 규칙을 만지는가: 인터페이스의 표면 정치",
+    "description": "인터페이스를 단순한 화면 디자인이 아니라 인간과 시스템의 관계를 배치하는 규칙의 표면으로 읽는다.",
     "category": "Article",
     "tags": [
       "media-art",
@@ -233,8 +233,8 @@
   {
     "slug": "what-is-operational-image",
     "file": "_built/what-is-operational-image.md",
-    "title": "작동적 이미지란 무엇인가: 기계는 왜 인간 없이 이미지를 보는가",
-    "description": "작동적 이미지 개념을 통해 인간이 보기 위한 이미지와 기계가 작동하기 위해 사용하는 이미지의 차이를 설명하고, AI와 감시 시대의 미디어아트를 읽는 방법을 정리한다.",
+    "title": "이미지가 보지 않고 작동할 때: 기계 시각과 작동적 이미지",
+    "description": "인간 감상을 위한 이미지와 시스템 작동을 위한 이미지를 구분하며, 기계 시각의 정치성을 작동적 이미지라는 개념으로 짚는다.",
     "category": "Article",
     "tags": [
       "media-art",
@@ -249,8 +249,8 @@
   {
     "slug": "what-is-latent-space",
     "file": "_built/what-is-latent-space.md",
-    "title": "잠재공간이란 무엇인가: AI 이미지는 어디에서 오는가",
-    "description": "잠재공간 개념을 쉽게 풀어 설명하고, 왜 그것이 생성형 AI 시대 미디어아트의 핵심 미학 개념이 되었는지 정리한다.",
+    "title": "보이지 않는 좌표 위에서 그려지는 이미지: 잠재공간을 이해하는 법",
+    "description": "잠재공간을 AI의 마법 상자가 아니라 데이터와 확률이 조직된 추상적 좌표계로 풀어 설명한다.",
     "category": "Article",
     "tags": [
       "media-art",
@@ -265,8 +265,8 @@
   {
     "slug": "what-is-remediation",
     "file": "_built/what-is-remediation.md",
-    "title": "재매개란 무엇인가: 새 미디어는 왜 늘 옛 미디어를 다시 부르는가",
-    "description": "재매개 개념을 통해 새 미디어가 왜 결코 완전히 새롭지 않은지, 그리고 미디어아트가 어떻게 기존 매체를 다시 불러와 변형하는지 설명한다.",
+    "title": "새 미디어는 왜 늘 옛 미디어를 불러오는가: 재매개의 반복",
+    "description": "디지털 매체가 과거 매체를 지우는 대신 흡수하고 재연출하면서 새로움을 만드는 과정을 재매개의 관점에서 본다.",
     "category": "Article",
     "tags": [
       "media-art",
@@ -281,8 +281,8 @@
   {
     "slug": "what-is-control-society",
     "file": "_built/what-is-control-society.md",
-    "title": "통제사회란 무엇인가: 감시 이후의 권력은 어떻게 우리를 조정하는가",
-    "description": "들뢰즈의 통제사회 개념을 바탕으로 플랫폼, 점수화, 추천, 맞춤형 조정이 어떻게 새로운 권력 형식이 되는지 설명한다.",
+    "title": "감시보다 부드러운 권력: 통제사회는 어떻게 일상을 조정하는가",
+    "description": "추천, 점수화, 개인화, 지속적 피드백이 어떻게 감시보다 부드럽지만 더 깊은 조정의 권력이 되는지 통제사회 개념으로 읽는다.",
     "category": "Article",
     "tags": [
       "media-art",
@@ -297,8 +297,8 @@
   {
     "slug": "what-is-post-digital",
     "file": "_built/what-is-post-digital.md",
-    "title": "포스트디지털이란 무엇인가: 디지털이 너무 익숙해진 시대의 예술",
-    "description": "포스트디지털 개념을 통해 디지털이 더 이상 새롭지 않은 시대의 미디어아트가 어떤 태도와 미학을 만들어내는지 설명한다.",
+    "title": "새롭지 않은 디지털 이후의 미학: 포스트디지털의 감각",
+    "description": "디지털이 더 이상 새로움의 이름이 아니게 된 시대에 왜 오류, 물질성, 혼종성이 다시 중요해지는지 포스트디지털의 감각으로 설명한다.",
     "category": "Article",
     "tags": [
       "media-art",
@@ -313,8 +313,8 @@
   {
     "slug": "what-is-protocol",
     "file": "_built/what-is-protocol.md",
-    "title": "프로토콜이란 무엇인가: 네트워크는 왜 자유로워 보이면서도 통제적인가",
-    "description": "프로토콜을 기술 문서가 아니라 네트워크 시대의 보이지 않는 통치 형식으로 읽고, 미디어아트 실무와 연결해 설명한다.",
+    "title": "자유처럼 보이는 규칙들: 프로토콜은 어떻게 네트워크를 통치하나",
+    "description": "프로토콜을 단순 기술 표준이 아니라 네트워크 공간의 행동을 가능하게 하면서 제한하는 보이지 않는 통치 구조로 읽는다.",
     "category": "Article",
     "tags": [
       "media-art",
@@ -329,8 +329,8 @@
   {
     "slug": "what-is-expanded-cinema",
     "file": "_built/what-is-expanded-cinema.md",
-    "title": "확장영화란 무엇인가: 영화는 어떻게 스크린 밖으로 나왔는가",
-    "description": "확장영화 개념을 통해 단일 스크린 영화가 어떻게 설치, 퍼포먼스, 몰입 환경으로 확장되었는지 설명한다.",
+    "title": "스크린 밖으로 흘러나온 영화: 확장영화의 계보",
+    "description": "확장영화를 단일 스크린의 해체가 아니라 공간, 몸, 퍼포먼스로 번져간 시청각 경험의 전환으로 읽는다.",
     "category": "Article",
     "tags": [
       "media-art",
