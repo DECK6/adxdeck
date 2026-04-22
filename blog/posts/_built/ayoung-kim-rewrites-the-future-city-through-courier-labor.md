@@ -15,13 +15,13 @@ tags:
   - worldbuilding
   - algorithmic-governance
 description: "Public-facing essay on Ayoung Kim as a key Korean media artist who turns platform labor, algorithmic governance, and multiverse storytelling into a worldbuilding practice for contemporary moving-image art."
-thumbnail: images/ayoung-kim-courier-worlds-cover.svg
+thumbnail: images/ayoung-kim-courier-worlds-cover.png
 status: completed
 ---
 
 # 김아영은 왜 미래 도시를 배달 노동자의 몸으로 다시 쓰는가
 
-![김아영은 왜 미래 도시를 배달 노동자의 몸으로 다시 쓰는가](images/ayoung-kim-courier-worlds-cover.svg)
+![김아영은 왜 미래 도시를 배달 노동자의 몸으로 다시 쓰는가](images/ayoung-kim-courier-worlds-cover.png)
 
 요즘 한국 미디어아트를 설명할 때 여전히 오래된 질문이 반복된다. 누가 더 새로운 기술을 쓰는가, 누가 더 몰입적인 화면을 만드는가, 누가 더 화려한 미래 도시를 시각화하는가 같은 질문들이다. 하지만 김아영의 작업 앞에 서면 기준이 조금 달라진다. 중요한 것은 기술 자체가 아니라, 그 기술이 어떤 세계를 조직하고 어떤 몸을 그 안에 배치하는가다. 김아영은 미래 도시를 배경으로 쓰지 않는다. 오히려 그 도시가 배달 노동자의 몸, 알고리즘의 명령, 분열된 시간감각, 여성 인물의 이동 경로를 통해 어떻게 다시 쓰이는지를 보여 준다.
 
