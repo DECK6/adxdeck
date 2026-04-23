@@ -13,6 +13,16 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://dexa.art/blog/posts/how-convenience-trains-us/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dexa.art/blog/posts/when-code-becomes-a-medium/</loc>
+    <lastmod>2026-04-23</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dexa.art/blog/posts/ayoung-kim-rewrites-the-future-city-through-courier-labor/</loc>
     <lastmod>2026-04-22</lastmod>
     <priority>0.8</priority>
@@ -69,11 +79,6 @@
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/the-art-of-feedback/</loc>
-    <lastmod>2026-04-22</lastmod>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://dexa.art/blog/posts/how-convenience-trains-us/</loc>
     <lastmod>2026-04-22</lastmod>
     <priority>0.8</priority>
   </url>

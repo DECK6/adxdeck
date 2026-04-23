@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>코드는 언제 매체가 되는가: 케이시 리스와 제너러티브 아트의 문법 | DEXA Blog</title>
+    <meta name="description" content="Casey Reas를 통해 코드가 단순한 제작 도구가 아니라 규칙, 실행, 변이, 보존을 함께 조직하는 미디어아트의 매체가 되는 순간을 읽는다. Processing과 창작코딩 문화, 한국 미디어아트 교육 맥락까지 연결한 공개 에세이." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/when-code-becomes-a-medium/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="코드는 언제 매체가 되는가: 케이시 리스와 제너러티브 아트의 문법" />
+    <meta property="og:description" content="Casey Reas를 통해 코드가 단순한 제작 도구가 아니라 규칙, 실행, 변이, 보존을 함께 조직하는 미디어아트의 매체가 되는 순간을 읽는다. Processing과 창작코딩 문화, 한국 미디어아트 교육 맥락까지 연결한 공개 에세이." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/when-code-becomes-a-medium/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/when-code-becomes-a-medium-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-04-23" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="generative-art" />
+    <meta property="article:tag" content="software-art" />
+    <meta property="article:tag" content="creative-coding" />
+    <meta property="article:tag" content="processing" />
+    <meta property="article:tag" content="artist" />
+    <meta property="article:tag" content="DEXA" />
+    <meta property="article:tag" content="blog" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="코드는 언제 매체가 되는가: 케이시 리스와 제너러티브 아트의 문법" />
+    <meta name="twitter:description" content="Casey Reas를 통해 코드가 단순한 제작 도구가 아니라 규칙, 실행, 변이, 보존을 함께 조직하는 미디어아트의 매체가 되는 순간을 읽는다. Processing과 창작코딩 문화, 한국 미디어아트 교육 맥락까지 연결한 공개 에세이." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/when-code-becomes-a-medium-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"코드는 언제 매체가 되는가: 케이시 리스와 제너러티브 아트의 문법","description":"Casey Reas를 통해 코드가 단순한 제작 도구가 아니라 규칙, 실행, 변이, 보존을 함께 조직하는 미디어아트의 매체가 되는 순간을 읽는다. Processing과 창작코딩 문화, 한국 미디어아트 교육 맥락까지 연결한 공개 에세이.","image":"https://dexa.art/blog/images/when-code-becomes-a-medium-cover.png","datePublished":"2026-04-23","dateModified":"2026-04-23","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/when-code-becomes-a-medium/"},"keywords":"media-art, generative-art, software-art, creative-coding, processing, artist, DEXA, blog"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 4월 23일</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">generative-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">software-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">creative-coding</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">processing</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">artist</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">DEXA</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">blog</span></div>
+            </div>
+            <div class="prose-dexa">
+<h1>코드는 언제 매체가 되는가: 케이시 리스와 제너러티브 아트의 문법</h1>
+<p><img src="/blog/images/when-code-becomes-a-medium-cover.png" alt="알고리즘 선과 노드가 어두운 설치 공간 안에서 겹겹이 축적되는 제너러티브 소프트웨어 아트 커버" loading="lazy"></p>
+<p>코드는 오랫동안 예술의 뒤편에 있었다. 화면을 띄우고, 이미지를 저장하고, 센서를 읽고, 프로젝터를 제어하는 보이지 않는 기술적 하부 구조처럼 여겨졌다. 그러나 어느 순간부터 코드는 작품을 만드는 도구를 넘어 작품이 생각하는 방식 자체가 되었다. 이미지가 완성된 결과라면, 코드는 그 이미지를 낳는 조건과 규칙, 반복과 변이를 조직하는 매체가 된다.</p>
+<p>Casey Reas를 다시 읽어야 하는 이유가 여기에 있다. 그는 소프트웨어를 사용해 아름다운 추상 이미지를 만든 작가라는 설명만으로는 부족하다. Reas의 핵심은 이미지를 그리는 일이 아니라, 이미지가 생겨나는 문법을 설계하는 데 있다. 그는 규칙문, 코드, 실행 환경, 시간의 축적, 포팅과 복원 가능성을 하나의 예술적 구조로 묶어 냈다. 그래서 그의 작업은 제너러티브 아트의 사례이면서 동시에, 동시대 미디어아트가 코드라는 조건을 어떻게 매체로 받아들였는지를 보여주는 중요한 분기점이다.</p>
+<h2>결과 이미지보다 먼저 오는 규칙</h2>
+<p>Reas의 작업을 볼 때 가장 먼저 버려야 할 습관은 화면의 형태만 감상하려는 태도다. 물론 그의 이미지에는 섬세한 선, 반복되는 원, 누적되는 흔적, 밀도 높은 구조가 있다. 하지만 그 표면은 최종 목적지가 아니라 규칙이 통과한 흔적에 가깝다. Reas에게 작품의 본체는 하나의 완성 이미지가 아니라, 그 이미지를 생성할 수 있는 규칙의 장이다.</p>
+<p>이 점은 개념미술의 지시문과 닮아 있다. Sol LeWitt의 월 드로잉에서 중요한 것은 벽에 그려진 선만이 아니라, 그 선을 가능하게 하는 지시문이었다. Reas는 이 관계를 소프트웨어 환경으로 옮긴다. 규칙문은 사람이 읽을 수 있는 문장으로 존재하고, 코드는 그 문장을 실행 가능한 구조로 번역한다. 같은 규칙이라도 구현 방식, 프로그래밍 언어, 렌더링 환경, 시간의 길이에 따라 서로 다른 결과가 나온다. 작품은 단수의 원본이 아니라 가능한 버전들의 공간이 된다.</p>
+<p>2004년 Whitney Artport에서 공개된 <em>{Software} Structures</em>는 이 문제를 선명하게 보여준다. 이 프로젝트는 LeWitt의 지시문을 출발점으로 삼으면서, 소프트웨어에서만 가능한 구조를 함께 실험했다. 중요한 것은 코드가 작가의 손을 대신해 이미지를 자동 생산했다는 사실이 아니다. 오히려 지시문, 해석, 구현, 실행 결과가 서로 다른 층위로 분리되면서, 작품이 무엇에 속하는지 묻게 만들었다는 점이다. 작품은 텍스트인가, 코드인가, 화면인가, 아니면 그 사이를 오가는 실행 가능한 관계인가.</p>
+<p>Reas가 흥미로운 이유는 이 질문을 이론으로만 남기지 않았다는 데 있다. 그는 규칙이 실제로 어떻게 움직이고, 접촉하고, 흔적을 남기며, 시간이 지나면서 이미지로 축적되는지를 보여준다. 그래서 그의 제너러티브 아트는 단순한 랜덤 효과가 아니다. 우연은 있지만, 그 우연은 아무렇게나 발생하지 않는다. 그것은 설계된 규칙 안에서만 움직이는 변이성이다.</p>
+<h2>Processing은 도구가 아니라 문화적 운영체제였다</h2>
+<p>Reas를 말할 때 Processing을 빼놓을 수 없다. Ben Fry와 함께 시작한 Processing은 예술가와 디자이너가 코드를 시각적으로 배울 수 있게 만든 오픈 프로젝트였다. 이 플랫폼의 중요성은 단순히 쉬운 프로그래밍 언어를 제공했다는 데 있지 않다. Processing은 코딩을 완성된 소프트웨어 개발의 영역이 아니라, 스케치하고 실험하고 즉시 결과를 확인하는 창작 행위로 바꾸었다.</p>
+<p>그 전환은 미디어아트 교육에 결정적이었다. 코드는 더 이상 개발자의 전문 언어만이 아니었다. 반복문, 좌표계, 조건문, 객체, 렌더 루프는 시각적 사고를 구성하는 재료가 되었다. 예술가는 화면 위에 선을 그리는 대신, 선이 어떻게 생겨나고 움직이며 서로 반응할지를 적는다. 이때 코딩은 기술 습득이 아니라 감각을 조직하는 방법이 된다.</p>
+<p>Reas의 <em>Process</em> 시리즈는 이러한 사고를 작품 수준으로 정리한다. Form, Behavior, Element라는 문법은 단순하지만 강력하다. 선이나 원 같은 형태가 있고, 그것이 움직이고 접촉하고 방향을 바꾸는 행위 규칙이 있으며, 이 둘이 결합된 요소들이 화면 안에서 시간을 보낸다. 이미지는 그 요소들이 남긴 흔적이다. 다시 말해 화면은 결과물인 동시에 과정의 기록이다.</p>
+<p>이 구조가 중요한 이유는 작가의 역할을 바꾸기 때문이다. 작가는 더 이상 모든 형태를 직접 마감하는 사람이 아니다. 작가는 가능한 결과 공간을 설계하고, 그 공간 안에서 어떤 변이가 일어나는지 관찰하고 조율하는 사람이다. 이것은 오늘날 AI 이미지 생성, 블록체인 기반 제너러티브 아트, 실시간 시청각 시스템을 이해할 때도 여전히 유효한 관점이다. 다만 Reas의 경우 규칙이 비교적 명시적이다. 블랙박스화된 모델이 아니라 읽고, 비교하고, 다시 구현할 수 있는 규칙이 작품의 핵심을 이룬다.</p>
+<h2>코드의 매체 특수성은 물질이 아니라 실행에 있다</h2>
+<p>전통적인 매체 특수성은 회화의 평면성, 조각의 입체성처럼 물질적 속성을 중심으로 설명되었다. 그런데 코드는 그런 방식으로 쉽게 잡히지 않는다. 코드는 종이에 인쇄될 수도 있고, 화면에서 실행될 수도 있으며, Java 기반 Processing에서 JavaScript 기반 p5.js로, 혹은 C++ 기반 openFrameworks로 옮겨 갈 수도 있다. 그렇다면 코드는 매체가 아닌가.</p>
+<p>Reas의 작업은 오히려 반대로 말한다. 코드의 매체성은 특정 물질에 고정되어 있지 않기 때문에 사라지는 것이 아니라, 실행 가능성과 번역 가능성에서 드러난다. 같은 규칙이 다른 환경에서 다른 속도, 다른 렌더링, 다른 상호작용, 다른 배포 방식을 갖게 될 때, 우리는 코드가 결코 중립적이지 않다는 사실을 본다. Java 기반 Processing은 교육성과 즉각성을 제공하고, p5.js는 브라우저와 네트워크 접근성을 열어 주며, openFrameworks는 퍼포먼스와 하드웨어 제어에 강하다. 언어와 환경이 바뀌면 미학도 바뀐다.</p>
+<p>이 점에서 Reas는 post-medium 이후의 무매체 상태를 보여주는 작가가 아니다. 그는 오히려 post-medium 이후 새롭게 등장한 매체로서 코드를 보여준다. 회화, 프린트, 영상, 설치, 웹은 출력 형식일 수 있다. 그러나 그 형식들을 가로질러 작품을 조직하는 것은 규칙과 실행, 변이와 보존의 구조다.</p>
+<p>소프트웨어 아트의 보존 문제도 여기서 발생한다. 화면에 보이는 이미지만 저장하면 충분한가. 아니면 코드와 실행 환경, 라이브러리 버전, 포팅 기록, 시간에 따른 변화까지 함께 보존해야 하는가. Whitney가 <em>{Software} Structures</em>를 2016년에 p5.js 등으로 다시 복원한 사례는 이 질문을 잘 보여준다. Reas의 작업은 처음부터 하나의 파일이나 이미지보다, 여러 구현과 재실행 가능성 속에서 살아남는 작품이다.</p>
+<h2>한국 창작코딩 장면에서 Reas를 읽는 이유</h2>
+<p>한국에서 Reas의 이름은 전시장보다 교육 현장에서 더 넓게 퍼졌을지도 모른다. Processing, p5.js, openFrameworks는 미디어아트, 인터랙션 디자인, 데이터 시각화, 실시간 공연 비주얼 수업의 대표적인 입문 도구가 되었다. 많은 학습자는 Reas의 개별 작품을 자세히 알지 못해도, 그가 정리한 방식의 사고를 따라간다. 결과 이미지를 손으로 꾸미기보다 결과를 낳는 시스템을 설계하라는 태도 말이다.</p>
+<p>흥미로운 점은 Reas가 한국 미디어아트 장면에 뒤늦게 도착한 이름이 아니라는 사실이다. 그는 2000년대 중반 국내 전시와 디지털아트 맥락에 이미 반복적으로 소개되었다. 그러나 더 긴 영향은 작품의 수용사보다 문법의 확산에 있다. 한국의 TouchDesigner 중심 실시간 미디어 환경은 Processing과 같은 계보라고 단순화할 수 없지만, 규칙 기반 시각 생성, 즉시 실행, 피드백, 실험적 스케치라는 사고방식에서는 Reas와 깊게 만난다.</p>
+<p>이런 의미에서 Reas는 “코딩도 예술인가”라는 낡은 질문에 답하는 데 유용하다. 중요한 것은 코드를 썼는지 여부가 아니다. 코드가 작품의 존재 방식, 시간성, 버전, 관객의 감각, 보존 조건을 어떻게 바꾸는가다. Reas의 작업은 코드가 기술 시연을 넘어 미술사의 언어가 될 수 있음을 보여준다. 알고리즘은 장식적 효과가 아니라, 작품이 세계를 구성하는 방식이다.</p>
+<h2>남는 질문: 우리는 규칙을 이해하고 있는가</h2>
+<p>AI 이후의 이미지 문화에서 Reas를 읽는 일은 더욱 중요해졌다. 오늘날 우리는 이전보다 훨씬 쉽게 이미지를 생성한다. 하지만 그 이미지가 어떤 규칙으로 생겨났는지, 어떤 데이터와 모델, 어떤 실행 환경과 선택 과정을 거쳤는지는 점점 더 불투명해진다. Reas의 작업은 이 불투명성에 대한 하나의 기준선을 제공한다. 알고리즘은 숨겨진 마법이 아니라 읽고, 변형하고, 비교하고, 다시 실행할 수 있는 미적 구조일 수 있다.</p>
+<p>그래서 Casey Reas의 의의는 Processing의 공동 창시자라는 이력에만 있지 않다. 그는 코드가 예술의 뒤편에서 작동하는 도구가 아니라, 규칙과 실행과 변이를 조직하는 매체가 되는 순간을 작품으로 증명했다. 오늘 우리가 생성형 이미지와 실시간 미디어 시스템을 다룰 때 다시 물어야 할 질문도 여기서 출발한다. 우리는 결과를 만들고 있는가, 아니면 결과를 낳는 조건을 이해하고 있는가.</p>
+<h2>참고한 원천 노트</h2>
+<ul><li>Casey Reas 작가 노트: 공식 사이트, Whitney Artport, UCLA, Processing.org, p5.js, openFrameworks, bitforms 자료를 교차 확인한 DEXA 내부 연구 노트 기반.</li></ul>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/ayoung-kim-rewrites-the-future-city-through-courier-labor/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>김아영은 왜 미래 도시를 배달 노동자의 몸으로 다시 쓰는가</span></a>
+                <a id="next-post" href="/blog/posts/how-convenience-trains-us/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span>편리함은 어떻게 우리를 길들이는가: 웬디 천과 소프트웨어 습관의 정치</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
