@@ -18,10 +18,10 @@
     "author": "육대근"
   },
   {
-    "slug": "gpt-five-five-does-not-replace-gpt-five-four-yet",
-    "file": "_built/gpt-five-five-does-not-replace-gpt-five-four-yet.md",
-    "title": "GPT-5.5는 GPT-5.4를 아직 대체하지 않는다",
-    "description": "Public blog article comparing GPT-5.5 and GPT-5.4 from a practical product, API, cost, and agentic-work perspective. Use this when deciding whether GPT-5.5 is a replacement for GPT-5.4 or a higher-end model for selected work.",
+    "slug": "gpt-five-five-replaces-gpt-five-four-for-most-work",
+    "file": "_built/gpt-five-five-replaces-gpt-five-four-for-most-work.md",
+    "title": "GPT-5.5는 GPT-5.4를 대부분 대체한다: 아쉬운 건 API 타이밍이다",
+    "description": "Public blog article arguing that GPT-5.5 will replace GPT-5.4 for most real work, while the main disappointment is that API availability did not arrive simultaneously with ChatGPT and Codex rollout.",
     "category": "Article",
     "tags": [
       "AI",
