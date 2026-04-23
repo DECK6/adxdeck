@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPT-5.5는 GPT-5.4를 아직 대체하지 않는다 | DEXA Blog</title>
+    <meta name="description" content="Public blog article comparing GPT-5.5 and GPT-5.4 from a practical product, API, cost, and agentic-work perspective. Use this when deciding whether GPT-5.5 is a replacement for GPT-5.4 or a higher-end model for selected work." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/2026-04-24-gpt-5.5-gpt-5.4/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="GPT-5.5는 GPT-5.4를 아직 대체하지 않는다" />
+    <meta property="og:description" content="Public blog article comparing GPT-5.5 and GPT-5.4 from a practical product, API, cost, and agentic-work perspective. Use this when deciding whether GPT-5.5 is a replacement for GPT-5.4 or a higher-end model for selected work." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/2026-04-24-gpt-5.5-gpt-5.4/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/gpt-5-5-vs-gpt-5-4-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-04-23" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="AI" />
+    <meta property="article:tag" content="OpenAI" />
+    <meta property="article:tag" content="GPT-5.5" />
+    <meta property="article:tag" content="GPT-5.4" />
+    <meta property="article:tag" content="Codex" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GPT-5.5는 GPT-5.4를 아직 대체하지 않는다" />
+    <meta name="twitter:description" content="Public blog article comparing GPT-5.5 and GPT-5.4 from a practical product, API, cost, and agentic-work perspective. Use this when deciding whether GPT-5.5 is a replacement for GPT-5.4 or a higher-end model for selected work." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/gpt-5-5-vs-gpt-5-4-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"GPT-5.5는 GPT-5.4를 아직 대체하지 않는다","description":"Public blog article comparing GPT-5.5 and GPT-5.4 from a practical product, API, cost, and agentic-work perspective. Use this when deciding whether GPT-5.5 is a replacement for GPT-5.4 or a higher-end model for selected work.","image":"https://dexa.art/blog/images/gpt-5-5-vs-gpt-5-4-cover.png","datePublished":"2026-04-23","dateModified":"2026-04-23","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/2026-04-24-gpt-5.5-gpt-5.4/"},"keywords":"AI, OpenAI, GPT-5.5, GPT-5.4, Codex"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 4월 23일</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">AI</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">OpenAI</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">GPT-5.5</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">GPT-5.4</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">Codex</span></div>
+            </div>
+            <div class="prose-dexa">
+<h1>GPT-5.5는 GPT-5.4를 아직 대체하지 않는다</h1>
+<p>OpenAI가 2026년 4월 23일 GPT-5.5를 공개했다. 발표 문구만 보면 결론은 간단해 보인다. 더 똑똑하고, 더 자율적이고, 더 적은 토큰으로 일을 끝낸다는 것이다. 그러면 GPT-5.4는 바로 이전 세대가 되었고, 우리는 이제 GPT-5.5만 보면 되는 걸까?</p>
+<p>아직은 아니다. GPT-5.5는 분명히 GPT-5.4보다 강한 모델로 발표되었지만, 실제 선택지는 “5.5가 5.4를 이겼다”보다 복잡하다. 2026년 4월 24일 확인 기준으로 GPT-5.5는 ChatGPT와 Codex에는 제공되지만 API는 아직 “coming soon” 상태다. 반대로 GPT-5.4는 이미 ChatGPT, API, Codex에 모두 들어와 있고, 모델 문서와 가격, 최대 출력, 컨텍스트, 도구 지원 정보가 정리되어 있다.[^openai-55][^dev-models][^dev-54]</p>
+<p><img src="/blog/images/gpt-5-5-vs-gpt-5-4-cover.png" alt="GPT-5.5 vs GPT-5.4 cover" loading="lazy"></p>
+<p>그래서 지금 필요한 질문은 “어느 쪽이 더 좋은가”가 아니라 “어떤 작업에서 GPT-5.5의 추가 비용과 불확실성을 감수할 만한가”다. 그 질문으로 보면 두 모델의 차이는 훨씬 선명해진다.</p>
+<h2>차이는 지식보다 작업 방식에 있다</h2>
+<p>GPT-5.4는 “전문 업무를 위한 프런티어 모델”로 공개되었다. OpenAI는 GPT-5.4를 reasoning, coding, agentic workflow, 스프레드시트, 프레젠테이션, 문서 작업을 하나로 묶는 모델로 설명했다. 특히 API와 Codex에서 1M 토큰급 긴 컨텍스트를 다루고, 컴퓨터 사용 능력과 도구 사용을 강화한 것이 핵심이었다.[^openai-54]</p>
+<p>GPT-5.5의 강조점은 여기서 한 단계 더 나간다. 공식 발표의 톤은 “더 정확한 답변”보다 “더 적은 관리로 더 긴 일을 끝내는 모델”에 가깝다. 코딩, 온라인 리서치, 데이터 분석, 문서와 스프레드시트 생성, 소프트웨어 조작, 여러 도구를 오가며 끝까지 진행하는 작업이 반복해서 언급된다.[^openai-55]</p>
+<p>즉 GPT-5.4가 전문 업무를 빠르고 정확하게 처리하는 범용 프런티어 모델이라면, GPT-5.5는 그중에서도 긴 맥락, 도구 사용, 검증, 모호성 처리, 반복 실행이 섞인 agentic work에 더 초점을 둔 모델이다. 차이는 단순 지식량보다 작업 지속성에 있다.</p>
+<h2>벤치마크는 “전면적 압도”보다 “에이전트형 작업 강화”를 말한다</h2>
+<p>GPT-5.5가 모든 지표에서 갑자기 압도적인 격차를 만든 것은 아니다. 예를 들어 SWE-Bench Pro는 GPT-5.4의 57.7%에서 GPT-5.5의 58.6%로 오른다. 이 수치만 보면 “코딩 성능이 완전히 다른 단계가 되었다”고 말하기는 어렵다.</p>
+<p>하지만 Terminal-Bench 2.0에서는 75.1%에서 82.7%로 격차가 커진다. Expert-SWE 내부 평가도 68.5%에서 73.1%로 오른다. 이 두 지표는 단발 코드 작성보다 계획, 반복, 명령줄 사용, 도구 조율, 긴 문제 해결 흐름에 더 가깝다.[^openai-55]</p>
+<p>핵심 지표만 추리면 이렇게 볼 수 있다.</p>
+<p>| 평가 영역 | GPT-5.4 | GPT-5.5 | 읽는 법 | |---|---:|---:|---| | SWE-Bench Pro | 57.7% | 58.6% | 일반적인 GitHub 이슈 해결은 소폭 개선 | | Terminal-Bench 2.0 | 75.1% | 82.7% | CLI 기반 장기 작업과 도구 조율에서 개선 폭이 큼 | | Expert-SWE | 68.5% | 73.1% | 긴 코딩 작업에서 개선 | | GDPval | 83.0% | 84.9% | 전문 업무 품질은 소폭 개선 | | OSWorld-Verified | 75.0% | 78.7% | 실제 컴퓨터 환경 조작 능력 개선 | | BrowseComp | 82.7% | 84.4% | 브라우징 기반 복합 질의 개선 | | FrontierMath Tier 4 | 27.1% | 35.4% | 어려운 수학 문제에서 더 큰 개선 |</p>
+<p>이 표가 말하는 것은 단순한 세대교체가 아니다. GPT-5.5의 강점은 “질문 하나에 답을 잘하는 모델”보다 “복잡한 일을 맡겨두면 중간에 덜 멈추고 더 오래 밀고 가는 모델”에 가깝다. 특히 Codex 사용자에게 이 차이는 더 크게 느껴질 가능성이 높다.</p>
+<h2>API에서는 아직 GPT-5.4가 기준 모델이다</h2>
+<p>개발자 입장에서는 이 부분이 가장 중요하다. OpenAI Developers 모델 문서는 GPT-5.5가 현재 ChatGPT와 Codex에서 사용 가능하며 API는 곧 제공될 예정이라고 적고 있다. 같은 문서는 시작 모델로 <code>gpt-5.4</code>를 권한다. 복잡한 reasoning과 coding에는 <code>gpt-5.4</code>, 비용과 지연 시간이 중요하면 <code>gpt-5.4-mini</code>나 <code>gpt-5.4-nano</code>를 고르라는 구조다.[^dev-models]</p>
+<p>GPT-5.4는 이미 API 모델 페이지가 있다. 확인 가능한 정보도 구체적이다. 모델 ID는 <code>gpt-5.4</code>, 컨텍스트 윈도우는 1,050,000 토큰, 최대 출력은 128,000 토큰, 지식 컷오프는 2025년 8월 31일이다. 함수 호출, 웹 검색, 파일 검색, 컴퓨터 사용도 지원 목록에 들어가 있다.[^dev-54]</p>
+<p>반면 GPT-5.5는 가격과 1M 컨텍스트가 공개되었지만, API의 세부 운영 정보는 아직 다 열리지 않았다. 모델 ID, 스냅샷, 최대 출력, rate limit, 도구 지원, 실제 SDK 예제까지 확인되기 전에는 프로덕션 기본값으로 삼기 어렵다.</p>
+<p>그래서 오늘 당장 API 제품을 만들어야 한다면 답은 단순하다. 기본값은 GPT-5.4다. GPT-5.5는 API가 열린 뒤, 같은 작업셋으로 A/B 테스트를 걸어 판단하는 모델이다.</p>
+<h2>가격은 2배지만, 작업당 비용은 따로 봐야 한다</h2>
+<p>공식 가격표 기준으로 GPT-5.5의 예정 API 단가는 GPT-5.4의 정확히 2배다. GPT-5.5는 입력 100만 토큰당 5달러, 캐시 입력 0.50달러, 출력 30달러다. GPT-5.4는 입력 2.50달러, 캐시 입력 0.25달러, 출력 15달러다.[^pricing]</p>
+<p>하지만 모델 가격은 토큰 단가만으로 끝나지 않는다. OpenAI는 GPT-5.5가 Codex에서 GPT-5.4보다 더 적은 토큰으로 더 나은 결과를 내도록 튜닝되었다고 설명한다.[^openai-55] 이 말이 중요하다. 비싼 모델이 항상 비싼 작업을 만든다는 뜻은 아니기 때문이다.</p>
+<p>실제 비교는 이렇게 해야 한다.</p>
+<pre><code class="language-text">작업당 비용 =
+입력 토큰 비용
++ 캐시 입력 토큰 비용
++ 출력 토큰 비용
++ 재시도 비용
++ 사람이 수정하는 시간</code></pre>
+<p>짧은 요약, 간단한 분류, 대량 반복 처리, 낮은 위험도의 일반 Q&amp;A라면 GPT-5.5는 과한 선택일 수 있다. 이 경우에는 GPT-5.4, GPT-5.4 mini, GPT-5.4 nano 쪽이 더 경제적이다. 반대로 긴 코드 수정, 실패 원인 추적, 다단계 리서치, 문서와 데이터와 도구 사용이 섞인 작업이라면 GPT-5.5가 더 적은 재시도와 더 적은 총 토큰으로 비용을 회수할 가능성이 있다.</p>
+<p>다만 이 판단은 반드시 “내 작업”으로 측정해야 한다. GPT-5.5가 모든 작업에서 자동으로 싸지는 모델이라는 뜻은 아니다. 더 정확한 말은 “긴 에이전트형 작업에서는 명목 단가보다 작업당 완료 비용을 봐야 한다”다.</p>
+<h2>안전성과 접근 조건도 선택 기준이 된다</h2>
+<p>GPT-5.5는 성능만 올라간 모델이 아니다. OpenAI는 GPT-5.5의 biological/chemical 및 cybersecurity capabilities를 Preparedness Framework상 High로 취급한다고 밝혔다. Critical cybersecurity 수준에는 도달하지 않았지만, GPT-5.4보다 사이버 역량이 한 단계 높아졌다고 설명한다.[^openai-55]</p>
+<p>이 말은 보안 방어, 취약점 분석, 바이오·화학 관련 연구를 하는 사용자에게 양면적이다. 한편으로는 더 강한 방어 도구가 생긴다. 다른 한편으로는 더 촘촘한 분류기, 더 엄격한 검토, trusted access 같은 접근 조건이 중요해질 수 있다.</p>
+<p>따라서 GPT-5.5를 단지 “더 좋은 GPT-5.4”로만 보면 놓치는 것이 있다. 이 모델은 능력이 올라간 만큼 운영 정책과 접근 조건도 더 중요한 모델이다. 특히 cyber, bio, chem 경계 작업에서는 성능뿐 아니라 허용 범위와 사용 맥락을 함께 설계해야 한다.</p>
+<h2>지금의 실무 결론</h2>
+<p>GPT-5.5는 GPT-5.4의 단순한 마이너 업데이트가 아니다. 특히 Codex, 긴 코딩 작업, 컴퓨터 사용, 다단계 지식 작업에서는 더 큰 차이를 만들 수 있는 모델이다. 발표 자료와 벤치마크를 종합하면 GPT-5.5의 핵심은 “더 똑똑한 답변”보다 “더 적은 지시로 더 긴 일을 맡는 능력”이다.</p>
+<p>하지만 GPT-5.5가 GPT-5.4를 오늘 바로 대체한다고 말하기도 어렵다. API 기준으로는 아직 GPT-5.4가 확정 모델이고, GPT-5.5는 출시 예정 정보와 제품 배포 정보 사이에 걸쳐 있다. 가격도 2배이므로 모든 작업에 기본값으로 넣을 모델은 아니다.</p>
+<p>현재 기준의 선택은 이렇게 정리할 수 있다.</p>
+<p>| 상황 | 우선 선택 | |---|---| | 지금 API 프로덕션에 넣어야 한다 | GPT-5.4 | | 비용과 지연 시간이 더 중요하다 | GPT-5.4 mini 또는 nano | | Codex에서 긴 코드베이스 작업을 맡긴다 | GPT-5.5 테스트 가치 높음 | | 온라인 리서치, 문서, 데이터, 도구 사용이 섞인다 | GPT-5.5 테스트 가치 높음 | | 짧은 답변, 단순 분류, 대량 처리 | GPT-5.5는 과할 수 있음 | | cyber/bio/chem 경계 작업 | 성능보다 정책·접근 조건까지 함께 검토 |</p>
+<p>결론은 간단하다. GPT-5.5는 “무조건 갈아탈 모델”이 아니라 “비싼 만큼 긴 일을 더 잘 끝내는지 검증해야 할 모델”이다. GPT-5.4는 여전히 현재 API의 기준점이고, GPT-5.5는 그 기준점 위에서 에이전트형 업무의 상한을 다시 밀어 올리는 모델이다.</p>
+<h2>참고</h2>
+<p>[^openai-55]: OpenAI, “Introducing GPT-5.5,” 2026-04-23, https://openai.com/index/introducing-gpt-5-5/ [^openai-54]: OpenAI, “Introducing GPT-5.4,” 2026-03-05, https://openai.com/index/introducing-gpt-5-4/ [^dev-models]: OpenAI Developers, “Models,” 확인일 2026-04-24, https://developers.openai.com/api/docs/models [^dev-54]: OpenAI Developers, “GPT-5.4 Model,” 확인일 2026-04-24, https://developers.openai.com/api/docs/models/gpt-5.4 [^pricing]: OpenAI, “OpenAI API Pricing,” 확인일 2026-04-24, https://openai.com/api/pricing/</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/when-code-becomes-a-medium/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>코드는 언제 매체가 되는가: 케이시 리스와 제너러티브 아트의 문법</span></a>
+                <a id="next-post" href="/blog/posts/how-convenience-trains-us/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span>편리함은 어떻게 우리를 길들이는가: 웬디 천과 소프트웨어 습관의 정치</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
