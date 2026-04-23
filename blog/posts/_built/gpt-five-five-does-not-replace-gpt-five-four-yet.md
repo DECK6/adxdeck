@@ -1,6 +1,7 @@
 ---
 type: article
 aliases:
+  - "GPT Five Five Does Not Replace GPT Five Four Yet"
   - "GPT-5.5 Does Not Replace GPT-5.4 Yet"
   - "GPT-5.5 vs GPT-5.4"
 description: "Public blog article comparing GPT-5.5 and GPT-5.4 from a practical product, API, cost, and agentic-work perspective. Use this when deciding whether GPT-5.5 is a replacement for GPT-5.4 or a higher-end model for selected work."
