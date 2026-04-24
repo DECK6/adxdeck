@@ -1,23 +1,5 @@
 [
   {
-    "slug": "how-convenience-trains-us",
-    "file": "_built/how-convenience-trains-us.md",
-    "title": "편리함은 어떻게 우리를 길들이는가: 웬디 천과 소프트웨어 습관의 정치",
-    "description": "웬디 천의 작업을 따라가며 소프트웨어와 플랫폼이 자유를 약속하는 동시에 습관, 반복, 데이터 분류를 통해 우리를 길들이는 방식을 읽는다.",
-    "category": "Article",
-    "tags": [
-      "media-art",
-      "media-theory",
-      "wendy-chun",
-      "software-studies",
-      "platform",
-      "data-politics"
-    ],
-    "date": "2026-04-23",
-    "thumbnail": "images/how-convenience-trains-us-cover.png",
-    "author": "육대근"
-  },
-  {
     "slug": "gpt-five-five-replaces-gpt-five-four-for-most-work",
     "file": "_built/gpt-five-five-replaces-gpt-five-four-for-most-work.md",
     "title": "GPT-5.5는 GPT-5.4를 대부분 대체한다: 아쉬운 건 API 타이밍이다",
@@ -30,7 +12,7 @@
       "GPT-5.4",
       "Codex"
     ],
-    "date": "2026-04-23",
+    "date": "2026-04-24",
     "thumbnail": "images/gpt-5-5-vs-gpt-5-4-cover.png",
     "author": "육대근"
   },
@@ -50,8 +32,44 @@
       "DEXA",
       "blog"
     ],
-    "date": "2026-04-23",
+    "date": "2026-04-24",
     "thumbnail": "images/when-code-becomes-a-medium-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "when-noise-becomes-a-signal",
+    "file": "_built/when-noise-becomes-a-signal.md",
+    "title": "오류는 어떻게 감각이 되는가",
+    "description": "A public essay on noise as a productive media-art condition, tracing how interference, glitch, and AI hallucination shift from technical failure into aesthetic and critical signal.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "noise",
+      "glitch",
+      "post-digital",
+      "AI",
+      "sound-art"
+    ],
+    "date": "2026-04-24",
+    "thumbnail": "images/when-noise-becomes-a-signal-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "how-convenience-trains-us",
+    "file": "_built/how-convenience-trains-us.md",
+    "title": "편리함은 어떻게 우리를 길들이는가: 웬디 천과 소프트웨어 습관의 정치",
+    "description": "웬디 천의 작업을 따라가며 소프트웨어와 플랫폼이 자유를 약속하는 동시에 습관, 반복, 데이터 분류를 통해 우리를 길들이는 방식을 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "wendy-chun",
+      "software-studies",
+      "platform",
+      "data-politics"
+    ],
+    "date": "2026-04-23",
+    "thumbnail": "images/how-convenience-trains-us-cover.png",
     "author": "육대근"
   },
   {
