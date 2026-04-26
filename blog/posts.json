@@ -1,5 +1,38 @@
 [
   {
+    "slug": "new-media-returns-with-old-faces",
+    "file": "_built/new-media-returns-with-old-faces.md",
+    "title": "새로운 매체는 왜 늘 오래된 얼굴로 돌아오는가",
+    "description": "A public essay on media archaeology as a way to read new media, AI, archives, glitches, interfaces, and media art through forgotten devices and recurring cultural promises rather than simple technological progress.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-archaeology",
+      "media-theory",
+      "digital-culture"
+    ],
+    "date": "2026-04-26",
+    "thumbnail": "images/new-media-returns-with-old-faces-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "monuments-that-remember-the-wrong-cold-war",
+    "file": "_built/monuments-that-remember-the-wrong-cold-war.md",
+    "title": "기념비는 어떻게 냉전을 다시 배달하는가",
+    "description": "A public essay on Che Onejoon's archive-based media practice, reading Cold War monuments, Afro-Asian diplomacy, and community media as infrastructures of visibility rather than mere historical subjects.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "korean-media-art",
+      "archive",
+      "documentary",
+      "diaspora"
+    ],
+    "date": "2026-04-26",
+    "thumbnail": "images/monuments-that-remember-the-wrong-cold-war-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "when-noise-becomes-a-signal",
     "file": "_built/when-noise-becomes-a-signal.md",
     "title": "오류는 어떻게 감각이 되는가",
@@ -15,22 +48,6 @@
     ],
     "date": "2026-04-25",
     "thumbnail": "images/when-noise-becomes-a-signal-cover.png",
-    "author": "육대근"
-  },
-  {
-    "slug": "new-media-returns-with-old-faces",
-    "file": "_built/new-media-returns-with-old-faces.md",
-    "title": "새로운 매체는 왜 늘 오래된 얼굴로 돌아오는가",
-    "description": "A public essay on media archaeology as a way to read new media, AI, archives, glitches, interfaces, and media art through forgotten devices and recurring cultural promises rather than simple technological progress.",
-    "category": "Article",
-    "tags": [
-      "media-art",
-      "media-archaeology",
-      "media-theory",
-      "digital-culture"
-    ],
-    "date": "2026-04-25",
-    "thumbnail": "images/new-media-returns-with-old-faces-cover.png",
     "author": "육대근"
   },
   {
