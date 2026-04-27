@@ -1,5 +1,40 @@
 [
   {
+    "slug": "monuments-that-remember-the-wrong-cold-war",
+    "file": "_built/monuments-that-remember-the-wrong-cold-war.md",
+    "title": "기념비는 어떻게 냉전을 다시 배달하는가",
+    "description": "A public essay on Che Onejoon's archive-based media practice, reading Cold War monuments, Afro-Asian diplomacy, and community media as infrastructures of visibility rather than mere historical subjects.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "korean-media-art",
+      "archive",
+      "documentary",
+      "diaspora"
+    ],
+    "date": "2026-04-27",
+    "thumbnail": "images/monuments-that-remember-the-wrong-cold-war-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "how-scent-becomes-a-medium",
+    "file": "_built/how-scent-becomes-a-medium.md",
+    "title": "냄새는 어떻게 미디어가 되는가",
+    "description": "An essay on Anicka Yi's biomedia practice — scent, bacteria, animatronic life, and AI — and how it forces media art beyond the screen into multisensory, posthuman environments.",
+    "category": "Post",
+    "tags": [
+      "media-art",
+      "biomedia",
+      "olfactory-art",
+      "posthumanism",
+      "korean-diaspora",
+      "anicka-yi"
+    ],
+    "date": "2026-04-27",
+    "thumbnail": "images/how-scent-becomes-a-medium-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "new-media-returns-with-old-faces",
     "file": "_built/new-media-returns-with-old-faces.md",
     "title": "새로운 매체는 왜 늘 오래된 얼굴로 돌아오는가",
@@ -13,23 +48,6 @@
     ],
     "date": "2026-04-26",
     "thumbnail": "images/new-media-returns-with-old-faces-cover.png",
-    "author": "육대근"
-  },
-  {
-    "slug": "monuments-that-remember-the-wrong-cold-war",
-    "file": "_built/monuments-that-remember-the-wrong-cold-war.md",
-    "title": "기념비는 어떻게 냉전을 다시 배달하는가",
-    "description": "A public essay on Che Onejoon's archive-based media practice, reading Cold War monuments, Afro-Asian diplomacy, and community media as infrastructures of visibility rather than mere historical subjects.",
-    "category": "Article",
-    "tags": [
-      "media-art",
-      "korean-media-art",
-      "archive",
-      "documentary",
-      "diaspora"
-    ],
-    "date": "2026-04-26",
-    "thumbnail": "images/monuments-that-remember-the-wrong-cold-war-cover.png",
     "author": "육대근"
   },
   {
