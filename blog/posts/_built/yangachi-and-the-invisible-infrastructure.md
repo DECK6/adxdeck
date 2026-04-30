@@ -5,8 +5,8 @@ aliases:
   - "Yangachi and the Invisible Infrastructure"
 author:
   - "[[육대근]]"
-date created: 2026-05-01
-date modified: 2026-05-01
+date created: 2026-05-01T12:00:00+09:00
+date modified: 2026-05-01T12:00:00+09:00
 tags:
   - article
   - media-art
