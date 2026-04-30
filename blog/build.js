@@ -86,8 +86,19 @@ function fileToSlug(filename) {
         .replace(/^-|-$/g, '');
 }
 
+function currentKstDate() {
+    const parts = new Intl.DateTimeFormat('en-CA', {
+        timeZone: 'Asia/Seoul',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+    }).formatToParts(new Date());
+    const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+    return `${values.year}-${values.month}-${values.day}`;
+}
+
 function normalizePostDate(filename, meta) {
-    const today = new Date().toISOString().split('T')[0];
+    const today = currentKstDate();
     const explicit = meta['date created'] || meta['date modified'] || '';
     const filenameDateMatch = filename.match(/^(\d{4}-\d{2}-\d{2})/);
     const filenameDate = filenameDateMatch ? filenameDateMatch[1] : '';
