@@ -1,5 +1,21 @@
 [
   {
+    "slug": "browser-cinema-and-the-speed-of-reading",
+    "file": "_built/browser-cinema-and-the-speed-of-reading.md",
+    "title": "읽기는 어떻게 상영이 되는가",
+    "description": "A public essay on Young-Hae Chang Heavy Industries as a browser-native media-art practice that turns reading into timed projection, jazz rhythm, political address, and born-digital preservation work.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "net-art",
+      "korean-media-art",
+      "digital-literature"
+    ],
+    "date": "2026-05-02",
+    "thumbnail": "images/browser-cinema-and-the-speed-of-reading-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "yangachi-and-the-invisible-infrastructure",
     "file": "_built/yangachi-and-the-invisible-infrastructure.md",
     "title": "자동화는 왜 항상 누군가의 시선과 손을 숨기는가",
@@ -13,7 +29,7 @@
       "AI",
       "synthetic-media"
     ],
-    "date": "2026-05-01",
+    "date": "2026-05-01T12:00:00+09:00",
     "thumbnail": "images/yangachi-invisible-infrastructure-cover.png",
     "author": "육대근"
   },
