@@ -1,5 +1,22 @@
 [
   {
+    "slug": "interfaces-that-teach-machines-to-feel-ordinary",
+    "file": "_built/interfaces-that-teach-machines-to-feel-ordinary.md",
+    "title": "인터페이스는 어떻게 기계를 일상으로 번역하는가",
+    "description": "A public DEXA essay on interface culture: how screens, prompts, dashboards, sensors, and feedback surfaces translate computation into everyday habits, aesthetic experience, and power.",
+    "category": "Post",
+    "tags": [
+      "dexa",
+      "media-art",
+      "media-theory",
+      "interface-culture",
+      "software-studies"
+    ],
+    "date": "2026-05-04",
+    "thumbnail": "images/interfaces-that-teach-machines-to-feel-ordinary-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "browser-cinema-and-the-speed-of-reading",
     "file": "_built/browser-cinema-and-the-speed-of-reading.md",
     "title": "읽기는 어떻게 상영이 되는가",
