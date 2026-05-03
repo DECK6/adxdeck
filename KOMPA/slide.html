@@ -1,0 +1,1164 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>AI 트렌드 &amp; 리서치 실무 — 6시간 슬라이드 덱 v3</title><style>
+:root{--bg:#161616;--panel:#22201e;--panel2:#2c2a27;--ink:#f4efe6;--muted:#bcb2a2;--cyan:#22d3ee;--amber:#f0b44c;--line:rgba(244,239,230,.16);--danger:#ff7a59}*{box-sizing:border-box}body{margin:0;background:#090909;color:var(--ink);font-family:Inter,Pretendard,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;overflow:hidden}.deck{width:100vw;height:100vh;display:grid;place-items:center;background:radial-gradient(circle at 15% 10%,rgba(34,211,238,.18),transparent 30%),radial-gradient(circle at 85% 20%,rgba(240,180,76,.16),transparent 28%),#0c0c0b}.slide{position:absolute;width:1920px;height:1080px;padding:76px 88px 64px;background:linear-gradient(135deg,#181818 0%,#1f1d1a 52%,#121212 100%);border:1px solid rgba(255,255,255,.08);box-shadow:0 40px 100px rgba(0,0,0,.45);overflow:hidden;transform-origin:center;display:none}.slide.active{display:block}.slide:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(to bottom,black,transparent 80%);pointer-events:none}.slide:after{content:attr(data-section);position:absolute;right:62px;bottom:18px;font-size:132px;font-weight:900;letter-spacing:-.08em;color:rgba(255,255,255,.035)}.chrome{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:20px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:34px}.chrome span:first-child{color:var(--cyan)}.label{display:inline-flex;border:1px solid rgba(34,211,238,.35);background:rgba(34,211,238,.09);color:#9bedf7;border-radius:999px;padding:10px 18px;font-size:23px;font-weight:700;margin-bottom:20px}h1{font-size:72px;line-height:1.02;margin:0 0 22px;letter-spacing:-.045em;max-width:1320px}h2{font-size:39px;line-height:1.25;margin:0 0 46px;color:#efe3ce;font-weight:650;max-width:1540px;letter-spacing:-.025em}.grid{display:grid;grid-template-columns:1.35fr .65fr;gap:30px}.maincard,.sidecard,.note{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.035));border:1px solid var(--line);border-radius:30px;padding:30px 34px;backdrop-filter:blur(12px)}.maincard{min-height:310px}.sidecard{border-color:rgba(240,180,76,.32);box-shadow:inset 0 0 0 1px rgba(240,180,76,.08)}.kicker{font-size:18px;text-transform:uppercase;letter-spacing:.18em;color:var(--cyan);font-weight:800;margin-bottom:18px}.kicker.amber{color:var(--amber)}ul{margin:0;padding:0 0 0 1.1em}li{font-size:31px;line-height:1.38;margin:0 0 17px;color:#f6f0e7}p{font-size:29px;line-height:1.42;margin:0;color:#efe6d8}.notes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px;position:relative;z-index:1}.note{padding:22px 24px;min-height:132px}.note b{display:block;font-size:19px;color:var(--amber);letter-spacing:.04em;margin-bottom:10px}.note p,.note li{font-size:22px;line-height:1.36;color:#d9d0c2;margin-bottom:7px}.note ul{padding-left:1em}.note.design b{color:#92edf7}.note.demo b{color:#bcf7a8}.note.practice b{color:#f7d28d}.note.gov b{color:#ff9a78}.quote{color:#fff;border-bottom:2px solid rgba(34,211,238,.6)}code{font-family:'SFMono-Regular',ui-monospace,monospace;color:#b7f7ff;background:rgba(34,211,238,.11);border:1px solid rgba(34,211,238,.22);border-radius:8px;padding:0 .25em}.progress{position:absolute;left:88px;right:88px;bottom:44px;height:4px;background:rgba(255,255,255,.12);border-radius:99px;overflow:hidden}.progress span{display:block;height:100%;width:var(--pct);background:linear-gradient(90deg,var(--cyan),var(--amber))}.hud{position:fixed;left:24px;bottom:20px;z-index:10;color:#cfc6b7;font:600 14px/1.2 ui-monospace,monospace;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.12);padding:9px 12px;border-radius:12px}.help{position:fixed;right:24px;bottom:20px;z-index:10;color:#9b9284;font:500 13px/1.2 system-ui}@media print{body{overflow:visible;background:white}.deck{display:block;width:auto;height:auto;background:white}.slide{display:block!important;position:relative;page-break-after:always;transform:none!important;box-shadow:none;border:0}@page{size:16in 9in;margin:0}.hud,.help{display:none}}
+/* v2 presentation treatments: layout cues converted into visuals, not visible note cards */
+.tmpl-compare .grid{grid-template-columns:1fr 1fr;gap:32px}.tmpl-compare .maincard,.tmpl-compare .sidecard{min-height:390px}.tmpl-compare .maincard{border-left:8px solid var(--danger)}.tmpl-compare .sidecard{border-left:8px solid #54d887}.tmpl-flow .maincard ul{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;list-style:none;padding:0}.tmpl-flow .maincard li{position:relative;border:1px solid var(--line);border-radius:24px;background:rgba(255,255,255,.045);padding:28px 24px 28px 56px;min-height:150px}.tmpl-flow .maincard li:before{content:counter(step);counter-increment:step;position:absolute;left:18px;top:24px;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--cyan);color:#031014;font-weight:900;font-size:16px}.tmpl-flow .maincard ul{counter-reset:step}.tmpl-workshop .notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:20px}.tmpl-workshop .note{border-left:6px solid var(--amber);background:rgba(240,180,76,.10)}.tmpl-prompt .note:not(.gov),.tmpl-prompt .maincard{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;border-color:rgba(34,211,238,.45);background:linear-gradient(180deg,rgba(34,211,238,.12),rgba(255,255,255,.035))}.tmpl-demo .sidecard{position:relative;min-height:330px;border:2px solid rgba(34,211,238,.38);box-shadow:inset 0 0 0 18px rgba(0,0,0,.18)}.tmpl-demo .sidecard:after{content:'';position:absolute;right:24px;bottom:20px;color:rgba(34,211,238,.55);font-size:28px;font-weight:900;letter-spacing:.12em}.tmpl-demo .maincard{border-left:8px solid var(--cyan)}
+
+/* v3 layout fixes: cover/instructor slides, safer content bounds, compact dense pages */
+.slide.layout-fixed{padding:64px 86px 82px}.slide.layout-fixed .chrome{margin-bottom:22px}.slide.layout-fixed h1{font-size:64px;line-height:1.03;margin-bottom:16px;max-width:1500px}.slide.layout-fixed h2{font-size:33px;line-height:1.25;margin-bottom:30px;max-width:1580px}.slide.layout-fixed .grid{gap:24px;align-items:start}.slide.layout-fixed .maincard,.slide.layout-fixed .sidecard,.slide.layout-fixed .note{overflow:hidden}.slide.layout-fixed .maincard,.slide.layout-fixed .sidecard{padding:30px;min-height:0;max-height:445px}.slide.layout-fixed .maincard li{font-size:28px;line-height:1.26;margin:0 0 15px}.slide.layout-fixed .sidecard p{font-size:28px;line-height:1.35}.slide.layout-fixed .notes{position:relative;z-index:2;margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(430px,1fr));gap:18px;max-height:214px;overflow:hidden}.slide.layout-fixed .note{padding:20px 22px}.slide.layout-fixed .note p{font-size:22px;line-height:1.32;margin:.35em 0 0}.slide.layout-fixed .progress{left:88px;right:88px;bottom:44px}.slide.layout-fixed:after{bottom:24px;font-size:104px}.slide.layout-fixed.tmpl-flow .maincard ul{gap:14px}.slide.layout-fixed.tmpl-flow .maincard li{padding:22px 18px 22px 50px;min-height:118px;font-size:23px}.slide.layout-fixed.tmpl-compare .maincard,.slide.layout-fixed.tmpl-compare .sidecard{min-height:0}.slide.layout-fixed.tmpl-prompt .note:not(.gov),.slide.layout-fixed.tmpl-prompt .maincard{font-size:22px;line-height:1.3}.affected-page h1{font-size:58px}.affected-page h2{font-size:30px;margin-bottom:24px}.affected-page .maincard,.affected-page .sidecard{max-height:405px;padding:26px}.affected-page .notes{max-height:185px}.affected-page .note p{font-size:20px}.cover-slide{background:radial-gradient(circle at 72% 22%,rgba(34,211,238,.25),transparent 30%),linear-gradient(135deg,#141414,#252018 62%,#0f0f0f)}.cover-slide .cover-mark{position:absolute;right:90px;top:110px;color:rgba(255,255,255,.06);font-size:88px;line-height:.86;font-weight:900;text-align:right;letter-spacing:-.06em}.cover-slide h1{font-size:116px!important;line-height:.94!important;max-width:1100px;margin-top:24px}.cover-slide h2{font-size:40px!important;max-width:1120px}.cover-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:70px;max-width:1540px}.cover-grid>div{border:1px solid var(--line);border-radius:30px;background:rgba(255,255,255,.055);padding:30px}.cover-grid b{color:var(--cyan);font-size:26px}.cover-grid p{font-size:25px;line-height:1.35;color:#e7ddce}.instructor-slide .intro-grid{grid-template-columns:1.25fr .75fr}.instructor-slide .maincard{max-height:500px}.instructor-slide .sidecard{max-height:500px}.compact-notes{max-height:130px!important}@media print{body{overflow:visible;background:#fff}.deck{display:block;width:auto;height:auto;background:#fff}.slide{position:relative;display:block!important;page-break-after:always;transform:none!important;box-shadow:none}.hud,.help{display:none!important}}
+
+/* v3.1 Korean readability: avoid awkward syllable-level breaks */
+h1,h2,h3,p,li,.card,.note,.subhead,.governance,.pill{word-break:keep-all;overflow-wrap:break-word;}
+.card p,.note p,.governance p{line-height:1.42;}
+</style></head><body><div class="deck"><section class="slide cover-slide layout-fixed" data-page="01" data-section="INTRO">
+  <div class="chrome"><span>INTRO</span><span>PAGE 01/68</span></div>
+  <div class="cover-mark">AI TREND<br>RESEARCH PRACTICE</div>
+  <div class="label">6시간 실무 워크숍</div>
+  <h1>AI 트렌드 &amp;<br>리서치 실무</h1>
+  <h2>에이전트, NotebookLM, 이미지·영상, 자동화를 하나의 실무 흐름으로 연결합니다.</h2>
+  <div class="cover-grid">
+    <div><b>목표</b><p>AI 도구 나열이 아니라 반복 가능한 업무 설계와 검수 기준을 만든다.</p></div>
+    <div><b>산출물</b><p>리서치 브리핑, 프롬프트, 콘텐츠 콘셉트, 마케팅 자동화 초안을 완성한다.</p></div>
+    <div><b>원칙</b><p>Human-in-the-loop 기준으로 출처, 가정, 승인 절차를 분리한다.</p></div>
+  </div>
+  <div class="progress"><span></span></div>
+</section><section class="slide instructor-slide layout-fixed" data-page="02" data-section="INTRO">
+  <div class="chrome"><span>INTRO</span><span>PAGE 02/68</span></div>
+  <div class="label">Instructor Introduction</div>
+  <h1>강사 소개</h1>
+  <h2>육대근(Deck Yuk) — AI Director · AX 컨설턴트 · 미디어아트/크리에이티브 테크 실무자</h2>
+  <div class="grid intro-grid">
+    <main class="maincard">
+      <div class="kicker">PROFILE</div>
+      <ul><li>문화예술 현장 운영 경험을 바탕으로 AI 교육, AX 컨설팅, 미디어아트 기획·제작을 수행합니다.</li><li>생성형 AI, 실시간 인터랙티브 시스템, 체계적 지식 구조를 결합해 실무 워크플로우로 번역합니다.</li><li>기업·기관·대학 대상 생성형 AI 강의와 실습형 워크숍을 운영합니다.</li><li>제안서, 보고서, 체험 프로그램, 마케팅 실행안 등 현장형 AI 솔루션을 설계합니다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">PRACTICE</div>
+      <p>기술 자체보다 사람, 콘텐츠, 공간, 경험을 연결하는 방식으로 AI를 적용합니다. 오늘 강의도 도구 소개가 아니라 실제 업무에 재사용할 수 있는 리서치·콘텐츠·자동화 흐름을 만드는 데 초점을 둡니다.</p>
+    </aside>
+  </div>
+  <div class="notes compact-notes"><div class="note practice"><b>수업 관점</b><p>강사는 예시를 보여주고, 참가자는 자신의 업무에 맞게 바꾸며, 마지막에는 실제 적용 가능한 초안을 가져갑니다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed affected-page tmpl-flow tmpl-workshop" data-page="03" data-section="FOUNDATION">
+  <div class="chrome"><span>FOUNDATION</span><span>PAGE 03/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>오늘의 목표</h1>
+  <h2>오늘 강의의 목표는 도구 사용법이 아니라 반복 가능한 AI 업무 흐름을 만드는 것이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>오늘 과정은 AI 트렌드 설명보다 실습 산출물 제작에 집중한다.</li><li>핵심 흐름은 리서치, 메시지, 이미지·영상, 자동화 실행안으로 이어진다.</li><li>수강자는 하루 동안 자신의 업무에 적용할 AI 활용 시나리오를 만든다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>AI 도입의 기준은 신기함이 아니라 업무 목적, 검증 가능성, 책임 소재입니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>시작 2분 안에 <span class="quote">“오늘은 강연이 아니라 산출물을 만드는 6시간 실무 수업”</span>이라고 명시한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-demo" data-page="04" data-section="FOUNDATION">
+  <div class="chrome"><span>FOUNDATION</span><span>PAGE 04/68</span></div>
+  <div class="label">산출물 공유</div>
+  <h1>최종 산출물 지도</h1>
+  <h2>최종 산출물은 하나의 미니 마케팅 자동화 패키지다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>에이전트 작업 요청문 1개를 만든다.</li><li>NotebookLM 기반 브리핑과 고객 질문을 만든다.</li><li>이미지 프롬프트, 영상 콘셉트, 세그먼트별 메시지를 연결한다.</li><li>마지막에는 자동화 워크플로우 초안을 완성한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>산출물은 바로 발송하거나 게시하는 결과물이 아니라 사람 검수를 전제로 한 초안입니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>산출물 공유/피드백</b><p>최종 제출 예시는 에이전트 지시문 1개, NotebookLM 브리핑 1개, 이미지 프롬프트 3개, 세그먼트별 메시지 3종, 자동화 플로우 1개로 보여준다.</p></div><div class="note practice"><b>수강자 산출물 예시</b><p><span class="quote">“프리미엄 디카페인 커피”</span> 샘플 패키지 썸네일을 한 화면에 묶어 완성 기준을 먼저 보여준다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-compare tmpl-flow tmpl-workshop tmpl-prompt tmpl-demo" data-page="05" data-section="FOUNDATION">
+  <div class="chrome"><span>FOUNDATION</span><span>PAGE 05/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>챗봇에서 에이전트로</h1>
+  <h2>오늘의 핵심 전환은 챗봇 사용에서 에이전트 업무 설계로 이동하는 것이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>단순 질문은 단발성 답변에 머문다.</li><li>에이전트식 지시는 자료 읽기, 정리, 초안 작성, 검수까지 포함한다.</li><li>실무자는 AI를 자동 직원이 아니라 반복 업무 파트너로 설계해야 한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>AI에게 일을 맡길수록 목표, 입력 자료, 제약조건, 검수 기준을 더 명확히 해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>같은 과제를 단문 질문 → 구조화 프롬프트 → 에이전트 작업 지시문으로 3단 비교한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-workshop tmpl-demo" data-page="06" data-section="FOUNDATION">
+  <div class="chrome"><span>FOUNDATION</span><span>PAGE 06/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>하루 흐름</h1>
+  <h2>강의 전체는 오전의 리서치 산출물을 오후의 콘텐츠와 자동화로 이어 붙인다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>오전에는 AI 기초, 프롬프트, 에이전트, NotebookLM을 다룬다.</li><li>오후에는 이미지, 하이엔드 미디어, 메시지, 자동화로 확장한다.</li><li>최종 목표는 도구별 결과물이 아니라 연결된 실행안이다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>각 단계의 결과물은 다음 단계의 입력이 되므로 출처와 가정을 분리해 남겨야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>오전 산출물은 오후 실습의 입력으로 재사용되므로 파일명과 근거 표시 규칙을 먼저 안내한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop" data-page="07" data-section="FOUNDATION">
+  <div class="chrome"><span>FOUNDATION</span><span>PAGE 07/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>생성형 AI의 기본 성격</h1>
+  <h2>생성형 AI는 정답을 꺼내는 기계가 아니라 문맥 기반으로 내용을 생성하는 시스템이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>AI는 입력된 문맥을 바탕으로 가능성 높은 내용을 생성한다.</li><li>표현은 자연스럽지만 최신성, 숫자, 출처는 흔들릴 수 있다.</li><li>좋은 결과는 좋은 입력, 충분한 맥락, 명확한 출력 기준에서 나온다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>자연스러운 문장과 사실성은 별개이므로 중요한 정보는 반드시 원문으로 확인해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p><span class="quote">“그럴듯함 ≠ 정확함”</span> 문장을 강조하고 숫자·스펙·경쟁사 사실은 원문 확인 대상으로 표시한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed affected-page tmpl-flow tmpl-workshop tmpl-demo" data-page="08" data-section="FOUNDATION">
+  <div class="chrome"><span>FOUNDATION</span><span>PAGE 08/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>LLM과 멀티모달 AI</h1>
+  <h2>LLM과 멀티모달 AI는 마케팅 업무를 텍스트에서 이미지·영상까지 확장한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>LLM은 요약, 분류, 작성, 변환에 강하다.</li><li>멀티모달 AI는 이미지, 음성, 영상, 문서 구조를 함께 다룬다.</li><li>마케팅에서는 메시지, 이미지, 영상 시안, 고객 응대가 하나의 흐름으로 연결된다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>멀티모달 결과물도 브랜드, 저작권, 인물권, 표현 리스크 검토가 필요합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>텍스트 메시지가 이미지 콘셉트와 영상 시안으로 확장되는 4단계 미니 플로우를 보여준다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop" data-page="09" data-section="FOUNDATION">
+  <div class="chrome"><span>FOUNDATION</span><span>PAGE 09/68</span></div>
+  <div class="label">체크리스트·거버넌스</div>
+  <h1>환각을 운영 리스크로 다루기</h1>
+  <h2>환각은 예외가 아니라 AI 사용 시 전제해야 할 운영 리스크다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>AI는 그럴듯하지만 틀린 정보를 만들 수 있다.</li><li>검증 기준은 'AI가 말했다'가 아니라 '근거 자료와 업무 기준에 맞는가'이다.</li><li>중요한 판단은 사람이 최종 확인해야 한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>숫자, 법률·의료·금융, 경쟁사 사실, 제품 스펙은 신뢰 가능한 자료로 재검증해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>환각 검수 4문항은 출처, 최신성, 숫자, 법적·브랜드 리스크로 제한한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-compare tmpl-flow tmpl-demo" data-page="10" data-section="FOUNDATION">
+  <div class="chrome"><span>FOUNDATION</span><span>PAGE 10/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>자료 기반 AI 사용</h1>
+  <h2>자료 기반 AI 사용은 일반 질문보다 업무 맥락에 가까운 결과를 만든다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>일반 질문은 모델의 학습 지식과 추론에 크게 의존한다.</li><li>제품 소개서, 고객 후기, 경쟁사 자료를 넣으면 결과가 구체화된다.</li><li>NotebookLM은 업로드 자료 기반 질의응답과 브리핑에 강하다.</li><li>Claude Code나 Codex는 파일을 읽고 산출물을 만드는 작업 수행에 강하다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>자료 품질이 낮거나 오래되면 AI 결과도 함께 낮아집니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>동일 질문을 일반 챗봇 답변과 업로드 자료 기반 답변으로 비교해 근거 표시 차이를 보여준다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-compare tmpl-workshop" data-page="11" data-section="FOUNDATION">
+  <div class="chrome"><span>FOUNDATION</span><span>PAGE 11/68</span></div>
+  <div class="label">체크리스트·거버넌스</div>
+  <h1>사람과 AI의 역할 분담</h1>
+  <h2>사람과 AI의 역할 분담을 정해야 실무 품질이 안정된다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>AI는 초안 작성, 요약, 분류, 비교, 변주에 강하다.</li><li>사람은 목표 설정, 판단, 윤리·법적 검수, 최종 승인을 맡는다.</li><li>실무 목표는 AI에게 전부 맡기는 것이 아니라 업무 단위를 함께 설계하는 것이다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>AI가 만든 초안의 최종 책임은 업무 담당자와 조직에 있습니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>AI 담당은 초안·분류·변주, 사람 담당은 목표·판단·윤리·승인으로 분리한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop" data-page="12" data-section="FOUNDATION">
+  <div class="chrome"><span>FOUNDATION</span><span>PAGE 12/68</span></div>
+  <div class="label">실습 안내</div>
+  <h1>미니 실습: 업무 분해</h1>
+  <h2>미니 실습은 내 업무를 입력, 처리, 검수, 산출물로 나누는 것에서 시작한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>수강자는 자신의 반복 업무 1개를 고른다.</li><li>입력 자료, AI 처리, 사람 검수 기준, 최종 산출물로 나눈다.</li><li>이 구조는 이후 에이전트 지시문의 뼈대가 된다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>고객 데이터나 내부 자료를 사용할 때는 민감정보와 개인정보를 제거해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>실습 안내</b><p>7분 작성, 3분 짝검토, 2분 공유로 운영하고 입력 자료·AI 처리·사람 검수·최종 산출물을 네 칸에 채운다.</p></div><div class="note practice"><b>수강자 산출물 예시</b><p>입력=제품 소개서·고객 후기·경쟁사 랜딩페이지, AI 처리=요약·질문 도출·SNS 초안, 사람 검수=사실성·톤·과장·민감표현.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop" data-page="13" data-section="FOUNDATION">
+  <div class="chrome"><span>FOUNDATION</span><span>PAGE 13/68</span></div>
+  <div class="label">체크리스트·거버넌스</div>
+  <h1>AI 기초 파트 결론</h1>
+  <h2>AI 기초의 결론은 좋은 질문보다 좋은 업무 설계가 중요하다는 것이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>AI 결과는 입력과 맥락의 품질에 크게 좌우된다.</li><li>자료 기반 사용과 사람 검수가 실무 안정성을 만든다.</li><li>이후 모든 실습은 업무 설계 관점으로 진행한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>자동화 전에는 항상 검수 기준과 중단 기준을 먼저 정해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>자동화 전 중단 기준, 검수 책임자, 금지 데이터 범위를 먼저 정해야 다음 실습으로 넘어간다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop" data-page="14" data-section="PROMPTING">
+  <div class="chrome"><span>PROMPTING</span><span>PAGE 14/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>프롬프트는 업무 지시 설계</h1>
+  <h2>최신 프롬프트 엔지니어링은 질문 작성이 아니라 업무 지시 설계다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>좋은 프롬프트는 역할, 목표, 맥락, 자료를 포함한다.</li><li>작업 절차, 출력 형식, 제약조건, 검수 기준도 함께 지정한다.</li><li>에이전트형 도구에서는 프롬프트가 작업 지시서에 가까워진다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>프롬프트에는 해야 할 일뿐 아니라 하지 말아야 할 일도 포함해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p><span class="quote">“프롬프트는 질문이 아니라 작업 지시서”</span>라는 문장을 섹션 앵커로 반복한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed affected-page tmpl-compare tmpl-prompt" data-page="15" data-section="PROMPTING">
+  <div class="chrome"><span>PROMPTING</span><span>PAGE 15/68</span></div>
+  <div class="label">프롬프트 예시</div>
+  <h1>역할과 목표</h1>
+  <h2>역할과 목표는 AI가 어떤 관점으로 무엇을 완성해야 하는지 정한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>역할은 AI가 어떤 관점으로 일할지 정한다.</li><li>목표는 최종 산출물을 명확히 지정한다.</li><li>대상 독자와 사용 목적을 함께 쓰면 결과가 구체화된다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>역할 부여는 전문성을 보장하지 않으므로 결과 검증은 별도로 필요합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note"><b>프롬프트 예시</b><p><span class="quote">“당신은 B2B SaaS 마케팅 리서처입니다. 목표는 경쟁사 3곳의 메시지를 비교하고 우리 제품의 차별화 메시지 5개를 제안하는 것입니다.”</span></p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-prompt" data-page="16" data-section="PROMPTING">
+  <div class="chrome"><span>PROMPTING</span><span>PAGE 16/68</span></div>
+  <div class="label">프롬프트 예시</div>
+  <h1>맥락과 입력 자료</h1>
+  <h2>맥락과 입력 자료는 AI 결과를 우리 업무 안으로 끌어오는 장치다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>제품, 고객, 시장, 채널, 브랜드 톤을 제공한다.</li><li>참고 문서, 링크, 고객 후기, 기존 캠페인 자료를 지정한다.</li><li>'이 자료만 우선 근거로 사용하라'는 조건을 넣는다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>내부 자료를 넣기 전 공유 가능 범위와 보안 등급을 확인해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note"><b>프롬프트 예시</b><p><span class="quote">“아래 제품 설명, 고객 후기, 브랜드 톤 문서만 우선 근거로 사용하고 자료에 없는 내용은 가정으로 표시해 주세요.”</span></p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-compare tmpl-flow tmpl-prompt" data-page="17" data-section="PROMPTING">
+  <div class="chrome"><span>PROMPTING</span><span>PAGE 17/68</span></div>
+  <div class="label">프롬프트 예시</div>
+  <h1>절차와 출력 형식</h1>
+  <h2>작업 절차와 출력 형식은 AI 결과를 검토 가능한 중간 산출물로 바꾼다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>요약, 비교, 인사이트, 초안, 검수 순서로 나눈다.</li><li>바로 최종안을 요구하지 말고 검토 가능한 단계를 만든다.</li><li>출력 형식은 bullet, 섹션형 목록, 이메일 문안처럼 지정한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>중간 산출물을 요구해야 오류를 조기에 발견하고 수정할 수 있습니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note"><b>프롬프트 예시</b><p><span class="quote">“바로 최종 문안을 쓰지 말고 1) 자료 요약 2) 고객 문제 3) 구매 장벽 4) 메시지 후보 5) 리스크 점검 순서로 출력하세요.”</span></p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-workshop" data-page="18" data-section="PROMPTING">
+  <div class="chrome"><span>PROMPTING</span><span>PAGE 18/68</span></div>
+  <div class="label">체크리스트·거버넌스</div>
+  <h1>제약조건과 검수 기준</h1>
+  <h2>제약조건과 검수 기준은 실무 리스크를 줄이는 핵심 요소다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>금지 표현과 브랜드 톤을 명시한다.</li><li>사실, 추정, 제안을 분리하도록 요청한다.</li><li>불확실한 내용은 불확실하다고 표시하게 한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>과장 표현, 민감정보, 확인되지 않은 수치, 법적 리스크는 프롬프트 단계에서 제한해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>금지 조건은 과장 효능, 개인정보 추정, 경쟁사 비방, 확인되지 않은 수치, 브랜드 톤 위반으로 제시한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-prompt" data-page="19" data-section="PROMPTING">
+  <div class="chrome"><span>PROMPTING</span><span>PAGE 19/68</span></div>
+  <div class="label">프롬프트 예시</div>
+  <h1>2026년형 실무 프롬프트 패턴</h1>
+  <h2>2026년형 실무 프롬프트는 컨텍스트, 중간 산출물, 반복 개선을 중심으로 설계한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>컨텍스트 우선 패턴은 배경과 자료를 충분히 제공한다.</li><li>단계적 사고 유도 패턴은 중간 결과를 먼저 확인한다.</li><li>반복 개선 패턴은 톤, 길이, 리스크 수준을 조정한다.</li><li>예시 기반 패턴은 브랜드 문체를 맞추는 데 유용하다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>AI의 내부 추론을 맹신하지 말고 사용자가 검토할 수 있는 결과물을 요구해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note"><b>프롬프트 예시</b><p>나쁜 예 <span class="quote">“우리 제품 홍보 문구 써줘”</span> → 좋은 예 <span class="quote">“30대 직장인 대상 웰니스 브랜드 문구 5개, 40자 이내, 문제→혜택→CTA, 과장 금지, 세그먼트 표시”</span>.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed affected-page tmpl-prompt" data-page="20" data-section="PROMPTING">
+  <div class="chrome"><span>PROMPTING</span><span>PAGE 20/68</span></div>
+  <div class="label">프롬프트 예시</div>
+  <h1>멀티모달 프롬프트</h1>
+  <h2>멀티모달 프롬프트는 캠페인 메시지를 비주얼 콘셉트로 번역하는 작업이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>장면, 피사체, 스타일, 카메라, 조명 요소를 지정한다.</li><li>브랜드 톤, 금지 요소, 사용 채널을 함께 쓴다.</li><li>텍스트 문구와 이미지 콘셉트를 분리하지 않고 연결한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>이미지·영상 생성물은 실제 사용 전 브랜드 세이프티와 권리 이슈를 확인해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note"><b>프롬프트 예시</b><p><span class="quote">“저녁 홈오피스, 노트북 옆 디카페인 커피잔, 따뜻한 브라운·크림 톤, 50mm 얕은 심도, 1:1 SNS 이미지, no text, 의료 효능 암시 금지”</span>.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop tmpl-prompt" data-page="21" data-section="PROMPTING">
+  <div class="chrome"><span>PROMPTING</span><span>PAGE 21/68</span></div>
+  <div class="label">실습 안내</div>
+  <h1>프롬프트 개선 실습</h1>
+  <h2>프롬프트 실습의 목표는 나쁜 요청을 업무 지시문으로 바꾸는 것이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>'우리 제품 홍보 문구 써줘'를 구조화된 요청으로 바꾼다.</li><li>역할, 고객, 자료, 채널, 분량, 금지조건을 추가한다.</li><li>같은 요청을 에이전트형 작업 지시문으로 확장한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>실습 결과물은 실제 업무 투입 전 사실성, 브랜드 톤, 법적 표현을 재검토해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>실습 안내</b><p>10분 동안 나쁜 프롬프트 1개를 고르고 역할·목표·자료·출력·제약·검수 기준을 추가해 좋은 프롬프트로 재작성한다.</p></div><div class="note"><b>프롬프트 예시</b><p>개선 후 문장은 <span class="quote">“사실/추정/제안을 분리하고 불확실한 내용은 확인 필요로 표시”</span> 조건을 반드시 포함한다.</p></div><div class="note practice"><b>수강자 산출물 예시</b><p>기본 프롬프트 1개와 에이전트식 작업 지시문 1개를 짝에게 보여주고 누락 조건 1개를 피드백 받는다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-compare tmpl-flow tmpl-demo" data-page="22" data-section="AGENTS">
+  <div class="chrome"><span>AGENTS</span><span>PAGE 22/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>에이전트형 작업 도구</h1>
+  <h2>Claude Code 또는 Codex는 코딩 도구를 넘어 파일 기반 작업 에이전트로 활용할 수 있다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>에이전트는 파일을 읽고 정리하고 산출물을 만들 수 있다.</li><li>비개발 업무에서도 리서치, 비교, 문서화에 활용 가능하다.</li><li>핵심은 도구 기능보다 명확한 작업 지시다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>에이전트에게 파일을 읽히기 전 접근 권한과 포함된 민감정보를 확인해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>파일 기반 업무 에이전트가 폴더를 읽고 요약·비교·초안·검수표를 만드는 화면을 짧게 보여준다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed affected-page tmpl-compare tmpl-workshop" data-page="23" data-section="AGENTS">
+  <div class="chrome"><span>AGENTS</span><span>PAGE 23/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>에이전트에게 맡기기 좋은 일</h1>
+  <h2>에이전트에게 맡기기 좋은 일은 자료 정리, 비교, 초안 작성처럼 반복 가능한 업무다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>폴더 안 자료 요약을 맡길 수 있다.</li><li>경쟁사 문서나 웹페이지 비교를 맡길 수 있다.</li><li>고객 페르소나별 메시지 초안 생성을 맡길 수 있다.</li><li>보고서 목차와 초안 작성을 맡길 수 있다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>판단이 필요한 업무는 AI가 제안하고 사람이 결정하는 구조로 설계해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>에이전트에게 맡길 일은 반복 가능하고 입력·출력·검수 기준이 있는 업무로 한정한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed affected-page tmpl-workshop tmpl-prompt" data-page="24" data-section="AGENTS">
+  <div class="chrome"><span>AGENTS</span><span>PAGE 24/68</span></div>
+  <div class="label">프롬프트 예시</div>
+  <h1>좋은 에이전트 지시문</h1>
+  <h2>좋은 에이전트 지시문은 목표, 자료 위치, 독자, 출력 형식, 금지사항을 포함한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>목표는 최종 산출물을 기준으로 쓴다.</li><li>자료 위치와 참고 범위를 명확히 지정한다.</li><li>대상 독자와 사용 맥락을 설명한다.</li><li>출력 형식과 금지사항을 함께 제시한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>완료 조건과 검수 기준이 없으면 에이전트 결과물은 실무 품질로 수렴하기 어렵습니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note"><b>프롬프트 예시</b><p><span class="quote">“sample_brand 폴더의 product_brief.md, customer_reviews.csv, competitor_messages.md만 읽고 캠페인 리서치 브리핑 초안을 작성하세요.”</span></p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-compare tmpl-flow tmpl-workshop" data-page="25" data-section="AGENTS">
+  <div class="chrome"><span>AGENTS</span><span>PAGE 25/68</span></div>
+  <div class="label">체크리스트·거버넌스</div>
+  <h1>에이전트 작업의 단계화</h1>
+  <h2>에이전트 작업은 한 번에 끝내기보다 읽기, 정리, 초안, 검수로 나눠야 한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>먼저 자료 목록과 핵심 내용을 확인하게 한다.</li><li>다음으로 비교 기준과 인사이트를 정리하게 한다.</li><li>이후 초안을 만들고 마지막에 리스크 체크를 요청한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>단계별 확인 지점이 있어야 오류 전파를 막을 수 있습니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>읽기→정리→초안→검수 네 단계마다 사람이 확인할 중간 산출물을 요구한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-compare tmpl-flow tmpl-prompt tmpl-demo" data-page="26" data-section="AGENTS">
+  <div class="chrome"><span>AGENTS</span><span>PAGE 26/68</span></div>
+  <div class="label">데모</div>
+  <h1>에이전트 데모 흐름</h1>
+  <h2>데모는 샘플 브랜드 브리프에서 경쟁사 분석 리포트 초안을 만드는 흐름으로 진행한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>샘플 제품 설명과 타깃 고객을 제시한다.</li><li>경쟁사 메시지 비교를 요청한다.</li><li>차별화 메시지와 보고서 목차를 생성한다.</li><li>사실과 추정을 분리해 표시하게 한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>데모 자료는 공개 가능하거나 가상의 자료를 사용해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>샘플 브랜드 브리프 입력 → 경쟁사 메시지 비교 → 차별화 메시지 5개 → 보고서 목차 → 사실/추정 분리 검수 순서로 진행한다.</p></div><div class="note"><b>프롬프트 예시</b><p><span class="quote">“폴더 밖 자료는 쓰지 말고, 확인되지 않은 수치와 효능은 확인 필요로 표시하세요.”</span></p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop" data-page="27" data-section="AGENTS">
+  <div class="chrome"><span>AGENTS</span><span>PAGE 27/68</span></div>
+  <div class="label">체크리스트·거버넌스</div>
+  <h1>에이전트 결과물 검수</h1>
+  <h2>에이전트 결과물은 바로 믿지 말고 검수 체크리스트로 다시 통과시킨다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>근거가 있는 내용과 추정한 내용을 구분한다.</li><li>경쟁사 사실과 수치는 원문으로 재확인한다.</li><li>브랜드 톤과 법적 표현 제한을 검토한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>자동 생성 보고서는 근거, 누락, 과장, 최신성 검토를 거쳐야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>검수표는 근거 있음, 추정, 누락, 과장, 최신성 5칸으로 구성한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-compare tmpl-workshop tmpl-demo" data-page="28" data-section="AGENTS">
+  <div class="chrome"><span>AGENTS</span><span>PAGE 28/68</span></div>
+  <div class="label">실습 안내</div>
+  <h1>에이전트 지시문 실습</h1>
+  <h2>실습에서는 내 업무 주제를 에이전트용 리서치·정리 지시문으로 바꾼다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>수강자는 자신의 제품이나 서비스 주제를 고른다.</li><li>목표, 입력 자료, 출력 형식을 정한다.</li><li>금지사항과 검수 기준을 추가한다.</li><li>완성된 지시문은 다음 NotebookLM 실습의 기준이 된다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>실제 고객명, 연락처, 내부 매출 정보는 샘플이나 익명 데이터로 대체해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>실습 안내</b><p>12분 동안 자신의 업무 주제를 에이전트 지시문으로 바꾸고 목표·자료 위치·출력 형식·금지사항·완료 조건을 채운다.</p></div><div class="note practice"><b>수강자 산출물 예시</b><p><span class="quote">“경쟁사 3곳 메시지 비교 브리핑, 메시지 후보 5개, 리스크 체크리스트”</span>를 완료 조건으로 적는다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-compare" data-page="29" data-section="AGENTS">
+  <div class="chrome"><span>AGENTS</span><span>PAGE 29/68</span></div>
+  <div class="label">산출물 공유</div>
+  <h1>분석 초안 구조</h1>
+  <h2>에이전트 산출물의 핵심은 경쟁사·시장 분석 초안 구조를 얻는 것이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>수강자는 분석 목적을 한 문장으로 쓴다.</li><li>비교 기준을 3~5개로 정한다.</li><li>메시지, 고객, 채널 관점의 초안 구조를 만든다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>분석 초안은 의사결정 근거가 아니라 추가 검토를 위한 1차 정리물입니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>산출물 공유/피드백</b><p>2명만 화면을 공유해 분석 목적, 비교 기준 3개, 메시지 후보 구조가 명확한지 피드백한다.</p></div><div class="note practice"><b>수강자 산출물 예시</b><p>분석 초안은 <span class="quote">“목적 1문장 / 비교 기준 3~5개 / 인사이트 5개 / 확인 필요 3개”</span> 구조로 제시한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-workshop tmpl-demo" data-page="30" data-section="RESEARCH">
+  <div class="chrome"><span>RESEARCH</span><span>PAGE 30/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>NotebookLM으로 연결</h1>
+  <h2>에이전트 섹션의 결과물은 NotebookLM 자료 기반 검증으로 이어진다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>에이전트는 작업 수행과 산출물 생성에 강하다.</li><li>NotebookLM은 업로드한 자료 기반 이해와 설명에 강하다.</li><li>다음 단계에서는 자료 기반으로 메시지 근거를 뽑는다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>에이전트가 만든 가설은 자료 기반 도구로 다시 확인해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>에이전트 가설은 NotebookLM의 업로드 자료 근거로 다시 확인해야 한다고 전환한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-demo" data-page="31" data-section="RESEARCH">
+  <div class="chrome"><span>RESEARCH</span><span>PAGE 31/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>NotebookLM의 역할</h1>
+  <h2>NotebookLM은 내가 넣은 자료를 기준으로 요약, 질의응답, 브리핑을 만드는 도구다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>제품 소개서, 고객 후기, 경쟁사 자료를 넣을 수 있다.</li><li>자료 기반 요약과 FAQ 생성에 강하다.</li><li>캠페인 메시지의 근거 정리에 활용할 수 있다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>NotebookLM의 답변도 업로드 자료의 품질과 범위 안에서 해석해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>NotebookLM의 자료 목록, 질문 입력, 답변·출처 표시 영역을 먼저 해설한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-compare tmpl-workshop" data-page="32" data-section="RESEARCH">
+  <div class="chrome"><span>RESEARCH</span><span>PAGE 32/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>자료 기반 리서치의 장점</h1>
+  <h2>자료 기반 리서치는 검색이나 기억에 의존하는 AI 사용보다 검토 가능성이 높다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>업로드 자료를 기준으로 브리핑을 생성한다.</li><li>고객 질문과 반복되는 불만을 추출한다.</li><li>경쟁사 메시지를 비교해 차별화 포인트를 찾는다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>자료에 없는 내용은 추정으로 분리하거나 모른다고 표시하도록 요청해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>자료에 없는 내용은 <span class="quote">“추정”</span> 또는 <span class="quote">“확인 필요”</span>로 표시하게 하는 질문 습관을 강조한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-prompt tmpl-demo" data-page="33" data-section="RESEARCH">
+  <div class="chrome"><span>RESEARCH</span><span>PAGE 33/68</span></div>
+  <div class="label">프롬프트 예시</div>
+  <h1>NotebookLM 질문 설계</h1>
+  <h2>NotebookLM 실무 질문은 요약 요청보다 메시지 근거 추출에 맞춰야 한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>핵심 요약을 먼저 요청한다.</li><li>고객이 궁금해할 질문을 뽑게 한다.</li><li>강조 가능한 메시지와 근거 문장을 연결한다.</li><li>부족한 자료나 불확실한 부분을 표시하게 한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>메시지 후보를 만들 때 확인되지 않은 효능, 성능, 수치를 과장하지 않아야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note"><b>프롬프트 예시</b><p><span class="quote">“고객 후기에서 반복되는 불만, 기대, 구매 장벽을 각각 5개씩 뽑고 자료에 없는 추정은 따로 표시해줘.”</span></p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-compare tmpl-flow tmpl-prompt tmpl-demo" data-page="34" data-section="RESEARCH">
+  <div class="chrome"><span>RESEARCH</span><span>PAGE 34/68</span></div>
+  <div class="label">데모</div>
+  <h1>NotebookLM 데모 흐름</h1>
+  <h2>데모는 샘플 자료에서 브리핑, 예상 질문, 핵심 메시지를 뽑는 순서로 진행한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>제품 소개서를 요약한다.</li><li>고객 후기에서 반복되는 욕구와 불만을 찾는다.</li><li>경쟁사 문구와 비교해 차별화 메시지를 만든다.</li><li>FAQ 후보를 정리한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>데모 자료는 저작권과 공유 가능 범위를 확인한 자료여야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>자료 업로드 → 핵심 요약 질문 → 고객 질문 10개 생성 → 메시지 후보 5개 → 부족한 자료 표시 순서로 클릭한다.</p></div><div class="note"><b>프롬프트 예시</b><p><span class="quote">“처음 보는 고객이 물어볼 질문 10개와 자료 기반 답변, 확인이 필요한 부분을 분리해줘.”</span></p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-demo" data-page="35" data-section="RESEARCH">
+  <div class="chrome"><span>RESEARCH</span><span>PAGE 35/68</span></div>
+  <div class="label">산출물 공유</div>
+  <h1>메시지 후보 5개</h1>
+  <h2>NotebookLM 결과물은 메시지 후보 5개로 정리되어야 한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>고객에게 강조할 혜택을 정리한다.</li><li>구매 장벽과 반대 의견을 함께 도출한다.</li><li>채널별로 확장 가능한 메시지 후보를 만든다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>메시지 후보마다 근거 자료와 가정을 구분해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>산출물 공유/피드백</b><p>메시지 후보는 혜택, 근거 문장, 적합 세그먼트, 과장 위험을 함께 붙인 5카드로 정리한다.</p></div><div class="note practice"><b>수강자 산출물 예시</b><p><span class="quote">“밤에도 부담 없는 커피 루틴”</span> 메시지 옆에 근거 문장과 확인 필요 표현을 같이 둔다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop tmpl-demo" data-page="36" data-section="RESEARCH">
+  <div class="chrome"><span>RESEARCH</span><span>PAGE 36/68</span></div>
+  <div class="label">실습 안내</div>
+  <h1>NotebookLM 실습</h1>
+  <h2>실습에서는 자료 1~2개를 기준으로 고객 질문과 메시지 후보를 만든다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>수강자는 제품 소개서나 샘플 자료를 준비한다.</li><li>NotebookLM으로 핵심 요약을 만든다.</li><li>고객 질문 리스트를 만든다.</li><li>메시지 후보 5개를 도출한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>실제 고객 후기를 사용할 경우 개인정보와 식별 가능 정보를 제거해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>실습 안내</b><p>15분 동안 자료 1~2개를 넣고 핵심 요약 5줄, 고객 질문 10개, 메시지 후보 5개를 만든다.</p></div><div class="note practice"><b>수강자 산출물 예시</b><p>NotebookLM 브리핑은 <span class="quote">“핵심 요약 / 고객 질문 / 근거 문장 / 메시지 후보 / 확인 필요”</span> 5섹션으로 제출한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-workshop tmpl-demo" data-page="37" data-section="RESEARCH">
+  <div class="chrome"><span>RESEARCH</span><span>PAGE 37/68</span></div>
+  <div class="label">산출물 공유</div>
+  <h1>오후 실습의 입력 만들기</h1>
+  <h2>NotebookLM 산출물은 오후 이미지와 메시지 실습의 근거 자료가 된다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>브리핑은 이미지 콘셉트의 방향을 잡는다.</li><li>고객 질문은 세그먼트별 메시지 작성에 사용된다.</li><li>메시지 후보는 광고 문구와 이미지 프롬프트의 입력이 된다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>이후 제작되는 이미지와 문구는 이 단계의 근거를 벗어나지 않도록 관리해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>산출물 공유/피드백</b><p>오후 실습 전 저장할 파일은 에이전트 요청문, NotebookLM 브리핑, 고객 질문, 메시지 후보 5개다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-workshop tmpl-demo" data-page="38" data-section="RESEARCH">
+  <div class="chrome"><span>RESEARCH</span><span>PAGE 38/68</span></div>
+  <div class="label">체크리스트·거버넌스</div>
+  <h1>오전 파트 결론</h1>
+  <h2>오전 파트의 결론은 자료 기반 리서치를 실행 가능한 메시지 재료로 바꾸는 것이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>에이전트 지시문은 작업 흐름의 설계도다.</li><li>NotebookLM 브리핑은 메시지의 근거 자료다.</li><li>오후에는 이 재료를 이미지와 자동화로 확장한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>리서치 결과를 실행에 연결할 때도 사실, 추정, 제안을 분리해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>오전 산출물은 사실, 추정, 제안이 분리되어 있어야 오후 생성물의 근거로 사용할 수 있다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop" data-page="39" data-section="IMAGE">
+  <div class="chrome"><span>IMAGE</span><span>PAGE 39/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>이미지 생성 AI의 위치</h1>
+  <h2>이미지 생성 AI는 예쁜 그림 도구가 아니라 캠페인 비주얼 제작 도구로 다뤄야 한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>이미지 생성의 출발점은 캠페인 목적이다.</li><li>광고, SNS, 상세페이지, 썸네일, 키비주얼은 요구 조건이 다르다.</li><li>오전에 만든 메시지를 비주얼 콘셉트로 번역한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>생성 이미지는 브랜드 목적, 권리 이슈, 사용 채널 기준에 맞아야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>이미지 생성은 미적 취향보다 캠페인 목적, 권리, 채널, 브랜드 세이프티 기준으로 판단한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-prompt" data-page="40" data-section="IMAGE">
+  <div class="chrome"><span>IMAGE</span><span>PAGE 40/68</span></div>
+  <div class="label">프롬프트 예시</div>
+  <h1>이미지 프롬프트 구성</h1>
+  <h2>좋은 이미지 프롬프트는 장면, 피사체, 스타일, 카메라, 조명, 채널을 포함한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>장면과 피사체를 구체적으로 쓴다.</li><li>스타일, 카메라, 렌즈, 조명으로 분위기를 정한다.</li><li>브랜드 톤과 활용 채널을 함께 지정한다.</li><li>텍스트 포함 여부를 명확히 정한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>금지 요소와 브랜드 톤을 명시해야 원하지 않는 결과를 줄일 수 있습니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note"><b>프롬프트 예시</b><p><span class="quote">“프리미엄 디카페인 커피 SNS 1:1 이미지, 저녁 홈오피스, 제품은 우하단, 얼굴 노출 없음, 따뜻한 브라운·크림·딥그린, 50mm, no text, 의료 효능 암시 금지.”</span></p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-compare tmpl-flow tmpl-workshop tmpl-demo" data-page="41" data-section="IMAGE">
+  <div class="chrome"><span>IMAGE</span><span>PAGE 41/68</span></div>
+  <div class="label">데모</div>
+  <h1>Nano Banana 2와 GPT Image 2</h1>
+  <h2>Nano Banana 2와 GPT Image 2는 고객 메시지를 이미지 콘셉트로 변환하는 실습 도구로 배치한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>두 도구는 마케팅 이미지 제작 방향을 실습하는 용도로 사용한다.</li><li>같은 메시지도 고객 세그먼트에 따라 다른 비주얼이 필요하다.</li><li>도구 결과물은 콘셉트 보드 초안으로 다룬다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>특정 도구 기능보다 제작 판단 기준과 검수 기준을 우선 설명해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>같은 메시지를 Nano Banana 2와 GPT Image 2에 넣고 결과 2개를 비교해 목적 적합성·제품 유지력·수정 난이도를 판단한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-prompt" data-page="42" data-section="IMAGE">
+  <div class="chrome"><span>IMAGE</span><span>PAGE 42/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>세그먼트별 이미지 콘셉트</h1>
+  <h2>이미지 콘셉트는 고객 세그먼트별 문제와 욕구에서 출발해야 한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>신규 고객은 관심 유발과 문제 인식이 중요하다.</li><li>기존 고객은 활용 장면과 추가 가치가 중요하다.</li><li>이탈 위험 고객은 불만 해소와 신뢰 회복이 중요하다.</li><li>각 세그먼트에 맞는 장면과 톤을 다르게 설계한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>고객을 고정관념으로 묘사하거나 민감 속성을 추정하지 않도록 주의해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note"><b>프롬프트 예시</b><p>신규 고객은 문제 인식 장면, 기존 고객은 활용 확장 장면, 이탈 위험 고객은 신뢰 회복 장면으로 프롬프트를 나눈다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-compare tmpl-flow tmpl-workshop tmpl-prompt tmpl-demo" data-page="43" data-section="IMAGE">
+  <div class="chrome"><span>IMAGE</span><span>PAGE 43/68</span></div>
+  <div class="label">데모</div>
+  <h1>이미지 데모 흐름</h1>
+  <h2>데모는 오전 메시지 후보를 SNS 광고 이미지 프롬프트로 바꾸는 흐름으로 진행한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>메시지 후보 1개를 선택한다.</li><li>고객 세그먼트와 사용 채널을 지정한다.</li><li>장면, 피사체, 조명, 스타일을 작성한다.</li><li>금지 요소와 브랜드 톤을 추가한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>광고 이미지에는 과장 표현, 오해 유발 장면, 부적절한 비교 표현을 피해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>메시지 후보 1개 선택 → 세그먼트 지정 → 장면·피사체·조명 작성 → 생성 → 수정 지시 → 검수표 체크 순서로 진행한다.</p></div><div class="note"><b>프롬프트 예시</b><p><span class="quote">“제품 패키지가 왜곡되면 제품 노출을 줄이고 라이프스타일 장면 중심으로 다시 생성해줘.”</span></p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop" data-page="44" data-section="IMAGE">
+  <div class="chrome"><span>IMAGE</span><span>PAGE 44/68</span></div>
+  <div class="label">체크리스트·거버넌스</div>
+  <h1>이미지 결과 검수</h1>
+  <h2>이미지 생성 결과는 품질, 일관성, 목적 적합성으로 검토한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>제품이 정확하고 자연스럽게 표현됐는지 확인한다.</li><li>브랜드 톤과 캠페인 목적에 맞는지 본다.</li><li>고객 세그먼트에 적합한 장면인지 점검한다.</li><li>수정 지시를 통해 프롬프트를 개선한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>시각적으로 좋아 보여도 제품, 브랜드, 고객 맥락과 맞지 않으면 폐기해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>이미지 검수는 제품 왜곡, 브랜드 톤 불일치, 고객 맥락 부적합, 권리 리스크, 과장 연출 5항목으로 본다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-compare tmpl-workshop tmpl-prompt tmpl-demo" data-page="45" data-section="IMAGE">
+  <div class="chrome"><span>IMAGE</span><span>PAGE 45/68</span></div>
+  <div class="label">실습 안내</div>
+  <h1>이미지 프롬프트 실습</h1>
+  <h2>실습은 동일 제품을 3개 고객 세그먼트의 이미지 콘셉트로 변환하는 것이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>수강자는 오전 메시지 후보 중 1개를 고른다.</li><li>신규, 기존, 이탈 위험 고객용 콘셉트를 나눈다.</li><li>각 세그먼트별 이미지 프롬프트를 작성한다.</li><li>도구 결과물을 비교해 개선점을 찾는다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>세그먼트별 차별화는 가능하지만 차별적이거나 민감한 표현은 피해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>실습 안내</b><p>15분 동안 신규·기존·이탈 위험 고객용 이미지 프롬프트 3개를 작성하고 한 장만 실제 생성해 수정 지시를 남긴다.</p></div><div class="note"><b>프롬프트 예시</b><p><span class="quote">“신규 고객용은 문제 인식, 기존 고객용은 활용 확장, 이탈 위험 고객용은 부담 없는 재시작 톤으로 작성.”</span></p></div><div class="note practice"><b>수강자 산출물 예시</b><p>세그먼트명, 핵심 메시지, 이미지 프롬프트, 결과 이미지 링크 또는 캡처, 수정 방향 1줄을 제출한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop" data-page="46" data-section="IMAGE">
+  <div class="chrome"><span>IMAGE</span><span>PAGE 46/68</span></div>
+  <div class="label">산출물 공유</div>
+  <h1>콘셉트 보드 초안</h1>
+  <h2>이미지 실습의 산출물은 캠페인용 콘셉트 보드 초안이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>이미지 프롬프트 3종을 정리한다.</li><li>세그먼트별 핵심 메시지를 함께 붙인다.</li><li>사용 채널과 수정 방향을 기록한다.</li><li>다음 영상 콘셉트 확장의 입력으로 사용한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>콘셉트 보드는 내부 검토용이며 외부 게시 전 권리와 표현 검토가 필요합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>산출물 공유/피드백</b><p>콘셉트 보드는 메시지, 세그먼트, 프롬프트, 결과 이미지, 수정 방향을 5칸 카드로 묶는다.</p></div><div class="note practice"><b>수강자 산출물 예시</b><p>좋은 보드는 <span class="quote">“왜 이 이미지가 이 고객에게 맞는지”</span>를 1문장으로 설명한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-workshop" data-page="47" data-section="IMAGE">
+  <div class="chrome"><span>IMAGE</span><span>PAGE 47/68</span></div>
+  <div class="label">체크리스트·거버넌스</div>
+  <h1>이미지 파트 결론</h1>
+  <h2>이미지 파트의 결론은 메시지를 비주얼 언어로 번역하는 능력이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>좋은 이미지는 좋은 메시지와 고객 이해에서 나온다.</li><li>프롬프트는 미적 지시와 업무 지시를 함께 담아야 한다.</li><li>다음 단계에서는 이미지 콘셉트를 영상과 하이엔드 시안으로 확장한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>AI 이미지 제작의 책임은 프롬프트 작성자와 승인 프로세스에 남아 있습니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>외부 게시 전 제품 정확성, 권리, 인물권, 브랜드 톤, 채널 규정을 다시 확인한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-demo" data-page="48" data-section="MEDIA">
+  <div class="chrome"><span>MEDIA</span><span>PAGE 48/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>하이엔드 생성형 미디어의 위치</h1>
+  <h2>하이엔드 생성형 미디어 도구는 제작 파이프라인의 고급 시안 단계로 이해해야 한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>Kling 3와 Seedream 2는 하이엔드 이미지·영상 제작 방향에서 소개한다.</li><li>기능 나열보다 제작 판단 기준을 중심으로 다룬다.</li><li>실제 업무에서는 후반작업과 승인 절차가 필요하다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>고품질 결과물일수록 저작권, 인물권, 브랜드 세이프티 검토가 중요해집니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>이미지 콘셉트가 영상 시안, 스타일 변주, 후반작업로 확장되는 제작 파이프라인을 보여준다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop tmpl-demo" data-page="49" data-section="MEDIA">
+  <div class="chrome"><span>MEDIA</span><span>PAGE 49/68</span></div>
+  <div class="label">체크리스트·거버넌스</div>
+  <h1>하이엔드 도구 평가 기준</h1>
+  <h2>하이엔드 도구를 볼 때는 품질, 일관성, 모션 제어, 제품 유지력을 기준으로 평가한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>결과물의 품질과 디테일을 확인한다.</li><li>캐릭터나 제품이 일관되게 유지되는지 본다.</li><li>모션 제어와 레퍼런스 반영력을 평가한다.</li><li>후반작업 연계 가능성을 검토한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>기술 데모의 인상보다 반복 제작 가능성과 검수 가능성을 우선해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>하이엔드 도구 평가는 인상적 결과보다 반복 제작 가능성, 제품 유지력, 승인 가능성을 기준으로 한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-prompt tmpl-demo" data-page="50" data-section="MEDIA">
+  <div class="chrome"><span>MEDIA</span><span>PAGE 50/68</span></div>
+  <div class="label">데모</div>
+  <h1>Kling 3 활용 방향</h1>
+  <h2>Kling 3는 캠페인 키비주얼을 숏폼 영상 시안으로 확장하는 흐름에서 설명한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>제품 또는 브랜드 무드 영상을 구상할 수 있다.</li><li>숏폼 광고 시안을 빠르게 탐색할 수 있다.</li><li>캠페인 키비주얼에 모션을 부여하는 흐름을 설명한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>영상 시안은 실제 광고 집행 전 모델, 음악, 문구, 권리 요소를 검토해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>이미지 콘셉트 1장을 15초 숏폼 영상으로 확장하며 컷1 문제 상황, 컷2 제품 등장, 컷3 사용 장면, 컷4 CTA를 배치한다.</p></div><div class="note"><b>프롬프트 예시</b><p><span class="quote">“9:16 숏폼, 느린 푸시인, 따뜻한 야간 조명, 제품 클로즈업 2초, 마지막 3초 CTA 여백.”</span></p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-compare tmpl-flow tmpl-prompt tmpl-demo" data-page="51" data-section="MEDIA">
+  <div class="chrome"><span>MEDIA</span><span>PAGE 51/68</span></div>
+  <div class="label">데모</div>
+  <h1>Seedream 2 활용 방향</h1>
+  <h2>Seedream 2는 고급 이미지 시안과 스타일 변주 도구로 배치한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>하이엔드 이미지 생성에 활용할 수 있다.</li><li>광고 시안과 레퍼런스 이미지 제작에 사용할 수 있다.</li><li>스타일 변주를 통해 콘셉트 방향을 비교할 수 있다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>레퍼런스를 사용할 때는 원본 권리와 모방 리스크를 확인해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>Seedream 2 스타일 변주는 고급 스튜디오컷, 라이프스타일컷, 상세페이지 히어로컷 3개로 비교한다.</p></div><div class="note"><b>프롬프트 예시</b><p><span class="quote">“같은 제품·메시지를 유지하고 배경과 조명만 바꿔 세 가지 광고 시안으로 변주.”</span></p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop tmpl-prompt" data-page="52" data-section="MEDIA">
+  <div class="chrome"><span>MEDIA</span><span>PAGE 52/68</span></div>
+  <div class="label">실습 안내</div>
+  <h1>하이엔드 미디어 실습</h1>
+  <h2>실습은 이미지 콘셉트를 15초 숏폼 영상 콘셉트로 바꾸는 것이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>수강자는 이미지 프롬프트 1개를 선택한다.</li><li>도입, 핵심 장면, 마무리 장면을 나눈다.</li><li>카메라 움직임과 분위기를 지정한다.</li><li>브랜드 메시지와 행동 유도를 연결한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>영상 프롬프트에는 안전하지 않은 표현, 과장 연출, 권리 침해 가능 요소를 제한해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>실습 안내</b><p>10분 동안 이미지 프롬프트 1개를 15초 영상 콘셉트로 바꾸고 도입·핵심 장면·마무리·CTA를 작성한다.</p></div><div class="note"><b>프롬프트 예시</b><p><span class="quote">“컷1: 밤에도 커피가 생각나는 장면, 컷2: 제품 등장, 컷3: 차분한 사용 장면, 컷4: 부담 없는 루틴 CTA.”</span></p></div><div class="note practice"><b>수강자 산출물 예시</b><p>4컷 스토리보드, 카메라 움직임, 금지 요소, 승인 전 확인 항목 3개를 포함한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-workshop" data-page="53" data-section="MEDIA">
+  <div class="chrome"><span>MEDIA</span><span>PAGE 53/68</span></div>
+  <div class="label">체크리스트·거버넌스</div>
+  <h1>하이엔드 미디어 파트 결론</h1>
+  <h2>하이엔드 미디어 파트의 결론은 도구 선택보다 제작 판단 기준을 갖는 것이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>도구별 기능보다 결과물 평가 기준이 중요하다.</li><li>이미지와 영상은 캠페인 메시지의 확장물이다.</li><li>다음 단계에서는 고객별 메시지와 채널별 문구로 전환한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>AI 미디어 제작은 실험 속도와 승인 책임을 동시에 관리해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>영상은 모델·음악·문구·권리·브랜드 세이프티 검토 없이는 외부 사용하지 않는다고 정리한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop" data-page="54" data-section="MESSAGE">
+  <div class="chrome"><span>MESSAGE</span><span>PAGE 54/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>고객 맞춤 메시지</h1>
+  <h2>고객 맞춤 메시지는 같은 제품을 서로 다른 고객에게 다르게 말하는 기술이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>고객 세그먼트별 문제 상황이 다르다.</li><li>욕구, 동기, 반대 의견도 다르게 나타난다.</li><li>메시지는 세그먼트와 채널에 맞춰 변주되어야 한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>개인화는 고객 이해를 높이는 방식이어야 하며 민감정보 추정이나 차별적 표현은 피해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>개인화는 고객 이해를 돕는 범위에서만 사용하고 민감 속성 추정은 금지한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-prompt" data-page="55" data-section="MESSAGE">
+  <div class="chrome"><span>MESSAGE</span><span>PAGE 55/68</span></div>
+  <div class="label">프롬프트 예시</div>
+  <h1>고객 메시지 구성요소</h1>
+  <h2>고객 메시지는 세그먼트, 문제, 욕구, 반대 의견, 혜택, 채널 톤으로 구성한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>세그먼트별 핵심 문제를 정리한다.</li><li>구매 장벽과 반대 의견을 예상한다.</li><li>핵심 혜택을 고객 언어로 바꾼다.</li><li>채널별 톤앤매너를 지정한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>메시지 생성 전 사용할 수 있는 고객 데이터의 범위를 명확히 해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note"><b>프롬프트 예시</b><p><span class="quote">“세그먼트별 문제, 욕구, 구매 장벽, 핵심 혜택, 채널 톤을 정리하고 각 메시지의 근거와 가정을 분리해줘.”</span></p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-prompt" data-page="56" data-section="MESSAGE">
+  <div class="chrome"><span>MESSAGE</span><span>PAGE 56/68</span></div>
+  <div class="label">프롬프트 예시</div>
+  <h1>에이전트가 돕는 메시지 작업</h1>
+  <h2>에이전트는 세그먼트 정의, 메시지 도출, 채널별 문구 변주를 도울 수 있다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>고객 세그먼트를 3개로 나누게 할 수 있다.</li><li>페르소나별 핵심 메시지를 만들게 할 수 있다.</li><li>이메일, SMS, SNS, 랜딩페이지 문구로 변주할 수 있다.</li><li>법적·윤리적 리스크 점검도 요청할 수 있다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>에이전트가 제안한 세그먼트는 실제 데이터와 현업 판단으로 검토해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note"><b>프롬프트 예시</b><p><span class="quote">“신규·기존·이탈 위험 고객 3그룹에 대해 이메일 제목, SMS 45자, SNS 캡션, 랜딩페이지 헤드라인을 생성하고 리스크를 표시해줘.”</span></p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-demo" data-page="57" data-section="MESSAGE">
+  <div class="chrome"><span>MESSAGE</span><span>PAGE 57/68</span></div>
+  <div class="label">데모</div>
+  <h1>고객 메시지 데모 흐름</h1>
+  <h2>데모는 NotebookLM 브리핑과 이미지 콘셉트를 합쳐 고객별 메시지를 생성하는 흐름이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>오전 브리핑에서 고객 질문과 혜택을 가져온다.</li><li>오후 이미지 콘셉트에서 장면과 톤을 가져온다.</li><li>세그먼트별 메시지를 생성한다.</li><li>채널별 문구로 변주한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>자료 근거가 없는 메시지는 제안이나 가정으로 표시해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>NotebookLM 브리핑의 고객 질문과 이미지 콘셉트를 복사해 에이전트에게 세그먼트별 메시지와 채널별 변주를 생성하게 한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop" data-page="58" data-section="MESSAGE">
+  <div class="chrome"><span>MESSAGE</span><span>PAGE 58/68</span></div>
+  <div class="label">실습 안내</div>
+  <h1>고객 메시지 실습</h1>
+  <h2>실습은 신규 고객, 기존 고객, 이탈 위험 고객용 메시지를 만드는 것이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>신규 고객에게는 문제 인식과 첫 행동을 유도한다.</li><li>기존 고객에게는 활용 확대와 만족 강화를 제안한다.</li><li>이탈 위험 고객에게는 불만 해소와 신뢰 회복을 강조한다.</li><li>각 메시지는 채널별로 짧게 변주한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>이탈 위험 고객처럼 민감한 분류는 실제 운영 시 데이터 사용 기준과 동의 범위를 확인해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>실습 안내</b><p>15분 동안 신규·기존·이탈 위험 고객용 메시지를 만들고 각 메시지를 이메일·SMS·SNS 중 2개 채널로 변주한다.</p></div><div class="note practice"><b>수강자 산출물 예시</b><p>신규 <span class="quote">“밤에도 부담 없는 커피 루틴”</span>, 기존 <span class="quote">“취향별 블렌드로 루틴 확장”</span>, 이탈 위험 <span class="quote">“부담 없이 다시 시작하는 저녁 커피”</span>.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-prompt" data-page="59" data-section="MESSAGE">
+  <div class="chrome"><span>MESSAGE</span><span>PAGE 59/68</span></div>
+  <div class="label">프롬프트 예시</div>
+  <h1>채널별 문구 변주</h1>
+  <h2>채널별 문구 변주는 메시지의 핵심은 유지하되 표현 방식만 바꾸는 작업이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>이메일은 맥락과 설명을 조금 더 담을 수 있다.</li><li>SMS나 카카오톡은 짧고 명확해야 한다.</li><li>SNS는 후킹과 이미지 연결성이 중요하다.</li><li>랜딩페이지는 문제, 혜택, 행동 유도 구조가 필요하다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>채널별 제한과 광고 심의 기준을 반영하지 않은 문구는 사용하지 않아야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note"><b>프롬프트 예시</b><p>이메일 제목 <span class="quote">“저녁 커피를 포기하지 않아도 된다면?”</span>, SMS <span class="quote">“오늘 밤, 부담 없는 디카페인 루틴을 만나보세요.”</span>, SNS <span class="quote">“커피는 마시고 싶은데 잠은 지키고 싶다면.”</span></p></div><div class="note practice"><b>산출물 공유/피드백</b><p>직접 표현 <span class="quote">“당신은 이탈 고객”</span>은 금지하고 재시작·개선·도움 톤으로 바꿨는지 확인한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow" data-page="60" data-section="MESSAGE">
+  <div class="chrome"><span>MESSAGE</span><span>PAGE 60/68</span></div>
+  <div class="label">산출물 공유</div>
+  <h1>고객 메시지 파트 결론</h1>
+  <h2>고객 메시지 파트의 결론은 개인화를 자동화하되 검수 가능한 구조로 남기는 것이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>세그먼트별 메시지는 자동화 플로우의 핵심 입력이다.</li><li>채널별 문구는 실행 단계의 초안으로 활용된다.</li><li>다음 단계에서는 전체 과정을 반복 가능한 워크플로우로 묶는다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>개인화 자동화는 사람이 승인할 수 있는 기준과 기록을 남겨야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>산출물 공유/피드백</b><p>메시지 묶음은 세그먼트, 핵심 문장, 채널 변주, 근거, 사용 금지 표현을 함께 저장한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-workshop tmpl-demo" data-page="61" data-section="AUTOMATION">
+  <div class="chrome"><span>AUTOMATION</span><span>PAGE 61/68</span></div>
+  <div class="label">개념 설명</div>
+  <h1>마케팅 워크플로우 자동화</h1>
+  <h2>마케팅 워크플로우 자동화는 리서치, 메시지, 이미지 생성을 하나의 반복 흐름으로 묶는 것이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>입력은 제품 브리프, 고객 데이터, 캠페인 목표다.</li><li>처리는 리서치 요약, 세그먼트 분류, 메시지 생성, 이미지 프롬프트 생성이다.</li><li>출력은 캠페인 메시지, 이미지 콘셉트, 실행 체크리스트다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>자동화는 사람 검수를 제거하는 것이 아니라 반복 업무와 검수 지점을 명확히 하는 것입니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>리서치·메시지·이미지·검수·실행안을 입력→처리→검수→출력 플로우로 다시 묶는다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-workshop tmpl-prompt tmpl-demo" data-page="62" data-section="AUTOMATION">
+  <div class="chrome"><span>AUTOMATION</span><span>PAGE 62/68</span></div>
+  <div class="label">데모</div>
+  <h1>자동화 6단계 시연</h1>
+  <h2>자동화 시연은 제품 브리프에서 캠페인 실행안까지 이어지는 6단계로 구성한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>Step 1에서 제품 브리프를 입력한다.</li><li>Step 2에서 NotebookLM으로 자료를 요약한다.</li><li>Step 3에서 에이전트로 세그먼트와 메시지를 생성한다.</li><li>Step 4에서 이미지 프롬프트를 만든다.</li><li>Step 5와 6에서 하이엔드 프롬프트와 실행안으로 정리한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>각 단계마다 데이터 사용 범위와 검수 책임자를 지정해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>제품 브리프 입력 → NotebookLM 요약 → 에이전트 메시지 생성 → 이미지 프롬프트 → 하이엔드 프롬프트 → 실행안 정리 6단계로 보여준다.</p></div><div class="note"><b>프롬프트 예시</b><p><span class="quote">“당신은 마케팅 오케스트레이터입니다. 제품 브리프를 바탕으로 세그먼트, 메시지, 이미지 프롬프트, 검수 체크리스트를 단계별로 출력하세요.”</span></p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop" data-page="63" data-section="AUTOMATION">
+  <div class="chrome"><span>AUTOMATION</span><span>PAGE 63/68</span></div>
+  <div class="label">체크리스트·거버넌스</div>
+  <h1>자동화 설계의 분리 원칙</h1>
+  <h2>자동화에서 가장 중요한 것은 데이터, 처리, 출력, 검수 기준을 분리하는 것이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>입력 데이터의 출처와 사용 범위를 적는다.</li><li>AI가 처리할 작업과 사람이 판단할 작업을 나눈다.</li><li>출력물의 형식과 사용 채널을 정한다.</li><li>검수 기준과 중단 조건을 명시한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>개인정보는 샘플 또는 익명화 데이터로 사용하고 최종 발송 전 사람이 검수해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note gov"><b>실행 기준</b><p>자동화 설계 캔버스에는 입력 출처, AI 처리, 사람 판단, 출력 형식, 중단 조건, 승인자를 반드시 둔다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-demo" data-page="64" data-section="AUTOMATION">
+  <div class="chrome"><span>AUTOMATION</span><span>PAGE 64/68</span></div>
+  <div class="label">데모</div>
+  <h1>자동화 데모 흐름</h1>
+  <h2>데모는 하나의 샘플 브랜드로 리서치에서 실행안까지 연결해 보여준다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>제품 브리프를 기준으로 메시지 근거를 정리한다.</li><li>고객 세그먼트별 문구를 생성한다.</li><li>이미지와 영상 프롬프트로 확장한다.</li><li>최종 캠페인 실행안 형태로 요약한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>데모는 실제 고객 데이터 없이 가상 또는 샘플 데이터로 진행해야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note demo"><b>데모 흐름</b><p>데모 브랜드는 프리미엄 디카페인 커피 하나로 고정하고 같은 자료가 메시지·이미지·자동화로 흐르는 것을 추적한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow tmpl-workshop tmpl-prompt" data-page="65" data-section="AUTOMATION">
+  <div class="chrome"><span>AUTOMATION</span><span>PAGE 65/68</span></div>
+  <div class="label">실습 안내</div>
+  <h1>미니 자동화 플로우 실습</h1>
+  <h2>실습은 수강자별 미니 마케팅 자동화 플로우를 작성하는 것이다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>자신의 업무에서 반복 가능한 캠페인 과정을 고른다.</li><li>입력 자료와 AI 처리 단계를 정리한다.</li><li>산출물과 사람 검수 지점을 표시한다.</li><li>다음 주 실행 가능한 1개 과제로 좁힌다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>실제 운영 자동화 전에는 법무, 브랜드, 개인정보, 채널 정책 검토가 필요합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>실습 안내</b><p>5분 입력 정리, 10분 워크플로우 지시문 작성, 10분 결과 검토, 5분 공유로 운영한다.</p></div><div class="note"><b>프롬프트 예시</b><p><span class="quote">“자동 발송 금지, 개인정보 익명화, 사람 승인 후 사용, 근거·가정·제안 분리, 버전과 승인자 기록 조건을 포함하세요.”</span></p></div><div class="note practice"><b>수강자 산출물 예시</b><p>입력 자료, AI 처리 단계, 사람 검수 지점, 산출물, 다음 주 실행 과제 1개를 한 장에 정리한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-demo" data-page="66" data-section="AUTOMATION">
+  <div class="chrome"><span>AUTOMATION</span><span>PAGE 66/68</span></div>
+  <div class="label">산출물 공유</div>
+  <h1>최종 패키지 묶기</h1>
+  <h2>오늘 만든 산출물은 하나의 AI 마케팅 실행 패키지로 묶인다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>에이전트 리서치 지시문을 포함한다.</li><li>NotebookLM 브리핑과 고객 질문을 포함한다.</li><li>이미지 프롬프트와 영상 콘셉트를 포함한다.</li><li>세그먼트별 메시지와 자동화 플로우를 포함한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>패키지 전체는 초안 묶음이며 실제 집행 전 조직의 승인 절차를 따라야 합니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>산출물 공유/피드백</b><p>최종 패키지는 리서치 요약, 메시지 3종, 이미지 프롬프트 3종, 영상 콘셉트 1개, 자동화 플로우 1개로 묶는다.</p></div><div class="note practice"><b>수강자 산출물 예시</b><p>파일명은 날짜_제품명_AI마케팅패키지 형태로 저장하고 공유 화면에는 검수 전 초안 표시를 넣는다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-workshop" data-page="67" data-section="AUTOMATION">
+  <div class="chrome"><span>AUTOMATION</span><span>PAGE 67/68</span></div>
+  <div class="label">실습 안내</div>
+  <h1>현업 적용 시작점</h1>
+  <h2>현업 적용은 거창한 자동화보다 작은 반복 업무 1개에서 시작해야 한다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>다음 주에 적용할 업무 1개를 고른다.</li><li>필요한 자료와 계정을 확인한다.</li><li>사람 검수 기준을 먼저 정한다.</li><li>성공 기준과 개선 지점을 기록한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>작은 범위에서 검증하고 확장해야 비용, 품질, 리스크를 통제할 수 있습니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>실습 안내</b><p>다음 주 실행 과제 1개를 정하고 성공 기준, 필요한 자료, 승인자, 첫 실행 날짜를 적는다.</p></div><div class="note practice"><b>수강자 산출물 예시</b><p><span class="quote">“기존 고객 재구매 메시지 자동 초안 생성 → 담당자 검수 → 이메일 A/B 테스트 초안 작성”</span>처럼 작은 업무로 제한한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section><section class="slide layout-fixed tmpl-flow" data-page="68" data-section="AUTOMATION">
+  <div class="chrome"><span>AUTOMATION</span><span>PAGE 68/68</span></div>
+  <div class="label">산출물 공유</div>
+  <h1>마무리 메시지</h1>
+  <h2>AI 도구를 많이 아는 것보다 업무 흐름을 설계하는 능력이 중요하다.</h2>
+  <div class="grid">
+    <main class="maincard">
+      <div class="kicker">Core teaching points</div>
+      <ul><li>AI에게 맡길 일과 사람이 판단할 일을 구분해야 한다.</li><li>자료 기반 리서치와 검수 기준이 실무 품질을 만든다.</li><li>메시지, 이미지, 자동화를 하나의 흐름으로 연결해야 한다.</li><li>오늘 산출물을 자신의 업무 템플릿으로 재사용한다.</li></ul>
+    </main>
+    <aside class="sidecard">
+      <div class="kicker amber">Governance / HITL</div>
+      <p>AI 활용 역량은 자동 생성 능력이 아니라 책임 있게 설계하고 검수하는 능력입니다.</p>
+    </aside>
+  </div>
+  <div class="notes"><div class="note practice"><b>산출물 공유/피드백</b><p>마지막 5분은 오늘의 내 템플릿 1개를 저장하고 동료에게 가장 먼저 적용할 업무를 한 문장으로 공유한다.</p></div></div>
+  <div class="progress"><span></span></div>
+</section></div><div class="hud"></div><div class="help"></div><script>
+const slides=[...document.querySelectorAll('.slide')];let idx=Math.min(Math.max(parseInt(localStorage.getItem('ai-trend-slide')||'0'),0),slides.length-1);function fit(){const s=Math.min(innerWidth/1920,innerHeight/1080);slides.forEach(el=>el.style.transform=`scale(${s})`)}function show(i){idx=(i+slides.length)%slides.length;slides.forEach((s,n)=>{s.classList.toggle('active',n===idx);s.style.setProperty('--pct',((n+1)/slides.length*100)+'%')});document.querySelector('.hud').textContent=`${idx+1} / ${slides.length}`;localStorage.setItem('ai-trend-slide',idx)}addEventListener('resize',fit);addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(idx+1)}if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();show(idx-1)}if(e.key==='Home')show(0);if(e.key==='End')show(slides.length-1)});fit();show(idx);</script></body></html>

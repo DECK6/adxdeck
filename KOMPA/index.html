@@ -1,0 +1,1151 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI 트렌드 & 리서치 실무 6시간 실습 프롬프트 예시집</title>
+<style>
+:root{--bg:#f6f7fb;--paper:#fff;--ink:#182033;--muted:#647086;--line:#e6e9f2;--brand:#4f46e5;--brand2:#06b6d4;--code:#101827;--codefg:#edf2ff;}
+*{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",Arial,sans-serif;background:linear-gradient(135deg,#f6f7fb,#eef6ff);color:var(--ink);line-height:1.65} 
+.hero{padding:48px 24px 24px;max-width:1180px;margin:auto} .hero h1{font-size:clamp(2rem,4vw,3.5rem);line-height:1.15;margin:0 0 12px;letter-spacing:-.04em} .subtitle{font-size:1.08rem;color:var(--muted);max-width:820px}
+.toolbar{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);border-block:1px solid var(--line);padding:12px 24px} .toolbar-inner{max-width:1180px;margin:auto;display:flex;gap:12px;align-items:center;flex-wrap:wrap} input{flex:1;min-width:240px;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font-size:1rem} .count{color:var(--muted);font-size:.92rem}
+.layout{max-width:1180px;margin:24px auto 64px;display:grid;grid-template-columns:260px 1fr;gap:24px;padding:0 24px} nav{position:sticky;top:82px;align-self:start;max-height:calc(100vh - 100px);overflow:auto;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:14px;box-shadow:0 10px 30px #20284b0d} nav a{display:block;padding:8px 10px;border-radius:10px;color:#334155;text-decoration:none;font-size:.92rem} nav a:hover{background:#eef2ff;color:var(--brand)}
+main{min-width:0} .content-section,.prompt-card{background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:24px;margin-bottom:18px;box-shadow:0 12px 36px #20284b10} .content-section h1{margin:0;font-size:1.55rem} .prompt-card h2{margin:8px 0 12px;font-size:1.45rem;letter-spacing:-.025em} .card-top{display:flex;justify-content:space-between;align-items:center} .badge{background:linear-gradient(135deg,var(--brand),var(--brand2));color:white;border-radius:999px;padding:5px 11px;font-weight:700;font-size:.8rem} .anchor{color:var(--muted);text-decoration:none}
+ul,ol{padding-left:1.35rem} li{margin:.25rem 0} code{background:#eef2ff;color:#3730a3;border-radius:6px;padding:.1em .35em} .copy-block{position:relative;margin:16px 0;border-radius:18px;overflow:hidden;border:1px solid #253045;background:var(--code)} pre{margin:0;padding:48px 18px 18px;overflow:auto;color:var(--codefg);font-size:.94rem;line-height:1.55;white-space:pre-wrap} pre code{background:transparent;color:inherit;padding:0} .copy-btn{position:absolute;right:12px;top:10px;border:0;border-radius:10px;background:#fff;color:#111827;padding:7px 12px;font-weight:700;cursor:pointer} .copy-btn.copied{background:#22c55e;color:#fff} hr{border:0;border-top:1px dashed var(--line);margin:26px 0} .checklist .box{display:inline-block;width:1em;height:1em;border:2px solid #94a3b8;border-radius:4px;margin-right:.5em;vertical-align:-.1em} .hidden{display:none!important} footer{max-width:1180px;margin:0 auto 48px;padding:0 24px;color:var(--muted);font-size:.9rem}
+
+.slide-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;border:0;border-radius:999px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:white;text-decoration:none;padding:13px 20px;font-weight:800;box-shadow:0 14px 28px #4f46e533}.slide-link:hover{transform:translateY(-1px);box-shadow:0 18px 34px #4f46e544}.slide-link:focus-visible{outline:3px solid #a5b4fc;outline-offset:3px}
+@media(max-width:900px){.layout{grid-template-columns:1fr} nav{position:relative;top:0;max-height:240px} .toolbar{position:relative}}
+@media print{.toolbar,nav,.copy-btn{display:none} body{background:white} .layout{display:block} .prompt-card,.content-section{box-shadow:none;break-inside:avoid}}
+</style></head><body>
+<header class="hero"><h1>AI 트렌드 & 리서치 실무<br>6시간 실습 프롬프트 예시집</h1><p class="subtitle">수업 중 바로 복사해 쓰고, 자신의 업무에 맞게 고쳐 쓸 수 있는 실무형 프롬프트 핸드아웃입니다. 모든 결과물은 실제 사용 전 사람 검수와 조직 승인 절차를 전제로 합니다.</p><a class="slide-link" href="slide.html" target="_self" aria-label="슬라이드 덱 보기">슬라이드 보기 →</a></header>
+<div class="toolbar"><div class="toolbar-inner"><input id="search" type="search" placeholder="프롬프트 번호, 키워드, 업무명으로 검색"><span class="count" id="count"></span></div></div>
+<div class="layout"><nav aria-label="빠른 이동"><strong>빠른 이동</strong><a href="#AI-트렌드-리서치-실무-6시간-실습-프롬프트-예시집">AI 트렌드 &amp; 리서치 실무 6시간 실습 프롬프트 예시집</a><a href="#1-오리엔테이션-내-업무를-AI-흐름으로-바꾸기">1. 오리엔테이션: 내 업무를 AI 흐름으로 바꾸기</a><a href="#prompt-01">프롬프트 01. 반복 업무 분해 캔버스</a><a href="#prompt-02">프롬프트 02. 나쁜 요청을 좋은 업무 지시문으로 바꾸기</a><a href="#2-AI-기초와-거버넌스-사실-추정-제안을-분리하기">2. AI 기초와 거버넌스: 사실, 추정, 제안을 분리하기</a><a href="#prompt-03">프롬프트 03. AI 결과물 환각 점검</a><a href="#prompt-04">프롬프트 04. 데이터 사용 가능 범위 점검</a><a href="#3-트렌드-스캐닝과-리서치-질문-설계">3. 트렌드 스캐닝과 리서치 질문 설계</a><a href="#prompt-05">프롬프트 05. AI 트렌드 스캐닝 질문 만들기</a><a href="#prompt-06">프롬프트 06. 자료 기반 트렌드 요약</a><a href="#prompt-07">프롬프트 07. 출처 신뢰도 평가</a><a href="#4-에이전트형-리서치와-파일-기반-작업-지시">4. 에이전트형 리서치와 파일 기반 작업 지시</a><a href="#prompt-08">프롬프트 08. 에이전트 리서치 작업 지시문</a><a href="#prompt-09">프롬프트 09. 에이전트 결과물 재검수 지시</a><a href="#5-NotebookLM-자료-기반-브리핑">5. NotebookLM 자료 기반 브리핑</a><a href="#prompt-10">프롬프트 10. 업로드 자료 핵심 혜택 추출</a><a href="#prompt-11">프롬프트 11. 고객 질문 10개와 답변 근거 만들기</a><a href="#prompt-12">프롬프트 12. 메시지 후보 5개 카드화</a><a href="#6-이미지-생성과-비주얼-콘셉트">6. 이미지 생성과 비주얼 콘셉트</a><a href="#prompt-13">프롬프트 13. 메시지를 이미지 프롬프트로 변환</a><a href="#prompt-14">프롬프트 14. 세그먼트별 이미지 콘셉트 3종</a><a href="#prompt-15">프롬프트 15. 이미지 결과 검수와 수정 지시</a><a href="#7-하이엔드-미디어와-15초-영상-콘셉트">7. 하이엔드 미디어와 15초 영상 콘셉트</a><a href="#prompt-16">프롬프트 16. 이미지 콘셉트를 15초 숏폼 영상으로 확장</a><a href="#prompt-17">프롬프트 17. 하이엔드 생성 도구 평가 기준 만들기</a><a href="#8-고객-맞춤-메시지와-채널별-변주">8. 고객 맞춤 메시지와 채널별 변주</a><a href="#prompt-18">프롬프트 18. 세그먼트별 고객 메시지 생성</a><a href="#prompt-19">프롬프트 19. 채널별 문구 변주</a><a href="#prompt-20">프롬프트 20. 메시지 윤리·브랜드 세이프티 검수</a><a href="#9-자동화와-워크플로우-설계">9. 자동화와 워크플로우 설계</a><a href="#prompt-21">프롬프트 21. 미니 마케팅 자동화 플로우 설계</a><a href="#prompt-22">프롬프트 22. 자동화 단계별 프롬프트 체인 만들기</a><a href="#10-보고서-구조화와-콘텐츠-변환">10. 보고서 구조화와 콘텐츠 변환</a><a href="#prompt-23">프롬프트 23. 리서치 결과를 보고서 목차로 구조화</a><a href="#prompt-24">프롬프트 24. 보고서를 발표·교육용 콘텐츠로 변환</a><a href="#11-최종-산출물-패키지-검토">11. 최종 산출물 패키지 검토</a><a href="#prompt-25">프롬프트 25. 오늘의 AI 마케팅 실행 패키지 정리</a><a href="#prompt-26">프롬프트 26. 최종 출력물 품질 리뷰</a><a href="#prompt-27">프롬프트 27. 다음 주 현업 적용 계획</a><a href="#빠른-복사용-검수-문구-모음">빠른 복사용 검수 문구 모음</a><a href="#copy-card-28">공통 안전 문구</a><a href="#copy-card-29">사실·추정·제안 분리 요청</a><a href="#copy-card-30">민감정보 제거 요청</a><a href="#copy-card-31">과장 표현 완화 요청</a><a href="#copy-card-32">사람 검수 게이트 요청</a><a href="#수강자-제출-파일-권장-구조">수강자 제출 파일 권장 구조</a><a href="#copy-card-33">수강자 제출 파일 권장 구조</a><a href="#마무리-체크리스트">마무리 체크리스트</a></nav><main id="cards"><section class="content-section" id="AI-트렌드-리서치-실무-6시간-실습-프롬프트-예시집"><h1>AI 트렌드 &amp; 리서치 실무 6시간 실습 프롬프트 예시집</h1>
+</section>
+<p>이 문서는 6시간 실습 수업을 따라가며 수강자가 바로 복사해 쓰고, 자신의 업무에 맞게 고쳐 쓸 수 있도록 만든 프롬프트 예시집이다. 원본 교안의 흐름을 기준으로 구성했지만, 장표 제작 메모나 화면 디자인 지시는 포함하지 않았다. 모든 예시는 실제 업무에 투입하기 전 사람 검수와 조직의 승인 절차를 전제로 한다.</p>
+<section class="content-section" id="사용-방법"><h2>사용 방법</h2>
+</section>
+<ul>
+<li>대괄호 <code>[ ]</code> 안의 값은 자신의 상황에 맞게 바꾼다.</li>
+<li>실제 고객명, 연락처, 내부 매출, 계약 정보, 민감정보는 넣지 않는다.</li>
+<li>자료 기반 작업에서는 “자료에 있는 사실 / 합리적 추정 / 제안”을 반드시 분리한다.</li>
+<li>생성된 결과물은 바로 발송하거나 게시하지 말고 검수 체크리스트를 통과시킨다.</li>
+<li>같은 프롬프트를 한 번에 완성하려 하지 말고, 초안 → 검토 → 수정 지시 → 최종 정리 순서로 반복한다.</li>
+</ul>
+<section class="content-section" id="공통-입력-변수-사전"><h2>공통 입력 변수 사전</h2>
+</section>
+<ul>
+<li><code>[회사/조직]</code>: 예) 커머스 브랜드, 교육기관, B2B SaaS 기업</li>
+<li><code>[업무영역]</code>: 예) 마케팅, 영업, 고객지원, 교육기획, 리서치</li>
+<li><code>[제품/서비스]</code>: 분석하거나 홍보할 제품·서비스명</li>
+<li><code>[대상고객]</code>: 예) 신규 고객, 기존 고객, 이탈 위험 고객, B2B 의사결정자</li>
+<li><code>[자료]</code>: 제품 소개서, 고객 후기, 경쟁사 문구, 시장 리포트, 내부 가이드 등</li>
+<li><code>[채널]</code>: 이메일, SMS, 카카오톡, SNS, 블로그, 랜딩페이지, 발표자료</li>
+<li><code>[브랜드톤]</code>: 예) 전문적, 친근한, 차분한, 프리미엄, 실용적</li>
+<li><code>[금지조건]</code>: 과장 표현, 확인되지 않은 수치, 경쟁사 비방, 민감정보 추정 등</li>
+<li><code>[출력형식]</code>: bullet, 섹션형 보고서, 체크리스트, 표 형식 목록, 이메일 문안 등</li>
+</ul>
+<hr>
+<section class="content-section" id="1-오리엔테이션-내-업무를-AI-흐름으로-바꾸기"><h1>1. 오리엔테이션: 내 업무를 AI 흐름으로 바꾸기</h1>
+</section>
+<article class="prompt-card" id="prompt-01" data-title="프롬프트 01. 반복 업무 분해 캔버스">
+<div class="card-top"><span class="badge">Prompt 01</span><a class="anchor" href="#prompt-01" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 01. 반복 업무 분해 캔버스</h2>
+<ul>
+<li>목적: 내 업무를 AI에게 맡길 수 있는 입력, 처리, 검수, 산출물 구조로 나눈다.</li>
+<li>언제 사용하나: 수업 초반에 오늘 실습 주제를 정하거나, 현업 적용 대상을 고를 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;당신은 [업무영역] 업무 프로세스 컨설턴트입니다.\n\n아래 업무를 AI 활용 관점에서 분해해 주세요.\n\n업무 설명:\n[반복 업무 설명]\n\n회사/조직 맥락:\n- 조직: [회사/조직]\n- 제품/서비스: [제품/서비스]\n- 대상고객: [대상고객]\n- 현재 사용 자료: [자료]\n- 최종 사용 채널: [채널]\n\n다음 형식으로 정리해 주세요.\n1. 업무 목표 1문장\n2. 입력 자료 목록\n3. AI가 처리하기 좋은 작업\n4. 사람이 반드시 판단해야 할 작업\n5. 최종 산출물\n6. 검수 기준 5개\n7. AI 사용 전 제거해야 할 민감정보\n8. 오늘 수업에서 만들 수 있는 미니 산출물 1개\n\n주의:\n- 고객 개인정보, 내부 기밀, 확인되지 않은 수치는 사용하지 않는 전제로 작성하세요.\n- 자동 발송이나 자동 게시가 아니라 사람 검수 후 사용하는 초안으로 설계하세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>당신은 [업무영역] 업무 프로세스 컨설턴트입니다.
+
+아래 업무를 AI 활용 관점에서 분해해 주세요.
+
+업무 설명:
+[반복 업무 설명]
+
+회사/조직 맥락:
+- 조직: [회사/조직]
+- 제품/서비스: [제품/서비스]
+- 대상고객: [대상고객]
+- 현재 사용 자료: [자료]
+- 최종 사용 채널: [채널]
+
+다음 형식으로 정리해 주세요.
+1. 업무 목표 1문장
+2. 입력 자료 목록
+3. AI가 처리하기 좋은 작업
+4. 사람이 반드시 판단해야 할 작업
+5. 최종 산출물
+6. 검수 기준 5개
+7. AI 사용 전 제거해야 할 민감정보
+8. 오늘 수업에서 만들 수 있는 미니 산출물 1개
+
+주의:
+- 고객 개인정보, 내부 기밀, 확인되지 않은 수치는 사용하지 않는 전제로 작성하세요.
+- 자동 발송이나 자동 게시가 아니라 사람 검수 후 사용하는 초안으로 설계하세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[반복 업무 설명]</code>, <code>[회사/조직]</code>, <code>[제품/서비스]</code>, <code>[대상고객]</code>, <code>[자료]</code>, <code>[채널]</code></li>
+<li>기대 출력: 업무 목표, 입력 자료, AI 처리, 사람 검수, 산출물, 민감정보 제거 기준이 한 번에 정리된 캔버스</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-02" data-title="프롬프트 02. 나쁜 요청을 좋은 업무 지시문으로 바꾸기">
+<div class="card-top"><span class="badge">Prompt 02</span><a class="anchor" href="#prompt-02" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 02. 나쁜 요청을 좋은 업무 지시문으로 바꾸기</h2>
+<ul>
+<li>목적: 단문 질문을 실무형 프롬프트로 확장한다.</li>
+<li>언제 사용하나: 프롬프트 엔지니어링 파트에서 나쁜 예시를 개선할 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;아래의 짧고 모호한 요청을 실무에서 사용할 수 있는 구조화 프롬프트로 개선해 주세요.\n\n나쁜 요청:\n[예: 우리 제품 홍보 문구 써줘]\n\n반드시 포함할 요소:\n- 역할: AI가 어떤 관점으로 일해야 하는가\n- 목표: 최종적으로 무엇을 만들어야 하는가\n- 맥락: [회사/조직], [제품/서비스], [대상고객], [채널]\n- 입력 자료: [자료]\n- 작업 절차: 요약 → 인사이트 → 초안 → 검수 순서\n- 출력 형식: [출력형식]\n- 제약조건: [금지조건]\n- 검수 기준: 사실성, 근거, 톤, 과장 여부, 민감표현 여부\n\n출력은 다음 순서로 작성하세요.\n1. 개선된 프롬프트 전문\n2. 추가된 조건 설명\n3. 아직 필요한 자료 또는 질문\n4. 실무 투입 전 검수 체크리스트&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>아래의 짧고 모호한 요청을 실무에서 사용할 수 있는 구조화 프롬프트로 개선해 주세요.
+
+나쁜 요청:
+[예: 우리 제품 홍보 문구 써줘]
+
+반드시 포함할 요소:
+- 역할: AI가 어떤 관점으로 일해야 하는가
+- 목표: 최종적으로 무엇을 만들어야 하는가
+- 맥락: [회사/조직], [제품/서비스], [대상고객], [채널]
+- 입력 자료: [자료]
+- 작업 절차: 요약 → 인사이트 → 초안 → 검수 순서
+- 출력 형식: [출력형식]
+- 제약조건: [금지조건]
+- 검수 기준: 사실성, 근거, 톤, 과장 여부, 민감표현 여부
+
+출력은 다음 순서로 작성하세요.
+1. 개선된 프롬프트 전문
+2. 추가된 조건 설명
+3. 아직 필요한 자료 또는 질문
+4. 실무 투입 전 검수 체크리스트</code></pre></div>
+<ul>
+<li>입력 변수: <code>[나쁜 요청]</code>, <code>[회사/조직]</code>, <code>[제품/서비스]</code>, <code>[대상고객]</code>, <code>[채널]</code>, <code>[자료]</code>, <code>[금지조건]</code></li>
+<li>기대 출력: 복사해서 사용할 수 있는 긴 업무 지시문과 누락 조건 목록</li>
+</ul>
+<hr>
+</article>
+<section class="content-section" id="2-AI-기초와-거버넌스-사실-추정-제안을-분리하기"><h1>2. AI 기초와 거버넌스: 사실, 추정, 제안을 분리하기</h1>
+</section>
+<article class="prompt-card" id="prompt-03" data-title="프롬프트 03. ai 결과물 환각 점검">
+<div class="card-top"><span class="badge">Prompt 03</span><a class="anchor" href="#prompt-03" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 03. AI 결과물 환각 점검</h2>
+<ul>
+<li>목적: AI가 만든 답변에서 근거 없는 주장, 확인되지 않은 수치, 과장 표현을 찾아낸다.</li>
+<li>언제 사용하나: 리서치 요약, 보고서 초안, 메시지 초안을 받은 직후 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;당신은 AI 결과물 검수자입니다.\n아래 AI 초안을 사실성, 근거, 최신성, 과장, 법적·브랜드 리스크 관점에서 점검해 주세요.\n\n검수 대상 초안:\n[AI가 생성한 결과물]\n\n참고 가능한 근거 자료:\n[자료 또는 링크 요약]\n\n검수 기준:\n1. 근거 자료에 명시된 사실\n2. 근거는 없지만 합리적으로 보이는 추정\n3. 확인이 필요한 주장\n4. 삭제하거나 완화해야 할 과장 표현\n5. 법적·윤리적·브랜드 리스크가 있는 표현\n\n출력 형식:\n- 안전하게 사용 가능: [문장 또는 항목]\n- 확인 필요: [문장 또는 항목 + 필요한 확인 자료]\n- 수정 권장: [원문 → 수정안]\n- 사용 금지: [이유]\n- 최종 승인 전 질문 5개\n\n주의:\n- 모르면 모른다고 표시하세요.\n- 근거 자료에 없는 내용을 사실처럼 확정하지 마세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>당신은 AI 결과물 검수자입니다.
+아래 AI 초안을 사실성, 근거, 최신성, 과장, 법적·브랜드 리스크 관점에서 점검해 주세요.
+
+검수 대상 초안:
+[AI가 생성한 결과물]
+
+참고 가능한 근거 자료:
+[자료 또는 링크 요약]
+
+검수 기준:
+1. 근거 자료에 명시된 사실
+2. 근거는 없지만 합리적으로 보이는 추정
+3. 확인이 필요한 주장
+4. 삭제하거나 완화해야 할 과장 표현
+5. 법적·윤리적·브랜드 리스크가 있는 표현
+
+출력 형식:
+- 안전하게 사용 가능: [문장 또는 항목]
+- 확인 필요: [문장 또는 항목 + 필요한 확인 자료]
+- 수정 권장: [원문 → 수정안]
+- 사용 금지: [이유]
+- 최종 승인 전 질문 5개
+
+주의:
+- 모르면 모른다고 표시하세요.
+- 근거 자료에 없는 내용을 사실처럼 확정하지 마세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[AI가 생성한 결과물]</code>, <code>[자료 또는 링크 요약]</code></li>
+<li>기대 출력: 사실, 추정, 확인 필요, 수정 권장, 사용 금지 항목이 분리된 검수 결과</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-04" data-title="프롬프트 04. 데이터 사용 가능 범위 점검">
+<div class="card-top"><span class="badge">Prompt 04</span><a class="anchor" href="#prompt-04" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 04. 데이터 사용 가능 범위 점검</h2>
+<ul>
+<li>목적: AI 도구에 넣어도 되는 자료와 넣으면 안 되는 자료를 구분한다.</li>
+<li>언제 사용하나: NotebookLM, 에이전트, 챗봇에 자료를 업로드하기 전에 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;당신은 [회사/조직]의 AI 데이터 거버넌스 담당자입니다.\n아래 자료를 AI 도구에 입력하기 전, 사용 가능 범위와 익명화 필요 항목을 점검해 주세요.\n\n자료 설명:\n[자료]\n\n사용 목적:\n[예: 고객 질문 도출, 메시지 초안 작성, 경쟁사 비교, 보고서 요약]\n\n점검 항목:\n1. 개인정보 또는 식별 가능 정보 포함 여부\n2. 내부 기밀 또는 계약상 제한 정보 포함 여부\n3. 고객 동의 또는 사용 목적 범위 문제\n4. 외부 AI 도구 업로드 가능 여부\n5. 익명화 또는 샘플 데이터 대체 방법\n6. 사용 후 결과물에 남기면 안 되는 정보\n\n출력 형식:\n- 바로 사용 가능 자료\n- 익명화 후 사용 가능 자료\n- 사용 금지 또는 승인 필요 자료\n- 익명화 예시\n- 수업 실습용 대체 데이터 만드는 방법&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>당신은 [회사/조직]의 AI 데이터 거버넌스 담당자입니다.
+아래 자료를 AI 도구에 입력하기 전, 사용 가능 범위와 익명화 필요 항목을 점검해 주세요.
+
+자료 설명:
+[자료]
+
+사용 목적:
+[예: 고객 질문 도출, 메시지 초안 작성, 경쟁사 비교, 보고서 요약]
+
+점검 항목:
+1. 개인정보 또는 식별 가능 정보 포함 여부
+2. 내부 기밀 또는 계약상 제한 정보 포함 여부
+3. 고객 동의 또는 사용 목적 범위 문제
+4. 외부 AI 도구 업로드 가능 여부
+5. 익명화 또는 샘플 데이터 대체 방법
+6. 사용 후 결과물에 남기면 안 되는 정보
+
+출력 형식:
+- 바로 사용 가능 자료
+- 익명화 후 사용 가능 자료
+- 사용 금지 또는 승인 필요 자료
+- 익명화 예시
+- 수업 실습용 대체 데이터 만드는 방법</code></pre></div>
+<ul>
+<li>입력 변수: <code>[회사/조직]</code>, <code>[자료]</code>, <code>[사용 목적]</code></li>
+<li>기대 출력: AI 입력 전 자료 사용 가능성 판단표와 익명화 방법</li>
+</ul>
+<hr>
+</article>
+<section class="content-section" id="3-트렌드-스캐닝과-리서치-질문-설계"><h1>3. 트렌드 스캐닝과 리서치 질문 설계</h1>
+</section>
+<article class="prompt-card" id="prompt-05" data-title="프롬프트 05. ai 트렌드 스캐닝 질문 만들기">
+<div class="card-top"><span class="badge">Prompt 05</span><a class="anchor" href="#prompt-05" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 05. AI 트렌드 스캐닝 질문 만들기</h2>
+<ul>
+<li>목적: 막연한 트렌드 조사를 업무 의사결정에 연결되는 질문으로 바꾼다.</li>
+<li>언제 사용하나: 시장 변화, 기술 변화, 고객 변화 조사를 시작할 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;당신은 [업무영역] 분야의 AI 트렌드 리서처입니다.\n[회사/조직]이 [제품/서비스]와 관련해 앞으로 6개월 동안 주목해야 할 AI·시장·고객 트렌드를 조사하려고 합니다.\n\n아래 조건에 맞춰 리서치 질문을 설계해 주세요.\n\n맥락:\n- 조직: [회사/조직]\n- 업무영역: [업무영역]\n- 제품/서비스: [제품/서비스]\n- 대상고객: [대상고객]\n- 의사결정 목적: [예: 캠페인 기획, 신제품 메시지, 고객지원 자동화, 교육 프로그램 설계]\n\n출력 형식:\n1. 핵심 리서치 질문 5개\n2. 각 질문이 필요한 이유\n3. 확인해야 할 자료 유형\n4. 좋은 출처 예시\n5. 피해야 할 출처 유형\n6. 조사 후 만들 산출물\n\n주의:\n- 유행어 나열이 아니라 우리 업무 의사결정에 연결되는 질문으로 작성하세요.\n- 각 질문은 답변 후 실행 판단으로 이어지게 만드세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>당신은 [업무영역] 분야의 AI 트렌드 리서처입니다.
+[회사/조직]이 [제품/서비스]와 관련해 앞으로 6개월 동안 주목해야 할 AI·시장·고객 트렌드를 조사하려고 합니다.
+
+아래 조건에 맞춰 리서치 질문을 설계해 주세요.
+
+맥락:
+- 조직: [회사/조직]
+- 업무영역: [업무영역]
+- 제품/서비스: [제품/서비스]
+- 대상고객: [대상고객]
+- 의사결정 목적: [예: 캠페인 기획, 신제품 메시지, 고객지원 자동화, 교육 프로그램 설계]
+
+출력 형식:
+1. 핵심 리서치 질문 5개
+2. 각 질문이 필요한 이유
+3. 확인해야 할 자료 유형
+4. 좋은 출처 예시
+5. 피해야 할 출처 유형
+6. 조사 후 만들 산출물
+
+주의:
+- 유행어 나열이 아니라 우리 업무 의사결정에 연결되는 질문으로 작성하세요.
+- 각 질문은 답변 후 실행 판단으로 이어지게 만드세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[회사/조직]</code>, <code>[업무영역]</code>, <code>[제품/서비스]</code>, <code>[대상고객]</code>, <code>[의사결정 목적]</code></li>
+<li>기대 출력: 조사 질문, 이유, 출처 유형, 최종 산출물이 정리된 리서치 설계안</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-06" data-title="프롬프트 06. 자료 기반 트렌드 요약">
+<div class="card-top"><span class="badge">Prompt 06</span><a class="anchor" href="#prompt-06" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 06. 자료 기반 트렌드 요약</h2>
+<ul>
+<li>목적: 여러 자료에서 반복되는 흐름과 업무적 시사점을 뽑는다.</li>
+<li>언제 사용하나: 기사, 보고서, 경쟁사 자료, 세미나 메모를 모은 후 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;당신은 자료 기반 트렌드 분석가입니다.\n아래 자료만 근거로 [업무영역] 관점의 트렌드 브리핑을 작성해 주세요.\n\n자료:\n[자료 붙여넣기 또는 요약]\n\n분석 관점:\n- 회사/조직: [회사/조직]\n- 제품/서비스: [제품/서비스]\n- 대상고객: [대상고객]\n- 활용 목적: [활용 목적]\n\n출력 형식:\n1. 자료별 핵심 요약\n2. 반복해서 등장하는 트렌드 5개\n3. 각 트렌드의 근거 문장 또는 출처\n4. 우리 업무에 주는 기회\n5. 우리 업무에 주는 위험\n6. 아직 확인해야 할 정보\n7. 다음 액션 제안 3개\n\n중요 조건:\n- 자료에 없는 내용은 “추정”으로 표시하세요.\n- 수치, 날짜, 회사명, 제품명은 원문 확인 필요 여부를 표시하세요.\n- 과장된 결론을 피하고 근거와 해석을 분리하세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>당신은 자료 기반 트렌드 분석가입니다.
+아래 자료만 근거로 [업무영역] 관점의 트렌드 브리핑을 작성해 주세요.
+
+자료:
+[자료 붙여넣기 또는 요약]
+
+분석 관점:
+- 회사/조직: [회사/조직]
+- 제품/서비스: [제품/서비스]
+- 대상고객: [대상고객]
+- 활용 목적: [활용 목적]
+
+출력 형식:
+1. 자료별 핵심 요약
+2. 반복해서 등장하는 트렌드 5개
+3. 각 트렌드의 근거 문장 또는 출처
+4. 우리 업무에 주는 기회
+5. 우리 업무에 주는 위험
+6. 아직 확인해야 할 정보
+7. 다음 액션 제안 3개
+
+중요 조건:
+- 자료에 없는 내용은 “추정”으로 표시하세요.
+- 수치, 날짜, 회사명, 제품명은 원문 확인 필요 여부를 표시하세요.
+- 과장된 결론을 피하고 근거와 해석을 분리하세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[자료]</code>, <code>[업무영역]</code>, <code>[회사/조직]</code>, <code>[제품/서비스]</code>, <code>[대상고객]</code>, <code>[활용 목적]</code></li>
+<li>기대 출력: 근거 있는 트렌드 요약과 기회·위험·다음 액션</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-07" data-title="프롬프트 07. 출처 신뢰도 평가">
+<div class="card-top"><span class="badge">Prompt 07</span><a class="anchor" href="#prompt-07" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 07. 출처 신뢰도 평가</h2>
+<ul>
+<li>목적: 리서치에 사용할 출처의 신뢰도와 한계를 평가한다.</li>
+<li>언제 사용하나: 보고서, 블로그, 뉴스, 소셜 콘텐츠, 벤더 자료를 근거로 쓰기 전에 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;당신은 리서치 출처 평가자입니다.\n아래 출처를 [업무영역] 리서치에 사용할 수 있는지 평가해 주세요.\n\n출처 정보:\n- 제목: [제목]\n- 작성자/기관: [작성자 또는 기관]\n- 발행일: [발행일]\n- 링크 또는 요약: [링크/요약]\n- 사용하려는 주장: [이 출처에서 인용하려는 내용]\n\n평가 기준:\n1. 작성자 또는 기관의 전문성\n2. 발행일과 최신성\n3. 원자료, 데이터, 방법론 공개 여부\n4. 이해관계 또는 홍보성 가능성\n5. 다른 출처로 교차검증 필요 여부\n6. 우리 보고서에서 사용할 때의 표현 수위\n\n출력 형식:\n- 신뢰도 등급: 높음/중간/낮음\n- 사용할 수 있는 내용\n- 조심해야 할 내용\n- 반드시 교차검증할 내용\n- 보고서에 쓸 때의 안전한 문장 예시&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>당신은 리서치 출처 평가자입니다.
+아래 출처를 [업무영역] 리서치에 사용할 수 있는지 평가해 주세요.
+
+출처 정보:
+- 제목: [제목]
+- 작성자/기관: [작성자 또는 기관]
+- 발행일: [발행일]
+- 링크 또는 요약: [링크/요약]
+- 사용하려는 주장: [이 출처에서 인용하려는 내용]
+
+평가 기준:
+1. 작성자 또는 기관의 전문성
+2. 발행일과 최신성
+3. 원자료, 데이터, 방법론 공개 여부
+4. 이해관계 또는 홍보성 가능성
+5. 다른 출처로 교차검증 필요 여부
+6. 우리 보고서에서 사용할 때의 표현 수위
+
+출력 형식:
+- 신뢰도 등급: 높음/중간/낮음
+- 사용할 수 있는 내용
+- 조심해야 할 내용
+- 반드시 교차검증할 내용
+- 보고서에 쓸 때의 안전한 문장 예시</code></pre></div>
+<ul>
+<li>입력 변수: <code>[제목]</code>, <code>[작성자 또는 기관]</code>, <code>[발행일]</code>, <code>[링크/요약]</code>, <code>[이 출처에서 인용하려는 내용]</code></li>
+<li>기대 출력: 출처 신뢰도, 사용 가능 범위, 교차검증 필요 항목, 안전한 인용 문장</li>
+</ul>
+<hr>
+</article>
+<section class="content-section" id="4-에이전트형-리서치와-파일-기반-작업-지시"><h1>4. 에이전트형 리서치와 파일 기반 작업 지시</h1>
+</section>
+<article class="prompt-card" id="prompt-08" data-title="프롬프트 08. 에이전트 리서치 작업 지시문">
+<div class="card-top"><span class="badge">Prompt 08</span><a class="anchor" href="#prompt-08" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 08. 에이전트 리서치 작업 지시문</h2>
+<ul>
+<li>목적: Claude Code, Codex, 파일 기반 에이전트에게 폴더 자료를 읽고 리서치 초안을 만들게 한다.</li>
+<li>언제 사용하나: 제품 브리프, 고객 후기, 경쟁사 문서가 파일로 있을 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;당신은 [업무영역] 리서치 에이전트입니다.\n아래 폴더 또는 파일만 읽고 [제품/서비스]에 대한 리서치 브리핑 초안을 작성해 주세요.\n\n작업 범위:\n- 읽을 자료 위치: [자료 위치 또는 파일명]\n- 사용 금지 범위: 폴더 밖 자료, 확인되지 않은 웹 정보, 내부 추정 수치\n- 대상 독자: [대상 독자]\n- 최종 사용 목적: [예: 캠페인 기획, 보고서 초안, 세그먼트 메시지 작성]\n\n작업 절차:\n1. 먼저 읽은 파일 목록과 각 파일의 3줄 요약을 제시하세요.\n2. 제품/서비스의 핵심 가치와 고객 문제를 정리하세요.\n3. 경쟁사 또는 대안 메시지를 비교하세요.\n4. 차별화 메시지 후보 5개를 제안하세요.\n5. 사실, 추정, 제안을 분리하세요.\n6. 확인 필요 항목과 추가로 필요한 자료를 적으세요.\n\n출력 형식:\n- 자료 목록\n- 핵심 요약\n- 고객 문제\n- 경쟁/대안 비교\n- 메시지 후보 5개\n- 확인 필요 항목\n- 검수 체크리스트\n\n중요:\n- 자료에 없는 수치나 효능을 만들지 마세요.\n- 불확실한 내용은 “확인 필요”로 표시하세요.\n- 최종 산출물은 초안이며 사람 검수 후 사용한다는 문구를 포함하세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>당신은 [업무영역] 리서치 에이전트입니다.
+아래 폴더 또는 파일만 읽고 [제품/서비스]에 대한 리서치 브리핑 초안을 작성해 주세요.
+
+작업 범위:
+- 읽을 자료 위치: [자료 위치 또는 파일명]
+- 사용 금지 범위: 폴더 밖 자료, 확인되지 않은 웹 정보, 내부 추정 수치
+- 대상 독자: [대상 독자]
+- 최종 사용 목적: [예: 캠페인 기획, 보고서 초안, 세그먼트 메시지 작성]
+
+작업 절차:
+1. 먼저 읽은 파일 목록과 각 파일의 3줄 요약을 제시하세요.
+2. 제품/서비스의 핵심 가치와 고객 문제를 정리하세요.
+3. 경쟁사 또는 대안 메시지를 비교하세요.
+4. 차별화 메시지 후보 5개를 제안하세요.
+5. 사실, 추정, 제안을 분리하세요.
+6. 확인 필요 항목과 추가로 필요한 자료를 적으세요.
+
+출력 형식:
+- 자료 목록
+- 핵심 요약
+- 고객 문제
+- 경쟁/대안 비교
+- 메시지 후보 5개
+- 확인 필요 항목
+- 검수 체크리스트
+
+중요:
+- 자료에 없는 수치나 효능을 만들지 마세요.
+- 불확실한 내용은 “확인 필요”로 표시하세요.
+- 최종 산출물은 초안이며 사람 검수 후 사용한다는 문구를 포함하세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[업무영역]</code>, <code>[제품/서비스]</code>, <code>[자료 위치 또는 파일명]</code>, <code>[대상 독자]</code>, <code>[최종 사용 목적]</code></li>
+<li>기대 출력: 파일 목록 확인부터 리서치 브리핑, 메시지 후보, 검수표까지 포함한 초안</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-09" data-title="프롬프트 09. 에이전트 결과물 재검수 지시">
+<div class="card-top"><span class="badge">Prompt 09</span><a class="anchor" href="#prompt-09" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 09. 에이전트 결과물 재검수 지시</h2>
+<ul>
+<li>목적: 에이전트가 만든 산출물을 다시 검토해 오류 전파를 막는다.</li>
+<li>언제 사용하나: 에이전트가 보고서 초안이나 메시지 후보를 만든 직후 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;방금 생성한 리서치 결과물을 검수 모드로 다시 점검해 주세요.\n\n검수 대상:\n[에이전트 결과물]\n\n검수 기준:\n1. 근거 자료에 실제로 있는 내용인가?\n2. 자료에 없는 내용을 사실처럼 쓴 곳은 없는가?\n3. 경쟁사나 고객에 대한 과도한 일반화는 없는가?\n4. 확인되지 않은 수치, 날짜, 성능, 효능 표현은 없는가?\n5. 브랜드 톤 또는 법적 리스크가 있는 표현은 없는가?\n6. 최종 사용자에게 오해를 줄 수 있는 문장은 없는가?\n\n출력 형식:\n- 통과 항목\n- 수정 필요 항목\n- 삭제 권장 항목\n- 원문 확인 필요 항목\n- 더 안전한 수정 문장\n- 사람 승인자가 확인해야 할 질문\n\n주의:\n- 방어적으로 검수하세요.\n- 확실하지 않으면 사용 가능으로 처리하지 말고 확인 필요로 표시하세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>방금 생성한 리서치 결과물을 검수 모드로 다시 점검해 주세요.
+
+검수 대상:
+[에이전트 결과물]
+
+검수 기준:
+1. 근거 자료에 실제로 있는 내용인가?
+2. 자료에 없는 내용을 사실처럼 쓴 곳은 없는가?
+3. 경쟁사나 고객에 대한 과도한 일반화는 없는가?
+4. 확인되지 않은 수치, 날짜, 성능, 효능 표현은 없는가?
+5. 브랜드 톤 또는 법적 리스크가 있는 표현은 없는가?
+6. 최종 사용자에게 오해를 줄 수 있는 문장은 없는가?
+
+출력 형식:
+- 통과 항목
+- 수정 필요 항목
+- 삭제 권장 항목
+- 원문 확인 필요 항목
+- 더 안전한 수정 문장
+- 사람 승인자가 확인해야 할 질문
+
+주의:
+- 방어적으로 검수하세요.
+- 확실하지 않으면 사용 가능으로 처리하지 말고 확인 필요로 표시하세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[에이전트 결과물]</code></li>
+<li>기대 출력: 통과, 수정, 삭제, 원문 확인 항목과 안전한 수정 문장</li>
+</ul>
+<hr>
+</article>
+<section class="content-section" id="5-NotebookLM-자료-기반-브리핑"><h1>5. NotebookLM 자료 기반 브리핑</h1>
+</section>
+<article class="prompt-card" id="prompt-10" data-title="프롬프트 10. 업로드 자료 핵심 혜택 추출">
+<div class="card-top"><span class="badge">Prompt 10</span><a class="anchor" href="#prompt-10" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 10. 업로드 자료 핵심 혜택 추출</h2>
+<ul>
+<li>목적: 업로드한 자료만 근거로 고객에게 말할 수 있는 혜택을 뽑는다.</li>
+<li>언제 사용하나: NotebookLM에 제품 소개서, 고객 후기, 경쟁사 자료를 넣은 뒤 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;업로드한 자료만 근거로 [제품/서비스]의 핵심 혜택을 정리해 주세요.\n\n대상고객:\n[대상고객]\n\n출력 형식:\n1. 핵심 혜택 5개\n2. 각 혜택의 근거 문장 또는 출처\n3. 고객이 실제로 궁금해할 질문\n4. 답변에 사용할 수 있는 자료 기반 문장\n5. 자료에 없어 확인이 필요한 내용\n6. 과장하면 안 되는 표현\n\n조건:\n- 업로드 자료에 없는 내용은 “자료에 없음” 또는 “추정”으로 표시하세요.\n- 효능, 성능, 수치, 비교 우위는 반드시 근거 문장과 함께 표시하세요.\n- 광고 문구로 바로 쓰지 말고 브리핑 자료로 정리하세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>업로드한 자료만 근거로 [제품/서비스]의 핵심 혜택을 정리해 주세요.
+
+대상고객:
+[대상고객]
+
+출력 형식:
+1. 핵심 혜택 5개
+2. 각 혜택의 근거 문장 또는 출처
+3. 고객이 실제로 궁금해할 질문
+4. 답변에 사용할 수 있는 자료 기반 문장
+5. 자료에 없어 확인이 필요한 내용
+6. 과장하면 안 되는 표현
+
+조건:
+- 업로드 자료에 없는 내용은 “자료에 없음” 또는 “추정”으로 표시하세요.
+- 효능, 성능, 수치, 비교 우위는 반드시 근거 문장과 함께 표시하세요.
+- 광고 문구로 바로 쓰지 말고 브리핑 자료로 정리하세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[제품/서비스]</code>, <code>[대상고객]</code></li>
+<li>기대 출력: 핵심 혜택, 근거 문장, 고객 질문, 확인 필요 내용</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-11" data-title="프롬프트 11. 고객 질문 10개와 답변 근거 만들기">
+<div class="card-top"><span class="badge">Prompt 11</span><a class="anchor" href="#prompt-11" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 11. 고객 질문 10개와 답변 근거 만들기</h2>
+<ul>
+<li>목적: 고객 관점에서 궁금증과 반대 의견을 정리한다.</li>
+<li>언제 사용하나: 고객 FAQ, 메시지 후보, 세그먼트별 콘텐츠를 만들기 전에 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;업로드한 자료를 기준으로 [대상고객]이 [제품/서비스]에 대해 처음 접했을 때 물어볼 질문 10개를 만들어 주세요.\n\n각 질문마다 다음을 포함하세요.\n- 고객 질문\n- 자료 기반 답변 초안\n- 답변의 근거가 되는 자료 또는 문장\n- 답변에 부족한 정보\n- 마케팅 메시지로 확장할 수 있는 포인트\n\n분류 기준:\n1. 제품 이해 질문\n2. 가격 또는 구매 장벽 질문\n3. 신뢰와 안전성 질문\n4. 비교 또는 대안 질문\n5. 사용 상황 질문\n\n주의:\n- 자료에 없는 내용을 단정하지 마세요.\n- 고객을 불안하게 하거나 과장하는 표현은 피하세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>업로드한 자료를 기준으로 [대상고객]이 [제품/서비스]에 대해 처음 접했을 때 물어볼 질문 10개를 만들어 주세요.
+
+각 질문마다 다음을 포함하세요.
+- 고객 질문
+- 자료 기반 답변 초안
+- 답변의 근거가 되는 자료 또는 문장
+- 답변에 부족한 정보
+- 마케팅 메시지로 확장할 수 있는 포인트
+
+분류 기준:
+1. 제품 이해 질문
+2. 가격 또는 구매 장벽 질문
+3. 신뢰와 안전성 질문
+4. 비교 또는 대안 질문
+5. 사용 상황 질문
+
+주의:
+- 자료에 없는 내용을 단정하지 마세요.
+- 고객을 불안하게 하거나 과장하는 표현은 피하세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[대상고객]</code>, <code>[제품/서비스]</code></li>
+<li>기대 출력: 고객 질문 10개, 자료 기반 답변, 부족 정보, 메시지 확장 포인트</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-12" data-title="프롬프트 12. 메시지 후보 5개 카드화">
+<div class="card-top"><span class="badge">Prompt 12</span><a class="anchor" href="#prompt-12" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 12. 메시지 후보 5개 카드화</h2>
+<ul>
+<li>목적: 리서치 결과를 오후 콘텐츠 제작에 쓸 메시지 카드로 바꾼다.</li>
+<li>언제 사용하나: NotebookLM 브리핑이 나온 뒤 이미지·문구 실습으로 넘어가기 전에 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;지금까지의 자료 기반 브리핑을 바탕으로 [제품/서비스]의 메시지 후보 5개를 만들어 주세요.\n\n각 메시지 후보는 다음 형식으로 작성하세요.\n1. 메시지 제목\n2. 고객 문제\n3. 핵심 혜택\n4. 근거 문장 또는 출처\n5. 적합한 고객 세그먼트\n6. 적합한 채널\n7. 과장 위험 또는 주의 표현\n8. 이미지 콘셉트로 확장할 힌트\n\n조건:\n- 메시지는 고객이 이해할 수 있는 쉬운 말로 작성하세요.\n- 근거 없는 최상급 표현을 쓰지 마세요.\n- 사실, 추정, 제안을 분리하세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>지금까지의 자료 기반 브리핑을 바탕으로 [제품/서비스]의 메시지 후보 5개를 만들어 주세요.
+
+각 메시지 후보는 다음 형식으로 작성하세요.
+1. 메시지 제목
+2. 고객 문제
+3. 핵심 혜택
+4. 근거 문장 또는 출처
+5. 적합한 고객 세그먼트
+6. 적합한 채널
+7. 과장 위험 또는 주의 표현
+8. 이미지 콘셉트로 확장할 힌트
+
+조건:
+- 메시지는 고객이 이해할 수 있는 쉬운 말로 작성하세요.
+- 근거 없는 최상급 표현을 쓰지 마세요.
+- 사실, 추정, 제안을 분리하세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[제품/서비스]</code></li>
+<li>기대 출력: 메시지 후보 5개와 근거·세그먼트·채널·주의 표현</li>
+</ul>
+<hr>
+</article>
+<section class="content-section" id="6-이미지-생성과-비주얼-콘셉트"><h1>6. 이미지 생성과 비주얼 콘셉트</h1>
+</section>
+<article class="prompt-card" id="prompt-13" data-title="프롬프트 13. 메시지를 이미지 프롬프트로 변환">
+<div class="card-top"><span class="badge">Prompt 13</span><a class="anchor" href="#prompt-13" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 13. 메시지를 이미지 프롬프트로 변환</h2>
+<ul>
+<li>목적: 리서치 기반 메시지를 SNS나 광고용 이미지 프롬프트로 바꾼다.</li>
+<li>언제 사용하나: 이미지 생성 도구에 넣을 프롬프트를 만들 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;당신은 광고 비주얼 콘셉트 디렉터입니다.\n아래 메시지 후보를 [채널]용 이미지 생성 프롬프트로 변환해 주세요.\n\n입력:\n- 제품/서비스: [제품/서비스]\n- 메시지 후보: [메시지 후보]\n- 대상고객: [대상고객]\n- 브랜드톤: [브랜드톤]\n- 사용 채널: [채널]\n- 금지조건: [금지조건]\n\n출력 형식:\n1. 이미지 목적\n2. 장면 설명\n3. 주요 피사체\n4. 배경과 소품\n5. 색감과 조명\n6. 카메라/렌즈/구도\n7. 텍스트 포함 여부\n8. 생성 프롬프트 전문\n9. 네거티브 프롬프트 또는 금지 요소\n10. 생성 후 검수 기준\n\n조건:\n- 실제 인물의 얼굴이나 유명인 유사 이미지를 요구하지 마세요.\n- 제품 효능을 과장하거나 오해하게 만드는 장면을 피하세요.\n- 브랜드톤과 대상고객 맥락을 반영하세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>당신은 광고 비주얼 콘셉트 디렉터입니다.
+아래 메시지 후보를 [채널]용 이미지 생성 프롬프트로 변환해 주세요.
+
+입력:
+- 제품/서비스: [제품/서비스]
+- 메시지 후보: [메시지 후보]
+- 대상고객: [대상고객]
+- 브랜드톤: [브랜드톤]
+- 사용 채널: [채널]
+- 금지조건: [금지조건]
+
+출력 형식:
+1. 이미지 목적
+2. 장면 설명
+3. 주요 피사체
+4. 배경과 소품
+5. 색감과 조명
+6. 카메라/렌즈/구도
+7. 텍스트 포함 여부
+8. 생성 프롬프트 전문
+9. 네거티브 프롬프트 또는 금지 요소
+10. 생성 후 검수 기준
+
+조건:
+- 실제 인물의 얼굴이나 유명인 유사 이미지를 요구하지 마세요.
+- 제품 효능을 과장하거나 오해하게 만드는 장면을 피하세요.
+- 브랜드톤과 대상고객 맥락을 반영하세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[제품/서비스]</code>, <code>[메시지 후보]</code>, <code>[대상고객]</code>, <code>[브랜드톤]</code>, <code>[채널]</code>, <code>[금지조건]</code></li>
+<li>기대 출력: 이미지 생성 도구에 넣을 수 있는 완성형 프롬프트와 검수 기준</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-14" data-title="프롬프트 14. 세그먼트별 이미지 콘셉트 3종">
+<div class="card-top"><span class="badge">Prompt 14</span><a class="anchor" href="#prompt-14" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 14. 세그먼트별 이미지 콘셉트 3종</h2>
+<ul>
+<li>목적: 같은 제품 메시지를 신규, 기존, 이탈 위험 고객에게 다른 장면으로 변환한다.</li>
+<li>언제 사용하나: 이미지 실습에서 3개 세그먼트별 프롬프트를 작성할 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;[제품/서비스]의 메시지 후보를 세그먼트별 이미지 콘셉트 3종으로 나눠 주세요.\n\n공통 입력:\n- 제품/서비스: [제품/서비스]\n- 핵심 메시지: [핵심 메시지]\n- 브랜드톤: [브랜드톤]\n- 사용 채널: [채널]\n- 금지조건: [금지조건]\n\n세그먼트:\n1. 신규 고객: 문제 인식과 관심 유발\n2. 기존 고객: 활용 확장과 만족 강화\n3. 이탈 위험 고객: 부담 없는 재시작과 신뢰 회복\n\n각 세그먼트별 출력:\n- 고객 상황\n- 이미지 목표\n- 장면 구성\n- 피사체와 소품\n- 색감/조명/구도\n- 생성 프롬프트 전문\n- 피해야 할 표현 또는 장면\n- 생성 후 수정 지시 예시\n\n주의:\n- “당신은 이탈 고객”처럼 낙인찍는 표현을 피하세요.\n- 민감 속성을 추정하지 마세요.\n- 차별적 고정관념이 들어가지 않게 작성하세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>[제품/서비스]의 메시지 후보를 세그먼트별 이미지 콘셉트 3종으로 나눠 주세요.
+
+공통 입력:
+- 제품/서비스: [제품/서비스]
+- 핵심 메시지: [핵심 메시지]
+- 브랜드톤: [브랜드톤]
+- 사용 채널: [채널]
+- 금지조건: [금지조건]
+
+세그먼트:
+1. 신규 고객: 문제 인식과 관심 유발
+2. 기존 고객: 활용 확장과 만족 강화
+3. 이탈 위험 고객: 부담 없는 재시작과 신뢰 회복
+
+각 세그먼트별 출력:
+- 고객 상황
+- 이미지 목표
+- 장면 구성
+- 피사체와 소품
+- 색감/조명/구도
+- 생성 프롬프트 전문
+- 피해야 할 표현 또는 장면
+- 생성 후 수정 지시 예시
+
+주의:
+- “당신은 이탈 고객”처럼 낙인찍는 표현을 피하세요.
+- 민감 속성을 추정하지 마세요.
+- 차별적 고정관념이 들어가지 않게 작성하세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[제품/서비스]</code>, <code>[핵심 메시지]</code>, <code>[브랜드톤]</code>, <code>[채널]</code>, <code>[금지조건]</code></li>
+<li>기대 출력: 세그먼트별 이미지 콘셉트 3개와 수정 지시 예시</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-15" data-title="프롬프트 15. 이미지 결과 검수와 수정 지시">
+<div class="card-top"><span class="badge">Prompt 15</span><a class="anchor" href="#prompt-15" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 15. 이미지 결과 검수와 수정 지시</h2>
+<ul>
+<li>목적: 생성된 이미지의 품질, 브랜드 적합성, 리스크를 점검하고 수정 프롬프트를 만든다.</li>
+<li>언제 사용하나: 이미지 생성 결과를 받은 직후 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;아래 이미지 결과를 캠페인 목적에 맞게 검수하고 수정 지시를 작성해 주세요.\n\n입력:\n- 원래 이미지 프롬프트: [원래 프롬프트]\n- 생성 결과 설명 또는 관찰 내용: [이미지 결과 설명]\n- 캠페인 목적: [캠페인 목적]\n- 대상고객: [대상고객]\n- 브랜드톤: [브랜드톤]\n- 금지조건: [금지조건]\n\n검수 기준:\n1. 제품 또는 서비스가 왜곡되지 않았는가\n2. 브랜드톤과 맞는가\n3. 대상고객의 상황과 맞는가\n4. 과장되거나 오해를 주는 장면은 없는가\n5. 권리, 인물권, 저작권 리스크는 없는가\n6. 채널 규격과 사용 목적에 맞는가\n\n출력 형식:\n- 통과 항목\n- 문제 항목\n- 수정 방향\n- 복사해서 쓸 수정 프롬프트\n- 외부 게시 전 확인 항목&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>아래 이미지 결과를 캠페인 목적에 맞게 검수하고 수정 지시를 작성해 주세요.
+
+입력:
+- 원래 이미지 프롬프트: [원래 프롬프트]
+- 생성 결과 설명 또는 관찰 내용: [이미지 결과 설명]
+- 캠페인 목적: [캠페인 목적]
+- 대상고객: [대상고객]
+- 브랜드톤: [브랜드톤]
+- 금지조건: [금지조건]
+
+검수 기준:
+1. 제품 또는 서비스가 왜곡되지 않았는가
+2. 브랜드톤과 맞는가
+3. 대상고객의 상황과 맞는가
+4. 과장되거나 오해를 주는 장면은 없는가
+5. 권리, 인물권, 저작권 리스크는 없는가
+6. 채널 규격과 사용 목적에 맞는가
+
+출력 형식:
+- 통과 항목
+- 문제 항목
+- 수정 방향
+- 복사해서 쓸 수정 프롬프트
+- 외부 게시 전 확인 항목</code></pre></div>
+<ul>
+<li>입력 변수: <code>[원래 프롬프트]</code>, <code>[이미지 결과 설명]</code>, <code>[캠페인 목적]</code>, <code>[대상고객]</code>, <code>[브랜드톤]</code>, <code>[금지조건]</code></li>
+<li>기대 출력: 이미지 검수 결과와 재생성·수정용 프롬프트</li>
+</ul>
+<hr>
+</article>
+<section class="content-section" id="7-하이엔드-미디어와-15초-영상-콘셉트"><h1>7. 하이엔드 미디어와 15초 영상 콘셉트</h1>
+</section>
+<article class="prompt-card" id="prompt-16" data-title="프롬프트 16. 이미지 콘셉트를 15초 숏폼 영상으로 확장">
+<div class="card-top"><span class="badge">Prompt 16</span><a class="anchor" href="#prompt-16" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 16. 이미지 콘셉트를 15초 숏폼 영상으로 확장</h2>
+<ul>
+<li>목적: 이미지 프롬프트를 4컷 영상 콘셉트로 확장한다.</li>
+<li>언제 사용하나: 영상 생성 도구나 스토리보드 초안을 만들 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;당신은 숏폼 광고 스토리보드 기획자입니다.\n아래 이미지 콘셉트를 15초 세로형 영상 콘셉트로 확장해 주세요.\n\n입력:\n- 제품/서비스: [제품/서비스]\n- 이미지 콘셉트: [이미지 콘셉트]\n- 핵심 메시지: [핵심 메시지]\n- 대상고객: [대상고객]\n- 브랜드톤: [브랜드톤]\n- 채널: [예: Reels, Shorts, TikTok, 광고 소재]\n- 금지조건: [금지조건]\n\n출력 형식:\n1. 영상 목표\n2. 4컷 스토리보드\n   - 컷 1: 도입 문제 상황, 0~3초\n   - 컷 2: 제품/해결 단서, 3~7초\n   - 컷 3: 사용 장면 또는 감정 변화, 7~12초\n   - 컷 4: CTA와 여백, 12~15초\n3. 카메라 움직임\n4. 조명과 색감\n5. 자막 또는 텍스트 사용 원칙\n6. 영상 생성 프롬프트 전문\n7. 권리·브랜드 검수 체크리스트\n\n조건:\n- 과장 효능이나 불안 조장 장면을 피하세요.\n- 특정 실제 인물, 유명인, 저작권 있는 캐릭터를 요구하지 마세요.\n- 외부 게시 전 후반작업과 승인 절차가 필요하다는 점을 표시하세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>당신은 숏폼 광고 스토리보드 기획자입니다.
+아래 이미지 콘셉트를 15초 세로형 영상 콘셉트로 확장해 주세요.
+
+입력:
+- 제품/서비스: [제품/서비스]
+- 이미지 콘셉트: [이미지 콘셉트]
+- 핵심 메시지: [핵심 메시지]
+- 대상고객: [대상고객]
+- 브랜드톤: [브랜드톤]
+- 채널: [예: Reels, Shorts, TikTok, 광고 소재]
+- 금지조건: [금지조건]
+
+출력 형식:
+1. 영상 목표
+2. 4컷 스토리보드
+   - 컷 1: 도입 문제 상황, 0~3초
+   - 컷 2: 제품/해결 단서, 3~7초
+   - 컷 3: 사용 장면 또는 감정 변화, 7~12초
+   - 컷 4: CTA와 여백, 12~15초
+3. 카메라 움직임
+4. 조명과 색감
+5. 자막 또는 텍스트 사용 원칙
+6. 영상 생성 프롬프트 전문
+7. 권리·브랜드 검수 체크리스트
+
+조건:
+- 과장 효능이나 불안 조장 장면을 피하세요.
+- 특정 실제 인물, 유명인, 저작권 있는 캐릭터를 요구하지 마세요.
+- 외부 게시 전 후반작업과 승인 절차가 필요하다는 점을 표시하세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[제품/서비스]</code>, <code>[이미지 콘셉트]</code>, <code>[핵심 메시지]</code>, <code>[대상고객]</code>, <code>[브랜드톤]</code>, <code>[채널]</code>, <code>[금지조건]</code></li>
+<li>기대 출력: 15초 4컷 스토리보드, 영상 프롬프트, 검수표</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-17" data-title="프롬프트 17. 하이엔드 생성 도구 평가 기준 만들기">
+<div class="card-top"><span class="badge">Prompt 17</span><a class="anchor" href="#prompt-17" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 17. 하이엔드 생성 도구 평가 기준 만들기</h2>
+<ul>
+<li>목적: 도구 결과물을 감상평이 아니라 실무 기준으로 평가한다.</li>
+<li>언제 사용하나: 이미지·영상 생성 결과를 비교하거나 도구 도입을 검토할 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;아래 생성형 미디어 결과물을 실무 도입 관점에서 평가해 주세요.\n\n평가 대상:\n[도구명 또는 결과 설명]\n\n사용 목적:\n[캠페인 목적 또는 제작 목적]\n\n평가 기준:\n1. 시각적 품질\n2. 제품/캐릭터 일관성\n3. 모션 제어 가능성\n4. 메시지 전달력\n5. 수정 반복 가능성\n6. 후반작업 연계 가능성\n7. 권리·브랜드 리스크\n8. 실제 업무 승인 가능성\n\n출력 형식:\n- 총평\n- 강점\n- 한계\n- 업무에 바로 쓰기 어려운 이유\n- 시안 단계에서 활용 가능한 방법\n- 다음 테스트 프롬프트 제안\n- 승인 전 체크리스트&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>아래 생성형 미디어 결과물을 실무 도입 관점에서 평가해 주세요.
+
+평가 대상:
+[도구명 또는 결과 설명]
+
+사용 목적:
+[캠페인 목적 또는 제작 목적]
+
+평가 기준:
+1. 시각적 품질
+2. 제품/캐릭터 일관성
+3. 모션 제어 가능성
+4. 메시지 전달력
+5. 수정 반복 가능성
+6. 후반작업 연계 가능성
+7. 권리·브랜드 리스크
+8. 실제 업무 승인 가능성
+
+출력 형식:
+- 총평
+- 강점
+- 한계
+- 업무에 바로 쓰기 어려운 이유
+- 시안 단계에서 활용 가능한 방법
+- 다음 테스트 프롬프트 제안
+- 승인 전 체크리스트</code></pre></div>
+<ul>
+<li>입력 변수: <code>[도구명 또는 결과 설명]</code>, <code>[캠페인 목적 또는 제작 목적]</code></li>
+<li>기대 출력: 하이엔드 도구 결과물 평가표와 다음 테스트 방향</li>
+</ul>
+<hr>
+</article>
+<section class="content-section" id="8-고객-맞춤-메시지와-채널별-변주"><h1>8. 고객 맞춤 메시지와 채널별 변주</h1>
+</section>
+<article class="prompt-card" id="prompt-18" data-title="프롬프트 18. 세그먼트별 고객 메시지 생성">
+<div class="card-top"><span class="badge">Prompt 18</span><a class="anchor" href="#prompt-18" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 18. 세그먼트별 고객 메시지 생성</h2>
+<ul>
+<li>목적: 신규, 기존, 이탈 위험 고객에게 맞는 메시지를 만든다.</li>
+<li>언제 사용하나: NotebookLM 브리핑과 이미지 콘셉트를 합쳐 고객별 문구를 만들 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;당신은 [회사/조직]의 고객 메시지 전략가입니다.\n아래 자료를 바탕으로 [제품/서비스]의 세그먼트별 메시지를 작성해 주세요.\n\n입력 자료:\n- 자료 기반 핵심 혜택: [핵심 혜택]\n- 고객 질문: [고객 질문]\n- 메시지 후보: [메시지 후보]\n- 이미지 콘셉트: [이미지 콘셉트]\n- 브랜드톤: [브랜드톤]\n- 금지조건: [금지조건]\n\n세그먼트:\n1. 신규 고객\n2. 기존 고객\n3. 이탈 위험 고객\n\n각 세그먼트별 출력:\n- 고객 상황 가정\n- 핵심 문제\n- 구매 장벽 또는 반대 의견\n- 메시지 핵심 문장\n- 이메일 제목 3개\n- SMS 또는 카카오톡 45자 이내 3개\n- SNS 캡션 3개\n- 사용하면 안 되는 표현\n- 근거와 가정 분리\n\n주의:\n- 민감정보나 개인 속성을 추정하지 마세요.\n- 이탈 위험 고객을 직접 낙인찍는 표현을 피하세요.\n- 자료에 없는 효능이나 수치를 만들지 마세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>당신은 [회사/조직]의 고객 메시지 전략가입니다.
+아래 자료를 바탕으로 [제품/서비스]의 세그먼트별 메시지를 작성해 주세요.
+
+입력 자료:
+- 자료 기반 핵심 혜택: [핵심 혜택]
+- 고객 질문: [고객 질문]
+- 메시지 후보: [메시지 후보]
+- 이미지 콘셉트: [이미지 콘셉트]
+- 브랜드톤: [브랜드톤]
+- 금지조건: [금지조건]
+
+세그먼트:
+1. 신규 고객
+2. 기존 고객
+3. 이탈 위험 고객
+
+각 세그먼트별 출력:
+- 고객 상황 가정
+- 핵심 문제
+- 구매 장벽 또는 반대 의견
+- 메시지 핵심 문장
+- 이메일 제목 3개
+- SMS 또는 카카오톡 45자 이내 3개
+- SNS 캡션 3개
+- 사용하면 안 되는 표현
+- 근거와 가정 분리
+
+주의:
+- 민감정보나 개인 속성을 추정하지 마세요.
+- 이탈 위험 고객을 직접 낙인찍는 표현을 피하세요.
+- 자료에 없는 효능이나 수치를 만들지 마세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[회사/조직]</code>, <code>[제품/서비스]</code>, <code>[핵심 혜택]</code>, <code>[고객 질문]</code>, <code>[메시지 후보]</code>, <code>[이미지 콘셉트]</code>, <code>[브랜드톤]</code>, <code>[금지조건]</code></li>
+<li>기대 출력: 3개 세그먼트별 핵심 메시지와 채널별 문구</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-19" data-title="프롬프트 19. 채널별 문구 변주">
+<div class="card-top"><span class="badge">Prompt 19</span><a class="anchor" href="#prompt-19" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 19. 채널별 문구 변주</h2>
+<ul>
+<li>목적: 하나의 핵심 메시지를 이메일, SMS, SNS, 랜딩페이지에 맞게 바꾼다.</li>
+<li>언제 사용하나: 고객 메시지를 실제 채널 초안으로 변환할 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;아래 핵심 메시지를 채널별 문구로 변주해 주세요.\n\n입력:\n- 핵심 메시지: [핵심 메시지]\n- 대상고객: [대상고객]\n- 제품/서비스: [제품/서비스]\n- 브랜드톤: [브랜드톤]\n- 사용 채널: 이메일, SMS/카카오톡, SNS, 랜딩페이지\n- 금지조건: [금지조건]\n\n출력 형식:\n1. 이메일\n   - 제목 5개\n   - 프리헤더 3개\n   - 본문 초안 1개\n2. SMS/카카오톡\n   - 45자 이내 문구 5개\n   - CTA 3개\n3. SNS\n   - 후킹 문장 5개\n   - 캡션 3개\n   - 해시태그 방향\n4. 랜딩페이지\n   - 헤드라인 5개\n   - 서브카피 3개\n   - CTA 3개\n5. 채널별 주의사항\n6. 과장·민감 표현 수정안\n\n조건:\n- 메시지의 핵심 의미는 유지하고 표현 방식만 바꾸세요.\n- 광고 심의나 브랜드 기준에 걸릴 수 있는 표현은 완화하세요.\n- 확인되지 않은 수치와 최상급 표현은 사용하지 마세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>아래 핵심 메시지를 채널별 문구로 변주해 주세요.
+
+입력:
+- 핵심 메시지: [핵심 메시지]
+- 대상고객: [대상고객]
+- 제품/서비스: [제품/서비스]
+- 브랜드톤: [브랜드톤]
+- 사용 채널: 이메일, SMS/카카오톡, SNS, 랜딩페이지
+- 금지조건: [금지조건]
+
+출력 형식:
+1. 이메일
+   - 제목 5개
+   - 프리헤더 3개
+   - 본문 초안 1개
+2. SMS/카카오톡
+   - 45자 이내 문구 5개
+   - CTA 3개
+3. SNS
+   - 후킹 문장 5개
+   - 캡션 3개
+   - 해시태그 방향
+4. 랜딩페이지
+   - 헤드라인 5개
+   - 서브카피 3개
+   - CTA 3개
+5. 채널별 주의사항
+6. 과장·민감 표현 수정안
+
+조건:
+- 메시지의 핵심 의미는 유지하고 표현 방식만 바꾸세요.
+- 광고 심의나 브랜드 기준에 걸릴 수 있는 표현은 완화하세요.
+- 확인되지 않은 수치와 최상급 표현은 사용하지 마세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[핵심 메시지]</code>, <code>[대상고객]</code>, <code>[제품/서비스]</code>, <code>[브랜드톤]</code>, <code>[금지조건]</code></li>
+<li>기대 출력: 채널별 문구 세트와 주의사항</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-20" data-title="프롬프트 20. 메시지 윤리·브랜드 세이프티 검수">
+<div class="card-top"><span class="badge">Prompt 20</span><a class="anchor" href="#prompt-20" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 20. 메시지 윤리·브랜드 세이프티 검수</h2>
+<ul>
+<li>목적: 개인화 메시지에서 민감정보 추정, 차별 표현, 과장 표현을 제거한다.</li>
+<li>언제 사용하나: 고객별 메시지를 만들고 발송 전 검수할 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;당신은 메시지 윤리 및 브랜드 세이프티 검수자입니다.\n아래 고객 메시지 초안을 검토해 주세요.\n\n메시지 초안:\n[메시지 초안]\n\n대상고객:\n[대상고객]\n\n검수 기준:\n1. 민감정보나 개인 속성을 추정하는 표현이 있는가\n2. 고객을 낙인찍거나 불쾌하게 만드는 표현이 있는가\n3. 과장된 효능, 성능, 절대적 표현이 있는가\n4. 경쟁사 비방 또는 부적절한 비교가 있는가\n5. 브랜드톤과 맞지 않는 표현이 있는가\n6. 채널 정책이나 광고 심의상 문제가 될 표현이 있는가\n\n출력 형식:\n- 문제 없음\n- 수정 필요 문장\n- 위험 이유\n- 안전한 대체 문장\n- 발송 전 사람 검수 질문\n\n주의:\n- 고객을 직접 분류명으로 부르지 마세요.\n- 불안, 죄책감, 결핍을 과도하게 자극하지 마세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>당신은 메시지 윤리 및 브랜드 세이프티 검수자입니다.
+아래 고객 메시지 초안을 검토해 주세요.
+
+메시지 초안:
+[메시지 초안]
+
+대상고객:
+[대상고객]
+
+검수 기준:
+1. 민감정보나 개인 속성을 추정하는 표현이 있는가
+2. 고객을 낙인찍거나 불쾌하게 만드는 표현이 있는가
+3. 과장된 효능, 성능, 절대적 표현이 있는가
+4. 경쟁사 비방 또는 부적절한 비교가 있는가
+5. 브랜드톤과 맞지 않는 표현이 있는가
+6. 채널 정책이나 광고 심의상 문제가 될 표현이 있는가
+
+출력 형식:
+- 문제 없음
+- 수정 필요 문장
+- 위험 이유
+- 안전한 대체 문장
+- 발송 전 사람 검수 질문
+
+주의:
+- 고객을 직접 분류명으로 부르지 마세요.
+- 불안, 죄책감, 결핍을 과도하게 자극하지 마세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[메시지 초안]</code>, <code>[대상고객]</code></li>
+<li>기대 출력: 문제 문장, 위험 이유, 안전한 대체 문장, 검수 질문</li>
+</ul>
+<hr>
+</article>
+<section class="content-section" id="9-자동화와-워크플로우-설계"><h1>9. 자동화와 워크플로우 설계</h1>
+</section>
+<article class="prompt-card" id="prompt-21" data-title="프롬프트 21. 미니 마케팅 자동화 플로우 설계">
+<div class="card-top"><span class="badge">Prompt 21</span><a class="anchor" href="#prompt-21" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 21. 미니 마케팅 자동화 플로우 설계</h2>
+<ul>
+<li>목적: 오늘 만든 리서치, 메시지, 이미지, 검수 산출물을 하나의 반복 가능한 흐름으로 묶는다.</li>
+<li>언제 사용하나: 마지막 자동화 실습에서 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;당신은 마케팅 워크플로우 오케스트레이터입니다.\n[회사/조직]의 [제품/서비스]를 위한 미니 AI 마케팅 자동화 플로우를 설계해 주세요.\n\n입력 자료:\n- 제품 브리프: [제품 브리프]\n- 자료 기반 브리핑: [브리핑 요약]\n- 메시지 후보: [메시지 후보]\n- 이미지 프롬프트: [이미지 프롬프트]\n- 고객 세그먼트: [대상고객 또는 세그먼트]\n\n자동화 목표:\n[예: 주간 캠페인 초안 생성, 고객별 메시지 초안 작성, SNS 소재 아이디어 생성]\n\n출력 형식:\n1. 워크플로우 이름\n2. 입력 데이터\n3. AI 처리 단계\n4. 사람 검수 단계\n5. 최종 산출물\n6. 자동화하면 안 되는 단계\n7. 중단 조건\n8. 승인자 또는 책임자\n9. 기록해야 할 로그\n10. 다음 주 1회 실행 계획\n\n필수 조건:\n- 자동 발송 금지\n- 개인정보 익명화\n- 근거·가정·제안 분리\n- 사람 승인 후 사용\n- 버전과 승인자 기록&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>당신은 마케팅 워크플로우 오케스트레이터입니다.
+[회사/조직]의 [제품/서비스]를 위한 미니 AI 마케팅 자동화 플로우를 설계해 주세요.
+
+입력 자료:
+- 제품 브리프: [제품 브리프]
+- 자료 기반 브리핑: [브리핑 요약]
+- 메시지 후보: [메시지 후보]
+- 이미지 프롬프트: [이미지 프롬프트]
+- 고객 세그먼트: [대상고객 또는 세그먼트]
+
+자동화 목표:
+[예: 주간 캠페인 초안 생성, 고객별 메시지 초안 작성, SNS 소재 아이디어 생성]
+
+출력 형식:
+1. 워크플로우 이름
+2. 입력 데이터
+3. AI 처리 단계
+4. 사람 검수 단계
+5. 최종 산출물
+6. 자동화하면 안 되는 단계
+7. 중단 조건
+8. 승인자 또는 책임자
+9. 기록해야 할 로그
+10. 다음 주 1회 실행 계획
+
+필수 조건:
+- 자동 발송 금지
+- 개인정보 익명화
+- 근거·가정·제안 분리
+- 사람 승인 후 사용
+- 버전과 승인자 기록</code></pre></div>
+<ul>
+<li>입력 변수: <code>[회사/조직]</code>, <code>[제품/서비스]</code>, <code>[제품 브리프]</code>, <code>[브리핑 요약]</code>, <code>[메시지 후보]</code>, <code>[이미지 프롬프트]</code>, <code>[대상고객 또는 세그먼트]</code>, <code>[자동화 목표]</code></li>
+<li>기대 출력: 입력→AI 처리→사람 검수→산출물→실행 계획으로 이어지는 자동화 설계안</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-22" data-title="프롬프트 22. 자동화 단계별 프롬프트 체인 만들기">
+<div class="card-top"><span class="badge">Prompt 22</span><a class="anchor" href="#prompt-22" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 22. 자동화 단계별 프롬프트 체인 만들기</h2>
+<ul>
+<li>목적: 하나의 거대한 프롬프트가 아니라 단계별로 실행 가능한 프롬프트 체인을 만든다.</li>
+<li>언제 사용하나: 현업에서 반복 가능한 업무 템플릿을 만들 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;아래 업무를 단계별 AI 프롬프트 체인으로 설계해 주세요.\n\n업무 목표:\n[업무 목표]\n\n입력 자료:\n[자료]\n\n최종 산출물:\n[최종 산출물]\n\n제약조건:\n[금지조건]\n\n프롬프트 체인 형식:\n1. Step 1: 자료 요약 프롬프트\n2. Step 2: 인사이트 도출 프롬프트\n3. Step 3: 메시지 초안 작성 프롬프트\n4. Step 4: 이미지/콘텐츠 변환 프롬프트\n5. Step 5: 거버넌스 검수 프롬프트\n6. Step 6: 최종 패키지 정리 프롬프트\n\n각 Step마다 다음을 포함하세요.\n- 목적\n- 입력값\n- 복사/붙여넣기용 프롬프트\n- 기대 출력\n- 사람이 확인할 기준\n- 다음 Step으로 넘길 값\n\n주의:\n- 각 단계의 출력이 다음 단계의 입력이 되도록 설계하세요.\n- 오류가 다음 단계로 전파되지 않도록 검수 게이트를 넣으세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>아래 업무를 단계별 AI 프롬프트 체인으로 설계해 주세요.
+
+업무 목표:
+[업무 목표]
+
+입력 자료:
+[자료]
+
+최종 산출물:
+[최종 산출물]
+
+제약조건:
+[금지조건]
+
+프롬프트 체인 형식:
+1. Step 1: 자료 요약 프롬프트
+2. Step 2: 인사이트 도출 프롬프트
+3. Step 3: 메시지 초안 작성 프롬프트
+4. Step 4: 이미지/콘텐츠 변환 프롬프트
+5. Step 5: 거버넌스 검수 프롬프트
+6. Step 6: 최종 패키지 정리 프롬프트
+
+각 Step마다 다음을 포함하세요.
+- 목적
+- 입력값
+- 복사/붙여넣기용 프롬프트
+- 기대 출력
+- 사람이 확인할 기준
+- 다음 Step으로 넘길 값
+
+주의:
+- 각 단계의 출력이 다음 단계의 입력이 되도록 설계하세요.
+- 오류가 다음 단계로 전파되지 않도록 검수 게이트를 넣으세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[업무 목표]</code>, <code>[자료]</code>, <code>[최종 산출물]</code>, <code>[금지조건]</code></li>
+<li>기대 출력: 6단계 프롬프트 체인과 단계별 검수 기준</li>
+</ul>
+<hr>
+</article>
+<section class="content-section" id="10-보고서-구조화와-콘텐츠-변환"><h1>10. 보고서 구조화와 콘텐츠 변환</h1>
+</section>
+<article class="prompt-card" id="prompt-23" data-title="프롬프트 23. 리서치 결과를 보고서 목차로 구조화">
+<div class="card-top"><span class="badge">Prompt 23</span><a class="anchor" href="#prompt-23" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 23. 리서치 결과를 보고서 목차로 구조화</h2>
+<ul>
+<li>목적: 브리핑과 메시지 후보를 의사결정용 보고서 구조로 바꾼다.</li>
+<li>언제 사용하나: 리서치 결과를 팀 공유 문서나 보고서 초안으로 만들 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;당신은 [업무영역] 보고서 편집자입니다.\n아래 리서치 결과를 의사결정자가 읽기 쉬운 보고서 목차와 초안 구조로 바꿔 주세요.\n\n리서치 결과:\n[리서치 요약]\n\n보고서 독자:\n[대상 독자]\n\n보고서 목적:\n[예: 캠페인 승인, 예산 검토, 전략 방향 논의, 교육자료 공유]\n\n출력 형식:\n1. 제목 후보 5개\n2. 1페이지 요약 구조\n3. 본문 목차\n4. 각 섹션의 핵심 메시지\n5. 근거 자료를 배치할 위치\n6. 의사결정자가 봐야 할 선택지\n7. 확인 필요 또는 리스크 섹션\n8. 부록에 넣을 자료\n\n조건:\n- 사실, 추정, 제안을 섞지 마세요.\n- 의사결정자가 바로 판단할 수 있게 선택지와 리스크를 포함하세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>당신은 [업무영역] 보고서 편집자입니다.
+아래 리서치 결과를 의사결정자가 읽기 쉬운 보고서 목차와 초안 구조로 바꿔 주세요.
+
+리서치 결과:
+[리서치 요약]
+
+보고서 독자:
+[대상 독자]
+
+보고서 목적:
+[예: 캠페인 승인, 예산 검토, 전략 방향 논의, 교육자료 공유]
+
+출력 형식:
+1. 제목 후보 5개
+2. 1페이지 요약 구조
+3. 본문 목차
+4. 각 섹션의 핵심 메시지
+5. 근거 자료를 배치할 위치
+6. 의사결정자가 봐야 할 선택지
+7. 확인 필요 또는 리스크 섹션
+8. 부록에 넣을 자료
+
+조건:
+- 사실, 추정, 제안을 섞지 마세요.
+- 의사결정자가 바로 판단할 수 있게 선택지와 리스크를 포함하세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[업무영역]</code>, <code>[리서치 요약]</code>, <code>[대상 독자]</code>, <code>[보고서 목적]</code></li>
+<li>기대 출력: 보고서 제목, 요약, 목차, 섹션별 핵심 메시지와 리스크 구조</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-24" data-title="프롬프트 24. 보고서를 발표·교육용 콘텐츠로 변환">
+<div class="card-top"><span class="badge">Prompt 24</span><a class="anchor" href="#prompt-24" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 24. 보고서를 발표·교육용 콘텐츠로 변환</h2>
+<ul>
+<li>목적: 리서치 보고서를 발표자료, 교육 핸드아웃, SNS 요약 등으로 변환한다.</li>
+<li>언제 사용하나: 수업 후 팀 공유나 내부 교육자료를 만들 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;아래 보고서 초안을 [콘텐츠 형식]으로 변환해 주세요.\n\n보고서 초안:\n[보고서 초안]\n\n변환 목표:\n- 대상 독자: [대상 독자]\n- 콘텐츠 형식: [예: 발표자료 개요, 교육 핸드아웃, 블로그 글, SNS 카드뉴스, 이메일 공유문]\n- 톤앤매너: [브랜드톤]\n- 분량: [분량]\n\n출력 형식:\n1. 변환 콘텐츠 제목\n2. 핵심 메시지 3개\n3. 섹션 구성\n4. 각 섹션의 본문 초안\n5. 반드시 남겨야 할 근거\n6. 줄여도 되는 내용\n7. 오해를 막기 위한 주의 문구\n8. 배포 전 검수 체크리스트\n\n조건:\n- 원자료의 의미를 왜곡하지 마세요.\n- 보고서의 불확실한 내용을 확정 표현으로 바꾸지 마세요.\n- 대상 독자에게 필요한 수준으로만 단순화하세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>아래 보고서 초안을 [콘텐츠 형식]으로 변환해 주세요.
+
+보고서 초안:
+[보고서 초안]
+
+변환 목표:
+- 대상 독자: [대상 독자]
+- 콘텐츠 형식: [예: 발표자료 개요, 교육 핸드아웃, 블로그 글, SNS 카드뉴스, 이메일 공유문]
+- 톤앤매너: [브랜드톤]
+- 분량: [분량]
+
+출력 형식:
+1. 변환 콘텐츠 제목
+2. 핵심 메시지 3개
+3. 섹션 구성
+4. 각 섹션의 본문 초안
+5. 반드시 남겨야 할 근거
+6. 줄여도 되는 내용
+7. 오해를 막기 위한 주의 문구
+8. 배포 전 검수 체크리스트
+
+조건:
+- 원자료의 의미를 왜곡하지 마세요.
+- 보고서의 불확실한 내용을 확정 표현으로 바꾸지 마세요.
+- 대상 독자에게 필요한 수준으로만 단순화하세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[보고서 초안]</code>, <code>[콘텐츠 형식]</code>, <code>[대상 독자]</code>, <code>[브랜드톤]</code>, <code>[분량]</code></li>
+<li>기대 출력: 원하는 콘텐츠 형식에 맞춘 변환 초안과 검수 체크리스트</li>
+</ul>
+<hr>
+</article>
+<section class="content-section" id="11-최종-산출물-패키지-검토"><h1>11. 최종 산출물 패키지 검토</h1>
+</section>
+<article class="prompt-card" id="prompt-25" data-title="프롬프트 25. 오늘의 ai 마케팅 실행 패키지 정리">
+<div class="card-top"><span class="badge">Prompt 25</span><a class="anchor" href="#prompt-25" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 25. 오늘의 AI 마케팅 실행 패키지 정리</h2>
+<ul>
+<li>목적: 수업 중 만든 산출물을 하나의 패키지로 묶는다.</li>
+<li>언제 사용하나: 수업 마지막 30분에 최종 정리할 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;오늘 만든 산출물을 하나의 AI 마케팅 실행 패키지로 정리해 주세요.\n\n입력 산출물:\n- 에이전트 리서치 지시문: [에이전트 지시문]\n- 자료 기반 브리핑: [NotebookLM 브리핑]\n- 고객 질문: [고객 질문]\n- 메시지 후보: [메시지 후보]\n- 이미지 프롬프트: [이미지 프롬프트]\n- 영상 콘셉트: [영상 콘셉트]\n- 세그먼트별 메시지: [고객 메시지]\n- 자동화 플로우: [자동화 플로우]\n\n출력 형식:\n1. 패키지 제목\n2. 업무 목표 1문장\n3. 입력 자료 목록\n4. 핵심 인사이트\n5. 메시지 후보 5개\n6. 이미지 프롬프트 3개\n7. 영상 콘셉트 1개\n8. 세그먼트별 채널 문구\n9. 자동화 플로우 요약\n10. 검수 전 초안 표시 문구\n11. 다음 주 실행 과제 1개\n\n조건:\n- 실제 발송 또는 게시 전 사람 검수 필요 문구를 포함하세요.\n- 확인 필요 항목과 승인자를 분리하세요.\n- 파일명 추천도 함께 제안하세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>오늘 만든 산출물을 하나의 AI 마케팅 실행 패키지로 정리해 주세요.
+
+입력 산출물:
+- 에이전트 리서치 지시문: [에이전트 지시문]
+- 자료 기반 브리핑: [NotebookLM 브리핑]
+- 고객 질문: [고객 질문]
+- 메시지 후보: [메시지 후보]
+- 이미지 프롬프트: [이미지 프롬프트]
+- 영상 콘셉트: [영상 콘셉트]
+- 세그먼트별 메시지: [고객 메시지]
+- 자동화 플로우: [자동화 플로우]
+
+출력 형식:
+1. 패키지 제목
+2. 업무 목표 1문장
+3. 입력 자료 목록
+4. 핵심 인사이트
+5. 메시지 후보 5개
+6. 이미지 프롬프트 3개
+7. 영상 콘셉트 1개
+8. 세그먼트별 채널 문구
+9. 자동화 플로우 요약
+10. 검수 전 초안 표시 문구
+11. 다음 주 실행 과제 1개
+
+조건:
+- 실제 발송 또는 게시 전 사람 검수 필요 문구를 포함하세요.
+- 확인 필요 항목과 승인자를 분리하세요.
+- 파일명 추천도 함께 제안하세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[에이전트 지시문]</code>, <code>[NotebookLM 브리핑]</code>, <code>[고객 질문]</code>, <code>[메시지 후보]</code>, <code>[이미지 프롬프트]</code>, <code>[영상 콘셉트]</code>, <code>[고객 메시지]</code>, <code>[자동화 플로우]</code></li>
+<li>기대 출력: 최종 제출용 AI 마케팅 실행 패키지 초안</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-26" data-title="프롬프트 26. 최종 출력물 품질 리뷰">
+<div class="card-top"><span class="badge">Prompt 26</span><a class="anchor" href="#prompt-26" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 26. 최종 출력물 품질 리뷰</h2>
+<ul>
+<li>목적: 최종 패키지가 수업 요구사항과 실무 검수 기준을 만족하는지 확인한다.</li>
+<li>언제 사용하나: 제출 또는 팀 공유 직전 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;당신은 최종 산출물 품질 리뷰어입니다.\n아래 AI 실행 패키지를 수업 산출물과 실무 적용 관점에서 리뷰해 주세요.\n\n검토 대상:\n[최종 패키지]\n\n리뷰 기준:\n1. 업무 목표가 명확한가\n2. 입력 자료와 출처가 표시되어 있는가\n3. 사실, 추정, 제안이 분리되어 있는가\n4. 고객 세그먼트와 채널이 명확한가\n5. 이미지·영상 프롬프트가 메시지와 연결되어 있는가\n6. 거버넌스와 검수 기준이 포함되어 있는가\n7. 자동화 플로우에 사람 승인 지점이 있는가\n8. 다음 주 실행 과제가 작고 구체적인가\n\n출력 형식:\n- 총평\n- 잘된 점 5개\n- 보완할 점 5개\n- 바로 수정할 문장 또는 섹션\n- 사용 전 확인 필요 항목\n- 다음 주 실행 체크리스트\n- 10점 만점 점수와 이유\n\n주의:\n- 칭찬만 하지 말고 실제로 고칠 부분을 구체적으로 제안하세요.\n- 위험한 표현은 안전한 대체 문장으로 바꿔 주세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>당신은 최종 산출물 품질 리뷰어입니다.
+아래 AI 실행 패키지를 수업 산출물과 실무 적용 관점에서 리뷰해 주세요.
+
+검토 대상:
+[최종 패키지]
+
+리뷰 기준:
+1. 업무 목표가 명확한가
+2. 입력 자료와 출처가 표시되어 있는가
+3. 사실, 추정, 제안이 분리되어 있는가
+4. 고객 세그먼트와 채널이 명확한가
+5. 이미지·영상 프롬프트가 메시지와 연결되어 있는가
+6. 거버넌스와 검수 기준이 포함되어 있는가
+7. 자동화 플로우에 사람 승인 지점이 있는가
+8. 다음 주 실행 과제가 작고 구체적인가
+
+출력 형식:
+- 총평
+- 잘된 점 5개
+- 보완할 점 5개
+- 바로 수정할 문장 또는 섹션
+- 사용 전 확인 필요 항목
+- 다음 주 실행 체크리스트
+- 10점 만점 점수와 이유
+
+주의:
+- 칭찬만 하지 말고 실제로 고칠 부분을 구체적으로 제안하세요.
+- 위험한 표현은 안전한 대체 문장으로 바꿔 주세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[최종 패키지]</code></li>
+<li>기대 출력: 품질 점수, 잘된 점, 보완점, 수정안, 실행 체크리스트</li>
+</ul>
+</article>
+<article class="prompt-card" id="prompt-27" data-title="프롬프트 27. 다음 주 현업 적용 계획">
+<div class="card-top"><span class="badge">Prompt 27</span><a class="anchor" href="#prompt-27" aria-label="섹션 링크">#</a></div>
+<h2>프롬프트 27. 다음 주 현업 적용 계획</h2>
+<ul>
+<li>목적: 수업 산출물을 실제 업무의 작은 실행 과제로 전환한다.</li>
+<li>언제 사용하나: 수업 종료 직전 개인 실행 계획을 작성할 때 사용한다.</li>
+</ul>
+<div class="copy-block" data-copy=&quot;오늘 만든 AI 실습 산출물을 바탕으로 다음 주에 실행할 작은 업무 적용 계획을 만들어 주세요.\n\n입력:\n- 오늘 만든 핵심 산출물: [핵심 산출물]\n- 적용할 업무: [업무]\n- 필요한 자료: [자료]\n- 협업자 또는 승인자: [승인자]\n- 사용 가능한 도구: [도구]\n- 제약조건: [금지조건]\n\n출력 형식:\n1. 다음 주 실행 과제 1개\n2. 성공 기준\n3. 준비해야 할 자료\n4. 첫 실행 날짜\n5. AI가 맡을 작업\n6. 사람이 검수할 작업\n7. 중단 조건\n8. 결과 기록 방식\n9. 30분 안에 할 수 있는 첫 행동\n\n조건:\n- 너무 큰 프로젝트로 만들지 마세요.\n- 1주일 안에 1회 테스트 가능한 범위로 줄이세요.\n- 실제 고객 대상 실행 전 내부 검수 단계를 넣으세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>오늘 만든 AI 실습 산출물을 바탕으로 다음 주에 실행할 작은 업무 적용 계획을 만들어 주세요.
+
+입력:
+- 오늘 만든 핵심 산출물: [핵심 산출물]
+- 적용할 업무: [업무]
+- 필요한 자료: [자료]
+- 협업자 또는 승인자: [승인자]
+- 사용 가능한 도구: [도구]
+- 제약조건: [금지조건]
+
+출력 형식:
+1. 다음 주 실행 과제 1개
+2. 성공 기준
+3. 준비해야 할 자료
+4. 첫 실행 날짜
+5. AI가 맡을 작업
+6. 사람이 검수할 작업
+7. 중단 조건
+8. 결과 기록 방식
+9. 30분 안에 할 수 있는 첫 행동
+
+조건:
+- 너무 큰 프로젝트로 만들지 마세요.
+- 1주일 안에 1회 테스트 가능한 범위로 줄이세요.
+- 실제 고객 대상 실행 전 내부 검수 단계를 넣으세요.</code></pre></div>
+<ul>
+<li>입력 변수: <code>[핵심 산출물]</code>, <code>[업무]</code>, <code>[자료]</code>, <code>[승인자]</code>, <code>[도구]</code>, <code>[금지조건]</code></li>
+<li>기대 출력: 다음 주에 바로 실행 가능한 작은 업무 적용 계획</li>
+</ul>
+<hr>
+</article>
+<section class="content-section" id="빠른-복사용-검수-문구-모음"><h1>빠른 복사용 검수 문구 모음</h1>
+</section>
+<section class="content-section" id="공통-안전-문구"><h2>공통 안전 문구</h2>
+</section>
+<article class="prompt-card utility-prompt" id="copy-card-28" data-title="공통 안전 문구"><div class="card-top"><span class="badge">Copy</span><a class="anchor" href="#copy-card-28" aria-label="섹션 링크">#</a></div><h2>공통 안전 문구</h2><div class="copy-block" data-copy=&quot;아래 결과물은 초안입니다. 실제 발송, 게시, 의사결정에 사용하기 전 담당자가 원문 근거, 개인정보, 브랜드 톤, 법적·윤리적 리스크를 검수해야 합니다.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>아래 결과물은 초안입니다. 실제 발송, 게시, 의사결정에 사용하기 전 담당자가 원문 근거, 개인정보, 브랜드 톤, 법적·윤리적 리스크를 검수해야 합니다.</code></pre></div></article>
+<section class="content-section" id="사실-추정-제안-분리-요청"><h2>사실·추정·제안 분리 요청</h2>
+</section>
+<article class="prompt-card utility-prompt" id="copy-card-29" data-title="사실·추정·제안 분리 요청"><div class="card-top"><span class="badge">Copy</span><a class="anchor" href="#copy-card-29" aria-label="섹션 링크">#</a></div><h2>사실·추정·제안 분리 요청</h2><div class="copy-block" data-copy=&quot;답변을 작성할 때 모든 내용을 “자료에 있는 사실 / 자료 기반 추정 / 실행 제안 / 확인 필요”로 분리해 주세요. 자료에 없는 내용을 사실처럼 단정하지 마세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>답변을 작성할 때 모든 내용을 “자료에 있는 사실 / 자료 기반 추정 / 실행 제안 / 확인 필요”로 분리해 주세요. 자료에 없는 내용을 사실처럼 단정하지 마세요.</code></pre></div></article>
+<section class="content-section" id="민감정보-제거-요청"><h2>민감정보 제거 요청</h2>
+</section>
+<article class="prompt-card utility-prompt" id="copy-card-30" data-title="민감정보 제거 요청"><div class="card-top"><span class="badge">Copy</span><a class="anchor" href="#copy-card-30" aria-label="섹션 링크">#</a></div><h2>민감정보 제거 요청</h2><div class="copy-block" data-copy=&quot;입력 자료와 출력 결과에서 개인을 식별할 수 있는 이름, 연락처, 계정, 주소, 주문번호, 계약 정보, 내부 매출 정보는 제거하거나 [익명]으로 대체해 주세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>입력 자료와 출력 결과에서 개인을 식별할 수 있는 이름, 연락처, 계정, 주소, 주문번호, 계약 정보, 내부 매출 정보는 제거하거나 [익명]으로 대체해 주세요.</code></pre></div></article>
+<section class="content-section" id="과장-표현-완화-요청"><h2>과장 표현 완화 요청</h2>
+</section>
+<article class="prompt-card utility-prompt" id="copy-card-31" data-title="과장 표현 완화 요청"><div class="card-top"><span class="badge">Copy</span><a class="anchor" href="#copy-card-31" aria-label="섹션 링크">#</a></div><h2>과장 표현 완화 요청</h2><div class="copy-block" data-copy=&quot;확인되지 않은 수치, 최상급 표현, 효능 보장, 경쟁사 비방, 불안 조장 표현을 찾아 더 안전하고 검증 가능한 문장으로 바꿔 주세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>확인되지 않은 수치, 최상급 표현, 효능 보장, 경쟁사 비방, 불안 조장 표현을 찾아 더 안전하고 검증 가능한 문장으로 바꿔 주세요.</code></pre></div></article>
+<section class="content-section" id="사람-검수-게이트-요청"><h2>사람 검수 게이트 요청</h2>
+</section>
+<article class="prompt-card utility-prompt" id="copy-card-32" data-title="사람 검수 게이트 요청"><div class="card-top"><span class="badge">Copy</span><a class="anchor" href="#copy-card-32" aria-label="섹션 링크">#</a></div><h2>사람 검수 게이트 요청</h2><div class="copy-block" data-copy=&quot;최종 출력 전에 사람이 확인해야 할 항목을 체크리스트로 분리하고, 확인되지 않으면 실행을 중단해야 하는 조건을 명시해 주세요.&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>최종 출력 전에 사람이 확인해야 할 항목을 체크리스트로 분리하고, 확인되지 않으면 실행을 중단해야 하는 조건을 명시해 주세요.</code></pre></div></article>
+<hr>
+<section class="content-section" id="수강자-제출-파일-권장-구조"><h1>수강자 제출 파일 권장 구조</h1>
+</section>
+<article class="prompt-card utility-prompt" id="copy-card-33" data-title="수강자 제출 파일 권장 구조"><div class="card-top"><span class="badge">Copy</span><a class="anchor" href="#copy-card-33" aria-label="섹션 링크">#</a></div><h2>수강자 제출 파일 권장 구조</h2><div class="copy-block" data-copy=&quot;YYYY-MM-DD_[제품/서비스]_AI마케팅실습패키지.md\n\n1. 업무 목표\n2. 입력 자료와 사용 가능 범위\n3. 에이전트 리서치 지시문\n4. 자료 기반 브리핑\n5. 고객 질문 10개\n6. 메시지 후보 5개\n7. 이미지 프롬프트 3개\n8. 15초 영상 콘셉트\n9. 세그먼트별 메시지와 채널 변주\n10. 미니 자동화 플로우\n11. 거버넌스 검수표\n12. 다음 주 실행 계획&quot;><button class="copy-btn" type="button" aria-label="프롬프트 복사">복사</button><pre><code>YYYY-MM-DD_[제품/서비스]_AI마케팅실습패키지.md
+
+1. 업무 목표
+2. 입력 자료와 사용 가능 범위
+3. 에이전트 리서치 지시문
+4. 자료 기반 브리핑
+5. 고객 질문 10개
+6. 메시지 후보 5개
+7. 이미지 프롬프트 3개
+8. 15초 영상 콘셉트
+9. 세그먼트별 메시지와 채널 변주
+10. 미니 자동화 플로우
+11. 거버넌스 검수표
+12. 다음 주 실행 계획</code></pre></div></article>
+<section class="content-section" id="마무리-체크리스트"><h1>마무리 체크리스트</h1>
+</section>
+<ul class="checklist">
+<li><span class="box"></span>내 업무 목표가 1문장으로 적혀 있다.</li>
+<li><span class="box"></span>입력 자료와 사용 가능 범위가 분리되어 있다.</li>
+<li><span class="box"></span>고객 개인정보와 내부 기밀을 제거했다.</li>
+<li><span class="box"></span>자료에 있는 사실, 추정, 제안을 분리했다.</li>
+<li><span class="box"></span>메시지마다 근거 또는 확인 필요 항목이 있다.</li>
+<li><span class="box"></span>이미지·영상 프롬프트에 금지 요소가 포함되어 있다.</li>
+<li><span class="box"></span>자동화 플로우에 사람 승인 지점이 있다.</li>
+<li><span class="box"></span>최종 산출물에 “검수 전 초안” 표시가 있다.</li>
+<li><span class="box"></span>다음 주에 1회 실행 가능한 작은 과제가 정해져 있다.</li>
+</ul></main></div>
+<footer>출처: DECK AI 트렌드 & 리서치 실무 6시간 실습 프롬프트 예시집 · 자체 포함 HTML · 원문 Markdown 기반 변환</footer>
+<script>
+const buttons=document.querySelectorAll('.copy-btn');
+buttons.forEach(btn=>btn.addEventListener('click',async()=>{const block=btn.closest('.copy-block');const text=(block.dataset.copy||'').replace(/\\n/g,'\n');try{await navigator.clipboard.writeText(text);}catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}btn.textContent='복사됨';btn.classList.add('copied');setTimeout(()=>{btn.textContent='복사';btn.classList.remove('copied')},1400);}));
+const search=document.getElementById('search'), count=document.getElementById('count'), cards=[...document.querySelectorAll('.prompt-card')];
+function filter(){const q=search.value.trim().toLowerCase();let shown=0;cards.forEach(c=>{const hit=!q||c.innerText.toLowerCase().includes(q);c.classList.toggle('hidden',!hit); if(hit) shown++;});count.textContent=`프롬프트 카드 ${shown} / ${cards.length}개 · 복사 버튼 ${buttons.length}개`;}
+search.addEventListener('input',filter); filter();
+</script></body></html>
