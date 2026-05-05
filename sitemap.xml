@@ -13,6 +13,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://dexa.art/blog/posts/software-as-the-grammar-of-culture/</loc>
+    <lastmod>2026-05-06</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dexa.art/blog/posts/interfaces-that-teach-machines-to-feel-ordinary/</loc>
     <lastmod>2026-05-04</lastmod>
     <priority>0.8</priority>

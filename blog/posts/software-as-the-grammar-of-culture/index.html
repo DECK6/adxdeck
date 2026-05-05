@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>소프트웨어는 어떻게 문화의 문법이 되었나 | DEXA Blog</title>
+    <meta name="description" content="A public-facing essay on Lev Manovich's value for reading new media, software studies, cultural analytics, and generative AI as changes in cultural grammar rather than merely new tools." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/software-as-the-grammar-of-culture/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="소프트웨어는 어떻게 문화의 문법이 되었나" />
+    <meta property="og:description" content="A public-facing essay on Lev Manovich's value for reading new media, software studies, cultural analytics, and generative AI as changes in cultural grammar rather than merely new tools." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/software-as-the-grammar-of-culture/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/software-grammar-of-culture-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-05-06" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-theory" />
+    <meta property="article:tag" content="software-studies" />
+    <meta property="article:tag" content="new-media" />
+    <meta property="article:tag" content="ai-aesthetics" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="소프트웨어는 어떻게 문화의 문법이 되었나" />
+    <meta name="twitter:description" content="A public-facing essay on Lev Manovich's value for reading new media, software studies, cultural analytics, and generative AI as changes in cultural grammar rather than merely new tools." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/software-grammar-of-culture-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"소프트웨어는 어떻게 문화의 문법이 되었나","description":"A public-facing essay on Lev Manovich's value for reading new media, software studies, cultural analytics, and generative AI as changes in cultural grammar rather than merely new tools.","image":"https://dexa.art/blog/images/software-grammar-of-culture-cover.png","datePublished":"2026-05-06","dateModified":"2026-05-06","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/software-as-the-grammar-of-culture/"},"keywords":"media-theory, software-studies, new-media, ai-aesthetics"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 5월 6일</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-theory</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">software-studies</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">new-media</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-aesthetics</span></div>
+            </div>
+            <div class="prose-dexa">
+<h1>소프트웨어는 어떻게 문화의 문법이 되었나</h1>
+<p><img src="/blog/images/software-grammar-of-culture-cover.png" alt="소프트웨어는 어떻게 문화의 문법이 되었나" loading="lazy"></p>
+<p>디지털 문화는 대개 새 기기, 새 플랫폼, 새 AI 도구의 이름으로 설명됩니다. 하지만 레프 마노비치(Lev Manovich)가 계속해서 제안한 질문은 조금 다릅니다. 중요한 것은 “무엇이 새로 나왔는가”가 아니라, 문화가 어떤 형식으로 다시 조직되고 있는가입니다.</p>
+<p>그에게 뉴미디어는 화면에 올라온 전자 이미지가 아닙니다. 문화 대상이 숫자로 저장되고, 모듈로 쪼개지고, 자동화된 규칙을 통과하며, 여러 버전으로 변형되고, 컴퓨터의 층위와 문화의 층위 사이에서 번역되는 조건입니다. 그래서 마노비치를 읽는 일은 디지털 기술사를 외우는 일이 아니라, 지금 우리가 보고 쓰고 선택하는 문화의 문법을 다시 읽는 일에 가깝습니다.</p>
+<h2>데이터베이스가 이야기를 밀어낼 때</h2>
+<p>마노비치의 가장 유명한 논점 가운데 하나는 데이터베이스를 디지털 시대의 상징 형식으로 본 것입니다. 전통적 서사가 사건을 시간 순서와 인과 관계로 배열한다면, 데이터베이스는 항목들을 저장하고 검색하고 조합할 수 있는 집합으로 만듭니다. 이 차이는 단순한 저장 방식의 차이가 아닙니다. 문화가 세계를 조직하는 방식의 차이입니다.</p>
+<p>미디어아트에서 이 관점은 특히 유용합니다. 어떤 작품이 영상, 이미지, 사운드, 텍스트를 보여 준다고 해서 그것이 곧 “영상 작품”이나 “사운드 작업”으로만 읽히지는 않습니다. 그 재료들이 데이터베이스로 저장되고, 소프트웨어 규칙에 따라 호출되고, 관객의 입력이나 알고리즘의 선택에 따라 매번 다른 배열을 만든다면 작품의 핵심은 완성된 결과물이 아니라 배열 가능성 자체가 됩니다.</p>
+<p>이때 데이터베이스는 무대 뒤의 기술적 저장소가 아닙니다. 그것은 작품의 시간, 관객의 경로, 이미지의 관계, 생성의 규칙을 정하는 형식입니다. 생성형 이미지 모델과 추천 시스템, 인터랙티브 전시, 데이터 시각화 작업을 볼 때도 같은 질문이 필요합니다. 우리는 하나의 이미지나 장면을 보는 것이 아니라, 가능한 조합의 공간과 그 공간을 정렬하는 규칙을 보고 있는지도 모릅니다.</p>
+<h2>소프트웨어는 도구가 아니라 환경이다</h2>
+<p>마노비치가 『Software Takes Command』에서 밀어붙인 핵심은 소프트웨어가 단순한 제작 도구가 아니라 문화 형식을 조직하는 환경이라는 점입니다. 사진, 영화, 그래픽 디자인, 애니메이션, 건축 시각화, 웹 인터페이스는 각자의 고립된 매체로만 남아 있지 않습니다. 그것들은 Photoshop, After Effects, Maya, Processing, TouchDesigner, Unreal Engine, 브라우저, 생성형 AI 인터페이스 같은 소프트웨어 환경 안에서 서로 흡수되고 재조합됩니다.</p>
+<p>그래서 “어떤 툴을 썼는가”라는 질문은 표면적인 제작 정보가 아닙니다. 툴은 어떤 단위를 기본값으로 삼는지, 어떤 효과를 쉽게 만들고 어떤 선택을 어렵게 만드는지, 어떤 포맷을 정상으로 간주하는지, 어떤 시간 감각과 작업 리듬을 요구하는지까지 포함합니다. 소프트웨어는 창작자의 손을 확장하지만 동시에 창작자의 상상력을 미리 구획합니다.</p>
+<p>이 관점은 오늘의 AI 도구를 읽을 때 더 중요해집니다. 생성형 AI는 단순히 이미지를 대신 만들어 주는 기계가 아닙니다. 그것은 프롬프트, 데이터셋, 잠재 공간, 후보 이미지, 필터링, 재시도, 플랫폼 UI가 결합된 문화 생산 환경입니다. 좋은 질문은 “AI가 예술가를 대체하는가”가 아니라 “AI 인터페이스가 문화적 선택지를 어떤 방식으로 미리 배열하는가”에 가깝습니다.</p>
+<h2>문화 분석과 AI 미학 사이</h2>
+<p>마노비치의 문화 분석(Cultural Analytics)은 대규모 이미지와 영상, 소셜 미디어, 박물관 컬렉션을 계산과 시각화로 읽는 방법론입니다. 이 접근은 인간이 한 장씩 읽기 어려운 패턴을 확대해서 보여 줍니다. 그러나 동시에 무엇을 데이터로 삼았는지, 어떤 속성을 수치화했는지, 어떤 시각화 방식이 해석을 유도하는지 묻게 만듭니다.</p>
+<p>이 지점에서 마노비치의 작업은 AI 미학과도 이어집니다. 생성형 AI가 만든 이미지는 “기계가 그린 그림”이라는 단순한 사건이 아닙니다. 그것은 과거의 시각문화가 데이터셋으로 수집되고, 모델 안에서 통계적 관계로 재배열되고, 프롬프트와 인터페이스를 통해 다시 선택 가능한 스타일로 돌아오는 과정입니다. 문화는 더 이상 완성된 작품들의 목록만이 아니라, 검색되고 조합되고 예측되고 변형되는 분포가 됩니다.</p>
+<p>물론 이 설명만으로 충분하지는 않습니다. 소프트웨어와 데이터베이스의 문법을 말할 때, 플랫폼 자본주의, 데이터 노동, 감시, 편향, 인프라 비용 같은 정치경제적 조건을 함께 보아야 합니다. 마노비치의 강점은 문화 형식의 변화를 선명하게 설명하는 데 있고, 그 설명은 권력과 물질성의 분석으로 보완될 때 더 강해집니다.</p>
+<h2>남는 판단 기준</h2>
+<p>마노비치를 오늘 다시 읽는 이유는 디지털 문화에 대한 낙관이나 향수를 얻기 위해서가 아닙니다. 그의 유용성은 작품과 기술을 볼 때 질문의 위치를 바꾸게 한다는 데 있습니다. 화면에 무엇이 나타났는가보다, 그 화면을 가능하게 한 데이터 구조와 소프트웨어 문법이 무엇인지 묻게 하기 때문입니다.</p>
+<p>미디어아트, 전시, AI 이미지, 교육용 플랫폼, 조직의 디지털 전환을 볼 때 다음 질문은 여전히 유효합니다. 이 시스템은 어떤 단위로 문화를 쪼개는가. 무엇을 자동화하고 무엇을 선택지로 남기는가. 어떤 인터페이스를 자연스럽게 만들고 어떤 세계를 보이지 않게 하는가.</p>
+<p>결국 소프트웨어가 문화의 문법이 되었다면, 비평은 더 이상 결과물의 표면만 읽을 수 없습니다. 문법을 읽어야 합니다. 그리고 문법을 읽는다는 것은 그것이 만들어 내는 가능성뿐 아니라, 그것이 조용히 닫아 버리는 가능성까지 함께 보는 일입니다.</p>
+<hr>
+<p>이 글은 DEXA vault의 <code>Lev Manovich</code> 노트를 바탕으로 공개 블로그용으로 재구성했습니다. 주요 근거 표면은 Manovich 공식 웹사이트, <em>Software Takes Command</em>, Cultural Analytics, AI Aesthetics 관련 공식 프로젝트 페이지와 내부 <code>Software Studies</code>, <code>Database vs Narrative</code>, <code>Cultural Analytics</code>, <code>Interface Culture</code>, <code>AI Art</code> 앵커입니다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/interfaces-that-teach-machines-to-feel-ordinary/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>인터페이스는 어떻게 기계를 일상으로 번역하는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
