@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>보이는 것은 누가 배열했는가 | DEXA Blog</title>
+    <meta name="description" content="A public DEXA essay on dispositif as the hidden arrangement of institutions, interfaces, images, bodies, and rules that makes media art and AI systems appear natural." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/who-arranged-what-we-see/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="보이는 것은 누가 배열했는가" />
+    <meta property="og:description" content="A public DEXA essay on dispositif as the hidden arrangement of institutions, interfaces, images, bodies, and rules that makes media art and AI systems appear natural." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/who-arranged-what-we-see/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/dispositif-as-hidden-arrangement-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-05-07" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-theory" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="dispositif" />
+    <meta property="article:tag" content="apparatus" />
+    <meta property="article:tag" content="AI" />
+    <meta property="article:tag" content="surveillance" />
+    <meta property="article:tag" content="exhibition" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="보이는 것은 누가 배열했는가" />
+    <meta name="twitter:description" content="A public DEXA essay on dispositif as the hidden arrangement of institutions, interfaces, images, bodies, and rules that makes media art and AI systems appear natural." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/dispositif-as-hidden-arrangement-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"보이는 것은 누가 배열했는가","description":"A public DEXA essay on dispositif as the hidden arrangement of institutions, interfaces, images, bodies, and rules that makes media art and AI systems appear natural.","image":"https://dexa.art/blog/images/dispositif-as-hidden-arrangement-cover.png","datePublished":"2026-05-07","dateModified":"2026-05-07","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/who-arranged-what-we-see/"},"keywords":"media-theory, media-art, dispositif, apparatus, AI, surveillance, exhibition"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 5월 7일</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-theory</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">dispositif</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">apparatus</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">AI</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">surveillance</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">exhibition</span></div>
+            </div>
+            <div class="prose-dexa">
+<h1>보이는 것은 누가 배열했는가</h1>
+<p><img src="/blog/images/dispositif-as-hidden-arrangement-cover.png" alt="보이는 것은 누가 배열했는가" loading="lazy"></p>
+<p>우리는 보통 이미지를 본다고 말합니다. 전시장의 스크린, 센서가 반응하는 설치, 플랫폼의 추천 화면, CCTV의 분석 이미지, AI가 분류한 얼굴과 사물들을 봅니다. 그러나 더 중요한 질문은 “무엇이 보이는가”가 아닐 때가 많습니다. 오히려 “무엇이 이것을 보이게 만들었는가”, “누가 이 시야를 자연스럽게 배열했는가”, “이 장면 안에서 우리는 어떤 행동을 하도록 초대되거나 제한되는가”가 더 결정적인 질문입니다.</p>
+<p>푸코가 사용한 <strong>dispositif</strong>라는 말은 바로 이 질문을 위해 필요합니다. 한국어로는 흔히 장치, 배치, 장치적 배치로 옮길 수 있지만, 단순한 기계 하나를 뜻하지 않습니다. dispositif는 담론, 제도, 법, 건축, 기술, 인터페이스, 행정 절차, 이미지, 습관, 데이터 체계가 서로 맞물려 특정한 가시성과 행동을 생산하는 전략적 배열입니다. 미디어아트에서 이 개념은 작품을 “스크린 위의 이미지”나 “센서가 달린 오브젝트”로만 보지 않게 만듭니다. 작품이 놓인 전시장, 관객의 동선, 카메라의 위치, 데이터의 저장 방식, 기관의 설명문, 플랫폼의 규칙까지 하나의 작동 환경으로 읽게 합니다.</p>
+<h2>장치는 기계가 아니라 관계의 배치다</h2>
+<p>dispositif를 이해하는 가장 쉬운 방법은 전시장에 들어가는 장면을 떠올리는 것입니다. 관객은 작품 앞에 선다고 생각하지만, 실제로는 이미 여러 층의 배열 속으로 들어갑니다. 입구의 안내문은 무엇을 작품으로 보아야 하는지 알려 줍니다. 조명은 어떤 부분을 중요하게 보이게 합니다. 센서는 몸의 속도와 위치를 측정합니다. 벽면 텍스트는 특정 해석을 권위 있게 배치합니다. 촬영 금지 표시는 이미지의 소유와 유통을 제한합니다. 작품 설명 속 “참여”, “몰입”, “상호작용” 같은 말은 관객에게 어떤 태도를 기대합니다.</p>
+<p>이 모든 것은 개별 요소로는 사소해 보일 수 있습니다. 그러나 함께 작동할 때 그것은 관객의 감각과 행동을 조직합니다. dispositif는 바로 이런 결합을 가리킵니다. 기술 장치만이 아니라 그것을 둘러싼 말, 규칙, 공간, 신체 습관, 제도적 권위가 함께 하나의 작동 조건을 만듭니다. 그래서 어떤 미디어아트 작품을 분석할 때 “어떤 기술을 썼는가”만 묻는 것은 충분하지 않습니다. “그 기술은 어떤 공간과 설명, 어떤 관객 모델, 어떤 데이터 흐름, 어떤 기관적 권위와 연결되어 있는가”를 함께 물어야 합니다.</p>
+<p>이 관점은 작품을 폄하하지 않습니다. 오히려 작품을 더 넓은 힘의 장 안에서 진지하게 읽게 합니다. 좋은 설치 작품은 단지 감각적 효과를 주는 장치가 아니라, 우리가 이미 익숙해진 감시, 안내, 자동화, 참여, 기록의 배열을 다시 보이게 만드는 장치가 될 수 있습니다.</p>
+<h2>미디어아트는 장치를 숨기거나 드러낸다</h2>
+<p>많은 전시는 기술을 마치 투명한 매개처럼 보이게 합니다. 센서는 자연스럽게 반응하고, 알고리즘은 즉각적으로 판단하며, 인터페이스는 사용자의 선택을 기다리는 듯합니다. 이때 dispositif는 뒤로 물러납니다. 관객은 자신이 자유롭게 움직이고 있다고 느끼지만, 실제로는 정해진 경로와 선택지, 인식 가능한 몸짓, 기록 가능한 데이터 형식 안에서 움직입니다.</p>
+<p>반대로 어떤 미디어아트는 이 숨겨진 배열을 드러냅니다. 감시 카메라의 시선을 전시장 안으로 가져오거나, 관객의 움직임이 데이터로 바뀌는 과정을 노출하거나, 인터페이스가 중립적인 창이 아니라 행동을 유도하는 규칙이라는 점을 보여 줍니다. 이런 작품에서 중요한 것은 기술적 새로움만이 아닙니다. 작품은 “이미지의 내용”보다 이미지가 어떤 행정적·기술적·공간적 절차를 통해 작동하는지 보여 줍니다.</p>
+<p>예를 들어 작동적 이미지, 감시 미학, 인터페이스 비평, 데이터베이스 미학, 플랫폼 거버넌스 같은 주제들은 모두 dispositif적 질문과 연결됩니다. 이미지는 더 이상 감상자 앞에 놓인 완성된 표면만이 아닙니다. 이미지는 분류하고, 추적하고, 추천하고, 통제하고, 인증하고, 예측하는 절차의 일부가 됩니다. 이때 미디어아트는 이미지가 세계를 재현하는 방식보다 이미지가 세계 안에서 어떤 일을 하도록 배치되는지를 묻는 예술이 됩니다.</p>
+<h2>AI 시대의 dispositif는 더 조용하다</h2>
+<p>생성형 AI와 기계비전 시스템은 dispositif의 문제를 더 날카롭게 만듭니다. AI 이미지는 프롬프트, 학습 데이터, 모델 구조, 저작권 정책, 플랫폼 필터, 사용자 인터페이스, 평가 지표, 배포 규칙이 결합된 결과입니다. 그런데 완성된 이미지만 보면 이 복잡한 배열은 사라집니다. 우리는 “AI가 만든 이미지”라고 말하지만, 그 이미지 뒤에는 무엇을 학습 가능한 데이터로 만들었는지, 어떤 이미지가 안전하거나 위험한 것으로 분류되는지, 어떤 스타일이 쉽게 호출되는지, 어떤 언어가 결과를 더 잘 통제하는지 같은 조건들이 숨어 있습니다.</p>
+<p>AI 전시 역시 마찬가지입니다. 관객은 화면 앞에서 결과물을 보지만, 실제 작품 경험은 데이터셋의 역사, 모델의 기본값, 프롬프트 문화, 기관의 설명 방식, 저작권 논쟁, 플랫폼의 검열 정책, 전시장의 몰입 연출이 함께 만든 배치 속에서 발생합니다. AI를 단순히 “새로운 도구”로만 보면 이 배열은 보이지 않습니다. dispositif 관점은 AI를 도구가 아니라 감각과 판단, 창작 권한과 책임을 재분배하는 환경으로 읽게 합니다.</p>
+<p>그래서 오늘의 비평은 결과 이미지의 아름다움만 평가해서는 부족합니다. 어떤 데이터가 보이지 않는 재료가 되었는지, 어떤 인터페이스가 사용자의 상상력을 특정한 선택지로 좁혔는지, 어떤 기관 언어가 자동화를 창의성처럼 포장했는지, 어떤 관객 행동이 기록 가능한 참여로 설계되었는지를 함께 봐야 합니다.</p>
+<h2>남는 질문: 작품은 어떤 배치를 자연스럽게 만드는가</h2>
+<p>Dispositif는 어려운 철학 용어처럼 보이지만, 실제로는 매우 실용적인 비평 도구입니다. 어떤 작품이나 플랫폼, 전시를 볼 때 다음 질문을 던지게 만들기 때문입니다. 이 장면에서 무엇이 보이도록 허락되었는가. 무엇은 배경으로 밀려났는가. 관객은 어떤 방식으로 움직이고 선택하고 기록되도록 설계되었는가. 기술은 중립적 도구처럼 보이지만 실제로는 어떤 제도와 언어, 권력과 결합되어 있는가.</p>
+<p>좋은 미디어아트는 이 질문을 회피하지 않습니다. 오히려 우리가 너무 자연스럽게 받아들이는 가시성의 조건을 흔듭니다. 보이는 것의 내용보다, 보이게 만드는 배열을 보게 할 때 작품은 단순한 기술 시연을 넘어 비평적 장치가 됩니다. 결국 dispositif를 묻는다는 것은 이런 질문으로 돌아오는 일입니다. 지금 내 앞의 이미지는 무엇을 보여 주는가가 아니라, <strong>이 이미지를 보게 만든 세계는 어떤 방식으로 조직되어 있는가</strong>.</p>
+<hr>
+<p>이 글은 DECK의 <code>Dispositif</code> 개념 노트를 바탕으로 공개 블로그용 에세이로 재구성했습니다. 주요 참조 축은 Michel Foucault의 dispositif 개념, apparatus theory, 감시 미학, 작동적 이미지, 인터페이스 비평, AI 이미지/전시 분석입니다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/software-as-the-grammar-of-culture/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>소프트웨어는 어떻게 문화의 문법이 되었나</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,5 +1,24 @@
 [
   {
+    "slug": "who-arranged-what-we-see",
+    "file": "_built/who-arranged-what-we-see.md",
+    "title": "보이는 것은 누가 배열했는가",
+    "description": "A public DEXA essay on dispositif as the hidden arrangement of institutions, interfaces, images, bodies, and rules that makes media art and AI systems appear natural.",
+    "category": "Article",
+    "tags": [
+      "media-theory",
+      "media-art",
+      "dispositif",
+      "apparatus",
+      "AI",
+      "surveillance",
+      "exhibition"
+    ],
+    "date": "2026-05-07",
+    "thumbnail": "images/dispositif-as-hidden-arrangement-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "software-as-the-grammar-of-culture",
     "file": "_built/software-as-the-grammar-of-culture.md",
     "title": "소프트웨어는 어떻게 문화의 문법이 되었나",
