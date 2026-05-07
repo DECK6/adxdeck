@@ -1,5 +1,23 @@
 [
   {
+    "slug": "evidence-as-public-interface",
+    "file": "_built/evidence-as-public-interface.md",
+    "title": "증거는 어떻게 다시 시민의 것이 되는가",
+    "description": "An essay on Forensic Architecture as a research agency that turns spatial modeling, open-source images, and exhibition formats into public evidence, and on what its method demands from contemporary media art.",
+    "category": "Post",
+    "tags": [
+      "blog",
+      "media-art",
+      "investigative-aesthetics",
+      "operational-image",
+      "forensic-architecture",
+      "human-rights"
+    ],
+    "date": "2026-05-08",
+    "thumbnail": "images/2026-05-08-forensic-architecture-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "who-arranged-what-we-see",
     "file": "_built/who-arranged-what-we-see.md",
     "title": "보이는 것은 누가 배열했는가",
