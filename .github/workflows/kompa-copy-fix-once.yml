@@ -1,0 +1,55 @@
+name: One-time KOMPA Copy Fix
+
+on:
+  push:
+    paths:
+      - '.github/workflows/kompa-copy-fix-once.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Patch KOMPA index copy behavior
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          index_path = Path('KOMPA/index.html')
+          s = index_path.read_text(encoding='utf-8')
+          s = s.replace('&quot;', '"')
+
+          old_start = "buttons.forEach(btn=>btn.addEventListener('click',async()=>{const block=btn.closest('.copy-block');"
+          old_end = "btn.textContent='복사됨';btn.classList.add('copied');setTimeout(()=>{btn.textContent='복사';btn.classList.remove('copied')},1400);}));"
+          new = r"""buttons.forEach(btn=>btn.addEventListener('click',async()=>{const block=btn.closest('.copy-block');const code=block.querySelector('pre code');const text=code?code.textContent:(block.dataset.copy||'').replace(/\\n/g,'\n');try{await navigator.clipboard.writeText(text);}catch(e){const ta=document.createElement('textarea');ta.value=text;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}btn.textContent='복사됨';btn.classList.add('copied');setTimeout(()=>{btn.textContent='복사';btn.classList.remove('copied')},1400);}));"""
+
+          if new not in s:
+              start = s.find(old_start)
+              end = s.find(old_end, start)
+              if start == -1 or end == -1:
+                  raise SystemExit('copy handler pattern not found')
+              end += len(old_end)
+              s = s[:start] + new + s[end:]
+
+          if '&quot;' in s:
+              raise SystemExit('HTML entity quotes remain')
+          if "const code=block.querySelector('pre code')" not in s:
+              raise SystemExit('copy handler replacement missing')
+
+          index_path.write_text(s, encoding='utf-8')
+          Path('.github/workflows/kompa-copy-fix-once.yml').unlink(missing_ok=True)
+          PY
+
+      - name: Commit fixed index and remove one-time workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add KOMPA/index.html .github/workflows/kompa-copy-fix-once.yml
+          git diff --cached --quiet || git commit -m "fix: repair KOMPA prompt copy buttons"
+          git push
