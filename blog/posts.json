@@ -1,5 +1,22 @@
 [
   {
+    "slug": "machine-time-is-not-human-time",
+    "file": "_built/machine-time-is-not-human-time.md",
+    "title": "기계는 인간과 다른 시간으로 작동한다",
+    "description": "An essay on Wolfgang Ernst's media archaeology and why contemporary media art, AI, and infrastructure should be read through machine time, signal processing, and operative archives rather than human narrative alone.",
+    "category": "Article",
+    "tags": [
+      "media-theory",
+      "media-archaeology",
+      "signal",
+      "time",
+      "DEXA"
+    ],
+    "date": "2026-05-11",
+    "thumbnail": "images/2026-05-11-machine-time-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "evidence-as-public-interface",
     "file": "_built/evidence-as-public-interface.md",
     "title": "증거는 어떻게 다시 시민의 것이 되는가",
