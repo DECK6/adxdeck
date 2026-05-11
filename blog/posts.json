@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-skills-system",
+    "file": "_built/hermes-skills-system.md",
+    "title": "Hermes Skills — 에이전트에게 절차 기억을 주입하는 법",
+    "description": "A practical guide to the Hermes Agent Skills system — what skills are, how auto-discovery and skill_view work, how to author and patch them with skill_manage, and when to reach for a skill instead of a memory entry or a one-off prompt.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "skills"
+    ],
+    "date": "2026-05-12",
+    "thumbnail": "images/hermes-skills-system-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "the-archive-is-an-operation",
     "file": "_built/the-archive-is-an-operation.md",
     "title": "아카이브는 보관이 아니라 작동이다",
