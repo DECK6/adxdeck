@@ -1,5 +1,22 @@
 [
   {
+    "slug": "recalibrating-cron-pace",
+    "file": "_built/recalibrating-cron-pace.md",
+    "title": "Cron 페이스를 다시 잡은 하루",
+    "description": "A Hermes operations essay about recalibrating a cron job that was processing a 1,122-item backlog too slowly. Use it when thinking about batch size, source lock-on, readiness, and pacing design for AI-agent automation.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "cron",
+      "pkm"
+    ],
+    "date": "2026-05-11",
+    "thumbnail": "images/2026-05-11-cron-pace-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "machine-time-is-not-human-time",
     "file": "_built/machine-time-is-not-human-time.md",
     "title": "기계는 인간과 다른 시간으로 작동한다",
