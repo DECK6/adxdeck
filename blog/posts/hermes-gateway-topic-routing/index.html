@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Gateway Topic Routing: 여러 플랫폼의 대화를 작업 경계로 바꾸는 법 | DEXA Blog</title>
+    <meta name="description" content="Explains how the Hermes Agent gateway turns messaging platforms, topics, and mention rules into safer routing boundaries. Use this article to design quieter multi-agent conversations across chat surfaces." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-gateway-topic-routing/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Gateway Topic Routing: 여러 플랫폼의 대화를 작업 경계로 바꾸는 법" />
+    <meta property="og:description" content="Explains how the Hermes Agent gateway turns messaging platforms, topics, and mention rules into safer routing boundaries. Use this article to design quieter multi-agent conversations across chat surfaces." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-gateway-topic-routing/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/2026-05-11-hermes-gateway-topic-routing-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-05-11" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Gateway Topic Routing: 여러 플랫폼의 대화를 작업 경계로 바꾸는 법" />
+    <meta name="twitter:description" content="Explains how the Hermes Agent gateway turns messaging platforms, topics, and mention rules into safer routing boundaries. Use this article to design quieter multi-agent conversations across chat surfaces." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/2026-05-11-hermes-gateway-topic-routing-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Hermes Gateway Topic Routing: 여러 플랫폼의 대화를 작업 경계로 바꾸는 법","description":"Explains how the Hermes Agent gateway turns messaging platforms, topics, and mention rules into safer routing boundaries. Use this article to design quieter multi-agent conversations across chat surfaces.","image":"https://dexa.art/blog/images/2026-05-11-hermes-gateway-topic-routing-cover.png","datePublished":"2026-05-11","dateModified":"2026-05-11","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-gateway-topic-routing/"},"keywords":"hermes, ai-agent, workflow"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 5월 11일</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span></div>
+            </div>
+            <div class="prose-dexa">
+<h1>Hermes Gateway Topic Routing: 여러 플랫폼의 대화를 작업 경계로 바꾸는 법</h1>
+<p><img src="/blog/images/2026-05-11-hermes-gateway-topic-routing-cover.png" alt="Abstract cover for Hermes gateway topic routing" loading="lazy"></p>
+<h2>Lede</h2>
+<p>AI 에이전트가 터미널 안에만 있을 때는 대화의 경계가 비교적 단순하다. 한 사람이 한 창에 요청을 입력하고, 에이전트가 그 세션 안에서 답한다. 하지만 Telegram, Discord, Slack, WhatsApp, Signal, Matrix, Email 같은 메시징 표면으로 에이전트가 들어오면 상황이 달라진다. 같은 사람이 여러 공간에서 부르고, 여러 봇이 같은 메시지를 볼 수 있으며, 자동화 알림과 사람의 지시가 한 타임라인에 섞인다.</p>
+<p>Hermes Gateway는 이 메시징 표면을 단순한 채팅 연결이 아니라 작업 입구로 다룬다. <code>hermes gateway setup</code>, <code>hermes gateway run</code>, <code>hermes gateway status</code> 같은 명령은 플랫폼 연결과 실행 상태를 관리하고, Gateway는 들어온 메시지를 프로필, 세션, topic 또는 thread의 맥락으로 라우팅한다. 그래서 중요한 질문은 “어디서 대화할 수 있는가”가 아니라 “어떤 대화가 어떤 에이전트의 일로 해석되는가”가 된다.</p>
+<h2>개념</h2>
+<p>Gateway의 핵심은 멀티 플랫폼 접근성보다 경계 설계에 있다. 메시징 앱은 사람에게 익숙한 인터페이스지만, 에이전트에게는 입력 채널이다. 채널과 topic, thread를 작업 맥락으로 해석하면 한 플랫폼 안에서도 일반 대화, 지식 정리, 개발 요청, 운영 알림을 서로 다른 흐름으로 나눌 수 있다. 이렇게 나눠야 에이전트가 모든 메시지를 자기 일로 오해하지 않는다.</p>
+<p>특히 여러 에이전트가 같은 플랫폼에 연결될 때는 mention rule이 안전장치가 된다. 호출받지 않은 봇은 기다리고, 실제 사람의 지시와 bot-to-bot 조율 메시지를 구분해야 한다. 이 원칙이 없으면 한 봇의 상태 보고가 다른 봇의 새 작업으로 오해되고, 다시 그 응답이 또 다른 봇을 깨우는 echo loop가 생긴다. Gateway topic routing은 말을 더 많이 하게 만드는 장치가 아니라, 말해야 할 때와 침묵해야 할 때를 가르는 장치다.</p>
+<h2>사용법</h2>
+<p>먼저 플랫폼 연결은 Gateway 명령 표면에서 점검한다. <code>hermes gateway setup</code>은 연결 설정의 출발점이고, <code>hermes gateway run</code> 또는 background service는 Gateway를 실행한다. 운영 중에는 <code>hermes gateway status</code>로 상태를 확인한다. 공개 글이나 팀 문서에는 bot token, 실제 channel ID, 내부 account 값 같은 식별자를 남기지 않는 편이 안전하다. 필요한 것은 값 자체가 아니라 어떤 표면이 어떤 역할로 라우팅되는지에 대한 규칙이다.</p>
+<p>그 다음 topic 또는 thread를 역할별 회의실처럼 설계한다. 넓은 대화 공간은 최종 질문과 응답을 위한 곳으로 두고, 지식 정리, 개발, 운영 알림 같은 흐름은 별도의 topic 또는 thread로 나눈다. 각 공간에는 응답 가능한 프로필, 반드시 mention이 필요한지, bot 메시지를 어떻게 취급할지, 완료 보고 형식을 정한다. 이 규칙은 코드보다 문서가 먼저다. 사람이 읽어도 “이 메시지는 누가 처리해야 하는가”를 알 수 있어야 한다.</p>
+<h2>짧은 사이드바</h2>
+<p>한 운영 사례에서는 여러 역할의 봇이 같은 메시징 플랫폼에 들어오면서 소음이 먼저 늘어났다. 해결책은 더 강한 모델이 아니라 더 단순한 출입 규칙이었다. 실제 사람의 직접 지시만 새 작업으로 보고, 다른 봇의 요약이나 알림은 명시적 위임이 없는 한 맥락으로만 취급했다. 그 뒤부터 멀티봇 대화는 합창이 아니라 회의실 운영에 가까워졌다.</p>
+<h2>Pitfalls</h2>
+<p>첫 번째 함정은 topic을 이름표로만 쓰는 것이다. topic이 라우팅 규칙과 연결되지 않으면 예쁜 폴더일 뿐이다. 두 번째 함정은 bot 메시지를 사람의 지시와 같은 무게로 처리하는 것이다. 이는 echo loop와 role drift의 가장 빠른 원인이다. 세 번째 함정은 공개 문서에 실제 식별자를 남기는 것이다. topic 번호나 channel 값 자체보다 중요한 것은 역할, mention rule, handoff 형식이다.</p>
+<h2>클로징</h2>
+<p>Hermes Gateway를 잘 쓰면 메시징 앱은 단순한 원격 채팅창이 아니라 작업 경계가 된다. 어디서든 에이전트를 부를 수 있다는 장점은, 어디서든 아무 봇이나 깨어나도 된다는 뜻이 아니다. 좋은 Gateway 설계는 필요한 메시지를 정확한 프로필에게 보내고, 나머지 에이전트가 조용히 기다리게 만든다. 멀티 플랫폼 운영의 성숙도는 연결 수가 아니라 라우팅의 침묵에서 드러난다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-profiles-and-workers/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes Profiles와 Workers: AI에게 역할과 작업 레인을 나누는 법</span></a>
+                <a id="next-post" href="/blog/posts/recalibrating-cron-pace/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span>Hermes Cron 시스템 사용법</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -16,6 +16,21 @@
     "author": "Deck"
   },
   {
+    "slug": "hermes-gateway-topic-routing",
+    "file": "_built/hermes-gateway-topic-routing.md",
+    "title": "Hermes Gateway Topic Routing: 여러 플랫폼의 대화를 작업 경계로 바꾸는 법",
+    "description": "Explains how the Hermes Agent gateway turns messaging platforms, topics, and mention rules into safer routing boundaries. Use this article to design quieter multi-agent conversations across chat surfaces.",
+    "category": "Article",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow"
+    ],
+    "date": "2026-05-11",
+    "thumbnail": "images/2026-05-11-hermes-gateway-topic-routing-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "hermes-profiles-and-workers",
     "file": "_built/hermes-profiles-and-workers.md",
     "title": "Hermes Profiles와 Workers: AI에게 역할과 작업 레인을 나누는 법",
