@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Auth Readiness: 예약된 자동화가 끝까지 실행되게 만드는 법 | DEXA Blog</title>
+    <meta name="description" content="Explains Hermes Agent authentication, OAuth login, credential pools, and readiness checks for automated work. Use this article to prevent scheduled agent workflows from silently failing when external credentials expire." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-auth-readiness/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Auth Readiness: 예약된 자동화가 끝까지 실행되게 만드는 법" />
+    <meta property="og:description" content="Explains Hermes Agent authentication, OAuth login, credential pools, and readiness checks for automated work. Use this article to prevent scheduled agent workflows from silently failing when external credentials expire." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-auth-readiness/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/2026-05-11-oauth-silent-failure-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-05-11" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Auth Readiness: 예약된 자동화가 끝까지 실행되게 만드는 법" />
+    <meta name="twitter:description" content="Explains Hermes Agent authentication, OAuth login, credential pools, and readiness checks for automated work. Use this article to prevent scheduled agent workflows from silently failing when external credentials expire." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/2026-05-11-oauth-silent-failure-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Hermes Auth Readiness: 예약된 자동화가 끝까지 실행되게 만드는 법","description":"Explains Hermes Agent authentication, OAuth login, credential pools, and readiness checks for automated work. Use this article to prevent scheduled agent workflows from silently failing when external credentials expire.","image":"https://dexa.art/blog/images/2026-05-11-oauth-silent-failure-cover.png","datePublished":"2026-05-11","dateModified":"2026-05-11","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-auth-readiness/"},"keywords":"hermes, ai-agent, workflow"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 5월 11일</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span></div>
+            </div>
+            <div class="prose-dexa">
+<h1>Hermes Auth Readiness: 예약된 자동화가 끝까지 실행되게 만드는 법</h1>
+<p><img src="/blog/images/2026-05-11-oauth-silent-failure-cover.png" alt="Abstract cover for Hermes auth readiness" loading="lazy"></p>
+<h2>Lede</h2>
+<p>자동화가 실패할 때 가장 위험한 장면은 큰 오류 메시지가 뜨는 순간이 아니다. 더 위험한 것은 아무 일도 일어나지 않는 것처럼 보이는데, 실제로는 필요한 외부 인증이 끊겨 작업이 끝까지 가지 못하는 상태다. 예약된 작업은 남아 있고, 스케줄도 정상이며, 프롬프트도 맞는데 provider나 GitHub, 메시징 플랫폼, 이미지 생성 계정 같은 외부 의존성이 만료되어 있으면 자동화는 마지막 단계에서 조용히 멈춘다.</p>
+<p>Hermes Agent의 auth와 credential pool은 이 문제를 운영 표면으로 끌어올리는 기능이다. <code>hermes login</code>은 OAuth 기반 provider 인증을 연결하고, <code>hermes auth add</code>, <code>hermes auth list</code>, <code>hermes auth status</code>, <code>hermes auth reset</code>은 여러 credential의 상태와 소진 여부를 다룬다. 즉 auth는 “처음 한 번 로그인하는 절차”가 아니라, 자동화가 지금도 완료 가능한지 확인하는 readiness 계층이다.</p>
+<h2>개념</h2>
+<p>Hermes는 provider-agnostic agent다. OpenRouter, Anthropic, Nous, OpenAI Codex, local model, 기타 custom endpoint처럼 다양한 모델 공급자를 사용할 수 있고, 일부 provider는 OAuth 로그인을 제공한다. 또한 credential pool을 쓰면 한 provider에 여러 credential을 등록하고, 실패나 rate limit 상황에서 다른 credential로 전환하는 운영 패턴을 만들 수 있다. 이 구조는 편리하지만 동시에 점검해야 할 상태도 늘어난다.</p>
+<p>Readiness 관점에서 중요한 구분은 “설정이 존재한다”와 “지금 성공할 수 있다”다. cron job이 등록되어 있어도 필요한 provider credential이 만료되면 실행은 실패한다. profile이 분리되어 있으면 한 프로필의 인증은 살아 있지만 다른 프로필의 인증은 비어 있을 수 있다. fallback provider가 있어도 실제로 호출 가능한 credential이 없다면 fallback은 문서상 계획에 그친다. Auth readiness는 이 차이를 사전에 드러내는 점검이다.</p>
+<h2>사용법</h2>
+<p>기본 점검은 공개 가능한 명령 표면에서 시작한다. <code>hermes login --provider openai-codex</code>처럼 OAuth provider를 연결하고, credential pool은 <code>hermes auth add</code>로 추가한다. 현재 상태는 <code>hermes auth list</code> 또는 <code>hermes auth status</code>로 확인한다. credential이 일시적으로 exhaustion 상태가 되었거나 rate limit 때문에 제외되었다면 <code>hermes auth reset PROVIDER</code>로 상태를 초기화할 수 있다. 로그아웃이나 재인증이 필요할 때는 <code>hermes auth logout</code>과 provider별 login 절차를 분리해서 다룬다.</p>
+<p>자동화에는 이 점검을 실행 전 checklist로 붙이는 편이 좋다. 예약 작업을 만들 때는 프롬프트와 스케줄만 보지 말고, 필요한 provider, tool, repo, 메시징 delivery가 각각 인증을 요구하는지 확인한다. 특히 장기 실행 cron, 게시 워크플로, 이미지 생성, Git push처럼 외부 시스템을 통과하는 작업은 “마지막 성공 로그”보다 “지금 dry-run 또는 status check가 통과하는가”가 더 중요하다.</p>
+<h2>짧은 사이드바</h2>
+<p>한 운영 사례에서는 블로그 발행 자동화가 예약되어 있었지만 OAuth 상태가 깨지면서 실제 발행이 조용히 멈췄다. 문제는 스케줄러가 사라진 것이 아니라, 발행에 필요한 외부 credential이 더 이상 유효하지 않았다는 점이었다. 이후 기준은 단순해졌다. “job exists”는 readiness가 아니다. readiness는 “job can complete its external dependencies”다.</p>
+<h2>Pitfalls</h2>
+<p>첫 번째 함정은 인증을 설치 단계로만 보는 것이다. OAuth token은 만료될 수 있고, provider credential은 rate limit이나 exhaustion 상태가 될 수 있다. 두 번째 함정은 profile별 상태 차이를 무시하는 것이다. 사용자 터미널에서는 인증되어 있어도 agent profile에서는 다른 HOME, 다른 credential store, 다른 config를 볼 수 있다. 세 번째 함정은 실패 알림 없이 조용히 끝나는 자동화다. scheduled job에는 실행 여부뿐 아니라 외부 의존성 실패를 드러내는 로그와 알림이 필요하다.</p>
+<h2>클로징</h2>
+<p>Hermes의 auth 기능은 모델을 부르기 위한 문지기이면서, 자동화의 건강 상태를 알려주는 센서다. 잘 설계된 자동화는 스케줄만 저장하지 않는다. 필요한 credential이 살아 있는지, pool이 소진되지 않았는지, fallback이 실제로 가능한지, profile마다 같은 전제가 성립하는지를 확인한다. 조용히 멈추는 자동화를 막으려면 로그인보다 readiness를 먼저 설계해야 한다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-gateway-topic-routing/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes Gateway Topic Routing: 여러 플랫폼의 대화를 작업 경계로 바꾸는 법</span></a>
+                <a id="next-post" href="/blog/posts/recalibrating-cron-pace/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span>Hermes Cron 시스템 사용법</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

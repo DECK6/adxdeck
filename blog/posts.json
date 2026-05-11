@@ -16,6 +16,21 @@
     "author": "Deck"
   },
   {
+    "slug": "hermes-auth-readiness",
+    "file": "_built/hermes-auth-readiness.md",
+    "title": "Hermes Auth Readiness: 예약된 자동화가 끝까지 실행되게 만드는 법",
+    "description": "Explains Hermes Agent authentication, OAuth login, credential pools, and readiness checks for automated work. Use this article to prevent scheduled agent workflows from silently failing when external credentials expire.",
+    "category": "Article",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow"
+    ],
+    "date": "2026-05-11",
+    "thumbnail": "images/2026-05-11-oauth-silent-failure-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "hermes-gateway-topic-routing",
     "file": "_built/hermes-gateway-topic-routing.md",
     "title": "Hermes Gateway Topic Routing: 여러 플랫폼의 대화를 작업 경계로 바꾸는 법",
