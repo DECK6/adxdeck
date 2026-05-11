@@ -2,15 +2,14 @@
   {
     "slug": "recalibrating-cron-pace",
     "file": "_built/recalibrating-cron-pace.md",
-    "title": "Cron 페이스를 다시 잡은 하루",
-    "description": "A Hermes operations essay about recalibrating a cron job that was processing a 1,122-item backlog too slowly. Use it when thinking about batch size, source lock-on, readiness, and pacing design for AI-agent automation.",
-    "category": "Post",
+    "title": "Hermes Cron 시스템 사용법",
+    "description": "A practical guide to Hermes Cron for designing recurring AI-agent jobs with schedules, self-contained prompts, skills, delivery, scripts, and pacing rules. Use it when deciding how a repeated automation should run and report its work.",
+    "category": "Article",
     "tags": [
       "hermes",
       "ai-agent",
       "workflow",
-      "cron",
-      "pkm"
+      "cron"
     ],
     "date": "2026-05-11",
     "thumbnail": "images/2026-05-11-cron-pace-cover.png",
@@ -19,19 +18,18 @@
   {
     "slug": "machine-time-is-not-human-time",
     "file": "_built/machine-time-is-not-human-time.md",
-    "title": "기계는 인간과 다른 시간으로 작동한다",
-    "description": "An essay on Wolfgang Ernst's media archaeology and why contemporary media art, AI, and infrastructure should be read through machine time, signal processing, and operative archives rather than human narrative alone.",
+    "title": "Hermes 자동화의 시간 모델",
+    "description": "A guide to choosing the right time model in Hermes automation: cron for recurring work, kanban dispatcher for durable queued work, and delegate_task for synchronous burst work. Use it when deciding how an AI-agent task should persist, retry, or return.",
     "category": "Article",
     "tags": [
-      "media-theory",
-      "media-archaeology",
-      "signal",
-      "time",
-      "DEXA"
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "automation"
     ],
     "date": "2026-05-11",
     "thumbnail": "images/2026-05-11-machine-time-cover.png",
-    "author": "육대근"
+    "author": "Deck"
   },
   {
     "slug": "evidence-as-public-interface",
