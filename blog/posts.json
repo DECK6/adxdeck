@@ -16,6 +16,21 @@
     "author": "Deck"
   },
   {
+    "slug": "hermes-profiles-and-workers",
+    "file": "_built/hermes-profiles-and-workers.md",
+    "title": "Hermes Profiles와 Workers: AI에게 역할과 작업 레인을 나누는 법",
+    "description": "Explains how Hermes Agent profiles and worker lanes separate agent state, tools, and durable task handoffs. Use this article to understand how to turn one assistant into a quieter role-based operating team.",
+    "category": "Article",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow"
+    ],
+    "date": "2026-05-11",
+    "thumbnail": "images/2026-05-11-hermes-profiles-workers-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "machine-time-is-not-human-time",
     "file": "_built/machine-time-is-not-human-time.md",
     "title": "Hermes 자동화의 시간 모델",
