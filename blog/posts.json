@@ -1,5 +1,21 @@
 [
   {
+    "slug": "the-archive-is-an-operation",
+    "file": "_built/the-archive-is-an-operation.md",
+    "title": "아카이브는 보관이 아니라 작동이다",
+    "description": "An essay on Wolfgang Ernst's media archaeology: why the archive must be read as a technical operation of addressing, replay, and machine time rather than as a cultural site of memory, and what that shift means for sound, signal, and contemporary media art.",
+    "category": "Article",
+    "tags": [
+      "media-theory",
+      "media-archaeology",
+      "archive",
+      "time"
+    ],
+    "date": "2026-05-12",
+    "thumbnail": "images/2026-05-12-archive-as-operation-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "recalibrating-cron-pace",
     "file": "_built/recalibrating-cron-pace.md",
     "title": "Hermes Cron 시스템 사용법",
