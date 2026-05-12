@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>몸은 어떻게 실시간 인터페이스가 되는가 | DEXA Blog</title>
+    <meta name="description" content="An essay on Daito Manabe's body-centered media art: how biosignals, sensors, real-time control, choreography, machine learning, and stage engineering turn the human body into an interface rather than a stable expressive origin." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/the-body-as-realtime-interface/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="몸은 어떻게 실시간 인터페이스가 되는가" />
+    <meta property="og:description" content="An essay on Daito Manabe's body-centered media art: how biosignals, sensors, real-time control, choreography, machine learning, and stage engineering turn the human body into an interface rather than a stable expressive origin." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/the-body-as-realtime-interface/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/2026-05-13-body-as-realtime-interface-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-05-13" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="performance" />
+    <meta property="article:tag" content="realtime" />
+    <meta property="article:tag" content="body-interface" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="몸은 어떻게 실시간 인터페이스가 되는가" />
+    <meta name="twitter:description" content="An essay on Daito Manabe's body-centered media art: how biosignals, sensors, real-time control, choreography, machine learning, and stage engineering turn the human body into an interface rather than a stable expressive origin." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/2026-05-13-body-as-realtime-interface-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"몸은 어떻게 실시간 인터페이스가 되는가","description":"An essay on Daito Manabe's body-centered media art: how biosignals, sensors, real-time control, choreography, machine learning, and stage engineering turn the human body into an interface rather than a stable expressive origin.","image":"https://dexa.art/blog/images/2026-05-13-body-as-realtime-interface-cover.png","datePublished":"2026-05-13","dateModified":"2026-05-13","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/the-body-as-realtime-interface/"},"keywords":"media-art, performance, realtime, body-interface"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 5월 13일</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">performance</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">realtime</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">body-interface</span></div>
+            </div>
+            <div class="prose-dexa">
+<h1>몸은 어떻게 실시간 인터페이스가 되는가</h1>
+<p><img src="/blog/images/2026-05-13-body-as-realtime-interface-cover.png" alt="cover" loading="lazy"></p>
+<p>다이토 마나베(Daito Manabe)의 작업을 볼 때 가장 먼저 눈에 들어오는 것은 기술이다. 전기 자극을 받은 얼굴, 움직임을 따라 반응하는 빛, 무용수와 드론이 동시에 움직이는 무대, AI와 모션 캡처가 결합된 안무. 하지만 이 작업들을 “최신 기술을 쓴 공연”으로만 읽으면 핵심은 사라진다. 마나베가 반복해서 묻는 것은 더 근본적이다. 몸은 어디까지 입력 장치가 될 수 있는가. 감각은 어디까지 제어 신호가 될 수 있는가. 무대는 언제부터 이미지가 아니라 실시간 시스템이 되는가.</p>
+<p>그의 작업에서 몸은 더 이상 표현의 출발점으로 안정되어 있지 않다. 몸은 센서로 읽히고, 데이터로 분해되고, 전기 자극으로 다시 움직이며, 빛과 소리와 영상의 제어값으로 번역된다. 즉 몸은 감정을 표현하는 자연스러운 기관이 아니라, 읽고 쓰고 매핑하고 동기화할 수 있는 인터페이스가 된다. 이 전환이 마나베를 동시대 미디어아트에서 중요한 작가로 만든다.</p>
+<h2>얼굴은 감정의 표면이 아니라 회로가 된다</h2>
+<p>마나베의 초기 얼굴 전기 자극 작업은 이 문제를 가장 직설적으로 보여준다. 얼굴은 보통 내면 감정이 밖으로 드러나는 장소로 여겨진다. 우리는 표정을 보고 기쁨, 고통, 놀람, 불안을 읽는다. 그런데 외부 전기 신호가 얼굴 근육을 움직이는 순간, 표정은 더 이상 순수한 내면의 표현이 아니다. 얼굴은 회로와 전극과 타이밍에 의해 작동하는 출력 장치처럼 보인다.</p>
+<p>이 장면이 불편한 이유는 단순히 낯설어서가 아니다. 그것은 우리가 인간적이라고 믿어 온 신체의 마지막 표면이 얼마나 쉽게 기술적 제어의 장으로 바뀔 수 있는지 보여주기 때문이다. 마나베의 얼굴은 사이보그적 은유가 아니라 실제 인터페이스다. 신체는 기계에 의해 확장되는 동시에, 기계에 의해 침범된다. 그의 작업은 이 양가성을 숨기지 않는다.</p>
+<p>그래서 초기 신체 실험은 테크 데모가 아니라 신체 자율성에 대한 미디어아트적 질문으로 읽힌다. 표정은 누가 만드는가. 몸의 움직임은 어디까지 내 의지인가. 감각이 신호로 변환되는 순간, 인간은 표현하는 주체인가, 아니면 시스템의 일부인가. 마나베의 작업은 이 질문을 설명하지 않고 직접 작동시킨다.</p>
+<h2>무대는 사전 제작된 이미지가 아니라 동기화된 시스템이다</h2>
+<p>마나베의 작업은 얼굴 실험에 머물지 않고 대형 공연과 무대공학으로 확장된다. Perfume, Björk, Squarepusher, ELEVENPLAY와의 협업은 그의 시스템 미학이 어떻게 대중 공연의 규모로 옮겨갈 수 있는지를 보여준다. 여기서 무대는 단순히 영상을 틀고 조명을 비추는 장소가 아니다. 모션 캡처, 카메라, LED, 프로젝션, 사운드, 조명, 무용수의 움직임이 하나의 실시간 제어 구조 안에서 맞물린다.</p>
+<p>이때 중요한 것은 화려함보다 동기화다. 이미지가 아무리 아름다워도 신체, 소리, 빛, 카메라, 센서가 어긋나면 작업의 힘은 사라진다. 마나베의 미학은 스크린샷보다 타이밍에 가깝다. 정확한 순간에 입력이 읽히고, 처리되고, 출력되고, 다시 퍼포머의 몸과 관객의 감각으로 돌아오는 과정이 작품의 본체다.</p>
+<p>이 점에서 그는 연구실의 프로토타입과 엔터테인먼트 산업의 스펙터클을 분리하지 않는다. 실험적 센서 매핑은 공연 연출이 되고, 무대에서 검증된 기술은 다시 설치와 연구 프로젝트로 돌아간다. 많은 미디어아트가 전시장 안에서 기술을 보여준다면, 마나베는 기술이 관객 앞에서 실패 없이 작동해야 하는 라이브 조건 속으로 들어간다. 그 긴장이 그의 작업을 더 날카롭게 만든다.</p>
+<h2>안무는 데이터가 되고, 데이터는 다시 춤이 된다</h2>
+<p><em>discrete figures</em>와 <em>morphecore</em> 같은 작업에서 마나베는 몸을 더 복잡한 방식으로 다룬다. 움직임은 단순히 촬영되거나 기록되는 것이 아니라, 포즈와 궤적과 리듬의 데이터로 분해된다. 모션 캡처, 포토그래메트리, 머신러닝, 3D 스캔, 뇌 디코딩 같은 기술은 여기서 시각효과의 보조 장치가 아니다. 그것들은 안무가 무엇인지 다시 묻는 장치다.</p>
+<p>무용수의 몸은 데이터셋이 되고, 데이터셋은 다시 비인간적 움직임이나 아바타, 시뮬레이션, 증강현실 이미지로 돌아온다. 이 순환 속에서 춤은 더 이상 인간 몸의 순수한 표현만이 아니다. 춤은 분해되고, 예측되고, 합성되고, 다시 무대화되는 계산 가능한 사건이 된다. 하지만 이것이 곧 인간 퍼포머의 소멸을 뜻하지는 않는다. 오히려 마나베의 무대에서는 훈련된 인간 몸과 알고리즘 제어가 서로를 밀어내며 새로운 긴장을 만든다.</p>
+<p>그 긴장은 생성형 AI 시대에 특히 중요하다. 오늘의 AI 시스템은 이미지와 소리뿐 아니라 움직임과 몸의 스타일도 학습하고 재조합한다. 이때 마나베의 작업은 단순한 “AI 안무”보다 더 정교한 기준을 제공한다. 문제는 기계가 춤을 만들 수 있는가가 아니다. 어떤 몸의 데이터가 어떤 조건에서 수집되고, 어떤 규칙으로 분해되며, 어떤 무대 환경에서 다시 감각화되는가가 문제다.</p>
+<h2>한국 미디어아트와 공연 기술이 읽어야 할 지점</h2>
+<p>마나베의 작업은 한국 맥락에서도 유용한 참조점이다. 서울미디어시티비엔날레에 소개된 <em>Particles</em>처럼 그의 작업은 이미 한국의 제도권 미디어아트 안에서 수용된 바 있다. 더 넓게 보면 한국의 공연·K-pop 제작 환경은 정밀한 군무, LED 무대, XR 배경, 실시간 카메라 연출, 무선 제어 장치를 빠르게 흡수해 왔다. 이 환경에서 마나베의 작업은 단순한 해외 레퍼런스가 아니라, 기술과 안무를 하나의 시스템으로 설계하는 방법론으로 읽을 수 있다.</p>
+<p>다만 여기서 배워야 할 것은 장비 목록이 아니다. 센서를 쓰는가, 드론을 띄우는가, AI를 붙이는가보다 중요한 것은 입력-처리-출력의 구조가 작품의 논지와 어떻게 연결되는가다. 몸을 데이터로 만들었다면, 그 데이터화가 무엇을 드러내는가. 무대를 실시간 시스템으로 만들었다면, 그 실시간성이 관객의 감각을 어떻게 바꾸는가. 기술이 많아질수록 이런 질문은 더 필요해진다.</p>
+<h2>남는 판단 기준</h2>
+<p>마나베의 작업이 남기는 가장 강한 기준은 “몸을 이미지로 보여주는가, 아니면 몸이 시스템 안에서 어떻게 작동하는지 드러내는가”다. 전자는 시각효과에 머물 수 있다. 후자는 몸과 기술의 관계를 다시 묻게 만든다.</p>
+<p>동시대 미디어아트가 AI, 센서, XR, 로봇, 실시간 엔진을 더 많이 사용할수록 이 구분은 중요해진다. 좋은 기술 기반 작업은 장비를 자랑하지 않는다. 그것은 장비가 몸, 감각, 시간, 제어권을 어떻게 다시 배열하는지 보이게 만든다. 마나베의 작업은 그 배열이 아름답고 불안하며, 때로는 위험할 수 있다는 사실을 동시에 보여준다. 그래서 그의 무대에서 몸은 표현하는 주체이자, 제어되는 장치이자, 아직 완전히 이해되지 않은 인터페이스로 남는다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-skills-system/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes Skills — 에이전트에게 절차 기억을 주입하는 법</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

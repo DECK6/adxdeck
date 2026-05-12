@@ -1,5 +1,21 @@
 [
   {
+    "slug": "the-body-as-realtime-interface",
+    "file": "_built/the-body-as-realtime-interface.md",
+    "title": "몸은 어떻게 실시간 인터페이스가 되는가",
+    "description": "An essay on Daito Manabe's body-centered media art: how biosignals, sensors, real-time control, choreography, machine learning, and stage engineering turn the human body into an interface rather than a stable expressive origin.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "performance",
+      "realtime",
+      "body-interface"
+    ],
+    "date": "2026-05-13",
+    "thumbnail": "images/2026-05-13-body-as-realtime-interface-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "hermes-skills-system",
     "file": "_built/hermes-skills-system.md",
     "title": "Hermes Skills — 에이전트에게 절차 기억을 주입하는 법",
