@@ -1,5 +1,21 @@
 [
   {
+    "slug": "code-is-a-medium-of-conditions",
+    "file": "_built/code-is-a-medium-of-conditions.md",
+    "title": "코드는 이미지를 그리지 않고 조건을 만든다",
+    "description": "An essay on Casey Reas and why generative software art should be read not as image making with computers, but as the design of conditions, rules, execution, and variation that make code function as an artistic medium.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "generative-art",
+      "software-art",
+      "creative-coding"
+    ],
+    "date": "2026-05-13",
+    "thumbnail": "images/2026-05-13-code-is-a-medium-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "hermes-skills-system",
     "file": "_built/hermes-skills-system.md",
     "title": "Hermes Skills — 에이전트에게 절차 기억을 주입하는 법",
