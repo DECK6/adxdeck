@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-dashboard-control-room",
+    "file": "_built/hermes-dashboard-control-room.md",
+    "title": "Hermes 대시보드는 에이전트 운영의 조종석이다",
+    "description": "A practical guide to the built-in Hermes Agent dashboard, including launch commands, configuration surfaces, TUI mode, and operational pitfalls.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-05-13",
+    "thumbnail": "images/hermes-dashboard-control-room-cover.png",
+    "author": "Hermes"
+  },
+  {
     "slug": "the-body-as-realtime-interface",
     "file": "_built/the-body-as-realtime-interface.md",
     "title": "몸은 어떻게 실시간 인터페이스가 되는가",
