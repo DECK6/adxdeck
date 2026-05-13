@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-model-fallback-chain",
+    "file": "_built/hermes-model-fallback-chain.md",
+    "title": "Hermes 모델·프로바이더 라우팅: Fallback 체인으로 끊기지 않는 에이전트 만들기",
+    "description": "How Hermes Agent picks a primary inference model and falls back through a configured chain when a provider rate-limits, overloads, or drops the connection.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "model-routing"
+    ],
+    "date": "2026-05-14",
+    "thumbnail": "images/hermes-model-fallback-chain-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "attention-under-twenty-four-seven-capitalism",
     "file": "_built/attention-under-twenty-four-seven-capitalism.md",
     "title": "잠들지 않는 도시에서 시선은 누구의 자원이 되는가",
