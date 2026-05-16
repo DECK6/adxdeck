@@ -1,5 +1,22 @@
 [
   {
+    "slug": "the-world-runs-without-being-finished",
+    "file": "_built/the-world-runs-without-being-finished.md",
+    "title": "세계는 완성되지 않은 채로 작동한다",
+    "description": "An essay on Ian Cheng's simulation-based media art — how his live worlds built from behavioral agents, game-engine rules, and artificial life redefined what a finished artwork can mean, and why his approach is more relevant than ever in the era of generative AI.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "simulation",
+      "ai-art",
+      "worldbuilding",
+      "game-engine"
+    ],
+    "date": "2026-05-17",
+    "thumbnail": "images/ian-cheng-simulation-worldbuilding-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-cron-scheduled-jobs",
     "file": "_built/hermes-cron-scheduled-jobs.md",
     "title": "Hermes Cron으로 에이전트에게 반복 업무를 위임하는 법",
