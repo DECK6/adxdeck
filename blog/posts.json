@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-tools-and-toolsets",
+    "file": "_built/hermes-tools-and-toolsets.md",
+    "title": "Hermes가 손에 쥔 도구들: Toolsets로 에이전트 능력을 켜고 끄는 법",
+    "description": "A practical guide to Hermes Agent's built-in toolsets — what tools are available, how to enable or disable them per platform, how terminal backends work, and when to reach for the Tool Gateway instead of individual API keys.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "tools"
+    ],
+    "date": "2026-05-17",
+    "thumbnail": "images/hermes-tools-and-toolsets-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "the-world-runs-without-being-finished",
     "file": "_built/the-world-runs-without-being-finished.md",
     "title": "세계는 완성되지 않은 채로 작동한다",

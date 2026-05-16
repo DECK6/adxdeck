@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes가 손에 쥔 도구들: Toolsets로 에이전트 능력을 켜고 끄는 법 | DEXA Blog</title>
+    <meta name="description" content="A practical guide to Hermes Agent's built-in toolsets — what tools are available, how to enable or disable them per platform, how terminal backends work, and when to reach for the Tool Gateway instead of individual API keys." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-tools-and-toolsets/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes가 손에 쥔 도구들: Toolsets로 에이전트 능력을 켜고 끄는 법" />
+    <meta property="og:description" content="A practical guide to Hermes Agent's built-in toolsets — what tools are available, how to enable or disable them per platform, how terminal backends work, and when to reach for the Tool Gateway instead of individual API keys." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-tools-and-toolsets/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-tools-and-toolsets-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-05-17" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta property="article:tag" content="tools" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes가 손에 쥔 도구들: Toolsets로 에이전트 능력을 켜고 끄는 법" />
+    <meta name="twitter:description" content="A practical guide to Hermes Agent's built-in toolsets — what tools are available, how to enable or disable them per platform, how terminal backends work, and when to reach for the Tool Gateway instead of individual API keys." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-tools-and-toolsets-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Hermes가 손에 쥔 도구들: Toolsets로 에이전트 능력을 켜고 끄는 법","description":"A practical guide to Hermes Agent's built-in toolsets — what tools are available, how to enable or disable them per platform, how terminal backends work, and when to reach for the Tool Gateway instead of individual API keys.","image":"https://dexa.art/blog/images/hermes-tools-and-toolsets-cover.png","datePublished":"2026-05-17","dateModified":"2026-05-17","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-tools-and-toolsets/"},"keywords":"hermes, ai-agent, workflow, tools"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 5월 17일</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">tools</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-tools-and-toolsets-cover.png" alt="cover" loading="lazy"></p>
+<p>에이전트가 실제로 무언가를 <strong>할 수</strong> 있으려면 모델의 사고 회로만으로는 부족하다. Hermes Agent가 웹을 검색하고, 파일을 고치고, 코드를 실행하고, 이미지를 생성하는 것은 모두 <strong>Tools</strong> 덕분이다. 그리고 그 도구들은 각 플랫폼(CLI, Telegram, Discord)마다 켜거나 끌 수 있는 <strong>Toolsets</strong> 단위로 묶여 있다. 이번 글에서는 어떤 도구들이 있고, 어떻게 제어하며, 터미널 백엔드와 Tool Gateway까지 실제로 어떻게 쓰는지 살핀다.</p>
+<h2>개념 — Tool과 Toolset의 차이</h2>
+<p><strong>Tool</strong>은 에이전트가 한 번의 호출로 실행할 수 있는 개별 함수다. <code>web_search</code>, <code>terminal</code>, <code>image_generate</code>, <code>delegate_task</code> 같은 것들이다. 에이전트가 대화 중에 &quot;지금 이게 필요하다&quot;고 판단하면 직접 호출한다.</p>
+<p><strong>Toolset</strong>은 비슷한 목적의 도구를 묶은 그룹 이름이다. 예를 들어 <code>web</code> toolset을 활성화하면 <code>web_search</code>와 <code>web_extract</code>가 함께 켜진다. Toolset 단위로 켜고 끌 수 있다는 것이 핵심이다 — Telegram 채널에는 터미널 실행을 막고 CLI에만 열어 두는 식으로 플랫폼별 격리가 가능하다.</p>
+<h2>내장 도구 전체 범위</h2>
+<p>Hermes는 설치 직후부터 다음 카테고리의 도구를 내장하고 있다.</p>
+<p>| 카테고리 | 대표 도구 | 역할 | |---|---|---| | <strong>Web</strong> | <code>web_search</code>, <code>web_extract</code> | 검색 및 페이지 본문 추출 | | <strong>Terminal &amp; Files</strong> | <code>terminal</code>, <code>process</code>, <code>read_file</code>, <code>patch</code> | 명령 실행·파일 편집 | | <strong>Browser</strong> | <code>browser_navigate</code>, <code>browser_snapshot</code>, <code>browser_vision</code> | 실제 브라우저 자동화 | | <strong>Media</strong> | <code>vision_analyze</code>, <code>image_generate</code>, <code>text_to_speech</code> | 멀티모달 분석·생성 | | <strong>Agent 오케스트레이션</strong> | <code>todo</code>, <code>clarify</code>, <code>execute_code</code>, <code>delegate_task</code> | 계획·코드 실행·서브에이전트 위임 | | <strong>Memory &amp; recall</strong> | <code>memory</code>, <code>session_search</code> | 영속 기억·과거 세션 검색 | | <strong>자동화 &amp; 전달</strong> | <code>cronjob</code>, <code>send_message</code> | 스케줄 작업·플랫폼 메시지 발송 | | <strong>통합</strong> | <code>ha_<em></code>, MCP 서버 도구, <code>rl_</em></code> | Home Assistant·MCP·RL 훈련 |</p>
+<p><code>video_generate</code>와 <code>video_analyze</code>는 기본 비활성이다. 필요할 때 <code>hermes tools</code> 또는 <code>--toolsets</code> 플래그로 추가한다.</p>
+<h2>도구 확인과 조작 — 실제 명령</h2>
+<pre><code class="language-bash"># 현재 플랫폼(CLI)의 전체 도구 상태 확인
+hermes tools list
+
+# 인터랙티브 UI로 플랫폼별 활성화/비활성화
+hermes tools
+
+# 세션 중 특정 toolset만 켜고 실행
+hermes chat --toolsets &quot;web,terminal&quot;
+
+# 단일 toolset 활성화
+hermes tools enable image_gen
+
+# 단일 toolset 비활성화
+hermes tools disable video_gen</code></pre>
+<p><code>hermes tools list</code>는 <code>✓ enabled</code> / <code>✗ disabled</code>로 toolset 상태를 플랫폼별로 보여 준다. 같은 Hermes 설치에서 CLI, Telegram, Discord가 각각 다른 toolset 조합을 가질 수 있다.</p>
+<p>주요 toolset 이름은 다음과 같다: <code>web</code>, <code>terminal</code>, <code>file</code>, <code>browser</code>, <code>vision</code>, <code>image_gen</code>, <code>tts</code>, <code>todo</code>, <code>memory</code>, <code>session_search</code>, <code>cronjob</code>, <code>delegation</code>, <code>code_execution</code>, <code>clarify</code>, <code>homeassistant</code>, <code>messaging</code>, <code>computer_use</code></p>
+<p>플랫폼 프리셋(<code>hermes-cli</code>, <code>hermes-telegram</code>)과 동적 MCP toolset(<code>mcp-&lt;server&gt;</code>)은 Toolsets Reference에서 전체 목록을 확인할 수 있다.</p>
+<h2>터미널 백엔드 — 어디서 명령을 실행하나</h2>
+<p><code>terminal</code> 도구는 단순히 로컬 쉘만 실행할 수 있는 게 아니다. <strong>백엔드</strong>를 교체하면 같은 <code>terminal</code> 호출이 Docker 컨테이너, 원격 SSH 서버, 클라우드 샌드박스에서 실행된다.</p>
+<p>| 백엔드 | 설명 | 대표 사용처 | |---|---|---| | <code>local</code> | 로컬 머신 실행 (기본값) | 개발·신뢰 작업 | | <code>docker</code> | 격리된 컨테이너 | 보안·재현성 | | <code>ssh</code> | 원격 서버 | 에이전트가 자신의 코드를 건드리지 못하게 격리 | | <code>singularity</code> | HPC 컨테이너 | 클러스터 컴퓨팅 | | <code>modal</code> | 서버리스 클라우드 | 대규모·일회성 실행 | | <code>daytona</code> | 클라우드 워크스페이스 | 원격 개발 환경 | | <code>vercel_sandbox</code> | Vercel 클라우드 microVM | 스냅샷 기반 파일 영속성 |</p>
+<p>백엔드는 <code>~/.hermes/config.yaml</code>로 설정한다.</p>
+<pre><code class="language-yaml"># ~/.hermes/config.yaml
+terminal:
+  backend: local       # docker / ssh / singularity / modal / daytona / vercel_sandbox
+  timeout: 180         # 명령 타임아웃 (초)</code></pre>
+<h3>Docker 백엔드의 동작 방식</h3>
+<p>Docker를 쓰면 Hermes는 처음 실행 시 단일 장수명 컨테이너를 시작하고, 이후의 모든 <code>terminal</code>, <code>read_file</code>, <code>execute_code</code> 호출을 <code>docker exec</code>로 그 컨테이너에 라우팅한다. <code>/workspace</code> 안의 파일, pip 설치, 환경 변수 변경이 세션 내내 유지된다. 컨테이너는 Hermes 종료 시 함께 멈춘다.</p>
+<pre><code class="language-yaml">terminal:
+  backend: docker
+  docker_image: python:3.11-slim</code></pre>
+<p>SSH 백엔드는 보안이 중요할 때 유용하다. 에이전트가 원격 서버에서 실행되므로 자신의 설치 파일을 수정할 수 없다.</p>
+<pre><code class="language-bash"># ~/.hermes/.env
+TERMINAL_SSH_HOST=my-server.example.com
+TERMINAL_SSH_USER=myuser
+TERMINAL_SSH_KEY=~/.ssh/id_rsa</code></pre>
+<h2>Tool Gateway — API 키 없이 핵심 도구 쓰기</h2>
+<p>Nous Portal 유료 구독자는 <strong>Tool Gateway</strong>를 통해 웹 검색, 이미지 생성, TTS, 브라우저 자동화를 별도 API 키 없이 사용할 수 있다. 개별 OpenAI/Anthropic/Google 키를 각각 발급받아 설정할 필요가 없다는 뜻이다.</p>
+<pre><code class="language-bash"># Tool Gateway 활성화 (Nous Portal 구독 필요)
+hermes model</code></pre>
+<p><code>hermes tools</code>에서도 개별 도구를 Tool Gateway로 연결할 수 있다. 로컬 API 키가 없을 때 빠른 시작 경로로 유용하다.</p>
+<h2>실제 운영 사이드바</h2>
+<p>이 사용 환경에서는 CLI 프로파일에 <code>web</code>, <code>browser</code>, <code>terminal</code>, <code>file</code>, <code>image_gen</code>, <code>tts</code>, <code>memory</code>, <code>session_search</code>, <code>delegation</code>, <code>code_execution</code>, <code>cronjob</code>, <code>computer_use</code>, <code>skills</code>가 활성화되어 있다. <code>video_gen</code>, <code>x_search</code>, <code>homeassistant</code>, <code>spotify</code>는 비활성 상태다. PKM, Dev, Ops 세 프로파일이 각각 다른 toolset 조합을 쓰는 구조 — Dev 프로파일에서는 <code>terminal</code>과 <code>delegation</code>이 핵심이고, PKM 프로파일은 <code>file</code>·<code>memory</code> 중심으로 설정되어 있다. Telegram 채널에서는 <code>terminal</code>과 <code>computer_use</code>가 비활성화되어 있어 원격 실행 위험을 차단한다.</p>
+<h2>함정과 팁</h2>
+<ul><li><strong><code>hermes tools list</code>와 <code>--toolsets</code> 차이</strong>: <code>tools list</code>는 저장된 영속 설정을 보여 준다. <code>--toolsets</code> 플래그는 그 세션에만 적용되는 임시 오버라이드다.</li><li><strong>MCP 서버는 별도 등록</strong>: MCP로 연결한 외부 서버의 도구는 <code>hermes tools list</code>에 <code>MCP servers:</code> 섹션으로 따로 나타난다. <code>hermes tools enable mcp-&lt;server&gt;</code> 명령으로 플랫폼별 on/off가 가능하다.</li><li><strong>Toolsets Reference 확인 경로</strong>: 공식 문서의 Toolsets Reference 페이지에 전체 toolset 이름과 플랫폼 프리셋이 나와 있다. <code>hermes tools list</code> 출력의 이름과 1:1 대응된다.</li><li><strong>Docker 백엔드 첫 실행</strong>: <code>docker pull</code> 시간이 필요하다. 첫 <code>hermes chat</code> 명령 실행 후 잠시 대기해야 컨테이너가 준비된다.</li><li><strong>비활성 도구를 호출하면</strong>: 에이전트가 비활성 도구를 시도하면 오류를 받고 멈춘다. 대화 중에 갑자기 도구가 필요해지면 <code>hermes tools enable &lt;toolset&gt;</code>을 새 터미널에서 실행하고 재시작한다.</li></ul>
+<h2>언제 Tools 설정에 손대야 하나</h2>
+<p>대부분의 경우 기본 설정으로 충분하다. 손댈 필요가 생기는 순간은 두 가지다.</p>
+<p>첫째, <strong>보안 격리</strong>가 필요할 때. Telegram 채널이나 공유 환경에서는 <code>terminal</code>, <code>computer_use</code> 같은 강력한 도구를 비활성화해 두는 것이 안전하다.</p>
+<p>둘째, <strong>자원 최적화</strong>가 필요할 때. 이미지 생성을 전혀 쓰지 않는 프로파일이라면 <code>image_gen</code>을 꺼 두면 에이전트가 불필요하게 해당 도구를 고려하는 비용이 줄어든다.</p>
+<p>반대로 Docker/SSH 백엔드나 Tool Gateway는 본격적으로 Hermes를 격리 환경에서 운영하거나 API 키 관리를 단순화하고 싶을 때 고려한다. 다음 편에서는 이 Tools 위에서 작동하는 <strong>Kanban 보드</strong> — 도구 호출이 아니라 카드 단위로 에이전트에게 일을 시키는 방식을 다룬다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/the-world-runs-without-being-finished/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>세계는 완성되지 않은 채로 작동한다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
