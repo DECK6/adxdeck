@@ -57,20 +57,22 @@
     // ─── Blog Listing Page ───
 
     async function initBlogList() {
+        const grid = document.getElementById('post-grid');
+        const hasStaticPosts = !!grid?.querySelector('.post-card');
         const posts = await fetchPosts();
         if (!posts.length) {
-            const grid = document.getElementById('post-grid');
-            if (grid) grid.innerHTML = `
+            if (!hasStaticPosts && grid) grid.innerHTML = `
                 <div class="col-span-full text-center py-20">
                     <span class="material-symbols-outlined text-4xl text-gray-700 mb-4">article</span>
                     <p class="text-gray-600 font-mono text-sm">No posts yet.</p>
                     <p class="text-gray-700 font-mono text-xs mt-2">Run <code class="text-[#00F0FF]">node blog/build.js</code> to generate posts.json</p>
                 </div>`;
+            buildFilters([]);
             return;
         }
         posts.sort((a, b) => new Date(b.date) - new Date(a.date));
         buildFilters(posts);
-        renderPostCards(posts);
+        if (!hasStaticPosts) renderPostCards(posts);
     }
 
     function buildFilters(posts) {
@@ -78,7 +80,9 @@
         if (!filterBar) return;
 
         const categories = [...new Set(posts.map(p => p.category))];
+        const existing = new Set([...filterBar.querySelectorAll('.filter-btn')].map(btn => btn.dataset.filter));
         categories.forEach(cat => {
+            if (existing.has(cat)) return;
             const btn = document.createElement('button');
             btn.className = 'filter-btn px-4 py-2 text-xs font-mono uppercase tracking-wider border border-white/20 rounded-sm transition-all hover:border-[#00F0FF] hover:text-[#00F0FF]';
             btn.dataset.filter = cat;
@@ -232,7 +236,11 @@
     function initMobileMenu() {
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
-        if (btn && menu) btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+        if (btn && menu) btn.addEventListener('click', () => {
+            const open = menu.classList.toggle('hidden') === false;
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            btn.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+        });
     }
 
     // ─── Init ───

@@ -97,9 +97,15 @@ function currentKstDate() {
     return `${values.year}-${values.month}-${values.day}`;
 }
 
+function toIsoDateOnly(value) {
+    const str = String(value || '').trim();
+    const match = str.match(/^(\d{4}-\d{2}-\d{2})/);
+    return match ? match[1] : '';
+}
+
 function normalizePostDate(filename, meta) {
     const today = currentKstDate();
-    const explicit = meta['date created'] || meta['date modified'] || '';
+    const explicit = toIsoDateOnly(meta['date created']) || toIsoDateOnly(meta['date modified']);
     const filenameDateMatch = filename.match(/^(\d{4}-\d{2}-\d{2})/);
     const filenameDate = filenameDateMatch ? filenameDateMatch[1] : '';
 
@@ -277,6 +283,16 @@ function renderMarkdown(md) {
     return out.join('\n');
 }
 
+
+function stripLeadingH1(md) {
+    const lines = md.replace(/\r\n/g, '\n').split('\n');
+    let firstContent = lines.findIndex(line => line.trim().length > 0);
+    if (firstContent >= 0 && /^#\s+/.test(lines[firstContent])) {
+        lines.splice(firstContent, 1);
+    }
+    return lines.join('\n').trim();
+}
+
 // ─── Static post page template ───
 
 function formatDateHuman(dateStr) {
@@ -294,6 +310,7 @@ function postPageHtml(post, bodyHtml, prev, next) {
     const jsonLd = {
         '@context': 'https://schema.org',
         '@type': 'Article',
+        'inLanguage': 'ko-KR',
         'headline': post.title,
         'description': desc,
         'image': ogImage,
@@ -419,7 +436,9 @@ function postPageHtml(post, bodyHtml, prev, next) {
                     <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">${escapeHtml(post.category)}</span>
                     <span class="text-gray-600 font-mono text-xs">${formatDateHuman(post.date)}</span>
                 </div>
-                <div class="flex flex-wrap gap-2 mt-4">${tagsHtml}</div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">${escapeHtml(post.title)}</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">${escapeHtml(desc)}</p>
+                <div class="flex flex-wrap gap-2 mt-6">${tagsHtml}</div>
             </div>
             <div class="prose-dexa">
 ${bodyHtml}
@@ -441,6 +460,101 @@ ${bodyHtml}
 </body>
 </html>
 `;
+}
+
+
+function postImageSrc(post, prefix = '/blog/') {
+    if (!post.thumbnail) return '';
+    if (/^(https?:|\/)/i.test(post.thumbnail)) return post.thumbnail;
+    return `${prefix}${post.thumbnail.replace(/^\/+/, '')}`;
+}
+
+function postImageAlt(post) {
+    return `${post.title} — ${post.description || 'DEXA blog article cover image'}`.slice(0, 180);
+}
+
+function staticPostCardHtml(post) {
+    const img = postImageSrc(post);
+    const imageHtml = img
+        ? `<div class="aspect-video overflow-hidden bg-[#111]"><img src="${escapeAttr(img)}" alt="${escapeAttr(postImageAlt(post))}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"></div>`
+        : `<div class="aspect-video bg-gradient-to-br from-[#111] to-[#0A0A0A] flex items-center justify-center"><span class="material-symbols-outlined text-5xl text-gray-800" aria-hidden="true">article</span></div>`;
+    const tags = (post.tags || []).slice(0, 4).map(tag => `<span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">${escapeHtml(tag)}</span>`).join('');
+    return `<article class="post-card card-hover-effect block bg-[#0A0A0A] border border-white/10 rounded-xl overflow-hidden group" data-category="${escapeAttr(post.category)}">
+  <a href="/blog/posts/${escapeAttr(post.slug)}/" class="block h-full" aria-label="Read ${escapeAttr(post.title)}">
+    ${imageHtml}
+    <div class="p-6">
+      <div class="flex items-center gap-3 mb-3">
+        <span class="text-xs font-mono uppercase tracking-widest px-2 py-0.5 rounded-sm border border-[#00F0FF]/30 bg-[#00F0FF]/10 text-[#00F0FF]">${escapeHtml(post.category)}</span>
+        <time datetime="${escapeAttr(post.date)}" class="text-xs text-gray-600 font-mono">${formatDateHuman(post.date)}</time>
+      </div>
+      <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#00F0FF] transition-colors leading-snug">${escapeHtml(post.title)}</h3>
+      <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">${escapeHtml(post.description || '')}</p>
+      <div class="flex flex-wrap gap-1.5 mt-4">${tags}</div>
+      <div class="mt-4 flex items-center gap-1 text-xs font-mono text-gray-600 group-hover:text-[#00F0FF] transition-colors">Read more <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span></div>
+    </div>
+  </a>
+</article>`;
+}
+
+function replaceGeneratedBlock(html, start, end, content) {
+    const re = new RegExp(`(<!-- ${start} -->)[\\s\\S]*?(<!-- ${end} -->)`, 'm');
+    if (!re.test(html)) throw new Error(`Missing generated block markers: ${start}/${end}`);
+    return html.replace(re, `$1\n${content}\n                $2`);
+}
+
+function trimTrailingWhitespace(text) {
+    return text.replace(/[ \t]+$/gm, '');
+}
+
+function updateBlogIndex(postsPublic) {
+    const blogIndexPath = path.join(__dirname, 'index.html');
+    let html = fs.readFileSync(blogIndexPath, 'utf8');
+    const categories = [...new Set(postsPublic.map(p => p.category).filter(Boolean))];
+    const filters = [
+        `<button class="filter-btn active px-4 py-2 text-xs font-mono uppercase tracking-wider border border-white/20 rounded-sm transition-all hover:border-[#00F0FF] hover:text-[#00F0FF]" data-filter="all">All</button>`,
+        ...categories.map(cat => `<button class="filter-btn px-4 py-2 text-xs font-mono uppercase tracking-wider border border-white/20 rounded-sm transition-all hover:border-[#00F0FF] hover:text-[#00F0FF]" data-filter="${escapeAttr(cat)}">${escapeHtml(cat)}</button>`)
+    ].join('\n                ');
+    const cards = postsPublic.map(staticPostCardHtml).join('\n                ');
+    const blogJsonLd = {
+        '@context': 'https://schema.org',
+        '@graph': [
+            {
+                '@type': 'CollectionPage',
+                '@id': `${SITE_URL}/blog/#collection`,
+                'name': 'DEXA Blog',
+                'url': `${SITE_URL}/blog/`,
+                'description': 'DEXA essays on AI, media art, creative technology, and agentic operations.',
+                'inLanguage': 'ko-KR',
+                'isPartOf': { '@type': 'WebSite', '@id': `${SITE_URL}/#website` },
+                'mainEntity': { '@id': `${SITE_URL}/blog/#blog` }
+            },
+            {
+                '@type': 'Blog',
+                '@id': `${SITE_URL}/blog/#blog`,
+                'name': 'DEXA Blog',
+                'url': `${SITE_URL}/blog/`,
+                'blogPost': postsPublic.map(post => ({
+                    '@type': 'BlogPosting',
+                    'headline': post.title,
+                    'url': `${SITE_URL}/blog/posts/${post.slug}/`,
+                    'datePublished': post.date,
+                    'author': { '@type': 'Person', 'name': post.author || 'Deck' }
+                }))
+            }
+        ]
+    };
+    html = replaceGeneratedBlock(html, 'STATIC_FILTERS_START', 'STATIC_FILTERS_END', filters);
+    html = replaceGeneratedBlock(html, 'STATIC_POSTS_START', 'STATIC_POSTS_END', cards);
+    html = replaceGeneratedBlock(html, 'BLOG_SCHEMA_START', 'BLOG_SCHEMA_END', `    <script type="application/ld+json">${JSON.stringify(blogJsonLd)}</script>`);
+    fs.writeFileSync(blogIndexPath, trimTrailingWhitespace(html), 'utf8');
+}
+
+function updateHomePreview(postsPublic) {
+    const indexPath = path.join(REPO_ROOT, 'index.html');
+    let html = fs.readFileSync(indexPath, 'utf8');
+    const cards = postsPublic.slice(0, 3).map(staticPostCardHtml).join('\n                ');
+    html = replaceGeneratedBlock(html, 'STATIC_BLOG_PREVIEW_START', 'STATIC_BLOG_PREVIEW_END', cards);
+    fs.writeFileSync(indexPath, trimTrailingWhitespace(html), 'utf8');
 }
 
 // ─── Main ───
@@ -521,7 +635,7 @@ posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 posts.forEach((post, idx) => {
     const prev = posts[idx + 1];
     const next = posts[idx - 1];
-    const bodyHtml = renderMarkdown(post._body);
+    const bodyHtml = renderMarkdown(stripLeadingH1(post._body));
     const dir = path.join(POSTS_DIR, post.slug);
     fs.mkdirSync(dir, { recursive: true });
     const html = postPageHtml(post, bodyHtml, prev, next);
@@ -534,6 +648,8 @@ const postsPublic = posts.map(({ _body, ...rest }) => ({
     description: escapeHtml(rest.description)
 }));
 fs.writeFileSync(OUTPUT, JSON.stringify(postsPublic, null, 2), 'utf8');
+updateBlogIndex(postsPublic);
+updateHomePreview(postsPublic);
 
 // Write sitemap.xml at repo root
 const staticUrls = [

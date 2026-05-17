@@ -21,7 +21,7 @@
     <meta name="twitter:title" content="Hermes Auth Readiness: 예약된 자동화가 끝까지 실행되게 만드는 법" />
     <meta name="twitter:description" content="Explains Hermes Agent authentication, OAuth login, credential pools, and readiness checks for automated work. Use this article to prevent scheduled agent workflows from silently failing when external credentials expire." />
     <meta name="twitter:image" content="https://dexa.art/blog/images/2026-05-11-oauth-silent-failure-cover.png" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Hermes Auth Readiness: 예약된 자동화가 끝까지 실행되게 만드는 법","description":"Explains Hermes Agent authentication, OAuth login, credential pools, and readiness checks for automated work. Use this article to prevent scheduled agent workflows from silently failing when external credentials expire.","image":"https://dexa.art/blog/images/2026-05-11-oauth-silent-failure-cover.png","datePublished":"2026-05-11","dateModified":"2026-05-11","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-auth-readiness/"},"keywords":"hermes, ai-agent, workflow"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Auth Readiness: 예약된 자동화가 끝까지 실행되게 만드는 법","description":"Explains Hermes Agent authentication, OAuth login, credential pools, and readiness checks for automated work. Use this article to prevent scheduled agent workflows from silently failing when external credentials expire.","image":"https://dexa.art/blog/images/2026-05-11-oauth-silent-failure-cover.png","datePublished":"2026-05-11","dateModified":"2026-05-11","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-auth-readiness/"},"keywords":"hermes, ai-agent, workflow"}</script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
@@ -99,10 +99,11 @@
                     <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
                     <span class="text-gray-600 font-mono text-xs">2026년 5월 11일</span>
                 </div>
-                <div class="flex flex-wrap gap-2 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span></div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Auth Readiness: 예약된 자동화가 끝까지 실행되게 만드는 법</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">Explains Hermes Agent authentication, OAuth login, credential pools, and readiness checks for automated work. Use this article to prevent scheduled agent workflows from silently failing when external credentials expire.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span></div>
             </div>
             <div class="prose-dexa">
-<h1>Hermes Auth Readiness: 예약된 자동화가 끝까지 실행되게 만드는 법</h1>
 <p><img src="/blog/images/2026-05-11-oauth-silent-failure-cover.png" alt="Abstract cover for Hermes auth readiness" loading="lazy"></p>
 <h2>Lede</h2>
 <p>자동화가 실패할 때 가장 위험한 장면은 큰 오류 메시지가 뜨는 순간이 아니다. 더 위험한 것은 아무 일도 일어나지 않는 것처럼 보이는데, 실제로는 필요한 외부 인증이 끊겨 작업이 끝까지 가지 못하는 상태다. 예약된 작업은 남아 있고, 스케줄도 정상이며, 프롬프트도 맞는데 provider나 GitHub, 메시징 플랫폼, 이미지 생성 계정 같은 외부 의존성이 만료되어 있으면 자동화는 마지막 단계에서 조용히 멈춘다.</p>

@@ -15,13 +15,18 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Generate posts.json
+      - name: Generate blog artifacts
         run: node blog/build.js
+
+      - name: Validate generated SEO artifacts
+        run: |
+          node scripts/seo-readiness-check.js
+          git diff --check
 
       - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add blog/posts.json blog/posts/_built/
+          git add blog/posts.json blog/posts/_built/ blog/posts/*/index.html sitemap.xml robots.txt blog/index.html index.html
           git diff --cached --quiet || git commit -m "chore: auto-generate blog index and built posts"
           git push

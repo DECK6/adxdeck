@@ -21,7 +21,7 @@
     <meta name="twitter:title" content="Hermes Gateway Topic Routing: 여러 플랫폼의 대화를 작업 경계로 바꾸는 법" />
     <meta name="twitter:description" content="Explains how the Hermes Agent gateway turns messaging platforms, topics, and mention rules into safer routing boundaries. Use this article to design quieter multi-agent conversations across chat surfaces." />
     <meta name="twitter:image" content="https://dexa.art/blog/images/2026-05-11-hermes-gateway-topic-routing-cover.png" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Hermes Gateway Topic Routing: 여러 플랫폼의 대화를 작업 경계로 바꾸는 법","description":"Explains how the Hermes Agent gateway turns messaging platforms, topics, and mention rules into safer routing boundaries. Use this article to design quieter multi-agent conversations across chat surfaces.","image":"https://dexa.art/blog/images/2026-05-11-hermes-gateway-topic-routing-cover.png","datePublished":"2026-05-11","dateModified":"2026-05-11","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-gateway-topic-routing/"},"keywords":"hermes, ai-agent, workflow"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Gateway Topic Routing: 여러 플랫폼의 대화를 작업 경계로 바꾸는 법","description":"Explains how the Hermes Agent gateway turns messaging platforms, topics, and mention rules into safer routing boundaries. Use this article to design quieter multi-agent conversations across chat surfaces.","image":"https://dexa.art/blog/images/2026-05-11-hermes-gateway-topic-routing-cover.png","datePublished":"2026-05-11","dateModified":"2026-05-11","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-gateway-topic-routing/"},"keywords":"hermes, ai-agent, workflow"}</script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
@@ -99,10 +99,11 @@
                     <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
                     <span class="text-gray-600 font-mono text-xs">2026년 5월 11일</span>
                 </div>
-                <div class="flex flex-wrap gap-2 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span></div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Gateway Topic Routing: 여러 플랫폼의 대화를 작업 경계로 바꾸는 법</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">Explains how the Hermes Agent gateway turns messaging platforms, topics, and mention rules into safer routing boundaries. Use this article to design quieter multi-agent conversations across chat surfaces.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span></div>
             </div>
             <div class="prose-dexa">
-<h1>Hermes Gateway Topic Routing: 여러 플랫폼의 대화를 작업 경계로 바꾸는 법</h1>
 <p><img src="/blog/images/2026-05-11-hermes-gateway-topic-routing-cover.png" alt="Abstract cover for Hermes gateway topic routing" loading="lazy"></p>
 <h2>Lede</h2>
 <p>AI 에이전트가 터미널 안에만 있을 때는 대화의 경계가 비교적 단순하다. 한 사람이 한 창에 요청을 입력하고, 에이전트가 그 세션 안에서 답한다. 하지만 Telegram, Discord, Slack, WhatsApp, Signal, Matrix, Email 같은 메시징 표면으로 에이전트가 들어오면 상황이 달라진다. 같은 사람이 여러 공간에서 부르고, 여러 봇이 같은 메시지를 볼 수 있으며, 자동화 알림과 사람의 지시가 한 타임라인에 섞인다.</p>
