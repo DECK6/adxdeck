@@ -69,6 +69,12 @@
         .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
         .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
         .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
         .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
         .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
     </style>
@@ -128,7 +134,7 @@
 <p>그래서 <code>delegate_task</code>를 선택해야 하는 상황은 분명합니다. 지금 이 세션 안에서 병렬로 사고를 넓히고, 곧바로 결과를 합쳐야 하는가. 하위 작업이 오래 살아남을 필요는 없는가. durable queue보다 빠른 분산 검토가 중요한가. 그렇다면 <code>delegate_task</code>가 맞습니다.</p>
 <h2>세 시간 모델을 고르는 법</h2>
 <p>세 기능은 서로의 대체재가 아닙니다. 같은 에이전트 자동화라도 시간 모델이 다르면 운영 방식이 달라집니다.</p>
-<p>| 필요 | 알맞은 모델 | 이유 | |---|---|---| | 정해진 리듬으로 반복 실행 | Cron | schedule과 delivery가 핵심입니다. | | 작업 상태와 의존성 보존 | Kanban dispatcher | durable queue, dependency, retry, block, complete가 필요합니다. | | 현재 세션 안의 병렬 조사 | <code>delegate_task</code> | synchronous burst와 빠른 요약 회수가 중요합니다. | | 변화가 없으면 침묵하는 감시 | Cron + script 또는 no-agent 실행 | 스크립트가 변화만 감지하고 필요한 때만 알릴 수 있습니다. | | 여러 전문 작업자가 이어받는 발행 흐름 | Kanban dispatcher | 각 단계의 결과와 검증을 남겨야 합니다. | | 두 글의 방향을 동시에 비교 | <code>delegate_task</code> | 오래 보존할 상태보다 빠른 비교가 중요합니다. |</p>
+<div class="table-scroll"><table><thead><tr><th>필요</th><th>알맞은 모델</th><th>이유</th></tr></thead><tbody><tr><td>정해진 리듬으로 반복 실행</td><td>Cron</td><td>schedule과 delivery가 핵심입니다.</td></tr><tr><td>작업 상태와 의존성 보존</td><td>Kanban dispatcher</td><td>durable queue, dependency, retry, block, complete가 필요합니다.</td></tr><tr><td>현재 세션 안의 병렬 조사</td><td><code>delegate_task</code></td><td>synchronous burst와 빠른 요약 회수가 중요합니다.</td></tr><tr><td>변화가 없으면 침묵하는 감시</td><td>Cron + script 또는 no-agent 실행</td><td>스크립트가 변화만 감지하고 필요한 때만 알릴 수 있습니다.</td></tr><tr><td>여러 전문 작업자가 이어받는 발행 흐름</td><td>Kanban dispatcher</td><td>각 단계의 결과와 검증을 남겨야 합니다.</td></tr><tr><td>두 글의 방향을 동시에 비교</td><td><code>delegate_task</code></td><td>오래 보존할 상태보다 빠른 비교가 중요합니다.</td></tr></tbody></table></div>
 <p>선택 기준을 더 짧게 말하면 이렇습니다. 반복되면 Cron입니다. 남아 있어야 하면 Kanban입니다. 지금 나눠서 생각하고 바로 합치면 <code>delegate_task</code>입니다.</p>
 <p>이 구분은 작은 차이처럼 보이지만 실제 운영에서는 큰 차이를 만듭니다. 반복 리포트를 Kanban에만 올려 두면 사람이 dispatcher를 기다려야 합니다. 며칠 걸리는 발행 프로젝트를 <code>delegate_task</code>만으로 밀면 중간 상태가 사라집니다. 단순 병렬 검토를 Kanban 카드로 지나치게 쪼개면 오히려 관리 비용이 커집니다.</p>
 <h2>익명 사례: 발행 자동화에서 시간이 어긋날 때</h2>

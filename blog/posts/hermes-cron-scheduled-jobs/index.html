@@ -69,6 +69,12 @@
         .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
         .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
         .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
         .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
         .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
     </style>
@@ -109,7 +115,7 @@
 <p>LLM 에이전트는 보통 &quot;내가 부르면 그때 일한다.&quot; Hermes Cron은 그 전제를 뒤집는다. <strong>사용자가 부르지 않아도, 정해진 시각에 에이전트가 스스로 깨어나서 일하고, 결과만 전달</strong>한다. 매일 아침 메일 요약, 두 시간마다 도는 PKM 정리, 하루 한 번의 블로그 발행처럼 &quot;사람이 매번 시작하지 않아도 되는 일&quot;을 에이전트의 손에 맡기는 기능이다.</p>
 <h2>기능 개요</h2>
 <p>Hermes Cron은 Hermes Agent에 내장된 스케줄러로, 다음 세 가지를 묶어 하나의 &quot;작업(job)&quot;으로 만든다.</p>
-<ul><li><strong>스케줄(schedule)</strong> — <code>30m</code>, <code>every 2h</code> 같은 간격 표기, 혹은 표준 cron 표현(<code>0 9 <em> </em> *</code>).</li><li><strong>프롬프트 또는 스크립트</strong> — 매 실행마다 에이전트에게 줄 지시, 또는 셸/파이썬 스크립트.</li><li><strong>전달 대상(deliver)</strong> — <code>origin</code>, <code>local</code>, <code>telegram</code>, <code>discord</code>, <code>signal</code>, 혹은 <code>platform:chat_id</code> 형태의 채팅 대상.</li></ul>
+<ul><li><strong>스케줄(schedule)</strong> — <code>30m</code>, <code>every 2h</code> 같은 간격 표기, 혹은 표준 cron 표현(<code>0 9 * * *</code>).</li><li><strong>프롬프트 또는 스크립트</strong> — 매 실행마다 에이전트에게 줄 지시, 또는 셸/파이썬 스크립트.</li><li><strong>전달 대상(deliver)</strong> — <code>origin</code>, <code>local</code>, <code>telegram</code>, <code>discord</code>, <code>signal</code>, 혹은 <code>platform:chat_id</code> 형태의 채팅 대상.</li></ul>
 <p>여기에 선택적으로 <strong>skill</strong>을 연결할 수 있다. Skill을 붙이면 그 작업이 깨어났을 때 해당 절차 문서(SKILL.md)가 자동으로 로드되어, 모델이 매번 같은 규칙·스크립트·체크리스트를 따르게 된다. 즉 cron은 &quot;시간&quot;을, skill은 &quot;절차&quot;를 담당한다.</p>
 <p>작업 상태는 <code>active</code> 또는 <code>paused</code>로 관리되고, 각 작업은 마지막 실행 시각·결과(<code>ok</code>/<code>error</code>)·다음 실행 시각을 기록한다.</p>
 <h2>사용법</h2>

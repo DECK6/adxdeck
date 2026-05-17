@@ -69,6 +69,12 @@
         .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
         .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
         .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
         .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
         .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
     </style>
@@ -112,7 +118,7 @@
 <p><strong>Toolset</strong>은 비슷한 목적의 도구를 묶은 그룹 이름이다. 예를 들어 <code>web</code> toolset을 활성화하면 <code>web_search</code>와 <code>web_extract</code>가 함께 켜진다. Toolset 단위로 켜고 끌 수 있다는 것이 핵심이다 — Telegram 채널에는 터미널 실행을 막고 CLI에만 열어 두는 식으로 플랫폼별 격리가 가능하다.</p>
 <h2>내장 도구 전체 범위</h2>
 <p>Hermes는 설치 직후부터 다음 카테고리의 도구를 내장하고 있다.</p>
-<p>| 카테고리 | 대표 도구 | 역할 | |---|---|---| | <strong>Web</strong> | <code>web_search</code>, <code>web_extract</code> | 검색 및 페이지 본문 추출 | | <strong>Terminal &amp; Files</strong> | <code>terminal</code>, <code>process</code>, <code>read_file</code>, <code>patch</code> | 명령 실행·파일 편집 | | <strong>Browser</strong> | <code>browser_navigate</code>, <code>browser_snapshot</code>, <code>browser_vision</code> | 실제 브라우저 자동화 | | <strong>Media</strong> | <code>vision_analyze</code>, <code>image_generate</code>, <code>text_to_speech</code> | 멀티모달 분석·생성 | | <strong>Agent 오케스트레이션</strong> | <code>todo</code>, <code>clarify</code>, <code>execute_code</code>, <code>delegate_task</code> | 계획·코드 실행·서브에이전트 위임 | | <strong>Memory &amp; recall</strong> | <code>memory</code>, <code>session_search</code> | 영속 기억·과거 세션 검색 | | <strong>자동화 &amp; 전달</strong> | <code>cronjob</code>, <code>send_message</code> | 스케줄 작업·플랫폼 메시지 발송 | | <strong>통합</strong> | <code>ha_<em></code>, MCP 서버 도구, <code>rl_</em></code> | Home Assistant·MCP·RL 훈련 |</p>
+<div class="table-scroll"><table><thead><tr><th>카테고리</th><th>대표 도구</th><th>역할</th></tr></thead><tbody><tr><td><strong>Web</strong></td><td><code>web_search</code>, <code>web_extract</code></td><td>검색 및 페이지 본문 추출</td></tr><tr><td><strong>Terminal &amp; Files</strong></td><td><code>terminal</code>, <code>process</code>, <code>read_file</code>, <code>patch</code></td><td>명령 실행·파일 편집</td></tr><tr><td><strong>Browser</strong></td><td><code>browser_navigate</code>, <code>browser_snapshot</code>, <code>browser_vision</code></td><td>실제 브라우저 자동화</td></tr><tr><td><strong>Media</strong></td><td><code>vision_analyze</code>, <code>image_generate</code>, <code>text_to_speech</code></td><td>멀티모달 분석·생성</td></tr><tr><td><strong>Agent 오케스트레이션</strong></td><td><code>todo</code>, <code>clarify</code>, <code>execute_code</code>, <code>delegate_task</code></td><td>계획·코드 실행·서브에이전트 위임</td></tr><tr><td><strong>Memory &amp; recall</strong></td><td><code>memory</code>, <code>session_search</code></td><td>영속 기억·과거 세션 검색</td></tr><tr><td><strong>자동화 &amp; 전달</strong></td><td><code>cronjob</code>, <code>send_message</code></td><td>스케줄 작업·플랫폼 메시지 발송</td></tr><tr><td><strong>통합</strong></td><td><code>ha_*</code>, MCP 서버 도구, <code>rl_*</code></td><td>Home Assistant·MCP·RL 훈련</td></tr></tbody></table></div>
 <p><code>video_generate</code>와 <code>video_analyze</code>는 기본 비활성이다. 필요할 때 <code>hermes tools</code> 또는 <code>--toolsets</code> 플래그로 추가한다.</p>
 <h2>도구 확인과 조작 — 실제 명령</h2>
 <pre><code class="language-bash"># 현재 플랫폼(CLI)의 전체 도구 상태 확인
@@ -134,7 +140,7 @@ hermes tools disable video_gen</code></pre>
 <p>플랫폼 프리셋(<code>hermes-cli</code>, <code>hermes-telegram</code>)과 동적 MCP toolset(<code>mcp-&lt;server&gt;</code>)은 Toolsets Reference에서 전체 목록을 확인할 수 있다.</p>
 <h2>터미널 백엔드 — 어디서 명령을 실행하나</h2>
 <p><code>terminal</code> 도구는 단순히 로컬 쉘만 실행할 수 있는 게 아니다. <strong>백엔드</strong>를 교체하면 같은 <code>terminal</code> 호출이 Docker 컨테이너, 원격 SSH 서버, 클라우드 샌드박스에서 실행된다.</p>
-<p>| 백엔드 | 설명 | 대표 사용처 | |---|---|---| | <code>local</code> | 로컬 머신 실행 (기본값) | 개발·신뢰 작업 | | <code>docker</code> | 격리된 컨테이너 | 보안·재현성 | | <code>ssh</code> | 원격 서버 | 에이전트가 자신의 코드를 건드리지 못하게 격리 | | <code>singularity</code> | HPC 컨테이너 | 클러스터 컴퓨팅 | | <code>modal</code> | 서버리스 클라우드 | 대규모·일회성 실행 | | <code>daytona</code> | 클라우드 워크스페이스 | 원격 개발 환경 | | <code>vercel_sandbox</code> | Vercel 클라우드 microVM | 스냅샷 기반 파일 영속성 |</p>
+<div class="table-scroll"><table><thead><tr><th>백엔드</th><th>설명</th><th>대표 사용처</th></tr></thead><tbody><tr><td><code>local</code></td><td>로컬 머신 실행 (기본값)</td><td>개발·신뢰 작업</td></tr><tr><td><code>docker</code></td><td>격리된 컨테이너</td><td>보안·재현성</td></tr><tr><td><code>ssh</code></td><td>원격 서버</td><td>에이전트가 자신의 코드를 건드리지 못하게 격리</td></tr><tr><td><code>singularity</code></td><td>HPC 컨테이너</td><td>클러스터 컴퓨팅</td></tr><tr><td><code>modal</code></td><td>서버리스 클라우드</td><td>대규모·일회성 실행</td></tr><tr><td><code>daytona</code></td><td>클라우드 워크스페이스</td><td>원격 개발 환경</td></tr><tr><td><code>vercel_sandbox</code></td><td>Vercel 클라우드 microVM</td><td>스냅샷 기반 파일 영속성</td></tr></tbody></table></div>
 <p>백엔드는 <code>~/.hermes/config.yaml</code>로 설정한다.</p>
 <pre><code class="language-yaml"># ~/.hermes/config.yaml
 terminal:

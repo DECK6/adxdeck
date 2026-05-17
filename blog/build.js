@@ -164,6 +164,13 @@ function normalizeContentUrl(url) {
 function renderInline(text) {
     // Escape HTML first
     let out = escapeHtml(text);
+    // Protect inline code before emphasis parsing so `ha_*` does not become broken italic HTML.
+    const codeSpans = [];
+    out = out.replace(/`([^`]+)`/g, (_m, code) => {
+        const token = `\u0000CODE${codeSpans.length}\u0000`;
+        codeSpans.push(`<code>${code}</code>`);
+        return token;
+    });
     // Images: ![alt](url)
     out = out.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_m, alt, url) =>
         `<img src="${escapeAttr(normalizeContentUrl(url))}" alt="${escapeAttr(alt)}" loading="lazy">`);
@@ -174,9 +181,21 @@ function renderInline(text) {
     out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
     // Italic: *text*
     out = out.replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
-    // Inline code: `code`
-    out = out.replace(/`([^`]+)`/g, '<code>$1</code>');
+    // Restore inline code spans.
+    out = out.replace(/\u0000CODE(\d+)\u0000/g, (_m, idx) => codeSpans[Number(idx)] || '');
     return out;
+}
+
+function parseTableRow(line) {
+    const trimmed = line.trim();
+    if (!trimmed.includes('|')) return null;
+    const body = trimmed.replace(/^\|/, '').replace(/\|$/, '');
+    return body.split('|').map(cell => cell.trim());
+}
+
+function isTableSeparator(line) {
+    const cells = parseTableRow(line);
+    return Boolean(cells && cells.length > 1 && cells.every(cell => /^:?-{3,}:?$/.test(cell)));
 }
 
 function renderMarkdown(md) {
@@ -235,6 +254,30 @@ function renderMarkdown(md) {
             flushParagraph(para);
             out.push('<hr>');
             i++;
+            continue;
+        }
+
+        // GitHub-style pipe table
+        if (i + 1 < lines.length && parseTableRow(line) && isTableSeparator(lines[i + 1])) {
+            flushParagraph(para);
+            const headers = parseTableRow(line);
+            i += 2;
+            const rows = [];
+            while (i < lines.length) {
+                const cells = parseTableRow(lines[i]);
+                if (!cells || cells.length < 2 || isTableSeparator(lines[i])) break;
+                rows.push(cells);
+                i++;
+            }
+
+            const thead = '<thead><tr>' + headers.map(cell => `<th>${renderInline(cell)}</th>`).join('') + '</tr></thead>';
+            const tbody = rows.length
+                ? '<tbody>' + rows.map(row => {
+                    const padded = headers.map((_, idx) => row[idx] || '');
+                    return '<tr>' + padded.map(cell => `<td>${renderInline(cell)}</td>`).join('') + '</tr>';
+                }).join('') + '</tbody>'
+                : '';
+            out.push(`<div class="table-scroll"><table>${thead}${tbody}</table></div>`);
             continue;
         }
 
@@ -405,6 +448,12 @@ function postPageHtml(post, bodyHtml, prev, next) {
         .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
         .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
         .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
         .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
         .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
     </style>
