@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes MCP는 외부 도구를 네이티브 능력으로 바꾼다 | DEXA Blog</title>
+    <meta name="description" content="A practical guide to Hermes Agent's native MCP client: how stdio and HTTP servers are configured, discovered, filtered, reloaded, and exposed as first-class tools." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-mcp-native-tools/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes MCP는 외부 도구를 네이티브 능력으로 바꾼다" />
+    <meta property="og:description" content="A practical guide to Hermes Agent's native MCP client: how stdio and HTTP servers are configured, discovered, filtered, reloaded, and exposed as first-class tools." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-mcp-native-tools/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-mcp-native-tools-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-05-18" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta property="article:tag" content="mcp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes MCP는 외부 도구를 네이티브 능력으로 바꾼다" />
+    <meta name="twitter:description" content="A practical guide to Hermes Agent's native MCP client: how stdio and HTTP servers are configured, discovered, filtered, reloaded, and exposed as first-class tools." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-mcp-native-tools-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes MCP는 외부 도구를 네이티브 능력으로 바꾼다","description":"A practical guide to Hermes Agent's native MCP client: how stdio and HTTP servers are configured, discovered, filtered, reloaded, and exposed as first-class tools.","image":"https://dexa.art/blog/images/hermes-mcp-native-tools-cover.png","datePublished":"2026-05-18","dateModified":"2026-05-18","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-mcp-native-tools/"},"keywords":"hermes, ai-agent, workflow, mcp"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 5월 18일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes MCP는 외부 도구를 네이티브 능력으로 바꾼다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A practical guide to Hermes Agent's native MCP client: how stdio and HTTP servers are configured, discovered, filtered, reloaded, and exposed as first-class tools.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">mcp</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-mcp-native-tools-cover.png" alt="cover" loading="lazy"></p>
+<p>Hermes Agent의 MCP 기능은 “외부 도구를 연결한다”는 추상적인 말보다 훨씬 구체적이다. 이미 MCP 서버로 제공되는 GitHub, 파일시스템, 브라우저, 데이터베이스, 사내 API를 Hermes 안의 <strong>일급 도구</strong>처럼 불러오게 해 준다. 핵심 문제는 하나다. Hermes 코어를 고치지 않고도 필요한 도구 생태계를 붙이되, 모델에게 보이는 표면은 안전하게 좁히는 것이다.</p>
+<h2>기능 개요 — MCP server가 toolset이 되는 흐름</h2>
+<p>MCP(Model Context Protocol)는 에이전트와 외부 도구 서버 사이의 표준 연결 방식이다. Hermes는 MCP <strong>client</strong>로 동작해 서버에 접속하고, 서버가 제공하는 tool·resource·prompt capability를 확인한 뒤 사용할 수 있는 항목을 등록한다. 반대로 <code>hermes mcp serve</code>를 실행하면 Hermes 자체가 MCP <strong>server</strong>가 되어 다른 MCP client에게 Hermes의 메시징 기능을 노출할 수도 있다.</p>
+<p>실제 사용에서 더 자주 만나는 쪽은 client 모드다. <code>mcp_servers</code> 설정에 서버를 추가하면 Hermes는 시작 또는 reload 시점에 도구를 발견하고, 이름 충돌을 피하기 위해 다음 규칙으로 등록한다.</p>
+<pre><code class="language-text">mcp_&lt;server_name&gt;_&lt;tool_name&gt;</code></pre>
+<p>예를 들어 <code>project-fs</code> 서버의 <code>read_file</code>은 <code>mcp_project_fs_read_file</code>처럼 보인다. 하이픈과 점은 언더스코어로 정리된다. 서버가 resource나 prompt를 지원하면 <code>list_resources</code>, <code>read_resource</code>, <code>list_prompts</code>, <code>get_prompt</code> 같은 유틸리티 wrapper도 같은 prefix로 붙는다. 다만 Hermes는 capability-aware 방식으로 등록하므로, 서버가 resource를 지원하지 않으면 관련 wrapper를 억지로 만들지 않는다.</p>
+<h2>어떻게 설정하고 확인하나</h2>
+<p>가장 작은 stdio 서버 예시는 로컬 프로세스를 실행하는 형태다.</p>
+<pre><code class="language-yaml">mcp_servers:
+  project_fs:
+    command: &quot;npx&quot;
+    args: [&quot;-y&quot;, &quot;@modelcontextprotocol/server-filesystem&quot;, &quot;/path/to/project&quot;]</code></pre>
+<p>HTTP 서버는 <code>url</code>과 필요한 header를 둔다. 공개 문서나 블로그에는 실제 token, 내부 endpoint, header 값을 쓰지 않는 것이 원칙이다.</p>
+<pre><code class="language-yaml">mcp_servers:
+  docs_api:
+    url: &quot;https://mcp.example.com/mcp&quot;
+    headers:
+      Authorization: &quot;Bearer ***&quot;</code></pre>
+<p>Hermes CLI에서는 다음 명령 표면을 쓴다.</p>
+<pre><code class="language-bash">hermes mcp add NAME
+hermes mcp list
+hermes mcp test NAME
+hermes mcp configure NAME
+hermes mcp remove NAME
+hermes mcp login NAME</code></pre>
+<p><code>hermes mcp list</code>는 서버 이름, transport, tool 노출 정책, enabled 상태를 보여 준다. <code>hermes mcp test NAME</code>은 연결과 도구 발견을 검증하는 단계다. OAuth가 필요한 HTTP 서버는 <code>auth: oauth</code>를 설정하고 <code>hermes mcp login NAME</code>으로 재인증할 수 있으며, token은 Hermes의 MCP token 저장 위치에 보관된다.</p>
+<p>도구를 모두 열어 두는 대신 처음부터 필터를 거는 편이 좋다.</p>
+<pre><code class="language-yaml">mcp_servers:
+  github:
+    command: &quot;npx&quot;
+    args: [&quot;-y&quot;, &quot;@modelcontextprotocol/server-github&quot;]
+    env:
+      GITHUB_PERSONAL_ACCESS_TOKEN: &quot;***&quot;
+    tools:
+      include: [list_issues, create_issue, search_code]
+      resources: false
+      prompts: false</code></pre>
+<p><code>tools.include</code>가 있으면 해당 server-native tool만 등록된다. <code>tools.exclude</code>는 blacklist이고, 둘 다 있으면 include가 우선한다. 서버 자체를 잠시 보관만 하고 싶다면 <code>enabled: false</code>로 두면 연결 시도와 도구 등록이 모두 생략된다.</p>
+<h2>짧은 실제 사용 사이드바</h2>
+<p>이 사용자의 셋업에서는 MCP가 “Hermes가 직접 내장하지 않은 전문 도구를 붙이는 통로”로 다뤄진다. 특히 서버를 설정했는데 현재 세션의 tool registry에 아직 보이지 않는 경우가 있어, 설정 변경 뒤에는 새 세션을 열거나 <code>/reload-mcp</code>로 다시 발견시키는 절차를 운영 습관으로 둔다. 중요한 점은 서버 이름이나 token을 기록하는 것이 아니라, “설정·테스트·필터링·reload” 순서를 남기는 것이다.</p>
+<h2>Pitfalls / tips</h2>
+<p>첫째, MCP 서버를 추가했다고 즉시 모든 대화에 보이는 것은 아니다. Hermes는 시작 또는 reload 시점에 discovery를 수행한다. 설정을 바꾼 뒤 도구가 보이지 않으면 <code>/reload-mcp</code>, 새 세션, gateway restart 순서로 확인한다.</p>
+<p>둘째, stdio 서버에는 전체 shell 환경이 그대로 전달되지 않는다. 필요한 값은 <code>env</code>에 명시하고, 공개 글이나 로그에는 secret 값을 남기지 않는다. HTTP 서버도 header를 예시값으로만 다룬다.</p>
+<p>셋째, 민감한 서버는 allowlist가 기본값이다. 결제, 고객 데이터, 사내 API처럼 쓰기 권한이 섞인 서버에 <code>all</code>을 열어 두면 모델의 tool surface가 너무 커진다. <code>include</code>, <code>resources: false</code>, <code>prompts: false</code>를 먼저 적용한 뒤 필요한 도구를 늘린다.</p>
+<p>넷째, <code>supports_parallel_tool_calls: true</code>는 읽기 전용·독립 호출이 안전할 때만 켠다. 파일, DB, 외부 상태를 동시에 바꾸는 도구라면 race condition을 먼저 검토해야 한다.</p>
+<h2>언제 MCP를 고르나</h2>
+<p>MCP는 이미 좋은 외부 서버가 있거나, Hermes 코어를 수정하지 않고 조직 내부 시스템을 붙이고 싶을 때 가장 잘 맞는다. 반대로 Hermes 내장 toolset이 이미 충분하거나, 아주 좁은 단일 기능만 필요하다면 native tool 하나가 더 단순할 수 있다. 좋은 MCP 운영은 “가능한 모든 도구를 연결”하는 것이 아니라, “필요한 서버 하나를 테스트하고, 최소한의 도구만 노출하고, reload까지 확인”하는 것이다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-tools-and-toolsets/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes가 손에 쥔 도구들: Toolsets로 에이전트 능력을 켜고 끄는 법</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

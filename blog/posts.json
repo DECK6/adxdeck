@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-mcp-native-tools",
+    "file": "_built/hermes-mcp-native-tools.md",
+    "title": "Hermes MCP는 외부 도구를 네이티브 능력으로 바꾼다",
+    "description": "A practical guide to Hermes Agent's native MCP client: how stdio and HTTP servers are configured, discovered, filtered, reloaded, and exposed as first-class tools.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "mcp"
+    ],
+    "date": "2026-05-18",
+    "thumbnail": "images/hermes-mcp-native-tools-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-tools-and-toolsets",
     "file": "_built/hermes-tools-and-toolsets.md",
     "title": "Hermes가 손에 쥔 도구들: Toolsets로 에이전트 능력을 켜고 끄는 법",
