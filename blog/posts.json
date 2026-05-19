@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-kanban-work-queue",
+    "file": "_built/hermes-kanban-work-queue.md",
+    "title": "Hermes Kanban은 대화를 작업 보드로 바꾼다",
+    "description": "A feature guide to Hermes Agent Kanban, the durable task board for coordinating multi-profile workers, dependencies, retries, and recovery.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "kanban"
+    ],
+    "date": "2026-05-20",
+    "thumbnail": "images/hermes-kanban-work-queue-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "hermes-mcp-native-tools",
     "file": "_built/hermes-mcp-native-tools.md",
     "title": "Hermes MCP는 외부 도구를 네이티브 능력으로 바꾼다",
