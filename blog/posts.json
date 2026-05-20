@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-memory-user-profile",
+    "file": "_built/hermes-memory-user-profile.md",
+    "title": "Hermes Memory는 작업 일지가 아니라 다음 세션의 운영 감각이다",
+    "description": "A practical guide to Hermes Agent's built-in memory, user profile, external memory providers, and the boundary between durable facts and searchable session history.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "memory"
+    ],
+    "date": "2026-05-21",
+    "thumbnail": "images/hermes-memory-user-profile-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-kanban-work-queue",
     "file": "_built/hermes-kanban-work-queue.md",
     "title": "Hermes Kanban은 대화를 작업 보드로 바꾼다",
