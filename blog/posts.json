@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-council-moa",
+    "file": "_built/hermes-council-moa.md",
+    "title": "Hermes Council은 어려운 판단을 여러 모델의 합의로 바꾼다",
+    "description": "A practical guide to Hermes Agent's Council/Mixture-of-Agents workflow, including the moa toolset, model fan-out, aggregation, setup requirements, costs, and safe use cases.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "council"
+    ],
+    "date": "2026-05-23",
+    "thumbnail": "images/hermes-council-moa-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "brian-massumi-affect-and-media-art",
     "file": "_built/brian-massumi-affect-and-media-art.md",
     "title": "감정 이전에 작동하는 미디어",
