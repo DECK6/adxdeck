@@ -1,5 +1,22 @@
 [
   {
+    "slug": "brian-massumi-affect-and-media-art",
+    "file": "_built/brian-massumi-affect-and-media-art.md",
+    "title": "감정 이전에 작동하는 미디어",
+    "description": "Brian Massumi의 정동, 강도, 가상 개념을 통해 인터랙티브 미디어아트가 의미를 전달하기 전에 신체와 분위기를 어떻게 조율하는지 읽는 글.",
+    "category": "Article",
+    "tags": [
+      "media-art-theory",
+      "affect-theory",
+      "media-art",
+      "theory",
+      "Brian-Massumi"
+    ],
+    "date": "2026-05-23",
+    "thumbnail": "images/brian-massumi-affect-media-art-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-delegate-task-subagents",
     "file": "_built/hermes-delegate-task-subagents.md",
     "title": "Hermes delegate_task는 작업을 작게 떼어 격리한다",
