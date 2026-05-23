@@ -1,5 +1,23 @@
 [
   {
+    "slug": "technical-memory-and-the-politics-of-recall",
+    "file": "_built/technical-memory-and-the-politics-of-recall.md",
+    "title": "기억은 몸 밖에서 권력이 된다",
+    "description": "베르나르 스티글레르의 제3의 파지를 통해 문자, 사진, 영화, 데이터베이스, AI가 기억을 몸 밖에 저장하는 방식과 그 정치성을 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "archive",
+      "memory",
+      "technology",
+      "stiegler"
+    ],
+    "date": "2026-05-24",
+    "thumbnail": "images/technical-memory-and-the-politics-of-recall-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-council-moa",
     "file": "_built/hermes-council-moa.md",
     "title": "Hermes Council은 어려운 판단을 여러 모델의 합의로 바꾼다",
