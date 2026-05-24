@@ -1,5 +1,24 @@
 [
   {
+    "slug": "planetary-computation-and-media-art",
+    "file": "_built/planetary-computation-and-media-art.md",
+    "title": "지구는 어떻게 계산 가능한 행성이 되었나",
+    "description": "행성적 연산은 컴퓨터를 기계 안의 계산이 아니라 위성, 데이터센터, 해저 케이블, 기후 모델, 도시 센서가 지구를 감지하고 조정하는 인프라로 읽게 한다. 이 글은 그 관점이 AI와 미디어아트, 기후 위기, 한국의 플랫폼 인프라를 어떻게 다시 보게 하는지 살핀다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "planetary-computation",
+      "infrastructure",
+      "AI",
+      "climate",
+      "software-studies"
+    ],
+    "date": "2026-05-25",
+    "thumbnail": "images/planetary-computation-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-voice-mode",
     "file": "_built/hermes-voice-mode.md",
     "title": "Hermes Voice Mode는 채팅을 말하는 작업 루프로 바꾼다",

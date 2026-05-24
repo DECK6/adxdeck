@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>지구는 어떻게 계산 가능한 행성이 되었나 | DEXA Blog</title>
+    <meta name="description" content="행성적 연산은 컴퓨터를 기계 안의 계산이 아니라 위성, 데이터센터, 해저 케이블, 기후 모델, 도시 센서가 지구를 감지하고 조정하는 인프라로 읽게 한다. 이 글은 그 관점이 AI와 미디어아트, 기후 위기, 한국의 플랫폼 인프라를 어떻게 다시 보게 하는지 살핀다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/planetary-computation-and-media-art/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="지구는 어떻게 계산 가능한 행성이 되었나" />
+    <meta property="og:description" content="행성적 연산은 컴퓨터를 기계 안의 계산이 아니라 위성, 데이터센터, 해저 케이블, 기후 모델, 도시 센서가 지구를 감지하고 조정하는 인프라로 읽게 한다. 이 글은 그 관점이 AI와 미디어아트, 기후 위기, 한국의 플랫폼 인프라를 어떻게 다시 보게 하는지 살핀다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/planetary-computation-and-media-art/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/planetary-computation-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-05-25" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="media-theory" />
+    <meta property="article:tag" content="planetary-computation" />
+    <meta property="article:tag" content="infrastructure" />
+    <meta property="article:tag" content="AI" />
+    <meta property="article:tag" content="climate" />
+    <meta property="article:tag" content="software-studies" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="지구는 어떻게 계산 가능한 행성이 되었나" />
+    <meta name="twitter:description" content="행성적 연산은 컴퓨터를 기계 안의 계산이 아니라 위성, 데이터센터, 해저 케이블, 기후 모델, 도시 센서가 지구를 감지하고 조정하는 인프라로 읽게 한다. 이 글은 그 관점이 AI와 미디어아트, 기후 위기, 한국의 플랫폼 인프라를 어떻게 다시 보게 하는지 살핀다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/planetary-computation-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"지구는 어떻게 계산 가능한 행성이 되었나","description":"행성적 연산은 컴퓨터를 기계 안의 계산이 아니라 위성, 데이터센터, 해저 케이블, 기후 모델, 도시 센서가 지구를 감지하고 조정하는 인프라로 읽게 한다. 이 글은 그 관점이 AI와 미디어아트, 기후 위기, 한국의 플랫폼 인프라를 어떻게 다시 보게 하는지 살핀다.","image":"https://dexa.art/blog/images/planetary-computation-cover.png","datePublished":"2026-05-25","dateModified":"2026-05-25","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/planetary-computation-and-media-art/"},"keywords":"media-art, media-theory, planetary-computation, infrastructure, AI, climate, software-studies"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 5월 25일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">지구는 어떻게 계산 가능한 행성이 되었나</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">행성적 연산은 컴퓨터를 기계 안의 계산이 아니라 위성, 데이터센터, 해저 케이블, 기후 모델, 도시 센서가 지구를 감지하고 조정하는 인프라로 읽게 한다. 이 글은 그 관점이 AI와 미디어아트, 기후 위기, 한국의 플랫폼 인프라를 어떻게 다시 보게 하는지 살핀다.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-theory</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">planetary-computation</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">infrastructure</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">AI</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">climate</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">software-studies</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/planetary-computation-cover.png" alt="행성적 연산의 추상적 풍경" loading="lazy"></p>
+<p>컴퓨터는 더 이상 책상 위의 장치나 손안의 화면에 머물지 않는다. 위성은 대기와 해양을 관측하고, 해저 케이블은 대륙 사이를 잇고, 데이터센터는 물과 전기를 소비하며 모델을 돌린다. 도시는 센서와 카메라와 물류 시스템으로 운영되고, 사용자는 계정과 주소와 행동 로그로 식별된다. 계산은 기계 내부의 사건이 아니라 지구 전체를 감지하고 예측하고 조정하는 환경이 되었다.</p>
+<p>행성적 연산(Planetary Computation)이라는 말은 이 전환을 붙잡기 위한 개념이다. 질문은 “컴퓨터가 지구에 어떤 영향을 주는가?”에서 “지구는 어떤 방식으로 계산 가능한 행성이 되었는가?”로 이동한다. 이때 연산은 추상적인 코드가 아니라 광물, 전력망, 냉각수, 클라우드 플랫폼, 기후 모델, 도시 인프라, 군사·물류 시스템이 얽힌 사회기술적 체계다.</p>
+<p>미디어아트가 이 개념을 필요로 하는 이유도 여기에 있다. 오늘의 이미지는 단순히 보이는 것이 아니라 작동한다. 위성 사진, CCTV, 드론 영상, 스마트시티 대시보드, 생성형 AI 이미지는 모두 보이지 않는 인프라의 표면이다. 작품을 화면 안의 형태로만 읽으면, 그 이미지를 가능하게 한 행성 규모의 물질 조건과 권력 구조를 놓치게 된다.</p>
+<h2>클라우드는 하늘에 있지 않다</h2>
+<p>Benjamin Bratton은 『The Stack』에서 현대의 컴퓨테이션을 Earth, Cloud, City, Address, Interface, User라는 층위가 겹친 우발적 거대구조로 설명한다. 이 도식의 힘은 클라우드를 비물질적 은유에서 끌어내린다는 데 있다. 클라우드는 하늘에 떠 있는 추상 공간이 아니다. 그것은 광물 채굴, 전력망, 냉각수, 데이터센터 부지, 해저 케이블, 통신 규약 위에 선다.</p>
+<p>이 구조 안에서 주권도 다시 쓰인다. 국경과 법은 여전히 중요하지만, 실제 통치의 경로는 계정, API, 인증, 플랫폼 정책, 주소 체계, 추천 시스템으로 분산된다. 어떤 서비스에 접속할 수 있는지, 어떤 데이터가 저장되는지, 어떤 모델이 누구에게 열리는지, 어떤 행위가 위험으로 분류되는지는 점점 더 프로토콜과 플랫폼의 언어로 결정된다.</p>
+<p>그래서 행성적 연산은 “기술 인프라”라는 중립적 말로 충분히 설명되지 않는다. 그것은 세계를 알 수 있고, 예측할 수 있고, 관리할 수 있는 대상으로 만드는 권력의 형식이다. 기후 모델, 탄소 회계, 물류 최적화, 재난 예측, 도시 관제는 모두 현실을 계산 가능한 객체로 조직한다. 계산은 세계를 비추는 거울이 아니라 세계를 특정한 방식으로 배열하는 장치다.</p>
+<h2>미디어아트는 인프라의 표면을 본다</h2>
+<p>행성적 연산의 관점에서 미디어아트는 보이지 않는 인프라를 감각 가능한 것으로 되돌리는 작업이 된다. Trevor Paglen이 군사 위성, 해저 케이블, 감시 시설을 풍경처럼 촬영할 때, 그 풍경은 자연의 숭고가 아니라 계산 인프라의 숭고다. 관객이 보는 것은 산과 하늘이 아니라, 보이지 않아야 작동하는 권력의 표면이다.</p>
+<p>Forensic Architecture의 작업도 같은 축에서 읽을 수 있다. 위성 이미지, 휴대폰 영상, 그림자 계산, 3D 모델링, 음향 분석은 국가 폭력과 환경 폭력을 추적하는 증거 생산 장치가 된다. 흥미로운 점은 이들이 행성적 연산을 단순히 비판만 하지 않는다는 것이다. 감시와 통치에 쓰이는 센서·주소·모델의 체계를 거꾸로 사용해 책임 소재를 구성한다. 행성적 연산은 억압적 인프라이면서 동시에 권력의 은폐를 역추적하는 도구가 될 수 있다.</p>
+<p>Hito Steyerl의 작동적 이미지 논의도 여기서 더 넓어진다. 이미지는 더 이상 인간 관람자를 위해서만 만들어지지 않는다. 기계가 판단하고, 분류하고, 추적하고, 실행하기 위해 이미지가 생산된다. CCTV의 프레임, 위성의 픽셀, 플랫폼의 썸네일, AI 학습 데이터는 모두 다른 층위의 연산을 호출한다. 이미지는 파일이 아니라 경로다. 그 경로에는 압축 표준, 추천 알고리즘, 데이터센터, 저작권 필터, 사용자 행동 로그가 함께 작동한다.</p>
+<h2>AI와 기후는 같은 인프라 위에 놓인다</h2>
+<p>행성적 연산은 AI와 기후 위기를 단순한 찬반 구도로 보지 못하게 만든다. 대규모 AI는 막대한 전력과 물, 반도체, 광물, 노동, 데이터 추출에 기대어 작동한다. Kate Crawford가 『Atlas of AI』에서 강조하듯, AI는 순수한 지능의 문제가 아니라 광산, 물류, 라벨링 노동, 데이터센터, 폐기물의 문제다. Crawford와 Vladan Joler의 『Anatomy of an AI System』이 보여 주는 것도 바로 이 사슬이다. 음성비서 하나의 편리함 뒤에는 지구적 추출과 계산의 네트워크가 놓여 있다.</p>
+<p>그러나 다른 한편으로 기후 위기를 이해하는 데에도 계산은 필수적이다. 위성 관측, 해양 센서, 기후 모델, 재난 예측, 탄소 배출 추적은 계산 없이는 작동하기 어렵다. 문제는 계산 그 자체가 아니라 계산의 소유, 목적, 물질 조건, 정치적 책임이다. 누가 모델을 만들고, 어떤 데이터를 쓰며, 어떤 지역의 물과 전기를 소비하고, 어떤 공동체가 위험을 떠안는가. 더 많은 계산이 곧 더 나은 세계를 의미하지는 않는다.</p>
+<p>James Bridle이 『New Dark Age』에서 경고한 것처럼, 데이터가 많아질수록 세계가 더 투명해지는 것은 아니다. 복잡한 모델과 자동화된 판단은 오히려 새로운 어둠을 만든다. 행성적 연산은 지구를 더 잘 보게 하는 동시에, 누가 어떤 모델로 지구를 보고 있는지 더 알기 어렵게 만든다. 미디어아트가 다룰 수 있는 긴장도 바로 여기에 있다. 아름다운 데이터 시각화가 아니라, 계산 가능성이 감추는 비용과 불투명성을 드러내는 일이다.</p>
+<h2>한국의 플랫폼 일상도 행성적이다</h2>
+<p>이 개념은 추상적인 글로벌 이론에 머물지 않는다. 한국의 플랫폼 일상은 이미 행성적 연산의 지역적 형태다. 네이버와 카카오의 데이터센터, 통신사의 IDC, 클라우드 리전, 배달·물류 플랫폼, CCTV 통합관제, 스마트시티, 재난 문자, 공공 데이터 포털은 모두 Earth–Cloud–City–Address–Interface–User의 층위를 구성한다.</p>
+<p>판교 데이터센터 화재와 서비스 장애는 플랫폼이 얼마나 물리 인프라에 의존하는지 보여 준 사건이었다. “앱이 멈췄다”는 말 뒤에는 전력, 냉각, 건물, 네트워크, 인증, 계정, 결제, 노동의 사슬이 함께 멈춘다. 디지털 서비스는 비물질적인 편의가 아니라, 특정 장소와 에너지와 제도에 묶인 사회 기반시설이다.</p>
+<p>한국 미디어아트를 이 관점에서 보면, 로컬 사례는 주변부가 아니다. 도시 센서, 배달 노동, 감시 인프라, 데이터 시각화, AI 이미지, 환경 데이터 기반 작업은 글로벌 Stack이 한국이라는 장소에서 어떻게 물질화되는지 보여 준다. 중요한 것은 “한국적 특수성”을 장식처럼 덧붙이는 일이 아니라, 행성적 인프라가 지역의 노동, 도시, 감각, 정책과 만나는 구체적 표면을 읽는 일이다.</p>
+<h2>끝내 남는 질문</h2>
+<p>행성적 연산은 우리에게 반기술주의와 기술해결주의 사이의 더 어려운 질문을 요구한다. 계산을 모두 거부할 수는 없다. 기후 위기, 감염병, 물류, 재난, 도시 문제는 이미 계산 인프라와 깊이 얽혀 있다. 그러나 계산이 가능하다는 사실이 곧 정당성을 보장하지도 않는다.</p>
+<p>따라서 핵심 질문은 “더 계산할 것인가, 덜 계산할 것인가”가 아니다. 어떤 세계를 계산 가능한 것으로 만들고, 어떤 세계를 계산 밖에 남겨 두며, 누가 그 계산의 이익과 비용을 나누는가가 문제다. 미디어아트가 행성적 연산을 다룬다면, 그것은 거대한 시스템을 숭배하기 위해서가 아니라 그 시스템의 표면에 균열을 내기 위해서여야 한다. 지구가 계산 가능한 행성이 되었다면, 이제 남는 질문은 그 계산을 누가 다시 읽고, 누가 다시 설계하며, 누가 거기에 책임을 물을 수 있는가이다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-voice-mode/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes Voice Mode는 채팅을 말하는 작업 루프로 바꾼다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
