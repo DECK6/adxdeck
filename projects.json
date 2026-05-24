@@ -26,6 +26,19 @@
     "size": "large"
   },
   {
+    "id": "project-mice-safety-agent",
+    "section": "work",
+    "title": "MICE Safety Agent",
+    "englishTitle": "Korea MICE Safety Agent",
+    "category": "Public Safety Simulation",
+    "description": "행사 유형, 예상 인파, 베뉴, 지자체 조건을 입력해 MICE·옥외행사 안전 적용성을 확인하는 오프라인 온톨로지 기반 웹 시뮬레이터.",
+    "tags": ["MICE Safety", "Ontology"],
+    "icon": "health_and_safety",
+    "color": "from-[#00F0FF]",
+    "url": "/mice-safety/",
+    "size": "normal"
+  },
+  {
     "id": "project-04",
     "section": "work",
     "title": "손의 잔향",

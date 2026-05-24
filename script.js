@@ -515,6 +515,19 @@ const PORTFOLIO_DATA = [
         "size": "large"
     },
     {
+        "id": "project-mice-safety-agent",
+        "section": "work",
+        "title": "MICE Safety Agent",
+        "englishTitle": "Korea MICE Safety Agent",
+        "category": "Public Safety Simulation",
+        "description": "행사 유형, 예상 인파, 베뉴, 지자체 조건을 입력해 MICE·옥외행사 안전 적용성을 확인하는 오프라인 온톨로지 기반 웹 시뮬레이터.",
+        "tags": ["MICE Safety", "Ontology"],
+        "icon": "health_and_safety",
+        "color": "from-[#00F0FF]",
+        "url": "/mice-safety/",
+        "size": "normal"
+    },
+    {
         "id": "project-04",
         "section": "work",
         "title": "손의 잔향",
@@ -676,8 +689,9 @@ function renderProjects(projects) {
                 mediaContent = `<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] ${project.color || 'from-[#00F0FF]'} via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>`;
             }
 
+            const clickAction = project.url ? `window.location.href='${project.url}'` : `openVideoModal('${project.id}')`;
             const cardHTML = `
-            <div onclick="openVideoModal('${project.id}')" 
+            <div onclick="${clickAction}"
                 class="${colSpanClass} group relative bg-[#050505] overflow-hidden border border-[#222] hover:border-[#00F0FF] transition-all duration-300 card-hover-effect cursor-pointer fade-in-up"
                 style="animation-delay: ${delay}ms">
                 
@@ -697,7 +711,7 @@ function renderProjects(projects) {
                         <h3 class="font-bold text-xl text-white group-hover:text-[#00F0FF] transition-colors font-display truncate pr-2">
                             ${project.title}
                         </h3>
-                        ${project.size === 'large' ? '<span class="text-xs font-mono text-[#00F0FF] border border-[#00F0FF]/30 px-2 py-0.5 rounded bg-[#00F0FF]/10">FEATURED</span>' : ''}
+                        ${project.url ? '<span class="text-xs font-mono text-[#00F0FF] border border-[#00F0FF]/30 px-2 py-0.5 rounded bg-[#00F0FF]/10">OPEN</span>' : project.size === 'large' ? '<span class="text-xs font-mono text-[#00F0FF] border border-[#00F0FF]/30 px-2 py-0.5 rounded bg-[#00F0FF]/10">FEATURED</span>' : ''}
                     </div>
                     <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">${project.description}</p>
                     

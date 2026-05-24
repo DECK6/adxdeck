@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MICE 행사 안전 적용성 체크리스트 | DEXA</title>
+  <meta name="description" content="행사 유형, 예상 인파, 베뉴, 관할 지자체, 도로점용, 식음료/LPG, 설치·철거 조건을 입력해 MICE·옥외행사 안전 적용성을 확인하는 오프라인 온톨로지 기반 시뮬레이터입니다.">
+  <link rel="canonical" href="https://dexa.art/mice-safety/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MICE 행사 안전 적용성 체크리스트">
+  <meta property="og:description" content="오프라인 법령·조례·베뉴·위험 온톨로지 기반 MICE/옥외행사 안전 적용성 시뮬레이터">
+  <meta property="og:url" content="https://dexa.art/mice-safety/">
+  <meta property="og:image" content="https://dexa.art/dexa_logo.jpg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="page">
+    <nav class="topbar" aria-label="site">
+      <a class="brand" href="/">DEXA</a>
+      <span class="badge primary">korea-mice-safety-agent</span>
+      <span class="badge">offline ontology simulator</span>
+      <a class="badge" href="https://github.com/DECK6/korea-mice-safety-agent">GitHub</a>
+    </nav>
+
+    <header class="hero">
+      <div>
+        <p class="eyebrow">MICE / Outdoor Event Safety</p>
+        <h1>MICE 행사 안전 적용성 체크리스트</h1>
+        <p class="lead">행사 유형, 예상 인파, 베뉴, 관할 지자체와 현장 조건을 입력하면 적용 법령·조례 후보, 의무 문서, 위험요인, 베뉴 체크포인트를 카드로 정리합니다.</p>
+      </div>
+      <div class="hero-note">
+        <strong>네트워크 법령 조회 없음</strong>
+        <p>이 페이지는 함께 배포된 JSON 온톨로지만 읽어 브라우저 안에서 계산합니다. 법률 자문이나 관할기관 승인을 대체하지 않습니다.</p>
+      </div>
+    </header>
+
+    <section class="layout">
+      <aside class="card input-panel">
+        <h2>행사 조건 입력</h2>
+        <form id="sim-form" class="form-grid">
+          <div>
+            <label for="eventName">행사명</label>
+            <input id="eventName" name="eventName" type="text" placeholder="예: 고양 야외 푸드 페스티벌">
+          </div>
+
+          <div>
+            <label>행사 유형</label>
+            <div id="eventTypes" class="checkbox-grid"></div>
+          </div>
+
+          <div class="two-col">
+            <div>
+              <label for="expectedCrowd">예상 인파 수</label>
+              <input id="expectedCrowd" name="expectedCrowd" type="number" min="0" step="100" value="5000">
+            </div>
+            <div>
+              <label for="venueId">베뉴</label>
+              <select id="venueId" name="venueId"></select>
+            </div>
+          </div>
+
+          <div>
+            <label for="jurisdiction">관할 지자체</label>
+            <input id="jurisdiction" name="jurisdiction" type="text" list="jurisdictionOptions" placeholder="예: 경기도 고양시">
+            <datalist id="jurisdictionOptions"></datalist>
+          </div>
+
+          <div>
+            <label>특수 조건</label>
+            <div id="featureFlags" class="checkbox-grid"></div>
+          </div>
+
+          <div class="sample-row" aria-label="샘플 입력">
+            <button class="secondary" type="button" data-sample="indoor">실내 전시</button>
+            <button class="secondary" type="button" data-sample="festival">옥외축제</button>
+            <button class="secondary" type="button" data-sample="vip">VIP 컨벤션</button>
+            <button class="secondary" type="button" data-sample="unhosted">무주최 운집</button>
+          </div>
+
+          <div class="actions">
+            <button id="submitBtn" type="submit">체크리스트 생성</button>
+            <button class="secondary" type="button" id="printBtn">인쇄</button>
+            <span id="status" class="muted"></span>
+          </div>
+        </form>
+      </aside>
+
+      <section id="result" aria-live="polite">
+        <div class="empty">
+          <strong>온톨로지 데이터를 불러오는 중입니다.</strong>
+          <p>초기 로드 후 샘플 체크리스트가 자동 생성됩니다.</p>
+        </div>
+      </section>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
