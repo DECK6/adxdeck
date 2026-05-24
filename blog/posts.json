@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-setup-first-checks",
+    "file": "_built/hermes-setup-first-checks.md",
+    "title": "Hermes 설치는 끝이 아니라 첫 진단 루프의 시작이다",
+    "description": "A practical Hermes Agent setup guide focused on installation paths, first health checks, configuration files, updates, and what to verify before adding advanced features.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "setup"
+    ],
+    "date": "2026-05-25",
+    "thumbnail": "images/hermes-setup-first-checks-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "planetary-computation-and-media-art",
     "file": "_built/planetary-computation-and-media-art.md",
     "title": "지구는 어떻게 계산 가능한 행성이 되었나",
