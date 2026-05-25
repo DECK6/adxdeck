@@ -1,5 +1,23 @@
 [
   {
+    "slug": "invisible-images-and-machine-vision",
+    "file": "_built/invisible-images-and-machine-vision.md",
+    "title": "이미지는 더 이상 우리를 기다리지 않는다",
+    "description": "트레버 패글런의 Invisible Images 개념을 통해 인간 관객을 지나치지 않고 기계가 분류하고 판단하는 이미지 생태계를 읽는다. 머신 비전, 데이터셋, 감시, AI 교육과 미디어아트 비평에서 왜 보이지 않는 이미지를 다시 보아야 하는지 다룬다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "machine-vision",
+      "ai",
+      "surveillance",
+      "image-politics"
+    ],
+    "date": "2026-05-26",
+    "thumbnail": "images/invisible-images-machine-vision-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-setup-first-checks",
     "file": "_built/hermes-setup-first-checks.md",
     "title": "Hermes 설치는 끝이 아니라 첫 진단 루프의 시작이다",

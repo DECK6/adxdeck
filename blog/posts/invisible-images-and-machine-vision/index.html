@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이미지는 더 이상 우리를 기다리지 않는다 | DEXA Blog</title>
+    <meta name="description" content="트레버 패글런의 Invisible Images 개념을 통해 인간 관객을 지나치지 않고 기계가 분류하고 판단하는 이미지 생태계를 읽는다. 머신 비전, 데이터셋, 감시, AI 교육과 미디어아트 비평에서 왜 보이지 않는 이미지를 다시 보아야 하는지 다룬다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/invisible-images-and-machine-vision/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="이미지는 더 이상 우리를 기다리지 않는다" />
+    <meta property="og:description" content="트레버 패글런의 Invisible Images 개념을 통해 인간 관객을 지나치지 않고 기계가 분류하고 판단하는 이미지 생태계를 읽는다. 머신 비전, 데이터셋, 감시, AI 교육과 미디어아트 비평에서 왜 보이지 않는 이미지를 다시 보아야 하는지 다룬다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/invisible-images-and-machine-vision/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/invisible-images-machine-vision-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-05-26" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="media-theory" />
+    <meta property="article:tag" content="machine-vision" />
+    <meta property="article:tag" content="ai" />
+    <meta property="article:tag" content="surveillance" />
+    <meta property="article:tag" content="image-politics" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="이미지는 더 이상 우리를 기다리지 않는다" />
+    <meta name="twitter:description" content="트레버 패글런의 Invisible Images 개념을 통해 인간 관객을 지나치지 않고 기계가 분류하고 판단하는 이미지 생태계를 읽는다. 머신 비전, 데이터셋, 감시, AI 교육과 미디어아트 비평에서 왜 보이지 않는 이미지를 다시 보아야 하는지 다룬다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/invisible-images-machine-vision-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"이미지는 더 이상 우리를 기다리지 않는다","description":"트레버 패글런의 Invisible Images 개념을 통해 인간 관객을 지나치지 않고 기계가 분류하고 판단하는 이미지 생태계를 읽는다. 머신 비전, 데이터셋, 감시, AI 교육과 미디어아트 비평에서 왜 보이지 않는 이미지를 다시 보아야 하는지 다룬다.","image":"https://dexa.art/blog/images/invisible-images-machine-vision-cover.png","datePublished":"2026-05-26","dateModified":"2026-05-26","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/invisible-images-and-machine-vision/"},"keywords":"media-art, media-theory, machine-vision, ai, surveillance, image-politics"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 5월 26일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">이미지는 더 이상 우리를 기다리지 않는다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">트레버 패글런의 Invisible Images 개념을 통해 인간 관객을 지나치지 않고 기계가 분류하고 판단하는 이미지 생태계를 읽는다. 머신 비전, 데이터셋, 감시, AI 교육과 미디어아트 비평에서 왜 보이지 않는 이미지를 다시 보아야 하는지 다룬다.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-theory</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">machine-vision</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">surveillance</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">image-politics</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/invisible-images-machine-vision-cover.png" alt="비가시적 이미지와 머신 비전 커버" loading="lazy"></p>
+<p>우리는 여전히 이미지를 인간의 눈앞에 도착하는 것으로 생각한다. 사진은 누군가가 보고, 영화는 관객이 앉아 보며, 전시장의 영상은 시선과 몸을 초대한다고 믿는다. 그러나 동시대 이미지의 상당수는 그런 약속을 더 이상 필요로 하지 않는다. 이미지는 우리에게 보여지기 전에 이미 잘리고, 압축되고, 라벨링되고, 점수화된다. 어떤 이미지는 아예 사람에게 보이기 위해 만들어지지 않는다.</p>
+<p>트레버 패글런(Trevor Paglen)이 말한 <strong>Invisible Images</strong>, 곧 비가시적 이미지는 바로 이 전환을 가리킨다. CCTV, 위성, 드론, 자율주행차, 얼굴 인증, 콘텐츠 moderation, 의료 스캐너, 플랫폼 추천 시스템에서 이미지는 더 이상 재현과 감상의 대상만이 아니다. 그것은 출입을 허가하고, 위험을 분류하고, 구매 가능성을 예측하고, 경찰적 개입을 촉발하고, 모델을 다시 학습시키는 작동 단위가 된다.</p>
+<p>이 변화가 중요한 이유는 단순히 “기계가 이미지를 본다”는 신기한 사실 때문이 아니다. 문제는 기계의 봄이 사회적 행동으로 이어진다는 점이다. 누가 정상으로 분류되는가, 누가 위험으로 표시되는가, 어떤 얼굴이 잘 인식되고 어떤 몸이 오류로 남는가, 어떤 이미지가 데이터셋에 들어가고 어떤 이미지는 삭제되는가. 비가시적 이미지는 이미지 이론의 문제가 아니라 권력 배치의 문제다.</p>
+<h2>관객 없는 이미지의 시대</h2>
+<p>근대적 이미지 문화는 대체로 인간 관객을 중심에 두고 설명되어 왔다. 회화는 보는 사람의 위치를 조직했고, 사진은 기억과 증언의 형식으로 읽혔으며, 영화와 비디오는 시간 경험을 공유하게 했다. 물론 이미지는 언제나 권력과 연결되어 있었지만, 그 권력은 대개 “보여 주는 것”과 “보는 것” 사이에서 작동한다고 여겨졌다.</p>
+<p>패글런의 진단은 이 전제를 흔든다. 오늘날의 많은 이미지는 인간 관객을 1차 수신자로 삼지 않는다. 교통 카메라의 영상은 먼저 번호판 인식 시스템으로 들어가고, 스마트폰 사진은 플랫폼의 분류 모델과 광고 시스템을 통과하며, 출입 인증 카메라는 사람의 얼굴을 픽셀 이미지가 아니라 신원 확인을 위한 특징 벡터로 다룬다. 이때 이미지는 감상되지 않는다. 처리된다.</p>
+<p>하룬 파로키(Harun Farocki)가 걸프전의 스마트 폭탄 영상과 산업 자동화 이미지에서 포착했던 “작동적 이미지”의 논리는 AI 시대에 일상 인프라로 확장되었다. 과거의 작동적 이미지는 군사·산업 장치의 특수한 이미지처럼 보였다. 지금의 비가시적 이미지는 아파트 현관, 공항 자동 출입국 심사, 학교 출결 시스템, 쇼핑몰 CCTV, 소셜미디어 피드 안에 들어와 있다. 예외적 장면이 아니라 생활 조건이 된 것이다.</p>
+<p>그래서 비가시적 이미지는 “안 보인다”는 단순한 은유가 아니다. 그것은 인간의 눈에 나타나지 않는 동시에, 나타나지 않기 때문에 더 쉽게 책임 바깥으로 빠져나가는 이미지다. 사람은 결과 화면만 본다. 승인, 거절, 추천, 차단, 위험, 정상, 부적절. 그러나 그 판단을 만든 이미지의 포착 조건, 전처리 방식, 라벨 체계, 모델의 오류율, 데이터셋의 출처는 보이지 않는다.</p>
+<h2>분류는 중립적인 기술이 아니다</h2>
+<p>비가시적 이미지의 핵심에는 분류가 있다. 이미지는 “무엇인가”를 보여 주는 대신 “무엇으로 판정되는가”의 문제로 바뀐다. 얼굴은 사람의 얼굴이 아니라 성별, 나이, 감정, 위험도, 신원 일치율의 묶음이 된다. 거리 풍경은 도시의 장면이 아니라 차량, 보행자, 표지판, 이상 행동, 혼잡도라는 데이터 구조가 된다.</p>
+<p>여기서 분류 체계는 결코 중립적이지 않다. ImageNet과 같은 대규모 이미지 데이터셋이 보여 주었듯, 어떤 범주를 만들고 어떤 단어를 붙이는가는 세계관을 새기는 일이다. “정상”과 “비정상”, “안전”과 “위험”, “적절”과 “부적절”의 경계는 기술적 편의만으로 결정되지 않는다. 그것은 역사적 편견, 제도적 필요, 시장의 목적, 보안 논리, 언어권의 관습을 함께 담는다.</p>
+<p>패글런과 케이트 크로퍼드(Kate Crawford)의 <em>ImageNet Roulette</em>가 불편했던 이유도 여기에 있다. 관객이 자신의 얼굴을 업로드하면 시스템은 그 얼굴을 임의의 인물 범주로 분류했다. 그 결과는 종종 우스꽝스럽거나 폭력적이었고, 특정 신체와 인종에 더 부정적인 라벨을 부여하는 경향을 드러냈다. 작품은 “AI가 틀릴 수 있다”는 평범한 사실을 보여 준 것이 아니라, 분류 체계 자체가 사회적 폭력을 어떻게 자동화하는지 경험하게 했다.</p>
+<p>이 지점에서 비가시적 이미지는 알고리즘 편향 논의와 만난다. 오류는 균등하게 분포하지 않는다. 어떤 집단은 더 자주 오인되고, 어떤 얼굴은 더 자주 데이터 부족의 대상이 되며, 어떤 언어와 문화는 라벨 체계 안에서 주변부로 밀려난다. 기계가 이미지를 본다는 말은 곧 기계가 세계를 특정한 범주로 자른다는 말이다. 그리고 그 절단선은 현실의 접근권, 이동권, 설명받을 권리, 일할 권리와 연결된다.</p>
+<h2>미디어아트가 보이게 해야 할 것</h2>
+<p>미디어아트는 이 문제를 다룰 때 쉽게 표면 효과에 머물 수 있다. 바운딩 박스, 열지도, 픽셀화, 글리치, 감시 카메라 화면, 신경망의 추상 패턴은 강한 시각적 매혹을 만든다. 그러나 그런 이미지를 멋진 분위기로 소비하는 것만으로는 비가시적 이미지의 정치에 도달하지 못한다. 오히려 감시와 분류의 장치를 세련된 미학으로 포장할 위험이 있다.</p>
+<p>강한 작업은 기계 시각의 표면을 보여 주는 데서 멈추지 않는다. 그것은 이미지가 어디서 발생했는지, 어떤 데이터셋에 들어갔는지, 누가 라벨을 붙였는지, 어떤 모델이 어떤 기준으로 판단했는지, 그 판단이 어떤 행동을 실행했는지까지 추적하게 만든다. 관객이 단지 이미지를 보는 사람이 아니라 이미지 시스템에 의해 포착되고 분류되는 대상이라는 사실을 전시장 안에서 감각하게 할 때, 비로소 Invisible Images는 미학적 장식이 아니라 비평적 장치가 된다.</p>
+<p>이런 관점에서 패글런의 작업은 중요한 방법론을 제공한다. 비밀 군사 시설과 감시 인프라를 멀리서 촬영한 사진들, 위성과 데이터 흐름을 추적하는 프로젝트들, ImageNet의 분류 체계를 폭로한 협업 작업들은 모두 보이지 않는 인프라를 다시 공적 논쟁의 대상으로 끌어낸다. 다만 이 작업들 역시 한계를 갖는다. 비가시적 이미지를 아름답게 보이게 만드는 순간, 관객은 그 폭력을 비판하기보다 그 분위기에 매혹될 수 있다. 그러므로 질문은 “어떻게 보이게 할 것인가”에서 끝나지 않는다. “보이게 한 뒤 무엇을 바꿀 수 있는가”까지 이어져야 한다.</p>
+<p>한국의 맥락에서는 이 질문이 더 직접적이다. 고밀도 CCTV, 안면 인식 출입 시스템, 공항과 금융의 자동 인증, 플랫폼 기업의 이미지 데이터 활용, 학교와 공공기관의 AI 교육은 모두 비가시적 이미지의 현실적 장면이다. AI 교육이 생성 결과의 품질이나 프롬프트 기술에만 머무르면, 학생과 시민은 이미 자신을 보고 있는 이미지 시스템을 이해하지 못한 채 AI를 “도구”로만 배우게 된다. 미디어아트와 교육은 이 보이지 않는 회로를 함께 드러낼 필요가 있다.</p>
+<h2>남는 질문: 이미지의 권리를 다시 묻기</h2>
+<p>비가시적 이미지의 시대에 이미지 윤리는 “이 이미지를 볼 수 있는가”만으로 충분하지 않다. 우리는 더 구체적으로 물어야 한다. 어떤 이미지가 수집되는가. 얼마 동안 저장되는가. 누구의 서버와 모델로 들어가는가. 어떤 라벨이 붙는가. 판정에 이의제기할 수 있는가. 삭제할 수 있는가. 그 이미지가 다시 누군가를 분류하는 학습 데이터가 되는가.</p>
+<p>이미지는 더 이상 우리를 기다리지 않는다. 우리가 볼지 말지 결정하기 전에 이미지는 세계를 계산하고 있다. 그래서 오늘의 이미지 비평은 더 늦기 전에 관객석을 떠나야 한다. 화면에 나타난 것만이 아니라, 화면 아래에서 이미 현실을 조직하고 있는 보이지 않는 이미지들을 추적해야 한다. 미디어아트가 할 수 있는 가장 중요한 일도 여기에 있다. 보이지 않는 것을 예쁘게 만드는 것이 아니라, 보이지 않기 때문에 책임지지 않았던 회로를 다시 공적 질문으로 돌려놓는 일이다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-setup-first-checks/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes 설치는 끝이 아니라 첫 진단 루프의 시작이다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
