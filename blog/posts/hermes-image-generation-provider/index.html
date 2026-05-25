@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes 이미지 생성은 프롬프트보다 provider 설정이 먼저다 | DEXA Blog</title>
+    <meta name="description" content="A practical guide to Hermes Agent image generation, explaining the image_gen toolset, provider/model selection, aspect ratios, delivery behavior, and common setup pitfalls." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-image-generation-provider/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes 이미지 생성은 프롬프트보다 provider 설정이 먼저다" />
+    <meta property="og:description" content="A practical guide to Hermes Agent image generation, explaining the image_gen toolset, provider/model selection, aspect ratios, delivery behavior, and common setup pitfalls." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-image-generation-provider/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-image-generation-provider-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-05-26" />
+    <meta property="article:author" content="Deck" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes 이미지 생성은 프롬프트보다 provider 설정이 먼저다" />
+    <meta name="twitter:description" content="A practical guide to Hermes Agent image generation, explaining the image_gen toolset, provider/model selection, aspect ratios, delivery behavior, and common setup pitfalls." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-image-generation-provider-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes 이미지 생성은 프롬프트보다 provider 설정이 먼저다","description":"A practical guide to Hermes Agent image generation, explaining the image_gen toolset, provider/model selection, aspect ratios, delivery behavior, and common setup pitfalls.","image":"https://dexa.art/blog/images/hermes-image-generation-provider-cover.png","datePublished":"2026-05-26","dateModified":"2026-05-26","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-image-generation-provider/"},"keywords":""}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 5월 26일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes 이미지 생성은 프롬프트보다 provider 설정이 먼저다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A practical guide to Hermes Agent image generation, explaining the image_gen toolset, provider/model selection, aspect ratios, delivery behavior, and common setup pitfalls.</p>
+                <div class="flex flex-wrap gap-2 mt-6"></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-image-generation-provider-cover.png" alt="cover" loading="lazy"></p>
+<p>Hermes Agent의 이미지 생성은 “그림을 잘 그리는 프롬프트”만의 문제가 아니다. 사용자가 provider와 model을 정해 두면, 에이전트는 대화 중 필요한 순간 <code>image_generate</code> 도구를 호출해 같은 설정 위에서 이미지를 만든다. 즉 프롬프트는 입력이고, 품질·비용·인증·저장 방식은 설정된 이미지 backend가 결정한다.</p>
+<h2>기능 개요 — image_gen toolset과 provider</h2>
+<p>공식 문서에서 Hermes의 이미지 생성은 <code>image_gen</code> toolset으로 제공된다. 에이전트가 직접 보는 스키마는 작다. 핵심 인자는 <code>prompt</code>와 <code>aspect_ratio</code>뿐이고, aspect ratio는 <code>landscape</code>, <code>square</code>, <code>portrait</code> 세 가지로 통일되어 있다. 모델별 네이티브 크기, 품질 옵션, 업스케일 여부는 backend가 내부에서 번역한다.</p>
+<p>기본 문서 표면은 FAL.ai와 Nous Tool Gateway를 중심으로 설명한다. 동시에 Hermes는 image generation provider plugin 구조도 갖고 있어 OpenAI, OpenAI Codex, xAI 같은 backend를 <code>image_gen.provider</code>로 선택할 수 있다. 핵심은 하나다. Hermes가 임의로 모델을 고르는 것이 아니라, <code>hermes tools</code>와 <code>config.yaml</code>에 저장된 선택이 실제 생성 경로를 정한다.</p>
+<h2>어떻게 작동하나</h2>
+<p>먼저 toolset이 켜져 있는지 확인한다.</p>
+<pre><code class="language-bash">hermes tools list
+hermes tools enable image_gen
+hermes tools</code></pre>
+<p><code>hermes tools</code>의 Image Generation 화면에서는 backend와 model을 고르고, 선택은 설정 파일에 남는다.</p>
+<pre><code class="language-yaml">image_gen:
+  model: fal-ai/flux-2/klein/9b
+  use_gateway: false</code></pre>
+<p>provider plugin을 명시적으로 쓰는 설치라면 provider와 model을 분리해 본다.</p>
+<pre><code class="language-yaml">image_gen:
+  provider: openai-codex
+  model: gpt-image-2-medium</code></pre>
+<p>대화 안에서는 “어두운 테마의 추상 기술 인포그래픽을 만들어줘, landscape로”처럼 요청하면 된다. 에이전트는 도구를 이렇게 호출한다.</p>
+<pre><code class="language-text">image_generate(prompt=&quot;...&quot;, aspect_ratio=&quot;landscape&quot;)</code></pre>
+<p>그 뒤 Hermes는 active provider를 찾고, 해당 provider가 모델별 payload를 만든다. FAL 문서 기준으로 <code>landscape</code>는 모델마다 <code>landscape_16_9</code>, <code>1536x1024</code>, <code>landscape_4_3</code> 같은 서로 다른 값으로 변환될 수 있다. base64를 반환하는 backend는 이미지를 <code>$HERMES_HOME/cache/images/</code> 아래에 저장하고, URL을 반환하는 backend는 URL을 결과로 넘긴다.</p>
+<h2>짧은 실제 사용 사이드바</h2>
+<p>이 사용자의 운영에서는 블로그 커버처럼 반복되는 제작물에 이미지 생성 도구를 쓴다. 중요한 습관은 프롬프트를 고치기 전에 provider 상태를 먼저 보는 것이다. generic <code>image_generate</code>가 FAL key를 요구하더라도, 로컬 설치에 Codex 이미지 provider가 준비되어 있으면 provider 선택 문제일 수 있다.</p>
+<h2>Pitfalls / tips</h2>
+<p>첫째, <code>FAL_KEY environment variable is not set</code>은 이미지 생성 전체가 불가능하다는 뜻이 아닐 수 있다. 기본 경로가 FAL이라면 FAL key나 Nous Tool Gateway가 필요하지만, plugin provider를 쓰는 환경에서는 <code>image_gen.provider</code>가 원하는 backend로 설정되어 있는지 확인한다.</p>
+<p>둘째, <code>image_generate</code> 호출에서 모델명을 매번 바꾸려 하지 않는다. 공식 사용 모델은 “에이전트는 prompt와 aspect ratio를 넘기고, 사용자는 설정에서 backend를 고른다”에 가깝다. 여러 모델을 비교해야 한다면 <code>hermes tools</code>에서 선택을 바꾼 뒤 같은 프롬프트를 다시 실행하는 편이 안전하다.</p>
+<p>셋째, 생성 URL은 영구 보관소가 아니다. hosted URL은 만료될 수 있으므로 블로그, 문서, 프레젠테이션에 쓸 이미지는 로컬 파일로 저장해 프로젝트의 <code>images/</code> 폴더에 복사한다.</p>
+<p>넷째, 이미지 provider plugin은 backend 교체다. 사용자 plugin은 <code>~/.hermes/plugins/image_gen/&lt;name&gt;/</code> 아래에 둘 수 있고, <code>hermes plugins enable &lt;name&gt;</code>과 <code>image_gen.provider</code> 설정을 함께 봐야 한다.</p>
+<h2>언제 이 기능을 쓰나</h2>
+<p>Hermes 이미지 생성은 대화형 아이디어 스케치, 블로그 커버, 발표용 추상 이미지처럼 에이전트가 작업 흐름 안에서 곧장 시각 자산을 만들어야 할 때 적합하다. 반대로 세밀한 편집, inpainting, 기존 이미지 수정은 현재 text-to-image 중심 도구의 범위를 넘는다. 빠른 생성은 Hermes 안에서 처리하고, 정교한 후편집은 전용 이미지 도구로 넘기는 식으로 나누면 안정적이다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/invisible-images-and-machine-vision/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>이미지는 더 이상 우리를 기다리지 않는다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
