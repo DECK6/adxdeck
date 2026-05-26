@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI는 어떻게 생각의 지형을 미리 그리는가 | DEXA Blog</title>
+    <meta name="description" content="생성형 AI의 잠재 공간을 단순한 기술 구조가 아니라 지식과 창작의 가능성을 미리 배열하는 인식론적 장치로 읽는 미디어아트 이론 에세이." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/latent-epistemology-and-media-art/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="AI는 어떻게 생각의 지형을 미리 그리는가" />
+    <meta property="og:description" content="생성형 AI의 잠재 공간을 단순한 기술 구조가 아니라 지식과 창작의 가능성을 미리 배열하는 인식론적 장치로 읽는 미디어아트 이론 에세이." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/latent-epistemology-and-media-art/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/latent-epistemology-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-05-27" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="media-theory" />
+    <meta property="article:tag" content="AI" />
+    <meta property="article:tag" content="latent-space" />
+    <meta property="article:tag" content="epistemology" />
+    <meta property="article:tag" content="technical-image" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI는 어떻게 생각의 지형을 미리 그리는가" />
+    <meta name="twitter:description" content="생성형 AI의 잠재 공간을 단순한 기술 구조가 아니라 지식과 창작의 가능성을 미리 배열하는 인식론적 장치로 읽는 미디어아트 이론 에세이." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/latent-epistemology-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"AI는 어떻게 생각의 지형을 미리 그리는가","description":"생성형 AI의 잠재 공간을 단순한 기술 구조가 아니라 지식과 창작의 가능성을 미리 배열하는 인식론적 장치로 읽는 미디어아트 이론 에세이.","image":"https://dexa.art/blog/images/latent-epistemology-cover.png","datePublished":"2026-05-27","dateModified":"2026-05-27","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/latent-epistemology-and-media-art/"},"keywords":"media-art, media-theory, AI, latent-space, epistemology, technical-image"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 5월 27일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">AI는 어떻게 생각의 지형을 미리 그리는가</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">생성형 AI의 잠재 공간을 단순한 기술 구조가 아니라 지식과 창작의 가능성을 미리 배열하는 인식론적 장치로 읽는 미디어아트 이론 에세이.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-theory</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">AI</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">latent-space</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">epistemology</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">technical-image</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/latent-epistemology-cover.png" alt="잠재적 인식론의 추상적 지형" loading="lazy"></p>
+<p>생성형 AI를 사용할 때 우리는 대개 프롬프트를 먼저 의식한다. 무엇을 입력할지, 어떤 역할을 줄지, 어떤 형식으로 출력하게 할지를 고민한다. 하지만 프롬프트보다 더 깊은 층위에서 이미 작동하고 있는 것이 있다. 모델이 무엇을 서로 가깝게 보고, 어떤 표현을 자연스럽게 여기며, 어떤 답변을 그럴듯하게 배열하는지 결정하는 잠재 공간이다.</p>
+<p>잠재적 인식론은 바로 이 층위를 묻는 이름이다. AI가 맞는 답을 주는가보다, AI가 무엇을 알 만한 것으로 보이게 만드는가를 묻는다. 이 질문은 미디어아트에서도 중요하다. AI 이미지는 단지 새 도구로 만든 결과물이 아니라, 학습된 가능성의 지형에서 길어 올린 기술적 표면이기 때문이다.</p>
+<h2>잠재 공간은 저장소가 아니라 지형이다</h2>
+<p>잠재 공간은 흔히 모델 내부의 수학적 표현으로 설명된다. 방대한 이미지와 문장, 스타일과 개념이 고차원 공간 안에서 관계를 맺고, 사용자의 입력은 그 공간 안의 특정 방향을 건드린다. 그러나 문화적으로 중요한 것은 이 공간이 단순히 데이터를 보관하지 않는다는 점이다. 잠재 공간은 무엇이 비슷한지, 무엇이 멀리 있는지, 어떤 조합이 자연스럽고 어떤 조합이 낯선지를 미리 조직한다.</p>
+<p>그래서 생성형 AI의 창작은 완전한 무에서 시작되지 않는다. 사용자는 흰 종이 앞에 선 저자라기보다, 이미 훈련된 가능성의 지형을 탐색하는 조작자에 가깝다. 어떤 이미지는 쉽게 나온다. 어떤 문체는 금방 그럴듯해진다. 어떤 역사, 지역, 몸, 감각은 모델 안에서 희미하거나 정형화된다. 이 차이는 단순한 성능 차이가 아니라, 지식과 상상력이 배열된 방식의 차이다.</p>
+<p>이때 잠재 공간은 미디어 이론에서 말하는 장치에 가까워진다. 장치는 사용자의 자유를 완전히 빼앗지는 않지만, 가능한 행동의 범위를 미리 정한다. 카메라가 사진가에게 특정한 시각과 조작 방식을 요구했듯, 생성형 모델은 사용자에게 모델이 읽을 수 있는 언어, 스타일, 역할, 조건, 평가 기준을 요구한다. 잠재 공간은 기계 안에만 머무르지 않고, 사용자의 사고 습관 안으로 확장된다.</p>
+<h2>프롬프트는 명령이 아니라 자기 사고의 재포맷이다</h2>
+<p>프롬프트 상자는 매우 단순해 보인다. 문장을 쓰면 모델이 반응한다. 하지만 이 단순함은 가장 강력한 인터페이스 효과다. 사용자는 모델에게 말하기 위해 자기 생각을 역할, 제약, 단계, 출력 형식, 평가 기준으로 분절한다. “자유롭게 써 줘”보다 “전문가처럼, 세 단계로, 표로, 근거를 포함해”가 더 잘 작동한다는 경험은 사용자의 사고 자체를 모델 친화적인 구조로 바꾼다.</p>
+<p>이 변화는 편리함이면서 동시에 주체화다. 사용자는 AI를 조작한다고 느끼지만, 동시에 AI가 선호하는 명료성, 모듈성, 최적화 가능성의 문법을 내면화한다. 좋은 프롬프트를 쓰기 위해 생각을 정리하는 과정은 생산성을 높이기도 하지만, 무엇이 좋은 질문이고 좋은 결과인지에 대한 감각을 장치의 기준에 맞춰 재훈련한다.</p>
+<p>미디어아트에서 이 지점은 특히 흥미롭다. AI 작업의 핵심은 더 이상 결과 이미지의 표면에만 있지 않다. 프롬프트, 시드, 모델 선택, 안전 필터, 결과 갤러리, 리터칭 파이프라인, 재입력 과정 전체가 작품의 장치가 된다. 작가는 이미지를 만드는 사람이면서 동시에, 잠재 공간과 협상하는 인터페이스를 설계하는 사람이 된다.</p>
+<h2>AI 출력은 기술적 이미지이자 작동적 표면이다</h2>
+<p>AI가 생성한 이미지는 사람이 감상하는 시각 자료처럼 보인다. 그러나 그것은 동시에 모델 내부의 분포 계산이 표면화된 기술적 이미지다. 카메라 사진이 렌즈, 필름, 노출, 셔터, 화학적 처리의 장치를 거쳐 나온 표면이었다면, AI 이미지는 데이터셋, 모델 구조, 파라미터, 필터, 프롬프트 인터페이스, 플랫폼 정책을 거쳐 나온 표면이다.</p>
+<p>더 나아가 AI 출력은 점점 작동적 표면이 된다. 생성된 이미지는 다시 편집 모델의 입력이 되고, 자동 광고 시스템의 소재가 되며, 추천 알고리즘의 데이터가 되고, 다음 프롬프트의 참조가 된다. LLM이 쓴 요약문은 사람이 읽는 문서이면서 동시에 검색 인덱스와 자동화 워크플로의 재료가 된다. 출력은 표현물이면서 다시 기계가 읽는 명령 또는 자원이 된다.</p>
+<p>이 관점에서 AI 미디어아트는 “AI로 무엇을 만들었는가”보다 “AI가 무엇을 만들 수 있다고 우리에게 믿게 하는가”를 드러낼 때 더 강해진다. 어떤 작품은 모델의 미려한 결과보다 반복되는 얼굴, 과잉된 스타일, 실패한 손, 검열된 표현, 특정 지역과 몸의 빈약한 재현을 통해 잠재 공간의 지형을 노출한다. 그 노출이 곧 비평이 된다.</p>
+<h2>끝내 남는 질문</h2>
+<p>잠재적 인식론은 AI를 단순한 도구로도, 독립된 창작 주체로도 보지 않는다. 그것은 AI를 지식과 감각의 조건을 조직하는 장치로 본다. 이 장치는 우리 대신 생각하는 것이 아니라, 무엇이 생각 가능한지의 지형을 미리 그린다.</p>
+<p>따라서 중요한 질문은 “AI가 창의적인가”에서 멈추지 않는다. 더 필요한 질문은 이것이다. 우리는 모델이 이미 그려 놓은 지형 위에서만 창작하고 있는가, 아니면 그 지형의 경계와 경사를 드러내는 방식으로 AI를 사용할 수 있는가. 미디어아트의 비평적 가능성은 바로 그 두 번째 사용법에서 시작된다.</p>
+<hr>
+<p>이 글은 DECK vault의 <code>잠재적 인식론 (Latent Epistemology)</code> 노트를 바탕으로 공개 블로그용으로 재구성했습니다. 주요 이론적 배경은 잠재 공간, 장치 이론, 상황적 지식, 기술적 이미지, 작동적 이미지, AI 미디어아트 실천을 연결하는 내부 개념망입니다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-image-generation-provider/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes 이미지 생성은 프롬프트보다 provider 설정이 먼저다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

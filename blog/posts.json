@@ -1,5 +1,23 @@
 [
   {
+    "slug": "latent-epistemology-and-media-art",
+    "file": "_built/latent-epistemology-and-media-art.md",
+    "title": "AI는 어떻게 생각의 지형을 미리 그리는가",
+    "description": "생성형 AI의 잠재 공간을 단순한 기술 구조가 아니라 지식과 창작의 가능성을 미리 배열하는 인식론적 장치로 읽는 미디어아트 이론 에세이.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "AI",
+      "latent-space",
+      "epistemology",
+      "technical-image"
+    ],
+    "date": "2026-05-27",
+    "thumbnail": "images/latent-epistemology-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-image-generation-provider",
     "file": "_built/hermes-image-generation-provider.md",
     "title": "Hermes 이미지 생성은 프롬프트보다 provider 설정이 먼저다",
