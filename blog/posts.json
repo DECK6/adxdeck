@@ -18,6 +18,17 @@
     "author": "육대근"
   },
   {
+    "slug": "hermes-plugins-hooks-curator",
+    "file": "_built/hermes-plugins-hooks-curator.md",
+    "title": "Hermes 확장은 플러그인을 켜고, 훅으로 흐름을 잡고, 큐레이터로 정리한다",
+    "description": "A practical guide to Hermes Agent plugins, lifecycle hooks, and the Curator that keeps agent-created skills from becoming stale.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-05-27",
+    "thumbnail": "images/hermes-plugins-hooks-curator-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "hermes-image-generation-provider",
     "file": "_built/hermes-image-generation-provider.md",
     "title": "Hermes 이미지 생성은 프롬프트보다 provider 설정이 먼저다",

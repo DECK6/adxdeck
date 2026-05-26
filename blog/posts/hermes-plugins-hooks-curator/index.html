@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes 확장은 플러그인을 켜고, 훅으로 흐름을 잡고, 큐레이터로 정리한다 | DEXA Blog</title>
+    <meta name="description" content="A practical guide to Hermes Agent plugins, lifecycle hooks, and the Curator that keeps agent-created skills from becoming stale." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-plugins-hooks-curator/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes 확장은 플러그인을 켜고, 훅으로 흐름을 잡고, 큐레이터로 정리한다" />
+    <meta property="og:description" content="A practical guide to Hermes Agent plugins, lifecycle hooks, and the Curator that keeps agent-created skills from becoming stale." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-plugins-hooks-curator/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-plugins-hooks-curator-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-05-27" />
+    <meta property="article:author" content="Deck" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes 확장은 플러그인을 켜고, 훅으로 흐름을 잡고, 큐레이터로 정리한다" />
+    <meta name="twitter:description" content="A practical guide to Hermes Agent plugins, lifecycle hooks, and the Curator that keeps agent-created skills from becoming stale." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-plugins-hooks-curator-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes 확장은 플러그인을 켜고, 훅으로 흐름을 잡고, 큐레이터로 정리한다","description":"A practical guide to Hermes Agent plugins, lifecycle hooks, and the Curator that keeps agent-created skills from becoming stale.","image":"https://dexa.art/blog/images/hermes-plugins-hooks-curator-cover.png","datePublished":"2026-05-27","dateModified":"2026-05-27","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-plugins-hooks-curator/"},"keywords":""}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 5월 27일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes 확장은 플러그인을 켜고, 훅으로 흐름을 잡고, 큐레이터로 정리한다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A practical guide to Hermes Agent plugins, lifecycle hooks, and the Curator that keeps agent-created skills from becoming stale.</p>
+                <div class="flex flex-wrap gap-2 mt-6"></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-plugins-hooks-curator-cover.png" alt="cover" loading="lazy"></p>
+<p>Hermes Agent를 오래 쓰면 “내 작업 환경의 규칙을 어디에 붙일 것인가”가 중요해진다. 플러그인은 새 도구와 통합을 붙이는 확장면이고, 훅은 실행 흐름에 코드를 끼워 넣는 장치이며, 큐레이터는 에이전트가 만든 스킬 라이브러리를 정리하는 유지보수 기능이다.</p>
+<h2>기능 개요 — 세 가지 확장면</h2>
+<p>플러그인은 <code>~/.hermes/plugins/</code> 또는 bundled <code>plugins/</code>에서 발견된다. 일반 플러그인은 <code>plugin.yaml</code>과 Python <code>register(ctx)</code>를 갖고, <code>ctx.register_tool()</code>, <code>ctx.register_hook()</code> 같은 API로 Hermes 표면을 넓힌다. 이미지 생성, 모델 provider, 메모리 provider처럼 하위 디렉터리와 선택 규칙을 가진 backend 플러그인도 있다.</p>
+<p>훅은 세 계층이다. Gateway event hook은 <code>~/.hermes/hooks/&lt;name&gt;/HOOK.yaml</code>과 <code>handler.py</code>로 메시징 이벤트를 듣는다. Plugin hook은 <code>pre_tool_call</code>, <code>post_tool_call</code>, <code>pre_llm_call</code>, <code>on_session_end</code>, <code>subagent_stop</code>, <code>pre_gateway_dispatch</code> 같은 lifecycle에 붙는다. Shell hook은 <code>config.yaml</code>의 <code>hooks:</code> 블록으로 CLI 스크립트를 연결한다.</p>
+<p>큐레이터는 스킬 청소부다. 에이전트가 만든 skill의 조회·사용·패치 횟수를 기록하고, 미사용 항목을 <code>active → stale → archived</code>로 옮긴다. 번들·hub 스킬은 대상이 아니며, 자동 삭제도 하지 않는다.</p>
+<h2>어떻게 작동하나</h2>
+<p>플러그인은 발견과 활성화가 분리되어 있다. 설치되어 보인다고 곧바로 실행되는 것이 아니다.</p>
+<pre><code class="language-bash">hermes plugins list
+hermes plugins enable disk-cleanup
+hermes plugins disable disk-cleanup</code></pre>
+<p>설정 파일에서는 allow-list로 관리된다.</p>
+<pre><code class="language-yaml">plugins:
+  enabled:
+    - disk-cleanup
+    - observability/langfuse
+  disabled:
+    - noisy-plugin</code></pre>
+<p>서브 카테고리 플러그인은 <code>observability/langfuse</code>, <code>image_gen/openai-codex</code>, <code>platforms/discord</code>처럼 목록의 전체 key를 쓴다. 다만 provider 계열은 “켜기”와 “선택”이 다르다. 이미지 backend는 <code>image_gen.provider</code>가 실제 사용 backend를 정한다.</p>
+<pre><code class="language-yaml">image_gen:
+  provider: openai-codex
+  model: gpt-image-2-medium</code></pre>
+<p>큐레이터는 별도 명령으로 상태를 보고 수동 실행할 수 있다.</p>
+<pre><code class="language-bash">hermes curator status
+hermes curator run --dry-run
+hermes curator pin my-important-skill
+hermes curator rollback --list</code></pre>
+<p>기본값은 7일 간격, 2시간 idle, 30/90일 stale/archive다.</p>
+<pre><code class="language-yaml">curator:
+  enabled: true
+  interval_hours: 168
+  min_idle_hours: 2
+  stale_after_days: 30
+  archive_after_days: 90</code></pre>
+<h2>짧은 실제 사용 사이드바</h2>
+<p>이 사용자의 설치에서는 <code>hermes plugins list</code>가 다수의 bundled provider와 platform plugin을 보여 주지만 대부분은 <code>not enabled</code> 상태다. 반대로 큐레이터는 좁은 스킬을 umbrella skill로 통합하고 보고서를 남긴다. 확장은 “필요할 때 켜고, 오래된 절차는 정리한다”에 가깝다.</p>
+<h2>Pitfalls / tips</h2>
+<p>첫째, project-local plugin은 신뢰 경계가 다르다. <code>./.hermes/plugins/</code>는 비활성이고, 신뢰한 repo에서만 <code>HERMES_ENABLE_PROJECT_PLUGINS=true</code>로 켠다.</p>
+<p>둘째, 훅은 시스템 프롬프트를 바꾸는 장소가 아니다. <code>pre_llm_call</code> context injection도 현재 user message에 임시로 붙는다. prompt cache와 대화 기록을 지키기 위한 설계다.</p>
+<p>셋째, <code>plugins.enabled</code>는 모든 backend를 동일하게 제어하지 않는다. bundled platform/backend, memory provider, model provider는 각자의 선택 키와 discovery 규칙이 있다.</p>
+<p>넷째, 큐레이터가 손대면 안 되는 수작업 스킬은 첫 실행 전에 <code>pin</code>한다. dry-run 보고서를 보고 pin하거나, <code>curator.enabled: false</code>를 둘 수 있다.</p>
+<h2>언제 이 기능을 쓰나</h2>
+<p>새 tool, slash command, gateway adapter, observability, provider backend를 붙이고 싶다면 plugin을 쓴다. 메시지 수신, tool 호출, 세션 종료 같은 순간에 정책·로그·알림을 넣고 싶다면 hook을 쓴다. 스킬 중복과 오래된 절차가 문제라면 curator를 켠다. 단순 외부 API 연결은 먼저 MCP를 검토하고, 내부 동작 확장은 플러그인과 훅으로 내려가는 편이 안전하다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-image-generation-provider/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes 이미지 생성은 프롬프트보다 provider 설정이 먼저다</span></a>
+                <a id="next-post" href="/blog/posts/latent-epistemology-and-media-art/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span>AI는 어떻게 생각의 지형을 미리 그리는가</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
