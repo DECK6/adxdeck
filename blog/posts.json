@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-webhook-event-automation",
+    "file": "_built/hermes-webhook-event-automation.md",
+    "title": "Hermes Webhook은 외부 이벤트를 에이전트 실행으로 바꾼다",
+    "description": "A practical guide to Hermes Agent webhooks: enabling the adapter, defining routes or dynamic subscriptions, securing payloads, and deciding when event-driven automation beats cron.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "webhook"
+    ],
+    "date": "2026-05-28",
+    "thumbnail": "images/hermes-webhook-event-automation-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "algorithmic-biopolitics-and-media-art",
     "file": "_built/algorithmic-biopolitics-and-media-art.md",
     "title": "삶은 어떻게 점수의 형태로 관리되는가",

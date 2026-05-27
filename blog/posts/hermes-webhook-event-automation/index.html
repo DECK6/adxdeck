@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Webhook은 외부 이벤트를 에이전트 실행으로 바꾼다 | DEXA Blog</title>
+    <meta name="description" content="A practical guide to Hermes Agent webhooks: enabling the adapter, defining routes or dynamic subscriptions, securing payloads, and deciding when event-driven automation beats cron." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-webhook-event-automation/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Webhook은 외부 이벤트를 에이전트 실행으로 바꾼다" />
+    <meta property="og:description" content="A practical guide to Hermes Agent webhooks: enabling the adapter, defining routes or dynamic subscriptions, securing payloads, and deciding when event-driven automation beats cron." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-webhook-event-automation/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-webhook-event-automation-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-05-28" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta property="article:tag" content="webhook" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Webhook은 외부 이벤트를 에이전트 실행으로 바꾼다" />
+    <meta name="twitter:description" content="A practical guide to Hermes Agent webhooks: enabling the adapter, defining routes or dynamic subscriptions, securing payloads, and deciding when event-driven automation beats cron." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-webhook-event-automation-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Webhook은 외부 이벤트를 에이전트 실행으로 바꾼다","description":"A practical guide to Hermes Agent webhooks: enabling the adapter, defining routes or dynamic subscriptions, securing payloads, and deciding when event-driven automation beats cron.","image":"https://dexa.art/blog/images/hermes-webhook-event-automation-cover.png","datePublished":"2026-05-28","dateModified":"2026-05-28","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-webhook-event-automation/"},"keywords":"hermes, ai-agent, workflow, webhook"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 5월 28일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Webhook은 외부 이벤트를 에이전트 실행으로 바꾼다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A practical guide to Hermes Agent webhooks: enabling the adapter, defining routes or dynamic subscriptions, securing payloads, and deciding when event-driven automation beats cron.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">webhook</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-webhook-event-automation-cover.png" alt="cover" loading="lazy"></p>
+<p>Hermes Webhook은 “사람이 말을 걸 때만 작동하는 에이전트”를 외부 시스템의 사건 흐름 안으로 넣는 기능이다. GitHub PR, GitLab merge request, 결제 이벤트, 모니터링 알림처럼 어떤 서비스가 HTTP POST를 보내면 Hermes가 payload를 읽고 agent run, 메시지 전달, 로그 기록으로 이어 줄 수 있다. 문제가 “몇 시에 반복할까”가 아니라 “어떤 사건이 발생했는가”라면 Cron보다 webhook이 자연스럽다.</p>
+<h2>기능 개요</h2>
+<p>Webhook adapter는 gateway 안에서 작은 HTTP 서버처럼 동작한다. 외부 서비스가 <code>/webhooks/&lt;route-name&gt;</code>으로 JSON payload를 보내면 Hermes는 서명과 event type을 확인하고 route 설정에 맞는 prompt를 만든다. route에는 event 목록, HMAC secret, prompt template, skills, delivery target이 들어간다.</p>
+<p>공식 문서 기준 delivery는 <code>log</code>, <code>telegram</code>, <code>discord</code>, <code>slack</code>, <code>github_comment</code> 등을 지원한다. <code>deliver_only: true</code>를 쓰면 LLM 호출 없이 template을 바로 전달한다. 즉 webhook은 외부 사건을 Hermes의 라우팅·전달 계층에 연결하는 인터페이스다.</p>
+<h2>어떻게 작동하나</h2>
+<p>먼저 webhook platform을 켠다. wizard를 쓰거나 profile의 <code>config.yaml</code>에 직접 넣을 수 있다.</p>
+<pre><code class="language-bash">hermes gateway setup</code></pre>
+<pre><code class="language-yaml">platforms:
+  webhook:
+    enabled: true
+    extra:
+      host: &quot;0.0.0.0&quot;
+      port: 8644
+      secret: &quot;your-global-hmac-secret&quot;</code></pre>
+<p>gateway 실행 후 health endpoint를 확인한다.</p>
+<pre><code class="language-bash">hermes gateway run
+curl http://localhost:8644/health</code></pre>
+<p>정적 route는 <code>platforms.webhook.extra.routes</code>에 둔다.</p>
+<pre><code class="language-yaml">routes:
+  github-pr-review:
+    events: [&quot;pull_request&quot;]
+    secret: &quot;github-webhook-secret&quot;
+    prompt: |
+      Review this pull request:
+      Repository: {repository.full_name}
+      PR #{number}: {pull_request.title}
+      URL: {pull_request.html_url}
+    skills: [&quot;github-code-review&quot;]
+    deliver: &quot;github_comment&quot;
+    deliver_extra:
+      repo: &quot;{repository.full_name}&quot;
+      pr_number: &quot;{number}&quot;</code></pre>
+<p>중첩 payload는 <code>{pull_request.title}</code>처럼 dot notation으로 꺼내고, 전체 payload가 필요하면 <code>{__raw__}</code>를 쓴다. 동적 subscription은 CLI로 만든다.</p>
+<pre><code class="language-bash">hermes webhook subscribe github-issues \
+  --events &quot;issues&quot; \
+  --prompt &quot;New issue #{issue.number}: {issue.title}&quot; \
+  --skills &quot;github-issues&quot; \
+  --deliver telegram
+
+hermes webhook list
+hermes webhook test github-issues --payload '{&quot;issue&quot;:{&quot;number&quot;:1}}'</code></pre>
+<p>이 로컬 설치에서는 <code>hermes webhook list</code>가 webhook platform이 아직 enabled가 아니라고 보고했다. 그래서 첫 진단은 route 작성이 아니라 gateway 설정, port, secret, health check다.</p>
+<h2>실제 사용 사이드바</h2>
+<p>이 사용자의 운영에서는 Cron이 매일 정해진 시각의 발행·점검을 맡고, webhook은 외부 사건을 즉시 Hermes로 밀어 넣는 후보로 분리된다. “시간이 되면 확인”은 Cron, “PR이 열리면 검토 흐름 시작”은 webhook에 가깝다. 핵심은 기능을 많이 켜는 것이 아니라 route별 신뢰 범위와 delivery 대상을 좁히는 것이다.</p>
+<h2>Pitfalls / tips</h2>
+<p>첫째, webhook payload는 외부 입력이다. PR 제목, commit message, form body에는 prompt injection이 들어갈 수 있으므로 secret, event allowlist, rate limit, sandboxed backend를 함께 고려한다.</p>
+<p>둘째, GitHub payload에는 코드 diff가 없다. PR review route라면 prompt에서 <code>gh pr diff {number} --repo {repository.full_name}</code>처럼 실제 diff를 가져오는 절차를 명시한다.</p>
+<p>셋째, 로컬 테스트에는 외부 서비스가 접근할 public URL이 필요하다. <code>ngrok http 8644</code> 같은 tunnel을 쓸 수 있지만 URL 변경과 접근 권한을 확인해야 한다.</p>
+<p>처음에는 <code>deliver: log</code>, 테스트 payload, 작은 event allowlist로 시작한다. 정해진 시간 반복은 Cron, 대화형 운영은 Gateway, 외부 도구 노출은 MCP가 맞다. 외부 시스템이 “지금 일이 생겼다”고 알려 주고 그 사건을 Hermes가 판단·전달·기록해야 할 때 webhook을 쓴다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/algorithmic-biopolitics-and-media-art/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>삶은 어떻게 점수의 형태로 관리되는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
