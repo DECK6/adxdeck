@@ -1,5 +1,25 @@
 [
   {
+    "slug": "algorithmic-biopolitics-and-media-art",
+    "file": "_built/algorithmic-biopolitics-and-media-art.md",
+    "title": "삶은 어떻게 점수의 형태로 관리되는가",
+    "description": "알고리즘 생명정치는 AI가 판단을 자동화하는 데 그치지 않고, 삶의 흔적을 추출하고 분류하며 선택의 환경을 변조하는 권력 형식임을 보여준다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "AI",
+      "algorithmic-governance",
+      "biopolitics",
+      "surveillance",
+      "interface",
+      "critical-ai"
+    ],
+    "date": "2026-05-28",
+    "thumbnail": "images/algorithmic-biopolitics-and-media-art-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "latent-epistemology-and-media-art",
     "file": "_built/latent-epistemology-and-media-art.md",
     "title": "AI는 어떻게 생각의 지형을 미리 그리는가",
