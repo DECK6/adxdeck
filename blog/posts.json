@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-session-compression",
+    "file": "_built/hermes-session-compression.md",
+    "title": "Hermes 세션 압축은 긴 대화를 다시 작업 가능한 상태로 만든다",
+    "description": "A practical guide to Hermes Agent sessions, resume, search, and context compression for long-running work.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "sessions"
+    ],
+    "date": "2026-05-29",
+    "thumbnail": "images/hermes-session-compression-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "wendy-chun-software-habit-and-discriminating-data",
     "file": "_built/wendy-chun-software-habit-and-discriminating-data.md",
     "title": "자유라는 인터페이스 뒤에서 습관은 어떻게 훈련되는가",
