@@ -1,5 +1,22 @@
 [
   {
+    "slug": "wendy-chun-software-habit-and-discriminating-data",
+    "file": "_built/wendy-chun-software-habit-and-discriminating-data.md",
+    "title": "자유라는 인터페이스 뒤에서 습관은 어떻게 훈련되는가",
+    "description": "Wendy Hui Kyong Chun의 소프트웨어, 습관, 업데이트, 데이터 차별 이론을 통해 플랫폼과 AI 시대의 미디어아트를 다시 읽는 공개 에세이.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "software-studies",
+      "platform",
+      "ai-critique"
+    ],
+    "date": "2026-05-29",
+    "thumbnail": "images/wendy-chun-software-habit-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-webhook-event-automation",
     "file": "_built/hermes-webhook-event-automation.md",
     "title": "Hermes Webhook은 외부 이벤트를 에이전트 실행으로 바꾼다",
