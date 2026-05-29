@@ -1,5 +1,22 @@
 [
   {
+    "slug": "post-authorial-aesthetics-in-ai-art",
+    "file": "_built/post-authorial-aesthetics-in-ai-art.md",
+    "title": "저자 없는 시대, 작품은 어디에서 시작되는가",
+    "description": "생성형 AI 이후 예술의 저자성은 사라지는 것이 아니라 데이터, 모델, 프롬프트, 플랫폼, 큐레이션, 책임의 네트워크로 분산된다. 탈저자 미학은 작품을 단일 창작자의 표현이 아니라 생성 체계 전체의 배치로 읽는 관점이다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "AI-art",
+      "aesthetics",
+      "authorship",
+      "media-theory"
+    ],
+    "date": "2026-05-30",
+    "thumbnail": "images/post-authorial-aesthetics-in-ai-art-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-session-compression",
     "file": "_built/hermes-session-compression.md",
     "title": "Hermes 세션 압축은 긴 대화를 다시 작업 가능한 상태로 만든다",
