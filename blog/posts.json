@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-browser-automation",
+    "file": "_built/hermes-browser-automation.md",
+    "title": "Hermes Browser Automation은 웹페이지를 읽고 조작 가능한 작업장으로 바꾼다",
+    "description": "A practical guide to Hermes Agent browser automation, including backend choices, accessibility snapshots, CDP connection, private URL routing, and safety tips.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-05-30",
+    "thumbnail": "images/hermes-browser-automation-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "post-authorial-aesthetics-in-ai-art",
     "file": "_built/post-authorial-aesthetics-in-ai-art.md",
     "title": "저자 없는 시대, 작품은 어디에서 시작되는가",
