@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>이미지 아래에서 일하는 인프라 | DEXA Blog</title>
+    <meta name="description" content="A Korean public essay on infrastructural media, reading cables, servers, protocols, energy, maintenance labor, institutions, and platforms as the hidden conditions that make images and media art work." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/infrastructural-media-and-the-hidden-work-of-images/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="이미지 아래에서 일하는 인프라" />
+    <meta property="og:description" content="A Korean public essay on infrastructural media, reading cables, servers, protocols, energy, maintenance labor, institutions, and platforms as the hidden conditions that make images and media art work." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/infrastructural-media-and-the-hidden-work-of-images/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/infrastructural-media-hidden-work-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-05-31" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="media-theory" />
+    <meta property="article:tag" content="infrastructure" />
+    <meta property="article:tag" content="platform-studies" />
+    <meta property="article:tag" content="digital-materialism" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="이미지 아래에서 일하는 인프라" />
+    <meta name="twitter:description" content="A Korean public essay on infrastructural media, reading cables, servers, protocols, energy, maintenance labor, institutions, and platforms as the hidden conditions that make images and media art work." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/infrastructural-media-hidden-work-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"이미지 아래에서 일하는 인프라","description":"A Korean public essay on infrastructural media, reading cables, servers, protocols, energy, maintenance labor, institutions, and platforms as the hidden conditions that make images and media art work.","image":"https://dexa.art/blog/images/infrastructural-media-hidden-work-cover.png","datePublished":"2026-05-31","dateModified":"2026-05-31","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/infrastructural-media-and-the-hidden-work-of-images/"},"keywords":"media-art, media-theory, infrastructure, platform-studies, digital-materialism"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 5월 31일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">이미지 아래에서 일하는 인프라</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A Korean public essay on infrastructural media, reading cables, servers, protocols, energy, maintenance labor, institutions, and platforms as the hidden conditions that make images and media art work.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-theory</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">infrastructure</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">platform-studies</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">digital-materialism</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/infrastructural-media-hidden-work-cover.png" alt="Text-free editorial cover showing hidden data, power, cooling, and projection infrastructures beneath a media-art image surface" loading="lazy"></p>
+<p>우리는 이미지를 볼 때 대개 화면을 본다. 전시장에서는 프로젝션의 밝기와 사운드의 밀도, 인터랙션의 반응 속도, 데이터 시각화의 아름다운 패턴을 먼저 느낀다. 플랫폼에서는 피드, 버튼, 검색창, 추천 목록을 본다. 생성형 AI를 사용할 때도 프롬프트와 결과 이미지 사이의 짧은 마술 같은 순간에 집중한다.</p>
+<p>하지만 미디어아트와 디지털 이미지는 화면 위에서만 일어나지 않는다. 이미지는 케이블, 서버, 데이터센터, 전력, 냉각, 센서, API, 프로토콜, 플랫폼 정책, 설치 기술자, 보존 담당자, 라벨링 노동, 기관 예산, 법적 권한이 정렬될 때 비로소 작동한다. 이 조건들이 잘 맞물릴 때 우리는 그것을 거의 보지 못한다. 고장, 지연, 검열, 비용, 장비 노후화, 라이선스 만료의 순간에야 비로소 배경이었던 인프라가 표면으로 올라온다.</p>
+<p>인프라적 미디어라는 관점은 그래서 이미지의 의미를 ‘무엇을 보여 주는가’에서 ‘무엇을 작동시키는가’로 옮긴다. 어떤 이미지는 감상을 위해 존재하지만, 어떤 이미지는 분류하고, 추적하고, 예측하고, 통제하고, 증거를 만든다. 그 힘은 이미지 자체의 표면보다 이미지가 연결된 운영 회로에서 나온다.</p>
+<h2>클라우드는 하늘이 아니라 시설이다</h2>
+<p>디지털 문화는 오랫동안 스스로를 가볍게 보이게 만들었다. 클라우드는 공기처럼 느껴지고, 스트리밍은 물처럼 흐르며, AI 이미지는 손가락 끝의 문장 하나에서 튀어나오는 것처럼 보인다. 그러나 클라우드는 하늘이 아니다. 그것은 토지, 전력 계약, 냉각수, 서버 랙, 반도체 공급망, 해저 케이블, 네트워크 라우팅, 보안 정책, 유지보수 인력으로 이루어진 시설이다.</p>
+<p>이 사실은 단순한 기술 설명이 아니라 미학의 문제다. 데이터가 어디서 오고 어디를 통과하는지에 따라 작품의 속도와 해상도, 접근권과 지속 가능성이 달라진다. 센서 기반 설치에서 관객의 몸은 자유롭게 참여하는 주체처럼 보이지만, 실제로는 감지 가능한 거리, 조명 조건, 카메라 프레임, 소프트웨어 임계값, 네트워크 지연, 전시장 동선 안에서만 데이터가 된다. 몰입형 전시의 매끄러운 경험은 전력 배선, 프로젝터 캘리브레이션, 공간 안전 규정, 운영 매뉴얼이 보이지 않게 일할 때 유지된다.</p>
+<p>따라서 미디어아트의 인프라는 작품 외부의 부대 조건이 아니다. 그것은 작품의 감각을 형성하는 재료다. 어떤 작품은 이 조건을 적극적으로 드러내며 관객에게 시스템을 읽게 만든다. 반대로 어떤 작품은 거대한 데이터센터와 전력 소비, 플랫폼 의존성을 뒤로 숨긴 채 매끄러운 스펙터클만 제공한다. 두 경우 모두 인프라는 사라지지 않는다. 다만 비판의 대상으로 드러나거나, 미학의 배경으로 은폐될 뿐이다.</p>
+<h2>이미지는 혼자 행동하지 않는다</h2>
+<p>작동적 이미지를 생각해 보면 이 점은 더 분명해진다. 감시 카메라, 위성 사진, 의료 영상, 물류 추적 화면, AI 분류 결과, 도시 관제 대시보드는 보이는 장면을 재현하는 데서 멈추지 않는다. 그것들은 경보를 울리고, 사람을 분류하고, 이동을 허가하거나 차단하고, 위험 점수를 만들고, 법적 증거가 되며, 다음 행동을 호출한다.</p>
+<p>이때 이미지는 혼자 행동하지 않는다. 센서가 감지하고, 데이터가 저장되고, 모델이 분류하고, 대시보드가 표시하고, 기관 절차가 판단하고, 법과 예산이 그 판단에 효력을 부여한다. 이미지가 권력을 갖는 이유는 그것이 아름답거나 선명해서가 아니라, 행동할 수 있는 인프라에 접속되어 있기 때문이다.</p>
+<p>포렌식 미디어 작업이 중요한 이유도 여기에 있다. 하나의 사진이나 영상은 쉽게 의심받고 쉽게 흩어진다. 그러나 위성 이미지, 휴대폰 영상, 지도, 건축 모델, 음향 분석, 목격자 증언, 법정 문서, 인권 단체, 언론 네트워크, 전시 공간이 함께 정렬될 때 이미지는 공적 사실을 구성하는 장치가 된다. 증거는 이미지 안에만 있는 것이 아니라, 이미지를 검증하고 동기화하고 발표하고 보존하는 인프라 안에서 만들어진다.</p>
+<p>생성형 AI 이미지 역시 같은 방식으로 읽을 수 있다. 프롬프트와 모델명만으로는 충분하지 않다. 학습 데이터의 수집 관행, 저작권 구조, 라벨링 노동, GPU와 데이터센터, 필터링 정책, 결제 모델, 커뮤니티의 프롬프트 문화가 함께 결과 이미지를 만든다. 이미지의 스타일은 표면이고, 그 아래에는 추출과 분류와 비용의 체계가 있다.</p>
+<h2>미디어아트 기관은 전시장만이 아니다</h2>
+<p>인프라적 미디어의 관점은 기관을 다시 보게 한다. 미디어아트 기관은 작품을 보여 주는 장소이기 전에, 작품이 작동할 수 있는 조건을 관리하는 장소다. 장비를 구입하고, 네트워크를 열고, 소프트웨어 버전을 유지하고, 전력과 냉각을 확보하고, 기술 스태프를 배치하고, 관객 동선을 설계하고, 보존 형식을 결정한다. 전시는 큐레이션만으로 만들어지지 않는다. 운영 가능한 환경이 있어야 한다.</p>
+<p>이 점은 보존의 문제에서 특히 중요하다. 회화나 조각도 보존이 어렵지만, 미디어아트는 종종 운영체제, 라이브러리, 프로젝터, 센서, 서버, API, 외부 플랫폼에 의존한다. 파일만 남아도 작품은 사라질 수 있다. 반대로 원본 장비가 없어도 작동 조건을 이해하고 재구성할 수 있다면 작품의 핵심 경험은 다른 방식으로 지속될 수 있다. 보존은 저장이 아니라 인프라의 재연이다.</p>
+<p>이 관점은 교육과 창작에도 실용적이다. 학생이나 작가가 작품 아이디어만이 아니라 전력, 네트워크, 장비 안정성, 데이터 권리, 장애 대응, 장기 보존 가능성을 함께 설계할 때, 기술 체크리스트는 비평적 질문이 된다. 무엇이 고장나면 작품이 멈추는가. 누가 고치는가. 어떤 플랫폼이 사라지면 작품의 의미도 사라지는가. 관객은 무엇을 체험하고, 시스템은 관객에게서 무엇을 수집하는가.</p>
+<h2>끝내 남는 질문: 인프라를 보이게 한다는 것</h2>
+<p>인프라를 보이게 한다는 말은 케이블, 서버, 대시보드를 멋있게 보여 주자는 뜻이 아니다. 데이터센터의 차가운 빛이나 네트워크 지도는 쉽게 또 하나의 장식이 된다. 중요한 것은 그 이미지가 어떤 의존성, 비용, 노동, 통제, 공공성의 문제를 읽을 수 있게 만드는가다.</p>
+<p>좋은 인프라적 미디어 비평은 작품의 표면을 무시하지 않는다. 오히려 표면이 왜 그렇게 보이고, 왜 그렇게 빠르게 반응하며, 왜 특정한 데이터만 다루고, 왜 어떤 몸과 장소는 잘 감지되지 않는지 묻는다. 이미지를 더 깊이 본다는 것은 화면 뒤를 상상하는 일이 아니라, 화면을 가능하게 한 조건들이 이미 화면 안에서 어떻게 감각과 권력으로 변환되는지 읽는 일이다.</p>
+<p>오늘의 미디어아트가 AI, 몰입형 전시, 도시 데이터, 플랫폼, 포렌식 이미지, 공공 스크린을 다룬다면, 인프라적 질문은 선택 사항이 아니다. 이미지는 더 이상 혼자 서 있지 않다. 이미지는 아래에서 일하는 인프라와 함께 움직인다. 그러므로 남는 질문은 이것이다. 이 작품은 그 인프라를 관객이 판단할 수 있게 드러내는가, 아니면 인프라의 비용을 또 한 번 아름다운 표면 아래에 묻어 버리는가.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-browser-automation/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes Browser Automation은 웹페이지를 읽고 조작 가능한 작업장으로 바꾼다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

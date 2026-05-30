@@ -1,5 +1,22 @@
 [
   {
+    "slug": "infrastructural-media-and-the-hidden-work-of-images",
+    "file": "_built/infrastructural-media-and-the-hidden-work-of-images.md",
+    "title": "이미지 아래에서 일하는 인프라",
+    "description": "A Korean public essay on infrastructural media, reading cables, servers, protocols, energy, maintenance labor, institutions, and platforms as the hidden conditions that make images and media art work.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "infrastructure",
+      "platform-studies",
+      "digital-materialism"
+    ],
+    "date": "2026-05-31",
+    "thumbnail": "images/infrastructural-media-hidden-work-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-browser-automation",
     "file": "_built/hermes-browser-automation.md",
     "title": "Hermes Browser Automation은 웹페이지를 읽고 조작 가능한 작업장으로 바꾼다",
