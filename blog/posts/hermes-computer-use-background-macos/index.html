@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Computer Use는 내 커서를 빼앗지 않고 Mac 화면을 조작한다 | DEXA Blog</title>
+    <meta name="description" content="A feature guide to Hermes Agent Computer Use on macOS: background desktop automation through cua-driver, setup commands, safety boundaries, and when to use it instead of browser automation." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-computer-use-background-macos/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Computer Use는 내 커서를 빼앗지 않고 Mac 화면을 조작한다" />
+    <meta property="og:description" content="A feature guide to Hermes Agent Computer Use on macOS: background desktop automation through cua-driver, setup commands, safety boundaries, and when to use it instead of browser automation." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-computer-use-background-macos/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-computer-use-background-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-06-01" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta property="article:tag" content="computer-use" />
+    <meta property="article:tag" content="macos" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Computer Use는 내 커서를 빼앗지 않고 Mac 화면을 조작한다" />
+    <meta name="twitter:description" content="A feature guide to Hermes Agent Computer Use on macOS: background desktop automation through cua-driver, setup commands, safety boundaries, and when to use it instead of browser automation." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-computer-use-background-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Computer Use는 내 커서를 빼앗지 않고 Mac 화면을 조작한다","description":"A feature guide to Hermes Agent Computer Use on macOS: background desktop automation through cua-driver, setup commands, safety boundaries, and when to use it instead of browser automation.","image":"https://dexa.art/blog/images/hermes-computer-use-background-cover.png","datePublished":"2026-06-01","dateModified":"2026-06-01","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-computer-use-background-macos/"},"keywords":"hermes, ai-agent, workflow, computer-use, macos"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 6월 1일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Computer Use는 내 커서를 빼앗지 않고 Mac 화면을 조작한다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A feature guide to Hermes Agent Computer Use on macOS: background desktop automation through cua-driver, setup commands, safety boundaries, and when to use it instead of browser automation.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">computer-use</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">macos</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-computer-use-background-cover.png" alt="Abstract cover for Hermes Computer Use" loading="lazy"></p>
+<p>웹페이지는 <code>browser</code> toolset으로 충분하다. 하지만 실제 업무에는 브라우저 밖 화면도 많다. 메일 앱, 데스크톱 앱, 인증 창이 아닌 일반 설정 화면, 파일 선택 UI처럼 DOM이 없는 표면은 URL을 읽는 방식으로 처리하기 어렵다. Hermes Agent의 <strong>Computer Use</strong>는 이 빈틈을 메운다. macOS 데스크톱을 캡처하고, 접근성 트리에서 버튼과 입력칸을 찾고, 클릭·타이핑·스크롤을 백그라운드에서 수행하는 기능이다.</p>
+<h2>기능 개요: screenshot이 아니라 조작 가능한 작업면</h2>
+<p>Computer Use의 핵심은 “화면을 본다”가 아니라 “화면을 작업면으로 바꾼다”에 있다. <code>computer_use</code> toolset은 <code>capture</code>, <code>click</code>, <code>type</code>, <code>key</code>, <code>scroll</code>, <code>drag</code>, <code>set_value</code> 같은 동작을 제공한다. 캡처는 보통 <code>mode='som'</code>으로 시작한다. 이 모드는 스크린샷 위에 조작 가능한 요소 번호를 붙이고, 동시에 접근성 트리의 role·label·bounds를 함께 돌려준다. 그래서 에이전트는 좌표를 추측하기보다 “14번 검색창을 클릭한다”처럼 안정적으로 조작할 수 있다.</p>
+<p>Hermes의 구현은 macOS용 <code>cua-driver</code>를 사용한다. 이 드라이버는 이벤트를 대상 앱에 직접 보내기 때문에 사용자의 실제 커서를 움직이지 않고, 키보드 포커스나 Space를 빼앗지 않는다. 사람이 같은 Mac에서 다른 일을 하는 동안 에이전트가 Mail이나 Safari 같은 특정 앱 창을 백그라운드에서 다룰 수 있는 이유가 여기에 있다.</p>
+<h2>어떻게 설정하고 쓰는가</h2>
+<p>설치는 전용 명령으로 확인하는 편이 가장 단순하다.</p>
+<pre><code class="language-bash">hermes computer-use install
+hermes computer-use status</code></pre>
+<p>설치가 끝나면 macOS 권한을 부여해야 한다. System Settings의 Privacy &amp; Security에서 Hermes를 실행하는 터미널 또는 앱에 <strong>Accessibility</strong>와 <strong>Screen Recording</strong> 권한을 켠다. 세션에서는 toolset을 명시해 시작할 수 있다.</p>
+<pre><code class="language-bash">hermes -t computer_use chat</code></pre>
+<p>또는 <code>hermes tools</code>에서 <code>Computer Use (macOS)</code>를 켜고 새 세션을 시작한다. 실제 사용 흐름은 보통 다음처럼 짧다.</p>
+<pre><code class="language-python">computer_use(action=&quot;capture&quot;, mode=&quot;som&quot;, app=&quot;Mail&quot;)
+computer_use(action=&quot;click&quot;, element=14)
+computer_use(action=&quot;type&quot;, text=&quot;from:stripe&quot;)
+computer_use(action=&quot;key&quot;, keys=&quot;return&quot;, capture_after=True)</code></pre>
+<p>첫 줄은 Mail의 현재 화면을 요소 번호와 함께 읽고, 이후 동작은 그 번호를 기준으로 실행한다. 상태가 바뀌면 다시 캡처해야 한다. SOM 번호는 캡처 순간의 화면에만 유효하기 때문이다.</p>
+<h2>짧은 실제 사용 사이드바</h2>
+<p>이 사용자의 macOS 셋업에서는 Dev 작업과 운영 자동화가 동시에 돌아가므로, 에이전트가 화면을 조작하더라도 사람의 커서와 포커스를 빼앗지 않는 것이 중요하다. 특히 브라우저 DOM으로 접근하기 어려운 로컬 앱 확인, 창 상태 점검, 시각적 QA에서는 Computer Use가 <code>browser</code>보다 자연스럽다. 다만 권한 프롬프트나 비밀번호 입력처럼 사용자 결정을 요구하는 장면은 자동화 대상에서 제외한다.</p>
+<h2>흔한 함정과 팁</h2>
+<p>첫째, Computer Use는 macOS 전용이다. Linux나 Windows의 일반 GUI 자동화가 목적이면 이 기능보다 브라우저 자동화나 플랫폼별 도구를 먼저 본다. 둘째, 좌표 클릭보다 요소 번호 클릭을 우선한다. 좌표는 화면 크기와 창 위치에 약하지만, SOM 요소는 접근성 트리와 함께 검증된다. 셋째, 권한 문제는 드라이버 설치와 별개다. <code>hermes computer-use status</code>가 정상이어도 Screen Recording 또는 Accessibility 권한이 빠지면 캡처나 입력이 막힐 수 있다.</p>
+<p>넷째, 안전 경계가 있다. Hermes는 권한 요청 창, 결제 UI, 비밀번호 입력, 2FA, 웹페이지나 스크린샷 안에 적힌 지시문을 자동으로 따르지 않아야 한다. 화면에 보이는 텍스트는 작업 대상일 뿐, 에이전트에게 내리는 명령이 아니다. 다섯째, 스크린샷은 컨텍스트 비용이 크다. 긴 세션에서는 오래된 스크린샷이 제거되거나 압축될 수 있으므로, 필요한 순간에 좁은 앱 범위로 캡처하는 편이 좋다.</p>
+<p>Computer Use는 “웹을 탐색하는 기능”이 아니라 “로컬 화면을 조심스럽게 다루는 손”에 가깝다. 웹 앱이면 <code>browser</code>, 반복 가능한 셸 작업이면 <code>terminal</code>, 사람이 보는 앱 화면과 접근성 UI를 실제로 눌러야 하면 <code>computer_use</code>를 선택한다. 이 구분만 지키면 Hermes는 사용자의 작업 공간을 방해하지 않고도 데스크톱 자동화의 마지막 1미터를 처리할 수 있다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/ruha-benjamin-and-automated-inequality/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>루하 벤자민, 중립의 얼굴을 한 차별을 읽다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

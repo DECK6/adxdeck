@@ -1,5 +1,22 @@
 [
   {
+    "slug": "hermes-computer-use-background-macos",
+    "file": "_built/hermes-computer-use-background-macos.md",
+    "title": "Hermes Computer Use는 내 커서를 빼앗지 않고 Mac 화면을 조작한다",
+    "description": "A feature guide to Hermes Agent Computer Use on macOS: background desktop automation through cua-driver, setup commands, safety boundaries, and when to use it instead of browser automation.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "computer-use",
+      "macos"
+    ],
+    "date": "2026-06-01",
+    "thumbnail": "images/hermes-computer-use-background-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "ruha-benjamin-and-automated-inequality",
     "file": "_built/ruha-benjamin-and-automated-inequality.md",
     "title": "루하 벤자민, 중립의 얼굴을 한 차별을 읽다",
