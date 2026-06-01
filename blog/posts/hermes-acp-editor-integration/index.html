@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes ACP는 터미널 에이전트를 코드 에디터 안으로 끌어온다 | DEXA Blog</title>
+    <meta name="description" content="A feature guide to Hermes Agent ACP editor integration: how Hermes runs as an Agent Client Protocol server, what toolsets it exposes, and how to connect it from VS Code, Zed, or JetBrains." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-acp-editor-integration/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes ACP는 터미널 에이전트를 코드 에디터 안으로 끌어온다" />
+    <meta property="og:description" content="A feature guide to Hermes Agent ACP editor integration: how Hermes runs as an Agent Client Protocol server, what toolsets it exposes, and how to connect it from VS Code, Zed, or JetBrains." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-acp-editor-integration/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-acp-editor-integration-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-06-02" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta property="article:tag" content="acp" />
+    <meta property="article:tag" content="editor" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes ACP는 터미널 에이전트를 코드 에디터 안으로 끌어온다" />
+    <meta name="twitter:description" content="A feature guide to Hermes Agent ACP editor integration: how Hermes runs as an Agent Client Protocol server, what toolsets it exposes, and how to connect it from VS Code, Zed, or JetBrains." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-acp-editor-integration-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes ACP는 터미널 에이전트를 코드 에디터 안으로 끌어온다","description":"A feature guide to Hermes Agent ACP editor integration: how Hermes runs as an Agent Client Protocol server, what toolsets it exposes, and how to connect it from VS Code, Zed, or JetBrains.","image":"https://dexa.art/blog/images/hermes-acp-editor-integration-cover.png","datePublished":"2026-06-02","dateModified":"2026-06-02","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-acp-editor-integration/"},"keywords":"hermes, ai-agent, workflow, acp, editor"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 6월 2일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes ACP는 터미널 에이전트를 코드 에디터 안으로 끌어온다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A feature guide to Hermes Agent ACP editor integration: how Hermes runs as an Agent Client Protocol server, what toolsets it exposes, and how to connect it from VS Code, Zed, or JetBrains.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">acp</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">editor</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-acp-editor-integration-cover.png" alt="Abstract cover for Hermes ACP editor integration" loading="lazy"></p>
+<p>Hermes Agent는 기본적으로 터미널이나 메시징 플랫폼에서 강하다. 하지만 코드를 고칠 때는 대화, 파일 diff, 터미널 명령, 승인 프롬프트가 에디터 안에서 한 흐름으로 보이는 편이 더 편하다. <strong>ACP Editor Integration</strong>은 이 문제를 해결한다. Hermes를 ACP(Agent Client Protocol) 서버로 실행해 VS Code, Zed, JetBrains 계열의 ACP 호환 클라이언트가 Hermes와 stdio JSON-RPC로 대화하게 만드는 기능이다.</p>
+<h2>기능 개요: 에디터가 Hermes의 작업 콘솔이 된다</h2>
+<p>ACP 모드에서 Hermes는 독립 앱처럼 새 인터페이스를 만드는 대신, 에디터가 이미 가진 패널과 승인 UI를 사용한다. 사용자는 에디터 안에서 채팅을 보내고, Hermes는 파일 읽기·쓰기, 패치, 터미널 실행, 웹/브라우저 조회, 세션 검색, 메모리, 스킬, <code>execute_code</code>, <code>delegate_task</code> 같은 도구를 호출한다. 결과는 단순 텍스트가 아니라 tool activity, file diff, terminal command, approval prompt, streaming response로 나뉘어 표시될 수 있다.</p>
+<p>중요한 점은 ACP용 toolset이 별도로 조정된다는 것이다. 공식 문서의 <code>hermes-acp</code> toolset은 코딩 에디터 흐름에 맞춰 <code>clarify</code>, <code>cronjob</code>, <code>send_message</code>, <code>text_to_speech</code>, 일부 홈오토메이션 도구처럼 에디터 UX와 맞지 않는 기능을 제외한다. 반대로 파일·터미널·검색·스킬·위임처럼 개발 작업에 필요한 도구는 남긴다. 즉 ACP는 Hermes의 축소판이 아니라, 에디터에 맞게 안전 경계를 다시 잡은 실행 모드다.</p>
+<h2>어떻게 설정하고 쓰는가</h2>
+<p>Hermes를 먼저 설치한 뒤 ACP extra가 필요하면 다음처럼 의존성을 추가한다.</p>
+<pre><code class="language-bash">pip install -e '.[acp]'</code></pre>
+<p>실행 진입점은 셋이다.</p>
+<pre><code class="language-bash">hermes acp
+hermes-acp
+python -m acp_adapter</code></pre>
+<p>비대화형 점검에는 아래 명령이 가장 빠르다.</p>
+<pre><code class="language-bash">hermes acp --version
+hermes acp --check
+hermes doctor</code></pre>
+<p>로컬 설치에서는 <code>hermes acp --check</code>가 ACP adapter import와 의존성을 확인한다. Hermes의 일반 CLI와 마찬가지로 ACP 모드도 <code>~/.hermes/config.yaml</code>, <code>~/.hermes/.env</code>, <code>~/.hermes/skills/</code>, <code>~/.hermes/state.db</code>를 사용하며, provider와 credential resolution도 기존 설정을 따른다.</p>
+<p>VS Code에서는 ACP Client 확장에서 Hermes Agent를 선택하거나 수동 설정에 다음을 넣는다.</p>
+<pre><code class="language-json">{
+  &quot;acp.agents&quot;: {
+    &quot;Hermes Agent&quot;: {
+      &quot;command&quot;: &quot;hermes&quot;,
+      &quot;args&quot;: [&quot;acp&quot;]
+    }
+  }
+}</code></pre>
+<p>Zed는 Agent Panel의 ACP Registry에서 Hermes Agent를 설치하는 경로가 기본이다. Registry 런처는 대체로 다음 형태로 Hermes를 실행한다.</p>
+<pre><code class="language-bash">uvx --from 'hermes-agent[acp]==&lt;version&gt;' hermes-acp</code></pre>
+<p>그래서 Zed 경로에서는 <code>uv</code>가 PATH에 있어야 한다. 브라우저 도구까지 ACP에서 쓰려면 별도 부트스트랩도 가능하다.</p>
+<pre><code class="language-bash">hermes acp --setup-browser --yes</code></pre>
+<p>이 명령은 사용자 영역에 Node.js 22 LTS, <code>agent-browser</code>, Camofox/Chromium 의존성을 준비하는 idempotent setup이다.</p>
+<h2>짧은 실제 사용 사이드바</h2>
+<p>이 사용자의 작업 환경에서는 Dev 프로파일이 코드 검토, 빌드 검증, 블로그 자동 발행 같은 기술 작업을 맡고, 실제 결과는 파일 diff와 터미널 로그로 확인한다. ACP는 이런 흐름을 터미널 밖으로 꺼내 에디터 패널에서 추적할 때 유용하다. 특히 “대화는 에디터 안에서, 실행은 Hermes toolset으로”라는 경계를 만들면 코드 변경의 맥락과 승인을 한 화면에 모을 수 있다.</p>
+<h2>흔한 함정과 팁</h2>
+<p>첫째, ACP는 MCP와 다르다. MCP는 외부 도구 서버를 Hermes에 붙이는 통합이고, ACP는 에디터가 Hermes를 에이전트 서버로 호출하는 통합이다. 둘째, ACP session은 실행 중인 ACP server process 안에서 관리된다. 기본 Hermes의 세션 저장은 계속 쓰이지만, ACP의 list/load/resume/fork 범위는 현재 서버 프로세스에 묶인다.</p>
+<p>셋째, 작업 디렉터리가 중요하다. ACP는 에디터의 cwd를 Hermes task ID에 연결해 파일 도구와 터미널 도구가 에디터 워크스페이스 기준으로 실행되게 한다. 에디터에서 잘못된 폴더를 열어 둔 상태로 시작하면 Hermes도 그 폴더를 기준으로 본다. 넷째, 승인 옵션의 범위를 구분해야 한다. <code>allow_once</code>는 한 번, <code>allow_session</code>은 현재 ACP 세션 동안, <code>allow_always</code>는 영구 allowlist에 가깝다. 처음 보는 명령은 한 번만 허용하고, 반복적이고 안전한 명령만 세션 단위로 올리는 편이 좋다.</p>
+<p>ACP는 Hermes를 “IDE 안의 또 하나의 채팅봇”으로 만드는 기능이 아니다. 터미널 에이전트의 도구 실행력과 에디터의 코드 맥락·diff·승인 UX를 연결하는 다리다. 단발 자동화나 예약 실행은 CLI·Cron이 낫고, 코드 변경을 보면서 승인하고 싶을 때는 ACP가 가장 자연스러운 입구가 된다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/the-uneasy-valley-of-synthetic-faces/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>합성 얼굴의 골짜기에서 신뢰는 어떻게 무너지는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,5 +1,22 @@
 [
   {
+    "slug": "hermes-acp-editor-integration",
+    "file": "_built/hermes-acp-editor-integration.md",
+    "title": "Hermes ACP는 터미널 에이전트를 코드 에디터 안으로 끌어온다",
+    "description": "A feature guide to Hermes Agent ACP editor integration: how Hermes runs as an Agent Client Protocol server, what toolsets it exposes, and how to connect it from VS Code, Zed, or JetBrains.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "acp",
+      "editor"
+    ],
+    "date": "2026-06-02",
+    "thumbnail": "images/hermes-acp-editor-integration-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "the-uneasy-valley-of-synthetic-faces",
     "file": "_built/the-uneasy-valley-of-synthetic-faces.md",
     "title": "합성 얼굴의 골짜기에서 신뢰는 어떻게 무너지는가",
