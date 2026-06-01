@@ -1,5 +1,22 @@
 [
   {
+    "slug": "the-uneasy-valley-of-synthetic-faces",
+    "file": "_built/the-uneasy-valley-of-synthetic-faces.md",
+    "title": "합성 얼굴의 골짜기에서 신뢰는 어떻게 무너지는가",
+    "description": "언캐니 밸리를 로봇공학의 오래된 그래프가 아니라 CGI, AI 얼굴, 딥페이크, 디지털 휴먼이 만든 신뢰의 문제로 다시 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "uncanny-valley",
+      "AI",
+      "deepfake",
+      "digital-human"
+    ],
+    "date": "2026-06-02",
+    "thumbnail": "images/synthetic-faces-uncanny-valley-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-computer-use-background-macos",
     "file": "_built/hermes-computer-use-background-macos.md",
     "title": "Hermes Computer Use는 내 커서를 빼앗지 않고 Mac 화면을 조작한다",
