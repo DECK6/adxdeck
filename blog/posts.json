@@ -1,5 +1,22 @@
 [
   {
+    "slug": "hermes-vision-image-analysis",
+    "file": "_built/hermes-vision-image-analysis.md",
+    "title": "Hermes Vision은 이미지를 대화의 입력으로 바꾼다",
+    "description": "A feature guide to Hermes Agent Vision: how image paste, image attachments, and vision_analyze route visual inputs through multimodal or auxiliary models.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "vision",
+      "multimodal"
+    ],
+    "date": "2026-06-03",
+    "thumbnail": "images/hermes-vision-image-analysis-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "simone-browne-and-the-history-of-surveillance",
     "file": "_built/simone-browne-and-the-history-of-surveillance.md",
     "title": "감시는 누구를 먼저 의심하는가",
