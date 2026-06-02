@@ -1,5 +1,22 @@
 [
   {
+    "slug": "simone-browne-and-the-history-of-surveillance",
+    "file": "_built/simone-browne-and-the-history-of-surveillance.md",
+    "title": "감시는 누구를 먼저 의심하는가",
+    "description": "시몬 브라운의 감시 이론을 통해 CCTV, 생체인식, 플랫폼 추적, 머신 비전이 결코 모두를 같은 방식으로 보지 않는다는 사실을 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-theory",
+      "surveillance",
+      "black-studies",
+      "biometrics",
+      "machine-vision"
+    ],
+    "date": "2026-06-03",
+    "thumbnail": "images/simone-browne-history-of-surveillance-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-acp-editor-integration",
     "file": "_built/hermes-acp-editor-integration.md",
     "title": "Hermes ACP는 터미널 에이전트를 코드 에디터 안으로 끌어온다",
