@@ -1,5 +1,22 @@
 [
   {
+    "slug": "hermes-persistent-goals",
+    "file": "_built/hermes-persistent-goals.md",
+    "title": "Hermes Persistent Goals는 ‘계속해’라는 말을 작업 루프로 바꾼다",
+    "description": "A feature guide to Hermes Agent Persistent Goals: how /goal keeps an objective alive across turns with a judge loop, turn budget, and resumable state.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "goals",
+      "automation"
+    ],
+    "date": "2026-06-04",
+    "thumbnail": "images/hermes-persistent-goals-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "cory-arcangel-and-software-archaeology",
     "file": "_built/cory-arcangel-and-software-archaeology.md",
     "title": "게임이 멈춘 자리에서 소프트웨어가 보인다",

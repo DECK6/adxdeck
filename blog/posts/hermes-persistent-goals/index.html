@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Persistent Goals는 ‘계속해’라는 말을 작업 루프로 바꾼다 | DEXA Blog</title>
+    <meta name="description" content="A feature guide to Hermes Agent Persistent Goals: how /goal keeps an objective alive across turns with a judge loop, turn budget, and resumable state." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-persistent-goals/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Persistent Goals는 ‘계속해’라는 말을 작업 루프로 바꾼다" />
+    <meta property="og:description" content="A feature guide to Hermes Agent Persistent Goals: how /goal keeps an objective alive across turns with a judge loop, turn budget, and resumable state." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-persistent-goals/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-persistent-goals-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-06-04" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta property="article:tag" content="goals" />
+    <meta property="article:tag" content="automation" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Persistent Goals는 ‘계속해’라는 말을 작업 루프로 바꾼다" />
+    <meta name="twitter:description" content="A feature guide to Hermes Agent Persistent Goals: how /goal keeps an objective alive across turns with a judge loop, turn budget, and resumable state." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-persistent-goals-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Persistent Goals는 ‘계속해’라는 말을 작업 루프로 바꾼다","description":"A feature guide to Hermes Agent Persistent Goals: how /goal keeps an objective alive across turns with a judge loop, turn budget, and resumable state.","image":"https://dexa.art/blog/images/hermes-persistent-goals-cover.png","datePublished":"2026-06-04","dateModified":"2026-06-04","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-persistent-goals/"},"keywords":"hermes, ai-agent, workflow, goals, automation"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 6월 4일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Persistent Goals는 ‘계속해’라는 말을 작업 루프로 바꾼다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A feature guide to Hermes Agent Persistent Goals: how /goal keeps an objective alive across turns with a judge loop, turn budget, and resumable state.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">goals</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">automation</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-persistent-goals-cover.png" alt="Abstract cover for Hermes Persistent Goals" loading="lazy"></p>
+<p>긴 작업에서 사람이 가장 자주 하는 말은 의외로 단순하다. “좋아, 계속해.” <strong>Hermes Persistent Goals</strong>는 이 반복 지시를 기능으로 바꾼다. <code>/goal</code>로 완료 목표를 세우면 Hermes는 한 턴을 끝낸 뒤에도 목표가 아직 끝났는지 판단하고, 부족하면 같은 세션 안에서 자동으로 다음 턴을 이어간다.</p>
+<h2>기능 개요: 목표, 판정자, 예산이 한 묶음이다</h2>
+<p><code>/goal</code>은 Hermes 세션에 “standing objective”를 붙이는 명령이다. 일반 프롬프트처럼 한 번 실행하고 끝나는 것이 아니라, 마지막 응답이 목표를 만족했는지 보조 judge 모델이 확인한다. 판정 결과가 <code>continue</code>이면 Hermes는 continuation prompt를 다시 넣고 다음 단계를 수행한다. 결과가 <code>done</code>이면 루프를 멈춘다.</p>
+<p>이 기능은 Cron이나 Kanban처럼 별도 작업 큐를 만드는 장치가 아니다. 현재 대화의 맥락, toolset, 승인 정책을 유지한 채 한 목표를 여러 턴에 걸쳐 밀고 나가는 세션 내부 루프에 가깝다. 그래서 “테스트를 모두 고치고 통과까지 확인해”, “리포트를 작성하고 산출물 경로까지 검증해”처럼 사람이 중간에 계속 밀어줘야 하는 작업에 맞는다.</p>
+<p>중간에 기준을 추가할 수도 있다. <code>/subgoal</code>은 활성 목표에 추가 완료 조건을 붙인다. 예를 들어 버그 수정을 진행하다가 “회귀 테스트도 추가”가 필요해지면 새 목표를 다시 세우지 않고 subgoal을 붙여 판정 기준을 강화한다.</p>
+<h2>어떻게 작동하고 설정하는가</h2>
+<p>가장 단순한 사용법은 대화형 CLI나 게이트웨이에서 바로 목표를 세우는 것이다.</p>
+<pre><code class="language-text">/goal Fix every failing test in tests/hermes_cli/ and verify the target test command passes</code></pre>
+<p>상태 확인과 제어 명령은 다음처럼 쓴다.</p>
+<pre><code class="language-text">/goal status
+/goal pause
+/goal resume
+/goal clear
+/subgoal add a regression test for the bug you patched
+/subgoal remove 1
+/subgoal clear</code></pre>
+<p>Hermes는 목표를 받으면 첫 턴을 즉시 시작한다. 턴이 끝날 때마다 judge가 마지막 응답 일부와 목표를 보고 엄격한 JSON 판정을 만든다. 판정이 계속이면 사용자가 따로 “계속”이라고 말하지 않아도 다음 user-role continuation 메시지가 붙는다. 이 방식은 system prompt나 toolset을 바꾸지 않으므로 prompt cache도 정상적으로 유지된다.</p>
+<p>설정 파일에서는 최대 continuation 턴 수를 조정할 수 있다.</p>
+<pre><code class="language-yaml">goals:
+  max_turns: 20</code></pre>
+<p>judge 모델을 따로 싸고 빠른 모델로 보내고 싶다면 보조 모델 라우팅을 쓴다.</p>
+<pre><code class="language-yaml">auxiliary:
+  goal_judge:
+    provider: openrouter
+    model: google/gemini-3-flash-preview</code></pre>
+<p>목표 상태는 세션 DB의 <code>state_meta</code>에 <code>goal:&lt;session_id&gt;</code> 형태로 저장된다. 세션을 다시 열면 목표, pause 상태, subgoal 목록을 이어받을 수 있다. 다만 예산을 다 쓰면 자동으로 멈추며, 계속하려면 <code>/goal resume</code>으로 새 예산을 주는 편이 안전하다.</p>
+<h2>짧은 실제 사용 사이드바</h2>
+<p>한 실제 Hermes 운영 셋업에서는 개발, 지식관리, 운영 프로파일이 분리되어 있고 각 프로파일마다 맡는 일이 다르다. 이런 환경에서 <code>/goal</code>은 “한 프로파일 안에서 끝까지 밀어붙일 단일 목표”에 잘 맞는다. 반대로 여러 프로파일이 나눠 맡아야 하는 작업은 Kanban이나 delegation이 더 적절하다.</p>
+<h2>Pitfalls / tips</h2>
+<p>첫째, 목표 문장은 완료 조건을 포함해야 한다. “리팩터링해”보다 “리팩터링하고 <code>python -m pytest ...</code>가 통과했음을 확인해”가 낫다. judge는 마지막 응답에 명시된 완료 증거를 보고 판단하므로, 검증 명령과 산출물 기준을 goal에 넣는 것이 중요하다.</p>
+<p>둘째, judge는 보수적으로 설계되었지만 완벽하지 않다. 실제로 끝났는데 계속할 수도 있고, 반대로 목표가 모호하면 너무 빨리 끝났다고 볼 수도 있다. 판정 사유가 함께 표시되므로 이상하면 <code>/goal clear</code> 후 더 구체적인 목표로 다시 세운다.</p>
+<p>셋째, 게이트웨이에서 실행 중인 목표를 새 목표로 덮어쓰는 것은 경합을 만들 수 있다. 실행 중에는 <code>/goal status</code>, <code>/goal pause</code>, <code>/goal clear</code>처럼 제어 명령을 먼저 쓰고, 필요하면 <code>/stop</code> 뒤 새 목표를 세우는 편이 안전하다.</p>
+<h2>언제 이 기능을 잡을까</h2>
+<p>Persistent Goals는 “한 세션, 한 목표, 여러 턴”이 필요한 순간에 가장 좋다. 짧은 질의응답은 일반 프롬프트로 충분하고, 정해진 시간에 반복되는 일은 Cron이 낫다. 여러 에이전트가 나눠야 하는 일은 delegation이나 Kanban이 맞다. 하지만 같은 맥락 안에서 검증까지 반복해야 하는 작업이라면 <code>/goal</code>은 사람의 “계속해”를 Hermes의 작업 루프로 바꿔준다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/cory-arcangel-and-software-archaeology/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>게임이 멈춘 자리에서 소프트웨어가 보인다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
