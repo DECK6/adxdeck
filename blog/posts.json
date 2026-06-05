@@ -1,5 +1,22 @@
 [
   {
+    "slug": "hermes-code-execution-rpc",
+    "file": "_built/hermes-code-execution-rpc.md",
+    "title": "Hermes Code Execution은 여러 도구 호출을 하나의 검증 가능한 스크립트로 묶는다",
+    "description": "A feature guide to Hermes Agent Code Execution: how execute_code runs Python with RPC-backed tool access, when to use it, and what safety limits matter.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "code-execution",
+      "automation"
+    ],
+    "date": "2026-06-06",
+    "thumbnail": "images/hermes-code-execution-rpc-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "deep-time-of-the-media",
     "file": "_built/deep-time-of-the-media.md",
     "title": "진보의 직선 아래 묻힌 매체의 지층",
