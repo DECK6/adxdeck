@@ -1,5 +1,22 @@
 [
   {
+    "slug": "deep-time-of-the-media",
+    "file": "_built/deep-time-of-the-media.md",
+    "title": "진보의 직선 아래 묻힌 매체의 지층",
+    "description": "지그프리트 질린스키의 Deep Time of the Media를 통해 매체 역사를 직선적 진보가 아니라 망각된 장치와 감각의 지층으로 다시 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "media-archaeology",
+      "deep-time",
+      "variantology"
+    ],
+    "date": "2026-06-06",
+    "thumbnail": "images/deep-time-media-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-persistent-goals",
     "file": "_built/hermes-persistent-goals.md",
     "title": "Hermes Persistent Goals는 ‘계속해’라는 말을 작업 루프로 바꾼다",
