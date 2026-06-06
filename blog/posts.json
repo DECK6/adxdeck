@@ -1,5 +1,21 @@
 [
   {
+    "slug": "networked-publics-and-the-unstable-audience",
+    "file": "_built/networked-publics-and-the-unstable-audience.md",
+    "title": "관객은 언제 공중이 되는가",
+    "description": "네트워크화된 공중이라는 개념을 통해 미디어아트의 관객이 전시장 안의 신체를 넘어 검색되고 확산되며 다시 호출되는 불안정한 공중으로 바뀌는 과정을 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "network-culture",
+      "platform-culture"
+    ],
+    "date": "2026-06-07",
+    "thumbnail": "images/networked-publics-unstable-audience-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-code-execution-rpc",
     "file": "_built/hermes-code-execution-rpc.md",
     "title": "Hermes Code Execution은 여러 도구 호출을 하나의 검증 가능한 스크립트로 묶는다",
