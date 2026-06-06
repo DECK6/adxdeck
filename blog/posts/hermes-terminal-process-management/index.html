@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Terminal은 명령 실행보다 프로세스 운영에 가깝다 | DEXA Blog</title>
+    <meta name="description" content="A feature guide to Hermes Agent Terminal and Process tools: foreground commands, background jobs, PTY sessions, and safe operational habits." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-terminal-process-management/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Terminal은 명령 실행보다 프로세스 운영에 가깝다" />
+    <meta property="og:description" content="A feature guide to Hermes Agent Terminal and Process tools: foreground commands, background jobs, PTY sessions, and safe operational habits." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-terminal-process-management/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-terminal-process-management-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-06-07" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta property="article:tag" content="terminal" />
+    <meta property="article:tag" content="process-management" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Terminal은 명령 실행보다 프로세스 운영에 가깝다" />
+    <meta name="twitter:description" content="A feature guide to Hermes Agent Terminal and Process tools: foreground commands, background jobs, PTY sessions, and safe operational habits." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-terminal-process-management-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Terminal은 명령 실행보다 프로세스 운영에 가깝다","description":"A feature guide to Hermes Agent Terminal and Process tools: foreground commands, background jobs, PTY sessions, and safe operational habits.","image":"https://dexa.art/blog/images/hermes-terminal-process-management-cover.png","datePublished":"2026-06-07","dateModified":"2026-06-07","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-terminal-process-management/"},"keywords":"hermes, ai-agent, workflow, terminal, process-management"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 6월 7일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Terminal은 명령 실행보다 프로세스 운영에 가깝다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A feature guide to Hermes Agent Terminal and Process tools: foreground commands, background jobs, PTY sessions, and safe operational habits.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">terminal</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">process-management</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-terminal-process-management-cover.png" alt="Abstract cover for Hermes Terminal Process Management" loading="lazy"></p>
+<p>Hermes Agent의 <code>terminal</code>은 단순히 셸 명령을 대신 치는 기능이 아니다. 빌드, 테스트, 서버, 대화형 CLI처럼 시간이 걸리고 상태가 남는 작업을 에이전트가 붙잡고 운영하게 해 주는 실행 계층이다. 핵심 문제는 “명령을 실행할 수 있는가”가 아니라, 실행 뒤 로그·종료·입력·중단을 어떻게 안전하게 관리하느냐다.</p>
+<h2>기능 개요: terminal과 process는 한 쌍이다</h2>
+<p>Hermes의 <code>terminal</code> toolset에는 두 도구가 들어 있다. <code>terminal</code>은 명령을 시작하고, <code>process</code>는 <code>background=true</code>로 시작된 작업을 관리한다. 공식 도구 레퍼런스는 이 toolset을 “Shell command execution and background process management”로 설명한다. 즉 짧은 명령은 foreground로 끝내고, 오래 걸리는 명령은 추적 가능한 세션으로 분리하는 구조다.</p>
+<p>또 하나의 중요한 경계는 파일 도구와의 역할 분담이다. 파일 읽기에는 <code>read_file</code>, 검색에는 <code>search_files</code>, 수정에는 <code>patch</code>나 <code>write_file</code>이 더 안전하다. <code>terminal</code>은 패키지 설치, 테스트 실행, Git, 서버 구동, 운영체제 상태 확인, PTY가 필요한 CLI처럼 셸 자체가 필요한 일에 쓰는 편이 좋다.</p>
+<h2>어떻게 작동하고 설정하는가</h2>
+<p>짧은 확인은 foreground 실행이 기본이다.</p>
+<pre><code class="language-python">terminal(command=&quot;python -m pytest tests/unit -q&quot;, workdir=&quot;/path/to/project&quot;, timeout=300)</code></pre>
+<p>반대로 서버, watcher, 긴 빌드는 background로 시작한다. 이때 반환되는 <code>session_id</code>가 이후 관리의 기준점이다.</p>
+<pre><code class="language-python">terminal(command=&quot;npm run dev&quot;, workdir=&quot;/path/to/app&quot;, background=true)
+# =&gt; {&quot;session_id&quot;: &quot;proc_abc123&quot;, &quot;pid&quot;: 12345}
+
+process(action=&quot;poll&quot;, session_id=&quot;proc_abc123&quot;)
+process(action=&quot;log&quot;, session_id=&quot;proc_abc123&quot;)
+process(action=&quot;wait&quot;, session_id=&quot;proc_abc123&quot;, timeout=60)
+process(action=&quot;kill&quot;, session_id=&quot;proc_abc123&quot;)</code></pre>
+<p>상호작용이 필요한 프로그램에는 <code>pty=true</code>를 붙인다. Codex, Claude Code, Python REPL, 일부 인증 CLI처럼 터미널 제어 문자가 필요한 도구가 여기에 속한다.</p>
+<pre><code class="language-python">terminal(command=&quot;python&quot;, pty=true)
+process(action=&quot;submit&quot;, session_id=&quot;proc_abc123&quot;, data=&quot;print('ok')&quot;)</code></pre>
+<p>기본 설정은 <code>~/.hermes/config.yaml</code>의 <code>terminal</code> 섹션에서 조정한다.</p>
+<pre><code class="language-yaml">terminal:
+  backend: local      # local, docker, modal, ssh 등
+  cwd: /path/to/workspace
+  timeout: 180
+  persistent_shell: true
+  shell_init_files: []</code></pre>
+<p>컨테이너 백엔드를 쓰면 CPU·메모리·디스크와 지속성도 설정할 수 있다. <code>container_persistent: true</code>이면 설치한 패키지와 작업 파일이 다음 세션에도 남는다. Docker 환경 변수 전달은 <code>terminal.docker_forward_env</code>로 명시하지만, 컨테이너 안 명령에 노출되는 값이므로 필요한 것만 넘겨야 한다.</p>
+<h2>짧은 실제 사용 사이드바</h2>
+<p>한 운영 셋업에서는 개발 프로파일의 <code>terminal</code> toolset이 활성화되어 있고, backend는 <code>local</code>, 기본 작업 디렉터리는 개발 워크스페이스로 잡혀 있다. 블로그 발행 같은 자동화에서도 이미지 생성 뒤 정적 사이트 빌드, Git 상태 확인, publish script 실행은 <code>terminal</code>이 담당하고, 산출물 검증 로그는 <code>process</code>나 일반 foreground 실행으로 회수한다.</p>
+<h2>Pitfalls / tips</h2>
+<p>첫째, background 작업에는 <code>notify_on_complete=true</code>를 붙이는 습관이 좋다. 테스트나 빌드처럼 언젠가 끝나는 긴 작업은 완료 알림을 받아야 한다. 반대로 개발 서버나 watcher처럼 끝나지 않는 프로세스는 background로 띄운 뒤 health check나 로그 신호로 readiness를 확인한다.</p>
+<p>둘째, <code>nohup</code>, 셸의 <code>&amp;</code>, <code>disown</code>으로 Hermes 바깥에 프로세스를 숨기지 않는다. 그렇게 시작하면 에이전트가 <code>process(action=&quot;kill&quot;)</code>, <code>log</code>, <code>poll</code>로 관리하기 어렵다. Hermes가 추적해야 하는 작업은 <code>terminal(background=true)</code>로 시작해야 한다.</p>
+<p>셋째, blind sleep을 피한다. 서버를 띄운 뒤 “10초 기다리기”보다 로그에서 startup 문구를 확인하거나 실제 HTTP health check를 실행하는 편이 재현성이 높다.</p>
+<p>넷째, 대화형 명령을 일반 terminal로 실행하면 멈춘 것처럼 보일 수 있다. 입력을 기다리는 CLI, TUI, REPL에는 <code>pty=true</code>와 <code>process(action=&quot;submit&quot;|&quot;write&quot;)</code>를 사용한다.</p>
+<h2>마무리: 언제 terminal을 고를까</h2>
+<p>Hermes에서 <code>terminal</code>은 셸이 필요한 작업의 운영 레이어다. 파일을 읽고 고치는 일은 file 도구, 여러 도구 호출을 Python 안에서 줄이는 일은 Code Execution, 반복 예약은 Cron, 병렬 하위 작업은 Delegation이 더 적합하다. 하지만 빌드·테스트·서버·Git·패키지 설치·대화형 CLI처럼 실제 프로세스가 중심인 순간에는 <code>terminal</code>과 <code>process</code>가 가장 직접적이고 검증 가능한 선택이다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/networked-publics-and-the-unstable-audience/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>관객은 언제 공중이 되는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

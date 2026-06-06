@@ -1,5 +1,22 @@
 [
   {
+    "slug": "hermes-terminal-process-management",
+    "file": "_built/hermes-terminal-process-management.md",
+    "title": "Hermes Terminal은 명령 실행보다 프로세스 운영에 가깝다",
+    "description": "A feature guide to Hermes Agent Terminal and Process tools: foreground commands, background jobs, PTY sessions, and safe operational habits.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "terminal",
+      "process-management"
+    ],
+    "date": "2026-06-07",
+    "thumbnail": "images/hermes-terminal-process-management-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "networked-publics-and-the-unstable-audience",
     "file": "_built/networked-publics-and-the-unstable-audience.md",
     "title": "관객은 언제 공중이 되는가",
