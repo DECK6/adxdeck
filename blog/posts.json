@@ -1,5 +1,22 @@
 [
   {
+    "slug": "hermes-credential-pools",
+    "file": "_built/hermes-credential-pools.md",
+    "title": "Hermes Credential Pools는 같은 provider 안에서 끊김을 먼저 흡수한다",
+    "description": "A practical guide to Hermes Agent credential pools: how same-provider credential rotation works, how it differs from fallback providers, and how to inspect or tune it safely.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "auth",
+      "credential-pools"
+    ],
+    "date": "2026-06-08",
+    "thumbnail": "images/hermes-credential-pools-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "metainterface-beyond-the-screen",
     "file": "_built/metainterface-beyond-the-screen.md",
     "title": "화면 밖으로 번진 인터페이스의 얼굴",
