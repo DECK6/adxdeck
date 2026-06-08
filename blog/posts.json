@@ -1,5 +1,24 @@
 [
   {
+    "slug": "lisa-nakamura-and-racialized-digital-visibility",
+    "file": "_built/lisa-nakamura-and-racialized-digital-visibility.md",
+    "title": "플랫폼은 누구의 얼굴을 더 쉽게 소비하는가",
+    "description": "Lisa Nakamura의 디지털 인종화, 플랫폼 시각성, 게임 노동 비평을 통해 AI 이미지와 네트워크 미디어아트를 다시 읽는 공개 에세이.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "platform-studies",
+      "visual-culture",
+      "ai-critique",
+      "race",
+      "digital-labor"
+    ],
+    "date": "2026-06-09",
+    "thumbnail": "images/lisa-nakamura-racialized-digital-visibility-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-credential-pools",
     "file": "_built/hermes-credential-pools.md",
     "title": "Hermes Credential Pools는 같은 provider 안에서 끊김을 먼저 흡수한다",
