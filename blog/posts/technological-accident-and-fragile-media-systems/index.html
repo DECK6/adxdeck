@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>기술은 자신의 사고를 함께 발명한다 | DEXA Blog</title>
+    <meta name="description" content="폴 비릴리오의 technological accident 개념을 통해 미디어아트, AI, 실시간 인프라가 약속하는 효율과 동시에 발명하는 실패의 형식을 읽는다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/technological-accident-and-fragile-media-systems/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="기술은 자신의 사고를 함께 발명한다" />
+    <meta property="og:description" content="폴 비릴리오의 technological accident 개념을 통해 미디어아트, AI, 실시간 인프라가 약속하는 효율과 동시에 발명하는 실패의 형식을 읽는다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/technological-accident-and-fragile-media-systems/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/technological-accident-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-06-12" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-theory" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="technology-critique" />
+    <meta property="article:tag" content="infrastructure" />
+    <meta property="article:tag" content="AI" />
+    <meta property="article:tag" content="Virilio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="기술은 자신의 사고를 함께 발명한다" />
+    <meta name="twitter:description" content="폴 비릴리오의 technological accident 개념을 통해 미디어아트, AI, 실시간 인프라가 약속하는 효율과 동시에 발명하는 실패의 형식을 읽는다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/technological-accident-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"기술은 자신의 사고를 함께 발명한다","description":"폴 비릴리오의 technological accident 개념을 통해 미디어아트, AI, 실시간 인프라가 약속하는 효율과 동시에 발명하는 실패의 형식을 읽는다.","image":"https://dexa.art/blog/images/technological-accident-cover.png","datePublished":"2026-06-12","dateModified":"2026-06-12","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/technological-accident-and-fragile-media-systems/"},"keywords":"media-theory, media-art, technology-critique, infrastructure, AI, Virilio"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 6월 12일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">기술은 자신의 사고를 함께 발명한다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">폴 비릴리오의 technological accident 개념을 통해 미디어아트, AI, 실시간 인프라가 약속하는 효율과 동시에 발명하는 실패의 형식을 읽는다.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-theory</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">technology-critique</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">infrastructure</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">AI</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">Virilio</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/technological-accident-cover.png" alt="기술적 사고를 암시하는 어두운 미디어 설치 공간" loading="lazy"></p>
+<p>새로운 기술은 대개 약속의 언어로 도착한다. 더 빠르게 연결하고, 더 정확하게 인식하고, 더 몰입적으로 보여 주며, 더 자동적으로 판단하겠다는 약속이다. 하지만 폴 비릴리오가 반복해 온 사고론은 이 낙관의 문장에 짧은 단서를 붙인다. 배를 발명하는 일은 난파의 가능성을 함께 발명하는 일이고, 비행기를 발명하는 일은 추락이라는 새로운 재난 형식을 함께 발명하는 일이다.</p>
+<p>이때 사고는 단순한 예외가 아니다. 기술이 충분히 성숙하지 못해서 우연히 생기는 결함도 아니다. 어떤 장치가 특정한 속도, 규모, 자동화, 연결성을 가능하게 만들 때, 바로 그 가능성 때문에 생겨나는 고유한 실패의 형식이 있다. 기술적 사고는 기술의 바깥에서 침입한 잡음이 아니라 기술의 내부에 접힌 그림자다.</p>
+<h2>속도가 사고의 크기를 바꾼다</h2>
+<p>비릴리오의 사고론은 그의 속도론과 떨어져 있지 않다. 근대의 기술은 공간을 줄이고 시간을 압축한다. 철도, 항공, 전력망, 방송, 인터넷, 실시간 플랫폼은 각각 이동과 통신의 속도를 바꾸었다. 그러나 속도가 바뀌면 사고도 바뀐다. 느린 장치의 실패가 한 장소의 고장으로 끝날 수 있었다면, 고속 네트워크의 실패는 동시에 여러 장소로 복제되고 확산된다.</p>
+<p>그래서 오늘의 기술적 사고는 단순히 무언가가 “고장났다”는 사건이 아니다. 데이터 유출은 한 서버의 문제가 아니라 신뢰, 인증, 거래, 평판, 법적 책임의 사슬을 흔든다. 추천 알고리즘의 오판은 한 화면의 오류가 아니라 여론, 소비, 감정, 혐오, 가시성의 배치를 바꾼다. AI 비전의 오분류는 픽셀 해석의 실패가 아니라 누가 의심받고, 누가 배제되고, 누가 설명을 요구받는지의 문제로 이어진다.</p>
+<p>기술은 효율을 확장하는 만큼 사고의 동시성도 확장한다. 더 빠른 응답은 더 빠른 복구를 가능하게 하지만, 동시에 더 빠른 오판과 더 빠른 전염도 가능하게 한다. 바로 이 양면성이 technological accident 개념의 핵심이다.</p>
+<h2>미디어아트는 실패를 숨기지 않을 때 더 정직해진다</h2>
+<p>미디어아트에서 기술적 사고는 특히 중요한 비평 도구가 된다. 인터랙티브 설치, 프로젝션 매핑, 센서 기반 퍼포먼스, 네트워크 공연, AI 이미지 작업은 모두 “작동하는 경험”을 설계한다. 관객의 몸이 감지되고, 빛이 반응하고, 화면이 움직이며, 시스템은 마치 현재에 즉각 응답하는 듯 보인다.</p>
+<p>하지만 이런 작품은 동시에 실패의 장치이기도 하다. 센서는 몸을 놓치거나 잘못 읽는다. 프로젝터는 정렬에서 조금씩 밀려난다. 네트워크는 지연되고, 모델은 환각하며, 서버는 멈춘다. 전시는 종종 이 실패를 운영상의 문제로 치워 버리지만, 사고론의 관점에서 보면 그 순간이야말로 매체의 진짜 조건이 드러나는 자리다.</p>
+<p>관객을 잘못 인식하는 AI 비전 설치는 단순한 버그가 아니다. 그것은 기계가 몸을 어떤 데이터 단위로 환원하는지, 그리고 그 환원이 실패할 때 관객이 어떤 불안과 배제의 위치에 놓이는지를 보여 준다. 프로젝션의 blackout이나 alignment drift 역시 단순한 장비 문제로만 볼 수 없다. 빛, 전력, 공간, 냉각, 케이블, 신호 경로가 하나의 작품 조건이라는 사실이 갑자기 표면으로 올라오기 때문이다.</p>
+<p>그런 의미에서 좋은 미디어아트는 기술의 완벽한 환상을 유지하는 데서만 나오지 않는다. 때로는 실패를 감추지 않고, 그 실패가 어떤 인프라와 책임 구조에서 발생하는지 감각하게 만들 때 더 정직해진다.</p>
+<h2>AI 자동화가 발명하는 새로운 사고</h2>
+<p>생성형 AI와 자동화 시스템은 technological accident를 다시 현재적인 문제로 만든다. AI 도입의 언어는 속도, 비용 절감, 확장성, 개인화, 즉시성에 집중한다. 그러나 자동화가 빠르게 답을 만들 수 있다는 말은 오류도 빠르게 만들어질 수 있다는 뜻이다. 문서가 대량 생산될 수 있다는 말은 출처가 불분명한 문장, 검증되지 않은 판단, 책임 소재가 모호한 결론도 같은 규모로 증식할 수 있다는 뜻이다.</p>
+<p>AI 비전은 보는 능력을 확장하지만, 동시에 잘못 보는 능력도 제도화한다. 챗봇은 응답성을 높이지만, 잘못된 안내가 고객과 기관 사이의 신뢰를 어떻게 손상시키는지에 대한 사고 형식도 만든다. 자동 분류 시스템은 업무를 줄이지만, 한 번 잘못 분류된 사람이 어떤 절차를 통해 자신을 복구할 수 있는지라는 새로운 정치적 질문을 낳는다.</p>
+<p>따라서 AI 시스템을 평가할 때 “무엇을 자동화하는가”만으로는 부족하다. “자동화가 실패하면 누가 먼저 피해를 보는가”, “빠른 응답이 검토 시간을 제거하지 않는가”, “오류가 발생했을 때 되돌릴 수 있는가”, “사람이 개입할 권한은 어디에 남아 있는가”를 함께 물어야 한다. 사고를 나중에 수습할 예외로 두지 않고, 설계 문서의 첫 장에 올려놓는 것이 기술적 책임의 출발점이다.</p>
+<h2>끝내 남는 질문</h2>
+<p>기술적 사고의 관점은 기술을 거부하자는 주장이 아니다. 오히려 기술의 약속을 더 정확히 읽기 위한 방법이다. 어떤 기술이 우리에게 새로운 가능성을 준다면, 그 가능성은 반드시 새로운 실패의 형식도 만든다. 문제는 사고가 존재한다는 사실 자체가 아니라, 그 사고를 누가 예측하고, 누가 설명하고, 누가 복구하며, 누가 비용을 떠안는가다.</p>
+<p>미디어아트와 AI 시스템을 볼 때 이제 질문은 조금 달라져야 한다. 이 기술은 무엇을 가능하게 하는가. 그리고 바로 그 가능성 때문에, 이전에는 존재하지 않았던 어떤 사고를 함께 발명하고 있는가.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-command-approval-security/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes의 승인 레이어는 자동화가 선을 넘기 전에 멈춘다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
