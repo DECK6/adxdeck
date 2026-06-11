@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-context-files-references",
+    "file": "_built/hermes-context-files-references.md",
+    "title": "Hermes는 프로젝트의 규칙을 대화 전에 읽는다",
+    "description": "A feature guide to Hermes Agent context files and context references. It explains how project instructions, AGENTS.md, SOUL.md, and @file-style references shape each run without turning every prompt into a giant paste.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-06-12",
+    "thumbnail": "images/hermes-context-files-references-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "technological-accident-and-fragile-media-systems",
     "file": "_built/technological-accident-and-fragile-media-systems.md",
     "title": "기술은 자신의 사고를 함께 발명한다",

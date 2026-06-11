@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes는 프로젝트의 규칙을 대화 전에 읽는다 | DEXA Blog</title>
+    <meta name="description" content="A feature guide to Hermes Agent context files and context references. It explains how project instructions, AGENTS.md, SOUL.md, and @file-style references shape each run without turning every prompt into a giant paste." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-context-files-references/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes는 프로젝트의 규칙을 대화 전에 읽는다" />
+    <meta property="og:description" content="A feature guide to Hermes Agent context files and context references. It explains how project instructions, AGENTS.md, SOUL.md, and @file-style references shape each run without turning every prompt into a giant paste." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-context-files-references/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-context-files-references-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-06-12" />
+    <meta property="article:author" content="Deck" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes는 프로젝트의 규칙을 대화 전에 읽는다" />
+    <meta name="twitter:description" content="A feature guide to Hermes Agent context files and context references. It explains how project instructions, AGENTS.md, SOUL.md, and @file-style references shape each run without turning every prompt into a giant paste." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-context-files-references-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes는 프로젝트의 규칙을 대화 전에 읽는다","description":"A feature guide to Hermes Agent context files and context references. It explains how project instructions, AGENTS.md, SOUL.md, and @file-style references shape each run without turning every prompt into a giant paste.","image":"https://dexa.art/blog/images/hermes-context-files-references-cover.png","datePublished":"2026-06-12","dateModified":"2026-06-12","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-context-files-references/"},"keywords":""}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 6월 12일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes는 프로젝트의 규칙을 대화 전에 읽는다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A feature guide to Hermes Agent context files and context references. It explains how project instructions, AGENTS.md, SOUL.md, and @file-style references shape each run without turning every prompt into a giant paste.</p>
+                <div class="flex flex-wrap gap-2 mt-6"></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-context-files-references-cover.png" alt="Abstract context routing diagram for Hermes" loading="lazy"></p>
+<p>좋은 에이전트 작업은 “무엇을 하라”만으로 충분하지 않다. 어느 저장소의 규칙을 따라야 하는지, 어떤 파일을 건드리면 안 되는지, 어떤 말투와 검증 기준을 유지해야 하는지가 함께 들어가야 한다. Hermes Agent의 Context Files와 Context References는 이 문제를 두 층으로 나눠 해결한다. 반복되는 운영 규칙은 자동으로 읽고, 그때그때 필요한 파일·diff·URL은 사용자가 <code>@</code>로 붙인다.</p>
+<h2>기능 개요: 자동 규칙과 명시적 첨부</h2>
+<p>Context Files는 세션 시작 또는 파일 접근 시 Hermes가 자동으로 발견하는 지침 파일이다. 지원 파일은 <code>.hermes.md</code>, <code>HERMES.md</code>, <code>AGENTS.md</code>, <code>CLAUDE.md</code>, <code>.cursorrules</code>, <code>.cursor/rules/*.mdc</code>, 그리고 전역 <code>SOUL.md</code>다. 프로젝트 지침은 우선순위에 따라 하나만 로드되고, <code>SOUL.md</code>는 <code>$HERMES_HOME/SOUL.md</code>에서 별도로 읽힌다.</p>
+<p>Context References는 사용자가 메시지 안에 직접 넣는 <code>@</code> 문법이다. <code>@file:src/main.py</code>, <code>@file:src/main.py:10-25</code>, <code>@folder:src</code>, <code>@diff</code>, <code>@staged</code>, <code>@git:5</code>, <code>@url:https://...</code>처럼 현재 질문에 필요한 자료를 inline context로 확장한다. 자동 규칙은 “항상 따라야 할 배경”, <code>@</code> 참조는 “이번 턴에 꼭 봐야 할 증거”에 가깝다.</p>
+<h2>어떻게 작동하는가</h2>
+<p>프로젝트 루트에 <code>AGENTS.md</code>를 두면 Hermes는 작업 디렉터리에서 시작해 git root 기준으로 문맥 파일을 찾는다.</p>
+<pre><code class="language-markdown"># Project Context
+
+## Commands
+- Build with `npm run build`.
+- Run tests with `pytest tests -q`.
+
+## Rules
+- Do not edit generated migrations directly.
+- Keep public examples free of secrets and private paths.</code></pre>
+<p>우선순위는 대략 다음과 같다.</p>
+<pre><code class="language-text">.hermes.md / HERMES.md → AGENTS.md → CLAUDE.md → .cursorrules
+SOUL.md → always from $HERMES_HOME</code></pre>
+<p>세션 중 하위 폴더의 파일을 읽으면 Hermes는 그 경로의 부모 디렉터리들을 확인해 nested <code>AGENTS.md</code>, <code>CLAUDE.md</code>, <code>.cursorrules</code>도 한 번씩 발견한다. 그래서 monorepo에서는 <code>frontend/AGENTS.md</code>, <code>backend/AGENTS.md</code>처럼 영역별 규칙을 둘 수 있다. 단, startup prompt를 매번 크게 만들지 않기 위해 하위 규칙은 해당 경로가 실제로 도구 호출에 등장했을 때 주입된다.</p>
+<p>반대로 사용자가 한 번만 특정 자료를 붙이고 싶을 때는 CLI에서 이렇게 쓴다.</p>
+<pre><code class="language-text">Review @diff and compare it with @file:README.md:1-80
+Summarize @url:https://hermes-agent.nousresearch.com/docs/user-guide/features/context-references</code></pre>
+<p>Hermes는 확장된 내용을 <code>--- Attached Context ---</code> 아래에 붙인다. <code>hermes chat --help</code> 기준으로 단발 질문에는 <code>-q</code>, 이미지에는 <code>--image</code>, toolset에는 <code>-t</code>를 쓸 수 있지만, <code>@file</code> 자동완성은 주로 interactive CLI 기능이다. Telegram이나 Discord 같은 메시징 Gateway에서는 같은 문법이 그대로 전달될 수 있으므로, 그때는 에이전트가 <code>read_file</code>, <code>web_extract</code> 같은 도구로 다시 확인하게 하는 편이 안전하다.</p>
+<h2>짧은 실제 사용 사례</h2>
+<p>이 사용자의 셋업에서는 Dev, PKM, Ops처럼 역할이 나뉜 프로파일이 각자 다른 작업 규칙을 갖는다. 개발 저장소에서는 repo-local 지침을 먼저 보고, 블로그 발행 cron은 별도 발행 규칙과 금지 주제를 확인한 뒤 움직인다. 이 구조 덕분에 매번 긴 운영 규칙을 다시 붙이지 않아도, 실행 전에 “이 작업장에서의 기준”을 먼저 읽게 된다.</p>
+<h2>Pitfalls / tips</h2>
+<p>첫째, <code>AGENTS.md</code>를 백과사전처럼 길게 만들지 않는다. 공식 구현은 큰 파일을 잘라 넣을 수 있고, 너무 긴 규칙은 prompt cache와 판단 품질을 동시에 해친다. 둘째, 민감 파일을 <code>@file</code>로 붙이려 하지 않는다. SSH 키, shell profile, Hermes <code>.env</code>, 일부 credential directory는 차단된다. 셋째, <code>@folder</code>는 파일 내용 전체가 아니라 tree와 metadata를 주는 도구다. 코드 검토에는 <code>@file</code>의 line range가 더 정확하다. 넷째, 첨부 context는 압축될 때 요약될 수 있다. 장기적으로 보존해야 하는 결정은 문서나 이슈에 남기고, 대화 context를 원본 저장소로 착각하지 않는다.</p>
+<p>Context Files는 저장소의 헌법이고, Context References는 그날의 증거 묶음이다. 반복 규칙은 파일로 두고, 순간적인 판단 자료는 <code>@</code>로 좁게 붙일 때 Hermes는 덜 추측하고 더 정확히 실행한다. 모든 것을 prompt에 복사하는 방식보다, 필요한 규칙과 필요한 증거를 분리하는 편이 오래가는 에이전트 운영 방식이다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/technological-accident-and-fragile-media-systems/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>기술은 자신의 사고를 함께 발명한다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
