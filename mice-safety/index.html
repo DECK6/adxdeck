@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MICE 행사 안전 적용성 체크리스트 | DEXA</title>
-  <meta name="description" content="행사 유형, 예상 인파, 베뉴, 관할 지자체, 도로점용, 식음료/LPG, 설치·철거 조건을 입력해 MICE·옥외행사 안전 적용성을 확인하는 오프라인 온톨로지 기반 시뮬레이터입니다.">
+  <meta name="description" content="행사 유형, 예상 인파, 베뉴, 관할 지자체, 도로점용, 식음료/LPG, 설치·철거 조건을 입력해 MICE·옥외행사 안전 적용성을 확인하는 오프라인 온톨로지 기반 시뮬레이터입니다. KOPIS 공연시설 2,111곳 인덱스를 포함합니다.">
   <link rel="canonical" href="https://dexa.art/mice-safety/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="MICE 행사 안전 적용성 체크리스트">
@@ -26,7 +26,7 @@
       <div>
         <p class="eyebrow">MICE / Outdoor Event Safety</p>
         <h1>MICE 행사 안전 적용성 체크리스트</h1>
-        <p class="lead">행사 유형, 예상 인파, 베뉴, 관할 지자체와 현장 조건을 입력하면 적용 법령·조례 후보, 의무 문서, 위험요인, 베뉴 체크포인트를 카드로 정리합니다.</p>
+        <p class="lead">행사 유형, 예상 인파, 베뉴, 관할 지자체와 현장 조건을 입력하면 적용 법령·조례 후보, 의무 문서, 위험요인, 베뉴 체크포인트를 카드로 정리합니다. KOPIS 공연시설 2,111곳도 오프라인 인덱스로 조회합니다.</p>
       </div>
       <div class="hero-note">
         <strong>네트워크 법령 조회 없음</strong>
@@ -39,43 +39,44 @@
         <h2>행사 조건 입력</h2>
         <form id="sim-form" class="form-grid">
           <div>
-            <label for="eventName">행사명</label>
-            <input id="eventName" name="eventName" type="text" placeholder="예: 고양 야외 푸드 페스티벌">
+            <label>1) 어떤 행사인가요? 가까운 카드를 누르세요</label>
+            <div id="templateCards" class="template-grid" aria-label="행사 템플릿"></div>
           </div>
 
           <div>
-            <label>행사 유형</label>
-            <div id="eventTypes" class="checkbox-grid"></div>
+            <label>2) 해당되는 것을 모두 켜세요</label>
+            <div id="featureFlags"></div>
           </div>
 
-          <div class="two-col">
+          <div>
+            <label for="expectedCrowd">3) 몇 명쯤 오나요?</label>
+            <input id="expectedCrowd" name="expectedCrowd" type="number" min="0" step="100" value="5000">
+            <p class="hint">300명 이상이면 동선·의료 사전검토가 권고되고, 1,000명 이상이면 의무가 더 늘어납니다.</p>
+          </div>
+
+          <details class="expert">
+            <summary>전문가 입력 (행사 유형·베뉴·관할 직접 지정)</summary>
             <div>
-              <label for="expectedCrowd">예상 인파 수</label>
-              <input id="expectedCrowd" name="expectedCrowd" type="number" min="0" step="100" value="5000">
+              <label for="eventName">행사명</label>
+              <input id="eventName" name="eventName" type="text" placeholder="예: 고양 야외 푸드 페스티벌">
             </div>
+
+            <div>
+              <label>행사 유형</label>
+              <div id="eventTypes" class="checkbox-grid"></div>
+            </div>
+
             <div>
               <label for="venueId">베뉴</label>
               <select id="venueId" name="venueId"></select>
             </div>
-          </div>
 
-          <div>
-            <label for="jurisdiction">관할 지자체</label>
-            <input id="jurisdiction" name="jurisdiction" type="text" list="jurisdictionOptions" placeholder="예: 경기도 고양시">
-            <datalist id="jurisdictionOptions"></datalist>
-          </div>
-
-          <div>
-            <label>특수 조건</label>
-            <div id="featureFlags" class="checkbox-grid"></div>
-          </div>
-
-          <div class="sample-row" aria-label="샘플 입력">
-            <button class="secondary" type="button" data-sample="indoor">실내 전시</button>
-            <button class="secondary" type="button" data-sample="festival">옥외축제</button>
-            <button class="secondary" type="button" data-sample="vip">VIP 컨벤션</button>
-            <button class="secondary" type="button" data-sample="unhosted">무주최 운집</button>
-          </div>
+            <div>
+              <label for="jurisdiction">관할 지자체</label>
+              <input id="jurisdiction" name="jurisdiction" type="text" list="jurisdictionOptions" placeholder="예: 경기도 고양시">
+              <datalist id="jurisdictionOptions"></datalist>
+            </div>
+          </details>
 
           <div class="actions">
             <button id="submitBtn" type="submit">체크리스트 생성</button>

@@ -1,5 +1,6 @@
 {
   "version": "1.0.0",
+  "versionType": "ontology_schema",
   "generatedAt": "2026-05-21",
   "reusePolicy": "Venue manuals are stored as links plus compact checklist concepts. Do not redistribute full venue PDFs through this ontology without source permission.",
   "venues": [
@@ -98,7 +99,42 @@
           "COEX_SERVICE_PARTNER_MANUAL"
         ],
         "gaps": [],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 3,
+          "reachableSourceRefs": 3,
+          "offlineExtractSourceRefs": 3,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "COEX_EXHIBITION_GUIDE_2025",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "pdf",
+              "finalUrl": "https://business.coex.co.kr/post-ex-notice/2023%EB%85%84-%EC%A0%84%EC%8B%9C%EC%9E%A5-%EC%9D%B4%EC%9A%A9-%EC%95%88%EB%82%B4%EC%84%9Cver-2023-10-10/"
+            },
+            {
+              "sourceRef": "COEX_FACILITY_OPERATION_RULE_2023",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "pdf",
+              "finalUrl": "https://business.coex.co.kr/post-ex-notice/2023%EB%85%84-%EC%A0%84%EC%8B%9C%EC%9E%A5-%EC%8B%9C%EC%84%A4%EC%9A%B4%EC%98%81%EA%B7%9C%EC%A0%95%EA%B5%AD-%EC%98%81%EB%AC%B8/"
+            },
+            {
+              "sourceRef": "COEX_SERVICE_PARTNER_MANUAL",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "pdf",
+              "finalUrl": "https://lmsweb.coex.co.kr/com/attachfile/download.mvc?fileCateCD=NOTICE&fileKey=458&serialNo=2"
+            }
+          ]
+        }
       }
     },
     {
@@ -153,7 +189,42 @@
           "KINTEX_CCTV_POLICY"
         ],
         "gaps": [],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 3,
+          "reachableSourceRefs": 3,
+          "offlineExtractSourceRefs": 2,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "KINTEX_SAFETY_EDUCATION",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "pdf",
+              "finalUrl": "https://www.kintex.com/download/formatModal/4.%EC%A7%80%EC%A0%95%EB%93%B1%EB%A1%9D%EC%97%85%EC%B2%B4%EC%95%88%EC%A0%84%EA%B5%90%EC%9C%A1%EC%9E%90%EB%A3%8C.pdf"
+            },
+            {
+              "sourceRef": "KINTEX_ORGANIZER_MANUAL",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "pdf",
+              "finalUrl": "https://www.kintex.com/download/formatModal/8.%EC%A0%84%EC%8B%9C%EC%A3%BC%EC%B5%9C%EC%9E%90%EB%A7%A4%EB%89%B4%EC%96%BC.pdf"
+            },
+            {
+              "sourceRef": "KINTEX_CCTV_POLICY",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": false,
+              "documentFormat": "html",
+              "finalUrl": "https://www.kintex.com/web/ko/management_of_image_information.do"
+            }
+          ]
+        }
       }
     },
     {
@@ -210,7 +281,50 @@
           "BEXCO_OPERATION_IMPLEMENTATION_RULES"
         ],
         "gaps": [],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 4,
+          "reachableSourceRefs": 4,
+          "offlineExtractSourceRefs": 3,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "BEXCO_USER_GUIDEBOOK",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": false,
+              "documentFormat": "html",
+              "finalUrl": "https://www.bexco.co.kr/organizer/CMS/Board/Board.do?board_seq=5338&mCode=MN059&mgr_seq=36&mode=view"
+            },
+            {
+              "sourceRef": "BEXCO_OPERATION_RULES",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "pdf",
+              "finalUrl": "https://www.bexco.co.kr/organizer/CMS/Board/Board.do?board_seq=2130&mCode=MN059&mgr_seq=36&mode=view"
+            },
+            {
+              "sourceRef": "BEXCO_CONSTRUCTION_SAFETY_MANUAL",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "pdf",
+              "finalUrl": "https://www.bexco.co.kr/organizer/CMS/Board/Board.do?board_seq=2854&mCode=MN059&mgr_seq=36&mode=view"
+            },
+            {
+              "sourceRef": "BEXCO_OPERATION_IMPLEMENTATION_RULES",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "pdf",
+              "finalUrl": "https://www.bexco.co.kr/organizer/ajx_json/UploadMgr/downloadRun.do?qcode=Qm9hcmQsMzI5NzcsWQ=="
+            }
+          ]
+        }
       }
     },
     {
@@ -264,7 +378,34 @@
           "KDJ_PARTNER_DOCS"
         ],
         "gaps": [],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 2,
+          "reachableSourceRefs": 2,
+          "offlineExtractSourceRefs": 0,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "KDJ_EXHIBITION_FORMS",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": false,
+              "documentFormat": "html",
+              "finalUrl": "https://kdjcenter.gjto.or.kr/rental/forms/show-room"
+            },
+            {
+              "sourceRef": "KDJ_PARTNER_DOCS",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": false,
+              "documentFormat": "html",
+              "finalUrl": "https://kdjcenter.gjto.or.kr/partner/partnerLeaseappform"
+            }
+          ]
+        }
       }
     },
     {
@@ -302,7 +443,26 @@
         "gaps": [
           "운영규정/시행규정/작업안전 매뉴얼 원문 추가 확보 필요"
         ],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 1,
+          "reachableSourceRefs": 1,
+          "offlineExtractSourceRefs": 0,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "UECO_FACILITY_INFO",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": false,
+              "documentFormat": "html",
+              "finalUrl": "https://ueco.or.kr/eng/facility/Conference"
+            }
+          ]
+        }
       }
     },
     {
@@ -327,7 +487,26 @@
         "gaps": [
           "시설별 세부 안전 매뉴얼 추가 확보 필요"
         ],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 1,
+          "reachableSourceRefs": 1,
+          "offlineExtractSourceRefs": 1,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "SETEC_OPERATING_GUIDE_2025",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "pdf",
+              "finalUrl": "https://www.setec.or.kr/resources/front/files/2025_SETEC.pdf"
+            }
+          ]
+        }
       },
       "rules": [
         {
@@ -370,7 +549,34 @@
         "gaps": [
           "전시장 운영규정/작업안전 매뉴얼 원문 추가 확보 필요"
         ],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 2,
+          "reachableSourceRefs": 2,
+          "offlineExtractSourceRefs": 2,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "ATCENTER_FACILITY_INFO",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "html",
+              "finalUrl": "https://www.at.or.kr/contents/acko321111/view.action"
+            },
+            {
+              "sourceRef": "ATCENTER_RENTAL_INFO",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "html",
+              "finalUrl": "https://www.at.or.kr/contents/acko322200/view.action"
+            }
+          ]
+        }
       },
       "rules": [
         {
@@ -427,7 +633,26 @@
         "gaps": [
           "시설별 최신 면적·피난도면 추가 확보 필요"
         ],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 1,
+          "reachableSourceRefs": 1,
+          "offlineExtractSourceRefs": 1,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "SONGDO_OPERATION_RULES",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "pdf",
+              "finalUrl": "https://songdoconvensia.visitincheon.or.kr/file.do?n=5.+%EC%86%A1%EB%8F%84%EC%BB%A8%EB%B2%A4%EC%8B%9C%EC%95%84+%EC%9A%B4%EC%98%81%EA%B7%9C%EC%A0%95.pdf&path=202403%2F8d856c67-a47c-4599-9e2a-25e771e1a94f.pdf"
+            }
+          ]
+        }
       },
       "rules": [
         {
@@ -468,7 +693,26 @@
         "gaps": [
           "운영규정/작업안전 매뉴얼 원문 추가 확보 필요"
         ],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 1,
+          "reachableSourceRefs": 1,
+          "offlineExtractSourceRefs": 1,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "SUWON_CONVENTION_FACILITY_INFO",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "html",
+              "finalUrl": "https://www.scc.or.kr/"
+            }
+          ]
+        }
       },
       "rules": [
         {
@@ -523,7 +767,26 @@
         "gaps": [
           "시설별 면적·피난도면 추가 확보 필요"
         ],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 1,
+          "reachableSourceRefs": 1,
+          "offlineExtractSourceRefs": 1,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "SUWONMESSE_OPERATION_RULES",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "pdf",
+              "finalUrl": "https://d70o0vfgysr3u.cloudfront.net/wp-content/uploads/2023/08/10171957/SUWONMESSE-%EC%A0%84%EC%8B%9C%EC%9E%A5-%EC%9A%B4%EC%98%81%EA%B7%9C%EC%A0%95%EC%B5%9C%EC%8B%A0%EB%B3%B8.pdf"
+            }
+          ]
+        }
       },
       "rules": [
         {
@@ -566,7 +829,34 @@
         "gaps": [
           "운영규정/작업안전 매뉴얼 원문 추가 확보 필요"
         ],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 2,
+          "reachableSourceRefs": 2,
+          "offlineExtractSourceRefs": 2,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "DCC_FACILITY_INFO",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "html",
+              "finalUrl": "https://www.dcckorea.or.kr/content/view.do?contentKey=98&menuKey=179"
+            },
+            {
+              "sourceRef": "DCC_RENTAL_INFO",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "html",
+              "finalUrl": "https://dcckorea.or.kr/content/view.do?contentKey=78&menuKey=173"
+            }
+          ]
+        }
       },
       "rules": [
         {
@@ -623,7 +913,26 @@
         "gaps": [
           "운영규정/작업안전 매뉴얼 원문 추가 확보 필요"
         ],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 1,
+          "reachableSourceRefs": 1,
+          "offlineExtractSourceRefs": 1,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "OSCO_EXHIBITION_RENTAL_INFO",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "html",
+              "finalUrl": "https://osco.or.kr/lease/leasing-process/"
+            }
+          ]
+        }
       },
       "rules": [
         {
@@ -678,7 +987,26 @@
         "gaps": [
           "운영규정/작업안전 매뉴얼 원문 추가 확보 필요"
         ],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 1,
+          "reachableSourceRefs": 1,
+          "offlineExtractSourceRefs": 1,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "EXCO_FACILITY_INFO",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "html",
+              "finalUrl": "https://www.exco.co.kr/eng/facility/sub01.html"
+            }
+          ]
+        }
       },
       "rules": [
         {
@@ -735,7 +1063,26 @@
         "gaps": [
           "별도 운영규정/작업안전 전문 문서 추가 확보 시 세부 수칙 보강 필요"
         ],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 1,
+          "reachableSourceRefs": 1,
+          "offlineExtractSourceRefs": 1,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "HICO_FACILITY_GUIDE",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "pdf",
+              "finalUrl": "https://www.hico.or.kr/HICO_EXHIBITOR_GUIDEBOOK.pdf"
+            }
+          ]
+        }
       },
       "rules": [
         {
@@ -843,7 +1190,34 @@
           "시설가이드 PDF/작업신고서 직접 다운로드와 MD화 필요",
           "지정등록업체 모집 공고는 핵심 코퍼스에서 제외"
         ],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 2,
+          "reachableSourceRefs": 2,
+          "offlineExtractSourceRefs": 2,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "GUMICO_EXHIBITION_INFO",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "html",
+              "finalUrl": "https://gumico.com/infra-info/exhibition"
+            },
+            {
+              "sourceRef": "GUMICO_SAFETY_ORG_INFO",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "html",
+              "finalUrl": "https://gumico.com/infra-info/organizational"
+            }
+          ]
+        }
       },
       "rules": [
         {
@@ -900,7 +1274,34 @@
           "CECO_WORK_SAFETY_MANUAL"
         ],
         "gaps": [],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 2,
+          "reachableSourceRefs": 2,
+          "offlineExtractSourceRefs": 2,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "CECO_OPERATION_RULES",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "pdf",
+              "finalUrl": "https://www.ceco.co.kr/bbx/board.php?bx_table=02_02_04_01&wr_id=28"
+            },
+            {
+              "sourceRef": "CECO_WORK_SAFETY_MANUAL",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "hwp",
+              "finalUrl": "https://www.ceco.co.kr/bbx/board.php?bx_table=02_02_04_01&wr_id=45"
+            }
+          ]
+        }
       },
       "rules": [
         {
@@ -955,7 +1356,26 @@
         "gaps": [
           "작업안전 매뉴얼과 세부 시설도면 추가 확보 필요"
         ],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 1,
+          "reachableSourceRefs": 1,
+          "offlineExtractSourceRefs": 1,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "GSCO_OPERATION_RULES",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "pdf",
+              "finalUrl": "https://www.gsco.kr/files/GSCO%20%EC%A0%84%EC%8B%9C%EC%9E%A5%20%EC%9A%B4%EC%98%81%EA%B7%9C%EC%A0%95.pdf"
+            }
+          ]
+        }
       },
       "rules": [
         {
@@ -998,7 +1418,34 @@
         "gaps": [
           "운영규정/작업안전 매뉴얼 원문 추가 확보 필요"
         ],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 2,
+          "reachableSourceRefs": 2,
+          "offlineExtractSourceRefs": 2,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "ICCJEJU_EXHIBITION_INFO",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "html",
+              "finalUrl": "https://www.iccjeju.co.kr/info/02.php"
+            },
+            {
+              "sourceRef": "ICCJEJU_TAMNA_INFO",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "html",
+              "finalUrl": "https://www.iccjeju.co.kr/info/01.php"
+            }
+          ]
+        }
       },
       "rules": [
         {
@@ -1057,7 +1504,34 @@
         "gaps": [
           "자료실 개별 첨부 파일 다운로드와 PDF/HWP Markdown 변환 필요"
         ],
-        "lastReviewedAt": "2026-05-21"
+        "lastReviewedAt": "2026-05-21",
+        "reviewBy": "2026-08-31",
+        "freshnessStatus": "current",
+        "officialSourceVerification": {
+          "checkedAt": "2026-05-31",
+          "sourceRefs": 2,
+          "reachableSourceRefs": 2,
+          "offlineExtractSourceRefs": 2,
+          "manualReviewSourceRefs": [],
+          "sources": [
+            {
+              "sourceRef": "YEOSU_EXPO_DOCUMENT_ROOM",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "html",
+              "finalUrl": "https://yeosuexpoconvention.kr/yeosu/DocumentRoom"
+            },
+            {
+              "sourceRef": "YEOSU_EXPO_FACILITY_INFO",
+              "status": "reachable",
+              "checkedAt": "2026-05-31",
+              "hasOfflineExtract": true,
+              "documentFormat": "html",
+              "finalUrl": "https://yeosuexpoconvention.kr/yeosu/FacilityInfoEx"
+            }
+          ]
+        }
       },
       "rules": [
         {
@@ -1091,5 +1565,10 @@
         }
       ]
     }
-  ]
+  ],
+  "freshnessPolicy": {
+    "appliedAt": "2026-05-31",
+    "defaultReviewBy": "2026-08-31",
+    "note": "베뉴 규정·시설 수치는 행사 신청 전 최신 운영규정, 도면, 베뉴 담당자 확인으로 보정한다."
+  }
 }

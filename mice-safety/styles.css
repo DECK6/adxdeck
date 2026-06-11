@@ -252,6 +252,125 @@ select {
   align-items: center;
 }
 
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.template-card {
+  display: grid;
+  gap: 2px;
+  min-height: 56px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdff;
+  color: var(--ink);
+  font-weight: 700;
+  text-align: left;
+  padding: 10px 12px;
+}
+
+.template-card:hover {
+  border-color: var(--blue);
+  background: var(--blue-soft);
+}
+
+.template-card span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.field-group {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  margin: 0 0 10px;
+  padding: 10px 12px 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.field-group legend {
+  color: #475569;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 0 4px;
+}
+
+.hint {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+details.expert,
+details.evidence,
+details.collapsed-section {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfdff;
+  padding: 10px 12px;
+}
+
+details summary {
+  cursor: pointer;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+details.expert[open],
+details.collapsed-section[open] {
+  background: var(--paper);
+}
+
+details.expert > div {
+  margin-top: 12px;
+}
+
+details.evidence {
+  margin-top: 6px;
+  padding: 6px 10px;
+  background: #f8fafc;
+}
+
+details.evidence summary {
+  font-size: 12px;
+}
+
+details.collapsed-section {
+  margin-bottom: 16px;
+  padding: 16px 20px;
+  box-shadow: var(--shadow);
+  background: var(--paper);
+}
+
+details.collapsed-section summary {
+  font-size: 19px;
+  color: var(--ink);
+}
+
+details.collapsed-section[open] summary {
+  margin-bottom: 12px;
+}
+
+.notice + .notice {
+  margin-top: 8px;
+}
+
+.action-list {
+  margin: 0;
+  padding-left: 22px;
+  display: grid;
+  gap: 10px;
+}
+
+.action-list li::marker {
+  color: var(--blue);
+  font-weight: 800;
+}
+
 .stats {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -387,7 +506,8 @@ select {
   .stats,
   .grid,
   .checkbox-grid,
-  .two-col {
+  .two-col,
+  .template-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -405,8 +525,16 @@ select {
   .topbar,
   .input-panel,
   .actions,
-  .sample-row {
+  .sample-row,
+  .template-grid,
+  .hint {
     display: none;
+  }
+
+  details.collapsed-section,
+  details.evidence {
+    border: none;
+    padding: 0;
   }
 
   .hero,
