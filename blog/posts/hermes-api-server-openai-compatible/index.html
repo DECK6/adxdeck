@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes API Server는 에이전트를 OpenAI 호환 백엔드로 바꾼다 | DEXA Blog</title>
+    <meta name="description" content="A practical guide to Hermes Agent's API Server: OpenAI-compatible endpoints, configuration, streaming runs, sessions, and security boundaries." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-api-server-openai-compatible/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes API Server는 에이전트를 OpenAI 호환 백엔드로 바꾼다" />
+    <meta property="og:description" content="A practical guide to Hermes Agent's API Server: OpenAI-compatible endpoints, configuration, streaming runs, sessions, and security boundaries." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-api-server-openai-compatible/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-api-server-openai-compatible-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-06-13" />
+    <meta property="article:author" content="Deck" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes API Server는 에이전트를 OpenAI 호환 백엔드로 바꾼다" />
+    <meta name="twitter:description" content="A practical guide to Hermes Agent's API Server: OpenAI-compatible endpoints, configuration, streaming runs, sessions, and security boundaries." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-api-server-openai-compatible-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes API Server는 에이전트를 OpenAI 호환 백엔드로 바꾼다","description":"A practical guide to Hermes Agent's API Server: OpenAI-compatible endpoints, configuration, streaming runs, sessions, and security boundaries.","image":"https://dexa.art/blog/images/hermes-api-server-openai-compatible-cover.png","datePublished":"2026-06-13","dateModified":"2026-06-13","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-api-server-openai-compatible/"},"keywords":""}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 6월 13일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes API Server는 에이전트를 OpenAI 호환 백엔드로 바꾼다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A practical guide to Hermes Agent's API Server: OpenAI-compatible endpoints, configuration, streaming runs, sessions, and security boundaries.</p>
+                <div class="flex flex-wrap gap-2 mt-6"></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-api-server-openai-compatible-cover.png" alt="Hermes API Server cover" loading="lazy"></p>
+<p>Hermes API Server는 Hermes Agent를 터미널이나 메신저 안에 가두지 않고, OpenAI 호환 HTTP 백엔드로 노출하는 기능이다. Open WebUI, LobeChat, LibreChat, 자체 대시보드처럼 OpenAI API 형식을 이해하는 클라이언트가 Hermes를 하나의 모델처럼 호출하면서도, 실제 뒤에서는 Hermes의 도구·스킬·메모리·프로파일 설정이 그대로 작동한다.</p>
+<h2>기능 개요</h2>
+<p>핵심은 “모델 API처럼 보이지만 에이전트 런타임을 실행한다”는 점이다. <code>/v1/chat/completions</code>는 익숙한 Chat Completions 형식을 받으며, <code>/v1/responses</code>는 <code>previous_response_id</code> 기반의 서버 측 대화 상태를 지원한다. 긴 실행을 UI가 안정적으로 추적해야 한다면 <code>/v1/runs</code> 계열 엔드포인트로 run을 만들고, 상태를 polling하거나 SSE 이벤트 스트림을 구독할 수 있다.</p>
+<p>모델 목록은 <code>/v1/models</code>에서 조회된다. 기본 모델 이름은 profile 이름을 따르며, default profile에서는 <code>hermes-agent</code>로 보인다. 외부 UI가 무엇을 지원하는지 안전하게 확인하려면 <code>/v1/capabilities</code>를 먼저 호출하면 된다. 여기에는 chat completions, responses, runs, session 제어, skills/toolsets discovery 같은 지원 표면이 기계 판독 가능한 형태로 드러난다.</p>
+<h2>어떻게 켜고 쓰는가</h2>
+<p>API Server는 현재 <code>config.yaml</code>이 아니라 <code>~/.hermes/.env</code> 또는 profile별 <code>.env</code>의 환경 변수로 켠다.</p>
+<pre><code class="language-bash">API_SERVER_ENABLED=true
+API_SERVER_PORT=8642
+API_SERVER_HOST=127.0.0.1
+API_SERVER_KEY=change-me-local-dev
+# 브라우저가 Hermes를 직접 호출해야 할 때만 명시
+# API_SERVER_CORS_ORIGINS=http://localhost:3000</code></pre>
+<p>그다음 gateway를 실행한다.</p>
+<pre><code class="language-bash">hermes gateway run
+# 또는 설치된 서비스라면
+hermes gateway start</code></pre>
+<p>클라이언트는 base URL을 <code>http://localhost:8642/v1</code>로 두고, Bearer token을 붙여 호출한다.</p>
+<pre><code class="language-bash">curl http://localhost:8642/v1/chat/completions \
+  -H &quot;Authorization: Bearer change-me-local-dev&quot; \
+  -H &quot;Content-Type: application/json&quot; \
+  -d '{&quot;model&quot;:&quot;hermes-agent&quot;,&quot;messages&quot;:[{&quot;role&quot;:&quot;user&quot;,&quot;content&quot;:&quot;Hello from an external UI&quot;}]}'</code></pre>
+<p>멀티턴을 Hermes 쪽에 맡기고 싶다면 Responses API가 더 편하다.</p>
+<pre><code class="language-json">{
+  &quot;model&quot;: &quot;hermes-agent&quot;,
+  &quot;input&quot;: &quot;이 프로젝트의 변경 파일을 요약해줘&quot;,
+  &quot;store&quot;: true
+}</code></pre>
+<p>다음 요청에서 <code>previous_response_id</code>를 넘기면 이전 tool call과 결과까지 포함한 대화 흐름이 이어진다. 이름 붙은 대화를 쓰고 싶을 때는 <code>conversation</code> 값을 고정해도 된다.</p>
+<h2>실제 운영에서의 짧은 예</h2>
+<p>한 운영 셋업에서는 Hermes를 CLI, gateway, cron, profile별 작업 레인으로 나누어 쓰면서, API Server용 bearer key만 미리 준비해 둔다. 평소에는 로컬 gateway와 profile이 작업 경계를 담당하고, 외부 대시보드나 OpenAI 호환 프론트엔드가 필요해지는 순간 <code>API_SERVER_ENABLED=true</code>를 켜서 같은 에이전트 능력을 HTTP 표면으로 연결하는 방식이다.</p>
+<h2>주의할 점과 팁</h2>
+<p>첫째, API Server는 “채팅 프록시”가 아니라 도구 실행 권한이 붙은 에이전트 진입점이다. terminal, file, browser 같은 toolset이 활성화되어 있으면 HTTP 호출도 그 능력에 닿을 수 있으므로 <code>API_SERVER_KEY</code>는 반드시 길고 비밀스러운 값으로 두어야 한다. 기본 bind가 <code>127.0.0.1</code>인 것도 이 때문이다.</p>
+<p>둘째, CORS는 기본 비활성이다. Open WebUI처럼 서버 간 연결을 쓰는 경우에는 CORS가 필요 없고, 브라우저 앱이 직접 호출할 때만 <code>API_SERVER_CORS_ORIGINS</code>를 좁게 지정한다. 셋째, request의 <code>model</code> 필드는 호환성을 위한 이름에 가깝다. 실제 추론 provider와 모델은 서버 쪽 Hermes profile 설정이 결정한다.</p>
+<p>여러 사용자를 분리해야 한다면 API key 하나로 모든 것을 섞기보다 profile을 나누고 port도 분리한다.</p>
+<pre><code class="language-bash">hermes profile create alice
+# alice profile의 .env에 API_SERVER_PORT=8643, API_SERVER_KEY=... 설정
+hermes -p alice gateway run</code></pre>
+<p>마지막으로 파일 업로드는 아직 일반 문서 업로드 표면이 아니다. inline image URL이나 <code>data:image/...</code> 입력은 지원하지만, OpenAI식 <code>file_id</code>나 비이미지 <code>data:</code> 문서는 제한된다.</p>
+<h2>언제 API Server를 선택할까</h2>
+<p>Telegram, Discord, Slack처럼 사람과 대화하는 채널이 필요하면 Gateway가 먼저다. 정해진 시간에 반복 실행하려면 Cron이 맞고, 긴 작업을 여러 에이전트에게 나눌 때는 Kanban이나 delegation이 더 자연스럽다. 반대로 이미 OpenAI 호환 UI, 사내 대시보드, 자동화 클라이언트가 있고 그 뒤에 Hermes Agent의 실제 도구 실행력을 붙이고 싶다면 API Server가 가장 얇고 표준적인 연결면이다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/entropy-and-decaying-media/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>사라지는 매체가 남기는 시간</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

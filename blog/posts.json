@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-api-server-openai-compatible",
+    "file": "_built/hermes-api-server-openai-compatible.md",
+    "title": "Hermes API Server는 에이전트를 OpenAI 호환 백엔드로 바꾼다",
+    "description": "A practical guide to Hermes Agent's API Server: OpenAI-compatible endpoints, configuration, streaming runs, sessions, and security boundaries.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-06-13",
+    "thumbnail": "images/hermes-api-server-openai-compatible-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "entropy-and-decaying-media",
     "file": "_built/entropy-and-decaying-media.md",
     "title": "사라지는 매체가 남기는 시간",
