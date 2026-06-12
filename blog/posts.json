@@ -1,5 +1,23 @@
 [
   {
+    "slug": "entropy-and-decaying-media",
+    "file": "_built/entropy-and-decaying-media.md",
+    "title": "사라지는 매체가 남기는 시간",
+    "description": "엔트로피를 미디어아트의 시간, 보존, 오류, 소멸의 문제로 읽으며 디지털 매체가 결코 무시간적이거나 비물질적이지 않다는 점을 살핀다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "entropy",
+      "preservation",
+      "glitch",
+      "time-based-media"
+    ],
+    "date": "2026-06-13",
+    "thumbnail": "images/entropy-and-decaying-media-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-context-files-references",
     "file": "_built/hermes-context-files-references.md",
     "title": "Hermes는 프로젝트의 규칙을 대화 전에 읽는다",

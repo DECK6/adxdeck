@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>사라지는 매체가 남기는 시간 | DEXA Blog</title>
+    <meta name="description" content="엔트로피를 미디어아트의 시간, 보존, 오류, 소멸의 문제로 읽으며 디지털 매체가 결코 무시간적이거나 비물질적이지 않다는 점을 살핀다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/entropy-and-decaying-media/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="사라지는 매체가 남기는 시간" />
+    <meta property="og:description" content="엔트로피를 미디어아트의 시간, 보존, 오류, 소멸의 문제로 읽으며 디지털 매체가 결코 무시간적이거나 비물질적이지 않다는 점을 살핀다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/entropy-and-decaying-media/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/entropy-and-decaying-media-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-06-13" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="media-theory" />
+    <meta property="article:tag" content="entropy" />
+    <meta property="article:tag" content="preservation" />
+    <meta property="article:tag" content="glitch" />
+    <meta property="article:tag" content="time-based-media" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="사라지는 매체가 남기는 시간" />
+    <meta name="twitter:description" content="엔트로피를 미디어아트의 시간, 보존, 오류, 소멸의 문제로 읽으며 디지털 매체가 결코 무시간적이거나 비물질적이지 않다는 점을 살핀다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/entropy-and-decaying-media-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"사라지는 매체가 남기는 시간","description":"엔트로피를 미디어아트의 시간, 보존, 오류, 소멸의 문제로 읽으며 디지털 매체가 결코 무시간적이거나 비물질적이지 않다는 점을 살핀다.","image":"https://dexa.art/blog/images/entropy-and-decaying-media-cover.png","datePublished":"2026-06-13","dateModified":"2026-06-13","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/entropy-and-decaying-media/"},"keywords":"media-art, media-theory, entropy, preservation, glitch, time-based-media"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 6월 13일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">사라지는 매체가 남기는 시간</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">엔트로피를 미디어아트의 시간, 보존, 오류, 소멸의 문제로 읽으며 디지털 매체가 결코 무시간적이거나 비물질적이지 않다는 점을 살핀다.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-theory</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">entropy</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">preservation</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">glitch</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">time-based-media</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/entropy-and-decaying-media-cover.png" alt="사라지는 매체가 남기는 시간" loading="lazy"></p>
+<p>디지털 매체는 오래도록 사라지지 않는 것처럼 보였다. 파일은 복제되고, 이미지는 클라우드에 저장되고, 데이터는 원본 없이도 이동한다. 그러나 미디어아트의 현장에서 이 믿음은 자주 깨진다. 오래된 테이프는 늘어나고, CRT 모니터는 더 이상 같은 밝기를 내지 못하며, 플래시 기반 웹 작품은 실행 환경을 잃는다. 서버가 닫히면 링크는 죽고, 포맷이 사라지면 데이터는 손상되지 않았는데도 읽히지 않는다.</p>
+<p>엔트로피는 이 사라짐을 단순한 사고가 아니라 매체의 조건으로 보게 만든다. 열역학에서 엔트로피는 질서가 무질서로, 에너지의 집중이 분산으로 향하는 비가역적 경향을 가리킨다. 미디어아트에서 그것은 작품이 시간 밖에 보존되는 대상이 아니라, 시간과 함께 낡고 변형되고 실패하는 물질적 과정이라는 사실을 드러내는 언어가 된다.</p>
+<h2>완성보다 소멸을 향한 작품</h2>
+<p>로버트 스미슨이 1966년 「Entropy and the New Monuments」에서 엔트로피를 예술의 언어로 끌어들였을 때, 그는 기념비가 약속하는 영속성을 의심했다. 전통적 기념비가 시간을 이기려 한다면, 스미슨의 엔트로피적 상상력은 시간이 반드시 작품 안으로 들어온다고 본다. 《Spiral Jetty》가 물에 잠기고, 소금 결정으로 뒤덮이고, 다시 드러나는 과정은 작품의 손상이 아니라 작품이 시간과 협상하는 방식이다.</p>
+<p>이 관점은 미디어아트에서 더욱 날카로워진다. 미디어 작품은 대개 특정 장치, 저장 매체, 전송 규격, 디스플레이 기술, 운영체제, 소프트웨어 버전에 의존한다. 즉 작품은 이미지나 아이디어만으로 존재하지 않는다. 전압, 자성 입자, 형광체, 코덱, 브라우저, 플러그인, 서버, 네트워크 주소가 함께 유지될 때에만 작동한다. 매체가 낡는 순간 작품도 함께 변한다.</p>
+<p>구스타프 메츠거의 자동 파괴 예술이나 장 탱글리의 자기 파괴 기계가 소멸을 작품의 사건으로 삼았다면, 시간 기반 미디어와 디지털 작품은 종종 더 느리고 덜 극적인 방식으로 같은 질문을 던진다. 작품은 언제까지 같은 작품인가. 모니터가 교체되고, 소프트웨어가 에뮬레이션되고, 원래의 노이즈가 복원된 이미지로 대체될 때, 우리는 무엇을 보존하고 무엇을 포기하는가.</p>
+<h2>디지털은 무시간적이지 않다</h2>
+<p>디지털 파일은 물질을 벗어난 것처럼 보이지만, 실제로는 물질에 더 깊이 묶여 있다. 자기 테이프의 신호는 흐려지고, 하드디스크의 비트는 뒤집히며, SSD의 셀은 전하를 잃는다. 저장 매체가 멀쩡해도 그것을 읽는 장치와 프로그램이 사라지면 파일은 사실상 침묵한다. 형식 폐기는 디지털 엔트로피의 고유한 얼굴이다.</p>
+<p>인터넷 아트의 역사는 이 문제를 잘 보여준다. 1990년대와 2000년대의 많은 웹 작품은 특정 브라우저 동작, 플래시 플레이어, 자바 애플릿, 외부 서버, 도메인 구조에 의존했다. 오늘날 그 작품을 열면 빈 화면, 깨진 링크, 보안 경고, 사라진 플러그인이 먼저 나타난다. 작품의 내용이 지워진 것이 아니라, 작품을 가능하게 했던 환경이 먼저 사라진 것이다.</p>
+<p>이때 엔트로피는 보존 실패를 비난하는 말이 아니다. 오히려 보존이 무엇을 보존하는지 더 정확히 묻게 한다. 원본 하드웨어의 불안정한 화면인가, 재생 가능한 파일인가, 관객이 경험한 상호작용인가, 작가가 설정한 규칙인가, 아니면 그 작품이 속했던 네트워크 환경인가. 미디어아트 보존은 물건을 유리관에 넣는 일이 아니라, 사라지는 조건들을 계속 번역하는 일에 가깝다.</p>
+<h2>오류와 노화가 감각이 될 때</h2>
+<p>엔트로피는 글리치 미학과도 연결된다. 통신 이론에서 노이즈는 신호를 방해하는 요소다. 그러나 미디어아트에서 노이즈는 종종 억압해야 할 결함이 아니라, 매체가 자신을 드러내는 순간이 된다. 깨진 압축 이미지, 늘어진 테이프, 픽셀의 번짐, 프레임 드롭, 링크 오류, 오래된 CRT의 떨림은 매체의 몸을 보이게 한다.</p>
+<p>히토 슈타이얼의 ‘빈곤한 이미지’ 논의가 중요한 이유도 여기에 있다. 낮은 해상도와 반복 복제의 흔적은 단순히 품질 저하가 아니다. 그것은 이미지가 어떤 경로를 지나왔는지, 어떤 네트워크와 플랫폼과 압축 과정을 통과했는지 보여주는 사회적 흔적이다. 이미지가 닳는다는 것은 이미지가 움직였다는 뜻이기도 하다.</p>
+<p>따라서 엔트로피적 미디어아트는 완벽한 재현보다 변형의 기록에 가깝다. 작품은 오류를 제거해 매끈해지는 대신, 오류를 통해 자기 조건을 말한다. 전시장에서 오래된 장치를 켜는 일은 과거의 이미지를 현재로 불러오는 것만이 아니라, 그 사이에 축적된 시간의 마찰을 함께 보여주는 일이다.</p>
+<h2>보존은 시간과의 협상이다</h2>
+<p>엔트로피를 인정한다고 해서 보존을 포기해야 하는 것은 아니다. 오히려 반대다. 엔트로피를 인정할 때 보존은 더 구체적인 판단이 된다. 모든 것을 원래 상태로 되돌릴 수 있다는 환상을 내려놓고, 무엇이 작품의 핵심 조건인지 결정해야 한다. 원본 장치가 중요한가, 화면의 시각적 효과가 중요한가, 관객의 조작 가능성이 중요한가, 네트워크의 불안정성이 중요한가.</p>
+<p>새로운 미디어 작품을 만들 때도 이 질문은 필요하다. 오늘 선택한 코덱, 엔진, 센서, API, 모델, 서버 구조는 미래의 엔트로피를 이미 내장한다. 빠르게 작동하는 시스템일수록 더 빠르게 낡을 수 있다. 기술적 최신성은 작품의 생명을 보장하지 않는다. 때로는 어떤 방식으로 낡을 것인지를 설계하는 일이 더 중요한 미학적 결정이 된다.</p>
+<p>결국 엔트로피는 미디어아트를 비관적으로만 만들지 않는다. 그것은 작품을 살아 있는 시간 속에 놓는다. 사라짐, 오류, 노화, 폐기, 복원 불가능성은 작품의 실패만이 아니라 작품이 세계와 같은 물질적 법칙을 공유한다는 증거다. 좋은 미디어아트는 영원히 새것처럼 남는 것이 아니라, 자신이 사라지는 방식을 통해 매체의 시간을 더 선명하게 드러낼 수 있다.</p>
+<h2>남는 질문</h2>
+<p>엔트로피의 관점에서 보존은 “어떻게 원래대로 둘 것인가”가 아니라 “무엇이 변해도 이 작품은 여전히 이 작품인가”라는 질문으로 바뀐다. 디지털 매체가 계속 더 빠르게 생산되고 폐기되는 지금, 미디어아트의 중요한 판단은 새 기술을 얼마나 빨리 도입하느냐가 아니다. 그 기술이 낡고, 고장 나고, 사라질 때 어떤 시간이 남는지를 볼 수 있느냐에 있다.</p>
+<p>이 글은 DEXA vault의 <code>Entropy</code> 노트를 바탕으로 공개 블로그용으로 재구성했습니다. 주요 근거 표면은 Robert Smithson의 「Entropy and the New Monuments」, 시간 기반 미디어 보존 논의, Hito Steyerl의 ‘poor image’, glitch aesthetics, digital preservation, media archaeology 관련 내부 앵커입니다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-context-files-references/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes는 프로젝트의 규칙을 대화 전에 읽는다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
