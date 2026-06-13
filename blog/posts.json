@@ -1,5 +1,21 @@
 [
   {
+    "slug": "raqs-media-collective-and-the-politics-of-time",
+    "file": "_built/raqs-media-collective-and-the-politics-of-time.md",
+    "title": "시간을 함께 읽는 집단적 기계",
+    "description": "Raqs Media Collective를 통해 미디어아트가 이미지 생산을 넘어 시간, 도시, 노동, 아카이브를 함께 읽는 집단적 사고 장치가 되는 방식을 살피는 글.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "collective-practice",
+      "archive",
+      "time-politics"
+    ],
+    "date": "2026-06-14",
+    "thumbnail": "images/raqs-media-collective-time-politics-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-api-server-openai-compatible",
     "file": "_built/hermes-api-server-openai-compatible.md",
     "title": "Hermes API Server는 에이전트를 OpenAI 호환 백엔드로 바꾼다",
