@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Batch Processing은 에이전트 실행을 데이터셋 단위로 확장한다 | DEXA Blog</title>
+    <meta name="description" content="A feature guide to Hermes Agent Batch Processing: JSONL datasets, parallel workers, toolset distributions, checkpoints, and trajectory outputs for training or evaluation." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-batch-processing-trajectories/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Batch Processing은 에이전트 실행을 데이터셋 단위로 확장한다" />
+    <meta property="og:description" content="A feature guide to Hermes Agent Batch Processing: JSONL datasets, parallel workers, toolset distributions, checkpoints, and trajectory outputs for training or evaluation." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-batch-processing-trajectories/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-batch-processing-trajectories-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-06-14" />
+    <meta property="article:author" content="DECK" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Batch Processing은 에이전트 실행을 데이터셋 단위로 확장한다" />
+    <meta name="twitter:description" content="A feature guide to Hermes Agent Batch Processing: JSONL datasets, parallel workers, toolset distributions, checkpoints, and trajectory outputs for training or evaluation." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-batch-processing-trajectories-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Batch Processing은 에이전트 실행을 데이터셋 단위로 확장한다","description":"A feature guide to Hermes Agent Batch Processing: JSONL datasets, parallel workers, toolset distributions, checkpoints, and trajectory outputs for training or evaluation.","image":"https://dexa.art/blog/images/hermes-batch-processing-trajectories-cover.png","datePublished":"2026-06-14","dateModified":"2026-06-14","author":{"@type":"Person","name":"DECK"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-batch-processing-trajectories/"},"keywords":""}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 6월 14일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Batch Processing은 에이전트 실행을 데이터셋 단위로 확장한다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A feature guide to Hermes Agent Batch Processing: JSONL datasets, parallel workers, toolset distributions, checkpoints, and trajectory outputs for training or evaluation.</p>
+                <div class="flex flex-wrap gap-2 mt-6"></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-batch-processing-trajectories-cover.png" alt="cover" loading="lazy"></p>
+<h1>Hermes Batch Processing은 에이전트 실행을 데이터셋 단위로 확장한다</h1>
+<p>대화형 에이전트는 한 번에 하나의 요청을 처리할 때 가장 자연스럽습니다. 하지만 모델 평가나 툴 사용 데이터셋을 만들 때는 같은 에이전트 루프를 수백 개 프롬프트에 반복 적용해야 합니다. Hermes Agent의 Batch Processing은 이 과정을 <code>batch_runner.py</code>로 묶어 JSONL 입력, 병렬 워커, checkpoint, trajectory 산출물까지 관리하는 기능입니다.</p>
+<h2>기능 개요</h2>
+<p>입력은 한 줄에 하나의 JSON 객체가 들어 있는 JSONL 파일입니다. 각 줄은 최소한 <code>prompt</code> 필드를 가지며, 필요하면 프롬프트별 <code>image</code> 또는 <code>docker_image</code>, <code>cwd</code>를 붙여 서로 다른 실행 환경을 지정할 수 있습니다. Hermes는 각 프롬프트를 독립된 에이전트 세션으로 실행하고, 대화 기록과 도구 호출 통계, 완료 여부, reasoning coverage를 ShareGPT에 가까운 형식으로 저장합니다.</p>
+<p>핵심은 세 가지입니다. <code>--num_workers</code>는 여러 프롬프트를 병렬 처리하고, <code>--distribution</code>은 프롬프트마다 활성화할 toolset 조합을 샘플링하며, <code>--resume</code>은 중단된 긴 실행을 이어 줍니다. 일반 채팅이나 Cron이 “일을 수행”하는 쪽이라면 Batch Processing은 “에이전트 실행 데이터를 대량 생산하고 검증”하는 쪽에 가깝습니다.</p>
+<h2>어떻게 동작하나</h2>
+<p>가장 작은 입력 파일은 다음처럼 생겼습니다.</p>
+<pre><code class="language-jsonl">{&quot;prompt&quot;: &quot;Write a Python function that finds the longest palindromic substring&quot;}
+{&quot;prompt&quot;: &quot;Debug this TypeError and explain the fix&quot;}</code></pre>
+<p>Hermes 소스 트리에서 실행 예시는 다음과 같습니다.</p>
+<pre><code class="language-bash">python batch_runner.py \
+  --dataset_file=data/prompts.jsonl \
+  --batch_size=10 \
+  --run_name=coding_eval_v1 \
+  --model=anthropic/claude-sonnet-4.6 \
+  --num_workers=4 \
+  --distribution=development</code></pre>
+<p>중단된 실행은 같은 <code>run_name</code>으로 이어 갈 수 있습니다.</p>
+<pre><code class="language-bash">python batch_runner.py \
+  --dataset_file=data/prompts.jsonl \
+  --batch_size=10 \
+  --run_name=coding_eval_v1 \
+  --resume</code></pre>
+<p>산출물은 <code>data/&lt;run_name&gt;/</code> 아래에 쌓입니다. <code>batch_0.jsonl</code> 같은 배치별 결과가 먼저 생기고, 마지막에 <code>trajectories.jsonl</code>, <code>checkpoint.json</code>, <code>statistics.json</code>이 정리됩니다. 각 trajectory에는 <code>conversations</code>, <code>toolsets_used</code>, <code>tool_stats</code>, <code>tool_error_counts</code>, <code>completed</code>, <code>partial</code> 같은 필드가 들어갑니다.</p>
+<p>toolset distribution은 <code>default</code>, <code>development</code>, <code>research</code>, <code>image_gen</code>, <code>safe</code>, <code>terminal_only</code>, <code>browser_tasks</code>처럼 목적별로 나뉩니다. 공식 문서 기준으로 distribution은 고정 조합 하나를 고르는 방식이 아니라 각 toolset의 확률을 독립적으로 샘플링한 뒤 최소 하나의 toolset을 보장하는 방식입니다.</p>
+<h2>실제 운영 사이드바</h2>
+<p>이 사용자의 Hermes 운영에서는 일상 자동화와 블로그 발행은 Cron과 profile 분리로 처리하고, 개발 검증은 Dev 쪽 실행·리뷰 루프로 다룹니다. Batch Processing은 그런 운영형 자동화가 아니라 “여러 프롬프트에서 에이전트가 어떻게 행동했는지”를 모으는 실험·평가용 생산 라인에 가깝습니다.</p>
+<h2>주의할 점과 팁</h2>
+<p>Batch 실행은 모델 호출과 도구 호출을 많이 발생시키므로 비용과 rate limit을 먼저 계산해야 합니다. <code>--max_samples</code>로 작은 샘플부터 돌리고, <code>--max_turns</code>, <code>--max_tokens</code>, <code>--reasoning_effort</code>를 명시해 실행 폭을 제한하는 편이 안전합니다.</p>
+<p>프롬프트별 컨테이너 이미지를 쓰는 경우 Docker, Modal, Singularity 같은 backend에서 이미지 접근성을 먼저 확인해야 합니다. <code>--resume</code>은 완료된 프롬프트의 실제 텍스트를 기준으로 재개하므로 데이터셋 순서가 바뀌어도 비교적 안전하지만, prompt 내용을 수정하면 새 샘플처럼 처리될 수 있습니다. 로컬에서 distribution 이름이 필요하면 <code>toolset_distributions.py</code>도 함께 확인하는 것이 좋습니다.</p>
+<h2>언제 써야 하나</h2>
+<p>Batch Processing은 반복 알림이나 장기 작업 관리용 기능이 아닙니다. 그런 작업은 Cron, Kanban, delegation이 더 적합합니다. 대신 툴 사용 trajectory를 만들거나, 모델별 에이전트 행동을 비교하거나, 같은 과제를 다양한 toolset 조합으로 평가해야 할 때 Batch Processing이 가장 직접적인 선택입니다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/raqs-media-collective-and-the-politics-of-time/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>시간을 함께 읽는 집단적 기계</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

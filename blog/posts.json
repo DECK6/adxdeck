@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-batch-processing-trajectories",
+    "file": "_built/hermes-batch-processing-trajectories.md",
+    "title": "Hermes Batch Processing은 에이전트 실행을 데이터셋 단위로 확장한다",
+    "description": "A feature guide to Hermes Agent Batch Processing: JSONL datasets, parallel workers, toolset distributions, checkpoints, and trajectory outputs for training or evaluation.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-06-14",
+    "thumbnail": "images/hermes-batch-processing-trajectories-cover.png",
+    "author": "DECK"
+  },
+  {
     "slug": "raqs-media-collective-and-the-politics-of-time",
     "file": "_built/raqs-media-collective-and-the-politics-of-time.md",
     "title": "시간을 함께 읽는 집단적 기계",
