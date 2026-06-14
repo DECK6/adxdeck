@@ -13,9 +13,9 @@ status: completed
 series: hermes-notes
 ---
 
-![cover](images/hermes-batch-processing-trajectories-cover.png)
-
 # Hermes Batch Processing은 에이전트 실행을 데이터셋 단위로 확장한다
+
+![cover](images/hermes-batch-processing-trajectories-cover.png)
 
 대화형 에이전트는 한 번에 하나의 요청을 처리할 때 가장 자연스럽습니다. 하지만 모델 평가나 툴 사용 데이터셋을 만들 때는 같은 에이전트 루프를 수백 개 프롬프트에 반복 적용해야 합니다. Hermes Agent의 Batch Processing은 이 과정을 `batch_runner.py`로 묶어 JSONL 입력, 병렬 워커, checkpoint, trajectory 산출물까지 관리하는 기능입니다.
 

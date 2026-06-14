@@ -109,7 +109,6 @@
             </div>
             <div class="prose-dexa">
 <p><img src="/blog/images/hermes-batch-processing-trajectories-cover.png" alt="cover" loading="lazy"></p>
-<h1>Hermes Batch Processing은 에이전트 실행을 데이터셋 단위로 확장한다</h1>
 <p>대화형 에이전트는 한 번에 하나의 요청을 처리할 때 가장 자연스럽습니다. 하지만 모델 평가나 툴 사용 데이터셋을 만들 때는 같은 에이전트 루프를 수백 개 프롬프트에 반복 적용해야 합니다. Hermes Agent의 Batch Processing은 이 과정을 <code>batch_runner.py</code>로 묶어 JSONL 입력, 병렬 워커, checkpoint, trajectory 산출물까지 관리하는 기능입니다.</p>
 <h2>기능 개요</h2>
 <p>입력은 한 줄에 하나의 JSON 객체가 들어 있는 JSONL 파일입니다. 각 줄은 최소한 <code>prompt</code> 필드를 가지며, 필요하면 프롬프트별 <code>image</code> 또는 <code>docker_image</code>, <code>cwd</code>를 붙여 서로 다른 실행 환경을 지정할 수 있습니다. Hermes는 각 프롬프트를 독립된 에이전트 세션으로 실행하고, 대화 기록과 도구 호출 통계, 완료 여부, reasoning coverage를 ShareGPT에 가까운 형식으로 저장합니다.</p>
