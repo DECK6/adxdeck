@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-web-search-extract",
+    "file": "_built/hermes-web-search-extract.md",
+    "title": "Hermes Web Search는 검색과 본문 추출을 다른 도구로 다룬다",
+    "description": "A feature guide to Hermes Agent Web Search and Extract: backend selection, search-only providers, long-page compression, and when to use browser automation instead.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-06-15",
+    "thumbnail": "images/hermes-web-search-extract-cover.png",
+    "author": "DECK"
+  },
+  {
     "slug": "digital-materialism-and-media-art",
     "file": "_built/digital-materialism-and-media-art.md",
     "title": "클라우드는 흙 위에 서 있다",

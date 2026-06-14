@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Web Search는 검색과 본문 추출을 다른 도구로 다룬다 | DEXA Blog</title>
+    <meta name="description" content="A feature guide to Hermes Agent Web Search and Extract: backend selection, search-only providers, long-page compression, and when to use browser automation instead." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-web-search-extract/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Web Search는 검색과 본문 추출을 다른 도구로 다룬다" />
+    <meta property="og:description" content="A feature guide to Hermes Agent Web Search and Extract: backend selection, search-only providers, long-page compression, and when to use browser automation instead." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-web-search-extract/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-web-search-extract-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-06-15" />
+    <meta property="article:author" content="DECK" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Web Search는 검색과 본문 추출을 다른 도구로 다룬다" />
+    <meta name="twitter:description" content="A feature guide to Hermes Agent Web Search and Extract: backend selection, search-only providers, long-page compression, and when to use browser automation instead." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-web-search-extract-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Web Search는 검색과 본문 추출을 다른 도구로 다룬다","description":"A feature guide to Hermes Agent Web Search and Extract: backend selection, search-only providers, long-page compression, and when to use browser automation instead.","image":"https://dexa.art/blog/images/hermes-web-search-extract-cover.png","datePublished":"2026-06-15","dateModified":"2026-06-15","author":{"@type":"Person","name":"DECK"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-web-search-extract/"},"keywords":""}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 6월 15일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Web Search는 검색과 본문 추출을 다른 도구로 다룬다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A feature guide to Hermes Agent Web Search and Extract: backend selection, search-only providers, long-page compression, and when to use browser automation instead.</p>
+                <div class="flex flex-wrap gap-2 mt-6"></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-web-search-extract-cover.png" alt="cover" loading="lazy"></p>
+<p>AI 에이전트가 웹을 쓴다는 말은 보통 두 가지 일을 섞어 부릅니다. 하나는 “무엇이 있는지 찾는” 검색이고, 다른 하나는 “찾은 페이지를 읽을 수 있는 본문으로 가져오는” 추출입니다. Hermes Agent의 Web Search &amp; Extract는 이 둘을 <code>web_search</code>와 <code>web_extract</code>로 분리해, 가벼운 사실 확인부터 긴 문서 요약까지 같은 에이전트 루프 안에서 처리하게 해 줍니다.</p>
+<h2>기능 개요</h2>
+<p><code>web_search</code>는 질의어와 <code>limit</code>을 받아 제목, URL, 설명이 포함된 검색 결과를 돌려줍니다. <code>web_extract</code>는 URL 목록을 받아 페이지를 Markdown에 가까운 읽기 가능한 형태로 가져옵니다. 둘을 함께 쓰면 먼저 후보를 찾고, 그중 필요한 페이지 몇 개만 본문으로 검증하는 흐름을 만들 수 있습니다.</p>
+<p>핵심은 backend를 하나로 고정하지 않아도 된다는 점입니다. Firecrawl, Tavily, Exa, Parallel은 검색과 추출을 모두 지원하고, SearXNG, Brave Search, DDGS, xAI/Grok은 검색 전용입니다. 검색 전용 backend를 쓸 때도 <code>web.search_backend</code>과 <code>web.extract_backend</code>을 나눠 SearXNG로 찾고 Firecrawl로 읽는 식의 조합이 가능합니다.</p>
+<h2>어떻게 동작하나</h2>
+<p>가장 빠른 설정 경로는 도구 관리 UI입니다.</p>
+<pre><code class="language-bash">hermes tools</code></pre>
+<p>여기서 <strong>Web Search &amp; Extract</strong> 항목을 고르면 provider별 API key나 URL을 안내받습니다. 직접 설정한다면 <code>~/.hermes/config.yaml</code>과 <code>~/.hermes/.env</code>를 함께 봅니다.</p>
+<pre><code class="language-yaml">web:
+  search_backend: &quot;searxng&quot;
+  extract_backend: &quot;firecrawl&quot;</code></pre>
+<pre><code class="language-bash"># ~/.hermes/.env
+SEARXNG_URL=http://localhost:8888
+FIRECRAWL_API_KEY=fc-your-key-here</code></pre>
+<p>CLI에서 특정 세션에만 웹 도구를 열 수도 있습니다.</p>
+<pre><code class="language-bash">hermes chat --toolsets web -q &quot;Hermes Agent web_extract 동작을 요약해줘&quot;
+hermes chat --toolsets search -q &quot;최근 Hermes Agent 문서에서 Web Search 항목을 찾아줘&quot;</code></pre>
+<p><code>web_extract</code>의 중요한 안전장치는 긴 페이지 압축입니다. 5,000자 미만은 그대로 반환하고, 5,000자부터 500,000자까지는 <code>auxiliary.web_extract</code> 모델이 약 5,000자 요약으로 줄입니다. 500,000자를 넘으면 100k 단위로 나눠 병렬 요약 후 다시 합치며, 2,000,000자를 넘는 페이지는 더 좁은 URL을 쓰라는 힌트와 함께 거절합니다.</p>
+<pre><code class="language-yaml">auxiliary:
+  web_extract:
+    provider: openrouter
+    model: google/gemini-3-flash-preview
+    timeout: 360</code></pre>
+<p>이 보조 모델을 따로 지정하면 비싼 주 모델로 긴 문서 요약을 반복하는 일을 피할 수 있습니다. 로컬 확인 기준으로 한 Dev 프로파일은 <code>hermes-cli</code> toolset을 쓰고, <code>auxiliary.web_extract</code>는 <code>auto</code>에 <code>timeout: 360</code>으로 남겨 두어 주 모델 경로를 기본값으로 따릅니다.</p>
+<h2>실제 운영 사이드바</h2>
+<p>이 사용자의 Hermes 운영에서는 블로그 발행이나 기능 검증 전에 공식 문서와 로컬 설치 상태를 함께 확인합니다. 이때 <code>web_extract</code>는 “문서 페이지를 가져와 근거를 잡는” 역할을 하고, 클릭·로그인·시각 검증이 필요할 때만 Browser Automation으로 넘어갑니다. 즉 웹 도구는 브라우저를 대체하기보다, 브라우저를 켜기 전의 빠른 조사 레이어에 가깝습니다.</p>
+<h2>주의할 점과 팁</h2>
+<p>검색 전용 provider를 추출까지 된다고 착각하지 않는 것이 첫 번째입니다. Brave, DDGS, SearXNG, xAI는 검색 결과를 주지만 <code>web_extract</code>에는 별도 backend가 필요합니다. xAI/Grok 검색은 index API라기보다 모델이 서버 측 검색 도구를 사용해 생성한 결과이므로, 중요한 주장에는 URL 추출이나 별도 검증을 붙이는 편이 안전합니다.</p>
+<p>SearXNG를 직접 띄울 때는 JSON format이 켜져 있어야 합니다. <code>curl &quot;http://localhost:8888/search?q=test&amp;format=json&quot;</code>이 403을 내면 Hermes 문제가 아니라 SearXNG 설정 문제일 가능성이 큽니다. 반대로 구조화된 표나 필드를 원문 그대로 긁어야 한다면 <code>web_extract</code>의 요약이 방해될 수 있으므로 <code>browser_navigate</code>와 <code>browser_snapshot</code>을 사용합니다.</p>
+<h2>언제 써야 하나</h2>
+<p>Web Search &amp; Extract는 공개 웹에서 근거를 찾고, 몇 개 페이지를 읽어 답변·리서치·문서 검증에 붙일 때 가장 가볍습니다. 로그인된 화면 조작, 폼 입력, 스크린샷 확인은 Browser Automation이 맞고, 대량 반복 조사는 Batch Processing이나 Cron과 조합하는 편이 낫습니다. 먼저 <code>web_search</code>로 좁히고, 정말 읽을 가치가 있는 URL만 <code>web_extract</code>로 가져오는 습관이 비용과 컨텍스트를 함께 아껴 줍니다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/digital-materialism-and-media-art/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>클라우드는 흙 위에 서 있다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
