@@ -1,5 +1,22 @@
 [
   {
+    "slug": "digital-materialism-and-media-art",
+    "file": "_built/digital-materialism-and-media-art.md",
+    "title": "클라우드는 흙 위에 서 있다",
+    "description": "디지털 물질론은 클라우드, AI, 몰입형 전시가 광물·전력·노동·폐기물 위에서만 작동한다는 사실을 드러내며, 미디어아트를 화면이 아니라 물질 조건의 사건으로 다시 읽게 한다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "digital-materialism",
+      "infrastructure",
+      "ecology"
+    ],
+    "date": "2026-06-15",
+    "thumbnail": "images/digital-materialism-media-art-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-batch-processing-trajectories",
     "file": "_built/hermes-batch-processing-trajectories.md",
     "title": "Hermes Batch Processing은 에이전트 실행을 데이터셋 단위로 확장한다",
