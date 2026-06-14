@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QN6DDG3N8X"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-QN6DDG3N8X');
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>우리 아이 맞춤 AI 학습코치 — Gem 자료 모음</title>
+  <meta name="description" content="프롬프트 템플릿, 가드레일 문구, 치트시트, Gem 만들기 가이드를 탭으로 묶은 AI 학습코치 자료 모음입니다." />
+  <link rel="canonical" href="https://dexa.art/learning-coach-gem/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="우리 아이 맞춤 AI 학습코치 — Gem 자료 모음" />
+  <meta property="og:description" content="AI 학습코치 제작에 필요한 4개 HTML 자료를 한 페이지에서 탭으로 확인합니다." />
+  <meta property="og:url" content="https://dexa.art/learning-coach-gem/" />
+  <style>
+    :root {
+      --cream: #F4F1EA;
+      --paper: #FFFCF4;
+      --ink: #1A1A1A;
+      --muted: #666057;
+      --line: rgba(26, 26, 26, .18);
+      --red: #E63329;
+      --tab: #E8E2D7;
+      --frame: #111;
+    }
+    * { box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Apple SD Gothic Neo", "Noto Sans KR", monospace;
+      color: var(--ink);
+      background: var(--cream);
+      word-break: keep-all;
+    }
+    a { color: inherit; }
+    .shell { min-height: 100vh; display: grid; grid-template-rows: auto 1fr; }
+    header {
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
+    }
+    .wrap { width: min(1280px, calc(100% - 32px)); margin: 0 auto; }
+    .topbar {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+    .brand { display: grid; gap: 4px; }
+    .eyebrow {
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(20px, 3vw, 36px);
+      line-height: 1.08;
+      letter-spacing: -.05em;
+      font-weight: 950;
+    }
+    .home-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 40px;
+      padding: 0 14px;
+      border: 1px solid var(--ink);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      background: var(--cream);
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: end;
+      padding: 0 0 18px;
+    }
+    .summary p { margin: 0; max-width: 860px; color: var(--muted); line-height: 1.62; font-size: 14px; }
+    .counter { font-size: 44px; line-height: .9; font-weight: 950; letter-spacing: -.08em; color: var(--red); }
+    .tabs-shell {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: rgba(244, 241, 234, .96);
+    }
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border-left: 1px solid var(--line);
+      border-right: 1px solid var(--line);
+    }
+    .tab-btn {
+      appearance: none;
+      border: 0;
+      min-height: 64px;
+      padding: 10px 12px;
+      background: var(--tab);
+      color: var(--ink);
+      cursor: pointer;
+      text-align: left;
+      font: inherit;
+    }
+    .tab-btn span { display: block; }
+    .tab-no { color: var(--red); font-size: 12px; font-weight: 950; letter-spacing: .08em; }
+    .tab-title { margin-top: 4px; font-size: clamp(13px, 1.5vw, 16px); font-weight: 950; letter-spacing: -.04em; }
+    .tab-sub { margin-top: 3px; color: var(--muted); font-size: 11px; line-height: 1.25; }
+    .tab-btn.active {
+      background: var(--ink);
+      color: var(--paper);
+    }
+    .tab-btn.active .tab-sub { color: rgba(255, 252, 244, .7); }
+    main { min-height: 0; }
+    .frame-tools {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .frame-tools strong { color: var(--ink); }
+    .open-link {
+      display: inline-flex;
+      min-height: 34px;
+      align-items: center;
+      justify-content: center;
+      padding: 0 12px;
+      border: 1px solid var(--line);
+      background: var(--paper);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 900;
+    }
+    .frame-wrap {
+      width: min(1280px, calc(100% - 32px));
+      height: calc(100vh - 238px);
+      min-height: 620px;
+      margin: 0 auto 24px;
+      border: 1px solid var(--ink);
+      background: var(--frame);
+    }
+    iframe { width: 100%; height: 100%; border: 0; display: block; background: #fff; }
+    @media (max-width: 860px) {
+      .topbar, .summary { grid-template-columns: 1fr; display: grid; align-items: start; }
+      .counter { display: none; }
+      .tabs { grid-template-columns: repeat(4, minmax(178px, 1fr)); overflow-x: auto; }
+      .tabs-shell { position: static; }
+      .frame-wrap { height: calc(100vh - 260px); min-height: 560px; }
+    }
+    @media print {
+      .tabs-shell, .frame-tools, .home-link { display: none; }
+      .frame-wrap { height: auto; min-height: 0; border: 0; }
+      iframe { display: none; }
+      body::after { content: "각 원본 HTML 파일은 learning-coach-gem/pages/ 폴더에서 개별 인쇄하세요."; display: block; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <div class="wrap topbar">
+        <div class="brand">
+          <div class="eyebrow">DECK · AI learning coach kit</div>
+          <h1>우리 아이 맞춤 AI 학습코치<br />Gem 자료 모음</h1>
+        </div>
+        <a class="home-link" href="/">DEXA HOME</a>
+      </div>
+      <div class="wrap summary">
+        <p>첨부된 1번부터 4번까지의 HTML 자료를 원본 파일로 보존하고, 한 상위 페이지에서 탭으로 열람할 수 있게 구성했습니다. 각 탭은 독립 HTML 문서를 iframe으로 불러오며, 필요할 때 새 창으로 원본을 열 수 있습니다.</p>
+        <div class="counter" aria-hidden="true">04</div>
+      </div>
+      <nav class="tabs-shell" aria-label="AI 학습코치 자료 탭">
+        <div class="wrap tabs" role="tablist">
+          <button class="tab-btn active" id="tab-1" role="tab" aria-selected="true" aria-controls="resource-frame" data-src="pages/01_프롬프트템플릿모음.html" data-title="프롬프트 템플릿 모음집">
+            <span class="tab-no">01</span>
+            <span class="tab-title">프롬프트 템플릿</span>
+            <span class="tab-sub">상황별 코칭 질문과 대화 구조</span>
+          </button>
+          <button class="tab-btn" id="tab-2" role="tab" aria-selected="false" aria-controls="resource-frame" data-src="pages/02_가드레일문구집.html" data-title="가드레일 문구집">
+            <span class="tab-no">02</span>
+            <span class="tab-title">가드레일 문구집</span>
+            <span class="tab-sub">정답을 말하지 않는 코치 규칙</span>
+          </button>
+          <button class="tab-btn" id="tab-3" role="tab" aria-selected="false" aria-controls="resource-frame" data-src="pages/03_치트시트.html" data-title="AI 학습코치 치트시트">
+            <span class="tab-no">03</span>
+            <span class="tab-title">치트시트</span>
+            <span class="tab-sub">한 장 요약 핵심 체크리스트</span>
+          </button>
+          <button class="tab-btn" id="tab-4" role="tab" aria-selected="false" aria-controls="resource-frame" data-src="pages/04_Gem만들기가이드.html" data-title="Gem 만들기 가이드">
+            <span class="tab-no">04</span>
+            <span class="tab-title">Gem 만들기 가이드</span>
+            <span class="tab-sub">챗봇을 Gem으로 옮기는 절차</span>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div class="wrap frame-tools">
+        <div><strong id="current-title">프롬프트 템플릿 모음집</strong> · <span id="current-path">pages/01_프롬프트템플릿모음.html</span></div>
+        <a class="open-link" id="open-current" href="pages/01_프롬프트템플릿모음.html" target="_blank" rel="noopener noreferrer">원본 열기 ↗</a>
+      </div>
+      <div class="frame-wrap">
+        <iframe id="resource-frame" title="프롬프트 템플릿 모음집" src="pages/01_프롬프트템플릿모음.html"></iframe>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      const buttons = Array.from(document.querySelectorAll('.tab-btn'));
+      const frame = document.getElementById('resource-frame');
+      const currentTitle = document.getElementById('current-title');
+      const currentPath = document.getElementById('current-path');
+      const openCurrent = document.getElementById('open-current');
+
+      function activate(button, pushHash) {
+        buttons.forEach((item) => {
+          const selected = item === button;
+          item.classList.toggle('active', selected);
+          item.setAttribute('aria-selected', selected ? 'true' : 'false');
+        });
+
+        const src = button.dataset.src;
+        const title = button.dataset.title;
+        frame.src = src;
+        frame.title = title;
+        currentTitle.textContent = title;
+        currentPath.textContent = src;
+        openCurrent.href = src;
+
+        if (pushHash) {
+          history.replaceState(null, '', '#' + button.id.replace('tab-', ''));
+        }
+      }
+
+      buttons.forEach((button) => {
+        button.addEventListener('click', () => activate(button, true));
+      });
+
+      const initial = location.hash.replace('#', '');
+      const initialButton = buttons.find((button) => button.id === 'tab-' + initial);
+      if (initialButton) activate(initialButton, false);
+    })();
+  </script>
+</body>
+</html>
