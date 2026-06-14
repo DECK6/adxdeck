@@ -46,10 +46,10 @@
     }
     .wrap { width: min(1280px, calc(100% - 32px)); margin: 0 auto; }
     .topbar {
-      min-height: 72px;
+      min-height: 92px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      justify-content: flex-start;
       gap: 16px;
       padding: 14px 0;
     }
@@ -151,7 +151,7 @@
     }
     .frame-wrap {
       width: min(1280px, calc(100% - 32px));
-      height: calc(100vh - 238px);
+      height: calc(100vh - 194px);
       min-height: 620px;
       margin: 0 auto 24px;
       border: 1px solid var(--ink);
@@ -178,14 +178,8 @@
     <header>
       <div class="wrap topbar">
         <div class="brand">
-          <div class="eyebrow">DECK · AI learning coach kit</div>
           <h1>우리 아이 맞춤 AI 학습코치<br />Gem 자료 모음</h1>
         </div>
-        <a class="home-link" href="/">DEXA HOME</a>
-      </div>
-      <div class="wrap summary">
-        <p>첨부된 1번부터 4번까지의 HTML 자료를 원본 파일로 보존하고, 한 상위 페이지에서 탭으로 열람할 수 있게 구성했습니다. 각 탭은 독립 HTML 문서를 iframe으로 불러오며, 필요할 때 새 창으로 원본을 열 수 있습니다.</p>
-        <div class="counter" aria-hidden="true">04</div>
       </div>
       <nav class="tabs-shell" aria-label="AI 학습코치 자료 탭">
         <div class="wrap tabs" role="tablist">
