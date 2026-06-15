@@ -1,5 +1,22 @@
 [
   {
+    "slug": "agent-knowledge-management",
+    "file": "_built/agent-knowledge-management.md",
+    "title": "AKM — 에이전트에게 지식 운영체계를 주는 법",
+    "description": "AKM(Agent Knowledge Management)은 LLM Wiki식 지식 지도에 운영 기억, 절차, 실행 기록, 검증과 Learn Back 루프를 결합해 에이전트가 다음 실행에서 더 잘 일하게 만드는 Markdown 기반 지식 운영체계다.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "knowledge-management",
+      "memory"
+    ],
+    "date": "2026-06-15",
+    "thumbnail": "images/akm-agent-knowledge-management-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-web-search-extract",
     "file": "_built/hermes-web-search-extract.md",
     "title": "Hermes Web Search는 검색과 본문 추출을 다른 도구로 다룬다",
