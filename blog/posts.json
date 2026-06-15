@@ -1,5 +1,23 @@
 [
   {
+    "slug": "lisa-parks-and-the-vertical-image",
+    "file": "_built/lisa-parks-and-the-vertical-image.md",
+    "title": "하늘에서 내려오는 이미지의 정치",
+    "description": "Lisa Parks의 위성 미디어, vertical mediation, signal traffic 논의를 통해 미디어아트의 항공·궤도 이미지가 어떤 인프라와 권력 위에서 작동하는지 읽는 글.",
+    "category": "Article",
+    "tags": [
+      "media-theory",
+      "media-art",
+      "infrastructure",
+      "satellite-media",
+      "surveillance",
+      "drone-warfare"
+    ],
+    "date": "2026-06-16",
+    "thumbnail": "images/lisa-parks-and-the-vertical-image-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "agent-knowledge-management",
     "file": "_built/agent-knowledge-management.md",
     "title": "AKM — 에이전트에게 지식 운영체계를 주는 법",
