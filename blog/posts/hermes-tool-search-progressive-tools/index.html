@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>도구가 너무 많을 때 Hermes는 먼저 검색하게 한다 | DEXA Blog</title>
+    <meta name="description" content="A practical guide to Hermes Agent Tool Search, the progressive-disclosure layer that keeps large MCP and plugin tool catalogs out of the prompt until needed." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-tool-search-progressive-tools/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="도구가 너무 많을 때 Hermes는 먼저 검색하게 한다" />
+    <meta property="og:description" content="A practical guide to Hermes Agent Tool Search, the progressive-disclosure layer that keeps large MCP and plugin tool catalogs out of the prompt until needed." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-tool-search-progressive-tools/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-tool-search-progressive-tools-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-06-16" />
+    <meta property="article:author" content="Deck" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="도구가 너무 많을 때 Hermes는 먼저 검색하게 한다" />
+    <meta name="twitter:description" content="A practical guide to Hermes Agent Tool Search, the progressive-disclosure layer that keeps large MCP and plugin tool catalogs out of the prompt until needed." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-tool-search-progressive-tools-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"도구가 너무 많을 때 Hermes는 먼저 검색하게 한다","description":"A practical guide to Hermes Agent Tool Search, the progressive-disclosure layer that keeps large MCP and plugin tool catalogs out of the prompt until needed.","image":"https://dexa.art/blog/images/hermes-tool-search-progressive-tools-cover.png","datePublished":"2026-06-16","dateModified":"2026-06-16","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-tool-search-progressive-tools/"},"keywords":""}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 6월 16일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">도구가 너무 많을 때 Hermes는 먼저 검색하게 한다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A practical guide to Hermes Agent Tool Search, the progressive-disclosure layer that keeps large MCP and plugin tool catalogs out of the prompt until needed.</p>
+                <div class="flex flex-wrap gap-2 mt-6"></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-tool-search-progressive-tools-cover.png" alt="Abstract dark technology cover for Hermes Tool Search" loading="lazy"></p>
+<p>Hermes Agent에 MCP 서버와 플러그인을 붙이다 보면 에이전트가 실제로 쓰지 않을 도구의 JSON schema까지 매 턴 모델 컨텍스트에 들어간다. <strong>Tool Search</strong>는 이 낭비를 줄이는 점진 공개(progressive disclosure) 기능이다. 모든 도구를 처음부터 보여주는 대신, 필요한 도구를 먼저 검색하고 설명을 불러온 뒤 호출하게 만든다.</p>
+<h2>기능 개요: 도구 목록을 “카탈로그”로 접는다</h2>
+<p>Tool Search가 다루는 대상은 Hermes 내장 핵심 도구가 아니라, MCP 서버와 비핵심 플러그인이 제공하는 도구다. <code>terminal</code>, <code>read_file</code>, <code>patch</code>, <code>web_search</code>, <code>delegate_task</code>, <code>memory</code> 같은 핵심 도구는 항상 직접 노출된다. 반면 GitHub MCP, 사내 API MCP, 특수 플러그인처럼 개수가 빠르게 늘어나는 도구들은 지연 노출 후보가 된다.</p>
+<p>활성화되면 모델이 보는 도구 배열에는 원래의 수십 개 schema 대신 세 가지 브리지 도구가 들어간다.</p>
+<pre><code class="language-text">tool_search(query, limit?)
+tool_describe(name)
+tool_call(name, arguments)</code></pre>
+<p>즉 “이슈를 만들 도구가 필요하다”는 상황에서 먼저 <code>tool_search(&quot;create github issue&quot;)</code>로 후보를 찾고, <code>tool_describe(&quot;mcp_github_create_issue&quot;)</code>로 인자 구조를 확인한 다음, <code>tool_call(...)</code>로 실제 도구를 실행한다. Hermes는 이 호출을 내부에서 원래 도구 이름으로 풀어 dispatch하므로 승인 프롬프트, hook, guardrail, 로그 표시는 실제 도구 기준으로 동작한다.</p>
+<h2>어떻게 설정하고 동작하는가</h2>
+<p>기본값은 <code>auto</code>다. 지연 가능한 도구 schema가 현재 모델 컨텍스트의 10% 이상을 차지할 때만 Tool Search가 켜진다. 작은 도구셋에서는 아무 일도 하지 않고, MCP 서버가 많아질 때만 prompt 비용을 줄이는 쪽으로 전환한다.</p>
+<pre><code class="language-yaml">tools:
+  tool_search:
+    enabled: auto       # auto, on, off
+    threshold_pct: 10
+    search_default_limit: 5
+    max_search_limit: 20</code></pre>
+<p>상태 확인은 일반 Hermes 설정/도구 명령과 함께 보면 된다.</p>
+<pre><code class="language-bash">hermes config path
+hermes tools list
+hermes config set tools.tool_search.enabled auto</code></pre>
+<p>이 로컬 설치에서는 <code>tools.tool_search.enabled: auto</code>, <code>threshold_pct: 10</code>으로 설정되어 있고, CLI 기본 toolset은 <code>hermes-cli</code>다. 또한 MCP 서버가 붙어 있어 도구 수가 늘어날 때 Tool Search가 개입할 조건을 갖춘 상태였다.</p>
+<blockquote><strong>짧은 실제 사용 사례</strong>   이 사용자의 운영 환경은 프로파일별로 Dev, PKM, Ops 역할을 나누고, 필요에 따라 MCP·브라우저·파일·터미널 도구를 함께 쓴다. 이런 셋업에서는 매 턴 모든 확장 도구를 모델에 보여주는 것보다, 핵심 도구는 직접 두고 확장 도구만 검색식으로 접는 편이 컨텍스트 관리에 유리하다.</blockquote>
+<h2>팁과 함정</h2>
+<p>첫째, Tool Search는 “도구 권한 상승” 기능이 아니다. 브리지 도구는 현재 세션에 허용된 toolset 안의 지연 후보만 검색하고 호출한다. 제한된 subagent나 gateway 세션이 이 기능으로 비활성 도구를 몰래 발견할 수는 없다.</p>
+<p>둘째, <code>enabled: on</code>은 항상 이득이 아니다. 브리지 schema 자체도 약 300토큰 정도의 고정 비용이 있고, 처음 쓰는 도구는 검색·설명·호출의 추가 왕복이 생긴다. 도구가 몇 개 없는 환경이라면 <code>auto</code>가 안전한 기본값이다.</p>
+<p>셋째, 검색 품질은 모델이 좋은 질의를 만들 수 있는지에 좌우된다. Hermes는 도구 이름, 설명, 파라미터 이름을 BM25로 검색하고 필요하면 이름 substring match로 보완하지만, 모델이 엉뚱한 검색어를 넣으면 한 번 더 찾아야 한다.</p>
+<p>넷째, 도구셋을 세션 중간에 크게 바꾸면 prompt cache도 흔들린다. Tool Search의 카탈로그는 현재 도구 배열에서 매번 재구성되므로, MCP 서버 추가·제거는 다음 조립 시점부터 반영된다.</p>
+<h2>언제 쓰면 좋은가</h2>
+<p>Tool Search는 “많은 확장 도구 중 일부만 가끔 쓰는” 환경에 맞다. MCP 서버를 여러 개 연결하거나 플러그인 도구가 많은 프로파일에서는 컨텍스트 절약 효과가 크다. 반대로 내장 도구 위주의 단순 CLI 작업, 혹은 항상 같은 몇 개 도구만 쓰는 세션에서는 직접 노출이 더 빠르다. 핵심은 도구를 감추는 것이 아니라, 모델이 필요한 schema만 제때 꺼내도록 Hermes가 도구 표면적을 조절한다는 점이다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/lisa-parks-and-the-vertical-image/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>하늘에서 내려오는 이미지의 정치</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

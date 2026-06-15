@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-tool-search-progressive-tools",
+    "file": "_built/hermes-tool-search-progressive-tools.md",
+    "title": "도구가 너무 많을 때 Hermes는 먼저 검색하게 한다",
+    "description": "A practical guide to Hermes Agent Tool Search, the progressive-disclosure layer that keeps large MCP and plugin tool catalogs out of the prompt until needed.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-06-16",
+    "thumbnail": "images/hermes-tool-search-progressive-tools-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "lisa-parks-and-the-vertical-image",
     "file": "_built/lisa-parks-and-the-vertical-image.md",
     "title": "하늘에서 내려오는 이미지의 정치",
