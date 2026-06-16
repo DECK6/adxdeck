@@ -1,5 +1,21 @@
 [
   {
+    "slug": "data-feminism-and-the-politics-of-visibility",
+    "file": "_built/data-feminism-and-the-politics-of-visibility.md",
+    "title": "데이터는 누구의 몸을 지우는가",
+    "description": "데이터 페미니즘을 데이터 기반 미디어아트와 AI 문화의 권력, 맥락, 몸, 보이지 않는 노동을 읽는 비평 프레임으로 살펴본다.",
+    "category": "Article",
+    "tags": [
+      "media-theory",
+      "data-studies",
+      "AI",
+      "media-art"
+    ],
+    "date": "2026-06-17",
+    "thumbnail": "images/data-feminism-politics-visibility-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-tool-search-progressive-tools",
     "file": "_built/hermes-tool-search-progressive-tools.md",
     "title": "도구가 너무 많을 때 Hermes는 먼저 검색하게 한다",
