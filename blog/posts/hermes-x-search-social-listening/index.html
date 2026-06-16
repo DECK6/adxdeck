@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes X Search는 소셜 반응을 근거 있는 입력으로 바꾼다 | DEXA Blog</title>
+    <meta name="description" content="A practical guide to Hermes Agent's x_search tool for searching X/Twitter posts through xAI, including setup, filters, citations, and degraded-result handling." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-x-search-social-listening/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes X Search는 소셜 반응을 근거 있는 입력으로 바꾼다" />
+    <meta property="og:description" content="A practical guide to Hermes Agent's x_search tool for searching X/Twitter posts through xAI, including setup, filters, citations, and degraded-result handling." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-x-search-social-listening/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-x-search-social-listening-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-06-17" />
+    <meta property="article:author" content="Deck" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes X Search는 소셜 반응을 근거 있는 입력으로 바꾼다" />
+    <meta name="twitter:description" content="A practical guide to Hermes Agent's x_search tool for searching X/Twitter posts through xAI, including setup, filters, citations, and degraded-result handling." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-x-search-social-listening-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes X Search는 소셜 반응을 근거 있는 입력으로 바꾼다","description":"A practical guide to Hermes Agent's x_search tool for searching X/Twitter posts through xAI, including setup, filters, citations, and degraded-result handling.","image":"https://dexa.art/blog/images/hermes-x-search-social-listening-cover.png","datePublished":"2026-06-17","dateModified":"2026-06-17","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-x-search-social-listening/"},"keywords":""}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 6월 17일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes X Search는 소셜 반응을 근거 있는 입력으로 바꾼다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A practical guide to Hermes Agent's x_search tool for searching X/Twitter posts through xAI, including setup, filters, citations, and degraded-result handling.</p>
+                <div class="flex flex-wrap gap-2 mt-6"></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-x-search-social-listening-cover.png" alt="Hermes X Search cover" loading="lazy"></p>
+<p>새 기능 발표나 모델 논쟁을 따라갈 때 일반 웹 검색만으로는 늦거나 넓다. Hermes Agent의 <code>x_search</code>는 X/Twitter 위의 게시물, 프로필, 스레드를 에이전트 안에서 직접 찾게 해 주는 도구다. 핵심 문제는 “사람들이 지금 X에서 뭐라고 말하는가”를 추측이 아니라 인용 가능한 입력으로 가져오는 것이다.</p>
+<h2>기능 개요 — 웹 검색이 아니라 X 검색</h2>
+<p><code>x_search</code>는 Hermes의 별도 toolset이다. <code>web_search</code>가 검색엔진 결과와 웹 문서를 다룬다면, <code>x_search</code>는 xAI Responses API의 서버 측 X 검색 기능을 호출한다. 결과에는 Grok이 합성한 답변과 함께 원 게시물로 이어지는 citation 정보가 포함될 수 있다.</p>
+<p>사용 시점도 다르다. 제품 릴리스 반응, 특정 계정의 발표, 커뮤니티 논쟁, 이미지나 영상이 붙은 게시물 흐름처럼 “X 안의 현재성”이 중요한 질문에 적합하다. 일반 문서, 공식 가이드, 블로그 원문 확인은 여전히 <code>web_search</code>와 <code>web_extract</code>가 맞다.</p>
+<h2>어떻게 작동하는가</h2>
+<p>인증은 두 경로 중 하나로 충분하다. SuperGrok 또는 X Premium+ 계정의 OAuth를 쓰거나, 유료 xAI API key를 설정한다. 둘 다 있으면 Hermes는 OAuth를 우선 사용해 구독 quota를 먼저 쓴다.</p>
+<pre><code class="language-bash">hermes auth add xai-oauth
+hermes tools
+# Search → 🐦 X (Twitter) Search 활성화</code></pre>
+<p>설정은 <code>~/.hermes/config.yaml</code>의 <code>x_search</code> 블록에서 조정한다.</p>
+<pre><code class="language-yaml">x_search:
+  model: grok-4.20-reasoning
+  timeout_seconds: 180
+  retries: 2</code></pre>
+<p>도구 호출에는 검색어뿐 아니라 계정 필터와 날짜 필터를 넣을 수 있다.</p>
+<pre><code class="language-json">{
+  &quot;query&quot;: &quot;reactions to new Grok image features&quot;,
+  &quot;allowed_x_handles&quot;: [&quot;xai&quot;],
+  &quot;from_date&quot;: &quot;2026-06-01&quot;,
+  &quot;enable_image_understanding&quot;: true
+}</code></pre>
+<p><code>allowed_x_handles</code>는 최대 10개 계정으로 좁히고, <code>excluded_x_handles</code>는 특정 계정을 제외한다. <code>from_date</code>와 <code>to_date</code>는 <code>YYYY-MM-DD</code> 형식으로 검증된다. 이미지나 영상이 포함된 게시물까지 읽어야 하면 <code>enable_image_understanding</code>, <code>enable_video_understanding</code>를 켠다.</p>
+<p>반환값에서 특히 볼 것은 <code>citations</code>, <code>inline_citations</code>, <code>degraded</code>다. 필터를 걸었는데 citation이 전혀 없으면 <code>degraded: true</code>가 될 수 있다. 이때 답변은 X 인덱스에서 근거를 찾은 결과가 아니라 모델 합성에 가까우므로, 실제 게시물 근거로 취급하지 말아야 한다.</p>
+<h2>실제 사용 사이드바</h2>
+<p>이 사용자의 Hermes 운영에서는 일반 웹 조사와 소셜 반응 조사를 분리한다. 공식 기능 의미는 문서와 로컬 설치에서 확인하고, X 쪽 여론이나 릴리스 반응은 <code>x_search</code> 후보로 둔다. Dev 프로파일에는 xAI OAuth 자격 증명이 잡혀 있고, 도구 목록에서도 <code>x_search</code>가 활성화된 상태로 확인된다.</p>
+<h2>팁과 함정</h2>
+<p>첫째, <code>x_search</code>가 tool schema에 보이지 않으면 모델 문제가 아니라 credential gating일 가능성이 크다. <code>hermes auth list xai-oauth</code> 또는 <code>XAI_API_KEY</code> 상태를 확인하고, 세션을 새로 시작해 도구 레지스트리를 다시 만들면 된다.</p>
+<p>둘째, handle 필터는 강력하지만 취약하다. 오탈자, 너무 좁은 날짜 범위, X 인덱스 지연이 있으면 citation 없이 <code>degraded</code>가 켜질 수 있다. 중요한 주장이라면 날짜를 넓히거나, 원 게시물 URL을 별도로 확인한다.</p>
+<p>셋째, 비용과 latency를 예상해야 한다. X 검색은 일반 웹 검색보다 오래 걸릴 수 있어 <code>timeout_seconds</code> 기본값이 넉넉하다. 반복 자동화에서는 불필요한 broad query보다 계정·날짜·키워드를 명확히 주는 편이 안정적이다.</p>
+<h2>언제 쓰는가</h2>
+<p><code>x_search</code>는 “공식 문서가 무엇을 말하는가”가 아니라 “X에서 지금 어떤 반응과 인용이 흐르는가”를 물을 때 꺼내는 도구다. 기능 의미 검증은 docs와 로컬 설치, 공개 웹 페이지는 <code>web_extract</code>, 화면 조작은 <code>browser</code>, X 위의 현재 반응은 <code>x_search</code>로 나누면 Hermes의 조사 파이프라인이 훨씬 덜 흐려진다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/data-feminism-and-the-politics-of-visibility/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>데이터는 누구의 몸을 지우는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-x-search-social-listening",
+    "file": "_built/hermes-x-search-social-listening.md",
+    "title": "Hermes X Search는 소셜 반응을 근거 있는 입력으로 바꾼다",
+    "description": "A practical guide to Hermes Agent's x_search tool for searching X/Twitter posts through xAI, including setup, filters, citations, and degraded-result handling.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-06-17",
+    "thumbnail": "images/hermes-x-search-social-listening-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "data-feminism-and-the-politics-of-visibility",
     "file": "_built/data-feminism-and-the-politics-of-visibility.md",
     "title": "데이터는 누구의 몸을 지우는가",
