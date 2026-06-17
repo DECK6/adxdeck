@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Deliverable Mode는 파일 경로를 실제 첨부물로 바꾼다 | DEXA Blog</title>
+    <meta name="description" content="A practical guide to Hermes Agent Deliverable Mode: how generated files become native chat attachments through gateway path scanning, media routing, and safe delivery rules." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-deliverable-mode-artifacts/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Deliverable Mode는 파일 경로를 실제 첨부물로 바꾼다" />
+    <meta property="og:description" content="A practical guide to Hermes Agent Deliverable Mode: how generated files become native chat attachments through gateway path scanning, media routing, and safe delivery rules." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-deliverable-mode-artifacts/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-deliverable-mode-artifacts-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-06-18" />
+    <meta property="article:author" content="Deck" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Deliverable Mode는 파일 경로를 실제 첨부물로 바꾼다" />
+    <meta name="twitter:description" content="A practical guide to Hermes Agent Deliverable Mode: how generated files become native chat attachments through gateway path scanning, media routing, and safe delivery rules." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-deliverable-mode-artifacts-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Deliverable Mode는 파일 경로를 실제 첨부물로 바꾼다","description":"A practical guide to Hermes Agent Deliverable Mode: how generated files become native chat attachments through gateway path scanning, media routing, and safe delivery rules.","image":"https://dexa.art/blog/images/hermes-deliverable-mode-artifacts-cover.png","datePublished":"2026-06-18","dateModified":"2026-06-18","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-deliverable-mode-artifacts/"},"keywords":""}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 6월 18일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Deliverable Mode는 파일 경로를 실제 첨부물로 바꾼다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A practical guide to Hermes Agent Deliverable Mode: how generated files become native chat attachments through gateway path scanning, media routing, and safe delivery rules.</p>
+                <div class="flex flex-wrap gap-2 mt-6"></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-deliverable-mode-artifacts-cover.png" alt="Hermes Deliverable Mode cover" loading="lazy"></p>
+<p>에이전트가 차트, PDF, CSV, 음성 파일을 만들었는데 사용자가 다시 서버에 접속해 경로를 복사해야 한다면 작업 흐름은 끊긴다. Hermes Agent의 Deliverable Mode는 이 문제를 게이트웨이 레벨에서 해결한다. 에이전트가 생성한 파일의 로컬 경로를 답변에 남기면, Telegram·Slack·Discord 같은 메시징 게이트웨이가 그 경로를 감지해 실제 첨부물로 업로드한다.</p>
+<h2>기능 개요 — 답변이 아니라 산출물을 보내는 모드</h2>
+<p>Deliverable Mode는 별도의 “전송 명령”이라기보다 게이트웨이 후처리 기능이다. 파일을 만드는 쪽은 <code>execute_code</code>, <code>image_generate</code>, <code>text_to_speech</code>, PowerPoint/PDF 관련 skill, 또는 일반 터미널 명령일 수 있다. 핵심은 파일이 디스크에 존재하고, 최종 응답에 절대 경로 또는 <code>~/</code> 경로가 평문으로 들어간다는 점이다.</p>
+<p>지원 범위는 넓다. <code>.png</code>, <code>.jpg</code>, <code>.gif</code>, <code>.webp</code>, <code>.svg</code> 같은 이미지는 플랫폼이 허용하면 인라인으로 보이고, <code>.mp4</code>, <code>.mov</code>, <code>.webm</code>은 영상으로 처리된다. <code>.mp3</code>, <code>.wav</code>, <code>.ogg</code>, <code>.m4a</code>, <code>.flac</code>은 오디오/보이스 전송 후보가 되며, <code>.pdf</code>, <code>.docx</code>, <code>.xlsx</code>, <code>.csv</code>, <code>.json</code>, <code>.yaml</code>, <code>.pptx</code>, <code>.zip</code>, <code>.html</code> 같은 파일은 문서 첨부로 올라간다.</p>
+<h2>어떻게 작동하는가</h2>
+<p>사용자가 따로 <code>MEDIA:</code> 태그를 쓸 필요는 없다. Hermes는 최종 응답을 보낼 때 <code>gateway/platforms/base.py</code>의 추출기를 통해 로컬 파일 경로를 찾고, 게이트웨이 전송 루틴에서 이미지·비디오·오디오·문서로 나누어 업로드한다.</p>
+<pre><code class="language-text">분석 차트를 만들었습니다.
+/tmp/q3-revenue.png</code></pre>
+<p>이런 답변이 게이트웨이에 도착하면 <code>/tmp/q3-revenue.png</code>는 사용자에게 보이는 문장에서 제거되고, 파일 자체가 첨부된다. 명시적으로 전송하고 싶을 때는 아래처럼 <code>MEDIA:</code>를 쓸 수도 있지만, 공식 문서 기준으로는 평문 경로만으로 충분하다.</p>
+<pre><code class="language-text">MEDIA:/tmp/q3-report.pdf</code></pre>
+<p>Kanban 작업에서도 같은 개념이 이어진다. 워커가 완료 이벤트에 산출물을 넣으면, 구독된 채팅방으로 완료 요약과 파일이 함께 전달된다.</p>
+<pre><code class="language-python">kanban_complete(
+    summary=&quot;rendered Q3 revenue chart and report&quot;,
+    artifacts=[&quot;/tmp/q3-revenue.png&quot;, &quot;/tmp/q3-report.pdf&quot;],
+)</code></pre>
+<p>설정은 <code>~/.hermes/config.yaml</code>의 <code>gateway</code> 블록에서 조정한다. 개인 단일 사용자 게이트웨이는 기본값으로 충분하지만, 공개 봇처럼 다른 사용자의 프롬프트 주입이 파일 유출로 이어질 수 있는 환경에서는 strict 모드와 허용 디렉터리를 명시하는 편이 안전하다.</p>
+<pre><code class="language-yaml">gateway:
+  strict: true
+  media_delivery_allow_dirs:
+    - ~/deliverables
+  trust_recent_files: true
+  trust_recent_files_seconds: 600</code></pre>
+<h2>실제 사용 사이드바</h2>
+<p>이 사용자의 Hermes 운영에서는 블로그 커버 이미지, 음성 메모, 분석 결과처럼 “텍스트보다 파일이 결과물인 작업”이 자주 생긴다. 특히 Dev와 PKM 프로파일을 나누어 쓰는 구조에서는 작업 로그에는 경로를 남기고, 게이트웨이에서는 같은 산출물을 첨부로 받는 흐름이 유용하다. 로컬 확인 결과 Dev 프로파일은 게이트웨이 미디어 전송의 recency trust가 켜져 있고, Kanban dispatcher도 게이트웨이 안에서 동작하도록 설정되어 있다.</p>
+<h2>팁과 함정</h2>
+<p>첫째, 코드 예시 안의 경로는 자동 첨부되지 않는다. Hermes는 fenced code block과 inline code 안의 경로를 보호해서 예제 코드가 잘려 나가지 않게 한다. 둘째, 파일이 실제로 존재하지 않으면 첨부는 조용히 건너뛴다. “파일을 만들었다”는 말보다 <code>file</code>, <code>ls</code>, 빌드 로그 등으로 산출물 존재를 확인하는 습관이 중요하다.</p>
+<p>셋째, 오래된 시스템 파일이나 자격 증명 경로를 첨부 대상으로 삼으면 안전 필터에 막힌다. 로컬 구현은 홈 아래 <code>.ssh</code>, <code>.aws</code>, <code>.gnupg</code>, Hermes의 <code>.env</code>와 <code>auth.json</code>, <code>/etc</code>, <code>/proc</code> 같은 경로를 거부한다. 넷째, Telegram에서는 오디오 확장자별로 보이스/오디오 전송 제약이 다를 수 있다. 음성 버블이 필요하면 <code>text_to_speech</code>처럼 해당 플랫폼 규칙을 아는 도구를 쓰는 편이 낫다.</p>
+<h2>언제 쓰면 좋은가</h2>
+<p>Deliverable Mode는 “대화로 설명”보다 “파일로 받기”가 자연스러운 결과에 맞다. 차트, 표 데이터, 보고서, 이미지, 음성, 압축본은 이 기능을 쓰면 사용자가 바로 저장하고 전달할 수 있다. 반대로 짧은 코드 조각이나 설정 예시는 첨부 파일보다 코드 블록이 안전하다. 산출물이 여러 단계의 장기 작업이라면 Kanban의 <code>artifacts</code>와 함께 쓰고, 단순한 한 번짜리 생성물이라면 최종 응답에 경로를 남기는 방식이면 충분하다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/new-materialism-and-media-art/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>물질은 화면 뒤에서 작동한다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-deliverable-mode-artifacts",
+    "file": "_built/hermes-deliverable-mode-artifacts.md",
+    "title": "Hermes Deliverable Mode는 파일 경로를 실제 첨부물로 바꾼다",
+    "description": "A practical guide to Hermes Agent Deliverable Mode: how generated files become native chat attachments through gateway path scanning, media routing, and safe delivery rules.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-06-18",
+    "thumbnail": "images/hermes-deliverable-mode-artifacts-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "new-materialism-and-media-art",
     "file": "_built/new-materialism-and-media-art.md",
     "title": "물질은 화면 뒤에서 작동한다",
