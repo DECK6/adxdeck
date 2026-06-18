@@ -1,5 +1,21 @@
 [
   {
+    "slug": "safiya-noble-and-search-politics",
+    "file": "_built/safiya-noble-and-search-politics.md",
+    "title": "검색창은 누구를 먼저 보여 주는가",
+    "description": "사피야 우모자 노블의 검색 정치학을 통해 검색엔진, 플랫폼 랭킹, 생성형 AI 인터페이스가 중립적 도구가 아니라 가시성과 지식 질서를 배치하는 장치임을 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-theory",
+      "algorithmic-bias",
+      "platform-culture",
+      "media-art"
+    ],
+    "date": "2026-06-19",
+    "thumbnail": "images/safiya-noble-search-politics-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-deliverable-mode-artifacts",
     "file": "_built/hermes-deliverable-mode-artifacts.md",
     "title": "Hermes Deliverable Mode는 파일 경로를 실제 첨부물로 바꾼다",
