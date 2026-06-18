@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-subscription-proxy",
+    "file": "_built/hermes-subscription-proxy.md",
+    "title": "Hermes Subscription Proxy는 구독 인증을 로컬 API로 바꾼다",
+    "description": "A practical guide to Hermes Agent Subscription Proxy, the local OpenAI-compatible pass-through that lets external apps use OAuth-backed provider subscriptions without handling real credentials.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "proxy"
+    ],
+    "date": "2026-06-19",
+    "thumbnail": "images/hermes-subscription-proxy-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "safiya-noble-and-search-politics",
     "file": "_built/safiya-noble-and-search-politics.md",
     "title": "검색창은 누구를 먼저 보여 주는가",
