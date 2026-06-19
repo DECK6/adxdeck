@@ -1,5 +1,23 @@
 [
   {
+    "slug": "dispositif-and-media-art",
+    "file": "_built/dispositif-and-media-art.md",
+    "title": "장치는 어떻게 관객을 만든다",
+    "description": "푸코의 dispositif 개념을 통해 미디어아트의 장치, 전시 공간, 센서, 데이터, 제도, 관객 행동이 어떻게 하나의 전략적 배치로 작동하는지 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "dispositif",
+      "apparatus",
+      "surveillance",
+      "infrastructure"
+    ],
+    "date": "2026-06-20",
+    "thumbnail": "images/dispositif-media-art-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-subscription-proxy",
     "file": "_built/hermes-subscription-proxy.md",
     "title": "Hermes Subscription Proxy는 구독 인증을 로컬 API로 바꾼다",
