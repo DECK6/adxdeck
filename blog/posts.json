@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-tts-audio-output",
+    "file": "_built/hermes-tts-audio-output.md",
+    "title": "Hermes TTS는 답변을 실행 가능한 음성 산출물로 바꾼다",
+    "description": "A feature guide to Hermes Agent Text-to-Speech: providers, config keys, delivery formats, custom command providers, and common audio pitfalls.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-06-20",
+    "thumbnail": "images/hermes-tts-audio-output-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "dispositif-and-media-art",
     "file": "_built/dispositif-and-media-art.md",
     "title": "장치는 어떻게 관객을 만든다",
