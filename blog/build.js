@@ -705,7 +705,8 @@ const staticUrls = [
     { loc: `${SITE_URL}/`, priority: '1.0' },
     { loc: `${SITE_URL}/blog/`, priority: '0.9' },
     { loc: `${SITE_URL}/about-deck.html`, priority: '0.5' },
-    { loc: `${SITE_URL}/mice-safety/`, lastmod: '2026-05-24', priority: '0.8' }
+    { loc: `${SITE_URL}/mice-safety/`, lastmod: '2026-05-24', priority: '0.8' },
+    { loc: `${SITE_URL}/virtume/`, lastmod: '2026-06-21', priority: '0.8' }
 ];
 const postUrls = posts.map(p => ({
     loc: `${SITE_URL}/blog/posts/${p.slug}/`,
