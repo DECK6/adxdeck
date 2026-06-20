@@ -1,5 +1,24 @@
 [
   {
+    "slug": "stelarc-and-the-programmable-body",
+    "file": "_built/stelarc-and-the-programmable-body.md",
+    "title": "신체는 누구의 장치가 되는가",
+    "description": "Stelarc의 Third Hand, Ping Body, Exoskeleton, Ear on Arm을 통해 신체가 표현의 원천이 아니라 센서, 보철, 네트워크, 로봇 장치가 통과하는 프로그램 가능한 인터페이스가 되는 순간을 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "performance",
+      "posthumanism",
+      "cybernetics",
+      "body-interface",
+      "DEXA",
+      "blog"
+    ],
+    "date": "2026-06-21",
+    "thumbnail": "images/stelarc-programmable-body-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-tts-audio-output",
     "file": "_built/hermes-tts-audio-output.md",
     "title": "Hermes TTS는 답변을 실행 가능한 음성 산출물로 바꾼다",
