@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-soul-personality",
+    "file": "_built/hermes-soul-personality.md",
+    "title": "Hermes의 말투는 SOUL.md에서 시작된다",
+    "description": "A feature guide to Hermes Agent personality control with SOUL.md, session personality overlays, and the boundary between durable identity and project rules.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-06-21",
+    "thumbnail": "images/hermes-soul-personality-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "stelarc-and-the-programmable-body",
     "file": "_built/stelarc-and-the-programmable-body.md",
     "title": "신체는 누구의 장치가 되는가",
