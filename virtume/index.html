@@ -5,10 +5,52 @@
     <link rel="icon" type="image/svg+xml" href="/virtume/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VirtuMe v2 - Waveform Self</title>
-    <script type="module" crossorigin src="/virtume/assets/index-BesBMq5F.js"></script>
-    <link rel="stylesheet" crossorigin href="/virtume/assets/index-BFkBNFgR.css">
+    <style>
+      .boot-fallback {
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
+        margin: 0;
+        background: #050608;
+        color: #dfe8e6;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      .boot-fallback__panel {
+        width: min(520px, calc(100% - 40px));
+        border: 1px solid #293244;
+        border-radius: 10px;
+        padding: 24px;
+        background: #11141c;
+      }
+
+      .boot-fallback__panel strong {
+        display: block;
+        margin-bottom: 8px;
+        color: #b4ff39;
+        font-size: 18px;
+      }
+
+      .boot-fallback__panel p {
+        margin: 0;
+        color: #99a4b3;
+        line-height: 1.6;
+      }
+    </style>
+    <script type="module" crossorigin src="/virtume/assets/index-Cmh7ZzEB.js"></script>
+    <link rel="stylesheet" crossorigin href="/virtume/assets/index-B7xOBZ7R.css">
   </head>
-  <body>
-    <div id="root"></div>
+  <body class="boot-fallback">
+    <div id="root">
+      <section class="boot-fallback__panel" aria-live="polite">
+        <strong>VirtuMe loading</strong>
+        <p>화면이 계속 비어 있으면 새로고침하거나 브라우저 캐시를 비운 뒤 다시 열어주세요.</p>
+      </section>
+    </div>
+    <script nomodule>
+      document.getElementById('root').innerHTML =
+        '<section class="boot-fallback__panel"><strong>브라우저 업데이트 필요</strong><p>VirtuMe는 최신 브라우저의 JavaScript 모듈 실행이 필요합니다.</p></section>'
+    </script>
   </body>
 </html>
