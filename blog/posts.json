@@ -1,5 +1,22 @@
 [
   {
+    "slug": "bill-viola-and-the-tactile-time-of-video",
+    "file": "_built/bill-viola-and-the-tactile-time-of-video.md",
+    "title": "느린 화면은 어떻게 시간을 만지게 하는가",
+    "description": "Bill Viola의 슬로우 모션 비디오 설치를 정보의 속도에 맞서는 시간의 장치로 읽는 공개 에세이.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "video-art",
+      "installation",
+      "time-image",
+      "Bill-Viola"
+    ],
+    "date": "2026-06-22",
+    "thumbnail": "images/bill-viola-tactile-time-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-soul-personality",
     "file": "_built/hermes-soul-personality.md",
     "title": "Hermes의 말투는 SOUL.md에서 시작된다",
