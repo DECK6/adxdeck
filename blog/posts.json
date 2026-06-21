@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-lsp-semantic-diagnostics",
+    "file": "_built/hermes-lsp-semantic-diagnostics.md",
+    "title": "Hermes LSP는 에디터 밖에서도 타입 오류를 본다",
+    "description": "A feature guide to Hermes Agent's LSP semantic diagnostics layer, including setup, config, supported servers, and post-write verification behavior.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-06-22",
+    "thumbnail": "images/hermes-lsp-semantic-diagnostics-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "bill-viola-and-the-tactile-time-of-video",
     "file": "_built/bill-viola-and-the-tactile-time-of-video.md",
     "title": "느린 화면은 어떻게 시간을 만지게 하는가",
