@@ -1,5 +1,22 @@
 [
   {
+    "slug": "shannon-mattern-and-media-infrastructure",
+    "file": "_built/shannon-mattern-and-media-infrastructure.md",
+    "title": "도시는 화면 뒤에서 미디어가 된다",
+    "description": "Shannon Mattern의 인프라 미디어 이론을 따라 도시, 도서관, 데이터센터, 유지보수 노동이 어떻게 디지털 문화와 미디어아트의 보이지 않는 조건이 되는지 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "infrastructure",
+      "maintenance",
+      "smart-city"
+    ],
+    "date": "2026-06-23",
+    "thumbnail": "images/shannon-mattern-media-infrastructure-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "hermes-lsp-semantic-diagnostics",
     "file": "_built/hermes-lsp-semantic-diagnostics.md",
     "title": "Hermes LSP는 에디터 밖에서도 타입 오류를 본다",
