@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Slash Commands는 대화를 운영 콘솔로 바꾼다 | DEXA Blog</title>
+    <meta name="description" content="A feature guide to Hermes Agent slash commands across the CLI and messaging gateway, including the central command registry, session controls, admin permissions, and practical usage patterns." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-slash-command-surfaces/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Slash Commands는 대화를 운영 콘솔로 바꾼다" />
+    <meta property="og:description" content="A feature guide to Hermes Agent slash commands across the CLI and messaging gateway, including the central command registry, session controls, admin permissions, and practical usage patterns." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-slash-command-surfaces/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-slash-command-surfaces-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-06-23" />
+    <meta property="article:author" content="Deck" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Slash Commands는 대화를 운영 콘솔로 바꾼다" />
+    <meta name="twitter:description" content="A feature guide to Hermes Agent slash commands across the CLI and messaging gateway, including the central command registry, session controls, admin permissions, and practical usage patterns." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-slash-command-surfaces-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Slash Commands는 대화를 운영 콘솔로 바꾼다","description":"A feature guide to Hermes Agent slash commands across the CLI and messaging gateway, including the central command registry, session controls, admin permissions, and practical usage patterns.","image":"https://dexa.art/blog/images/hermes-slash-command-surfaces-cover.png","datePublished":"2026-06-23","dateModified":"2026-06-23","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-slash-command-surfaces/"},"keywords":""}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 6월 23일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Slash Commands는 대화를 운영 콘솔로 바꾼다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A feature guide to Hermes Agent slash commands across the CLI and messaging gateway, including the central command registry, session controls, admin permissions, and practical usage patterns.</p>
+                <div class="flex flex-wrap gap-2 mt-6"></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-slash-command-surfaces-cover.png" alt="Hermes slash command surfaces cover" loading="lazy"></p>
+<p>Hermes Agent를 오래 쓰다 보면 “프롬프트를 다시 설명하는 일”보다 “현재 세션을 어떻게 조작할 것인가”가 더 중요해진다. <strong>Slash Commands</strong>는 그 조작면이다. 대화창 안에서 <code>/compress</code>, <code>/queue</code>, <code>/tools</code>, <code>/kanban</code> 같은 명령을 호출해 세션, 도구, 게이트웨이, 작업 보드를 직접 다룬다.</p>
+<h2>기능 개요 — 두 개의 명령 표면, 하나의 레지스트리</h2>
+<p>공식 문서 기준으로 Hermes의 slash command는 두 표면을 가진다. 하나는 터미널의 interactive CLI이고, 다른 하나는 Telegram·Discord·Slack 같은 messaging gateway다. 둘 다 <code>hermes_cli/commands.py</code>의 중앙 <code>COMMAND_REGISTRY</code>에서 help text와 메뉴를 끌어온다. 로컬 설치에서 확인한 현재 registry 항목은 75개였다.</p>
+<p>명령은 크게 네 부류로 나뉜다. <code>/new</code>, <code>/resume</code>, <code>/title</code>, <code>/status</code>는 세션을 다룬다. <code>/compress</code>, <code>/queue</code>, <code>/steer</code>, <code>/goal</code>은 대화 흐름과 장기 실행을 조절한다. <code>/tools</code>, <code>/skills</code>, <code>/plugins</code>, <code>/reload-mcp</code>는 기능 표면을 다시 읽거나 설정한다. <code>/kanban</code>, <code>/cron</code>, <code>/topic</code>, <code>/sethome</code>은 게이트웨이와 장기 운영 시스템을 제어한다.</p>
+<h2>어떻게 작동하고 쓰는가</h2>
+<p>CLI에서는 Hermes를 켠 뒤 <code>/</code>를 입력하면 autocomplete가 열린다. 명령 이름은 대소문자를 가리지 않고, 일부 명령은 alias를 가진다.</p>
+<pre><code class="language-text">/new my-session
+/compress here 3
+/queue 다음 턴에서 이 파일도 같이 검토해 주세요
+/steer 방금 나온 테스트 실패를 우선 반영
+/tools list
+/status</code></pre>
+<p>CLI 바깥에서 확인할 때는 일반 shell command와 구분해야 한다. <code>hermes --help</code>는 설치된 top-level command를 보여 주고, 대화 안 명령은 slash command reference와 <code>/help</code>가 기준이다.</p>
+<pre><code class="language-bash">hermes --help
+hermes chat --help</code></pre>
+<p>게이트웨이에서는 permission 모델이 추가된다. 플랫폼별 <code>gateway-config.yaml</code>의 <code>extra:</code> 블록에서 관리자와 일반 사용자의 명령 범위를 나눈다.</p>
+<pre><code class="language-yaml">extra:
+  allow_admin_from:
+    - &quot;&lt;user-id&gt;&quot;
+  user_allowed_commands:
+    - help
+    - whoami
+    - status</code></pre>
+<p><code>allow_admin_from</code>이 설정된 범위에서는 admin이 모든 등록 명령을 보고, regular user는 <code>user_allowed_commands</code>와 기본 허용 명령인 <code>/help</code>, <code>/whoami</code>만 쓴다. 이 설계 덕분에 공개 채널에는 안전한 상태 조회만 열고, 운영자는 같은 봇에서 <code>/restart</code>, <code>/topic</code>, <code>/cron</code> 같은 강한 명령을 다룰 수 있다.</p>
+<h2>실제 운용에서의 짧은 장면</h2>
+<p>이 사용자의 Hermes 운용은 CLI와 메신저 토픽이 같이 돌아간다. 개발 작업 중에는 <code>/queue</code>와 <code>/steer</code>가 긴 실행을 끊지 않고 우선순위를 바꾸는 데 쓰이고, 게이트웨이 쪽에서는 <code>/topic</code>과 <code>/sethome</code>이 토픽별 세션 라우팅을 정리하는 손잡이가 된다. 즉 slash command는 “에이전트에게 다시 설명하기”보다 “현재 런타임을 조작하기”에 가깝다.</p>
+<h2>Pitfalls / tips</h2>
+<p>첫째, slash command와 shell command를 섞지 않는다. <code>hermes cron list</code>는 터미널 명령이고, <code>/cron</code>은 대화 안 명령이다. 둘째, 도구나 스킬 설정을 바꾼 뒤에는 현재 세션에 바로 반영되지 않을 수 있다. Hermes는 prompt cache를 지키기 위해 많은 설정을 세션 시작 시점에 고정하므로 <code>/reset</code>이나 새 실행이 필요하다.</p>
+<p>셋째, 게이트웨이에서 명령이 보이지 않으면 모델 문제가 아니라 권한 문제일 수 있다. <code>/whoami</code>로 admin/user 상태를 먼저 확인하고, <code>gateway-config.yaml</code>의 <code>allow_admin_from</code>, <code>user_allowed_commands</code>, group용 설정을 본다. 넷째, <code>/steer</code>는 프롬프트를 새로 보내는 기능이 아니라 다음 tool call 뒤에 끼워 넣는 mid-run steering이다. 작업을 새로 맡길 때는 <code>/queue</code>나 일반 메시지가 더 안전하다.</p>
+<h2>언제 이 기능을 쓰는가</h2>
+<p>Slash Commands는 Hermes를 단순 챗봇이 아니라 운영 가능한 agent runtime으로 쓸 때 빛난다. 한 번성 질문에는 필요 없지만, 긴 세션을 압축하고, 도구를 점검하고, 메신저 권한을 나누고, 실행 중인 작업을 부드럽게 방향 전환해야 한다면 먼저 <code>/help</code>와 <code>/status</code>를 열어 현재 조작면을 확인하는 편이 좋다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/shannon-mattern-and-media-infrastructure/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>도시는 화면 뒤에서 미디어가 된다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-slash-command-surfaces",
+    "file": "_built/hermes-slash-command-surfaces.md",
+    "title": "Hermes Slash Commands는 대화를 운영 콘솔로 바꾼다",
+    "description": "A feature guide to Hermes Agent slash commands across the CLI and messaging gateway, including the central command registry, session controls, admin permissions, and practical usage patterns.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-06-23",
+    "thumbnail": "images/hermes-slash-command-surfaces-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "shannon-mattern-and-media-infrastructure",
     "file": "_built/shannon-mattern-and-media-infrastructure.md",
     "title": "도시는 화면 뒤에서 미디어가 된다",
