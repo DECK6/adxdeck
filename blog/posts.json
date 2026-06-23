@@ -1,5 +1,22 @@
 [
   {
+    "slug": "cyberfeminism-and-networked-bodies",
+    "file": "_built/cyberfeminism-and-networked-bodies.md",
+    "title": "네트워크는 누구의 몸을 기본값으로 삼는가",
+    "description": "사이버페미니즘을 통해 네트워크, 인터페이스, AI 시각, 플랫폼이 어떤 몸과 정체성을 기본값으로 삼는지 묻는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "cyberfeminism",
+      "feminism",
+      "platform-culture"
+    ],
+    "date": "2026-06-24",
+    "thumbnail": "images/cyberfeminism-networked-bodies-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "hermes-slash-command-surfaces",
     "file": "_built/hermes-slash-command-surfaces.md",
     "title": "Hermes Slash Commands는 대화를 운영 콘솔로 바꾼다",
