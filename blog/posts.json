@@ -1,21 +1,5 @@
 [
   {
-    "slug": "affect-theory-in-media-art",
-    "file": "_built/affect-theory-in-media-art.md",
-    "title": "몸이 먼저 읽는 미디어",
-    "description": "정동 이론을 통해 미디어아트를 의미 전달보다 먼저 몸, 분위기, 속도, 피드백을 조율하는 사건으로 읽는다.",
-    "category": "Article",
-    "tags": [
-      "media-art",
-      "media-theory",
-      "affect-theory",
-      "embodiment"
-    ],
-    "date": "2026-06-24",
-    "thumbnail": "images/affect-theory-in-media-art-cover.png",
-    "author": "Deck"
-  },
-  {
     "slug": "hermes-slash-command-surfaces",
     "file": "_built/hermes-slash-command-surfaces.md",
     "title": "Hermes Slash Commands는 대화를 운영 콘솔로 바꾼다",
