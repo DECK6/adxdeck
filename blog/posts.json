@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-skins-themes",
+    "file": "_built/hermes-skins-themes.md",
+    "title": "Hermes Skins는 에이전트의 말투가 아니라 작업 화면을 바꾼다",
+    "description": "A practical guide to Hermes Agent Skins and Themes: how CLI appearance, built-in themes, custom YAML skins, and persistent display.skin settings work without changing the agent personality.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "skins"
+    ],
+    "date": "2026-06-24",
+    "thumbnail": "images/hermes-skins-themes-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "cyberfeminism-and-networked-bodies",
     "file": "_built/cyberfeminism-and-networked-bodies.md",
     "title": "네트워크는 누구의 몸을 기본값으로 삼는가",
