@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-petdex-mascots",
+    "file": "_built/hermes-petdex-mascots.md",
+    "title": "Hermes Pets는 장난감이 아니라 에이전트 상태 표시등이다",
+    "description": "A practical guide to Hermes Agent Pets: how Petdex mascots install per profile, map agent activity to animation states, render across CLI/TUI/desktop, and stay cosmetic rather than behavioral.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "petdex"
+    ],
+    "date": "2026-06-25",
+    "thumbnail": "images/hermes-petdex-mascots-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "computational-photography-after-the-shutter",
     "file": "_built/computational-photography-after-the-shutter.md",
     "title": "셔터 뒤에서 사진은 다시 계산된다",

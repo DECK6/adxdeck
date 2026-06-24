@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Pets는 장난감이 아니라 에이전트 상태 표시등이다 | DEXA Blog</title>
+    <meta name="description" content="A practical guide to Hermes Agent Pets: how Petdex mascots install per profile, map agent activity to animation states, render across CLI/TUI/desktop, and stay cosmetic rather than behavioral." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-petdex-mascots/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Pets는 장난감이 아니라 에이전트 상태 표시등이다" />
+    <meta property="og:description" content="A practical guide to Hermes Agent Pets: how Petdex mascots install per profile, map agent activity to animation states, render across CLI/TUI/desktop, and stay cosmetic rather than behavioral." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-petdex-mascots/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-petdex-mascots-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-06-25" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta property="article:tag" content="petdex" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Pets는 장난감이 아니라 에이전트 상태 표시등이다" />
+    <meta name="twitter:description" content="A practical guide to Hermes Agent Pets: how Petdex mascots install per profile, map agent activity to animation states, render across CLI/TUI/desktop, and stay cosmetic rather than behavioral." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-petdex-mascots-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Pets는 장난감이 아니라 에이전트 상태 표시등이다","description":"A practical guide to Hermes Agent Pets: how Petdex mascots install per profile, map agent activity to animation states, render across CLI/TUI/desktop, and stay cosmetic rather than behavioral.","image":"https://dexa.art/blog/images/hermes-petdex-mascots-cover.png","datePublished":"2026-06-25","dateModified":"2026-06-25","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-petdex-mascots/"},"keywords":"hermes, ai-agent, workflow, petdex"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 6월 25일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Pets는 장난감이 아니라 에이전트 상태 표시등이다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A practical guide to Hermes Agent Pets: how Petdex mascots install per profile, map agent activity to animation states, render across CLI/TUI/desktop, and stay cosmetic rather than behavioral.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">petdex</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-petdex-mascots-cover.png" alt="Hermes Pets cover" loading="lazy"></p>
+<p>Hermes Pets는 CLI, TUI, desktop app에서 움직이는 작은 마스코트를 띄우는 기능입니다. 겉으로는 귀여운 장식처럼 보이지만, 실제 목적은 더 실용적입니다. 에이전트가 idle인지, tool을 실행 중인지, 검토 중인지, 실패했는지를 시각적으로 알려 주는 <strong>상태 표시등</strong>입니다.</p>
+<h2>기능 개요: Petdex 마스코트를 profile별로 붙이기</h2>
+<p>공식 문서 기준 Pets는 공개 Petdex gallery의 animated sprite를 Hermes 화면에 연결합니다. 중요한 점은 이 기능이 prompt, token, model behavior를 바꾸지 않는다는 것입니다. <code>SOUL.md</code>나 <code>/personality</code>처럼 에이전트의 말투를 바꾸는 레이어가 아니라, <code>display</code> 설정 아래에 있는 순수 표시 레이어입니다.</p>
+<p>설치된 pet은 profile의 Hermes home 아래에 저장됩니다.</p>
+<pre><code class="language-text">~/.hermes/pets/&lt;slug&gt;/
+~/.hermes/profiles/&lt;profile&gt;/pets/&lt;slug&gt;/</code></pre>
+<p>profile을 나누어 쓰는 환경에서는 Dev profile과 개인 assistant profile이 서로 다른 pet을 가질 수 있습니다. 선택 상태도 <code>config.yaml</code>의 <code>display.pet</code>에 저장되므로, 한 profile에서 켠 마스코트가 다른 profile의 설정을 오염시키지 않습니다.</p>
+<h2>어떻게 동작하나: <code>hermes pets</code>, <code>/pet</code>, <code>display.pet</code></h2>
+<p>가장 기본 흐름은 gallery를 보고, 설치하고, 선택한 뒤 doctor로 확인하는 것입니다.</p>
+<pre><code class="language-bash">hermes pets list
+hermes pets list cat
+hermes pets install boba --select
+hermes pets show
+hermes pets doctor</code></pre>
+<p>세션 안에서는 slash command로도 다룰 수 있습니다.</p>
+<pre><code class="language-bash">/pet
+/pet list
+/pet boba
+/pet scale 0.5
+/pet off</code></pre>
+<p>설정 파일에서는 다음 형태로 저장됩니다.</p>
+<pre><code class="language-yaml">display:
+  pet:
+    enabled: true
+    slug: &quot;boba&quot;
+    render_mode: auto
+    scale: 0.33
+    unicode_cols: 0</code></pre>
+<p><code>render_mode: auto</code>는 kitty, Ghostty, WezTerm, iTerm2, sixel 같은 그래픽 지원 터미널을 먼저 감지하고, 없으면 truecolor Unicode half-block 렌더링으로 내려갑니다. pipe나 redirect처럼 TTY가 아닌 환경에서는 terminal pet 렌더링을 끄는 것이 정상 동작입니다.</p>
+<p>Pet은 Hermes 내부의 activity state에 맞춰 움직입니다. tool 실행 중이면 <code>run</code>, 모델이 읽거나 생각하는 동안은 <code>review</code>, 완료 후에는 <code>wave</code>, 실패하면 <code>failed</code>, todo가 전부 끝난 순간에는 <code>jump</code>처럼 매핑됩니다. 즉 “예쁜 고양이”가 아니라 현재 turn의 상태를 눈으로 확인하는 작은 계기판에 가깝습니다.</p>
+<h2>짧은 실제 사용 사이드바</h2>
+<p>이 사용자의 셋업처럼 profile과 topic이 분리된 운영에서는 화면 표지가 생각보다 중요합니다. Dev, PKM, Ops가 각자 다른 역할을 맡을 때 pet은 권한이나 행동을 바꾸지는 않지만, “지금 어느 surface가 움직이고 있는지”를 빠르게 알아차리는 보조 신호가 됩니다. 특히 긴 tool 실행이나 gateway turn을 기다릴 때 작은 상태 변화만으로도 불필요한 중복 입력을 줄일 수 있습니다.</p>
+<h2>주의할 점과 팁</h2>
+<p>첫째, pet은 설치와 선택이 모두 끝나야 보입니다. <code>hermes pets doctor</code>가 <code>no pets installed</code> 또는 <code>enabled: false</code>를 말한다면 먼저 <code>hermes pets install &lt;slug&gt; --select</code>를 실행합니다.</p>
+<p>둘째, Petdex npm CLI와 Hermes Pets의 저장 위치를 혼동하지 않아야 합니다. 일반 Petdex CLI는 다른 앱의 pet 폴더를 쓸 수 있지만, Hermes는 profile-aware한 Hermes home 아래의 <code>pets/</code>를 기준으로 합니다.</p>
+<p>셋째, desktop app의 floating pet은 편의 기능이지 별도 agent가 아닙니다. pop-out overlay가 보이더라도 별도 gateway 연결이나 독립 권한이 생기는 것은 아니며, 표시와 입력 shortcut을 제공하는 UI 레이어입니다.</p>
+<p>넷째, 글꼴·터미널·원격 shell 환경에 따라 렌더링 품질이 다릅니다. 이미지 프로토콜이 없는 터미널에서는 Unicode fallback이 정상이고, 너무 작게 줄이면 half-block 표현은 뭉개질 수 있습니다. 이때는 <code>hermes pets scale 0.5</code>처럼 크기를 조정하거나 <code>render_mode: off</code>로 terminal pet만 끄면 됩니다.</p>
+<h2>언제 쓰면 좋나</h2>
+<p>Pets는 작업 능력을 늘리는 기능이 아닙니다. Tools, Cron, Kanban, Delegation처럼 에이전트가 할 수 있는 일을 확장하지도 않습니다. 대신 Hermes를 오래 켜 두고 쓰는 사람에게 turn 상태, 실패, 완료, 대기 상태를 낮은 마찰로 보여 줍니다. 기능적으로는 <code>/status</code>나 로그를 볼 수 있지만, 매번 명령을 치지 않고도 에이전트의 움직임을 감지하고 싶을 때 Pets가 가장 가볍습니다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/computational-photography-after-the-shutter/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>셔터 뒤에서 사진은 다시 계산된다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
