@@ -1,5 +1,23 @@
 [
   {
+    "slug": "computational-photography-after-the-shutter",
+    "file": "_built/computational-photography-after-the-shutter.md",
+    "title": "셔터 뒤에서 사진은 다시 계산된다",
+    "description": "계산사진을 통해 스마트폰과 AI 카메라가 사진의 순간, 증거성, 자연스러움, 얼굴의 기준을 어떻게 다시 쓰는지 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "computational-photography",
+      "photography",
+      "ai",
+      "image-theory"
+    ],
+    "date": "2026-06-25",
+    "thumbnail": "images/computational-photography-after-the-shutter-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "hermes-skins-themes",
     "file": "_built/hermes-skins-themes.md",
     "title": "Hermes Skins는 에이전트의 말투가 아니라 작업 화면을 바꾼다",
