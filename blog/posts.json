@@ -1,5 +1,21 @@
 [
   {
+    "slug": "new-aesthetic-and-machine-vision-culture",
+    "file": "_built/new-aesthetic-and-machine-vision-culture.md",
+    "title": "기계가 본 세계가 미감으로 돌아올 때",
+    "description": "New Aesthetic을 픽셀 취향이 아니라 기계 시각, 드론 시점, 압축 오류, 생성형 이미지가 인간의 미감과 공간 감각으로 되돌아오는 문화적 징후로 읽는 글.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "new-aesthetic",
+      "machine-vision"
+    ],
+    "date": "2026-06-28",
+    "thumbnail": "images/new-aesthetic-machine-vision-culture-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-petdex-mascots",
     "file": "_built/hermes-petdex-mascots.md",
     "title": "Hermes Pets는 장난감이 아니라 에이전트 상태 표시등이다",
