@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-memory-providers",
+    "file": "_built/hermes-memory-providers.md",
+    "title": "기억을 한 파일에 가두지 않을 때 Hermes가 달라진다",
+    "description": "A practical guide to Hermes Agent memory providers, including built-in memory, external provider plugins, Honcho, and when to use each layer.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "memory-providers"
+    ],
+    "date": "2026-06-28",
+    "thumbnail": "images/hermes-memory-providers-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "new-aesthetic-and-machine-vision-culture",
     "file": "_built/new-aesthetic-and-machine-vision-culture.md",
     "title": "기계가 본 세계가 미감으로 돌아올 때",
