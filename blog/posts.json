@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-tool-gateway-managed-tools",
+    "file": "_built/hermes-tool-gateway-managed-tools.md",
+    "title": "Hermes Tool Gateway는 도구 API 가입을 하나의 라우팅 문제로 줄인다",
+    "description": "A practical guide to Hermes Agent Tool Gateway: how Nous Portal routes web, image, TTS, browser, and cloud terminal tools without separate provider accounts.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "tool-gateway"
+    ],
+    "date": "2026-06-29",
+    "thumbnail": "images/hermes-tool-gateway-managed-tools-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "technics-and-externalized-memory",
     "file": "_built/technics-and-externalized-memory.md",
     "title": "기술은 도구가 아니라 기억의 바깥이다",
