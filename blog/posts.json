@@ -1,5 +1,21 @@
 [
   {
+    "slug": "technics-and-externalized-memory",
+    "file": "_built/technics-and-externalized-memory.md",
+    "title": "기술은 도구가 아니라 기억의 바깥이다",
+    "description": "Technics를 최신 장비의 목록이 아니라 기억, 감각, 몸짓, 판단, 세계관을 외부화하고 반복시키는 조건으로 읽으며, 미디어아트와 AI 시대의 기술 비평이 무엇을 물어야 하는지 정리한다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "technics",
+      "philosophy-of-technology"
+    ],
+    "date": "2026-06-29",
+    "thumbnail": "images/technics-externalized-memory-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-memory-providers",
     "file": "_built/hermes-memory-providers.md",
     "title": "기억을 한 파일에 가두지 않을 때 Hermes가 달라진다",
