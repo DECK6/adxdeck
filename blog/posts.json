@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-codex-app-server-runtime",
+    "file": "_built/hermes-codex-app-server-runtime.md",
+    "title": "Hermes Codex 런타임은 에이전트 루프를 선택 가능한 실행층으로 만든다",
+    "description": "A feature guide to Hermes Agent's optional Codex app-server runtime: what changes, how to enable it, and when to prefer the default Hermes loop.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "codex-runtime"
+    ],
+    "date": "2026-06-30",
+    "thumbnail": "images/hermes-codex-app-server-runtime-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "katherine-hayles-and-embodied-information",
     "file": "_built/katherine-hayles-and-embodied-information.md",
     "title": "정보는 몸 없이 움직이지 않는다",
