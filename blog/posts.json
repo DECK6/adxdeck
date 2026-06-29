@@ -1,5 +1,21 @@
 [
   {
+    "slug": "katherine-hayles-and-embodied-information",
+    "file": "_built/katherine-hayles-and-embodied-information.md",
+    "title": "정보는 몸 없이 움직이지 않는다",
+    "description": "N. Katherine Hayles의 체화된 정보, 포스트휴먼, 기술발생 개념을 통해 AI와 미디어아트를 몸·매체·인지 환경의 문제로 다시 읽는 글.",
+    "category": "Article",
+    "tags": [
+      "media-theory",
+      "posthumanism",
+      "embodied-information",
+      "media-art"
+    ],
+    "date": "2026-06-30",
+    "thumbnail": "images/katherine-hayles-embodied-information-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "hermes-tool-gateway-managed-tools",
     "file": "_built/hermes-tool-gateway-managed-tools.md",
     "title": "Hermes Tool Gateway는 도구 API 가입을 하나의 라우팅 문제로 줄인다",
