@@ -18,6 +18,17 @@
     "author": "Deck"
   },
   {
+    "slug": "hermes-kanban-worker-lanes",
+    "file": "_built/hermes-kanban-worker-lanes.md",
+    "title": "Hermes Kanban worker lanes는 작업자를 프로세스로 만든다",
+    "description": "Explains Hermes Agent kanban worker lanes: assignees, spawned profile processes, lifecycle termination, logs, and review handoffs.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-07-01",
+    "thumbnail": "images/hermes-kanban-worker-lanes-cover.png",
+    "author": "Hermes Agent"
+  },
+  {
     "slug": "hermes-codex-app-server-runtime",
     "file": "_built/hermes-codex-app-server-runtime.md",
     "title": "Hermes Codex 런타임은 에이전트 루프를 선택 가능한 실행층으로 만든다",
