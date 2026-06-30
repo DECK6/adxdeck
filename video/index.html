@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>영상 생성 프롬프트 치트시트 — 조명 · 카메라무브 · 무빙 · 구도</title>
+<meta name="description" content="A Korean AI video prompt cheatsheet for lighting, camera movement, subject motion, composition, and negative prompts." />
+<meta property="og:title" content="영상 생성 프롬프트 치트시트" />
+<meta property="og:description" content="조명, 카메라무브, 무빙, 구도 예시를 한눈에 보는 DEXA 치트시트." />
+<meta property="og:url" content="https://dexa.art/video/" />
+<meta property="og:type" content="website" />
+
+<style>
+:root{
+  --bg:#f7f1e6; --paper:#fffaf2; --ink:#172033; --muted:#667085; --line:#e4d7c3;
+  --cobalt:#2f5cff; --teal:#13a89e; --coral:#ff6f61; --amber:#f8b84e; --violet:#7c5cff;
+  --green:#2db36f; --shadow:0 18px 60px rgba(23,32,51,.12); --radius:22px;
+  --mono:"SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+  --sans:"Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, -apple-system, sans-serif;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:radial-gradient(circle at 12% 8%, rgba(255,111,97,.18), transparent 28%),radial-gradient(circle at 88% 0%, rgba(47,92,255,.16), transparent 32%),linear-gradient(180deg,#fbf4e8 0%,#f5efe6 44%,#f7f1e6 100%);color:var(--ink);font-family:var(--sans);line-height:1.55;}
+a{color:inherit}.wrap{max-width:1440px;margin:0 auto;padding:28px}.hero{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(360px,.9fr);gap:28px;align-items:stretch;margin-bottom:22px}.hero-card{background:rgba(255,250,242,.92);border:1px solid var(--line);border-radius:32px;padding:34px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero-card:after{content:"";position:absolute;right:-120px;top:-120px;width:300px;height:300px;border-radius:50%;background:conic-gradient(from 80deg,var(--cobalt),var(--teal),var(--amber),var(--coral),var(--cobalt));opacity:.13}.eyebrow{display:inline-flex;gap:8px;align-items:center;padding:7px 12px;border-radius:999px;background:#172033;color:#fff;font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}.hero h1{font-size:clamp(38px,6vw,82px);line-height:.98;margin:22px 0 14px;letter-spacing:-.06em}.hero p{font-size:20px;max-width:760px;color:#3f4b5f}.formula{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}.token{display:inline-flex;align-items:center;gap:6px;padding:9px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);font-weight:900;box-shadow:0 4px 14px rgba(23,32,51,.06)}.plus{align-self:center;color:#98a2b3;font-weight:900}.nav{position:sticky;top:0;z-index:20;margin:-8px -28px 24px;padding:10px 28px;background:rgba(247,241,230,.78);backdrop-filter:blur(16px);border-bottom:1px solid rgba(228,215,195,.78);display:flex;gap:8px;overflow:auto}.nav a{white-space:nowrap;text-decoration:none;font-weight:900;font-size:14px;padding:8px 12px;border-radius:999px;background:#fff;border:1px solid var(--line)}.summary-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.summary-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px}.summary-card b{display:block;font-size:17px;margin-bottom:8px}.section{margin:34px 0}.section-head{display:flex;justify-content:space-between;gap:20px;align-items:end;margin-bottom:14px}.section h2{font-size:34px;letter-spacing:-.04em;margin:0}.section-desc{color:var(--muted);font-size:16px;max-width:760px}.grid{display:grid;gap:16px}.grid.cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}.grid.cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid.cols-4{grid-template-columns:repeat(4,minmax(0,1fr))}.card{background:rgba(255,250,242,.92);border:1px solid var(--line);border-radius:var(--radius);padding:20px;box-shadow:0 10px 28px rgba(23,32,51,.07)}.card h3{font-size:22px;line-height:1.12;margin:0 0 10px;letter-spacing:-.03em}.card p{margin:0 0 12px;color:#4b5568}.chip-row{display:flex;flex-wrap:wrap;gap:7px}.chip{font-family:var(--mono);font-size:12px;line-height:1.25;padding:7px 9px;border-radius:10px;background:#fff;border:1px solid var(--line);font-weight:700}.chip.kr{font-family:var(--sans)}.chip.blue{border-color:rgba(47,92,255,.24);background:rgba(47,92,255,.07)}.chip.teal{border-color:rgba(19,168,158,.26);background:rgba(19,168,158,.08)}.chip.coral{border-color:rgba(255,111,97,.28);background:rgba(255,111,97,.08)}.chip.amber{border-color:rgba(248,184,78,.36);background:rgba(248,184,78,.14)}.prompt{font-family:var(--mono);font-size:13px;background:#101828;color:#eef4ff;border-radius:16px;padding:14px;border:1px solid rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.03);white-space:normal}.prompt .dim{color:#9fb2d6}.prompt .hot{color:#ffd166}.prompt .good{color:#90e0c3}.prompt .warn{color:#ffb4a9}.table{width:100%;border-collapse:separate;border-spacing:0 8px}.table th{text-align:left;font-size:13px;color:#667085;padding:0 10px}.table td{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 10px;vertical-align:top}.table td:first-child{border-left:1px solid var(--line);border-radius:14px 0 0 14px;font-weight:900}.table td:last-child{border-right:1px solid var(--line);border-radius:0 14px 14px 0}.example-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.photo{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;box-shadow:0 10px 30px rgba(23,32,51,.10)}.photo img{display:block;width:100%;aspect-ratio:3/2;object-fit:cover}.photo figcaption{padding:12px 14px;font-size:13px;color:#475467}.photo b{display:block;font-size:15px;color:var(--ink);margin-bottom:4px}.matrix{display:grid;grid-template-columns:220px repeat(4,minmax(0,1fr));gap:8px;align-items:stretch}.matrix .cell{background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px;font-size:13px}.matrix .head{background:#172033;color:#fff;font-weight:900}.matrix .rowhead{background:#fff5e7;font-weight:900}.combo{display:grid;grid-template-columns:1fr 1.35fr;gap:16px;align-items:stretch}.combo .scene{border-radius:22px;background:linear-gradient(135deg,rgba(47,92,255,.10),rgba(255,111,97,.10));border:1px solid var(--line);padding:18px}.copyline{display:grid;grid-template-columns:90px 1fr;gap:8px;margin:8px 0}.copyline b{color:#172033}.small{font-size:13px;color:#667085}.badge{display:inline-block;padding:4px 8px;border-radius:8px;font-size:12px;font-weight:900;background:#172033;color:#fff}.callout{border:2px dashed rgba(47,92,255,.35);background:rgba(47,92,255,.06);border-radius:24px;padding:22px}.footer{padding:34px 0;color:#667085;font-size:13px}.print-note{display:none}
+@media (max-width:980px){.hero,.grid.cols-2,.grid.cols-3,.grid.cols-4,.combo{grid-template-columns:1fr}.example-strip{grid-template-columns:repeat(2,1fr)}.matrix{grid-template-columns:1fr}.section-head{display:block}.wrap{padding:18px}.nav{margin:0 -18px 18px;padding:10px 18px}.hero h1{font-size:42px}}
+@media print{body{background:#fff}.nav{display:none}.wrap{max-width:none;padding:10mm}.card,.hero-card,.photo{box-shadow:none}.section{break-inside:avoid}.print-note{display:block}.hero{grid-template-columns:1fr}.example-strip{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav">
+    <a href="#formula">공식</a><a href="#lighting">조명</a><a href="#camera">카메라무브</a><a href="#motion">무빙</a><a href="#composition">구도</a><a href="#examples">실전 조합</a><a href="#matrix">치트 매트릭스</a><a href="#negative">제외 조건</a>
+  </nav>
+  <header class="hero">
+    <div class="hero-card">
+      <span class="eyebrow">DECK AI Video Prompt Cheatsheet</span>
+      <h1>영상 생성<br/>프롬프트 치트시트</h1>
+      <p>슬라이드처럼 넘기는 자료가 아니라, 제작 중 옆에 띄워두고 바로 복사·조합하는 조명, 카메라무브, 무빙, 구도 예시 모음입니다.</p>
+      <div class="formula" id="formula">
+        <span class="token">장면</span><span class="plus">+</span><span class="token">조명</span><span class="plus">+</span><span class="token">카메라무브</span><span class="plus">+</span><span class="token">피사체/환경 무빙</span><span class="plus">+</span><span class="token">구도</span><span class="plus">+</span><span class="token">제외 조건</span>
+      </div>
+    </div>
+    <aside class="hero-card">
+      <div class="summary-grid">
+        <div class="summary-card"><b>핵심 원칙</b>“무엇을 찍을지”보다 “어떻게 보이게 할지”를 먼저 분해합니다.</div>
+        <div class="summary-card"><b>권장 길이</b>한 문장 35~70단어. 짧게 여러 조건을 층별로 붙입니다.</div>
+        <div class="summary-card"><b>반복법</b>장면은 유지하고 조명/무브/구도만 한 번에 하나씩 바꿉니다.</div>
+        <div class="summary-card"><b>검수법</b>빛 방향, 카메라 경로, 움직이는 대상, 프레임 우선순위를 따로 확인합니다.</div>
+      </div>
+    </aside>
+  </header>
+
+  <section class="section">
+    <div class="section-head"><h2>몇 가지 예시 이미지</h2><p class="section-desc">아래 이미지는 GPT Image 2 high로 생성한 작은 예시 썸네일입니다. HTML 안에서는 참고 이미지로만 쓰고, 실제 프롬프트 예시는 텍스트 카드로 풍부하게 넣었습니다.</p></div>
+    <div class="example-strip">
+      <figure class="photo"><img src="assets/images/lighting-neon-alley.png" alt="네온 골목 조명 예시"><figcaption><b>Lighting</b>neon side light, rim light, wet reflections, haze</figcaption></figure>
+      <figure class="photo"><img src="assets/images/camera-gallery-move.png" alt="카메라 무브 예시"><figcaption><b>Camera Move</b>dolly path, parallax foreground, gallery tracking</figcaption></figure>
+      <figure class="photo"><img src="assets/images/motion-dancer-particles.png" alt="무빙 예시"><figcaption><b>Motion</b>fabric fluttering, particles swirl, smoke rolling</figcaption></figure>
+      <figure class="photo"><img src="assets/images/composition-gallery-corridor.png" alt="구도 예시"><figcaption><b>Composition</b>low-angle wide, leading lines, foreground frame</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="section" id="lighting">
+    <div class="section-head"><h2>1. 조명: 시간 · 방향 · 질감</h2><p class="section-desc">조명은 “분위기”가 아니라 물리 조건입니다. 시간대, 빛의 방향, 빛의 질감을 같이 써야 결과가 안정됩니다.</p></div>
+    <div class="grid cols-3">
+      <article class="card"><h3>시간대</h3><p>색온도와 그림자의 길이를 결정합니다.</p><div class="chip-row"><span class="chip amber">golden hour</span><span class="chip blue">blue hour</span><span class="chip">overcast noon</span><span class="chip">midnight city</span><span class="chip">dawn mist</span><span class="chip">late afternoon sun</span></div></article>
+      <article class="card"><h3>방향</h3><p>대상의 윤곽과 표정 정보량을 조절합니다.</p><div class="chip-row"><span class="chip coral">backlight</span><span class="chip">side light</span><span class="chip">front soft light</span><span class="chip">top light</span><span class="chip">under light</span><span class="chip">rim light</span></div></article>
+      <article class="card"><h3>질감</h3><p>빛이 공기와 표면을 통과하는 느낌입니다.</p><div class="chip-row"><span class="chip teal">soft diffused</span><span class="chip">harsh spotlight</span><span class="chip">volumetric haze</span><span class="chip">flickering neon</span><span class="chip">wet reflections</span><span class="chip">caustic shimmer</span></div></article>
+    </div>
+    <table class="table"><thead><tr><th>목적</th><th>조명 프롬프트</th><th>언제 쓰나</th></tr></thead><tbody>
+      <tr><td>감성적 진입</td><td><code>golden hour backlight, warm rim light, soft haze</code></td><td>인물·여행·회상 장면</td></tr>
+      <tr><td>도시 긴장감</td><td><code>neon side light, wet asphalt reflections, high contrast shadows</code></td><td>사이버펑크, 야간 골목, 광고 컷</td></tr>
+      <tr><td>신비로운 실루엣</td><td><code>moonlit silhouette, cool blue fog, thin rim light</code></td><td>숲, 해변, 몽환적 퍼포먼스</td></tr>
+      <tr><td>전시장 분위기</td><td><code>soft projection light, subtle haze, reflective floor glow</code></td><td>미디어아트, 설치, 공연 기록</td></tr>
+      <tr><td>제품 질감</td><td><code>sharp rim light, caustic reflections, glossy highlights</code></td><td>유리, 금속, 물방울, 매크로</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="section" id="camera">
+    <div class="section-head"><h2>2. 카메라무브: 시선의 경로</h2><p class="section-desc">카메라무브는 관객의 감정을 움직이는 문장입니다. “움직인다”보다 어느 방향으로, 얼마나 빠르게, 어떤 렌즈로 움직이는지 써야 합니다.</p></div>
+    <div class="grid cols-4">
+      <article class="card"><h3>Dolly / Push</h3><div class="chip-row"><span class="chip blue">slow dolly-in</span><span class="chip">slow push-in</span><span class="chip">push-through foreground</span></div><p>대상으로 집중, 감정 압축.</p></article>
+      <article class="card"><h3>Track / Follow</h3><div class="chip-row"><span class="chip teal">tracking shot</span><span class="chip">side tracking</span><span class="chip">follow behind</span></div><p>대상과 동행, 여정감.</p></article>
+      <article class="card"><h3>Orbit / Arc</h3><div class="chip-row"><span class="chip coral">slow orbit</span><span class="chip">180-degree arc</span><span class="chip">circular move</span></div><p>대상을 탐색하거나 의식적으로 강조.</p></article>
+      <article class="card"><h3>Vertical / Handheld</h3><div class="chip-row"><span class="chip amber">crane down</span><span class="chip">tilt up</span><span class="chip">subtle handheld</span></div><p>발견, 위압감, 긴장감.</p></article>
+    </div>
+    <div class="grid cols-2" style="margin-top:16px">
+      <div class="prompt"><span class="dim">카메라무브 예시</span><br/><span class="hot">slow dolly-in</span>, 35mm lens, slight handheld, parallax foreground, subject remains centered</div>
+      <div class="prompt"><span class="dim">카메라무브 예시</span><br/><span class="hot">slow orbit shot</span> around a projection sculpture, wide lens, smooth stabilized motion, background lights passing behind</div>
+    </div>
+  </section>
+
+  <section class="section" id="motion">
+    <div class="section-head"><h2>3. 무빙: 피사체 · 환경 · 리듬</h2><p class="section-desc">영상 프롬프트에서 무빙은 세 덩어리로 나누면 좋습니다. 사람이 움직이는지, 배경이 움직이는지, 전체 리듬이 느린지 빠른지 분리하세요.</p></div>
+    <div class="grid cols-3">
+      <article class="card"><h3>피사체 무빙</h3><div class="chip-row"><span class="chip coral">walks slowly</span><span class="chip">turns head</span><span class="chip">raises hand</span><span class="chip">looks back</span><span class="chip">fabric fluttering</span><span class="chip">hair moving in wind</span></div></article>
+      <article class="card"><h3>환경 무빙</h3><div class="chip-row"><span class="chip blue">rain drifting sideways</span><span class="chip">smoke rolling</span><span class="chip">particles swirling</span><span class="chip">neon flicker</span><span class="chip">water ripples</span><span class="chip">dust floating</span></div></article>
+      <article class="card"><h3>리듬/속도</h3><div class="chip-row"><span class="chip teal">slow graceful motion</span><span class="chip">sudden reveal</span><span class="chip">looping motion</span><span class="chip">subtle motion blur</span><span class="chip">steady pace</span><span class="chip">dreamlike slow motion</span></div></article>
+    </div>
+    <div class="prompt" style="margin-top:16px"><span class="dim">무빙 조합</span><br/>dancer <span class="good">walks slowly</span> through the projection gallery, translucent fabric <span class="good">fluttering</span>, dust particles <span class="good">swirling</span> in blue light, smoke <span class="good">rolling</span> near the floor, dreamlike slow motion</div>
+  </section>
+
+  <section class="section" id="composition">
+    <div class="section-head"><h2>4. 구도: 샷 · 앵글 · 프레임</h2><p class="section-desc">구도는 모델에게 화면 안에서 무엇을 중요하게 볼지 알려줍니다. 샷 크기, 앵글, 프레임 장치를 같이 적으면 안정적입니다.</p></div>
+    <div class="grid cols-3">
+      <article class="card"><h3>샷 크기</h3><div class="chip-row"><span class="chip blue">extreme wide shot</span><span class="chip">wide shot</span><span class="chip">medium shot</span><span class="chip">close-up</span><span class="chip">extreme close-up</span></div><p>공간 정보와 감정 정보의 비율.</p></article>
+      <article class="card"><h3>앵글</h3><div class="chip-row"><span class="chip coral">low angle</span><span class="chip">eye level</span><span class="chip">high angle</span><span class="chip">top shot</span><span class="chip">Dutch angle</span></div><p>힘, 불안, 구조감을 결정.</p></article>
+      <article class="card"><h3>프레임 장치</h3><div class="chip-row"><span class="chip amber">foreground frame</span><span class="chip">leading lines</span><span class="chip">rule of thirds</span><span class="chip">center symmetry</span><span class="chip">negative space</span></div><p>시선을 어느 곳으로 보낼지 지정.</p></article>
+    </div>
+  </section>
+
+  <section class="section" id="examples">
+    <div class="section-head"><h2>실전 조합 예시</h2><p class="section-desc">아래 문장들을 그대로 복사한 뒤, 장면만 바꿔도 됩니다. 핵심은 하나의 장면에 조명, 카메라무브, 무빙, 구도를 모두 붙이는 것입니다.</p></div>
+    <div class="grid cols-2">
+      <article class="card combo"><div class="scene"><span class="badge">A. 네온 골목</span><div class="copyline"><b>Scene</b><span>person in a rainy neon alley</span></div><div class="copyline"><b>Light</b><span>neon side light, wet reflections, warm rim light</span></div><div class="copyline"><b>Camera</b><span>slow dolly-in, 35mm lens</span></div><div class="copyline"><b>Motion</b><span>coat fluttering, rain drifting sideways</span></div><div class="copyline"><b>Frame</b><span>low-angle wide shot, foreground puddles</span></div></div><div class="prompt">person in a rainy neon alley, neon side light, wet asphalt reflections, warm rim light, <span class="hot">slow dolly-in</span>, 35mm lens, coat fluttering, rain drifting sideways, low-angle wide shot, foreground puddles, cinematic, no text, no watermark</div></article>
+      <article class="card combo"><div class="scene"><span class="badge">B. 전시장 퍼포머</span><div class="copyline"><b>Scene</b><span>dancer inside projection gallery</span></div><div class="copyline"><b>Light</b><span>soft blue projection, rim light, haze</span></div><div class="copyline"><b>Camera</b><span>slow orbit shot</span></div><div class="copyline"><b>Motion</b><span>fabric fluttering, particles floating</span></div><div class="copyline"><b>Frame</b><span>centered symmetry, wide shot</span></div></div><div class="prompt">dancer inside a projection gallery, soft blue projection light, subtle haze, rim light, <span class="hot">slow orbit shot</span>, fabric fluttering, particles floating, centered symmetry, wide shot, reflective floor, no logo</div></article>
+      <article class="card combo"><div class="scene"><span class="badge">C. 매크로 오브젝트</span><div class="copyline"><b>Scene</b><span>glass object with water droplets</span></div><div class="copyline"><b>Light</b><span>sharp rim light, caustic reflections</span></div><div class="copyline"><b>Camera</b><span>macro lens, slow push-in</span></div><div class="copyline"><b>Motion</b><span>droplets sliding, light shimmer</span></div><div class="copyline"><b>Frame</b><span>extreme close-up, shallow DOF</span></div></div><div class="prompt">glass object with water droplets, sharp rim light, caustic reflections, macro lens, <span class="hot">slow push-in</span>, droplets sliding slowly, light shimmering across glass, extreme close-up, shallow depth of field, no text</div></article>
+      <article class="card combo"><div class="scene"><span class="badge">D. 숲속 실루엣</span><div class="copyline"><b>Scene</b><span>single figure in foggy forest</span></div><div class="copyline"><b>Light</b><span>moonlit silhouette, blue fog</span></div><div class="copyline"><b>Camera</b><span>tracking from behind</span></div><div class="copyline"><b>Motion</b><span>fog rolling, branches swaying</span></div><div class="copyline"><b>Frame</b><span>long lens compression, negative space</span></div></div><div class="prompt">single figure walking through a foggy forest, moonlit silhouette, cool blue fog, thin rim light, <span class="hot">tracking shot from behind</span>, fog rolling between trees, branches swaying, long lens compression, negative space, no watermark</div></article>
+    </div>
+  </section>
+
+  <section class="section" id="matrix">
+    <div class="section-head"><h2>치트 매트릭스</h2><p class="section-desc">막힐 때는 행 하나씩 골라 붙이면 됩니다. 예: “감성적 진입” 행에서 조명·무브·무빙·구도를 모두 선택.</p></div>
+    <div class="matrix">
+      <div class="cell head">목적</div><div class="cell head">조명</div><div class="cell head">카메라무브</div><div class="cell head">무빙</div><div class="cell head">구도</div>
+      <div class="cell rowhead">감성적 진입</div><div class="cell">golden hour backlight, soft haze</div><div class="cell">slow dolly-in</div><div class="cell">hair/fabric moving gently</div><div class="cell">medium shot, foreground blur</div>
+      <div class="cell rowhead">긴장감</div><div class="cell">neon side light, harsh shadows</div><div class="cell">subtle handheld</div><div class="cell">rain drifting, fast glance</div><div class="cell">low angle, tight frame</div>
+      <div class="cell rowhead">몽환적</div><div class="cell">moonlit fog, blue rim light</div><div class="cell">slow orbit</div><div class="cell">particles floating, smoke rolling</div><div class="cell">wide shot, negative space</div>
+      <div class="cell rowhead">제품/오브젝트</div><div class="cell">sharp rim, caustic shimmer</div><div class="cell">macro push-in</div><div class="cell">droplets sliding, shimmer</div><div class="cell">extreme close-up, shallow DOF</div>
+      <div class="cell rowhead">공간 설명</div><div class="cell">soft ambient gallery light</div><div class="cell">crane down / tracking</div><div class="cell">crowd slow movement</div><div class="cell">wide shot, leading lines</div>
+    </div>
+  </section>
+
+  <section class="section" id="negative">
+    <div class="section-head"><h2>제외 조건과 실패 방지</h2><p class="section-desc">생성형 영상은 불안정한 카메라, 로고/텍스트, 갑작스러운 컷, 물리적으로 이상한 움직임이 자주 생깁니다.</p></div>
+    <div class="grid cols-3">
+      <article class="card"><h3>기본 제외</h3><div class="chip-row"><span class="chip coral">no text</span><span class="chip coral">no watermark</span><span class="chip coral">no logo</span><span class="chip coral">no extra fingers</span><span class="chip coral">no distorted face</span></div></article>
+      <article class="card"><h3>영상 안정화</h3><div class="chip-row"><span class="chip blue">stable camera</span><span class="chip blue">smooth motion</span><span class="chip blue">no sudden jump cut</span><span class="chip blue">no flickering artifacts</span><span class="chip blue">consistent subject</span></div></article>
+      <article class="card"><h3>구도 유지</h3><div class="chip-row"><span class="chip teal">subject remains centered</span><span class="chip teal">safe margins</span><span class="chip teal">no cropped head</span><span class="chip teal">clean background</span><span class="chip teal">readable silhouette</span></div></article>
+    </div>
+    <div class="callout" style="margin-top:16px"><b>한 줄 최종 템플릿</b><br/><code>[scene], [lighting], [camera move], [subject motion], [environment motion], [composition/framing], cinematic, smooth motion, stable camera, no text, no watermark, no logo</code></div>
+  </section>
+
+  <footer class="footer">
+    <div>DEXA AI video prompt cheatsheet. Example thumbnails are AI-generated reference images. HTML is a scrollable cheatsheet, not a slide deck.</div>
+    <div class="print-note">Print mode: sections are kept readable for PDF export.</div>
+  </footer>
+</div>
+</body>
+</html>
