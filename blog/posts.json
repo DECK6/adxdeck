@@ -1,5 +1,23 @@
 [
   {
+    "slug": "atmospheric-aesthetics-and-the-politics-of-mood",
+    "file": "_built/atmospheric-aesthetics-and-the-politics-of-mood.md",
+    "title": "분위기는 어떻게 작품의 몸이 되는가",
+    "description": "분위기 미학과 정동적 분위기 개념을 통해 미디어아트의 빛, 소리, 공기, 동선, 제도가 관객의 몸과 판단을 어떻게 조율하는지 읽는 글.",
+    "category": "Article",
+    "tags": [
+      "media-theory",
+      "media-art",
+      "atmospheric-aesthetics",
+      "affect",
+      "installation",
+      "immersion"
+    ],
+    "date": "2026-07-01",
+    "thumbnail": "images/atmospheric-aesthetics-politics-of-mood-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "hermes-codex-app-server-runtime",
     "file": "_built/hermes-codex-app-server-runtime.md",
     "title": "Hermes Codex 런타임은 에이전트 루프를 선택 가능한 실행층으로 만든다",
