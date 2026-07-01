@@ -1,5 +1,24 @@
 [
   {
+    "slug": "ryoji-ikeda-and-the-limits-of-signal",
+    "file": "_built/ryoji-ikeda-and-the-limits-of-signal.md",
+    "title": "데이터는 어떻게 신호가 되는가",
+    "description": "Ryoji Ikeda의 작업을 데이터 시각화가 아니라 신호, 빛, 소리, 지각 임계의 문제로 읽으며, 몰입형 미디어아트가 감각을 어떻게 시험하는지 살핀다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "sound-art",
+      "data-art",
+      "audiovisual",
+      "signal",
+      "DEXA",
+      "blog"
+    ],
+    "date": "2026-07-02",
+    "thumbnail": "images/ryoji-ikeda-limits-of-signal-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "atmospheric-aesthetics-and-the-politics-of-mood",
     "file": "_built/atmospheric-aesthetics-and-the-politics-of-mood.md",
     "title": "분위기는 어떻게 작품의 몸이 되는가",
