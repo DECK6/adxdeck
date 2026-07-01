@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-spotify-music-control",
+    "file": "_built/hermes-spotify-music-control.md",
+    "title": "Hermes Spotify는 음악 앱을 에이전트의 작업 표면으로 바꾼다",
+    "description": "A practical guide to Hermes Agent Spotify integration: enabling the toolset, PKCE OAuth setup, playback and playlist tools, cron usage, and common Spotify API pitfalls.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-07-02",
+    "thumbnail": "images/hermes-spotify-music-control-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "ryoji-ikeda-and-the-limits-of-signal",
     "file": "_built/ryoji-ikeda-and-the-limits-of-signal.md",
     "title": "데이터는 어떻게 신호가 되는가",
