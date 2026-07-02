@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes 모델 카탈로그는 모델 선택을 릴리스 밖으로 분리한다 | DEXA Blog</title>
+    <meta name="description" content="A practical guide to Hermes Agent's model catalog: curated provider model lists, cache behavior, refresh options, and how it supports the model picker without requiring a new release." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-model-catalog-selector/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes 모델 카탈로그는 모델 선택을 릴리스 밖으로 분리한다" />
+    <meta property="og:description" content="A practical guide to Hermes Agent's model catalog: curated provider model lists, cache behavior, refresh options, and how it supports the model picker without requiring a new release." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-model-catalog-selector/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-model-catalog-selector-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-07-03" />
+    <meta property="article:author" content="Deck" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes 모델 카탈로그는 모델 선택을 릴리스 밖으로 분리한다" />
+    <meta name="twitter:description" content="A practical guide to Hermes Agent's model catalog: curated provider model lists, cache behavior, refresh options, and how it supports the model picker without requiring a new release." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-model-catalog-selector-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes 모델 카탈로그는 모델 선택을 릴리스 밖으로 분리한다","description":"A practical guide to Hermes Agent's model catalog: curated provider model lists, cache behavior, refresh options, and how it supports the model picker without requiring a new release.","image":"https://dexa.art/blog/images/hermes-model-catalog-selector-cover.png","datePublished":"2026-07-03","dateModified":"2026-07-03","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-model-catalog-selector/"},"keywords":""}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 7월 3일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes 모델 카탈로그는 모델 선택을 릴리스 밖으로 분리한다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A practical guide to Hermes Agent's model catalog: curated provider model lists, cache behavior, refresh options, and how it supports the model picker without requiring a new release.</p>
+                <div class="flex flex-wrap gap-2 mt-6"></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-model-catalog-selector-cover.png" alt="Hermes model catalog cover" loading="lazy"></p>
+<p>모델 선택기는 단순한 드롭다운이 아니다. provider마다 <code>/models</code> 응답 형식, 모델 수, 가격 정보, 지원 능력이 다르고, 새 모델은 Hermes Agent 릴리스 주기보다 더 빠르게 나온다. <strong>Hermes Model Catalog</strong>는 이 문제를 “코드를 다시 배포해야만 모델 목록이 바뀐다”에서 “원격 매니페스트와 로컬 캐시로 선택지를 갱신한다”로 바꾼다.</p>
+<h2>기능 개요 — curated catalog와 picker</h2>
+<p>Hermes의 <code>hermes model</code>과 세션 안 <code>/model</code>은 provider와 모델을 고르는 입구다. 여기서 중요한 점은 모든 provider의 원시 <code>/models</code> 목록을 그대로 보여 주지 않는다는 것이다. OpenRouter 같은 provider는 수백 개 모델과 이미지·TTS·reranker까지 섞어 제공할 수 있다. Hermes는 agentic 작업에 적합한 모델을 고르기 쉽도록 provider별 큐레이션 목록을 사용한다.</p>
+<p>공식 문서 기준으로 model catalog는 OpenRouter와 Nous Portal의 큐레이션된 모델 목록을 JSON 매니페스트에서 가져온다. 새 프런티어 모델이나 권장 모델 배지가 바뀌어도 Hermes 본체를 매번 업데이트하지 않고 선택기 표면을 갱신할 수 있다. 네트워크가 막히면 캐시나 설치본에 포함된 스냅샷으로 조용히 돌아간다.</p>
+<h2>어떻게 작동하나</h2>
+<p>가장 많이 만나는 사용 흐름은 모델 선택기다.</p>
+<pre><code class="language-bash">hermes model</code></pre>
+<p>목록을 강제로 새로 받고 싶을 때는 캐시를 비운 뒤 다시 가져온다.</p>
+<pre><code class="language-bash">hermes model --refresh</code></pre>
+<p>매니페스트의 기본 위치는 문서 사이트의 JSON endpoint다.</p>
+<pre><code class="language-text">https://hermes-agent.nousresearch.com/docs/api/model-catalog.json</code></pre>
+<p>설정은 <code>~/.hermes/config.yaml</code>의 <code>model_catalog</code> 블록으로 조정한다.</p>
+<pre><code class="language-yaml">model_catalog:
+  enabled: true
+  url: https://hermes-agent.nousresearch.com/docs/api/model-catalog.json
+  ttl_hours: 1
+  providers: {}</code></pre>
+<p>디스크 캐시는 다음 위치를 쓴다.</p>
+<pre><code class="language-text">~/.hermes/cache/model_catalog.json</code></pre>
+<p>동작은 보수적이다. 캐시가 TTL 안에 있으면 네트워크를 다시 부르지 않는다. 캐시가 있는데 네트워크가 실패하면 캐시를 사용한다. 캐시도 없고 원격도 실패하면 Hermes 설치본에 들어 있는 in-repo 스냅샷으로 fallback한다. 즉 catalog fetch 실패가 모델 선택기 전체를 망가뜨리면 안 된다는 설계다.</p>
+<p>제3자가 자체 큐레이션 목록을 운영할 수도 있다.</p>
+<pre><code class="language-yaml">model_catalog:
+  providers:
+    openrouter:
+      url: https://example.com/my-openrouter-curation.json</code></pre>
+<p>이때 override 매니페스트는 자신이 관리하는 provider 블록만 담아도 된다. 나머지는 기본 master catalog가 계속 담당한다.</p>
+<h2>실제 운용에서의 짧은 장면</h2>
+<p>이 사용자의 Hermes 운영은 프로파일별로 Dev, PKM, Ops 작업을 나누고, 각 프로파일이 다른 provider와 보조 모델 설정을 가질 수 있다. 이런 환경에서는 “어떤 모델이 설치본에 하드코딩되어 있는가”보다 “현재 선택기와 config가 어떤 catalog를 기준으로 보이는가”가 더 중요하다. 새 모델이 보이지 않을 때도 바로 인증 문제로 단정하지 않고, catalog 캐시와 refresh 여부를 먼저 확인하는 식이다.</p>
+<h2>주의할 점</h2>
+<ul><li>model catalog는 인증을 대신하지 않는다. 목록에 보이는 provider라도 API key나 OAuth가 없으면 실제 호출은 실패한다.</li><li>catalog의 <code>description</code>은 선택기 배지 같은 힌트일 뿐, 가격·context length는 보통 provider API나 models.dev 같은 실시간 정보에서 온다.</li><li><code>enabled: false</code>를 설정하면 원격 fetch를 끄고 설치본 스냅샷을 쓴다. 폐쇄망이나 재현성 테스트에는 유용하지만 최신 모델 반영은 늦어진다.</li><li><code>--refresh</code>는 목록 캐시를 다시 받는 기능이지, 현재 실행 중인 세션의 모델을 바꾸는 기능이 아니다. 이미 열린 세션은 시작 시점의 설정을 유지한다.</li><li>커스텀 catalog URL을 쓸 때는 schema version과 provider key를 맞춰야 한다. 알 수 없는 필드는 무시되지만 이해하지 못하는 schema version은 거부될 수 있다.</li></ul>
+<p>Model Catalog는 눈에 잘 띄지 않지만, Hermes를 오래 운영할수록 중요한 기반 기능이다. 모델이 빠르게 바뀌는 시대에는 선택지 목록 자체도 운영 대상이다. 새 모델을 실험하고 싶을 때는 <code>hermes model --refresh</code>로 catalog를 갱신하고, 안정적인 운영에서는 config·cache·fallback을 함께 확인하는 것이 좋다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/nicole-starosielski-and-undersea-networks/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>클라우드는 결국 바다에 닿는다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
