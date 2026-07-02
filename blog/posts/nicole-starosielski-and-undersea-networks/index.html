@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>클라우드는 결국 바다에 닿는다 | DEXA Blog</title>
+    <meta name="description" content="Nicole Starosielski의 해저 네트워크 연구를 통해 클라우드와 무선 연결의 비물질성 신화 뒤에 놓인 바다, 케이블, 착륙지, 유지보수, 지정학을 읽는 글." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/nicole-starosielski-and-undersea-networks/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="클라우드는 결국 바다에 닿는다" />
+    <meta property="og:description" content="Nicole Starosielski의 해저 네트워크 연구를 통해 클라우드와 무선 연결의 비물질성 신화 뒤에 놓인 바다, 케이블, 착륙지, 유지보수, 지정학을 읽는 글." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/nicole-starosielski-and-undersea-networks/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/nicole-starosielski-and-undersea-networks-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-07-03" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="media-theory" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="infrastructure" />
+    <meta property="article:tag" content="undersea-cables" />
+    <meta property="article:tag" content="digital-materialism" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="클라우드는 결국 바다에 닿는다" />
+    <meta name="twitter:description" content="Nicole Starosielski의 해저 네트워크 연구를 통해 클라우드와 무선 연결의 비물질성 신화 뒤에 놓인 바다, 케이블, 착륙지, 유지보수, 지정학을 읽는 글." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/nicole-starosielski-and-undersea-networks-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"클라우드는 결국 바다에 닿는다","description":"Nicole Starosielski의 해저 네트워크 연구를 통해 클라우드와 무선 연결의 비물질성 신화 뒤에 놓인 바다, 케이블, 착륙지, 유지보수, 지정학을 읽는 글.","image":"https://dexa.art/blog/images/nicole-starosielski-and-undersea-networks-cover.png","datePublished":"2026-07-03","dateModified":"2026-07-03","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/nicole-starosielski-and-undersea-networks/"},"keywords":"media-theory, media-art, infrastructure, undersea-cables, digital-materialism"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 7월 3일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">클라우드는 결국 바다에 닿는다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">Nicole Starosielski의 해저 네트워크 연구를 통해 클라우드와 무선 연결의 비물질성 신화 뒤에 놓인 바다, 케이블, 착륙지, 유지보수, 지정학을 읽는 글.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-theory</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">infrastructure</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">undersea-cables</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">digital-materialism</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/nicole-starosielski-and-undersea-networks-cover.png" alt="해저 케이블과 바다 밑 데이터 흐름을 보여 주는 추상 커버" loading="lazy"></p>
+<p>우리는 인터넷을 공중의 언어로 말하는 데 익숙하다. 무선, 클라우드, 스트리밍, 실시간 연결 같은 단어들은 데이터가 거의 무게 없이 떠다니는 것처럼 들린다. 그러나 Nicole Starosielski를 따라가면 이 상상은 곧 바다 밑으로 내려간다. 대륙 사이의 데이터는 구름이 아니라 해저 케이블을 따라 이동하고, 그 케이블은 특정한 해안과 섬, 통신 회사와 국가 규제, 유지보수 선박과 해양 환경에 묶여 있다.</p>
+<p>Starosielski의 대표 저작 <em>The Undersea Network</em>가 중요한 이유는 인터넷을 더 느리고 두껍게 보게 만들기 때문이다. 네트워크는 어디에나 있는 것이 아니라 항상 어딘가를 지난다. 그리고 그 어딘가는 정치적으로 중립적인 빈 공간이 아니다. 케이블이 어느 해변에 착륙하는지, 어떤 식민지 통신 경로를 계승하는지, 누가 수리하고 누가 감시하며 누가 접속 비용을 감당하는지가 오늘의 디지털 문화가 작동하는 조건이 된다.</p>
+<h2>보이지 않는 연결은 실제로 매우 물질적이다</h2>
+<p>클라우드라는 은유는 디지털 미디어의 물질성을 가장 효과적으로 숨긴 표현 중 하나다. 사용자는 브라우저와 앱의 매끄러운 표면만 만나지만, 그 표면은 데이터센터, 전력망, 냉각 시스템, 라우팅 장비, 광섬유 케이블, 해저 지형 위에서만 작동한다. Starosielski는 이 배경을 다시 전경으로 끌어낸다. 그는 네트워크를 추상적인 선과 점의 다이어그램으로만 보지 않고, 바다 깊이와 모래사장, 케이블 스테이션과 운영센터를 통과하는 문화적 지리로 읽는다.</p>
+<p>이 관점에서 해저 케이블은 단순한 기술 설비가 아니다. 그것은 정보가 영토와 만나는 선로이며, 디지털 흐름이 환경과 지정학, 기업 소유와 국가 안보의 문제로 바뀌는 장소다. 케이블 착륙지는 네트워크가 현실에 닿는 접면이다. 그래서 인터넷의 속도와 안정성은 순수한 기술 성능이 아니라, 어느 바다와 해안이 연결의 부담을 떠안는가라는 질문과 함께 읽혀야 한다.</p>
+<h2>미디어아트의 네트워크 감각을 다시 묻기</h2>
+<p>네트워크 기반 미디어아트는 연결, 원격성, 실시간성, 데이터 흐름의 감각을 자주 전면에 둔다. 텔레매틱 퍼포먼스, 실시간 데이터 시각화, AI 기반 몰입형 전시, 원격 센서 설치는 관객에게 “여기와 저기가 동시에 연결된다”는 경험을 제공한다. 그러나 Starosielski를 경유하면 그 경험은 더 이상 추상적 연결성으로 끝나지 않는다. 작품의 이미지는 어떤 서버를 지나왔는가. 지연은 어디에서 생겼는가. API와 클라우드는 어떤 케이블과 데이터센터에 기대고 있는가. 전시장의 매끄러운 실시간성은 어떤 유지보수와 계약, 네트워크 정책 위에서 가능한가.</p>
+<p>이 질문은 데이터 시각화에도 중요하다. 해저 케이블 지도는 종종 아름다운 선들의 그래픽으로 소비된다. 하지만 선이 아름다울수록 장소의 갈등은 사라질 수 있다. 왜 그 경로가 선택되었는지, 착륙지의 지역 사회와 환경은 어떤 부담을 지는지, 누가 회선을 소유하고 누가 접근권을 통제하는지 묻지 않는다면 케이블 이미지는 인프라 비평이 아니라 또 하나의 장식이 된다.</p>
+<h2>바다는 네트워크의 배경이 아니라 조건이다</h2>
+<p>Starosielski의 작업은 바다를 디지털 문화의 외부 자연으로 남겨 두지 않는다. 바다는 데이터가 건너가는 빈 공간이 아니라 통신의 가능성과 취약성을 조직하는 미디어 환경이다. 해저 지형, 조류, 항로, 어업, 군사적 감시, 해안 접근권, 수리 가능성은 모두 네트워크의 일부가 된다. 이 점에서 그의 연구는 인프라 연구와 원소적 미디어론을 연결한다. 물은 단지 이미지의 소재가 아니라 전송의 조건이다.</p>
+<p>AI와 클라우드 플랫폼의 시대에는 이 관점이 더 필요하다. 생성형 AI의 결과물은 프롬프트와 이미지 사이의 짧은 인터페이스처럼 보이지만, 실제로는 데이터센터와 GPU, 전력과 냉각, 그리고 대륙 간 데이터 이동의 인프라를 통과한다. 미디어아트가 AI와 네트워크를 사용할 때, 작품은 화면에 나타난 결과뿐 아니라 그 결과가 도착하기까지의 물질적 경로까지 포함한다.</p>
+<h2>남는 판단 기준</h2>
+<p>Starosielski를 읽는다는 것은 연결을 의심하자는 뜻이 아니다. 오히려 연결을 더 정확하게 보자는 요구에 가깝다. 좋은 네트워크 비평은 케이블을 보여 주는 데서 멈추지 않고, 그 케이블이 어떤 세계를 가능하게 하고 어떤 세계를 지우는지 묻는다. 클라우드는 결국 바다에 닿고, 바다는 다시 해안과 제도와 노동에 닿는다.</p>
+<p>그래서 오늘의 질문은 “얼마나 빠르게 연결되는가”만이 아니다. 이 연결은 어디에 착륙하는가. 누가 그 착륙지를 관리하고, 누가 위험을 감당하며, 작품은 그 조건을 관객이 다시 볼 수 있게 만드는가. 네트워크가 투명해질수록 비평은 더 깊이 내려가야 한다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-spotify-music-control/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes Spotify는 음악 앱을 에이전트의 작업 표면으로 바꾼다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

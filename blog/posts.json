@@ -1,5 +1,22 @@
 [
   {
+    "slug": "nicole-starosielski-and-undersea-networks",
+    "file": "_built/nicole-starosielski-and-undersea-networks.md",
+    "title": "클라우드는 결국 바다에 닿는다",
+    "description": "Nicole Starosielski의 해저 네트워크 연구를 통해 클라우드와 무선 연결의 비물질성 신화 뒤에 놓인 바다, 케이블, 착륙지, 유지보수, 지정학을 읽는 글.",
+    "category": "Article",
+    "tags": [
+      "media-theory",
+      "media-art",
+      "infrastructure",
+      "undersea-cables",
+      "digital-materialism"
+    ],
+    "date": "2026-07-03",
+    "thumbnail": "images/nicole-starosielski-and-undersea-networks-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "hermes-spotify-music-control",
     "file": "_built/hermes-spotify-music-control.md",
     "title": "Hermes Spotify는 음악 앱을 에이전트의 작업 표면으로 바꾼다",
