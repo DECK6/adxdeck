@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-provider-routing-fallback",
+    "file": "_built/hermes-provider-routing-fallback.md",
+    "title": "Hermes 모델 라우팅은 장애가 아니라 선택지를 먼저 설계한다",
+    "description": "A practical guide to Hermes Agent model and provider routing: main models, auxiliary slots, provider routing, fallback chains, and credential pools.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-07-03",
+    "thumbnail": "images/hermes-provider-routing-fallback-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "nicole-starosielski-and-undersea-networks",
     "file": "_built/nicole-starosielski-and-undersea-networks.md",
     "title": "클라우드는 결국 바다에 닿는다",
