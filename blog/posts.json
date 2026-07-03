@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-dashboard-extensions",
+    "file": "_built/hermes-dashboard-extensions.md",
+    "title": "Hermes 대시보드는 포크 없이 확장된다",
+    "description": "A practical guide to extending the Hermes Agent web dashboard with YAML themes, UI plugins, shell slots, and optional FastAPI backend routes without forking the dashboard codebase.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-07-04",
+    "thumbnail": "images/hermes-dashboard-extensions-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "ben-fry-and-readable-data",
     "file": "_built/ben-fry-and-readable-data.md",
     "title": "데이터는 읽히기 전까지 이미지가 아니다",

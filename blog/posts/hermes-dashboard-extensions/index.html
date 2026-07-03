@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes 대시보드는 포크 없이 확장된다 | DEXA Blog</title>
+    <meta name="description" content="A practical guide to extending the Hermes Agent web dashboard with YAML themes, UI plugins, shell slots, and optional FastAPI backend routes without forking the dashboard codebase." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-dashboard-extensions/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes 대시보드는 포크 없이 확장된다" />
+    <meta property="og:description" content="A practical guide to extending the Hermes Agent web dashboard with YAML themes, UI plugins, shell slots, and optional FastAPI backend routes without forking the dashboard codebase." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-dashboard-extensions/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-dashboard-extensions-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-07-04" />
+    <meta property="article:author" content="Deck" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes 대시보드는 포크 없이 확장된다" />
+    <meta name="twitter:description" content="A practical guide to extending the Hermes Agent web dashboard with YAML themes, UI plugins, shell slots, and optional FastAPI backend routes without forking the dashboard codebase." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-dashboard-extensions-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes 대시보드는 포크 없이 확장된다","description":"A practical guide to extending the Hermes Agent web dashboard with YAML themes, UI plugins, shell slots, and optional FastAPI backend routes without forking the dashboard codebase.","image":"https://dexa.art/blog/images/hermes-dashboard-extensions-cover.png","datePublished":"2026-07-04","dateModified":"2026-07-04","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-dashboard-extensions/"},"keywords":""}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 7월 4일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes 대시보드는 포크 없이 확장된다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A practical guide to extending the Hermes Agent web dashboard with YAML themes, UI plugins, shell slots, and optional FastAPI backend routes without forking the dashboard codebase.</p>
+                <div class="flex flex-wrap gap-2 mt-6"></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-dashboard-extensions-cover.png" alt="Hermes dashboard extensions cover" loading="lazy"></p>
+<p>Hermes Dashboard는 설정과 세션을 보는 관리 화면에서 끝나지 않습니다. <strong>Extending the Dashboard</strong>는 대시보드를 포크하지 않고도 theme, tab, slot, backend API를 얹어 각자의 운영 조종석으로 바꾸는 기능입니다. 문제는 단순합니다. “기본 화면을 고쳐 쓰고 싶지만, Hermes 본체를 패치하고 유지보수하고 싶지는 않다”는 상황을 해결합니다.</p>
+<h2>기능 개요 — theme, UI plugin, backend route</h2>
+<p>확장 레이어는 세 가지입니다. 첫째, <code>~/.hermes/dashboard-themes/</code> 아래의 YAML theme가 palette, typography, density, layout, background asset을 바꿉니다. 둘째, <code>~/.hermes/plugins/&lt;name&gt;/dashboard/</code> 안의 <code>manifest.json</code>과 JavaScript bundle이 새 tab을 추가하거나 built-in page에 작은 widget을 끼웁니다. 셋째, 같은 dashboard 폴더의 Python 파일은 FastAPI <code>router</code>를 노출해 <code>/api/plugins/&lt;name&gt;/...</code> 아래에 backend route를 붙입니다.</p>
+<p>핵심은 런타임 드롭인입니다. dashboard 소스를 fork하거나 <code>npm run build</code>를 다시 하지 않아도, 정해진 폴더 구조에 파일을 넣고 새로고침하거나 rescan하면 UI가 발견됩니다. CLI skin이 터미널 표시를 바꾸는 기능이라면, dashboard theme는 브라우저 관리 화면의 디자인 시스템을 바꾸는 별도 표면입니다.</p>
+<h2>어떻게 작동하나</h2>
+<p>가장 작은 theme는 YAML 한 파일이면 됩니다.</p>
+<pre><code class="language-bash">mkdir -p ~/.hermes/dashboard-themes</code></pre>
+<pre><code class="language-yaml"># ~/.hermes/dashboard-themes/neon.yaml
+name: neon
+label: Neon
+palette:
+  background: &quot;#000000&quot;
+  midground: &quot;#ff00ff&quot;</code></pre>
+<p>대시보드의 palette picker에서 선택하면 <code>config.yaml</code>의 <code>dashboard.theme</code>에 저장됩니다. 더 깊게는 <code>layoutVariant: cockpit</code>, <code>typography.fontUrl</code>, <code>assets.bg</code>, <code>componentStyles.card</code>, <code>customCSS</code>로 화면 전체를 재조합할 수 있습니다.</p>
+<p>UI plugin은 Hermes plugin 디렉터리 안에 dashboard 하위 폴더를 둡니다.</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;my-plugin&quot;,
+  &quot;label&quot;: &quot;My Plugin&quot;,
+  &quot;icon&quot;: &quot;Sparkles&quot;,
+  &quot;tab&quot;: { &quot;path&quot;: &quot;/my-plugin&quot;, &quot;position&quot;: &quot;after:skills&quot; },
+  &quot;entry&quot;: &quot;dist/index.js&quot;,
+  &quot;css&quot;: &quot;dist/style.css&quot;,
+  &quot;api&quot;: &quot;plugin_api.py&quot;
+}</code></pre>
+<p>bundle은 <code>window.__HERMES_PLUGIN_SDK__</code>에서 React, UI components, API client를 받고, <code>window.__HERMES_PLUGINS__.register()</code>로 tab component를 등록합니다. 전체 page를 대체할 수도 있지만, 보통은 slot이 더 안전합니다. <code>sessions:top</code>, <code>cron:bottom</code>, <code>header-left</code>, <code>sidebar</code>, <code>overlay</code> 같은 위치에 card나 banner만 얹으면 built-in page는 Hermes 업데이트를 계속 따라갑니다.</p>
+<pre><code class="language-javascript">window.__HERMES_PLUGINS__.registerSlot(
+  &quot;session-notes&quot;, &quot;sessions:top&quot;, PinnedSessionsBanner
+);</code></pre>
+<p>Backend가 필요하면 <code>plugin_api.py</code>에 <code>router = APIRouter()</code>를 export합니다. route는 dashboard process 안에서 mount되므로 session count, config snapshot, custom 운영 지표 같은 widget을 만들 수 있습니다. 다만 backend route는 startup 때 mount되므로 새 API 파일을 추가한 뒤에는 dashboard 재시작이 필요합니다.</p>
+<h2>실제 운용에서의 짧은 장면</h2>
+<p>이 사용자의 셋업에서는 프로파일별 운영 상태를 자주 확인하고, Kanban이나 achievements처럼 dashboard tab으로 드러나는 plugin도 함께 검토합니다. 이번 점검에서도 active profile의 <code>dashboard.theme</code>는 기본값이고 <code>plugins.enabled</code>는 비어 있었지만, 설치본에는 dashboard manifest를 가진 bundled plugin이 존재했습니다. 즉 확장은 항상 켜진 화면이라기보다, 필요한 운영 패널을 작게 얹을 수 있는 준비된 표면입니다.</p>
+<h2>자주 걸리는 함정</h2>
+<p>첫째, manifest 위치는 <code>~/.hermes/plugins/&lt;name&gt;/dashboard/manifest.json</code>입니다. project plugin은 <code>HERMES_ENABLE_PROJECT_PLUGINS</code>를 켠 경우에만 스캔됩니다. 둘째, tab이 안 보이면 먼저 rescan을 부릅니다.</p>
+<pre><code class="language-bash">curl http://127.0.0.1:9119/api/dashboard/plugins/rescan</code></pre>
+<p>그래도 안 되면 browser console에서 bundle 404, IIFE exception, manifest의 <code>name</code>과 <code>register()</code> 이름 불일치를 확인합니다. theme가 안 보이면 YAML 확장자와 parse error를 보고, <code>~/.hermes/logs/errors.log</code>를 봅니다. 셋째, dashboard를 <code>--host 0.0.0.0</code>로 열면 plugin backend route도 도달 가능해집니다. 신뢰하지 않는 plugin과 공개 bind는 함께 쓰지 않는 편이 안전합니다.</p>
+<h2>언제 쓰면 좋은가</h2>
+<p>기본 Dashboard는 Hermes를 관리하는 표준 조종석입니다. Extending the Dashboard는 그 조종석에 팀 상태판, 세션 banner, Kanban rail, 운영 통계 widget을 붙이고 싶을 때 적합합니다. 단순 색상 변경은 theme 하나로 충분하고, agent 행동이나 권한을 바꾸려는 목적이라면 dashboard 확장이 아니라 plugin, hook, toolset, config를 따로 설계해야 합니다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/ben-fry-and-readable-data/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>데이터는 읽히기 전까지 이미지가 아니다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
