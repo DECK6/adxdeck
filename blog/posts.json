@@ -1,5 +1,22 @@
 [
   {
+    "slug": "ben-fry-and-readable-data",
+    "file": "_built/ben-fry-and-readable-data.md",
+    "title": "데이터는 읽히기 전까지 이미지가 아니다",
+    "description": "Ben Fry의 Processing, Valence, All Streets, Fathom Information Design을 통해 데이터 시각화를 장식이 아니라 읽기 가능한 구조를 만드는 미디어아트 방법으로 살펴보는 글.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "creative-coding",
+      "data-visualization",
+      "software-art",
+      "processing"
+    ],
+    "date": "2026-07-04",
+    "thumbnail": "images/ben-fry-readable-data-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "hermes-model-catalog-selector",
     "file": "_built/hermes-model-catalog-selector.md",
     "title": "Hermes 모델 카탈로그는 모델 선택을 릴리스 밖으로 분리한다",
