@@ -73,9 +73,9 @@ secrets:
 
 ## 주의할 점
 
-첫째, Bitwarden token은 “키 하나로 모든 키를 읽는 권한”이므로 일반 API 키보다 가볍게 취급하면 안 된다. Hermes 문서도 machine account token이 2FA 프롬프트 없이 동작한다고 설명한다. 유출이 의심되면 웹앱에서 즉시 revoke하고 다시 발급해야 한다.
+첫째, Bitwarden token은 “키 하나로 모든 키를 읽는 권한”이므로 일반 API 키보다 가볍게 취급하면 안 된다. 유출이 의심되면 웹앱에서 즉시 revoke하고 다시 발급해야 한다.
 
-둘째, Secret Manager는 Hermes 시작을 막지 않는다. token 누락, 잘못된 region, 네트워크 지연, `bws` 문제는 경고로 남고 Hermes는 기존 `.env` 값으로 계속 진행한다. 그래서 `hermes secrets bitwarden status`와 `sync`를 배포 전 점검 루틴에 넣는 편이 좋다.
+둘째, Secret Manager는 Hermes 시작을 막지 않는다. token 누락, 잘못된 region, 네트워크 지연, `bws` 문제는 경고로 남고 Hermes는 기존 `.env` 값으로 계속 진행한다. 그래서 `status`와 `sync`를 배포 전 점검 루틴에 넣는 편이 좋다.
 
 셋째, 모든 환경에 필요한 기능은 아니다. 개인용 한 대의 노트북에서만 쓴다면 `.env`가 더 단순하다. 반대로 여러 머신, VPS 게이트웨이, 팀 공유 개발 박스, 주기적 키 회전이 있는 환경에서는 `hermes secrets`가 설정 복제를 줄이고 회수·폐기 경로를 명확하게 만든다.
 
