@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Secrets는 API 키 관리를 실행 시작 시점의 동기화 문제로 바꾼다 | DEXA Blog</title>
+    <meta name="description" content="A feature guide to Hermes Agent's Bitwarden Secrets Manager integration: how it loads provider keys at startup, which config keys matter, and when not to use it." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-secrets-bitwarden/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Secrets는 API 키 관리를 실행 시작 시점의 동기화 문제로 바꾼다" />
+    <meta property="og:description" content="A feature guide to Hermes Agent's Bitwarden Secrets Manager integration: how it loads provider keys at startup, which config keys matter, and when not to use it." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-secrets-bitwarden/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-secrets-bitwarden-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-07-05" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta property="article:tag" content="secrets" />
+    <meta property="article:tag" content="bitwarden" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Secrets는 API 키 관리를 실행 시작 시점의 동기화 문제로 바꾼다" />
+    <meta name="twitter:description" content="A feature guide to Hermes Agent's Bitwarden Secrets Manager integration: how it loads provider keys at startup, which config keys matter, and when not to use it." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-secrets-bitwarden-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Secrets는 API 키 관리를 실행 시작 시점의 동기화 문제로 바꾼다","description":"A feature guide to Hermes Agent's Bitwarden Secrets Manager integration: how it loads provider keys at startup, which config keys matter, and when not to use it.","image":"https://dexa.art/blog/images/hermes-secrets-bitwarden-cover.png","datePublished":"2026-07-05","dateModified":"2026-07-05","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-secrets-bitwarden/"},"keywords":"hermes, ai-agent, workflow, secrets, bitwarden"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 7월 5일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Secrets는 API 키 관리를 실행 시작 시점의 동기화 문제로 바꾼다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A feature guide to Hermes Agent's Bitwarden Secrets Manager integration: how it loads provider keys at startup, which config keys matter, and when not to use it.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">secrets</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">bitwarden</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-secrets-bitwarden-cover.png" alt="Hermes Secrets cover" loading="lazy"></p>
+<p>Hermes Agent를 여러 프로필, 게이트웨이, 크론 작업에서 쓰기 시작하면 가장 먼저 불편해지는 것은 모델이 아니라 키 관리다. <code>~/.hermes/.env</code>에 provider 키를 직접 넣는 방식은 단순하지만, 머신이 늘어나고 키를 회전해야 하는 순간부터 “어디에 어떤 값이 남아 있는가”가 운영 리스크가 된다. <code>hermes secrets</code>는 이 문제를 Bitwarden Secrets Manager에서 시작 시점에 환경변수를 가져오는 구조로 바꾼다.</p>
+<h2>기능 개요</h2>
+<p>현재 Hermes의 외부 secret source는 Bitwarden Secrets Manager다. 사용자는 Bitwarden에서 machine account를 만들고, 읽기 권한이 있는 project에 <code>OPENROUTER_API_KEY</code>, <code>ANTHROPIC_API_KEY</code> 같은 이름의 secret을 둔다. Hermes는 실행될 때 bootstrap token 하나를 읽어 <code>bws secret list &lt;project_id&gt;</code>를 호출하고, 반환된 secret 이름을 환경변수로 주입한다.</p>
+<p>핵심은 “키를 Hermes 설정 파일에 모두 복제하지 않는다”는 점이다. <code>config.yaml</code>에는 어떤 project를 읽을지, 캐시와 override 정책이 무엇인지가 들어가고, 실제 bootstrap token은 <code>.env</code>의 <code>BWS_ACCESS_TOKEN</code>에 둔다. provider 키를 바꾸고 싶을 때는 Bitwarden 웹앱에서 한 번 회전하고 Hermes 프로세스를 다시 시작하면 된다.</p>
+<h2>어떻게 설정하고 확인하나</h2>
+<p>기본 진입점은 다음 명령이다.</p>
+<pre><code class="language-bash">hermes secrets bitwarden setup
+hermes secrets bitwarden status
+hermes secrets bitwarden sync</code></pre>
+<p><code>setup</code>은 <code>bws</code> 바이너리를 <code>~/.hermes/bin/</code> 아래에 내려받고 검증한 뒤, access token, Bitwarden region, project id를 설정한다. 비대화형 환경에서는 다음처럼 플래그를 줄 수 있다.</p>
+<pre><code class="language-bash">hermes secrets bitwarden setup \
+  --access-token &quot;$BWS_ACCESS_TOKEN&quot; \
+  --server-url https://vault.bitwarden.eu \
+  --project-id &lt;project-uuid&gt;</code></pre>
+<p>관련 설정은 <code>~/.hermes/config.yaml</code>의 <code>secrets.bitwarden</code> 아래에 있다.</p>
+<pre><code class="language-yaml">secrets:
+  bitwarden:
+    enabled: false
+    access_token_env: BWS_ACCESS_TOKEN
+    project_id: &quot;&quot;
+    server_url: &quot;&quot;
+    cache_ttl_seconds: 300
+    override_existing: true
+    auto_install: true</code></pre>
+<p><code>override_existing: true</code>이면 Bitwarden 값이 기존 환경변수보다 우선한다. 키 회전을 중앙에서 통제하려는 운영에는 이쪽이 자연스럽다. 반대로 로컬 실험에서 <code>.env</code> 값을 우선하고 싶으면 <code>false</code>로 바꾼다. <code>cache_ttl_seconds</code>는 한 프로세스 안에서 fetch 결과를 재사용하는 시간이며, 새 Hermes 프로세스는 다시 읽는다.</p>
+<h2>실제 운영에서의 짧은 사례</h2>
+<p>이 사용자의 셋업처럼 프로필이 여러 개이고 크론·게이트웨이·개발 세션이 함께 움직이면, 같은 provider 키가 여러 실행 표면에 필요해진다. 이때 secret source를 중앙화하면 각 프로필의 설정은 역할과 도구 범위에 집중하고, 키 교체는 Bitwarden 쪽에서 처리하는 식으로 책임을 나눌 수 있다. 공개 글이나 로그에는 실제 project id, token, 로컬 경로를 남기지 않는 것이 원칙이다.</p>
+<h2>주의할 점</h2>
+<p>첫째, Bitwarden token은 “키 하나로 모든 키를 읽는 권한”이므로 일반 API 키보다 가볍게 취급하면 안 된다. Hermes 문서도 machine account token이 2FA 프롬프트 없이 동작한다고 설명한다. 유출이 의심되면 웹앱에서 즉시 revoke하고 다시 발급해야 한다.</p>
+<p>둘째, Secret Manager는 Hermes 시작을 막지 않는다. token 누락, 잘못된 region, 네트워크 지연, <code>bws</code> 문제는 경고로 남고 Hermes는 기존 <code>.env</code> 값으로 계속 진행한다. 그래서 <code>hermes secrets bitwarden status</code>와 <code>sync</code>를 배포 전 점검 루틴에 넣는 편이 좋다.</p>
+<p>셋째, 모든 환경에 필요한 기능은 아니다. 개인용 한 대의 노트북에서만 쓴다면 <code>.env</code>가 더 단순하다. 반대로 여러 머신, VPS 게이트웨이, 팀 공유 개발 박스, 주기적 키 회전이 있는 환경에서는 <code>hermes secrets</code>가 설정 복제를 줄이고 회수·폐기 경로를 명확하게 만든다.</p>
+<h2>언제 이 기능을 선택할까</h2>
+<p>provider 선택, fallback, credential pool은 “어떤 모델 호출을 어디로 보낼 것인가”의 문제다. <code>hermes secrets</code>는 그보다 아래층에서 “그 호출에 필요한 비밀 값을 어디서 가져올 것인가”를 다룬다. 키가 한 파일에 머물러도 괜찮으면 <code>.env</code>로 충분하다. 키가 여러 실행면에 퍼지기 시작했다면, Bitwarden Secrets Manager 연동을 먼저 검토할 만하다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/surveillance-capitalism-and-the-captured-interface/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>편리한 인터페이스는 어떻게 행동을 포획하는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

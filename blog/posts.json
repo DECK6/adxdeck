@@ -1,5 +1,22 @@
 [
   {
+    "slug": "hermes-secrets-bitwarden",
+    "file": "_built/hermes-secrets-bitwarden.md",
+    "title": "Hermes Secrets는 API 키 관리를 실행 시작 시점의 동기화 문제로 바꾼다",
+    "description": "A feature guide to Hermes Agent's Bitwarden Secrets Manager integration: how it loads provider keys at startup, which config keys matter, and when not to use it.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "secrets",
+      "bitwarden"
+    ],
+    "date": "2026-07-05",
+    "thumbnail": "images/hermes-secrets-bitwarden-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "surveillance-capitalism-and-the-captured-interface",
     "file": "_built/surveillance-capitalism-and-the-captured-interface.md",
     "title": "편리한 인터페이스는 어떻게 행동을 포획하는가",
