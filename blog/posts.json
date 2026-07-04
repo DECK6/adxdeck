@@ -1,5 +1,22 @@
 [
   {
+    "slug": "surveillance-capitalism-and-the-captured-interface",
+    "file": "_built/surveillance-capitalism-and-the-captured-interface.md",
+    "title": "편리한 인터페이스는 어떻게 행동을 포획하는가",
+    "description": "감시 자본주의를 CCTV나 개인정보 유출의 문제가 아니라 행동 데이터를 예측 상품과 인터페이스 조정으로 바꾸는 플랫폼 권력의 문제로 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-theory",
+      "media-art",
+      "surveillance-capitalism",
+      "platform-power",
+      "ai-critique"
+    ],
+    "date": "2026-07-05",
+    "thumbnail": "images/surveillance-capitalism-captured-interface-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "hermes-dashboard-extensions",
     "file": "_built/hermes-dashboard-extensions.md",
     "title": "Hermes 대시보드는 포크 없이 확장된다",
