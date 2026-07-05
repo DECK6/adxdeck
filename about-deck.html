@@ -8,490 +8,1164 @@
         window.dataLayer = window.dataLayer || [];
         function gtag() { dataLayer.push(arguments); }
         gtag('js', new Date());
-
         gtag('config', 'G-QN6DDG3N8X');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About DECK - 육대근 | DEXA</title>
+    <meta name="description" content="육대근(DECK)은 DEXA의 Founder & Director이자 AX 전문가입니다. AI 도입, 업무 자동화, 기업강의, 콘텐츠 제작 워크플로우를 설계하고 실행합니다.">
     <link rel="canonical" href="https://dexa.art/about-deck.html" />
     <meta property="og:url" content="https://dexa.art/about-deck.html" />
+    <meta property="og:title" content="About DECK - 육대근 | DEXA" />
+    <meta property="og:description" content="AX 컨설팅·개발, 기업강의, AI 콘텐츠 제작 이력을 한 화면에서 확인하고 문의할 수 있는 DEXA DECK 프로필입니다." />
+    <meta property="og:image" content="https://dexa.art/deck-avatar.jpg" />
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --deck-bg: #06110d;
+            --deck-panel: rgba(9, 20, 16, 0.82);
+            --deck-line: rgba(255, 255, 255, 0.1);
+            --deck-muted: rgba(255, 255, 255, 0.58);
+            --deck-pink: #e985aa;
+            --deck-cyan: #00F0FF;
+            --deck-green: #39FF14;
+            --deck-purple: #BC13FE;
+        }
+
+        html { scroll-behavior: smooth; }
+        body.bio-page {
+            background: radial-gradient(circle at top, rgba(0, 240, 255, 0.10), transparent 34rem),
+                        radial-gradient(circle at 80% 0%, rgba(233, 133, 170, 0.13), transparent 28rem),
+                        var(--deck-bg);
+            color: #f7f7f4;
+        }
+        .bio-shell { width: min(100% - 2rem, 760px); margin: 0 auto; position: relative; z-index: 2; }
+        .skip-link { position: absolute; left: -999px; top: 1rem; background: #fff; color: #000; padding: .75rem 1rem; border-radius: 999px; z-index: 100; }
+        .skip-link:focus { left: 1rem; }
+        .topbar { display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 0 1rem; }
+        .brand-lockup { display: inline-flex; align-items: center; gap: .7rem; color: #fff; font-weight: 900; letter-spacing: .06em; }
+        .brand-lockup img { height: 38px; width: auto; }
+        .top-links { display: flex; gap: .55rem; flex-wrap: wrap; justify-content: flex-end; }
+        .round-link { display:inline-flex; align-items:center; justify-content:center; width: 2.55rem; height: 2.55rem; border:1px solid var(--deck-line); border-radius:999px; color:#d7ddd9; background:rgba(255,255,255,.04); transition:.2s ease; }
+        .round-link:hover { color:#000; background:var(--deck-cyan); border-color:var(--deck-cyan); }
+        .cover-card { min-height: 290px; border: 1px solid rgba(255,255,255,.08); border-radius: 0 0 2rem 2rem; overflow: hidden; background: linear-gradient(135deg, rgba(0,240,255,.18), rgba(57,255,20,.10) 42%, rgba(233,133,170,.22)); position: relative; box-shadow: 0 30px 100px rgba(0,0,0,.28); }
+        .cover-grid { position:absolute; inset:0; opacity:.22; background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px); background-size: 42px 42px; }
+        .cover-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 190px; gap: 2rem; align-items: center; padding: 3rem 2rem; }
+        .cover-kicker { color: rgba(255,255,255,.86); font-weight: 800; letter-spacing:.12em; font-size:.78rem; text-transform:uppercase; margin-bottom: 1rem; }
+        .cover-title { font-size: clamp(2.3rem, 8vw, 4.2rem); line-height: .92; font-weight: 900; letter-spacing: -.06em; text-transform: uppercase; }
+        .cover-sub { color: rgba(255,255,255,.78); margin-top: 1.3rem; line-height: 1.8; font-weight: 600; }
+        .portrait-wrap { justify-self: end; width: 185px; aspect-ratio: 1; border: 6px solid rgba(255,255,255,.85); border-radius: 2.2rem; padding: 0; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.35); background:#111; }
+        .portrait-wrap img { width:100%; height:100%; object-fit:cover; }
+        .profile-section { text-align: center; padding: 2.3rem 0 1rem; }
+        .profile-section h1 { font-size: clamp(2rem, 6vw, 3rem); font-weight: 900; letter-spacing: -.05em; }
+        .verified-dot { display:inline-flex; width:1.15rem; height:1.15rem; align-items:center; justify-content:center; border-radius:999px; background:var(--deck-pink); color:#111; font-size:.72rem; margin-left:.35rem; transform: translateY(-.15rem); }
+        .role-line { color:#fff; font-weight:800; margin-top:.65rem; }
+        .bio-copy { color: var(--deck-muted); line-height: 1.9; margin: 1.2rem auto 0; max-width: 660px; }
+        .bio-copy strong { color: var(--deck-pink); }
+        .fact-card { margin: 2rem auto 0; text-align:left; border:1px solid var(--deck-line); border-radius:1.35rem; background:rgba(0,0,0,.22); overflow:hidden; }
+        .fact-row { display:grid; grid-template-columns: 145px 1fr; gap: 1.2rem; padding: .9rem 1.1rem; border-bottom:1px solid rgba(255,255,255,.08); align-items:center; }
+        .fact-row:last-child { border-bottom:0; }
+        .fact-key { font-weight:900; color:#fff; }
+        .fact-value { color:var(--deck-muted); line-height:1.65; }
+        .metric-block { margin: 2rem 0 1.25rem; display:grid; grid-template-columns: repeat(3,1fr); gap:.75rem; }
+        .metric { border:1px solid var(--deck-line); border-radius:1.1rem; padding:1rem .75rem; background:rgba(255,255,255,.035); text-align:center; }
+        .metric strong { display:block; font-size:1.55rem; color:#fff; font-weight:900; }
+        .metric span { display:block; margin-top:.25rem; color:rgba(255,255,255,.48); font-size:.75rem; text-transform:uppercase; letter-spacing:.08em; }
+        .social-row { display:flex; justify-content:center; flex-wrap:wrap; gap:.7rem; margin:1.35rem 0 2rem; }
+        .social-row a { display:inline-flex; align-items:center; gap:.35rem; border:1px solid var(--deck-line); color:rgba(255,255,255,.72); border-radius:999px; padding:.72rem 1rem; background:rgba(255,255,255,.035); transition:.2s ease; font-weight:700; font-size:.86rem; }
+        .social-row a:hover { border-color:var(--deck-cyan); color:#fff; box-shadow:0 0 24px rgba(0,240,255,.12); }
+        .cta-row { display:grid; grid-template-columns: 1fr 1fr; gap:.75rem; margin:1rem 0 2.2rem; }
+        .cta-primary, .cta-secondary { display:flex; align-items:center; justify-content:center; gap:.5rem; min-height:3.35rem; border-radius:1rem; font-weight:900; transition:.2s ease; }
+        .cta-primary { background:var(--deck-pink); color:#111; }
+        .cta-secondary { background:rgba(255,255,255,.055); color:#fff; border:1px solid var(--deck-line); }
+        .cta-primary:hover, .cta-secondary:hover { transform: translateY(-2px); box-shadow:0 16px 40px rgba(233,133,170,.18); }
+        .section-card { margin: 2rem 0; border:1px solid var(--deck-line); border-radius:1.6rem; padding:1.35rem; background:rgba(0,0,0,.20); }
+        .section-heading { display:flex; align-items:end; justify-content:space-between; gap:1rem; margin-bottom:1rem; }
+        .section-heading h2 { font-size:1.35rem; font-weight:900; letter-spacing:-.03em; }
+        .section-heading p { color:rgba(255,255,255,.45); font-size:.82rem; }
+        .lens-grid { display:grid; grid-template-columns: repeat(3,1fr); gap:.8rem; }
+        .lens { border:1px solid rgba(255,255,255,.08); background:rgba(255,255,255,.035); border-radius:1.1rem; padding:1rem; }
+        .lens strong { display:block; color:#fff; margin-bottom:.45rem; }
+        .lens p { color:var(--deck-muted); font-size:.86rem; line-height:1.7; }
+        .filter-bar { display:flex; gap:.55rem; overflow-x:auto; padding:.35rem 0 1rem; scrollbar-width: thin; }
+        .filter-btn { white-space:nowrap; border:1px solid var(--deck-line); color:#d5d9d6; background:rgba(255,255,255,.03); border-radius:999px; padding:.72rem .95rem; font-weight:900; font-size:.84rem; transition:.18s ease; }
+        .filter-btn.active, .filter-btn:hover { color:#111; background:var(--deck-pink); border-color:var(--deck-pink); }
+        .filter-note { color:var(--deck-muted); font-size:.85rem; line-height:1.7; margin-bottom:1rem; }
+        .career-list { display:grid; gap:.85rem; }
+        .career-card { display:grid; grid-template-columns: 3.2rem 1fr 1.6rem; gap:1rem; align-items:center; border:1px solid var(--deck-line); background:rgba(4,11,8,.76); border-radius:1.2rem; padding:1rem; transition:.22s ease; }
+        .career-card:hover { transform:translateY(-2px); border-color:rgba(233,133,170,.45); background:rgba(10,22,18,.92); }
+        .career-card.is-hidden { display:none; }
+        .career-icon { width:3.2rem; height:3.2rem; border-radius:1rem; display:flex; align-items:center; justify-content:center; background:rgba(233,133,170,.12); color:var(--deck-pink); }
+        .career-topline { display:flex; flex-wrap:wrap; gap:.45rem .8rem; color:rgba(255,255,255,.42); font-size:.72rem; font-family:'Montserrat', sans-serif; letter-spacing:.06em; text-transform:uppercase; margin-bottom:.3rem; }
+        .career-body h3 { font-size:1rem; font-weight:900; color:#fff; line-height:1.45; }
+        .career-body p { color:var(--deck-muted); line-height:1.75; margin:.35rem 0 .65rem; font-size:.9rem; }
+        .career-chips { display:flex; flex-wrap:wrap; gap:.35rem; }
+        .career-chips span { background:rgba(233,133,170,.14); color:#f0a4bf; border-radius:999px; padding:.2rem .48rem; font-size:.68rem; font-weight:800; }
+        .career-arrow { color:rgba(255,255,255,.28); }
+        .clients { display:flex; flex-wrap:wrap; gap:.55rem; }
+        .clients span { color:rgba(255,255,255,.62); border:1px solid rgba(255,255,255,.08); border-radius:999px; padding:.42rem .72rem; background:rgba(255,255,255,.03); font-size:.78rem; }
+        .contact-panel { display:grid; grid-template-columns: .85fr 1.15fr; gap:1rem; align-items:start; }
+        .contact-copy { padding:1rem 0; }
+        .contact-copy h2 { font-size:clamp(2rem, 6vw, 3rem); line-height:1; font-weight:900; letter-spacing:-.06em; }
+        .contact-copy p { color:var(--deck-muted); line-height:1.8; margin-top:1rem; }
+        .contact-form-card { border:1px solid var(--deck-line); border-radius:1.2rem; background:rgba(0,0,0,.26); padding:1.1rem; }
+        .form-label { display:block; color:rgba(255,255,255,.50); font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; font-weight:800; margin-bottom:.45rem; }
+        .form-input { width:100%; background:#111; border:1px solid #333; border-radius:.8rem; padding:.88rem 1rem; color:#fff; outline:none; transition:.2s ease; }
+        .form-input:focus { border-color:var(--deck-cyan); box-shadow:0 0 0 3px rgba(0,240,255,.08); }
+        .footer-note { padding:3rem 0 2rem; text-align:center; color:rgba(255,255,255,.38); font-size:.82rem; }
+        @media (max-width: 760px) {
+            .cover-inner { grid-template-columns: 1fr; padding:2rem 1.25rem; }
+            .portrait-wrap { justify-self:start; width:142px; border-radius:1.5rem; }
+            .fact-row { grid-template-columns: 1fr; gap:.25rem; }
+            .metric-block, .lens-grid, .contact-panel, .cta-row { grid-template-columns:1fr; }
+            .career-card { grid-template-columns:2.6rem 1fr; }
+            .career-arrow { display:none; }
+        }
+    </style>
 </head>
 
-<body>
-    <!-- Canvas container for particle animation -->
+<body class="bio-page">
+    <a class="skip-link" href="#career-gateway">경력 목록으로 이동</a>
     <div id="canvas-container"></div>
 
-    <!-- Fixed Header -->
-    <!-- Standardized Navigation -->
-    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
-                    <a href="index.html"><img src="dexa_logo.svg" alt="DEXA Logo"
-                            class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all"></a>
-                </div>
-
-                <!-- Desktop Navigation -->
-                <div class="hidden md:flex space-x-10 items-center">
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors hover:drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]"
-                        href="index.html">HOME</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors hover:drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]"
-                        href="index.html#studio">STUDIO</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#39FF14] transition-colors hover:drop-shadow-[0_0_5px_rgba(57,255,20,0.5)]"
-                        href="index.html#solutions">SOLUTIONS</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] hover:text-[#00F0FF] transition-colors hover:drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]"
-                        href="about-deck.html">ABOUT</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors hover:drop-shadow-[0_0_5px_rgba(188,19,254,0.5)]"
-                        href="index.html#contact">CONTACT</a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-400 hover:text-[#00F0FF]">
-                        <span class="material-symbols-outlined">menu</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Navigation -->
-        <nav id="mobile-menu" class="md:hidden bg-black border-t border-white/10 hidden">
-            <div class="px-4 py-2 space-y-2">
-                <a href="index.html" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">HOME</a>
-                <a href="index.html#studio"
-                    class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">STUDIO</a>
-                <a href="index.html#solutions"
-                    class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">SOLUTIONS</a>
-                <a href="about-deck.html"
-                    class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">ABOUT</a>
-                <a href="index.html#contact"
-                    class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">CONTACT</a>
-            </div>
+    <header class="bio-shell topbar" aria-label="DEXA profile navigation">
+        <a href="index.html" class="brand-lockup" aria-label="DEXA home">
+            <img src="dexa_logo.svg" alt="DEXA Logo">
+            <span>DEXA</span>
+        </a>
+        <nav class="top-links" aria-label="빠른 링크">
+            <a class="round-link" href="index.html" aria-label="Home"><span class="material-symbols-outlined">home</span></a>
+            <a class="round-link" href="/blog/" aria-label="Blog"><span class="material-symbols-outlined">article</span></a>
+            <a class="round-link" href="mailto:deck@dexa.art" aria-label="Email"><span class="material-symbols-outlined">mail</span></a>
         </nav>
-    </nav>
+    </header>
 
-    <!-- Hero Section -->
-    <section id="hero"
-        class="section gradient-bg flex items-start md:items-center justify-center px-4 min-h-screen relative overflow-hidden pt-40 md:pt-0">
-        <div class="absolute inset-0 pointer-events-none">
-            <div
-                class="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-[#00F0FF] rounded-full blur-[150px] opacity-10 mix-blend-screen">
+    <main class="bio-shell">
+        <section class="cover-card" aria-label="DECK cover">
+            <div class="cover-grid"></div>
+            <div class="cover-inner">
+                <div>
+                    <div class="cover-kicker">AX · AI Education · Creative Technology</div>
+                    <div class="cover-title">AI ADOPTION<br>WORKFLOW AUTOMATION<br>CREATIVE SYSTEMS</div>
+                    <p class="cover-sub">AI 도입, 업무 자동화, 기업강의, 콘텐츠 제작 워크플로우를 현장에 맞게 설계합니다.</p>
+                </div>
+                <div class="portrait-wrap">
+                    <img src="deck-avatar.jpg" alt="육대근 DECK 프로필 사진">
+                </div>
             </div>
-            <div
-                class="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-[#BC13FE] rounded-full blur-[150px] opacity-10 mix-blend-screen">
-            </div>
-        </div>
-        <div class="content text-center max-w-4xl mx-auto relative z-10">
+        </section>
 
-            <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tighter text-white">
-                Where AI Meets Art, <span class="text-[#00F0FF]">DEXA</span>
-            </h1>
-            <p class="text-lg md:text-xl mb-12 max-w-3xl mx-auto text-gray-300 leading-relaxed">
-                기술의 언어를 예술의 경험으로 번역합니다.<br class="hidden md:block">
-                DEXA는 AI 기술과 미디어아트를 융합하여 상상을 현실로 구현하는 크리에이티브 그룹입니다.
+        <section class="profile-section" aria-labelledby="profile-title">
+            <h1 id="profile-title">육대근 <span class="opacity-70">DECK</span><span class="verified-dot">✓</span></h1>
+            <p class="role-line">Founder & Director, DEXA · AX Consultant · Generative AI Educator</p>
+            <p class="bio-copy">
+                육대근(DECK)은 DEXA의 Founder & Director이자 <strong>AX 전문가</strong>입니다.
+                기업과 공공기관의 AI 도입, 업무 자동화, 생성형 AI 교육, 콘텐츠 제작 워크플로우를 설계하고 실행합니다.
+                미디어아트와 이머시브 경험은 공간형 콘텐츠와 AI 교육·도구 개발을 연결하는 기반으로 활용합니다.
             </p>
 
-            <!-- Director Profile Section -->
-            <div class="mb-24 text-left grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="relative group">
-                    <div
-                        class="absolute inset-0 bg-gradient-to-r from-[#00F0FF] to-[#BC13FE] rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-500">
-                    </div>
-                    <!-- Placeholder for Director Image - Using existing avatar for now, or could use a placeholder -->
-                    <img src="deck-avatar.jpg" alt="Yuk Dae-geun Profile"
-                        class="relative w-full aspect-[4/5] object-cover rounded-2xl border-2 border-white/10 shadow-2xl grayscale hover:grayscale-0 transition duration-500">
-                </div>
+            <div class="fact-card" aria-label="대표 활동 하이라이트">
+                <div class="fact-row"><div class="fact-key">AX 전문가</div><div class="fact-value">조직의 업무 흐름을 분석해 AI 도입, 자동화, 교육, 프로토타입으로 연결합니다.</div></div>
+                <div class="fact-row"><div class="fact-key">기업강의</div><div class="fact-value">임원·실무자 대상 생성형 AI, ChatGPT x Python, 업무 적용형 워크숍을 진행합니다.</div></div>
+                <div class="fact-row"><div class="fact-key">콘텐츠</div><div class="fact-value">이미지·영상 생성, OSMU, 아나모픽/공간형 콘텐츠 제작 흐름을 다룹니다.</div></div>
+                <div class="fact-row"><div class="fact-key">Contact</div><div class="fact-value"><a class="text-[#e985aa] font-bold" href="mailto:deck@dexa.art">deck@dexa.art</a> · Incheon, South Korea</div></div>
+            </div>
+
+            <div class="metric-block" aria-label="공개 신뢰도 지표">
+                <div class="metric"><strong>30+</strong><span>Partners</span></div>
+                <div class="metric"><strong>1,000+</strong><span>Trainees</span></div>
+                <div class="metric"><strong>95%</strong><span>Satisfaction</span></div>
+            </div>
+
+            <div class="social-row" aria-label="주요 링크">
+                <a href="https://dexa.art"><span class="material-symbols-outlined text-sm">language</span>dexa.art</a>
+                <a href="/blog/"><span class="material-symbols-outlined text-sm">article</span>DEXA Blog</a>
+                <a href="mailto:deck@dexa.art"><span class="material-symbols-outlined text-sm">mail</span>Email</a>
+            </div>
+
+            <div class="cta-row" aria-label="주요 문의 액션">
+                <a href="#contact" class="cta-primary" data-inquiry-type="강의 문의"><span class="material-symbols-outlined">school</span>강의 문의</a>
+                <a href="#contact" class="cta-secondary" data-inquiry-type="협업 문의"><span class="material-symbols-outlined">handshake</span>협업 문의</a>
+            </div>
+        </section>
+
+        <section class="section-card" aria-labelledby="lenses-title">
+            <div class="section-heading">
                 <div>
-                    <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Yuk Dae-geun (DECK)</h2>
-                    <h3 class="text-xl text-[#00F0FF] font-mono mb-6 tracking-widest">Founder & Director, DEXA</h3>
-                    <p class="text-lg text-gray-300 italic mb-8 border-l-4 border-[#BC13FE] pl-4">
-                        "Architect of Experience on the Deck"
-                    </p>
-                    <p class="text-gray-400 mb-8 leading-relaxed">
-                        Deck(육대근)은 기술적 데이터와 예술적 감성을 융합하는 Media Art & AI Director입니다.
-                        Google.org, 삼성전자, 루이비통 등 글로벌 브랜드와의 협업부터 국책 기관의 AI 자문까지,
-                        기술과 예술, 비즈니스의 경계를 넘나들며 독보적인 솔루션을 제시해왔습니다.
-                    </p>
-
-                    <div class="space-y-4">
-                        <h4
-                            class="text-sm font-bold text-white uppercase tracking-widest border-b border-white/10 pb-2 mb-4">
-                            Career History</h4>
-                        <ul class="space-y-2 text-sm text-gray-400">
-                            <li><span class="text-[#00F0FF] mr-2">●</span> Korea Creative Content Agency (KOCCA) | New
-                                Contents Academy Facilitator</li>
-                            <li><span class="text-[#00F0FF] mr-2">●</span> Google.org AI Opportunity Fund: Asia-Pacific
-                                | Trainer</li>
-                            <li><span class="text-[#00F0FF] mr-2">●</span> Gwangju Metropolitan Council | AI Testbed
-                                Special Committee Policy Advisor</li>
-                            <li><span class="text-[#00F0FF] mr-2">●</span> Incheon Metropolitan City | Incheon Citizen
-                                Professor (Arts & Culture)</li>
-                            <li><span class="text-gray-600 mr-2">●</span> (Ex) Gunpo Cultural Foundation | Gunpo City
-                                Festival General Director</li>
-                            <li><span class="text-gray-600 mr-2">●</span> (Ex) DNMD | Creative Director, DX Lab</li>
-                        </ul>
-                    </div>
+                    <h2 id="lenses-title">세 가지 강조 관점</h2>
+                    <p>같은 이력을 목적에 맞게 빠르게 읽을 수 있습니다.</p>
                 </div>
             </div>
+            <div class="lens-grid">
+                <div class="lens"><strong>AX 컨설팅·개발</strong><p>AI 도입, 업무 자동화, RFP/보고서 자동화, Python/LLM 프로토타입.</p></div>
+                <div class="lens"><strong>기업강의</strong><p>임원·실무자 워크숍, ChatGPT x Python, 생성형 AI 실습형 교육.</p></div>
+                <div class="lens"><strong>콘텐츠 강조</strong><p>이미지·영상 생성, OSMU, 미디어아트와 공간형 콘텐츠 제작 흐름.</p></div>
+            </div>
+        </section>
 
-            <!-- Philosophy Section -->
-            <div class="mb-24 text-left">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-white mb-16">
-                    <span class="text-gradient">Philosophy</span>
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                    <div
-                        class="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-[#00F0FF] transition-colors group">
-                        <div
-                            class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-[#00F0FF] mb-4">
-                            D</div>
-                        <h3 class="text-lg font-bold text-white mb-2">Deck's Perspective</h3>
-                        <p class="text-sm text-gray-400">작가 Deck만의 독창적인 기술 해석과 연출</p>
-                    </div>
-                    <div
-                        class="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-[#BC13FE] transition-colors group">
-                        <div
-                            class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-[#BC13FE] mb-4">
-                            E</div>
-                        <h3 class="text-lg font-bold text-white mb-2">Emotional Tech</h3>
-                        <p class="text-sm text-gray-400">차가운 기술을 통해 전달하는 뜨거운 감동</p>
-                    </div>
-                    <div
-                        class="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-[#00F0FF] transition-colors group">
-                        <div
-                            class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-[#00F0FF] mb-4">
-                            X</div>
-                        <h3 class="text-lg font-bold text-white mb-2">X-over Thinking</h3>
-                        <p class="text-sm text-gray-400">장르, 매체, 온/오프라인의 경계를 허무는 융합적 사고</p>
-                    </div>
-                    <div
-                        class="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-[#BC13FE] transition-colors group">
-                        <div
-                            class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-[#BC13FE] mb-4">
-                            A</div>
-                        <h3 class="text-lg font-bold text-white mb-2">Advanced Output</h3>
-                        <p class="text-sm text-gray-400">실무와 현장에 즉시 적용 가능한 최상의 퀄리티</p>
-                    </div>
+        <section id="career-gateway" class="section-card" aria-labelledby="career-title">
+            <div class="section-heading">
+                <div>
+                    <h2 id="career-title">Career Gateway</h2>
+                    <p>전체 69개 이력 · source: 육대근 Career Master DB</p>
                 </div>
             </div>
-
-
+            <p class="filter-note">기본 화면에서는 전체 이력이 모두 보입니다. 버튼을 누르면 목적별로 관련 이력만 추려 볼 수 있습니다.</p>
+            <div class="filter-bar" role="group" aria-label="경력 필터">
+                <button class="filter-btn active" type="button" data-filter="all">전체 경력 <span>69</span></button>
+                <button class="filter-btn" type="button" data-filter="ax">AX 컨설팅·개발 <span>35</span></button>
+                <button class="filter-btn" type="button" data-filter="training">기업강의 강조 <span>53</span></button>
+                <button class="filter-btn" type="button" data-filter="content">콘텐츠 강조 <span>42</span></button>
+            </div>
+            <div id="career-count" class="filter-note" aria-live="polite">전체 69개 이력을 표시 중입니다.</div>
+            <div class="career-list">
+                <article class="career-card" data-groups="content" data-record-id="career-jandari-festa-2012-2018">
+    <div class="career-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Career</span><span>기획실장 / 디렉터, 글로벌 쇼케이스 운영 · 2012-10 ~ 2018-10</span>
         </div>
-    </section>
-
-    <!-- Key Projects Section -->
-    <section id="projects-history" class="section gradient-bg px-4 py-20 bg-black/50" style="min-height: auto;">
-        <div class="content max-w-6xl mx-auto">
-            <h2 class="text-4xl font-bold mb-16 text-center">
-                <span class="text-gradient">Selected Works</span>
-            </h2>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <!-- Media Art & Creative Direction -->
-                <div class="relative group h-full">
-                    <div
-                        class="absolute -inset-1 bg-gradient-to-r from-[#00F0FF] to-[#BC13FE] rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000">
-                    </div>
-                    <div class="relative h-full bg-[#0A0A0A] p-8 rounded-lg border border-white/10 flex flex-col">
-                        <div class="flex items-center mb-8">
-                            <span class="material-symbols-outlined text-[#00F0FF] text-3xl mr-4">palette</span>
-                            <h3 class="text-2xl font-bold text-white">Media Art & Creative Direction</h3>
-                        </div>
-                        <ul class="space-y-4 flex-grow">
-                            <li class="flex items-start group/item">
-                                <span class="text-[#00F0FF] mr-3 mt-1.5 text-xs">▶</span>
-                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Digital Media
-                                    Art Festival 'PRECTXE' | General Production</span>
-                            </li>
-                            <li class="flex items-start group/item">
-                                <span class="text-[#00F0FF] mr-3 mt-1.5 text-xs">▶</span>
-                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Bucheon Art
-                                    Bunker B39 | General Operations (Waste Incinerator Cultural Regeneration)</span>
-                            </li>
-                            <li class="flex items-start group/item">
-                                <span class="text-[#00F0FF] mr-3 mt-1.5 text-xs">▶</span>
-                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Music Showcase
-                                    Festival 'Zandari Festa' | General Production</span>
-                            </li>
-                            <li class="flex items-start group/item">
-                                <span class="text-[#00F0FF] mr-3 mt-1.5 text-xs">▶</span>
-                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Overseas Music
-                                    Festival Exchange | SXSW(USA), Milano Expo(Italy), Liverpool Sound City(UK),
-                                    V-ROX(Russia)</span>
-                            </li>
-                            <li class="flex items-start group/item">
-                                <span class="text-[#00F0FF] mr-3 mt-1.5 text-xs">▶</span>
-                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Netflix Movie
-                                    'Kill Boksoon' | Location Operation</span>
-                            </li>
-                            <li class="flex items-start group/item">
-                                <span class="text-[#00F0FF] mr-3 mt-1.5 text-xs">▶</span>
-                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Louis Vuitton
-                                    x BTS 2021 F/W Collection | Location Operation</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-
-                <!-- AI Solutions & Development -->
-                <div class="relative group h-full">
-                    <div
-                        class="absolute -inset-1 bg-gradient-to-r from-[#BC13FE] to-[#00F0FF] rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000">
-                    </div>
-                    <div class="relative h-full bg-[#0A0A0A] p-8 rounded-lg border border-white/10 flex flex-col">
-                        <div class="flex items-center mb-8">
-                            <span class="material-symbols-outlined text-[#BC13FE] text-3xl mr-4">smart_toy</span>
-                            <h3 class="text-2xl font-bold text-white">AI Solutions & Development</h3>
-                        </div>
-                        <ul class="space-y-4 flex-grow">
-                            <li class="flex items-start group/item">
-                                <span class="text-[#BC13FE] mr-3 mt-1.5 text-xs">▶</span>
-                                <span class="text-gray-300 group-hover/item:text-white transition-colors">RFP-based
-                                    Proposal Generation | AI Solution Development</span>
-                            </li>
-                            <li class="flex items-start group/item">
-                                <span class="text-[#BC13FE] mr-3 mt-1.5 text-xs">▶</span>
-                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Computer
-                                    Vision-based Crowd Monitoring | Safety Solution Development</span>
-                            </li>
-                            <li class="flex items-start group/item">
-                                <span class="text-[#BC13FE] mr-3 mt-1.5 text-xs">▶</span>
-                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Press Release
-                                    & AAR Automation | Business Efficiency Solution</span>
-                            </li>
-                            <li class="flex items-start group/item">
-                                <span class="text-[#BC13FE] mr-3 mt-1.5 text-xs">▶</span>
-                                <span class="text-gray-300 group-hover/item:text-white transition-colors">Interactive AI
-                                    Experience Programs | Development & UX Design</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <h3>잔다리페스타 조직위원회 · 기획실장 / 디렉터, 글로벌 쇼케이스 운영</h3>
+        <p>국내 최초 글로벌 쇼케이스 음악 페스티벌 잔다리페스타에서 기획실장 및 디렉터 역할을 수행하며 축제 운영과 국제 교류 경험을 축적했다. 2013~2018년에는 SXSW, Milano Expo, Liverpool Sound City, V-ROX 등 해외 음악 페스티벌 교류 맥락을 포함한 글로벌 쇼케이스 운영을 함께 수행했다.</p>
+        <div class="career-chips"><span>Career</span><span>culture-planning</span><span>media-art-immersive</span><span>문화기획</span><span>글로벌교류</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="career-guro-cultural-foundation-2019">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Career</span><span>PM · 2019-03 ~ 2019-10</span>
         </div>
-    </section>
-
-    <!-- Trust & Connect Section - Trust logos move here -->
-    <section id="trust" class="section bg-black px-4 py-16 border-b border-white/5" style="min-height: auto;">
-        <div class="content max-w-6xl mx-auto">
-            <p class="text-sm text-center text-gray-500 font-mono uppercase tracking-widest mb-12">Trusted Partners</p>
-            <div class="flex flex-wrap justify-center gap-x-8 gap-y-4 text-sm md:text-base opacity-70 mb-16 px-4">
-                <span class="text-gray-400 hover:text-white transition-colors">Google.org</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">Samsung Electronics</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">SK Telecom</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">SK Innovation</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">SBS A&T</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">KOCCA</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">Ministry of SMEs and Startups</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">Ministry of Environment</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">BIFAN</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">Gwangju City Council</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">Supreme Prosecutors' Office</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">Incheon Customs</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">Gangwon Province</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">Gyeonggi HRD</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">Hoengseong-gun Office</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">Gimpo-si</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">Peyongteak-si</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">GPTers.org</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">AITY</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">AI x SEED</span>
-                <span class="text-gray-600">/</span>
-                <span class="text-gray-400 hover:text-white transition-colors">And many more...</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Switched to 3 columns to look better -->
-                <div class="text-center group">
-                    <div
-                        class="text-4xl font-bold text-[#00F0FF] mb-2 font-mono group-hover:scale-110 transition-transform">
-                        30+</div>
-                    <p class="text-gray-400 text-xs uppercase tracking-widest">Global Partners</p>
-                </div>
-                <div class="text-center group">
-                    <div
-                        class="text-4xl font-bold text-[#BC13FE] mb-2 font-mono group-hover:scale-110 transition-transform">
-                        1,000+</div>
-                    <p class="text-gray-400 text-xs uppercase tracking-widest">Trainees</p>
-                </div>
-                <div class="text-center group">
-                    <div
-                        class="text-4xl font-bold text-[#00F0FF] mb-2 font-mono group-hover:scale-110 transition-transform">
-                        95%</div>
-                    <p class="text-gray-400 text-xs uppercase tracking-widest">Satisfaction</p>
-                </div>
-            </div>
-
-            <div class="mt-20 text-center">
-                <h3 class="text-2xl font-bold text-white mb-8">Ready to visualize your imagination?</h3>
-                <a href="#contact"
-                    class="inline-block px-10 py-4 bg-white hover:bg-[#00F0FF] text-black font-bold uppercase tracking-widest transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)]">
-                    Contact Us
-                </a>
-            </div>
+        <h3>구로문화재단 · PM</h3>
+        <p>구로문화재단에서 문화예술 프로젝트 PM으로 활동했다.</p>
+        <div class="career-chips"><span>Career</span><span>culture-planning</span><span>public-policy</span><span>문화기획</span><span>공공기관</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="content" data-record-id="career-noridan-2019-2020">
+    <div class="career-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Career</span><span>기획운영과장 · 2019-10 ~ 2020-12</span>
         </div>
-    </section>
+        <h3>사회적기업 노리단 · 기획운영과장</h3>
+        <p>사회적기업 노리단에서 기획운영과장으로 공연·문화예술 프로젝트 운영 경험을 쌓았다.</p>
+        <div class="career-chips"><span>Career</span><span>culture-planning</span><span>media-art-immersive</span><span>문화기획</span><span>사회적기업</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="content" data-record-id="career-prectxe-2019-2020">
+    <div class="career-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Career</span><span>런칭 / 총괄 제작 · 2019 ~ 2020</span>
+        </div>
+        <h3>PRECTXE · 런칭 / 총괄 제작</h3>
+        <p>미디어아트 종합 페스티벌 PRECTXE를 런칭하고 총괄 제작 경험을 축적했다.</p>
+        <div class="career-chips"><span>Career</span><span>media-art-immersive</span><span>culture-planning</span><span>미디어아트</span><span>문화기획</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="content" data-record-id="career-b39-2021-2022">
+    <div class="career-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Career</span><span>매니저 / 총괄 운영 및 프로그램 기획 · 2021-03 ~ 2022-06</span>
+        </div>
+        <h3>부천문화재단 부천아트벙커B39 · 매니저 / 총괄 운영 및 프로그램 기획</h3>
+        <p>폐소각장 문화재생 공간 부천아트벙커B39에서 공간 운영과 프로그램 기획을 수행했다.</p>
+        <div class="career-chips"><span>Career</span><span>media-art-immersive</span><span>culture-planning</span><span>미디어아트</span><span>공간운영</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="content" data-record-id="career-gunpo-cultural-foundation-2022">
+    <div class="career-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Career</span><span>예술진흥팀 차장 / 축제 총괄 디렉터 맥락 · 2022-06 ~ 2022-10</span>
+        </div>
+        <h3>군포문화재단 · 예술진흥팀 차장 / 축제 총괄 디렉터 맥락</h3>
+        <p>군포문화재단 예술진흥팀 차장으로 활동하며 지역 문화예술 및 축제 운영 경험을 확장했다.</p>
+        <div class="career-chips"><span>Career</span><span>culture-planning</span><span>public-policy</span><span>문화기획</span><span>공공기관</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training content" data-record-id="career-dinomad-dx-lab-2022-2024">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Career</span><span>크리에이티브 디렉터 · 2022-10 ~ 2024-11</span>
+        </div>
+        <h3>디노마드 DX 연구소 · 크리에이티브 디렉터</h3>
+        <p>DX 연구소 크리에이티브 디렉터로서 생성형 AI 교육, 자동화 솔루션, 콘텐츠 제작 워크플로우를 기획·운영했다.</p>
+        <div class="career-chips"><span>Career</span><span>ax-dev</span><span>corporate-training</span><span>AX</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="career-kocca-nca3-2025-current">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Career</span><span>이머시브 공간/공연 모듈 담임 퍼실리테이터 · 2025-09 ~ 현재</span>
+        </div>
+        <h3>한국콘텐츠진흥원 NCA 장기과정 3기 · 이머시브 공간/공연 모듈 담임 퍼실리테이터</h3>
+        <p>한국콘텐츠진흥원 NCA 장기과정 3기에서 이머시브 공간/공연 모듈 담임 퍼실리테이터로 프로젝트 멘토링과 실습형 교육을 수행한다.</p>
+        <div class="career-chips"><span>Career</span><span>media-art-immersive</span><span>corporate-training</span><span>미디어아트</span><span>이머시브</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training content" data-record-id="career-dexa-founder-director-current">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Career</span><span>Founder &amp; Director · 현재</span>
+        </div>
+        <h3>DEXA · Founder &amp; Director</h3>
+        <p>DEXA Founder &amp; Director로서 AI 교육, AX 컨설팅, 미디어아트, 콘텐츠 자동화 프로젝트를 통합 운영한다.</p>
+        <div class="career-chips"><span>Career</span><span>ax-dev</span><span>ai-content-media</span><span>AX</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training" data-record-id="role-google-ai-opportunity-fund-apac">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Role</span><span>Trainer</span>
+        </div>
+        <h3>Google.org AI Opportunity Fund: Asia-Pacific · Trainer</h3>
+        <p>Google.org AI Opportunity Fund: Asia-Pacific Trainer로 AI 교육 확산 프로그램에 참여했다.</p>
+        <div class="career-chips"><span>Role</span><span>corporate-training</span><span>public-policy</span><span>AI교육</span><span>기업강의</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training" data-record-id="role-incheon-citizen-professor">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Role</span><span>인천 시민교수</span>
+        </div>
+        <h3>인천광역시 · 인천 시민교수</h3>
+        <p>인천 시민교수로 활동하며 지역 시민 대상 문화예술/AI 교육 맥락을 확장했다.</p>
+        <div class="career-chips"><span>Role</span><span>public-policy</span><span>corporate-training</span><span>공공기관</span><span>문화예술교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax" data-record-id="role-gwangju-ai-special-committee">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Role</span><span>전문자문위원</span>
+        </div>
+        <h3>광주광역시의회 인공지능실증도시 특별위원회 · 전문자문위원</h3>
+        <p>광주광역시의회 인공지능실증도시 전문자문위원으로 AI 정책·실증도시 맥락에 참여했다.</p>
+        <div class="career-chips"><span>Role</span><span>public-policy</span><span>ax-dev</span><span>정책자문</span><span>공공기관</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="role-gpters-partner-operator">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Role</span><span>파트너 및 운영진 · 2024 ~ 현재</span>
+        </div>
+        <h3>GPTers · 파트너 및 운영진</h3>
+        <p>2024년 GPTers 10기부터 23기까지 AI 부트캠프와 스터디 운영에 지속적으로 참여했다.</p>
+        <div class="career-chips"><span>Role</span><span>corporate-training</span><span>ai-content-media</span><span>커뮤니티</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training" data-record-id="role-human-intelligence-conference-speaker">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Role</span><span>연사</span>
+        </div>
+        <h3>AI시대의 인간지능 컨퍼런스 · 연사</h3>
+        <p>AI시대의 인간지능 컨퍼런스 연사로 참여했다.</p>
+        <div class="career-chips"><span>Role</span><span>corporate-training</span><span>one-page-core</span><span>AI교육</span><span>컨퍼런스</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training" data-record-id="role-career-transfer-conference-speaker">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Role</span><span>연사</span>
+        </div>
+        <h3>커리어전 컨퍼런스 꿈도 환승이 되나요 · 연사</h3>
+        <p>커리어전 컨퍼런스 ‘꿈도 환승이 되나요’ 연사로 참여했다.</p>
+        <div class="career-chips"><span>Role</span><span>corporate-training</span><span>one-page-core</span><span>AI교육</span><span>커리어</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training content" data-record-id="project-rfp-proposal-ai-solution">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Project</span><span>기획·개발</span>
+        </div>
+        <h3>RFP 기반 제안서 초안 제작 AI 솔루션</h3>
+        <p>RFP 분석과 제안서 초안 생성을 지원하는 AI 솔루션을 기획·개발했다.</p>
+        <div class="career-chips"><span>Project</span><span>ax-dev</span><span>corporate-training</span><span>AX</span><span>AI개발</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax content" data-record-id="project-cv-crowd-monitoring">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Project</span><span>기획·개발</span>
+        </div>
+        <h3>컴퓨터 비전 기반 군중 모니터링 솔루션</h3>
+        <p>컴퓨터 비전 기반 군중 모니터링 솔루션을 통해 현장 안전과 운영 효율을 지원하는 AI 적용 사례를 개발했다.</p>
+        <div class="career-chips"><span>Project</span><span>ax-dev</span><span>media-art-immersive</span><span>AI개발</span><span>컴퓨터비전</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training content" data-record-id="project-press-release-aar-automation">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Project</span><span>기획·개발</span>
+        </div>
+        <h3>보도자료 및 사후 보고서 자동화 솔루션</h3>
+        <p>보도자료와 사후 보고서 작성 흐름을 자동화하는 AI 기반 업무 효율화 솔루션을 기획했다.</p>
+        <div class="career-chips"><span>Project</span><span>ax-dev</span><span>ai-content-media</span><span>AX</span><span>콘텐츠자동화</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training content" data-record-id="project-ai-experience-programs">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Project</span><span>기획·운영</span>
+        </div>
+        <h3>AI 체험 프로그램 개발 및 운영</h3>
+        <p>다양한 AI 체험 프로그램을 개발·운영하며 교육과 체험형 콘텐츠를 연결했다.</p>
+        <div class="career-chips"><span>Project</span><span>ai-content-media</span><span>corporate-training</span><span>AI교육</span><span>콘텐츠자동화</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="project-ai-media-art-experience">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Project</span><span>기획·제작</span>
+        </div>
+        <h3>AI x 미디어아트 기반 체험형 콘텐츠</h3>
+        <p>AI와 미디어아트를 결합한 체험형 콘텐츠를 기획하며 기술을 감각적 경험으로 전환하는 프로젝트를 수행했다.</p>
+        <div class="career-chips"><span>Project</span><span>media-art-immersive</span><span>ai-content-media</span><span>미디어아트</span><span>이미지영상</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="project-immersive-module-facilitation">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Project</span><span>담임 퍼실리테이터 / 멘토 · 2025-09 ~ 현재</span>
+        </div>
+        <h3>이머시브 공간/공연 모듈 퍼실리테이션</h3>
+        <p>이머시브 공간/공연 프로젝트의 기획, 제작, 발표 과정을 퍼실리테이션하고 팀별 프로젝트 멘토링을 수행한다.</p>
+        <div class="career-chips"><span>Project</span><span>media-art-immersive</span><span>corporate-training</span><span>이머시브</span><span>미디어아트</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="content" data-record-id="project-b39-space-operation">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Project</span><span>매니저 · 2021-03 ~ 2022-06</span>
+        </div>
+        <h3>부천아트벙커B39 총괄 운영 및 프로그램 기획</h3>
+        <p>폐산업시설 기반 문화재생 공간인 부천아트벙커B39의 운영과 프로그램 기획 경험을 보유한다.</p>
+        <div class="career-chips"><span>Project</span><span>media-art-immersive</span><span>culture-planning</span><span>공간운영</span><span>미디어아트</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="content" data-record-id="project-louis-vuitton-bts-2021fw">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Project</span><span>공간/로케이션 운영</span>
+        </div>
+        <h3>Louis Vuitton x BTS 2021 F/W Collection 온라인 패션쇼</h3>
+        <p>글로벌 브랜드 온라인 패션쇼 프로젝트에서 공간/로케이션 운영 경험을 수행했다.</p>
+        <div class="career-chips"><span>Project</span><span>culture-planning</span><span>media-art-immersive</span><span>공간운영</span><span>브랜드프로젝트</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="content" data-record-id="project-kill-boksoon-location">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Project</span><span>공간/로케이션 운영</span>
+        </div>
+        <h3>Netflix 영화 길복순</h3>
+        <p>영화 제작 현장의 공간/로케이션 운영 경험을 보유한다.</p>
+        <div class="career-chips"><span>Project</span><span>culture-planning</span><span>media-art-immersive</span><span>공간운영</span><span>영상제작지원</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training content" data-record-id="project-osmu-ai-news-content-automation">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Project</span><span>기획·교안·자동화 워크플로우 설계 · 2026-06 ~ 2026-07</span>
+        </div>
+        <h3>AI 뉴스 원소스멀티유즈 콘텐츠 자동화 강의/시연</h3>
+        <p>하나의 리서치 요약본을 블로그, 카드뉴스, 숏폼, 영상 생성 흐름으로 확장하는 OSMU 콘텐츠 자동화 워크플로우를 설계하고 공개 교안으로 발행했다.</p>
+        <div class="career-chips"><span>Project</span><span>ai-content-media</span><span>corporate-training</span><span>콘텐츠자동화</span><span>이미지영상</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="project-akm-agent-knowledge-management">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Project</span><span>기획·설계·개발 · 2026</span>
+        </div>
+        <h3>AKM Agent Knowledge Management</h3>
+        <p>AI 에이전트가 원본, 지식, 맥락, 운영 메모리, 절차, 실행 기록, 평가를 분리해 저장하고 검증·학습하도록 돕는 AKM 지식 운영체계를 기획·설계했다.</p>
+        <div class="career-chips"><span>Project</span><span>ax-dev</span><span>corporate-training</span><span>AX</span><span>AI개발</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax content" data-record-id="project-ringsplat-360-gaussian-splat">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Project</span><span>기획·개발 · 2026</span>
+        </div>
+        <h3>ringsplat</h3>
+        <p>Apple Silicon 환경에서 360도 파노라마 이미지를 여러 시점으로 분할하고 SHARP 추론 결과를 병합해 단일 3D Gaussian Splat `.ply`로 만드는 링스플랫 변환 파이프라인을 개발했다.</p>
+        <div class="career-chips"><span>Project</span><span>ax-dev</span><span>media-art-immersive</span><span>AI개발</span><span>3DGS</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax content" data-record-id="project-anamorphic-sim">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Project</span><span>기획·개발 · 2026</span>
+        </div>
+        <h3>Anamorphic Sim</h3>
+        <p>평면 LED와 ㄱ자 LED 설치를 위한 아나모픽 콘텐츠 변환 엔진과 검증 시뮬레이터를 개발해 sweet spot 기준 재투영, 전체/세그먼트별 픽셀맵, 영상 export, AI 원본 콘텐츠 가이드를 지원했다.</p>
+        <div class="career-chips"><span>Project</span><span>media-art-immersive</span><span>ai-content-media</span><span>아나모픽</span><span>LED</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax content" data-record-id="project-curved-projection-tool">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Project</span><span>기획·개발 · 2026</span>
+        </div>
+        <h3>곡면 프로젝션 도구</h3>
+        <p>여러 대의 프로젝터를 하나의 논리 캔버스로 묶고 평면·원통형 곡면·부분돔·풀돔 투사면에 맞춰 와핑, 엣지 블렌딩, 마스킹, 색 보정, 프리셋 운영을 제공하는 곡면 프로젝션 도구를 기획·개발했다.</p>
+        <div class="career-chips"><span>Project</span><span>media-art-immersive</span><span>ax-dev</span><span>프로젝션매핑</span><span>곡면투사</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="lecture-lg-ax-camp">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Corporate / Consulting</span><span>강사진</span>
+        </div>
+        <h3>LG · 그룹 임원진 AX CAMP</h3>
+        <p>LG 그룹 임원진 AX CAMP 강사진으로 참여해 AI 전환 교육을 수행했다.</p>
+        <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>ax-dev</span><span>기업강의</span><span>AX</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="lecture-samsung-smartbizexpo-2025">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Corporate / Consulting</span><span>강연 · 2025</span>
+        </div>
+        <h3>삼성전자 · 중소벤처기업부 · 2025 스마트비즈엑스포</h3>
+        <p>삼성전자·중소벤처기업부 2025 스마트비즈엑스포에서 AI/비즈니스 전환 맥락의 강연을 수행했다.</p>
+        <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>public-policy</span><span>기업강의</span><span>AX</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="lecture-sk-innovation-genai-camp-2">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Corporate / Consulting</span><span>코치</span>
+        </div>
+        <h3>SK Innovation · 생성 AI 개발캠프 2기</h3>
+        <p>SK Innovation 생성 AI 개발캠프 2기에서 코치로 참여했다.</p>
+        <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>ax-dev</span><span>기업강의</span><span>AI개발</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="lecture-skt-adot-judge">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Corporate / Consulting</span><span>심사위원</span>
+        </div>
+        <h3>SKT · A.dot 얼리어닷터</h3>
+        <p>SKT A.dot 얼리어닷터 프로그램 심사위원으로 참여했다.</p>
+        <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>ax-dev</span><span>기업강의</span><span>AI서비스</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="lecture-skt-genai-camp">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Corporate / Consulting</span><span>코치</span>
+        </div>
+        <h3>SKT · 생성 AI CAMP</h3>
+        <p>SKT 생성 AI CAMP 코치로 참여했다.</p>
+        <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>ax-dev</span><span>기업강의</span><span>생성형AI</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="lecture-ecobit-ai-practical">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Corporate / Consulting</span><span>강사</span>
+        </div>
+        <h3>에코비트 · AI 활용 실무 교육</h3>
+        <p>에코비트 임직원 대상 AI 활용 실무 교육을 진행했다.</p>
+        <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>ax-dev</span><span>기업강의</span><span>AX</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="lecture-hyundai-autoever-chatgpt-python">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Corporate / Consulting</span><span>강사</span>
+        </div>
+        <h3>현대오토에버 · ChatGPT를 이용한 Python 교육</h3>
+        <p>현대오토에버에서 ChatGPT를 이용한 Python 교육을 진행했다.</p>
+        <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>ax-dev</span><span>기업강의</span><span>AI개발</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="consulting-expertbrand-association">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Corporate / Consulting</span><span>컨설턴트</span>
+        </div>
+        <h3>엑스퍼트브랜드 협회 · AX/브랜드 컨설팅</h3>
+        <p>엑스퍼트브랜드 협회 컨설팅을 수행했다.</p>
+        <div class="career-chips"><span>Corporate / Consulting</span><span>ax-dev</span><span>corporate-training</span><span>컨설팅</span><span>AX</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="lecture-fertiline-corporate-training">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Corporate / Consulting</span><span>강사</span>
+        </div>
+        <h3>퍼틸레인 · 기업 교육</h3>
+        <p>퍼틸레인 기업 교육을 진행했다.</p>
+        <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>ax-dev</span><span>기업강의</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="content" data-record-id="public-ministry-environment-sns-advisor">
+    <div class="career-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Public Sector</span><span>자문위원</span>
+        </div>
+        <h3>환경부 · SNS 운영 자문</h3>
+        <p>환경부 SNS 운영 자문위원으로 공공 커뮤니케이션 운영 자문에 참여했다.</p>
+        <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>ai-content-media</span><span>공공기관</span><span>정책자문</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax" data-record-id="public-gwangju-ai-special-committee-advisor">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Public Sector</span><span>전문자문위원</span>
+        </div>
+        <h3>광주광역시의회 인공지능실증도시 특별위원회 · 인공지능실증도시 전문자문위원</h3>
+        <p>광주광역시의회 인공지능실증도시 전문자문위원으로 AI 정책·실증도시 맥락에 참여했다.</p>
+        <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>ax-dev</span><span>공공기관</span><span>정책자문</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="public-hoengseong-chatgpt">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Public Sector</span><span>강사</span>
+        </div>
+        <h3>횡성군청 · 전 직원 대상 ChatGPT 활용 강의</h3>
+        <p>횡성군청 전 직원 대상 ChatGPT 활용 강의를 진행했다.</p>
+        <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>corporate-training</span><span>공공기관</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="public-gyeonggi-hrd-ai-avengers">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Public Sector</span><span>강사</span>
+        </div>
+        <h3>경기도인재개발원 · AI 어벤저스 캠프 1, 2기</h3>
+        <p>경기도인재개발원 AI 어벤저스 캠프 1·2기 강의에 참여했다.</p>
+        <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>corporate-training</span><span>공공기관</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="public-gyeonggi-agritech-chatbot">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Public Sector</span><span>강사</span>
+        </div>
+        <h3>경기도 농업기술원 · 나만의 업무비서 챗봇 만들기</h3>
+        <p>경기도 농업기술원에서 업무비서 챗봇 만들기 강의를 진행했다.</p>
+        <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>ax-dev</span><span>공공기관</span><span>AI개발</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="public-gangwon-ai-avengers">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Public Sector</span><span>특강 강사</span>
+        </div>
+        <h3>강원도청 · AI 어벤저스 발대식 특강</h3>
+        <p>강원도청 AI 어벤저스 발대식 특강을 수행했다.</p>
+        <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>corporate-training</span><span>공공기관</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training content" data-record-id="public-korea-post-sns-ai">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Public Sector</span><span>강사</span>
+        </div>
+        <h3>우정사업본부 · SNS 콘텐츠 제작 AI 활용 교육</h3>
+        <p>우정사업본부 대상 SNS 콘텐츠 제작 AI 활용 교육을 진행했다.</p>
+        <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>ai-content-media</span><span>공공기관</span><span>콘텐츠자동화</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="public-komir-ai-special-lecture">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Public Sector</span><span>특강 강사</span>
+        </div>
+        <h3>한국광해광업공단 · 원주시 공공기관 감사 회의 AI 활용 특강</h3>
+        <p>한국광해광업공단 맥락의 원주시 공공기관 감사 회의에서 AI 활용 특강을 수행했다.</p>
+        <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>corporate-training</span><span>공공기관</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="public-supreme-prosecutors-chatgpt-python">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Public Sector</span><span>강사</span>
+        </div>
+        <h3>대검찰청 · ChatGPT를 이용한 Python 교육</h3>
+        <p>대검찰청에서 ChatGPT를 이용한 Python 교육을 진행했다.</p>
+        <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>corporate-training</span><span>공공기관</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="public-incheon-customs-chatgpt-python">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Public Sector</span><span>강사</span>
+        </div>
+        <h3>인천세관 · ChatGPT를 이용한 Python 교육</h3>
+        <p>인천세관에서 ChatGPT를 이용한 Python 교육을 진행했다.</p>
+        <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>corporate-training</span><span>공공기관</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="edu-kocca-nca3-facilitator">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Education</span><span>담임 퍼실리테이터 · 2025-09 ~ 현재</span>
+        </div>
+        <h3>한국콘텐츠진흥원 NCA 3기 · 이머시브 공간/공연 모듈</h3>
+        <p>NCA 3기 이머시브 공간/공연 모듈 담임 퍼실리테이터로 실습형 프로젝트 교육과 팀 멘토링을 수행한다.</p>
+        <div class="career-chips"><span>Education</span><span>media-art-immersive</span><span>corporate-training</span><span>AI교육</span><span>미디어아트</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="edu-kocca-nca2-art-tech">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Education</span><span>강사</span>
+        </div>
+        <h3>한국콘텐츠진흥원 NCA 2기 · 아트&amp;테크 과정</h3>
+        <p>NCA 2기 아트&amp;테크 과정 강사로 참여했다.</p>
+        <div class="career-chips"><span>Education</span><span>media-art-immersive</span><span>corporate-training</span><span>AI교육</span><span>미디어아트</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training content" data-record-id="edu-sbs-ant-media-art">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Education</span><span>AI/Python 강사</span>
+        </div>
+        <h3>SBS A&amp;T · 기술융합 미디어아트 과정</h3>
+        <p>SBS A&amp;T 기술융합 미디어아트 과정에서 AI와 Python 교육을 진행했다.</p>
+        <div class="career-chips"><span>Education</span><span>corporate-training</span><span>media-art-immersive</span><span>AI교육</span><span>Python</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training" data-record-id="edu-hanyang-women-genai">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Education</span><span>컨설턴트/특강 강사</span>
+        </div>
+        <h3>한양여대 · 생성형 AI 도입 컨설팅 및 특강</h3>
+        <p>한양여대 생성형 AI 도입 컨설팅 및 특강을 수행했다.</p>
+        <div class="career-chips"><span>Education</span><span>corporate-training</span><span>public-policy</span><span>교육기관</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="edu-hanyang-women-ai-design">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Education</span><span>특강 강사</span>
+        </div>
+        <h3>한양여대 · AI 디자인 특강</h3>
+        <p>한양여대 AI 디자인 특강을 진행했다.</p>
+        <div class="career-chips"><span>Education</span><span>ai-content-media</span><span>corporate-training</span><span>교육기관</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="edu-hanyang-women-ai-shortform">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Education</span><span>특강 강사</span>
+        </div>
+        <h3>한양여대 · AI 숏폼 제작 특강</h3>
+        <p>한양여대 AI 숏폼 제작 특강을 진행했다.</p>
+        <div class="career-chips"><span>Education</span><span>ai-content-media</span><span>corporate-training</span><span>교육기관</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training" data-record-id="edu-jeonghwa-faculty-workshop">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Education</span><span>워크숍 강사</span>
+        </div>
+        <h3>정화예대 · 교수 포럼 생성 AI 워크숍</h3>
+        <p>정화예대 교수 포럼에서 생성 AI 워크숍을 진행했다.</p>
+        <div class="career-chips"><span>Education</span><span>corporate-training</span><span>public-policy</span><span>교육기관</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="edu-jeonghwa-student-ai-design-online">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Education</span><span>온라인 강의 강사</span>
+        </div>
+        <h3>정화예대 · AI를 이용한 디자인 온라인 강의</h3>
+        <p>정화예대 학생 대상 AI를 이용한 디자인 온라인 강의를 진행했다.</p>
+        <div class="career-chips"><span>Education</span><span>ai-content-media</span><span>corporate-training</span><span>교육기관</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training content" data-record-id="edu-daejeon-univ-ai-pr">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Education</span><span>특강 강사</span>
+        </div>
+        <h3>대전대·서울대·연세대 등 5개 대학 · AI 마케팅 콘텐츠 강의</h3>
+        <p>대전대, 서울대, 연세대 등 5개 대학 대상 AI 마케팅 콘텐츠 강의를 수행했다.</p>
+        <div class="career-chips"><span>Education</span><span>ai-content-media</span><span>corporate-training</span><span>교육기관</span><span>콘텐츠자동화</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training" data-record-id="community-google-snu-parent-ai">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Community</span><span>강사</span>
+        </div>
+        <h3>Google.org AI Opportunity Fund / 서울대AI연구소 / 서울시교육청 · 학부모 AI 교육</h3>
+        <p>Google.org AI Opportunity Fund 연계 학부모 AI 교육 강사로 참여했다.</p>
+        <div class="career-chips"><span>Community</span><span>corporate-training</span><span>public-policy</span><span>AI교육</span><span>공공교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training" data-record-id="community-google-career-jump">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Community</span><span>강사</span>
+        </div>
+        <h3>Google.org AI Opportunity Fund · 커리어 점프 취준생 AI 교육</h3>
+        <p>Google.org AI Opportunity Fund 커리어 점프 취준생 AI 교육 강사로 참여했다.</p>
+        <div class="career-chips"><span>Community</span><span>corporate-training</span><span>public-policy</span><span>AI교육</span><span>커리어교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="community-gpters-bootcamp-study-10-23">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Community</span><span>파트너/스터디장/운영진 · 2024 ~ 현재</span>
+        </div>
+        <h3>GPTers · AI 부트캠프/스터디 10기~23기</h3>
+        <p>2024년 GPTers 10기부터 23기까지 AI 부트캠프와 스터디 운영에 지속적으로 참여했다.</p>
+        <div class="career-chips"><span>Community</span><span>corporate-training</span><span>ai-content-media</span><span>커뮤니티</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="community-likelion-ai-designer">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Community</span><span>강사</span>
+        </div>
+        <h3>멋쟁이사자처럼 · AI 디자이너 과정</h3>
+        <p>멋쟁이사자처럼 AI 디자이너 과정 강사로 참여했다.</p>
+        <div class="career-chips"><span>Community</span><span>ai-content-media</span><span>corporate-training</span><span>AI교육</span><span>콘텐츠제작</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="community-crowdworks-ai-designer">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Community</span><span>강사</span>
+        </div>
+        <h3>크라우드웍스 · AI 디자이너 과정</h3>
+        <p>크라우드웍스 AI 디자이너 과정 강사로 참여했다.</p>
+        <div class="career-chips"><span>Community</span><span>ai-content-media</span><span>corporate-training</span><span>AI교육</span><span>콘텐츠제작</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training content" data-record-id="community-aity-ecommerce-intro">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Community</span><span>강사</span>
+        </div>
+        <h3>AITY · 이커머스 입문과정</h3>
+        <p>AITY 이커머스 입문과정 강의를 진행했다.</p>
+        <div class="career-chips"><span>Community</span><span>ai-content-media</span><span>corporate-training</span><span>AI교육</span><span>이커머스</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="ax training content" data-record-id="community-aity-genai-expert">
+    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Community</span><span>강사</span>
+        </div>
+        <h3>AITY · 생성형 AI 전문가과정</h3>
+        <p>AITY 생성형 AI 전문가과정 강의를 진행했다.</p>
+        <div class="career-chips"><span>Community</span><span>ai-content-media</span><span>corporate-training</span><span>AI교육</span><span>생성형AI</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="culture-gwangju-icca-ai-immersive">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Culture / Content</span><span>강사</span>
+        </div>
+        <h3>광주정보문화산업진흥원 · AI x 실감콘텐츠 강의</h3>
+        <p>광주정보문화산업진흥원 AI x 실감콘텐츠 강의를 진행했다.</p>
+        <div class="career-chips"><span>Culture / Content</span><span>media-art-immersive</span><span>ai-content-media</span><span>미디어아트</span><span>실감콘텐츠</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="culture-gwangju-film-ai-video">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Culture / Content</span><span>강사</span>
+        </div>
+        <h3>광주영상진흥원 · AI 영상콘텐츠 제작 강의</h3>
+        <p>광주영상진흥원에서 AI 영상콘텐츠 제작 강의를 수행했다.</p>
+        <div class="career-chips"><span>Culture / Content</span><span>ai-content-media</span><span>media-art-immersive</span><span>이미지영상</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="content" data-record-id="culture-gimpo-pyeongtaek-video-production">
+    <div class="career-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Culture / Content</span><span>제작/기획 역할 보강 필요</span>
+        </div>
+        <h3>김포시 / 평택시 · 영상 제작 프로젝트</h3>
+        <p>김포시·평택시 영상 제작 건의 클라이언트 프로젝트를 수행했다.</p>
+        <div class="career-chips"><span>Culture / Content</span><span>ai-content-media</span><span>public-policy</span><span>영상제작</span><span>공공기관</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="culture-bifan-univ">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Culture / Content</span><span>강사/멘토</span>
+        </div>
+        <h3>부천국제판타스틱영화제 BIFAN · 환상영화학교 UNIV 과정</h3>
+        <p>부천국제판타스틱영화제 BIFAN 환상영화학교 UNIV 과정에서 강사/멘토 역할을 수행했다.</p>
+        <div class="career-chips"><span>Culture / Content</span><span>ai-content-media</span><span>media-art-immersive</span><span>영화</span><span>콘텐츠</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+<article class="career-card" data-groups="training content" data-record-id="culture-guro-ai-arts">
+    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-body">
+        <div class="career-topline">
+            <span>Culture / Content</span><span>강사</span>
+        </div>
+        <h3>구로문화재단 · AI로 만나는 문화예술</h3>
+        <p>구로문화재단에서 ‘AI로 만나는 문화예술’ 강의를 진행했다.</p>
+        <div class="career-chips"><span>Culture / Content</span><span>public-policy</span><span>corporate-training</span><span>문화예술교육</span><span>AI교육</span></div>
+    </div>
+    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+</article>
+            </div>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section bg-black px-4 py-12 border-t border-white/10">
-        <div class="content max-w-6xl mx-auto">
-            <h2 class="text-4xl md:text-5xl font-black mb-16 text-center tracking-tighter text-white">
-                GET IN <span class="text-[#00F0FF]">TOUCH</span>
-            </h2>
-            <div class="grid grid-cols-1 md:grid-cols-12 gap-12">
-                <div class="md:col-span-4 space-y-8">
-                    <div>
-                        <h3 class="text-xl text-white font-bold mb-2 uppercase tracking-widest">Inquiries</h3>
-                        <p class="text-gray-400 font-mono text-sm">AI training, consulting, and project collaboration.
-                        </p>
-                    </div>
-                    <div>
-                        <div class="text-gray-400 text-sm mb-2"><span
-                                class="material-symbols-outlined text-xs mr-2 align-middle">location_on</span>
-                            Incheon, South Korea</div>
-                        <!-- <div class="text-gray-400 text-sm"><span
-                                class="material-symbols-outlined text-xs mr-2 align-middle">mail</span>
-                            hello@adxworklab.com</div> -->
-                    </div>
+        <section class="section-card" aria-labelledby="clients-title">
+            <div class="section-heading">
+                <div>
+                    <h2 id="clients-title">Selected Clients / Partners</h2>
+                    <p>Career Master DB에서 공개 가능한 후보를 추린 목록입니다.</p>
                 </div>
-                <div class="md:col-span-8 p-8 bg-[#0A0A0A] border border-white/10">
-                    <!-- Success Message -->
-                    <div id="success-message"
-                        class="hidden mb-6 p-4 bg-[#00F0FF]/10 border border-[#00F0FF] rounded-sm">
-                        <div class="flex items-center">
-                            <span class="material-symbols-outlined text-[#00F0FF] mr-2">check_circle</span>
-                            <p class="text-[#00F0FF] font-medium font-mono text-sm uppercase tracking-wider">Message
-                                Sent Successfully</p>
-                        </div>
+            </div>
+            <div class="clients"><span>Google.org</span><span>LG</span><span>Samsung Electronics</span><span>SK Telecom</span><span>SK Innovation</span><span>Hyundai AutoEver</span><span>Ecobit</span><span>ExpertBrand Association</span><span>Fertiline</span><span>KOCCA</span><span>SBS A&amp;T</span><span>BIFAN</span><span>Gwangju City Council</span><span>Supreme Prosecutors&#x27; Office</span><span>Incheon Customs</span><span>Gyeonggi HRD</span><span>Gangwon Province</span><span>Hoengseong-gun Office</span><span>GPTers</span><span>AITY</span><span>Hanyang Women&#x27;s University</span><span>Jeonghwa Arts University</span><span>Gwangju ICCA</span><span>Gwangju Film</span></div>
+        </section>
+
+        <section id="contact" class="section-card" aria-labelledby="contact-title">
+            <div class="contact-panel">
+                <div class="contact-copy">
+                    <h2 id="contact-title">강의와 협업을<br><span class="text-[#00F0FF]">문의하세요.</span></h2>
+                    <p>AI 도입 컨설팅, 기업강의, 콘텐츠 제작, 공간형 미디어 프로젝트까지 필요한 맥락을 남겨주시면 확인 후 회신드립니다.</p>
+                    <p class="text-sm text-gray-500 mt-4"><span class="material-symbols-outlined text-sm align-middle text-[#00F0FF]">location_on</span> Incheon & Seoul · Republic of Korea</p>
+                </div>
+                <div class="contact-form-card">
+                    <div id="success-message" class="hidden mb-6 p-4 bg-[#00F0FF]/10 border border-[#00F0FF] rounded-sm">
+                        <div class="flex items-center"><span class="material-symbols-outlined text-[#00F0FF] mr-2">check_circle</span><p class="text-[#00F0FF] font-medium font-mono text-sm uppercase tracking-wider">Message Sent Successfully</p></div>
                         <p class="text-gray-400 text-xs mt-2 font-mono">We will respond within 24 hours.</p>
                     </div>
-
-                    <!-- Error Message -->
                     <div id="error-message" class="hidden mb-6 p-4 bg-red-900/20 border border-red-500 rounded-sm">
-                        <div class="flex items-center">
-                            <span class="material-symbols-outlined text-red-500 mr-2">error</span>
-                            <p class="text-red-500 font-medium font-mono text-sm uppercase tracking-wider">Transmission
-                                Failed</p>
-                        </div>
+                        <div class="flex items-center"><span class="material-symbols-outlined text-red-500 mr-2">error</span><p class="text-red-500 font-medium font-mono text-sm uppercase tracking-wider">Transmission Failed</p></div>
                         <p class="text-red-400 text-xs mt-2 font-mono">Please try again later.</p>
                     </div>
-
-                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST"
-                        onsubmit="return submitContactForm(event)" class="space-y-6">
+                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="return submitContactForm(event)" class="space-y-5">
                         <input type="hidden" name="access_key" value="26f85e2a-19ba-4dd7-93bf-ccfeed97d009">
-                        <input type="hidden" name="subject" value="ADX Worklab New Inquiry">
-                        <input type="hidden" name="from_name" value="ADX Worklab Website">
-                        <!-- Optional spam protection -->
+                        <input type="hidden" name="subject" value="DEXA About DECK Inquiry">
+                        <input type="hidden" name="from_name" value="DEXA Website">
                         <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-
-                        <div class="grid grid-cols-2 gap-6">
-                            <div class="group">
-                                <label
-                                    class="block text-xs font-mono text-gray-500 mb-2 uppercase tracking-wider group-focus-within:text-[#00F0FF]">Name</label>
-                                <input id="name" name="name" required
-                                    class="w-full bg-[#0A0A0A] border border-[#333] rounded-none px-4 py-3 text-sm focus:ring-0 focus:border-[#00F0FF] text-white placeholder-gray-700 transition-colors"
-                                    type="text" />
+                        <div>
+                            <label for="inquiry-type" class="form-label">Inquiry Type</label>
+                            <select id="inquiry-type" name="inquiry_type" class="form-input">
+                                <option value="강의 문의">강의 문의</option>
+                                <option value="협업 문의">협업 문의</option>
+                                <option value="AX 컨설팅 문의">AX 컨설팅 문의</option>
+                                <option value="콘텐츠 제작 문의">콘텐츠 제작 문의</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="name" class="form-label">Name</label>
+                                <input id="name" name="name" required class="form-input" type="text" autocomplete="name" />
                             </div>
-                            <div class="group">
-                                <label
-                                    class="block text-xs font-mono text-gray-500 mb-2 uppercase tracking-wider group-focus-within:text-[#00F0FF]">Email</label>
-                                <input id="email" name="email" required
-                                    class="w-full bg-[#0A0A0A] border border-[#333] rounded-none px-4 py-3 text-sm focus:ring-0 focus:border-[#00F0FF] text-white placeholder-gray-700 transition-colors"
-                                    type="email" />
+                            <div>
+                                <label for="email" class="form-label">Email</label>
+                                <input id="email" name="email" required class="form-input" type="email" autocomplete="email" />
                             </div>
                         </div>
-                        <div class="group">
-                            <label
-                                class="block text-xs font-mono text-gray-500 mb-2 uppercase tracking-wider group-focus-within:text-[#00F0FF]">Message</label>
-                            <textarea id="message" name="message" required
-                                class="w-full bg-[#0A0A0A] border border-[#333] rounded-none px-4 py-3 text-sm focus:ring-0 focus:border-[#00F0FF] text-white placeholder-gray-700 transition-colors"
-                                rows="4"></textarea>
+                        <div>
+                            <label for="organization" class="form-label">Organization</label>
+                            <input id="organization" name="organization" class="form-input" type="text" autocomplete="organization" />
                         </div>
-                        <div class="pt-2">
-                            <button id="submit-btn"
-                                class="w-full bg-white hover:bg-[#00F0FF] text-black font-bold py-4 px-8 uppercase tracking-widest text-xs transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] flex items-center justify-center gap-2"
-                                type="submit">
-                                <span id="submit-text">Send Message</span>
-                                <svg id="loading-spinner" class="hidden animate-spin h-4 w-4 text-black"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                        stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor"
-                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                    </path>
-                                </svg>
-                            </button>
+                        <div>
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" required class="form-input" rows="5" placeholder="문의 목적, 일정, 대상, 필요한 산출물이나 협업 범위를 적어주세요."></textarea>
                         </div>
+                        <button id="submit-btn" class="w-full bg-white hover:bg-[#00F0FF] text-black font-bold py-4 px-8 rounded-xl uppercase tracking-widest text-xs transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] flex items-center justify-center gap-2" type="submit">
+                            <span id="submit-text">메시지 전송</span>
+                            <svg id="loading-spinner" class="hidden animate-spin h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
                     </form>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="bg-black text-white pt-20 pb-10 border-t border-[#1a1a1a]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-16">
-                <div class="flex items-center gap-3">
-                    <img src="dexa_logo.svg" alt="DEXA" class="h-24 w-auto">
-                </div>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-[#1a1a1a] pt-12">
-                <div>
-                    <h4 class="text-xs font-bold text-white uppercase tracking-widest mb-4">Sitemap</h4>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li><a class="hover:text-[#00F0FF] transition-colors" href="index.html">Home</a></li>
-                        <li><a class="hover:text-[#00F0FF] transition-colors" href="index.html#studio">Studio</a></li>
-                        <li><a class="hover:text-[#00F0FF] transition-colors" href="index.html#solutions">Solutions</a>
-                        </li>
-                        <li><a class="hover:text-[#00F0FF] transition-colors" href="index.html#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold text-white uppercase tracking-widest mb-4">Legal</h4>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <!-- Placeholders -->
-                    </ul>
-                </div>
-                <div class="col-span-2 md:text-right">
-                    <p class="text-[10px] text-gray-700 font-mono">
-                        Where AI Meets Art.<br />
-                        © 2025 DEXA. All rights reserved.<br />
-                        (formerly ADX Worklab)
-                    </p>
-                </div>
-            </div>
-        </div>
+    <footer class="bio-shell footer-note">
+        <p>© 2026 DEXA · Where AI Meets Art · Last updated: 2026-07-05</p>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        (function () {
+            const cards = Array.from(document.querySelectorAll('.career-card'));
+            const buttons = Array.from(document.querySelectorAll('.filter-btn'));
+            const countEl = document.getElementById('career-count');
+            const labels = { all: '전체', ax: 'AX 컨설팅·개발', training: '기업강의 강조', content: '콘텐츠 강조' };
+
+            function applyCareerFilter(filter) {
+                let visible = 0;
+                cards.forEach(card => {
+                    const groups = (card.dataset.groups || '').split(/\s+/);
+                    const show = filter === 'all' || groups.includes(filter);
+                    card.classList.toggle('is-hidden', !show);
+                    if (show) visible += 1;
+                });
+                buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.filter === filter));
+                if (countEl) countEl.textContent = `${labels[filter] || '선택한'} 이력 ${visible}개를 표시 중입니다.`;
+            }
+
+            buttons.forEach(btn => btn.addEventListener('click', () => applyCareerFilter(btn.dataset.filter)));
+
+            window.setInquiryType = function (type) {
+                const select = document.getElementById('inquiry-type');
+                const message = document.getElementById('message');
+                if (select) select.value = type;
+                if (message && !message.value) {
+                    message.placeholder = type === '강의 문의'
+                        ? '강의 대상, 인원, 일정, 원하는 주제와 실습 수준을 적어주세요.'
+                        : '협업 목적, 일정, 예산 범위, 필요한 역할과 산출물을 적어주세요.';
+                }
+            };
+
+            document.querySelectorAll('[data-inquiry-type]').forEach(link => {
+                link.addEventListener('click', () => window.setInquiryType(link.dataset.inquiryType));
+            });
+        })();
+    </script>
 </body>
 
 </html>
