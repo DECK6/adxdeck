@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="2026년 7월 5일 OSMU 콘텐츠 자동화 현장 수업 녹음 내용을 바탕으로 정리한 수강생용 복습 노트." />
+  <meta name="author" content="DEXA" />
+  <meta property="og:title" content="OSMU 콘텐츠 자동화 수업 정리 노트" />
+  <meta property="og:description" content="녹음 기반 수업 복습 노트: 현장 진행, 참가자 질문, 도구 세팅, 결과물 피드백, 스킬 수정법." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://dexa.art/osmu/fin.html" />
+  <link rel="canonical" href="https://dexa.art/osmu/fin.html" />
+  <title>OSMU 콘텐츠 자동화 수업 정리 노트 | DEXA</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg2: #10172a;
+      --panel: rgba(255,255,255,.075);
+      --panel2: rgba(255,255,255,.12);
+      --line: rgba(255,255,255,.15);
+      --line2: rgba(255,255,255,.25);
+      --text: #f6f7fb;
+      --muted: #b8c0d9;
+      --muted2: #8f9ab9;
+      --accent: #74f0c9;
+      --accent2: #7aa7ff;
+      --accent3: #ffc86b;
+      --pink: #ff77a9;
+      --shadow: 0 24px 80px rgba(0,0,0,.35);
+      --radius: 24px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(116,240,201,.22), transparent 32rem),
+        radial-gradient(circle at 85% 8%, rgba(122,167,255,.2), transparent 30rem),
+        radial-gradient(circle at 55% 45%, rgba(255,119,169,.09), transparent 28rem),
+        linear-gradient(135deg, #090d19 0%, #10172a 48%, #07111b 100%);
+      line-height: 1.74;
+      word-break: keep-all;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    code, pre { font-family: var(--mono); }
+    .skip { position:absolute; left:-999px; top:0; background:#fff; color:#000; padding:8px 12px; z-index:9999; }
+    .skip:focus { left:12px; top:12px; }
+    .app { display:grid; grid-template-columns: 310px minmax(0, 1fr); min-height:100vh; }
+    .sidebar {
+      position: sticky; top:0; height:100vh; overflow:auto;
+      padding: 24px 18px;
+      border-right:1px solid var(--line);
+      background: rgba(6,10,20,.72);
+      backdrop-filter: blur(18px);
+    }
+    .brand { display:flex; gap:12px; align-items:center; margin-bottom:22px; }
+    .logo {
+      width:44px; height:44px; border-radius:15px;
+      background: conic-gradient(from 210deg, var(--accent), var(--accent2), var(--pink), var(--accent));
+      box-shadow: 0 0 32px rgba(116,240,201,.25);
+      position:relative;
+      flex:0 0 auto;
+    }
+    .logo::after { content:""; position:absolute; inset:9px; border-radius:10px; background:rgba(11,16,32,.78); border:1px solid rgba(255,255,255,.18); }
+    .brand h1 { font-size:15px; line-height:1.25; margin:0; letter-spacing:-.02em; }
+    .brand small { color:var(--muted2); display:block; margin-top:3px; }
+    .toc-title { font-size:12px; color:var(--muted2); text-transform:uppercase; letter-spacing:.12em; margin:20px 10px 8px; }
+    .toc a { display:block; color:var(--muted); padding:8px 10px; border-radius:12px; font-size:14px; text-decoration:none; }
+    .toc a:hover { color:var(--text); background:rgba(255,255,255,.09); }
+    .toc a.toc-sub { padding-left:22px; font-size:13px; color:var(--muted2); }
+    .side-note { margin-top:20px; padding:14px; border:1px solid var(--line); border-radius:18px; background:rgba(255,255,255,.055); color:var(--muted); font-size:13px; }
+    main { min-width:0; }
+    .wrap { max-width:1120px; margin:0 auto; padding:34px 34px 80px; }
+    .hero {
+      position:relative; overflow:hidden;
+      border:1px solid var(--line);
+      border-radius:34px;
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.045)),
+        radial-gradient(circle at 80% 15%, rgba(116,240,201,.26), transparent 20rem),
+        radial-gradient(circle at 20% 80%, rgba(122,167,255,.2), transparent 18rem);
+      padding:44px;
+      box-shadow:var(--shadow);
+      margin-bottom:34px;
+    }
+    .hero::before {
+      content:""; position:absolute; inset:-1px;
+      background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size:34px 34px;
+      mask-image: linear-gradient(120deg, transparent 0%, black 25%, black 75%, transparent 100%);
+      pointer-events:none;
+    }
+    .hero > * { position:relative; }
+    .kicker { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:20px; }
+    .pill {
+      display:inline-flex; align-items:center; gap:8px;
+      border:1px solid var(--line2); background:rgba(255,255,255,.08); color:var(--text);
+      border-radius:999px; padding:7px 11px; font-size:13px; line-height:1.2;
+    }
+    .pill.green { border-color:rgba(116,240,201,.42); color:var(--accent); background:rgba(116,240,201,.09); }
+    .pill.blue { border-color:rgba(122,167,255,.42); color:#cfe0ff; background:rgba(122,167,255,.1); }
+    .pill.yellow { border-color:rgba(255,200,107,.45); color:#ffe0aa; background:rgba(255,200,107,.1); }
+    .hero h2 { font-size:clamp(34px, 6vw, 68px); line-height:1; letter-spacing:-.065em; margin:0 0 22px; max-width:960px; }
+    .hero .lead { font-size:clamp(18px, 2vw, 23px); color:#e9eefc; max-width:900px; margin:0 0 26px; }
+    .meta-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:26px; }
+    .metric { border:1px solid var(--line); border-radius:18px; background:rgba(6,10,20,.42); padding:16px; backdrop-filter:blur(12px); }
+    .metric strong { display:block; font-size:22px; color:var(--accent); line-height:1.1; }
+    .metric span { color:var(--muted); font-size:13px; }
+    article {
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.06);
+      box-shadow:0 16px 50px rgba(0,0,0,.18);
+      padding:34px;
+    }
+    article h1 { display:none; }
+    article h2 {
+      margin:48px 0 16px; font-size:clamp(24px, 3.4vw, 38px); line-height:1.14; letter-spacing:-.04em;
+      padding-top:6px;
+    }
+    article h2:first-of-type { margin-top:0; }
+    article h3 { margin:30px 0 10px; font-size:22px; letter-spacing:-.025em; color:#eaf0ff; }
+    article p { margin:12px 0; color:#e8edfb; }
+    article ul, article ol { color:#d5dced; padding-left:1.35rem; }
+    article li { margin:5px 0; }
+    article strong { color:#fff; }
+    .quote-card {
+      margin:20px 0; padding:18px 20px; border-left:4px solid var(--accent);
+      border-radius:18px; background:rgba(116,240,201,.09); color:#d6fff4;
+    }
+    .quote-card p { color:#d6fff4; margin:0; font-size:1.08rem; }
+    .table-wrap { overflow-x:auto; margin:18px 0; border:1px solid var(--line); border-radius:18px; background:rgba(0,0,0,.16); }
+    .content-table { width:100%; border-collapse:collapse; min-width:620px; }
+    .content-table th, .content-table td { border-bottom:1px solid var(--line); padding:12px 12px; vertical-align:top; text-align:left; }
+    .content-table th { color:#dce5ff; font-size:13px; background:rgba(255,255,255,.075); white-space:nowrap; }
+    .content-table tr:last-child td { border-bottom:0; }
+    .code-block {
+      overflow:auto; padding:16px; border:1px solid rgba(116,240,201,.25); border-radius:16px;
+      background:rgba(0,0,0,.32); color:#d8fff5; line-height:1.62; font-size:14px;
+    }
+    p code, li code { padding:.14rem .38rem; border-radius:8px; background:rgba(255,255,255,.1); color:#d8fff5; }
+    .footer { margin:28px 0 0; color:var(--muted2); font-size:13px; text-align:center; }
+    .toplink { display:inline-flex; margin-top:8px; color:var(--accent); }
+    @media (max-width: 980px) {
+      .app { display:block; }
+      .sidebar { position:relative; height:auto; border-right:0; border-bottom:1px solid var(--line); }
+      .toc { max-height:240px; overflow:auto; }
+      .wrap { padding:24px 18px 56px; }
+      .hero { padding:30px 24px; border-radius:26px; }
+      article { padding:24px 18px; }
+      .meta-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    }
+    @media (max-width: 560px) {
+      body { word-break:normal; }
+      .meta-grid { grid-template-columns:1fr; }
+      .hero h2 { letter-spacing:-.05em; }
+      .content-table { min-width:560px; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#content">본문으로 바로가기</a>
+  <div class="app">
+    <aside class="sidebar" aria-label="페이지 목차">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>OSMU 수업 정리 노트</h1>
+          <small>Recording-based recap · DEXA</small>
+        </div>
+      </div>
+      <div class="toc-title">Contents</div>
+      <nav class="toc">
+        <a class="" href="#1-수업의-핵심-메시지">1. 수업의 핵심 메시지</a>
+<a class="" href="#2-현장에서-실제로-진행된-흐름">2. 현장에서 실제로 진행된 흐름</a>
+<a class="" href="#3-참가자들이-실제로-가져온-고민">3. 참가자들이 실제로 가져온 고민</a>
+<a class="" href="#4-도구별로-기억할-역할">4. 도구별로 기억할 역할</a>
+<a class="" href="#5-설치와-환경-세팅에서-실제로-막힌-지점">5. 설치와 환경 세팅에서 실제로 막힌 지점</a>
+<a class="toc-sub" href="#자주-막힌-문제">자주 막힌 문제</a>
+<a class="toc-sub" href="#수업-중-나온-해결법">수업 중 나온 해결법</a>
+<a class="" href="#6-리서치-자동화에서-기억할-점">6. 리서치 자동화에서 기억할 점</a>
+<a class="toc-sub" href="#핵심-포인트">핵심 포인트</a>
+<a class="toc-sub" href="#수업-중-나온-지시-방식">수업 중 나온 지시 방식</a>
+<a class="" href="#7-블로그-자동화에서-기억할-점">7. 블로그 자동화에서 기억할 점</a>
+<a class="toc-sub" href="#수업에서-나온-블로그-포인트">수업에서 나온 블로그 포인트</a>
+<a class="toc-sub" href="#예시를-줄-때-꼭-붙일-말">예시를 줄 때 꼭 붙일 말</a>
+<a class="" href="#8-skill-md를-저장하고-다듬는-방식">8. Skill MD를 저장하고 다듬는 방식</a>
+<a class="toc-sub" href="#수업-중-나온-스킬-수정-예시">수업 중 나온 스킬 수정 예시</a>
+<a class="" href="#9-pixverse와-영상-생성에서-나온-현실적인-이야기">9. Pixverse와 영상 생성에서 나온 현실적인 이야기</a>
+<a class="toc-sub" href="#기억할-점">기억할 점</a>
+<a class="toc-sub" href="#pixverse를-쓰게-하고-싶을-때">Pixverse를 쓰게 하고 싶을 때</a>
+<a class="" href="#10-결과물이-이상할-때-고치는-법">10. 결과물이 이상할 때 고치는 법</a>
+<a class="" href="#11-숏폼과-긴-영상-제작-팁">11. 숏폼과 긴 영상 제작 팁</a>
+<a class="toc-sub" href="#짧은-숏폼">짧은 숏폼</a>
+<a class="toc-sub" href="#일부-장면만-다시-만들기">일부 장면만 다시 만들기</a>
+<a class="toc-sub" href="#긴-영상과-교육-영상">긴 영상과 교육 영상</a>
+<a class="" href="#12-tts와-목소리">12. TTS와 목소리</a>
+<a class="" href="#13-수업-후-혼자-다시-해볼-순서">13. 수업 후 혼자 다시 해볼 순서</a>
+<a class="" href="#14-수업에서-바로-가져갈-수-있는-말들">14. 수업에서 바로 가져갈 수 있는 말들</a>
+<a class="" href="#15-조심해야-할-점">15. 조심해야 할 점</a>
+<a class="" href="#16-마지막-정리">16. 마지막 정리</a>
+      </nav>
+      <div class="side-note">
+        이 페이지는 수강생 복습용으로, 현장 녹음 기반 Markdown 배포본을 HTML로 변환한 것입니다.
+      </div>
+    </aside>
+    <main id="content">
+      <div class="wrap">
+        <header class="hero">
+          <div class="kicker">
+            <span class="pill green">녹음 기반</span>
+            <span class="pill blue">수강생 복습 노트</span>
+            <span class="pill yellow">OSMU 콘텐츠 자동화</span>
+          </div>
+          <h2>OSMU 콘텐츠 자동화 수업 정리 노트</h2>
+          <p class="lead">현장 수업에서 실제로 나온 설명, 실습, 질문, 오류, 해결법, 결과물 피드백을 중심으로 정리한 HTML 배포본입니다.</p>
+          <div class="meta-grid" aria-label="문서 정보">
+            <div class="metric"><strong>Recording</strong><span>2026.07.05 현장 수업</span></div>
+            <div class="metric"><strong>324</strong><span>Markdown lines reflected</span></div>
+            <div class="metric"><strong>28</strong><span>본문 섹션/소제목</span></div>
+            <div class="metric"><strong>8217bd9af306</strong><span>Source checksum</span></div>
+          </div>
+        </header>
+        <article class="markdown-body">
+          <h1 id="osmu-콘텐츠-자동화-수업-정리-노트">OSMU 콘텐츠 자동화 수업 정리 노트</h1>
+<p>이 노트는 <strong>2026년 7월 5일 현장 수업 녹음 내용만 바탕으로</strong> 정리한 복습용 노트입니다. 미리 짜인 진행표가 아니라, 수업 중 실제로 나온 설명, 실습, 질문, 오류, 해결법, 결과물 피드백을 중심으로 정리했습니다.</p>
+<p>개인 이름과 민감한 업무 맥락은 공유용으로 일반화했습니다.</p>
+<h2 id="1-수업의-핵심-메시지">1. 수업의 핵심 메시지</h2>
+<p>수업에서 반복해서 강조된 핵심은 다음입니다.</p>
+<blockquote class="quote-card">
+<p>OSMU는 하나의 큰 자동화 버튼이 아니라, <strong>리서치 → 글감 → 블로그 → 카드뉴스 → 숏폼</strong>을 단계별로 나누고 다시 연결하는 방식입니다.</p>
+</blockquote>
+<p>처음부터 모든 것을 한 번에 자동화하려고 하면 막히기 쉽습니다. 수업에서는 아래처럼 나누어 생각하라고 설명했습니다.</p>
+<ul>
+<li>블로그 자동화만 따로 할 수 있습니다.</li>
+<li>카드뉴스 이미지만 따로 자동화할 수 있습니다.</li>
+<li>영상 자동화만 따로 떼어 연습할 수 있습니다.</li>
+<li>이미 가지고 있는 파일이나 글감이 있으면 그것을 원천 자료로 삼을 수 있습니다.</li>
+<li>아직 아이템이 없으면 트렌드 리서치부터 시작할 수 있습니다.</li>
+</ul>
+<p>수업 후 혼자 다시 할 때도 “전체 자동화”보다 <strong>내가 지금 어느 단계에서 막혔는지</strong>를 먼저 확인하는 편이 좋습니다.</p>
+<h2 id="2-현장에서-실제로-진행된-흐름">2. 현장에서 실제로 진행된 흐름</h2>
+<div class="table-wrap"><table class="content-table">
+<thead>
+<tr>
+<th style="text-align: right;">시간대</th>
+<th>실제 진행 내용</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">시작 전</td>
+<td>자리, 장비, 마이크, Pixverse 화면, 와이파이 등 세팅</td>
+</tr>
+<tr>
+<td style="text-align: right;">초반</td>
+<td>참가자 자기소개, AI 도구 사용 경험, 각자 자동화하고 싶은 콘텐츠 공유</td>
+</tr>
+<tr>
+<td style="text-align: right;">초반</td>
+<td>Pixverse 코드 등록, 크레딧·Pro 계정·사용 기간 안내</td>
+</tr>
+<tr>
+<td style="text-align: right;">초중반</td>
+<td>OSMU를 블로그/카드뉴스/영상으로 쪼개서 생각하는 구조 설명</td>
+</tr>
+<tr>
+<td style="text-align: right;">중반</td>
+<td>insane-search 설치, Claude Code/Codex/Git/Node 등 환경 세팅 지원</td>
+</tr>
+<tr>
+<td style="text-align: right;">중반</td>
+<td>패션, 전시·컨벤션, 의료·건강, 프랜차이즈 SaaS, 교육 영상 등 참가자별 적용 상담</td>
+</tr>
+<tr>
+<td style="text-align: right;">중후반</td>
+<td>블로그 자동화, 제목/키워드/상위 노출, 예시 문서 사용법 설명</td>
+</tr>
+<tr>
+<td style="text-align: right;">후반</td>
+<td>dexa.art/osmu에 있는 범용 Skill MD를 에이전트에 저장해 실행</td>
+</tr>
+<tr>
+<td style="text-align: right;">후반</td>
+<td>Pixverse, Edge TTS, ElevenLabs, 카드뉴스, 숏폼 결과물 확인</td>
+</tr>
+<tr>
+<td style="text-align: right;">마지막</td>
+<td>결과물 수정, 스킬 수정, 캐릭터 시트, Canvas/노드형 참조, 부분 재생성 Q&amp;A</td>
+</tr>
+</tbody>
+</table></div>
+<p>계획된 순서대로 매끈하게 흘러간 수업이라기보다, <strong>현장 설치와 참가자별 문제 해결을 함께 진행한 실습형 워크숍</strong>에 가까웠습니다.</p>
+<h2 id="3-참가자들이-실제로-가져온-고민">3. 참가자들이 실제로 가져온 고민</h2>
+<p>수업에서 나온 고민은 모두 조금씩 달랐습니다. 아래는 개인 정보를 빼고 유형으로 정리한 것입니다.</p>
+<div class="table-wrap"><table class="content-table">
+<thead>
+<tr>
+<th>유형</th>
+<th>실제 고민</th>
+<th>수업에서 나온 방향</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>블로그 자동화 경험자</td>
+<td>블로그 오케스트레이션 이후 카드뉴스와 숏폼까지 확장하고 싶음</td>
+<td>블로그, 카드뉴스, 숏폼을 한꺼번에 보지 말고 모듈별로 분리</td>
+</tr>
+<tr>
+<td>패션/브랜드</td>
+<td>90년대·올드스쿨 무드와 최신 트렌드를 엮어 콘텐츠화하고 싶음</td>
+<td>과거 지식은 지식베이스에 쌓고, 최신 트렌드 검색과 매칭</td>
+</tr>
+<tr>
+<td>전시·컨벤션/MICE</td>
+<td>현장에서 본 행사와 운영 경험을 자기 관점으로 포트폴리오화하고 싶음</td>
+<td>내부 경험과 현장 인사이트를 콘텐츠의 차별점으로 사용</td>
+</tr>
+<tr>
+<td>의료·건강 콘텐츠</td>
+<td>환자들이 관심 가질 신약, 치료 트렌드, 희망 콘텐츠를 만들고 싶음</td>
+<td>단발 정보가 아니라 다음 콘텐츠와 IP로 이어지게 설계</td>
+</tr>
+<tr>
+<td>프랜차이즈 SaaS</td>
+<td>업계 이슈와 자사 가치 제안을 연결해 검색·AI 노출을 높이고 싶음</td>
+<td>뉴스, 유튜브, 커뮤니티, 카페를 소스화하고 자사 소개서와 매칭</td>
+</tr>
+<tr>
+<td>교육 영상</td>
+<td>학교폭력 예방 등 5분 이상 교육용 영상을 만들고 싶음</td>
+<td>캐릭터 시트와 배경 레퍼런스를 먼저 만들어 장면 단위로 이어붙이기</td>
+</tr>
+<tr>
+<td>개인 지식관리</td>
+<td>카카오톡, 드라이브, Obsidian 자료를 연결해 제안서와 관계도를 만들고 싶음</td>
+<td>내부 자료를 읽고 맥락을 정리하는 개인 지식 자동화로 확장</td>
+</tr>
+</tbody>
+</table></div>
+<p>수업의 중요한 지점은 “모두 같은 결과물을 만들자”가 아니라, <strong>각자 가진 도메인 지식과 자료를 어떻게 자동화 흐름에 넣을지</strong>였습니다.</p>
+<h2 id="4-도구별로-기억할-역할">4. 도구별로 기억할 역할</h2>
+<div class="table-wrap"><table class="content-table">
+<thead>
+<tr>
+<th>도구/개념</th>
+<th>수업에서 나온 역할</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Claude Code / Codex</td>
+<td>스킬 설치, 파일 기반 작업, 코드·도구 설치, 콘텐츠 자동화 실행</td>
+</tr>
+<tr>
+<td>insane-search</td>
+<td>X/Twitter, 네이버 블로그, 쿠팡, 인스타, 틱톡 등 일반 검색으로 어려운 공개 자료 탐색 보조</td>
+</tr>
+<tr>
+<td>Pixverse</td>
+<td>이미지 생성, 이미지-to-video, 숏폼 영상 생성 실습</td>
+</tr>
+<tr>
+<td>Pixverse Pro / Pro Plus</td>
+<td>내부 모델과 외부 모델 사용 가능 범위, 크레딧 소모 차이 설명</td>
+</tr>
+<tr>
+<td>Seedance 계열 모델</td>
+<td>품질은 더 좋을 수 있으나 크레딧 소모가 큼</td>
+</tr>
+<tr>
+<td>Edge TTS</td>
+<td>무료에 가깝게 사용할 수 있는 기본 음성 후보</td>
+</tr>
+<tr>
+<td>ElevenLabs</td>
+<td>더 자연스러운 유료 음성, 목소리 마켓/음성 학습 사례</td>
+</tr>
+<tr>
+<td>Obsidian / 개인 지식베이스</td>
+<td>과거 지식, 예시 문체, 자료, 대화 기록을 모아 자동화의 근거로 쓰는 기반</td>
+</tr>
+<tr>
+<td>Skill MD</td>
+<td>매번 프롬프트를 새로 쓰지 않고, 반복 가능한 작업 규칙으로 저장하는 문서</td>
+</tr>
+<tr>
+<td>Canvas / 노드형 참조</td>
+<td>이미지와 영상을 선으로 연결해 참조 관계를 만드는 방식</td>
+</tr>
+</tbody>
+</table></div>
+<p>도구를 많이 아는 것보다 중요한 것은 <strong>어떤 도구가 어느 단계의 문제를 해결하는지 구분하는 것</strong>입니다.</p>
+<h2 id="5-설치와-환경-세팅에서-실제로-막힌-지점">5. 설치와 환경 세팅에서 실제로 막힌 지점</h2>
+<p>수업 초반에는 설치와 로그인 문제가 많이 나왔습니다.</p>
+<h3 id="자주-막힌-문제">자주 막힌 문제</h3>
+<ul>
+<li>Claude Code와 Codex를 어디에서 실행해야 하는지 헷갈림</li>
+<li>Git, Node, GitHub 로그인이 안 되어 있음</li>
+<li>Windows와 Mac의 설치 방식이 다름</li>
+<li>앱을 종료했다가 다시 켜야 설치가 반영되는 경우가 있음</li>
+<li>에이전트가 작업 중인지 멈춘 것인지 판단하기 어려움</li>
+<li>인증 키 또는 접근 권한 오류가 나옴</li>
+<li>Pixverse 코드 등록 위치를 찾기 어려움</li>
+<li>설치와 생성 작업을 한 대화에서 많이 해서 세션 사용량이 빨리 참</li>
+</ul>
+<h3 id="수업-중-나온-해결법">수업 중 나온 해결법</h3>
+<pre class="code-block"><code class="language-text">이 에러 메시지를 읽고, 지금 무엇이 문제인지와 다음 조치만 단계별로 알려줘.
+</code></pre>
+<pre class="code-block"><code class="language-text">지금 작업이 진행 중인지 확인해줘. 멈춰 있다면 어디에서 멈췄는지 알려줘.
+</code></pre>
+<pre class="code-block"><code class="language-text">필요한 의존성이 있으면 설치까지 진행해줘. 설치 전 확인이 필요한 항목만 나에게 물어봐.
+</code></pre>
+<p>설치가 길어질 때는 계속 새 명령을 넣기보다, <strong>현재 실행 중인 작업이 있는지 먼저 확인</strong>해야 합니다.</p>
+<h2 id="6-리서치-자동화에서-기억할-점">6. 리서치 자동화에서 기억할 점</h2>
+<p>수업에서는 리서치 자동화가 단순 검색이 아니라고 설명했습니다. 특히 검색이 막히는 사이트나 로그인 필요한 페이지가 많기 때문에, 에이전트가 실패했을 때 내용을 지어내지 않도록 조심해야 합니다.</p>
+<h3 id="핵심-포인트">핵심 포인트</h3>
+<ul>
+<li>검색 실패를 인정하지 않고 내용을 지어내는 도구가 있을 수 있습니다.</li>
+<li>X/Twitter, 네이버, 쿠팡, 인스타, 틱톡 등은 일반 검색 접근이 제한될 수 있습니다.</li>
+<li>insane-search 같은 도구를 명시적으로 사용하라고 지시해야 할 때가 있습니다.</li>
+<li>커뮤니티 반응은 트렌드 감지에는 좋지만, 사실 검증 근거로는 약할 수 있습니다.</li>
+<li>여러 에이전트가 조사하고, 다른 에이전트가 리뷰하게 하면 할루시네이션을 줄일 수 있습니다.</li>
+</ul>
+<h3 id="수업-중-나온-지시-방식">수업 중 나온 지시 방식</h3>
+<pre class="code-block"><code class="language-text">Insane Search를 이용해서 이 주제의 최신 트렌드를 찾아줘.
+</code></pre>
+<pre class="code-block"><code class="language-text">뉴스뿐 아니라 유튜브, 커뮤니티, 네이버 블로그/카페에서 사람들이 실제로 어떤 말을 하는지 찾아줘.
+</code></pre>
+<pre class="code-block"><code class="language-text">검색 결과를 사실, 의견, 추정, 콘텐츠 소재로 나눠서 정리해줘.
+</code></pre>
+<h2 id="7-블로그-자동화에서-기억할-점">7. 블로그 자동화에서 기억할 점</h2>
+<p>블로그 파트에서는 “AI가 글을 길게 써준다”보다 <strong>카테고리별 문법과 사람의 후킹 감각</strong>이 중요하다고 설명했습니다.</p>
+<h3 id="수업에서-나온-블로그-포인트">수업에서 나온 블로그 포인트</h3>
+<ul>
+<li>원천 글감이나 리서치 결과를 기반으로 블로그 글을 만듭니다.</li>
+<li>간단히 “대시보드 관련 글”처럼 메모만 던져도 에이전트가 조사해서 살을 붙일 수 있습니다.</li>
+<li>원하는 문체의 예시 블로그를 Markdown 파일로 저장해 참고하게 할 수 있습니다.</li>
+<li>하지만 예시를 주면 제목과 구조까지 너무 비슷하게 베끼는 문제가 생길 수 있습니다.</li>
+<li>제목과 후킹은 아직 사람이 직접 검수하는 편이 좋습니다.</li>
+<li>네이버 블로그는 카테고리마다 잘 먹히는 제목, 키워드 밀도, 소제목 구조가 다릅니다.</li>
+<li>상위 노출 글을 모아 공통 규칙을 뽑아내면 더 나은 초안을 만들 수 있습니다.</li>
+</ul>
+<h3 id="예시를-줄-때-꼭-붙일-말">예시를 줄 때 꼭 붙일 말</h3>
+<pre class="code-block"><code class="language-text">이 예시는 문체와 구성 참고용이야.
+제목, 문장 구조, 비유를 그대로 따라 하지 말고 새롭게 써줘.
+</code></pre>
+<pre class="code-block"><code class="language-text">제목은 예시와 다르게 만들어줘.
+검색 의도와 후킹을 살리되, 똑같은 패턴을 반복하지 마.
+</code></pre>
+<h2 id="8-skill-md를-저장하고-다듬는-방식">8. Skill MD를 저장하고 다듬는 방식</h2>
+<p>수업 중에는 <code>dexa.art/osmu</code>에 있는 범용 Skill MD를 복사해서 Claude Code나 Codex에 넣고, “스킬로 저장해줘”라고 시키는 흐름이 나왔습니다.</p>
+<p>중요한 것은 스킬을 한 번 저장하고 끝내는 것이 아니라, 결과물을 보면서 계속 수정하는 것입니다.</p>
+<h3 id="수업-중-나온-스킬-수정-예시">수업 중 나온 스킬 수정 예시</h3>
+<pre class="code-block"><code class="language-text">앞으로 결과물에는 한자가 나오지 않게 스킬을 수정해줘.
+</code></pre>
+<pre class="code-block"><code class="language-text">카드뉴스와 숏폼 이미지의 컬러톤을 한 가지로 통일하도록 스킬에 명시해줘.
+</code></pre>
+<pre class="code-block"><code class="language-text">로고와 글씨체, 브랜드 톤을 앞으로 모든 이미지에 반영하도록 스킬을 수정해줘.
+</code></pre>
+<pre class="code-block"><code class="language-text">카드뉴스는 필요 없고, 숏폼만 만들도록 스킬을 바꿔줘.
+</code></pre>
+<pre class="code-block"><code class="language-text">숏폼 대신 롱폼 또는 스토리형 영상 제작에 맞게 스킬을 변형해줘.
+</code></pre>
+<p>스킬은 “한 번 만든 프롬프트”가 아니라, <strong>내 작업 방식이 쌓이는 운영 문서</strong>에 가깝습니다.</p>
+<h2 id="9-pixverse와-영상-생성에서-나온-현실적인-이야기">9. Pixverse와 영상 생성에서 나온 현실적인 이야기</h2>
+<p>수업에서는 Pixverse와 영상 모델에 대한 현실적인 비용과 품질 이야기도 많이 나왔습니다.</p>
+<h3 id="기억할-점">기억할 점</h3>
+<ul>
+<li>제공받은 코드는 아끼기보다 실습 중 충분히 써보는 것이 좋다고 안내했습니다.</li>
+<li>Pixverse 기본 모델이 항상 최고 품질을 내는 것은 아닙니다.</li>
+<li>Pro와 Pro Plus는 사용할 수 있는 모델 범위가 다를 수 있습니다.</li>
+<li>외부 고품질 영상 모델은 10-15초 영상 하나에도 크레딧이 크게 소모될 수 있습니다.</li>
+<li>좋은 모델을 써도 한 번에 완벽한 결과가 나오는 것은 아닙니다.</li>
+<li>AI 영상 수정은 공짜가 아닙니다. 장면을 다시 만들면 시간과 크레딧이 다시 듭니다.</li>
+</ul>
+<h3 id="pixverse를-쓰게-하고-싶을-때">Pixverse를 쓰게 하고 싶을 때</h3>
+<pre class="code-block"><code class="language-text">Pixverse를 이용해서 이미지와 영상을 만들어줘.
+Python이나 단순 이미지 조합으로 대체하지 말고, Pixverse 생성 흐름을 사용해줘.
+</code></pre>
+<h2 id="10-결과물이-이상할-때-고치는-법">10. 결과물이 이상할 때 고치는 법</h2>
+<div class="table-wrap"><table class="content-table">
+<thead>
+<tr>
+<th>문제</th>
+<th>수업에서 나온 원인</th>
+<th>고치는 방향</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>한자가 들어감</td>
+<td>해외 자료나 중국어 이름이 그대로 들어옴</td>
+<td>한자 사용 금지를 스킬에 명시</td>
+</tr>
+<tr>
+<td>이미지 색이 섞임</td>
+<td>컬러톤 규칙이 없음</td>
+<td>한 가지 컬러톤과 폰트 규칙을 스킬에 추가</td>
+</tr>
+<tr>
+<td>카드뉴스와 숏폼이 따로 놈</td>
+<td>카드뉴스 결과를 숏폼 장면이 참조하지 않음</td>
+<td>카드뉴스 이미지/메시지를 기준으로 숏폼을 다시 만들라고 지시</td>
+</tr>
+<tr>
+<td>예시와 너무 똑같음</td>
+<td>예시를 스타일 참고가 아니라 복제 대상으로 사용</td>
+<td>예시 복제 금지, 제목 다양화 지시</td>
+</tr>
+<tr>
+<td>결과물 순서가 이상함</td>
+<td>스킬이 두 번 실행됐거나 백그라운드 작업이 남음</td>
+<td>실행 중인 작업을 먼저 확인하고 하나만 다시 실행</td>
+</tr>
+<tr>
+<td>세션이 찼음</td>
+<td>설치와 생성에서 토큰을 많이 씀</td>
+<td>설치용 대화와 생성용 대화를 분리</td>
+</tr>
+<tr>
+<td>이미지가 예쁜데 내용과 안 맞음</td>
+<td>브랜드 톤과 메시지의 연결이 약함</td>
+<td>레퍼런스 이미지와 메시지 기준을 다시 제시</td>
+</tr>
+<tr>
+<td>자막 위치/줄바꿈이 어색함</td>
+<td>영상 후편집 규칙이 부족함</td>
+<td>자막 위치, 줄 수, 문장 길이를 별도 규칙으로 지정</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="11-숏폼과-긴-영상-제작-팁">11. 숏폼과 긴 영상 제작 팁</h2>
+<p>수업 후반부에는 숏폼을 넘어 긴 영상과 교육 영상 제작에 대한 질문도 나왔습니다.</p>
+<h3 id="짧은-숏폼">짧은 숏폼</h3>
+<ul>
+<li>블로그 전체를 넣으려고 하지 말고 한 가지 각도만 잡습니다.</li>
+<li>카드뉴스에서 만든 이미지나 메시지를 재사용하면 일관성이 좋아집니다.</li>
+<li>내레이션과 화면이 따로 놀면 다시 구성해야 합니다.</li>
+<li>자막 위치와 줄바꿈은 반드시 확인해야 합니다.</li>
+</ul>
+<h3 id="일부-장면만-다시-만들기">일부 장면만 다시 만들기</h3>
+<p>전체를 다시 만들지 않고 특정 장면만 교체할 수 있습니다.</p>
+<pre class="code-block"><code class="language-text">세 번째 영상만 다시 만들어서, 기존 영상과 다시 조립해줘.
+</code></pre>
+<h3 id="긴-영상과-교육-영상">긴 영상과 교육 영상</h3>
+<p>긴 영상은 한 번에 길게 생성하는 것이 아니라, 짧은 장면을 여러 개 만들어 이어붙이는 방식으로 설명되었습니다.</p>
+<ul>
+<li>캐릭터 시트를 먼저 만듭니다.</li>
+<li>배경과 로케이션 이미지를 따로 만듭니다.</li>
+<li>장면별 이미지를 만들고 영상화합니다.</li>
+<li>복장이 바뀌면 새 캐릭터 시트를 만듭니다.</li>
+<li>같은 캐릭터와 배경을 반복 참조해야 일관성이 유지됩니다.</li>
+</ul>
+<p>강사는 이것을 영화 제작에 비유했습니다. 배우와 로케이션을 먼저 정하듯이, AI 영상에서도 <strong>캐릭터와 배경을 먼저 확보</strong>해야 합니다.</p>
+<h2 id="12-tts와-목소리">12. TTS와 목소리</h2>
+<p>수업에서는 영상 품질에서 음성도 중요하다고 이야기했습니다.</p>
+<ul>
+<li>Edge TTS는 무료에 가깝게 쓸 수 있는 기본 음성 후보로 소개되었습니다.</li>
+<li>더 자연스러운 음성을 원하면 ElevenLabs 같은 유료 서비스를 고려할 수 있습니다.</li>
+<li>목소리를 학습시킬 때 녹음 품질이 낮으면 잡음의 질감도 같이 섞일 수 있습니다.</li>
+<li>한국어 여성 목소리처럼 데이터가 적은 영역은 목소리 마켓에서 수요가 있을 수 있다는 이야기도 나왔습니다.</li>
+</ul>
+<p>숏폼에서는 영상만큼이나 <strong>자막과 목소리의 신뢰감</strong>이 중요합니다.</p>
+<h2 id="13-수업-후-혼자-다시-해볼-순서">13. 수업 후 혼자 다시 해볼 순서</h2>
+<p>현장 녹음에서 나온 흐름을 기준으로, 수업 후에는 아래 순서로 다시 해보면 좋습니다.</p>
+<ol>
+<li>내가 자동화하고 싶은 주제 하나를 고릅니다.</li>
+<li>주제가 없으면 트렌드 리서치부터 시작합니다.</li>
+<li>주제가 있으면 기존 파일, 글, 자료를 원천 자료로 넣습니다.</li>
+<li>리서치 결과를 사실, 해석, 콘텐츠 소재로 나눕니다.</li>
+<li>블로그 글 구조를 먼저 만듭니다.</li>
+<li>카드뉴스 5-7장 구성으로 쪼갭니다.</li>
+<li>숏폼 대본과 장면 구성을 만듭니다.</li>
+<li>Pixverse 등 영상 도구로 일부 장면을 생성합니다.</li>
+<li>결과물을 보고 색, 자막, 로고, 이미지 톤, 내용 적합성을 검수합니다.</li>
+<li>잘된 점과 문제점을 스킬에 반영합니다.</li>
+</ol>
+<p>한 번에 완성하려고 하기보다, <strong>한 번 실행하고 → 결과를 보고 → 스킬을 고치는 반복</strong>이 중요합니다.</p>
+<h2 id="14-수업에서-바로-가져갈-수-있는-말들">14. 수업에서 바로 가져갈 수 있는 말들</h2>
+<p>아래 문장들은 수업 중 나온 문제 해결 방식에 맞춰 다시 사용할 수 있는 지시문입니다.</p>
+<pre class="code-block"><code class="language-text">이 결과물이 내용과 맞는지 평가해줘. 예쁘지만 메시지와 어긋나는 부분이 있으면 알려줘.
+</code></pre>
+<pre class="code-block"><code class="language-text">카드뉴스와 숏폼이 같은 원천 자료에서 나온 것처럼 보이도록 톤과 메시지를 맞춰줘.
+</code></pre>
+<pre class="code-block"><code class="language-text">지금 결과물에서 다시 만들 필요가 있는 장면만 골라줘. 전체 재생성은 피하고 싶어.
+</code></pre>
+<pre class="code-block"><code class="language-text">내가 준 예시를 그대로 베끼지 말고, 문체의 장점만 참고해서 새 글로 써줘.
+</code></pre>
+<pre class="code-block"><code class="language-text">이번 결과에서 스킬에 반영해야 할 규칙을 정리해줘.
+</code></pre>
+<h2 id="15-조심해야-할-점">15. 조심해야 할 점</h2>
+<ul>
+<li>AI가 리서치한 내용을 바로 사실로 믿지 않습니다.</li>
+<li>공개 자료와 사용 권한이 있는 자료를 우선 사용합니다.</li>
+<li>개인정보, 고객 정보, 의료 정보, 상담 내용, 회사 내부 자료는 함부로 넣지 않습니다.</li>
+<li>저작권 있는 글, 이미지, 음악, 영화, 책 내용을 그대로 복제하지 않습니다.</li>
+<li>“가능성”, “계획”, “추진”을 “확정”처럼 말하지 않습니다.</li>
+<li>예쁜 결과물보다 <strong>내용과 맞는 결과물</strong>이 더 중요합니다.</li>
+<li>자동화는 사람의 판단을 없애는 것이 아니라, 반복 작업을 줄여 판단할 시간을 확보하는 일입니다.</li>
+</ul>
+<h2 id="16-마지막-정리">16. 마지막 정리</h2>
+<p>수업에서 가장 많이 반복된 원리는 간단합니다.</p>
+<ol>
+<li>내가 가진 주제나 자료를 정합니다.</li>
+<li>리서치로 근거를 보강합니다.</li>
+<li>원천 글감을 하나로 정리합니다.</li>
+<li>블로그, 카드뉴스, 숏폼으로 나눠 변환합니다.</li>
+<li>결과를 보고 스킬을 고칩니다.</li>
+<li>다음에는 더 적은 설명으로 더 나은 결과가 나오게 만듭니다.</li>
+</ol>
+<p>OSMU 자동화의 목표는 “한 번에 완성”이 아니라, <strong>내 콘텐츠를 계속 만들 수 있는 반복 가능한 흐름</strong>을 만드는 것입니다.</p>
+        </article>
+        <footer class="footer">
+          <div>© DEXA · Published at <a href="https://dexa.art/osmu/fin.html">dexa.art/osmu/fin.html</a></div>
+          <a class="toplink" href="#content">맨 위로</a>
+        </footer>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
