@@ -94,10 +94,9 @@
 
         .career-lane { display:grid; gap:.9rem; margin-top:1rem; }
         .career-lane.is-hidden { display:none; }
-        .lane-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; padding:.95rem 1rem; border:1px solid rgba(255,255,255,.08); border-radius:1rem; background:rgba(255,255,255,.035); }
+        .lane-heading { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.95rem 1rem; border:1px solid rgba(255,255,255,.08); border-radius:1rem; background:rgba(255,255,255,.035); }
         .lane-eyebrow { display:block; color:var(--deck-pink); font-size:.68rem; font-weight:900; letter-spacing:.12em; text-transform:uppercase; margin-bottom:.25rem; }
         .lane-heading h3 { color:#fff; font-size:1.05rem; font-weight:900; letter-spacing:-.03em; }
-        .lane-heading p { color:rgba(255,255,255,.48); font-size:.78rem; line-height:1.55; max-width:21rem; text-align:right; }
         .lane-list { display:grid; gap:.85rem; }
         .rank-badge { color:#111 !important; background:var(--deck-pink); border-radius:999px; padding:.1rem .42rem; font-weight:900; letter-spacing:.04em; }
 
@@ -200,10 +199,8 @@
             <div class="section-heading">
                 <div>
                     <h2 id="career-title">Career Gateway</h2>
-                    <p>전체 69개 이력 · source: 육대근 Career Master DB</p>
                 </div>
             </div>
-            <p class="filter-note">중요도 랭크 기준으로 정렬했습니다. 기본 화면은 기업교육·컨설팅을 먼저 보여주고, 기관교육·자문, AX 개발, 민간교육, 콘텐츠 이력 순서로 이어집니다.</p>
             <div class="filter-bar" role="group" aria-label="경력 필터">
                 <button class="filter-btn active" type="button" data-filter="all">전체 경력 <span>69</span></button>
                 <button class="filter-btn" type="button" data-filter="corp">기업교육·컨설팅 <span>10</span></button>
@@ -211,12 +208,10 @@
                 <button class="filter-btn" type="button" data-filter="ax">AX 컨설팅·개발 <span>35</span></button>
                 <button class="filter-btn" type="button" data-filter="content">콘텐츠 강조 <span>42</span></button>
             </div>
-            <div id="career-count" class="filter-note" aria-live="polite">전체 69개 이력을 중요도 순으로 표시 중입니다.</div>
             <div class="career-list">
                 <section class="career-lane" data-lane="corp">
                     <div class="lane-heading">
                         <div><span class="lane-eyebrow">Rank Group 01</span><h3>기업교육·컨설팅</h3></div>
-                        <p>LG, 삼성전자, SK, 현대오토에버 등 기업·산업 교육 이력을 최우선으로 정렬했습니다.<br><span class="lane-visible-count">10개 표시</span></p>
                     </div>
                     <div class="lane-list">
                         <article class="career-card" data-groups="ax training corp" data-record-id="lecture-lg-ax-camp" data-lane="corp" data-rank="01">
@@ -345,7 +340,6 @@
                 <section class="career-lane" data-lane="institution">
                     <div class="lane-heading">
                         <div><span class="lane-eyebrow">Rank Group 02</span><h3>기관·공공·대학 교육</h3></div>
-                        <p>공공기관, 정책자문, 대학·콘텐츠 기관 교육 이력을 묶었습니다.<br><span class="lane-visible-count">28개 표시</span></p>
                     </div>
                     <div class="lane-list">
                         <article class="career-card" data-groups="training institution" data-record-id="role-google-ai-opportunity-fund-apac" data-lane="institution" data-rank="11">
@@ -690,7 +684,6 @@
                 <section class="career-lane" data-lane="ax">
                     <div class="lane-heading">
                         <div><span class="lane-eyebrow">Rank Group 03</span><h3>AX 개발·자동화</h3></div>
-                        <p>AI 도입, 업무 자동화, 에이전트 지식운영, 프로토타입 개발 이력입니다.<br><span class="lane-visible-count">11개 표시</span></p>
                     </div>
                     <div class="lane-list">
                         <article class="career-card" data-groups="ax training content" data-record-id="career-dexa-founder-director-current" data-lane="ax" data-rank="39">
@@ -831,7 +824,6 @@
                 <section class="career-lane" data-lane="community">
                     <div class="lane-heading">
                         <div><span class="lane-eyebrow">Rank Group 04</span><h3>민간교육·커뮤니티</h3></div>
-                        <p>커뮤니티, 민간 부트캠프, 커리어/컨퍼런스 기반 교육 활동입니다.<br><span class="lane-visible-count">8개 표시</span></p>
                     </div>
                     <div class="lane-list">
                         <article class="career-card" data-groups="training content community" data-record-id="role-gpters-partner-operator" data-lane="community" data-rank="50">
@@ -936,7 +928,6 @@
                 <section class="career-lane" data-lane="content">
                     <div class="lane-heading">
                         <div><span class="lane-eyebrow">Rank Group 05</span><h3>콘텐츠·미디어아트</h3></div>
-                        <p>이미지·영상, 이머시브, 문화기획, 공간형 콘텐츠 경험입니다.<br><span class="lane-visible-count">12개 표시</span></p>
                     </div>
                     <div class="lane-list">
                         <article class="career-card" data-groups="training content" data-record-id="project-ai-media-art-experience" data-lane="content" data-rank="58">
