@@ -1,5 +1,22 @@
 [
   {
+    "slug": "hermes-desktop-native-app",
+    "file": "_built/hermes-desktop-native-app.md",
+    "title": "Hermes Desktop은 터미널 에이전트를 일상 작업창으로 끌어온다",
+    "description": "A practical feature guide to Hermes Agent Desktop: how the native app shares the same agent core with CLI and gateway, how to launch it, and when to use it instead of the web dashboard or terminal UI.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "desktop",
+      "gui"
+    ],
+    "date": "2026-07-06",
+    "thumbnail": "images/hermes-desktop-native-app-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "post-internet-art-and-the-circulating-artwork",
     "file": "_built/post-internet-art-and-the-circulating-artwork.md",
     "title": "작품은 어디서 먼저 보이는가",

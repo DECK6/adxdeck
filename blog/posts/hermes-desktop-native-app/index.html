@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Desktop은 터미널 에이전트를 일상 작업창으로 끌어온다 | DEXA Blog</title>
+    <meta name="description" content="A practical feature guide to Hermes Agent Desktop: how the native app shares the same agent core with CLI and gateway, how to launch it, and when to use it instead of the web dashboard or terminal UI." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-desktop-native-app/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Desktop은 터미널 에이전트를 일상 작업창으로 끌어온다" />
+    <meta property="og:description" content="A practical feature guide to Hermes Agent Desktop: how the native app shares the same agent core with CLI and gateway, how to launch it, and when to use it instead of the web dashboard or terminal UI." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-desktop-native-app/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-desktop-native-app-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-07-06" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta property="article:tag" content="desktop" />
+    <meta property="article:tag" content="gui" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Desktop은 터미널 에이전트를 일상 작업창으로 끌어온다" />
+    <meta name="twitter:description" content="A practical feature guide to Hermes Agent Desktop: how the native app shares the same agent core with CLI and gateway, how to launch it, and when to use it instead of the web dashboard or terminal UI." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-desktop-native-app-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Desktop은 터미널 에이전트를 일상 작업창으로 끌어온다","description":"A practical feature guide to Hermes Agent Desktop: how the native app shares the same agent core with CLI and gateway, how to launch it, and when to use it instead of the web dashboard or terminal UI.","image":"https://dexa.art/blog/images/hermes-desktop-native-app-cover.png","datePublished":"2026-07-06","dateModified":"2026-07-06","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-desktop-native-app/"},"keywords":"hermes, ai-agent, workflow, desktop, gui"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 7월 6일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Desktop은 터미널 에이전트를 일상 작업창으로 끌어온다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A practical feature guide to Hermes Agent Desktop: how the native app shares the same agent core with CLI and gateway, how to launch it, and when to use it instead of the web dashboard or terminal UI.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">desktop</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">gui</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-desktop-native-app-cover.png" alt="Hermes Desktop cover" loading="lazy"></p>
+<p>Hermes Agent는 터미널에서 시작할 수 있지만, 모든 사용자가 매번 CLI 안에서 모델·도구·세션을 관리하고 싶은 것은 아니다. <strong>Hermes Desktop</strong>은 같은 Hermes Agent 코어를 네이티브 앱으로 감싼 표면이다. 별도 제품이 아니라, 이미 설정한 provider, skills, sessions, memory, profile을 같은 데이터 위에서 다루는 작업창에 가깝다.</p>
+<h2>기능 개요</h2>
+<p>Desktop App은 macOS, Windows, Linux에서 동작하는 Electron 기반 네이티브 UI다. 중앙에는 채팅이 있고, 왼쪽에는 세션과 관리 영역, 오른쪽에는 파일·웹·도구 출력 미리보기 레일이 붙는다. 드래그앤드롭 파일 첨부, 스트리밍 tool activity, composer history, 모델 선택 드롭다운, command palette 같은 기능은 “에이전트가 지금 무엇을 보고 무엇을 실행하는가”를 터미널보다 더 눈에 보이게 만든다.</p>
+<p>중요한 구분은 Web Dashboard와의 차이다. <code>hermes dashboard</code>는 브라우저에서 설정과 세션을 관리하는 서버형 패널이고, Desktop은 로컬 앱 셸이다. 둘 다 같은 Hermes 런타임을 쓰지만, Desktop은 로컬 앱처럼 실행되고 필요하면 원격 <code>hermes dashboard</code> 백엔드에 붙을 수도 있다.</p>
+<h2>어떻게 실행되고 설정되나</h2>
+<p>이미 Hermes가 설치되어 있다면 기본 진입점은 단순하다.</p>
+<pre><code class="language-bash">hermes desktop
+# 또는 alias
+hermes gui</code></pre>
+<p>특정 작업 폴더를 초기 파일 브라우저와 채팅 cwd로 열고 싶을 때는 다음처럼 시작한다.</p>
+<pre><code class="language-bash">hermes desktop --cwd /path/to/project</code></pre>
+<p>빌드된 앱이 이미 있으면 <code>--skip-build</code>, 깨끗하게 다시 만들고 싶으면 <code>--force-build</code>, 실행하지 않고 패키지만 만들려면 <code>--build-only</code>를 쓴다. 소스 체크아웃을 직접 개발 중이라면 <code>--source</code>로 Electron/Vite 개발 빌드에 붙을 수 있다.</p>
+<pre><code class="language-bash">hermes desktop --skip-build
+hermes desktop --force-build
+hermes desktop --build-only
+hermes desktop --source</code></pre>
+<p>앱은 <code>HERMES_HOME</code> 아래의 기존 Hermes 설정을 읽는다. Desktop 전용으로 중요한 환경변수는 <code>HERMES_DESKTOP_CWD</code>, <code>HERMES_DESKTOP_HERMES_ROOT</code>, <code>HERMES_DESKTOP_REMOTE_URL</code>, <code>HERMES_DESKTOP_IGNORE_EXISTING</code> 정도다. 원격 백엔드를 쓰는 경우에는 대상 머신에서 <code>hermes dashboard --host ... --port ...</code>가 실행 중이어야 하며, 공개 네트워크라면 username/password보다 OAuth나 VPN을 우선 고려해야 한다.</p>
+<h2>실제 운영에서의 짧은 사례</h2>
+<p>이 사용자의 셋업처럼 CLI, gateway, cron, 여러 profile이 함께 움직이면 “어느 표면에서 시작했는가”보다 “같은 세션과 설정을 이어서 볼 수 있는가”가 더 중요해진다. Desktop은 긴 작업 로그를 시각적으로 따라가거나, 파일 브라우저와 채팅을 나란히 두고 결과물을 확인할 때 유용하다. 반대로 자동 실행이나 headless 작업은 여전히 cron, gateway, CLI가 더 맞다.</p>
+<h2>주의할 점</h2>
+<p>첫째, Desktop의 모델 선택 드롭다운은 앱의 편의 상태와 세션 선택에 가깝고, profile의 기본 모델을 바꾸는 위치는 Settings의 Model 영역이다. 크론이나 subagent 기본값까지 바꾸려면 profile 설정을 확인해야 한다.</p>
+<p>둘째, 원격 연결은 “Desktop이 원격 에이전트를 알아서 띄운다”는 뜻이 아니다. 원격 머신의 dashboard 프로세스, 인증 설정, 방화벽 또는 VPN이 먼저 준비되어야 한다. 연결 문제는 <code>hermes logs gui -f</code> 또는 <code>desktop.log</code>에서 부팅·백엔드 오류를 확인하는 편이 빠르다.</p>
+<p>셋째, GUI가 안전장치를 없애지는 않는다. 세션별 YOLO 토글은 위험 명령 승인 프롬프트를 우회할 수 있으므로 임시 실험에만 신중히 써야 한다. 앱 제거도 단계가 나뉜다. GUI만 지우는 것과 agent·데이터까지 지우는 것은 다르다.</p>
+<h2>언제 Desktop을 선택할까</h2>
+<p>터미널에서 빠르게 한 번 실행할 일은 <code>hermes</code>나 <code>hermes --tui</code>가 가볍다. 브라우저 기반 관리와 원격 접속은 <code>hermes dashboard</code>가 맞다. 하지만 채팅, 파일 확인, 설정, 세션 관리, voice, skills, cron, profiles를 한 화면에서 오가며 Hermes를 매일 쓰려면 Desktop이 가장 자연스러운 입구다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/post-internet-art-and-the-circulating-artwork/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>작품은 어디서 먼저 보이는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
