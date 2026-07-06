@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-honcho-memory",
+    "file": "_built/hermes-honcho-memory.md",
+    "title": "Honcho를 붙이면 Hermes 기억은 파일을 넘어 사용자 모델이 된다",
+    "description": "A practical guide to Hermes Agent's Honcho memory provider: peer modeling, dialectic reasoning, setup boundaries, and when to use it instead of built-in memory alone.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-07-07",
+    "thumbnail": "images/hermes-honcho-memory-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "donna-haraway-and-situated-cyborg-media",
     "file": "_built/donna-haraway-and-situated-cyborg-media.md",
     "title": "사이보그는 누구의 위치에서 말하는가",
