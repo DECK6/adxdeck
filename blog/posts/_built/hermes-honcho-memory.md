@@ -18,7 +18,7 @@ series: hermes-notes
 
 ![Abstract Honcho memory network cover](images/hermes-honcho-memory-cover.png)
 
-Hermes Agent의 기본 memory는 “반복해서 필요한 사실”을 짧게 보관하는 장치다. Honcho는 그 다음 단계다. 대화가 쌓일수록 사용자와 agent의 관계를 peer 단위로 모델링하고, 세션 맥락과 장기 결론을 다음 turn의 판단 재료로 돌려준다. 문제는 단순히 더 많이 기억하는 것이 아니라, 여러 agent와 세션 사이에서 “누가 누구를 어떻게 이해하는가”를 분리하는 데 있다.
+Hermes Agent의 기본 memory는 “반복해서 필요한 사실”을 짧게 보관하는 장치다. Honcho는 그 다음 단계다. 대화가 쌓일수록 사용자와 agent의 관계를 peer 단위로 모델링하고, 세션 맥락과 장기 결론을 다음 turn의 판단 재료로 돌려준다.
 
 ## 기능 개요 — peer, session, dialectic
 

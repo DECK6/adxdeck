@@ -109,7 +109,7 @@
             </div>
             <div class="prose-dexa">
 <p><img src="/blog/images/hermes-honcho-memory-cover.png" alt="Abstract Honcho memory network cover" loading="lazy"></p>
-<p>Hermes Agent의 기본 memory는 “반복해서 필요한 사실”을 짧게 보관하는 장치다. Honcho는 그 다음 단계다. 대화가 쌓일수록 사용자와 agent의 관계를 peer 단위로 모델링하고, 세션 맥락과 장기 결론을 다음 turn의 판단 재료로 돌려준다. 문제는 단순히 더 많이 기억하는 것이 아니라, 여러 agent와 세션 사이에서 “누가 누구를 어떻게 이해하는가”를 분리하는 데 있다.</p>
+<p>Hermes Agent의 기본 memory는 “반복해서 필요한 사실”을 짧게 보관하는 장치다. Honcho는 그 다음 단계다. 대화가 쌓일수록 사용자와 agent의 관계를 peer 단위로 모델링하고, 세션 맥락과 장기 결론을 다음 turn의 판단 재료로 돌려준다.</p>
 <h2>기능 개요 — peer, session, dialectic</h2>
 <p>Honcho는 Hermes의 Memory Provider 시스템에 붙는 외부 기억 backend다. built-in <code>MEMORY.md</code> / <code>USER.md</code>를 대체하지 않고 그 위에 한 층을 더한다. 기본 memory가 사람이 직접 남긴 작고 확실한 사실이라면, Honcho는 대화 메시지, session summary, 사용자 peer card, AI identity card, 그리고 추론된 conclusion을 다룬다.</p>
 <p>핵심 용어는 세 가지다. <code>peer</code>는 Honcho 안에서 사용자나 agent를 식별하는 단위다. <code>session</code>은 특정 작업 흐름의 대화 묶음이며 <code>per-session</code>, <code>per-directory</code>, <code>per-repo</code>, <code>global</code> 같은 전략으로 나눌 수 있다. <code>dialectic reasoning</code>은 몇 turn마다 Honcho가 대화를 다시 읽고 사용자의 선호, 목표, 현재 맥락을 추론하는 pass다.</p>
