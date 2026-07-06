@@ -1,5 +1,23 @@
 [
   {
+    "slug": "donna-haraway-and-situated-cyborg-media",
+    "file": "_built/donna-haraway-and-situated-cyborg-media.md",
+    "title": "사이보그는 누구의 위치에서 말하는가",
+    "description": "Donna Haraway의 사이보그와 위치지어진 지식이 미디어아트, AI, 플랫폼 문화에서 기술과 신체의 관계를 어떻게 다시 묻게 만드는지 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-theory",
+      "media-art",
+      "feminism",
+      "posthumanism",
+      "cyborg",
+      "ai-critique"
+    ],
+    "date": "2026-07-07",
+    "thumbnail": "images/donna-haraway-situated-cyborg-media-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-desktop-native-app",
     "file": "_built/hermes-desktop-native-app.md",
     "title": "Hermes Desktop은 터미널 에이전트를 일상 작업창으로 끌어온다",
