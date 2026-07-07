@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Profile Distribution은 에이전트 전체를 버전 관리한다 | DEXA Blog</title>
+    <meta name="description" content="A feature guide to Hermes Agent profile distributions: package a whole agent as a git repository, install it with one command, and update it without touching user data." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-profile-distributions/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Profile Distribution은 에이전트 전체를 버전 관리한다" />
+    <meta property="og:description" content="A feature guide to Hermes Agent profile distributions: package a whole agent as a git repository, install it with one command, and update it without touching user data." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-profile-distributions/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-profile-distributions-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-07-08" />
+    <meta property="article:author" content="Deck" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Profile Distribution은 에이전트 전체를 버전 관리한다" />
+    <meta name="twitter:description" content="A feature guide to Hermes Agent profile distributions: package a whole agent as a git repository, install it with one command, and update it without touching user data." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-profile-distributions-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Profile Distribution은 에이전트 전체를 버전 관리한다","description":"A feature guide to Hermes Agent profile distributions: package a whole agent as a git repository, install it with one command, and update it without touching user data.","image":"https://dexa.art/blog/images/hermes-profile-distributions-cover.png","datePublished":"2026-07-08","dateModified":"2026-07-08","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-profile-distributions/"},"keywords":""}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 7월 8일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Profile Distribution은 에이전트 전체를 버전 관리한다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">A feature guide to Hermes Agent profile distributions: package a whole agent as a git repository, install it with one command, and update it without touching user data.</p>
+                <div class="flex flex-wrap gap-2 mt-6"></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-profile-distributions-cover.png" alt="cover" loading="lazy"></p>
+<p>Hermes의 Profile은 한 컴퓨터 안에서 여러 에이전트를 나누는 단위다. <strong>Profile Distribution</strong>은 그 다음 단계다. 특정 프로필의 성격, 스킬, 설정, Cron, MCP 연결을 하나의 git 저장소로 묶어 다른 사람이나 다른 장비에 같은 에이전트를 설치하게 해 준다.</p>
+<h2>기능 개요 — 프로필을 “패키지”로 만들기</h2>
+<p>일반 프로필은 <code>~/.hermes/profiles/&lt;name&gt;/</code> 아래에 <code>SOUL.md</code>, <code>config.yaml</code>, <code>skills/</code>, <code>cron/</code>, <code>mcp.json</code>, 세션과 메모리, 인증 파일을 가진다. Distribution은 여기서 <strong>공유 가능한 부분만</strong> 저장소로 만든다. 핵심 파일은 <code>distribution.yaml</code>이다.</p>
+<pre><code class="language-yaml">name: research-bot
+version: 1.0.0
+description: &quot;Autonomous research assistant&quot;
+hermes_requires: &quot;&gt;=0.12.0&quot;
+env_requires:
+  - name: OPENAI_API_KEY
+    description: &quot;OpenAI API key&quot;
+    required: true</code></pre>
+<p>공식 문서 기준으로 이 기능의 목적은 “프로필 백업”이 아니라 “재사용 가능한 에이전트 배포”다. 팀용 리뷰 봇, 연구 보조 에이전트, 고객지원 봇처럼 성격과 작업 절차가 정해진 에이전트를 버전으로 관리할 때 맞다.</p>
+<h2>어떻게 작동하나</h2>
+<p>작성자는 먼저 정상 동작하는 프로필을 만든 뒤, 비밀과 사용자 데이터를 제외하는 <code>.gitignore</code>를 둔다. 절대 커밋하면 안 되는 항목은 <code>.env</code>, <code>auth.json</code>, <code>memories/</code>, <code>sessions/</code>, <code>state.db*</code>, <code>logs/</code>, 캐시류다. 그 다음 저장소를 만들고 태그를 붙인다.</p>
+<pre><code class="language-bash">cd ~/.hermes/profiles/research-bot
+git init
+git add .
+git commit -m &quot;v1.0.0&quot;
+git tag v1.0.0
+git push -u origin main --tags</code></pre>
+<p>설치자는 git URL이나 로컬 디렉터리에서 설치한다.</p>
+<pre><code class="language-bash">hermes profile install github.com/team/research-bot --alias
+hermes profile info research-bot
+hermes profile update research-bot</code></pre>
+<p>로컬 설치본 <code>Hermes Agent v0.17.0</code>에서도 <code>profile install</code>, <code>profile update</code>, <code>profile info</code>가 노출된다. <code>install</code>은 <code>distribution.yaml</code>을 읽고 필요한 환경변수를 점검한 뒤 프로필을 만든다. <code>update</code>는 기록된 source에서 다시 가져와 distribution-owned 파일을 갱신하지만, 기본적으로 <code>config.yaml</code>은 보존하고 <code>.env</code>, 인증, 메모리, 세션, 로그는 건드리지 않는다. 설정까지 배포본으로 되돌리려면 <code>--force-config</code>를 명시해야 한다.</p>
+<h2>짧은 실제 사용 사이드바</h2>
+<p>이 사용자의 운영은 역할별 프로필을 나누어 쓰는 구조라서, Distribution이 필요한 순간도 분명하다. 단순히 로컬에서 Dev/PKM/Ops처럼 분리하는 것과 달리, Distribution은 “같은 역할 에이전트를 다른 장비나 팀원에게 반복 설치”해야 할 때 쓰는 배포 레이어다. 개인 메모리나 세션을 복제하지 않는 점이 특히 중요하다.</p>
+<h2>Pitfalls / tips</h2>
+<p>첫째, installer가 hard-excluded path를 한 번 더 걸러도 작성자의 <code>git add</code> 실수까지 책임져 주지는 않는다. 공개 저장소라면 첫 커밋 전에 <code>git status</code>와 <code>.gitignore</code>를 확인한다.</p>
+<p>둘째, Distribution은 API 키를 배송하지 않는다. <code>env_requires</code>는 필요한 키 이름과 설명만 알려 주고, 각 설치자가 자신의 <code>.env</code>나 셸 환경에 값을 넣는다.</p>
+<p>셋째, 업데이트 경계가 중요하다. <code>SOUL.md</code>, <code>skills/</code>, <code>cron/</code>, <code>mcp.json</code>, <code>distribution.yaml</code>은 배포자가 소유하기 쉽지만, 설치자가 조정한 모델·provider 설정은 보존되는 편이 안전하다.</p>
+<p>마지막으로 단순 백업은 <code>hermes profile export</code> / <code>import</code>가 더 알맞다. Distribution은 “내 프로필을 보관”하는 기능이 아니라, git으로 검토·태그·업데이트할 수 있는 에이전트 제품을 만드는 기능이다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/database-aesthetics-and-the-searchable-artwork/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>작품은 언제 데이터베이스가 되는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-profile-distributions",
+    "file": "_built/hermes-profile-distributions.md",
+    "title": "Hermes Profile Distribution은 에이전트 전체를 버전 관리한다",
+    "description": "A feature guide to Hermes Agent profile distributions: package a whole agent as a git repository, install it with one command, and update it without touching user data.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-07-08",
+    "thumbnail": "images/hermes-profile-distributions-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "database-aesthetics-and-the-searchable-artwork",
     "file": "_built/database-aesthetics-and-the-searchable-artwork.md",
     "title": "작품은 언제 데이터베이스가 되는가",
