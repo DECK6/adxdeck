@@ -1,5 +1,23 @@
 [
   {
+    "slug": "roy-ascott-and-the-telematic-embrace",
+    "file": "_built/roy-ascott-and-the-telematic-embrace.md",
+    "title": "네트워크는 어떻게 공동 저자가 되는가",
+    "description": "로이 애스콧의 사이버네틱 예술, 텔레마틱 상상력, 테크노에틱 전환을 통해 미디어아트를 결과물이 아니라 관계와 참여, 원격 현존의 시스템으로 다시 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "cybernetics",
+      "telematic-art",
+      "interactive-art",
+      "distributed-authorship"
+    ],
+    "date": "2026-07-09",
+    "thumbnail": "images/roy-ascott-telematic-embrace-cover.png",
+    "author": "DEXA"
+  },
+  {
     "slug": "hermes-profile-distributions",
     "file": "_built/hermes-profile-distributions.md",
     "title": "Hermes Profile Distribution은 에이전트 전체를 버전 관리한다",
