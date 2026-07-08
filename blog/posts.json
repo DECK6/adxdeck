@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-skill-bundles",
+    "file": "_built/hermes-skill-bundles.md",
+    "title": "Hermes Skill Bundles는 반복 작업의 준비 단계를 하나의 명령으로 접는다",
+    "description": "A practical guide to Hermes Agent Skill Bundles: grouping multiple skills into one slash command for recurring workflows without mutating the system prompt.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-07-09",
+    "thumbnail": "images/hermes-skill-bundles-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "roy-ascott-and-the-telematic-embrace",
     "file": "_built/roy-ascott-and-the-telematic-embrace.md",
     "title": "네트워크는 어떻게 공동 저자가 되는가",
