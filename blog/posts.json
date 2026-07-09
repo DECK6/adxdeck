@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-openrouter-provider-routing",
+    "file": "_built/hermes-openrouter-provider-routing.md",
+    "title": "Hermes Provider Routing은 OpenRouter 안의 경로까지 고른다",
+    "description": "Hermes Agent can pass OpenRouter provider preferences so a model request favors cheaper, faster, stricter, or privacy-bounded upstream providers. This guide explains how that differs from fallback models and credential pools.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-07-10",
+    "thumbnail": "images/hermes-openrouter-provider-routing-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "medium-specificity-after-tool-effects",
     "file": "_built/medium-specificity-after-tool-effects.md",
     "title": "도구 목록만으로는 작품이 되지 않는다",

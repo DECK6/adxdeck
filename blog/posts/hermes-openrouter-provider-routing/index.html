@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Provider Routing은 OpenRouter 안의 경로까지 고른다 | DEXA Blog</title>
+    <meta name="description" content="Hermes Agent can pass OpenRouter provider preferences so a model request favors cheaper, faster, stricter, or privacy-bounded upstream providers. This guide explains how that differs from fallback models and credential pools." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-openrouter-provider-routing/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Provider Routing은 OpenRouter 안의 경로까지 고른다" />
+    <meta property="og:description" content="Hermes Agent can pass OpenRouter provider preferences so a model request favors cheaper, faster, stricter, or privacy-bounded upstream providers. This guide explains how that differs from fallback models and credential pools." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-openrouter-provider-routing/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-openrouter-provider-routing-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-07-10" />
+    <meta property="article:author" content="Deck" />
+    
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Provider Routing은 OpenRouter 안의 경로까지 고른다" />
+    <meta name="twitter:description" content="Hermes Agent can pass OpenRouter provider preferences so a model request favors cheaper, faster, stricter, or privacy-bounded upstream providers. This guide explains how that differs from fallback models and credential pools." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-openrouter-provider-routing-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Provider Routing은 OpenRouter 안의 경로까지 고른다","description":"Hermes Agent can pass OpenRouter provider preferences so a model request favors cheaper, faster, stricter, or privacy-bounded upstream providers. This guide explains how that differs from fallback models and credential pools.","image":"https://dexa.art/blog/images/hermes-openrouter-provider-routing-cover.png","datePublished":"2026-07-10","dateModified":"2026-07-10","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-openrouter-provider-routing/"},"keywords":""}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 7월 10일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Provider Routing은 OpenRouter 안의 경로까지 고른다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">Hermes Agent can pass OpenRouter provider preferences so a model request favors cheaper, faster, stricter, or privacy-bounded upstream providers. This guide explains how that differs from fallback models and credential pools.</p>
+                <div class="flex flex-wrap gap-2 mt-6"></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-openrouter-provider-routing-cover.png" alt="hero" loading="lazy"></p>
+<p>모델 이름 하나를 고르는 것만으로는 실제 요청 경로가 끝나지 않는다. OpenRouter를 쓰면 같은 모델도 여러 하위 제공자에서 서빙될 수 있고, 각각 가격·지연·처리량·데이터 정책이 다르다. Hermes Agent의 <strong>Provider Routing</strong>은 이 하위 제공자 선택 조건을 <code>config.yaml</code>에 고정해 “아무 데나 보내지 말고 이런 기준으로 보내라”를 선언하는 기능이다.</p>
+<h2>기능 개요 — fallback이 아니라 OpenRouter 내부 경로 선택</h2>
+<p>Provider Routing은 Hermes의 모델 선택기, fallback provider, credential pool과 붙어 있지만 역할은 다르다. <code>hermes model</code>은 기본 provider/model을 고르고, credential pool은 같은 provider 안의 인증을 돌려 쓰며, <code>fallback_providers</code>는 primary가 실패했을 때 다른 provider:model으로 넘어간다. 반면 <code>provider_routing</code>은 <strong>provider가 OpenRouter일 때</strong> OpenRouter API에 넘길 하위 provider 선호도를 정한다.</p>
+<p>공식 문서 기준 핵심 옵션은 <code>sort</code>, <code>only</code>, <code>ignore</code>, <code>order</code>, <code>require_parameters</code>, <code>data_collection</code>이다. <code>sort: price</code>는 비용 우선, <code>sort: latency</code>는 첫 토큰 지연 우선, <code>sort: throughput</code>은 긴 생성의 처리량 우선이다. <code>only</code>와 <code>ignore</code>는 허용·차단 provider 목록이고, <code>order</code>는 선호 순서다. <code>require_parameters: true</code>는 요청 파라미터를 제대로 지원하는 하위 provider만 쓰게 해 조용한 옵션 드롭을 줄인다.</p>
+<h2>어떻게 작동하나</h2>
+<p>설정은 <code>~/.hermes/config.yaml</code>의 최상위 블록에 둔다.</p>
+<pre><code class="language-yaml">provider_routing:
+  sort: &quot;latency&quot;
+  ignore:
+    - &quot;Together&quot;
+  order:
+    - &quot;Anthropic&quot;
+    - &quot;Google&quot;
+  require_parameters: true
+  data_collection: &quot;deny&quot;</code></pre>
+<p>Hermes는 시작 시 이 값을 읽어 에이전트 생성 인자로 전달한다. 내부적으로는 <code>only</code>가 <code>providers_allowed</code>, <code>ignore</code>가 <code>providers_ignored</code>, <code>order</code>가 <code>providers_order</code>, <code>sort</code>가 <code>provider_sort</code>로 매핑되고, OpenRouter 호출에는 <code>extra_body.provider</code> 형태로 들어간다. CLI, Gateway, Cron, Dashboard/TUI 백엔드가 같은 설정을 보도록 로컬 설치에도 경로가 연결되어 있다.</p>
+<p>설정 위치는 다음 명령으로 확인한다.</p>
+<pre><code class="language-bash">hermes config path
+hermes status --all</code></pre>
+<p>직접 API 키를 출력할 필요는 없다. OpenRouter를 primary로 쓰는 프로파일에서만 이 블록이 실제 요청에 영향을 준다. Anthropic, OpenAI Codex, xAI OAuth처럼 직접 provider에 붙은 세션에서는 이 설정이 있어도 효과가 없다.</p>
+<h2>실제 사용 사이드바</h2>
+<p>이 사용자의 운영 셋업에서는 현재 Dev 프로파일의 primary가 OpenAI Codex이고, cross-provider fallback은 Anthropic 쪽으로 구성되어 있다. 그래서 <code>provider_routing</code>은 아직 비어 있으며, 이는 “설정 누락”이라기보다 OpenRouter primary가 아닐 때는 적용면이 없다는 좋은 예다. 비용 중심 배치 작업을 OpenRouter로 돌릴 때만 이 블록을 켜는 식으로 범위를 좁히면 운영 규칙이 선명해진다.</p>
+<h2>Pitfalls / tips</h2>
+<p>첫째, Provider Routing과 Fallback Provider를 섞어 생각하지 않는다. Provider Routing은 OpenRouter 안의 하위 제공자 선택이고, fallback은 Hermes가 다른 provider:model으로 갈아타는 복구 체인이다.</p>
+<p>둘째, <code>only</code>를 너무 좁히면 가용성이 떨어진다. 특정 provider가 잠시 불안정하면 OpenRouter의 자동 대체 폭까지 줄어든다. 일관성이 더 중요한 운영인지, 가용성이 더 중요한 배치인지에 따라 <code>only</code>와 <code>order</code>를 나눈다.</p>
+<p>셋째, 개인정보나 데이터 사용 정책이 중요하면 <code>data_collection: &quot;deny&quot;</code>와 <code>ignore</code>를 함께 쓴다. 다만 하위 provider 이름은 OpenRouter 쪽 표기와 맞아야 한다. 이름이 틀리면 기대한 필터가 작동하지 않을 수 있으므로 작은 요청으로 먼저 확인한다.</p>
+<h2>닫기</h2>
+<p>OpenRouter를 단순 모델 중계로만 쓰면 Hermes가 제공하는 라우팅 제어면을 놓치기 쉽다. 대화형 작업에는 낮은 지연을, 대량 초안에는 낮은 가격을, 민감한 작업에는 데이터 정책과 파라미터 지원을 우선시키는 식으로 Provider Routing을 사용한다. 장애 복구가 목표라면 <code>fallback_providers</code>, 같은 provider 인증 회복이 목표라면 credential pool을 고르는 편이 맞다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/medium-specificity-after-tool-effects/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>도구 목록만으로는 작품이 되지 않는다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
