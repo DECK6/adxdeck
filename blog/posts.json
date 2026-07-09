@@ -1,5 +1,23 @@
 [
   {
+    "slug": "expanded-cinema-beyond-the-single-screen",
+    "file": "_built/expanded-cinema-beyond-the-single-screen.md",
+    "title": "스크린 하나로는 충분하지 않을 때",
+    "description": "확장영화는 화면이 커지는 문제가 아니라, 영화적 장치가 공간·몸·시간·시스템 속에서 다시 배치되는 순간을 묻는 미디어아트의 핵심 언어다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "expanded-cinema",
+      "moving-image",
+      "installation",
+      "immersion"
+    ],
+    "date": "2026-07-10",
+    "thumbnail": "images/expanded-cinema-beyond-the-single-screen-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-skill-bundles",
     "file": "_built/hermes-skill-bundles.md",
     "title": "Hermes Skill Bundles는 반복 작업의 준비 단계를 하나의 명령으로 접는다",
