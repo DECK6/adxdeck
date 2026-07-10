@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#F4F1EA">
+    <meta name="description" content="대한민국 초등 교육과정의 배움 주제와 선수 관계를 탐색하는 학부모용 학습 지도">
+    <title>대한민국 초등 배움 지도 — DEXA</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <div class="app" id="app" data-state="loading">
+      <header class="topbar">
+        <a class="brand" href="./" aria-label="배움 지도 처음으로">
+          <span class="brand-mark" aria-hidden="true">D</span>
+          <span class="brand-copy">
+            <strong>DEXA / LEARNMAP</strong>
+            <small>2022 개정 초등 교육과정</small>
+          </span>
+        </a>
+
+        <div class="topbar-metrics" aria-label="데이터 요약">
+          <span><b id="metric-nodes">1,956</b> 주제</span>
+          <span><b id="metric-edges">1,894</b> 연결</span>
+          <span><b id="metric-standards">620</b> 성취기준</span>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="text-button" id="fit-view" type="button">전체 보기</button>
+          <button class="icon-button" id="open-guide" type="button" aria-label="사용 안내">?</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="control-panel" aria-label="배움 지도 탐색 도구">
+          <section class="intro-block">
+            <p class="eyebrow">KOREAN ELEMENTARY LEARNING GRAPH</p>
+            <h1>아이의 배움은<br>어디로 이어질까요?</h1>
+            <p>점 하나는 배움 주제, 선 하나는 먼저 익히면 좋은 관계입니다. 과목과 학년군을 골라 흐름을 살펴보세요.</p>
+          </section>
+
+          <section class="search-block" aria-labelledby="search-label">
+            <label id="search-label" for="topic-search">주제 또는 성취기준 검색</label>
+            <div class="search-field">
+              <input id="topic-search" type="search" autocomplete="off" spellcheck="false" placeholder="예: 분수, [4수01-01]">
+              <button id="clear-search" type="button" aria-label="검색어 지우기">×</button>
+            </div>
+            <ul class="search-results" id="search-results" aria-label="검색 결과"></ul>
+          </section>
+
+          <section class="filter-block" aria-labelledby="subject-label">
+            <div class="section-heading">
+              <h2 id="subject-label">과목</h2>
+              <button class="mini-button" id="toggle-subjects" type="button">모두 끄기</button>
+            </div>
+            <div class="subject-filters" id="subject-filters"></div>
+          </section>
+
+          <section class="filter-block" aria-labelledby="grade-label">
+            <div class="section-heading">
+              <h2 id="grade-label">학년군</h2>
+              <button class="mini-button" id="toggle-grades" type="button">모두 끄기</button>
+            </div>
+            <div class="grade-filters" id="grade-filters"></div>
+          </section>
+
+          <section class="path-legend" aria-label="선택 경로 범례">
+            <span><i class="legend-line prerequisite"></i>먼저 배우는 길</span>
+            <span><i class="legend-line unlock"></i>다음에 열리는 길</span>
+          </section>
+
+          <footer class="data-note">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="data-status">데이터를 불러오는 중</span>
+          </footer>
+        </aside>
+
+        <section class="graph-panel" aria-label="배움 관계 그래프">
+          <canvas id="graph-canvas" tabindex="0" aria-label="초등 배움 주제 관계 그래프. 드래그하여 이동하고 휠이나 두 손가락으로 확대할 수 있습니다."></canvas>
+
+          <div class="canvas-toolbar" aria-label="그래프 보기 조절">
+            <button id="zoom-in" type="button" aria-label="확대">+</button>
+            <output id="zoom-level" aria-label="현재 확대 비율">100%</output>
+            <button id="zoom-out" type="button" aria-label="축소">−</button>
+          </div>
+
+          <div class="visible-count" aria-live="polite">
+            <strong id="visible-nodes">—</strong>
+            <span>보이는 주제</span>
+          </div>
+
+          <div class="loading-panel" id="loading-panel" role="status">
+            <span class="loading-index">00</span>
+            <div>
+              <strong>배움의 좌표를 계산하고 있습니다</strong>
+              <span>1,956개의 주제를 학년군과 과목별로 놓는 중</span>
+            </div>
+          </div>
+
+          <div class="empty-state" id="empty-state" hidden>
+            <b>표시할 주제가 없습니다.</b>
+            <span>과목 또는 학년군 필터를 다시 켜주세요.</span>
+          </div>
+
+          <div class="hover-card" id="hover-card" hidden>
+            <span id="hover-meta"></span>
+            <strong id="hover-title"></strong>
+          </div>
+
+          <p class="canvas-hint">DRAG TO PAN · WHEEL / PINCH TO ZOOM · SELECT A NODE</p>
+        </section>
+
+        <aside class="inspector" id="inspector" aria-label="선택한 배움 주제" aria-hidden="true">
+          <div class="inspector-head">
+            <span id="selected-index">NODE / —</span>
+            <button id="close-inspector" type="button" aria-label="상세 정보 닫기">×</button>
+          </div>
+
+          <div class="inspector-body">
+            <div class="selected-meta">
+              <span class="subject-chip" id="selected-subject"></span>
+              <span id="selected-grade"></span>
+              <span id="selected-code"></span>
+            </div>
+            <h2 id="selected-title"></h2>
+            <p class="selected-description" id="selected-description"></p>
+
+            <section class="detail-section">
+              <h3>배웠다는 증거</h3>
+              <ul id="selected-evidence"></ul>
+            </section>
+
+            <section class="question-card">
+              <span>집에서 이렇게 물어보세요</span>
+              <p id="selected-question"></p>
+            </section>
+
+            <section class="detail-section path-section">
+              <div class="path-heading">
+                <h3>먼저 배우는 주제</h3>
+                <b id="prerequisite-count">0</b>
+              </div>
+              <div class="related-list" id="prerequisite-list"></div>
+            </section>
+
+            <section class="detail-section path-section">
+              <div class="path-heading">
+                <h3>다음에 열리는 주제</h3>
+                <b id="unlock-count">0</b>
+              </div>
+              <div class="related-list" id="unlock-list"></div>
+            </section>
+
+            <section class="cluster-card">
+              <span>함께 보는 배움 묶음</span>
+              <strong id="selected-cluster"></strong>
+              <p id="selected-cluster-summary"></p>
+            </section>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <dialog class="guide-dialog" id="guide-dialog">
+      <div class="dialog-head">
+        <span>LEARNMAP / GUIDE</span>
+        <button id="close-guide" type="button" aria-label="사용 안내 닫기">×</button>
+      </div>
+      <h2>배움의 순서를<br>정답처럼 보지 마세요.</h2>
+      <p>이 지도는 2022 개정 교육과정 성취기준을 학부모가 살펴보기 쉬운 세부 주제로 나눈 탐색 도구입니다. 연결선은 수업을 고정하는 순서가 아니라, 이해에 도움이 되는 선수 관계를 제안합니다.</p>
+      <ol>
+        <li><b>색</b><span>과목을 구분합니다.</span></li>
+        <li><b>원형 층</b><span>안쪽부터 1–2, 3–4, 5–6학년군입니다.</span></li>
+        <li><b>검은 길</b><span>선택한 주제보다 먼저 배우는 흐름입니다.</span></li>
+        <li><b>붉은 길</b><span>선택한 주제에서 다음으로 열리는 흐름입니다.</span></li>
+      </ol>
+      <button class="dialog-confirm" id="confirm-guide" type="button">지도를 살펴볼게요</button>
+    </dialog>
+
+    <noscript>이 배움 지도는 그래프 탐색을 위해 JavaScript가 필요합니다.</noscript>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
