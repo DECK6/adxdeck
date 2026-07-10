@@ -5,6 +5,18 @@ import {
   migrateProfile,
   sanitizeProfile,
 } from "./profile-schema.js";
+import {
+  CAMERA_LIMITS,
+  DEFAULT_CAMERA,
+  TAU,
+  buildGraphLayout3D,
+  compareNodesForLayout,
+  createCamera,
+  fitCameraToLayout,
+  focusYawForPosition,
+  normalizeAngle,
+  projectPoint,
+} from "./graph-layout-3d.js?v=20260711-3d4";
 
 const DATA_URL = "./data/learnmap.json";
 
@@ -49,15 +61,30 @@ const EXPECTED_COUNTS = Object.freeze({
   standards: 620,
 });
 
-const TAU = Math.PI * 2;
-const MIN_SCALE = 0.18;
-const MAX_SCALE = 5;
+const MIN_ZOOM = CAMERA_LIMITS.minZoom;
+const MAX_ZOOM = CAMERA_LIMITS.maxZoom;
 const SEARCH_LIMIT = 10;
 const HIT_RADIUS = 11;
 const SUBJECT_FALLBACK = "#67625C";
 const RED = "#E63329";
-const CHARCOAL = "#1D1D1B";
-const CREAM = "#F4F1EA";
+const GRAPH_BACKGROUND = "#060912";
+const GRAPH_INK = "#F4F1EA";
+const AUTO_ROTATION_SPEED = 0.000045;
+const AUTO_ROTATION_PAUSE_MS = 5200;
+
+const GRAPH_SUBJECT_COLORS = Object.freeze({
+  "Korean Language": "#F25555",
+  Mathematics: "#24C8DB",
+  "Social Studies": "#F59E0B",
+  Science: "#34D399",
+  "English as a Foreign Language": "#A78BFA",
+  "Moral Education": "#F472B6",
+  "Physical Education": "#A3E635",
+  Music: "#EC4899",
+  Art: "#38BDF8",
+  "Practical Arts / Informatics": "#60A5FA",
+  "Integrated Subjects": "#D6E4FF",
+});
 
 const byId = (id) => document.getElementById(id);
 
@@ -158,12 +185,14 @@ const els = {
 
 const ctx = els.canvas?.getContext("2d", { alpha: true });
 const graphPanel = els.canvas?.closest(".graph-panel") ?? null;
-const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
+const reducedMotionQuery = window.matchMedia?.("(prefers-reduced-motion: reduce)") ?? null;
+let reducedMotion = reducedMotionQuery?.matches ?? false;
 
 const state = {
   mode: "map",
   listView: false,
   profile: createEmptyProfile(),
+  favoriteIds: new Set(),
   storageEnabled: true,
   saveIndicatorTimer: null,
   data: null,
@@ -177,6 +206,9 @@ const state = {
   nodeIndex: new Map(),
   incoming: new Map(),
   outgoing: new Map(),
+  layout3d: null,
+  projectedNodes: [],
+  projectedNodeById: new Map(),
   activeSubjects: new Set(),
   activeGrades: new Set(),
   visibleNodes: [],
@@ -188,9 +220,7 @@ const state = {
   query: "",
   searchMatches: [],
   view: {
-    x: 0,
-    y: 0,
-    scale: 1,
+    ...DEFAULT_CAMERA,
     userChanged: false,
   },
   size: {
@@ -202,6 +232,9 @@ const state = {
   drag: null,
   pinch: null,
   renderQueued: false,
+  lastRenderTime: 0,
+  interactionPauseUntil: 0,
+  autorotateTimer: null,
   ready: false,
 };
 
@@ -276,6 +309,7 @@ function prepareData(data) {
     gradeIds: new Set(state.grades.map((grade) => grade.id)),
     nodeIds: new Set((data.nodes ?? []).map((node) => node.id)),
   });
+  state.favoriteIds = new Set(state.profile.favorites);
   state.nodes = data.nodes.map((node, index) => ({
     ...node,
     _index: index,
@@ -283,6 +317,8 @@ function prepareData(data) {
     _color: subjectColor(node.subject),
     x: 0,
     y: 0,
+    z: 0,
+    layout3d: null,
   }));
   state.edges = [];
   state.clusters = new Map(data.clusters.map((cluster) => [cluster.id, cluster]));
@@ -320,7 +356,7 @@ function deriveSubjects(data) {
     return fromPayload.map((subject) => ({
       id: String(subject.id),
       label: subject.label ?? subject.id,
-      color: subject.color ?? SUBJECT_FALLBACK,
+      color: subjectColorForId(String(subject.id), subject.color),
       count: Number(subject.count ?? 0),
     }));
   }
@@ -328,7 +364,12 @@ function deriveSubjects(data) {
   const counts = new Map();
   for (const node of data.nodes ?? []) {
     const id = node.subject ?? "Unknown";
-    const current = counts.get(id) ?? { id, label: node.subjectLabel ?? id, color: SUBJECT_FALLBACK, count: 0 };
+    const current = counts.get(id) ?? {
+      id,
+      label: node.subjectLabel ?? id,
+      color: subjectColorForId(id, SUBJECT_FALLBACK),
+      count: 0,
+    };
     current.count += 1;
     counts.set(id, current);
   }
@@ -356,69 +397,23 @@ function deriveGrades(data) {
 }
 
 function buildCoordinates() {
-  const subjectOrder = new Map(state.subjects.map((subject, index) => [subject.id, index]));
-  const gradeOrder = new Map(state.grades.map((grade, index) => [grade.id, index]));
-  const sectorWidth = TAU / Math.max(1, state.subjects.length);
-  const sectorPadding = sectorWidth * 0.08;
-  const ringStep = 245;
-  const ringWidth = 170;
-  const innerRadius = 190;
-  const buckets = new Map();
+  state.layout3d = buildGraphLayout3D({
+    nodes: state.nodes,
+    subjects: state.subjects,
+    grades: state.grades,
+    clusters: [...state.clusters.values()],
+  });
 
   for (const node of state.nodes) {
-    const subjectIndex = subjectOrder.get(node.subject) ?? 0;
-    const gradeIndex = gradeOrder.get(node.grade) ?? 0;
-    const key = `${subjectIndex}:${gradeIndex}`;
-    const bucket = buckets.get(key) ?? [];
-    bucket.push(node);
-    buckets.set(key, bucket);
+    const layout = state.layout3d.positions.get(node.id);
+    if (!layout) {
+      throw new Error(`3D layout position missing for ${node.id}`);
+    }
+    node.x = layout.x;
+    node.y = layout.y;
+    node.z = layout.z;
+    node.layout3d = layout;
   }
-
-  for (const [key, bucket] of buckets) {
-    const [subjectIndexText, gradeIndexText] = key.split(":");
-    const subjectIndex = Number(subjectIndexText);
-    const gradeIndex = Number(gradeIndexText);
-    const sectorStart = -Math.PI / 2 + subjectIndex * sectorWidth + sectorPadding;
-    const usableSector = Math.max(0.02, sectorWidth - sectorPadding * 2);
-    const ringCenter = innerRadius + gradeIndex * ringStep;
-    const sorted = bucket.sort(compareNodesForLayout);
-    const laneCount = Math.max(3, Math.ceil(Math.sqrt(sorted.length / 2)));
-    const angleSlots = Math.max(1, Math.ceil(sorted.length / laneCount));
-
-    sorted.forEach((node, index) => {
-      const lane = index % laneCount;
-      const slot = Math.floor(index / laneCount);
-      const jitterA = stableUnit(`${node.id}:angle`) - 0.5;
-      const jitterR = stableUnit(`${node.id}:radius`) - 0.5;
-      const slotWidth = usableSector / angleSlots;
-      const angle = sectorStart + slotWidth * (slot + 0.5) + jitterA * slotWidth * 0.42;
-      const laneOffset = ((lane + 0.5) / laneCount - 0.5) * ringWidth;
-      const radius = ringCenter + laneOffset + jitterR * 26;
-      node.x = Math.cos(angle) * radius;
-      node.y = Math.sin(angle) * radius;
-    });
-  }
-}
-
-function compareNodesForLayout(a, b) {
-  const clusterA = Array.isArray(a.clusters) ? a.clusters[0] ?? "" : "";
-  const clusterB = Array.isArray(b.clusters) ? b.clusters[0] ?? "" : "";
-  return (
-    clusterA.localeCompare(clusterB) ||
-    String(a.domainLabel ?? a.domain ?? "").localeCompare(String(b.domainLabel ?? b.domain ?? ""), "ko") ||
-    String(a.code ?? "").localeCompare(String(b.code ?? "")) ||
-    String(a.type ?? "").localeCompare(String(b.type ?? "")) ||
-    String(a.id).localeCompare(String(b.id))
-  );
-}
-
-function stableUnit(text) {
-  let hash = 2166136261;
-  for (let index = 0; index < text.length; index += 1) {
-    hash ^= text.charCodeAt(index);
-    hash = Math.imul(hash, 16777619);
-  }
-  return (hash >>> 0) / 4294967295;
 }
 
 function loadProfile() {
@@ -478,6 +473,7 @@ function clearProfile() {
   }
 
   state.profile = createEmptyProfile();
+  state.favoriteIds = new Set();
   renderProfileControls();
   syncInspectorProfileState();
   updateParentPanel();
@@ -586,6 +582,7 @@ function setMode(mode) {
       requestRender();
     });
   } else {
+    clearAutorotationTimer();
     setListView(false, { restoreFocus: false });
     updateParentPanel();
   }
@@ -758,7 +755,7 @@ function topicStatus(nodeId) {
 }
 
 function isFavorite(nodeId) {
-  return state.profile.favorites.includes(nodeId);
+  return state.favoriteIds.has(nodeId);
 }
 
 function setTopicStatus(nodeId, status) {
@@ -781,12 +778,13 @@ function toggleFavoriteFor(nodeId) {
   if (!state.nodeById.has(nodeId)) {
     return;
   }
-  const favorites = new Set(state.profile.favorites);
+  const favorites = new Set(state.favoriteIds);
   if (favorites.has(nodeId)) {
     favorites.delete(nodeId);
   } else {
     favorites.add(nodeId);
   }
+  state.favoriteIds = favorites;
   state.profile.favorites = [...favorites];
   persistProfile();
   syncInspectorProfileState();
@@ -815,11 +813,13 @@ function setListView(visible, options = {}) {
   els.toggleListView.setAttribute("aria-pressed", String(state.listView));
   els.toggleListView.textContent = state.listView ? "지도" : "목록";
   if (state.listView) {
+    clearAutorotationTimer();
     renderTopicList();
     els.closeListView.focus({ preventScroll: true });
   } else if (options.restoreFocus !== false && document.activeElement === els.closeListView) {
     els.toggleListView.focus({ preventScroll: true });
   }
+  requestRender();
 }
 
 function renderTopicList() {
@@ -1048,6 +1048,22 @@ function wireStaticEvents() {
   els.closeOntology?.addEventListener("click", closeOntology);
   els.confirmOntology?.addEventListener("click", closeOntology);
   window.addEventListener("hashchange", () => applyRouteFromHash());
+  document.addEventListener("visibilitychange", () => {
+    state.lastRenderTime = 0;
+    if (document.hidden) {
+      clearAutorotationTimer();
+    } else {
+      requestRender();
+    }
+  });
+  reducedMotionQuery?.addEventListener?.("change", (event) => {
+    reducedMotion = event.matches;
+    state.lastRenderTime = 0;
+    if (reducedMotion) {
+      clearAutorotationTimer();
+    }
+    requestRender();
+  });
 
   els.canvas.addEventListener("pointerdown", onPointerDown);
   els.canvas.addEventListener("pointermove", onPointerMove);
@@ -1093,6 +1109,7 @@ function onPointerDown(event) {
   if (!state.ready) {
     return;
   }
+  pauseAutorotation();
   els.canvas.setPointerCapture?.(event.pointerId);
   const point = canvasPoint(event);
   state.pointers.set(event.pointerId, point);
@@ -1104,6 +1121,7 @@ function onPointerDown(event) {
       start: point,
       last: point,
       moved: false,
+      mode: event.shiftKey ? "pan" : "rotate",
     };
     state.pinch = null;
     els.canvas.classList.add("is-dragging");
@@ -1139,8 +1157,14 @@ function onPointerMove(event) {
 
     if (total > 3) {
       state.drag.moved = true;
-      state.view.x += dx;
-      state.view.y += dy;
+      pauseAutorotation();
+      if (state.drag.mode === "pan" || event.shiftKey) {
+        state.view.panX += dx;
+        state.view.panY += dy;
+      } else {
+        state.view.yaw = normalizeAngle(state.view.yaw + dx * 0.0062);
+        state.view.pitch = clamp(state.view.pitch + dy * 0.0038, CAMERA_LIMITS.minPitch, CAMERA_LIMITS.maxPitch);
+      }
       state.view.userChanged = true;
       updateZoomLabel();
       updateHover(null);
@@ -1168,7 +1192,7 @@ function onPointerUp(event) {
   if (wasDrag && !wasDrag.moved) {
     const node = hitTest(point);
     if (node) {
-      selectNode(node, { center: false, focusCanvas: true });
+      selectNode(node, { center: true, focusCanvas: true });
     }
   }
   state.drag = null;
@@ -1194,9 +1218,10 @@ function onWheel(event) {
     return;
   }
   event.preventDefault();
+  pauseAutorotation();
   const point = canvasPoint(event);
   const factor = Math.exp(-event.deltaY * 0.001);
-  zoomAt(point, state.view.scale * factor, { markUser: true });
+  zoomAt(point, state.view.zoom * factor, { markUser: true });
 }
 
 function onCanvasKeyDown(event) {
@@ -1230,7 +1255,7 @@ function onCanvasKeyDown(event) {
         : nearestNodeToScreenCenter();
     if (node) {
       event.preventDefault();
-      selectNode(node, { center: false });
+      selectNode(node, { center: true });
     }
   }
 }
@@ -1287,8 +1312,10 @@ function makePinchState() {
   const center = midpoint(points[0], points[1]);
   return {
     distance: Math.max(1, distance(points[0], points[1])),
-    world: screenToWorld(center),
-    scale: state.view.scale,
+    center,
+    zoom: state.view.zoom,
+    panX: state.view.panX,
+    panY: state.view.panY,
   };
 }
 
@@ -1298,28 +1325,36 @@ function updatePinch() {
     return;
   }
   const center = midpoint(points[0], points[1]);
-  const nextScale = state.pinch.scale * (distance(points[0], points[1]) / state.pinch.distance);
-  const scale = clamp(nextScale, MIN_SCALE, MAX_SCALE);
-  state.view.scale = scale;
-  state.view.x = center.x - state.pinch.world.x * scale;
-  state.view.y = center.y - state.pinch.world.y * scale;
+  const nextZoom = state.pinch.zoom * (distance(points[0], points[1]) / state.pinch.distance);
+  const zoom = clamp(nextZoom, MIN_ZOOM, MAX_ZOOM);
+  const viewportCenter = { x: state.size.width / 2, y: state.size.height / 2 };
+  const ratio = state.pinch.zoom > 0 ? zoom / state.pinch.zoom : 1;
+  state.view.zoom = zoom;
+  state.view.panX = center.x - viewportCenter.x
+    - (state.pinch.center.x - viewportCenter.x - state.pinch.panX) * ratio;
+  state.view.panY = center.y - viewportCenter.y
+    - (state.pinch.center.y - viewportCenter.y - state.pinch.panY) * ratio;
   state.view.userChanged = true;
+  pauseAutorotation();
   updateZoomLabel();
   requestRender();
 }
 
 function zoomAtCenter(factor) {
   const point = { x: state.size.width / 2, y: state.size.height / 2 };
-  zoomAt(point, state.view.scale * factor, { markUser: true });
+  zoomAt(point, state.view.zoom * factor, { markUser: true });
 }
 
-function zoomAt(point, nextScale, options = {}) {
-  const scale = clamp(nextScale, MIN_SCALE, MAX_SCALE);
-  const world = screenToWorld(point);
-  state.view.scale = scale;
-  state.view.x = point.x - world.x * scale;
-  state.view.y = point.y - world.y * scale;
+function zoomAt(point, nextZoom, options = {}) {
+  const previousZoom = state.view.zoom;
+  const zoom = clamp(nextZoom, MIN_ZOOM, MAX_ZOOM);
+  const center = { x: state.size.width / 2, y: state.size.height / 2 };
+  const ratio = previousZoom > 0 ? zoom / previousZoom : 1;
+  state.view.zoom = zoom;
+  state.view.panX = point.x - center.x - (point.x - center.x - state.view.panX) * ratio;
+  state.view.panY = point.y - center.y - (point.y - center.y - state.view.panY) * ratio;
   state.view.userChanged = Boolean(options.markUser);
+  pauseAutorotation();
   updateZoomLabel();
   updateHover(state.lastPointer);
   requestRender();
@@ -1331,28 +1366,23 @@ function fitView(options = {}) {
     return;
   }
 
-  const bounds = nodes.reduce(
-    (acc, node) => ({
-      minX: Math.min(acc.minX, node.x),
-      maxX: Math.max(acc.maxX, node.x),
-      minY: Math.min(acc.minY, node.y),
-      maxY: Math.max(acc.maxY, node.y),
-    }),
-    { minX: Infinity, maxX: -Infinity, minY: Infinity, maxY: -Infinity },
-  );
-  const padding = reducedMotion ? 44 : 58;
-  const width = Math.max(1, bounds.maxX - bounds.minX);
-  const height = Math.max(1, bounds.maxY - bounds.minY);
-  const usableWidth = Math.max(1, state.size.width - padding * 2);
-  const usableHeight = Math.max(1, state.size.height - padding * 2);
-  const scale = clamp(Math.min(usableWidth / width, usableHeight / height), MIN_SCALE, MAX_SCALE);
-  const centerX = (bounds.minX + bounds.maxX) / 2;
-  const centerY = (bounds.minY + bounds.maxY) / 2;
-
-  state.view.scale = scale;
-  state.view.x = state.size.width / 2 - centerX * scale;
-  state.view.y = state.size.height / 2 - centerY * scale;
+  const camera = createCamera({
+    ...DEFAULT_CAMERA,
+    userChanged: Boolean(options.markUser),
+  });
+  const framed = fitCameraToLayout(nodes, state.size, camera, {
+    padding: reducedMotion ? 44 : 58,
+    minZoom: MIN_ZOOM,
+    maxZoom: MAX_ZOOM,
+  });
+  state.view = {
+    ...framed,
+    userChanged: Boolean(options.markUser),
+  };
   state.view.userChanged = Boolean(options.markUser);
+  if (options.markUser) {
+    pauseAutorotation();
+  }
   updateZoomLabel();
   updateHover(null);
   requestRender();
@@ -1416,16 +1446,20 @@ function selectNode(nodeOrId, options = {}) {
   }
 
   state.selectedId = node.id;
+  pauseAutorotation();
   if (options.updateRoute !== false) {
     replaceRouteHash("topic", node.id);
   }
   els.app.classList.add("inspector-open");
   els.inspector.setAttribute("aria-hidden", "false");
+  // Reading the new canvas rect forces the inspector grid change to settle
+  // before projection and centering use the viewport dimensions.
+  resizeCanvas();
   fillInspector(node);
   updateSearchResults();
   renderTopicList();
 
-  if (options.center && isNodeFilterVisible(node)) {
+  if (options.center !== false && isNodeFilterVisible(node)) {
     centerNode(node);
   }
   if (options.focusCanvas) {
@@ -1579,23 +1613,53 @@ function relationLevelText(level) {
 }
 
 function closeInspector() {
+  const restoreCanvasFocus = els.inspector.contains(document.activeElement);
   state.selectedId = null;
   els.app.classList.remove("inspector-open");
   els.inspector.setAttribute("aria-hidden", "true");
   clearRouteHash();
   updateSearchResults();
   renderTopicList();
+  pauseAutorotation();
+  if (restoreCanvasFocus) {
+    const target = state.mode === "map"
+      ? els.canvas
+      : els.modeButtons.find((button) => button.dataset.mode === state.mode);
+    target?.focus({ preventScroll: true });
+  }
   requestRender();
 }
 
 function centerNode(node) {
-  state.view.x = state.size.width / 2 - node.x * state.view.scale;
-  state.view.y = state.size.height / 2 - node.y * state.view.scale;
+  const layout = node.layout3d ?? node;
+  state.view.yaw = focusYawForPosition(layout);
+  state.view.pitch = clamp(-0.14 - layout.y * 0.00008, CAMERA_LIMITS.minPitch, CAMERA_LIMITS.maxPitch);
+  const projected = worldToScreen(node);
+  const target = unobscuredCanvasCenter();
+  state.view.panX += target.x - projected.x;
+  state.view.panY += target.y - projected.y;
   state.view.userChanged = true;
+  pauseAutorotation();
   updateZoomLabel();
 }
 
+function unobscuredCanvasCenter() {
+  const canvasRect = els.canvas.getBoundingClientRect();
+  const inspectorRect = els.inspector.getBoundingClientRect();
+  const overlapLeft = Math.max(canvasRect.left, inspectorRect.left);
+  const overlapRight = Math.min(canvasRect.right, inspectorRect.right);
+  const inspectorOverlaysRight = overlapRight > overlapLeft
+    && inspectorRect.left > canvasRect.left + 1;
+  return {
+    x: inspectorOverlaysRight
+      ? (overlapLeft - canvasRect.left) / 2
+      : canvasRect.width / 2,
+    y: canvasRect.height / 2,
+  };
+}
+
 function openGuide() {
+  clearAutorotationTimer();
   if (typeof els.guideDialog.showModal === "function") {
     els.guideDialog.showModal();
   } else {
@@ -1610,9 +1674,11 @@ function closeGuide() {
     els.guideDialog.removeAttribute("open");
   }
   els.openGuide?.focus({ preventScroll: true });
+  requestRender();
 }
 
 function openOntology() {
+  clearAutorotationTimer();
   if (typeof els.ontologyDialog.showModal === "function") {
     els.ontologyDialog.showModal();
   } else {
@@ -1627,6 +1693,7 @@ function closeOntology() {
     els.ontologyDialog.removeAttribute("open");
   }
   els.openOntology?.focus({ preventScroll: true });
+  requestRender();
 }
 
 function isDialogOpen(dialog) {
@@ -1740,65 +1807,120 @@ function requestRender() {
   requestAnimationFrame(render);
 }
 
-function render() {
+function render(timestamp = performance.now()) {
   state.renderQueued = false;
+  updateAutorotation(timestamp);
   const { width, height, dpr } = state.size;
 
   ctx.setTransform(1, 0, 0, 1, 0, 0);
   ctx.clearRect(0, 0, els.canvas.width, els.canvas.height);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  ctx.fillStyle = CREAM;
+  ctx.fillStyle = GRAPH_BACKGROUND;
   ctx.fillRect(0, 0, width, height);
 
-  drawMapGuides(width, height);
   if (!state.ready) {
     updateZoomLabel();
+    scheduleAutorotationFrame();
     return;
   }
 
+  prepareProjectedNodes();
   drawEdges();
   drawHighlightedEdges();
   drawNodes();
   updateZoomLabel();
+  scheduleAutorotationFrame();
 }
 
-function drawMapGuides(width, height) {
-  const center = worldToScreen({ x: 0, y: 0 });
-  ctx.save();
-  ctx.strokeStyle = "rgba(29, 29, 27, 0.10)";
-  ctx.lineWidth = 1;
-  for (let index = 0; index < state.grades.length; index += 1) {
-    const radius = (190 + index * 245) * state.view.scale;
-    if (radius < 12 || radius > Math.max(width, height) * 1.8) {
-      continue;
-    }
-    ctx.beginPath();
-    ctx.arc(center.x, center.y, radius, 0, TAU);
-    ctx.stroke();
+function updateAutorotation(timestamp) {
+  if (!shouldAutorotate()) {
+    state.lastRenderTime = timestamp;
+    return;
   }
+  if (timestamp < state.interactionPauseUntil) {
+    state.lastRenderTime = timestamp;
+    return;
+  }
+  const delta = state.lastRenderTime ? Math.min(48, timestamp - state.lastRenderTime) : 16;
+  state.view.yaw = normalizeAngle(state.view.yaw + delta * AUTO_ROTATION_SPEED);
+  state.lastRenderTime = timestamp;
+}
 
-  if (state.subjects.length) {
-    const outerRadius = (190 + (state.grades.length - 1) * 245 + 120) * state.view.scale;
-    ctx.strokeStyle = "rgba(29, 29, 27, 0.06)";
-    for (let index = 0; index < state.subjects.length; index += 1) {
-      const angle = -Math.PI / 2 + index * (TAU / state.subjects.length);
-      ctx.beginPath();
-      ctx.moveTo(center.x, center.y);
-      ctx.lineTo(center.x + Math.cos(angle) * outerRadius, center.y + Math.sin(angle) * outerRadius);
-      ctx.stroke();
-    }
+function scheduleAutorotationFrame() {
+  if (!shouldAutorotate()) {
+    clearAutorotationTimer();
+    return;
   }
-  ctx.restore();
+  const delay = state.interactionPauseUntil - performance.now();
+  if (delay > 0) {
+    if (!state.autorotateTimer) {
+      state.autorotateTimer = window.setTimeout(() => {
+        state.autorotateTimer = null;
+        requestRender();
+      }, delay);
+    }
+    return;
+  }
+  state.renderQueued = true;
+  requestAnimationFrame(render);
+}
+
+function shouldAutorotate() {
+  return !reducedMotion
+    && !document.hidden
+    && state.ready
+    && state.mode === "map"
+    && !state.listView
+    && !state.selectedId
+    && !state.hoveredId
+    && state.pointers.size === 0
+    && !state.drag
+    && !state.pinch
+    && !isDialogOpen(els.guideDialog)
+    && !isDialogOpen(els.ontologyDialog)
+    && state.visibleNodes.length > 0;
+}
+
+function pauseAutorotation() {
+  state.interactionPauseUntil = performance.now() + AUTO_ROTATION_PAUSE_MS;
+  clearAutorotationTimer();
+}
+
+function clearAutorotationTimer() {
+  if (state.autorotateTimer) {
+    window.clearTimeout(state.autorotateTimer);
+    state.autorotateTimer = null;
+  }
+}
+
+function prepareProjectedNodes() {
+  state.projectedNodes = state.visibleNodes
+    .map((node) => {
+      const projected = worldToScreen(node);
+      return {
+        ...projected,
+        node,
+        radius: projectedNodeRadius(node, projected),
+      };
+    })
+    .sort((a, b) => a.depth - b.depth || a.node.id.localeCompare(b.node.id));
+  state.projectedNodeById = new Map(state.projectedNodes.map((point) => [point.node.id, point]));
 }
 
 function drawEdges() {
+  const focusId = visibleFocusId();
   ctx.save();
-  ctx.strokeStyle = "rgba(29, 29, 27, 0.105)";
-  ctx.lineWidth = 0.75;
+  ctx.strokeStyle = focusId
+    ? "rgba(244, 241, 234, 0.018)"
+    : "rgba(190, 217, 255, 0.062)";
+  ctx.lineWidth = 0.5;
   ctx.beginPath();
   for (const edge of state.visibleEdges) {
-    const from = worldToScreen(edge.fromNode);
-    const to = worldToScreen(edge.toNode);
+    const from = state.projectedNodeById.get(edge.fromNode.id);
+    const to = state.projectedNodeById.get(edge.toNode.id);
+    if (!from || !to) {
+      continue;
+    }
     if (!lineNearViewport(from, to)) {
       continue;
     }
@@ -1810,61 +1932,126 @@ function drawEdges() {
 }
 
 function drawHighlightedEdges() {
-  if (!state.selectedId) {
+  const focusId = visibleFocusId();
+  if (!focusId) {
     return;
   }
-  const incoming = state.incoming.get(state.selectedId) ?? [];
-  const outgoing = state.outgoing.get(state.selectedId) ?? [];
-  drawEdgeSet(incoming, CHARCOAL, 2.4);
-  drawEdgeSet(outgoing, RED, 2.4);
+  const incoming = state.incoming.get(focusId) ?? [];
+  const outgoing = state.outgoing.get(focusId) ?? [];
+  drawEdgeSet(incoming, "rgba(244, 241, 234, 0.88)", 1.35);
+  drawEdgeSet(outgoing, RED, 1.55);
 }
 
 function drawEdgeSet(edges, color, width) {
-  ctx.save();
-  ctx.strokeStyle = color;
-  ctx.lineWidth = width;
-  ctx.lineCap = "round";
-  ctx.beginPath();
-  for (const edge of edges) {
-    if (!state.visibleNodeIds.has(edge.from) || !state.visibleNodeIds.has(edge.to)) {
-      continue;
+  for (const level of ["required", "recommended"]) {
+    ctx.save();
+    ctx.strokeStyle = color;
+    ctx.globalAlpha = level === "required" ? 1 : 0.82;
+    ctx.lineWidth = width;
+    ctx.lineCap = "round";
+    ctx.setLineDash([]);
+    ctx.beginPath();
+    for (const edge of edges) {
+      if (edge.requirementLevel !== level || !state.visibleNodeIds.has(edge.from) || !state.visibleNodeIds.has(edge.to)) {
+        continue;
+      }
+      const from = state.projectedNodeById.get(edge.fromNode.id);
+      const to = state.projectedNodeById.get(edge.toNode.id);
+      if (!from || !to || !lineNearViewport(from, to)) {
+        continue;
+      }
+      ctx.moveTo(from.x, from.y);
+      ctx.lineTo(to.x, to.y);
     }
-    const from = worldToScreen(edge.fromNode);
-    const to = worldToScreen(edge.toNode);
-    ctx.moveTo(from.x, from.y);
-    ctx.lineTo(to.x, to.y);
+    ctx.stroke();
+    ctx.restore();
   }
-  ctx.stroke();
-  ctx.restore();
 }
 
 function drawNodes() {
   ctx.save();
-  for (const node of state.visibleNodes) {
-    const point = worldToScreen(node);
-    if (!pointNearViewport(point, 20)) {
+  const focus = focusNodeContext();
+  for (const projected of state.projectedNodes) {
+    const { node } = projected;
+    if (!pointNearViewport(projected, 24)) {
       continue;
     }
     const isSelected = node.id === state.selectedId;
     const isHovered = node.id === state.hoveredId;
+    const isPrerequisite = focus.prerequisites.has(node.id);
+    const isUnlock = focus.unlocks.has(node.id);
     const status = topicStatus(node.id);
     const favorite = isFavorite(node.id);
-    const radius = isSelected ? 6.2 : isHovered ? 5.3 : status || favorite ? 4.2 : 3.4;
+    const radius = isSelected ? projected.radius + 3.3 : isHovered ? projected.radius + 2.4 : projected.radius;
+    const baseAlpha = depthAlpha(projected.depth);
+    const alpha = focus.id
+      ? isSelected || isHovered
+        ? 1
+        : isPrerequisite || isUnlock
+          ? 0.94
+          : 0.18
+      : status || favorite
+        ? 0.96
+        : baseAlpha;
 
     ctx.beginPath();
     ctx.fillStyle = node._color ?? SUBJECT_FALLBACK;
-    ctx.globalAlpha = isSelected || isHovered ? 1 : 0.86;
-    ctx.arc(point.x, point.y, radius, 0, TAU);
+    ctx.globalAlpha = alpha;
+    ctx.arc(projected.x, projected.y, radius, 0, TAU);
     ctx.fill();
 
-    if (isSelected || isHovered || status || favorite) {
+    if (isSelected || isHovered) {
+      ctx.globalAlpha = 0.94;
+      ctx.lineWidth = 1.1;
+      ctx.strokeStyle = isSelected ? GRAPH_INK : node._color ?? GRAPH_INK;
+      ctx.beginPath();
+      ctx.arc(projected.x, projected.y, radius + 4.2, 0, TAU);
+      ctx.stroke();
+      ctx.globalAlpha = isSelected ? 0.58 : 0.34;
+      ctx.beginPath();
+      ctx.arc(projected.x, projected.y, radius + 8.4, 0, TAU);
+      ctx.stroke();
+    }
+
+    if (status || favorite || isPrerequisite || isUnlock) {
       ctx.globalAlpha = 1;
-      ctx.lineWidth = isSelected ? 2 : favorite ? 1.8 : 1.2;
-      ctx.strokeStyle = isSelected || status === "familiar" ? CHARCOAL : RED;
+      ctx.lineWidth = favorite ? 1.6 : 1.05;
+      ctx.strokeStyle = isUnlock || status === "preview" ? RED : GRAPH_INK;
+      ctx.beginPath();
+      ctx.arc(projected.x, projected.y, radius + 1.1, 0, TAU);
       ctx.stroke();
     }
   }
   ctx.restore();
+}
+
+function focusNodeContext() {
+  const id = visibleFocusId();
+  if (!id) {
+    return { id: null, prerequisites: new Set(), unlocks: new Set() };
+  }
+  return {
+    id,
+    prerequisites: new Set((state.incoming.get(id) ?? []).map((edge) => edge.prerequisiteNode.id)),
+    unlocks: new Set((state.outgoing.get(id) ?? []).map((edge) => edge.dependentNode.id)),
+  };
+}
+
+function visibleFocusId() {
+  const id = state.selectedId ?? state.hoveredId;
+  return id && state.visibleNodeIds.has(id) ? id : null;
+}
+
+function projectedNodeRadius(node, projected) {
+  const status = topicStatus(node.id);
+  const favorite = isFavorite(node.id);
+  const depthScale = clamp(projected.scale * 1.95, 0.58, 2.25);
+  const base = status || favorite ? 3.4 : 2.55;
+  return base * depthScale;
+}
+
+function depthAlpha(depth) {
+  return clamp(0.42 + ((depth + 760) / 1520) * 0.34, 0.28, 0.82);
 }
 
 function updateHover(point) {
@@ -1900,32 +2087,27 @@ function placeHoverCard(point) {
 
 function hitTest(point) {
   let nearest = null;
-  let nearestDistance = HIT_RADIUS * HIT_RADIUS;
+  let nearestDistance = Infinity;
+  let nearestDepth = -Infinity;
   for (const node of state.visibleNodes) {
     const screen = worldToScreen(node);
     const dx = screen.x - point.x;
     const dy = screen.y - point.y;
     const distanceSquared = dx * dx + dy * dy;
-    if (distanceSquared <= nearestDistance) {
+    const targetRadius = Math.max(HIT_RADIUS, projectedNodeRadius(node, screen) + 4);
+    const isCloser = distanceSquared < nearestDistance - 0.5;
+    const isFrontTie = Math.abs(distanceSquared - nearestDistance) <= 0.5 && screen.depth > nearestDepth;
+    if (distanceSquared <= targetRadius * targetRadius && (isCloser || isFrontTie)) {
       nearest = node;
       nearestDistance = distanceSquared;
+      nearestDepth = screen.depth;
     }
   }
   return nearest;
 }
 
 function worldToScreen(point) {
-  return {
-    x: point.x * state.view.scale + state.view.x,
-    y: point.y * state.view.scale + state.view.y,
-  };
-}
-
-function screenToWorld(point) {
-  return {
-    x: (point.x - state.view.x) / state.view.scale,
-    y: (point.y - state.view.y) / state.view.scale,
-  };
+  return projectPoint(point.layout3d ?? point, state.view, state.size);
 }
 
 function canvasPoint(event) {
@@ -2002,12 +2184,17 @@ function setStatus(text) {
 
 function updateZoomLabel() {
   if (els.zoomLevel) {
-    els.zoomLevel.textContent = `${Math.round(state.view.scale * 100)}%`;
+    els.zoomLevel.textContent = `${Math.round(state.view.zoom * 100)}%`;
   }
 }
 
 function subjectColor(subjectId) {
-  return state.subjects.find((subject) => subject.id === subjectId)?.color ?? SUBJECT_FALLBACK;
+  const payloadColor = state.subjects.find((subject) => subject.id === subjectId)?.color;
+  return subjectColorForId(subjectId, payloadColor);
+}
+
+function subjectColorForId(subjectId, fallback = SUBJECT_FALLBACK) {
+  return GRAPH_SUBJECT_COLORS[subjectId] ?? fallback ?? SUBJECT_FALLBACK;
 }
 
 function metaLine(node) {

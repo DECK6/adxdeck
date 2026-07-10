@@ -7,7 +7,7 @@
     <meta name="description" content="대한민국 초등 교육과정의 배움 주제와 선수 관계를 탐색하는 학부모용 학습 지도">
     <title>대한민국 초등 배움 지도 — DEXA</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css?v=20260711-3d4">
   </head>
   <body>
     <div class="app" id="app" data-state="loading">
@@ -99,7 +99,7 @@
           <section class="path-legend" aria-label="배움 관계 의미 범례">
             <strong>관계 뜻</strong>
             <span><i class="legend-line prerequisite"></i>직접 먼저 배우는 길</span>
-            <span><i class="legend-line indirect"></i>간접 경로 · 2단계 이상</span>
+            <span><i class="legend-badge recommended">2+</i>간접 경로 · 상세 패널에서 확인</span>
             <span><i class="legend-badge required">필수</i>이 모델의 권장 경로</span>
             <span><i class="legend-badge recommended">권장</i>다른 순서도 가능</span>
             <span><i class="legend-line unlock"></i>다음에 열리는 길</span>
@@ -118,7 +118,7 @@
         </aside>
 
         <section class="graph-panel" aria-label="배움 관계 그래프">
-          <canvas id="graph-canvas" tabindex="0" aria-label="초등 배움 주제 관계 그래프. 드래그하여 이동하고 휠이나 두 손가락으로 확대할 수 있습니다."></canvas>
+          <canvas id="graph-canvas" tabindex="0" aria-label="초등 배움 주제 관계 3D 그래프. 드래그하여 회전하고 Shift 키를 누른 채 드래그하여 이동하며, 휠이나 두 손가락으로 확대할 수 있습니다." aria-describedby="graph-help"></canvas>
 
           <div class="canvas-toolbar" aria-label="그래프 보기 조절">
             <button class="view-toggle" id="toggle-list-view" type="button" aria-pressed="false" aria-controls="topic-list-panel">목록</button>
@@ -135,8 +135,8 @@
           <div class="loading-panel" id="loading-panel" role="status">
             <span class="loading-index">00</span>
             <div>
-              <strong>배움의 좌표를 계산하고 있습니다</strong>
-              <span>1,956개의 주제를 학년군과 과목별로 놓는 중</span>
+              <strong>배움의 3D 좌표를 계산하고 있습니다</strong>
+              <span>1,956개의 주제를 학년군과 과목 리본으로 놓는 중</span>
               <button id="retry-data" type="button" hidden>데이터 다시 불러오기</button>
             </div>
           </div>
@@ -163,7 +163,7 @@
             <strong id="hover-title"></strong>
           </div>
 
-          <p class="canvas-hint">DRAG TO PAN · WHEEL / PINCH TO ZOOM · ARROW KEYS TO MOVE · SELECT A NODE</p>
+          <p class="canvas-hint" id="graph-help">DRAG ROTATES · SHIFT+DRAG PANS · WHEEL / PINCH ZOOMS · ARROW KEYS SELECT</p>
         </section>
 
         <section class="parent-panel" id="parent-panel" aria-live="polite" hidden>
@@ -277,8 +277,8 @@
       <p>이 지도는 2022 개정 교육과정 성취기준을 학부모가 살펴보기 쉬운 세부 주제로 나눈 탐색 도구입니다. 연결선은 수업을 고정하는 순서가 아니라, 이해에 도움이 되는 선수 관계를 제안합니다.</p>
       <ol>
         <li><b>색</b><span>과목을 구분합니다.</span></li>
-        <li><b>원형 층</b><span>안쪽부터 1–2, 3–4, 5–6학년군입니다.</span></li>
-        <li><b>검은 길</b><span>선택한 주제보다 먼저 배우는 흐름입니다.</span></li>
+        <li><b>세로 흐름</b><span>아래에서 위로 1–2, 3–4, 5–6학년군의 배움 진행을 나타냅니다.</span></li>
+        <li><b>밝은 길</b><span>선택한 주제보다 먼저 배우는 흐름입니다.</span></li>
         <li><b>붉은 길</b><span>선택한 주제에서 다음으로 열리는 흐름입니다.</span></li>
         <li><b>직접·간접</b><span>직접은 검토된 한 단계 제안, 간접은 직접 관계를 두 단계 이상 따라가 계산한 탐색 요약입니다.</span></li>
         <li><b>필수·권장</b><span>필수도 이 모델의 권장 경로 안에서만 required를 뜻합니다. 권장은 다른 순서가 가능하다는 뜻입니다.</span></li>
@@ -323,6 +323,6 @@
     </dialog>
 
     <noscript>이 배움 지도는 그래프 탐색을 위해 JavaScript가 필요합니다.</noscript>
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="./app.js?v=20260711-3d4"></script>
   </body>
 </html>

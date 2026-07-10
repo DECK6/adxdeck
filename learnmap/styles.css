@@ -11,8 +11,8 @@
   --line-strong: rgba(29, 29, 27, 0.44);
   --hairline: 1px;
   --topbar-height: 64px;
-  --control-width: 294px;
-  --inspector-width: 374px;
+  --control-width: 330px;
+  --inspector-width: 430px;
   font-family: Inter, Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -118,7 +118,7 @@ canvas:focus-visible {
 .brand-copy strong {
   overflow: hidden;
   font-size: 11px;
-  letter-spacing: 0.13em;
+  letter-spacing: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -126,7 +126,7 @@ canvas:focus-visible {
 .brand-copy small {
   color: var(--muted);
   font-size: 10px;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 .topbar-metrics {
@@ -144,7 +144,7 @@ canvas:focus-visible {
   border-right: var(--hairline) solid var(--line);
   color: var(--muted);
   font-size: 10px;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
 }
 
 .topbar-metrics span:last-child {
@@ -194,7 +194,7 @@ canvas:focus-visible {
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 8px;
   font-weight: 750;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
 }
 
 .release-button i {
@@ -202,7 +202,6 @@ canvas:focus-visible {
   height: 7px;
   border-radius: 50%;
   background: #23816c;
-  box-shadow: 0 0 0 3px rgba(35, 129, 108, 0.14);
 }
 
 .icon-button {
@@ -257,15 +256,15 @@ canvas:focus-visible {
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 8px;
   font-weight: 700;
-  letter-spacing: 0.12em;
+  letter-spacing: 0;
   line-height: 1.5;
 }
 
 .intro-block h1 {
   margin: 0;
-  font-size: clamp(24px, 2vw, 30px);
+  font-size: 30px;
   font-weight: 750;
-  letter-spacing: -0.055em;
+  letter-spacing: 0;
   line-height: 1.15;
   word-break: keep-all;
 }
@@ -469,7 +468,7 @@ canvas:focus-visible {
   margin: 0 0 10px;
   font-size: 10px;
   font-weight: 800;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
 }
 
 .search-field {
@@ -710,7 +709,9 @@ canvas:focus-visible {
 }
 
 .legend-line.indirect {
-  background: repeating-linear-gradient(90deg, var(--charcoal) 0 4px, transparent 4px 7px);
+  height: 0;
+  border-top: 2px dashed var(--charcoal);
+  background: transparent;
 }
 
 .legend-badge,
@@ -741,7 +742,7 @@ canvas:focus-visible {
   border-top: var(--hairline) solid var(--line-strong);
   color: var(--muted);
   font-size: 8px;
-  letter-spacing: 0.03em;
+  letter-spacing: 0;
 }
 
 .status-dot {
@@ -764,13 +765,14 @@ canvas:focus-visible {
   min-width: 0;
   min-height: 0;
   overflow: hidden;
-  background: var(--cream);
+  background: #060912;
 }
 
 #graph-canvas {
   display: block;
   width: 100%;
   height: 100%;
+  background: #060912;
   cursor: grab;
   touch-action: none;
 }
@@ -786,13 +788,14 @@ canvas:focus-visible {
   display: grid;
   grid-template-columns: 54px 36px 58px 36px;
   height: 36px;
-  border: var(--hairline) solid var(--charcoal);
-  background: var(--cream);
+  border: var(--hairline) solid rgba(244, 241, 234, 0.58);
+  background: #090d18;
+  color: var(--paper);
 }
 
 .canvas-toolbar button {
   border-left: 0;
-  border-right: var(--hairline) solid var(--charcoal);
+  border-right: var(--hairline) solid rgba(244, 241, 234, 0.42);
   font-size: 17px;
 }
 
@@ -803,7 +806,7 @@ canvas:focus-visible {
 
 .canvas-toolbar button:last-child {
   border-right: 0;
-  border-left: var(--hairline) solid var(--charcoal);
+  border-left: var(--hairline) solid rgba(244, 241, 234, 0.42);
 }
 
 .canvas-toolbar output {
@@ -821,8 +824,9 @@ canvas:focus-visible {
   align-items: baseline;
   gap: 7px;
   padding: 9px 10px;
-  border: var(--hairline) solid var(--charcoal);
-  background: var(--cream);
+  border: var(--hairline) solid rgba(244, 241, 234, 0.58);
+  background: #090d18;
+  color: var(--paper);
 }
 
 .visible-count strong {
@@ -831,7 +835,7 @@ canvas:focus-visible {
 }
 
 .visible-count span {
-  color: var(--muted);
+  color: rgba(244, 241, 234, 0.72);
   font-size: 8px;
 }
 
@@ -911,13 +915,14 @@ canvas:focus-visible {
   gap: 4px;
   width: min(248px, calc(100% - 24px));
   padding: 9px 10px;
-  border: var(--hairline) solid var(--charcoal);
-  background: var(--paper);
+  border: var(--hairline) solid rgba(244, 241, 234, 0.64);
+  background: #090d18;
+  color: var(--paper);
   pointer-events: none;
 }
 
 .hover-card span {
-  color: var(--muted);
+  color: rgba(244, 241, 234, 0.72);
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 8px;
 }
@@ -932,10 +937,10 @@ canvas:focus-visible {
   right: 16px;
   bottom: 13px;
   margin: 0;
-  color: var(--muted);
+  color: rgba(244, 241, 234, 0.54);
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 7px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   pointer-events: none;
 }
 
@@ -964,13 +969,13 @@ canvas:focus-visible {
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 8px;
   font-weight: 750;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
 }
 
 .topic-list-head h2 {
   margin: 8px 0 0;
-  font-size: clamp(22px, 3vw, 34px);
-  letter-spacing: -0.045em;
+  font-size: 30px;
+  letter-spacing: 0;
 }
 
 .topic-list-head button {
@@ -1064,8 +1069,8 @@ canvas:focus-visible {
 
 .parent-panel-head h2 {
   margin: 0;
-  font-size: clamp(30px, 4vw, 54px);
-  letter-spacing: -0.06em;
+  font-size: 42px;
+  letter-spacing: 0;
   line-height: 1.08;
 }
 
@@ -1201,7 +1206,7 @@ canvas:focus-visible {
   cursor: pointer;
   font-size: 17px;
   font-weight: 780;
-  letter-spacing: -0.035em;
+  letter-spacing: 0;
   line-height: 1.35;
 }
 
@@ -1279,7 +1284,7 @@ canvas:focus-visible {
   color: var(--muted);
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 8px;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
 }
 
 .inspector-head button {
@@ -1316,9 +1321,9 @@ canvas:focus-visible {
 
 .inspector-body h2 {
   margin: 0;
-  font-size: clamp(23px, 2vw, 30px);
+  font-size: 28px;
   font-weight: 760;
-  letter-spacing: -0.055em;
+  letter-spacing: 0;
   line-height: 1.25;
   word-break: keep-all;
 }
@@ -1427,7 +1432,7 @@ canvas:focus-visible {
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 7px;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
 }
 
 .home-card p {
@@ -1489,7 +1494,7 @@ canvas:focus-visible {
   color: var(--red);
   font-size: 8px;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
 }
 
 .question-card p {
@@ -1528,7 +1533,7 @@ canvas:focus-visible {
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 7px;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0;
 }
 
 .sequence-card h3 {
@@ -1712,7 +1717,7 @@ canvas:focus-visible {
   padding-left: 20px;
   font-family: "SFMono-Regular", Consolas, monospace;
   font-size: 8px;
-  letter-spacing: 0.1em;
+  letter-spacing: 0;
 }
 
 .dialog-head button {
@@ -1723,8 +1728,8 @@ canvas:focus-visible {
 
 .guide-dialog h2 {
   margin: 0;
-  font-size: clamp(27px, 5vw, 42px);
-  letter-spacing: -0.06em;
+  font-size: 34px;
+  letter-spacing: 0;
   line-height: 1.14;
 }
 
@@ -2171,5 +2176,173 @@ noscript {
   .legend-line,
   .status-dot {
     forced-color-adjust: none;
+  }
+}
+
+/* Readability correction for the learning-map controls and inspector. */
+.brand-copy strong,
+.topbar-metrics span,
+.release-button,
+.text-button,
+.mode-switcher button,
+.profile-field > span,
+.profile-subject-field legend,
+.search-block label,
+.section-heading h2,
+.mini-button,
+.filter-chip-name,
+.path-legend,
+.privacy-note button,
+.loading-panel button,
+.canvas-toolbar .view-toggle,
+.topic-list-head button,
+.parent-empty button,
+.parent-topic-actions button,
+.favorite-button,
+.status-clear,
+.status-options button,
+.dialog-confirm {
+  font-size: 12px;
+}
+
+.intro-block > p:last-child,
+.privacy-note p,
+.loading-panel div span,
+.empty-state span,
+.topic-list-panel > p,
+.parent-panel-head > div > p:last-child,
+.parent-empty p,
+.parent-card-info p,
+.selected-description,
+.home-card p,
+.detail-section li,
+.sequence-card > p,
+.path-examples p,
+.related-list .related-reason,
+.related-empty,
+.cluster-card p,
+.guide-dialog > p,
+.ontology-limits p {
+  font-size: 14px;
+}
+
+.profile-field input,
+.profile-field select,
+.profile-subject-option,
+.search-field input,
+.search-results strong,
+.hover-card strong,
+.topic-list strong,
+.question-card p,
+.related-list strong,
+.cluster-card strong,
+.guide-dialog li span {
+  font-size: 13px;
+}
+
+.brand-copy small,
+.topbar-metrics b,
+.saved-indicator,
+.profile-field small,
+.profile-subject-field small,
+.search-results span,
+.search-results small,
+.filter-chip-count,
+.data-note,
+.canvas-toolbar output,
+.visible-count strong,
+.visible-count span,
+.hover-card span,
+.topic-list small,
+.parent-summary span,
+.topic-state,
+.parent-topic-meta,
+.parent-card-info span,
+.selected-meta,
+.ontology-identity > div,
+.ontology-identity code,
+.path-heading b,
+.path-summary span,
+.path-summary b,
+.path-examples code,
+.related-list small,
+.ontology-facts dt,
+.ontology-facts dd,
+.ontology-downloads span {
+  font-size: 11px;
+}
+
+.eyebrow,
+.mode-switcher button span,
+.card-index,
+.topic-list-code,
+.inspector-head span,
+.home-card span,
+.question-card span,
+.cluster-card > span,
+.sequence-card > span,
+.path-examples strong,
+.dialog-head span,
+.ontology-limits strong {
+  font-size: 10px;
+}
+
+.path-legend > strong,
+.search-block label,
+.section-heading h2,
+.privacy-note strong,
+.detail-section h3,
+.path-heading h3,
+.sequence-card h3,
+.ontology-limits strong,
+.ontology-downloads strong,
+.guide-dialog li b {
+  font-size: 13px;
+}
+
+.legend-badge,
+.relation-badge,
+.path-examples strong {
+  font-size: 11px;
+}
+
+.loading-panel strong,
+.empty-state b {
+  font-size: 14px;
+}
+
+.canvas-hint {
+  max-width: calc(100% - 32px);
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: right;
+}
+
+@media (max-width: 860px) and (min-width: 721px) {
+  .topbar-metrics {
+    display: none;
+  }
+}
+
+@media (max-width: 720px) {
+  .topic-list-head h2,
+  .parent-panel-head h2,
+  .guide-dialog h2 {
+    font-size: 30px;
+  }
+
+  .inspector-body h2 {
+    font-size: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .canvas-toolbar {
+    grid-template-columns: 50px 34px 52px 34px;
+  }
+
+  .visible-count {
+    padding-right: 8px;
+    padding-left: 8px;
   }
 }
