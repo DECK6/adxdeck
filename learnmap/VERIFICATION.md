@@ -15,9 +15,10 @@ node scripts/sync-learnmap-ontology.mjs --check
 node scripts/check-learnmap-ontology.mjs
 node scripts/check-learnmap-profile.mjs
 node scripts/check-learnmap-parent.mjs
-LEARNMAP_BROWSER_FILE_MODE=1 node scripts/check-learnmap-browser.mjs
 git diff --check
 ```
+
+실제 브라우저 상호작용은 별도 Chromium/CDP 런처가 아니라 Aside의 실제 Chromium 세션과 `aside-browser` REPL assertion으로 검증했습니다.
 
 Observed results:
 
@@ -25,17 +26,19 @@ Observed results:
 - P3 semantics: PASS — 1,894 `directRequires`, 1,894 inverse `unlocks`, 53,656 non-direct `indirectRequires`, 1,956 standard alignments
 - ontology downloads: PASS — Turtle SHA-256 `aec25621de747e995509ad425038a09f7753117cd9aeddb083476ac2fdf7136d`; JSON-LD SHA-256 `d6152367e6635caae96c198a186034dd186b7547806914603dc463be72917580`
 - browser profile: PASS — `dexa.learnmap.v1` → `dexa.learnmap.v2` migration, sanitization, reload persistence, one-click clear, damaged-data recovery
-- actual headless Chromium: PASS — desktop and 390×844 mobile, reduced motion, touch, list fallback, ontology panel/download links, fragment routes, explainable direct/indirect paths, parent path/week modes, data-error state, GET-only local resource access, no console/runtime assertion failures
+- Aside browser: PASS — 1,956개 주제와 Canvas 렌더링, `분수` 검색 10건, inspector·fragment route, 과목 필터 1,956→1,593, 학년군 필터 1,956→1,606, zoom 47%→58%→47%, v1→v2 저장 마이그레이션·재로드 복원, P3/HOLD 온톨로지 패널과 상대 다운로드 링크를 실제 Chromium에서 확인했습니다.
+- mobile viewport: PASS — Aside device emulation의 실제 측정값은 `390×844`, `scrollWidth=390`이며 검색·zoom·온톨로지·Canvas 컨트롤이 모두 표시됐습니다.
+- browser safety: PASS — console error 0, page error 0, 실패 응답 0, 외부 runtime 요청 0; `/learnmap/`, `/robots.txt`, `/sitemap.xml`, TTL, JSON-LD는 모두 HTTP 200이었습니다.
 - privacy/static gate: PASS — profile state remains in `localStorage`; no `POST`, beacon, WebSocket, analytics, or state exfiltration path in the app
 - routing: PASS — all app resources use relative `/learnmap/`-safe paths and sitemap contains `https://dexa.art/learnmap/`
 - whitespace: `git diff --check` PASS
 
-The browser test used its documented `file://` fallback because an overlapping Chromium QA process caused the first localhost run to time out before app navigation. The same test still exercised the real Chromium DOM and relative files; final HTTP behavior is independently gated against the deployed GitHub Pages site.
+Aside QA는 `http://127.0.0.1:8766/learnmap/`의 실제 HTTP 문서를 사용했습니다. 테스트용 `localStorage` 값은 검증 후 제거했고, 별도 브라우저 프로세스나 `file://` fallback은 사용하지 않았습니다.
 
 ## Captures
 
-- [Desktop 1440×1000](verification/desktop.png) — SHA-256 `169b04c97821783634d3787be42a07d8f02059a0696ef240adaa7db083e52ca6`
-- [Mobile 390×844](verification/mobile.png) — SHA-256 `75673ede2f03b6b91e761f1c6c0a0aeb888e4836b83300b8afa642da998cf376`
+- [Desktop 1440×1000](verification/desktop.png) — SHA-256 `a22ebc4b61d30466e52c4d249a04948fedff8343dd37b3a68aa2d01dcaf98dc0`
+- [Mobile 390×844](verification/mobile.png) — SHA-256 `f7136b18c07a8bc295c6281ca441dfa3c268b9b6d371890fa0012597dc89cc5d`
 
 ## Remaining interpretation and operational risks
 

@@ -33,10 +33,9 @@ node scripts/check-learnmap-data.mjs
 node scripts/check-learnmap-ontology.mjs
 node scripts/check-learnmap-profile.mjs
 node scripts/check-learnmap-parent.mjs
-node scripts/check-learnmap-browser.mjs
 ```
 
-현재 계약은 성취기준 620개, 주제 1,956개, 직접 선수 관계 1,894개, 배움 묶음 153개입니다. 데이터 검증은 결정적 재빌드, 온톨로지 방향·필수/권장 의미, 정렬 관계, 간접 경로 합계, 공개 아티팩트 해시를 확인합니다. 브라우저 검증은 로컬 정적 서버와 헤드리스 Chromium을 우선 사용하며, localhost 바인딩이 막힌 샌드박스에서는 `file://` fallback으로 실제 Chromium DOM 검증을 계속합니다. v1 설정 마이그레이션, 재로드 후 복원, 전체 삭제, `/learnmap/` 상대 경로 또는 상대 파일 로드, 데스크톱·모바일 렌더링, GET 이외의 요청 부재를 확인합니다. 최종 후보의 명령·해시·캡처·잔여 위험은 [`VERIFICATION.md`](VERIFICATION.md)에 기록합니다.
+현재 계약은 성취기준 620개, 주제 1,956개, 직접 선수 관계 1,894개, 배움 묶음 153개입니다. 데이터 검증은 결정적 재빌드, 온톨로지 방향·필수/권장 의미, 정렬 관계, 간접 경로 합계, 공개 아티팩트 해시를 확인합니다. 실제 브라우저 검증은 Aside의 실제 Chromium 세션과 `aside-browser` REPL assertion을 사용합니다. v1 설정 마이그레이션, 재로드 후 복원, `/learnmap/` 상대 HTTP 경로, 데스크톱·390×844 모바일 렌더링, Canvas·검색·필터·zoom·온톨로지 패널, console/page/network 오류와 외부 runtime 요청 부재를 확인합니다. 최종 후보의 명령·해시·캡처·잔여 위험은 [`VERIFICATION.md`](VERIFICATION.md)에 기록합니다.
 
 ## 온톨로지 공개 계약
 
