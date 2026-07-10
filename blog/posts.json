@@ -1,5 +1,23 @@
 [
   {
+    "slug": "the-surface-is-the-first-medium",
+    "file": "_built/the-surface-is-the-first-medium.md",
+    "title": "빛은 빈 벽을 만나지 않는다",
+    "description": "프로젝션 매핑을 이미지 정렬 기술이 아니라 빛과 표면, 관객의 위치, 주변 환경이 함께 작품을 만드는 물질적 방법으로 다시 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "projection-mapping",
+      "creative-technology",
+      "surface-material",
+      "installation",
+      "materiality"
+    ],
+    "date": "2026-07-11",
+    "thumbnail": "images/the-surface-is-the-first-medium-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-openrouter-provider-routing",
     "file": "_built/hermes-openrouter-provider-routing.md",
     "title": "Hermes Provider Routing은 OpenRouter 안의 경로까지 고른다",

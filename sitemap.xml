@@ -9,11 +9,6 @@
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://dexa.art/learnmap/</loc>
-    <lastmod>2026-07-10</lastmod>
-    <priority>0.9</priority>
-  </url>
-  <url>
     <loc>https://dexa.art/about-deck.html</loc>
     <priority>0.5</priority>
   </url>
@@ -25,6 +20,11 @@
   <url>
     <loc>https://dexa.art/virtume/</loc>
     <lastmod>2026-06-21</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dexa.art/blog/posts/the-surface-is-the-first-medium/</loc>
+    <lastmod>2026-07-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
