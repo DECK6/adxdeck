@@ -9,7 +9,7 @@ import assert from "node:assert/strict";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 let src = readFileSync(join(root, "app.js"), "utf8").replace(/\ninit\(\);\s*$/, "\n");
-src += "\nglobalThis.__setData = (d) => { DATA = d; };\nglobalThis.__simulate = simulate;\nglobalThis.__decisionSummary = decisionSummary;\n";
+src += "\nglobalThis.__setData = (d) => { DATA = d; };\nglobalThis.__simulate = simulate;\nglobalThis.__decisionSummary = decisionSummary;\nglobalThis.__samplePersonaCohort = samplePersonaCohort;\nglobalThis.__buildPersonaStressTest = buildPersonaStressTest;\n";
 
 const ctx = vm.createContext({
   document: { querySelector: () => null, querySelectorAll: () => [] },
@@ -29,6 +29,7 @@ const DATA_FILES = {
   workerSafety: "worker-safety-references.json",
   localOrdinances: "local-ordinance-pack.json",
   sources: "source-registry.json",
+  personas: "nemotron-persona-sample.json",
 };
 ctx.__setData(Object.fromEntries(Object.entries(DATA_FILES).map(([key, file]) =>
   [key, JSON.parse(readFileSync(join(root, "data", file), "utf8"))])));
@@ -71,5 +72,20 @@ check("decisionSummary recognizes outdoorAdvertising", () => {
   const cards = ctx.__decisionSummary({ outdoorAdvertising: true });
   const target = cards.find((card) => card.title.includes("도로점용"));
   assert.notEqual(target.status, "비적용");
+});
+check("senior-inclusive persona preset keeps a 40% minimum quota", () => {
+  const cohort = ctx.__samplePersonaCohort({ personaPreset: "senior_inclusive", cohortSize: 100 });
+  assert.equal(cohort.actualSize, 100);
+  assert.equal(cohort.shares.senior >= 0.4, true);
+});
+check("persona stress test includes accessibility, child, and non-Korean sentinels", () => {
+  const input = { eventName: "가족 야외축제", eventTypes: ["festival"], outdoorEvent: true, expectedCrowd: 3000, personaPreset: "family_inclusive", cohortSize: 80 };
+  const result = ctx.__simulate(input);
+  const stress = ctx.__buildPersonaStressTest(input, result);
+  const ids = stress.findings.map((finding) => finding.id);
+  assert.equal(ids.includes("accessibility_sentinel"), true);
+  assert.equal(ids.includes("child_guardian_sentinel"), true);
+  assert.equal(ids.includes("non_korean_sentinel"), true);
+  assert.equal(stress.score >= 0 && stress.score <= 100, true);
 });
 process.exit(failures ? 1 : 0);

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>MICE 행사 안전 적용성 체크리스트 | DEXA</title>
-  <meta name="description" content="행사 유형, 예상 인파, 베뉴, 관할 지자체, 도로점용, 식음료/LPG, 설치·철거 조건을 입력해 MICE·옥외행사 안전 적용성을 확인하는 오프라인 온톨로지 기반 시뮬레이터입니다. KOPIS 공연시설 2,111곳 인덱스를 포함합니다.">
+  <meta name="description" content="행사 조건과 한국형 합성 관람객 코호트를 이용해 MICE·옥외행사 안전 적용성, 계획서 사각지대, 아동·장애·비한국어 센티널 시나리오를 점검하는 오프라인 시뮬레이터입니다.">
   <link rel="canonical" href="https://dexa.art/mice-safety/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="MICE 행사 안전 적용성 체크리스트">
@@ -26,7 +26,7 @@
       <div>
         <p class="eyebrow">MICE / Outdoor Event Safety</p>
         <h1>MICE 행사 안전 적용성 체크리스트</h1>
-        <p class="lead">행사 유형, 예상 인파, 베뉴, 관할 지자체와 현장 조건을 입력하면 적용 법령·조례 후보, 의무 문서, 위험요인, 베뉴 체크포인트를 카드로 정리합니다. KOPIS 공연시설 2,111곳도 오프라인 인덱스로 조회합니다.</p>
+        <p class="lead">행사 조건을 입력하면 법령·조례 후보와 위험요인을 정리하고, Nemotron-Personas-Korea 기반 합성 관람객 코호트로 계획의 사람 중심 사각지대를 함께 점검합니다.</p>
       </div>
       <div class="hero-note">
         <strong>네트워크 법령 조회 없음</strong>
@@ -52,6 +52,15 @@
             <label for="expectedCrowd">3) 몇 명쯤 오나요?</label>
             <input id="expectedCrowd" name="expectedCrowd" type="number" min="0" step="100" value="5000">
             <p class="hint">300명 이상이면 동선·의료 사전검토가 권고되고, 1,000명 이상이면 의무가 더 늘어납니다.</p>
+          </div>
+
+          <div class="persona-input">
+            <label for="personaPreset">4) 누구를 포함해 안전계획을 시험할까요?</label>
+            <div class="two-col">
+              <select id="personaPreset" name="personaPreset" aria-label="합성 관람객 프리셋"></select>
+              <input id="cohortSize" name="cohortSize" type="number" min="10" max="200" step="10" value="100" aria-label="합성 코호트 크기">
+            </div>
+            <p id="personaDescription" class="hint">실제 참석자 예측이 아니라 합성 사용자 관점의 계획서 QA입니다.</p>
           </div>
 
           <details class="expert">
@@ -80,6 +89,7 @@
 
           <div class="actions">
             <button id="submitBtn" type="submit">체크리스트 생성</button>
+            <button class="secondary" type="button" id="personaBtn">관람객 QA만 보기</button>
             <button class="secondary" type="button" id="printBtn">인쇄</button>
             <span id="status" class="muted"></span>
           </div>
