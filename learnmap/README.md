@@ -50,7 +50,7 @@ node scripts/check-learnmap-parent.mjs
 
 ## 배포 경로
 
-사이트 루트의 정적 파일 구조를 그대로 배포하면 `/learnmap/`에서 동작합니다. `index.html`과 모듈은 `./styles.css`, `./app.js`, `./profile-schema.js`, `./data/learnmap.json`, `./favicon.svg`, `./ontology/…`을 모두 상대 경로로 요청합니다. sitemap의 공개 주소는 `https://dexa.art/learnmap/`입니다. 이 작업에서는 커밋까지만 만들고 원격 저장소로 push하거나 배포하지 않습니다.
+사이트 루트의 정적 파일 구조는 GitHub Pages에서 `https://dexa.art/learnmap/`으로 배포됩니다. `index.html`과 모듈은 `./styles.css`, `./app.js`, `./profile-schema.js`, `./data/learnmap.json`, `./favicon.svg`, `./ontology/…`을 모두 상대 경로로 요청합니다. sitemap의 공개 주소도 `https://dexa.art/learnmap/`입니다. 배포 결과와 재현 가능한 검증 증거는 [`VERIFICATION.md`](VERIFICATION.md)에 기록합니다.
 
 ## 해석과 권리 주의
 
