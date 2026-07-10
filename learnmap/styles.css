@@ -184,6 +184,27 @@ canvas:focus-visible {
   font-weight: 700;
 }
 
+.release-button {
+  display: inline-flex;
+  min-width: 150px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 14px;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: 0.04em;
+}
+
+.release-button i {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #23816c;
+  box-shadow: 0 0 0 3px rgba(35, 129, 108, 0.14);
+}
+
 .icon-button {
   width: 64px;
   font-family: "SFMono-Regular", Consolas, monospace;
@@ -659,11 +680,16 @@ canvas:focus-visible {
 
 .path-legend {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 8px;
   padding: 16px 20px;
   color: var(--muted);
   font-size: 8px;
+}
+
+.path-legend > strong {
+  color: var(--charcoal);
+  font-size: 9px;
 }
 
 .path-legend span {
@@ -681,6 +707,29 @@ canvas:focus-visible {
 
 .legend-line.unlock {
   background: var(--red);
+}
+
+.legend-line.indirect {
+  background: repeating-linear-gradient(90deg, var(--charcoal) 0 4px, transparent 4px 7px);
+}
+
+.legend-badge,
+.relation-badge {
+  display: inline-grid;
+  min-width: 27px;
+  min-height: 17px;
+  place-items: center;
+  border: var(--hairline) solid var(--charcoal);
+  color: var(--charcoal);
+  font-style: normal;
+  font-size: 7px;
+  font-weight: 800;
+}
+
+.legend-badge.recommended,
+.relation-badge.recommended {
+  border-style: dashed;
+  color: var(--muted);
 }
 
 .data-note {
@@ -1282,6 +1331,34 @@ canvas:focus-visible {
   word-break: keep-all;
 }
 
+.ontology-identity {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 12px;
+  border: var(--hairline) solid var(--line-strong);
+  background: var(--paper);
+}
+
+.ontology-identity > div {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 8px;
+  font-size: 8px;
+  line-height: 1.45;
+}
+
+.ontology-identity span {
+  color: var(--muted);
+}
+
+.ontology-identity code {
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  font-size: 7px;
+  line-height: 1.5;
+}
+
 .topic-actions {
   display: grid;
   gap: 9px;
@@ -1446,6 +1523,86 @@ canvas:focus-visible {
   font-size: 8px;
 }
 
+.sequence-card > span {
+  color: var(--red);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.sequence-card h3 {
+  margin-top: 7px;
+  font-size: 15px;
+}
+
+.sequence-card > p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.7;
+  word-break: keep-all;
+}
+
+.path-summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 12px;
+  border-top: var(--hairline) solid var(--charcoal);
+  border-left: var(--hairline) solid var(--charcoal);
+}
+
+.path-summary span {
+  display: flex;
+  min-height: 32px;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border-right: var(--hairline) solid var(--charcoal);
+  border-bottom: var(--hairline) solid var(--charcoal);
+  color: var(--muted);
+  font-size: 7px;
+}
+
+.path-summary b {
+  color: var(--charcoal);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 10px;
+}
+
+.path-examples {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.path-examples article {
+  display: grid;
+  gap: 5px;
+  padding: 10px 0 0;
+  border-top: var(--hairline) solid var(--line-strong);
+}
+
+.path-examples strong {
+  color: var(--charcoal);
+  font-size: 8px;
+}
+
+.path-examples p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 8px;
+  line-height: 1.65;
+  word-break: keep-all;
+}
+
+.path-examples code {
+  color: var(--red);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 7px;
+  overflow-wrap: anywhere;
+}
+
 .unlock-list + * {
   color: var(--red);
 }
@@ -1476,16 +1633,29 @@ canvas:focus-visible {
   line-height: 1.45;
 }
 
-.related-list span {
-  grid-row: span 2;
-  color: var(--muted);
-  font-family: "SFMono-Regular", Consolas, monospace;
-  font-size: 7px;
+.related-list .relation-badge {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: start;
 }
 
 .related-list small {
   color: var(--muted);
   font-size: 8px;
+}
+
+.related-list .related-meta {
+  grid-column: 1;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 7px;
+}
+
+.related-list .related-reason {
+  grid-column: 1 / -1;
+  margin-top: 3px;
+  color: var(--muted);
+  line-height: 1.55;
+  word-break: keep-all;
 }
 
 .related-empty {
@@ -1594,6 +1764,92 @@ canvas:focus-visible {
   font-size: 10px;
 }
 
+.ontology-dialog {
+  width: min(680px, calc(100vw - 32px));
+}
+
+.ontology-facts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 0;
+  border-top: var(--hairline) solid var(--charcoal);
+  border-left: var(--hairline) solid var(--charcoal);
+}
+
+.ontology-facts div {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 10px;
+  min-height: 46px;
+  align-items: center;
+  padding: 8px 10px;
+  border-right: var(--hairline) solid var(--charcoal);
+  border-bottom: var(--hairline) solid var(--charcoal);
+}
+
+.ontology-facts dt {
+  color: var(--muted);
+  font-size: 8px;
+}
+
+.ontology-facts dd {
+  margin: 0;
+  font-size: 9px;
+  font-weight: 750;
+}
+
+.ontology-limits {
+  margin-top: 16px;
+  padding: 14px;
+  border: var(--hairline) solid var(--red);
+}
+
+.ontology-limits strong {
+  color: var(--red);
+  font-size: 9px;
+}
+
+.ontology-limits p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 9px;
+  line-height: 1.7;
+}
+
+.ontology-downloads {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.ontology-downloads a {
+  display: grid;
+  gap: 6px;
+  min-height: 62px;
+  align-content: center;
+  padding: 12px;
+  border: var(--hairline) solid var(--charcoal);
+  color: inherit;
+  text-decoration: none;
+}
+
+.ontology-downloads a:hover {
+  background: var(--charcoal);
+  color: var(--paper);
+}
+
+.ontology-downloads strong {
+  font-size: 10px;
+}
+
+.ontology-downloads span {
+  overflow-wrap: anywhere;
+  color: var(--muted);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 7px;
+}
+
 .dialog-confirm {
   width: 100%;
   min-height: 44px;
@@ -1694,6 +1950,17 @@ noscript {
     width: 54px;
   }
 
+  .release-button {
+    min-width: 54px;
+    width: 54px;
+    padding: 0;
+  }
+
+  .release-button span {
+    width: 0;
+    overflow: hidden;
+  }
+
   .workspace,
   .app.inspector-open .workspace {
     display: flex;
@@ -1724,6 +1991,11 @@ noscript {
   .intro-block,
   .path-legend {
     display: none;
+  }
+
+  .ontology-facts,
+  .ontology-downloads {
+    grid-template-columns: 1fr;
   }
 
   .mode-switcher,

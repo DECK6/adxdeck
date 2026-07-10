@@ -27,6 +27,10 @@
         </div>
 
         <div class="topbar-actions">
+          <button class="release-button" id="open-ontology" type="button" aria-label="온톨로지 릴리스 정보 열기">
+            <i aria-hidden="true"></i>
+            <span id="release-label">ONTOLOGY P3</span>
+          </button>
           <button class="text-button" id="fit-view" type="button">전체 보기</button>
           <button class="icon-button" id="open-guide" type="button" aria-label="사용 안내">?</button>
         </div>
@@ -92,8 +96,12 @@
             <div class="grade-filters" id="grade-filters"></div>
           </section>
 
-          <section class="path-legend" aria-label="선택 경로 범례">
-            <span><i class="legend-line prerequisite"></i>먼저 배우는 길</span>
+          <section class="path-legend" aria-label="배움 관계 의미 범례">
+            <strong>관계 뜻</strong>
+            <span><i class="legend-line prerequisite"></i>직접 먼저 배우는 길</span>
+            <span><i class="legend-line indirect"></i>간접 경로 · 2단계 이상</span>
+            <span><i class="legend-badge required">필수</i>이 모델의 권장 경로</span>
+            <span><i class="legend-badge recommended">권장</i>다른 순서도 가능</span>
             <span><i class="legend-line unlock"></i>다음에 열리는 길</span>
           </section>
 
@@ -190,6 +198,14 @@
             <h2 id="selected-title"></h2>
             <p class="selected-description" id="selected-description"></p>
 
+            <section class="ontology-identity" aria-label="선택 주제 온톨로지 정보">
+              <div><span>성취기준 관계</span><strong id="selected-alignment"></strong></div>
+              <div><span>검증 상태</span><strong id="selected-verification"></strong></div>
+              <div><span>온톨로지</span><strong id="selected-ontology-status"></strong></div>
+              <div><span>출처 권리</span><strong id="selected-source-status"></strong></div>
+              <code id="selected-topic-uri"></code>
+            </section>
+
             <section class="topic-actions" aria-labelledby="topic-status-title">
               <div class="path-heading">
                 <h3 id="topic-status-title">우리 아이 상태</h3>
@@ -216,6 +232,14 @@
             <section class="home-card question-card">
               <span>PROMPT / 집에서 이렇게 물어보세요</span>
               <p id="selected-question"></p>
+            </section>
+
+            <section class="detail-section sequence-card">
+              <span>WHY THIS ORDER / 관계 해설</span>
+              <h3>왜 이 순서인가</h3>
+              <p>검토된 학습 순서 제안입니다. 진단이나 고정된 필수 순서가 아니며, 직접 관계는 한 단계 제안이고 간접 관계는 직접 관계를 두 단계 이상 따라가 계산한 탐색 요약입니다.</p>
+              <div class="path-summary" id="selected-path-summary"></div>
+              <div class="path-examples" id="selected-path-examples"></div>
             </section>
 
             <section class="detail-section path-section">
@@ -256,10 +280,46 @@
         <li><b>원형 층</b><span>안쪽부터 1–2, 3–4, 5–6학년군입니다.</span></li>
         <li><b>검은 길</b><span>선택한 주제보다 먼저 배우는 흐름입니다.</span></li>
         <li><b>붉은 길</b><span>선택한 주제에서 다음으로 열리는 흐름입니다.</span></li>
+        <li><b>직접·간접</b><span>직접은 검토된 한 단계 제안, 간접은 직접 관계를 두 단계 이상 따라가 계산한 탐색 요약입니다.</span></li>
+        <li><b>필수·권장</b><span>필수도 이 모델의 권장 경로 안에서만 required를 뜻합니다. 권장은 다른 순서가 가능하다는 뜻입니다.</span></li>
         <li><b>상태</b><span>표시는 진단이나 성적이 아니라, 집에서 다음 활동을 고르기 위한 개인 메모입니다.</span></li>
         <li><b>저장</b><span>우리 아이 설정은 서버로 보내지 않고 현재 브라우저에만 보관합니다.</span></li>
       </ol>
       <button class="dialog-confirm" id="confirm-guide" type="button">지도를 살펴볼게요</button>
+    </dialog>
+
+    <dialog class="guide-dialog ontology-dialog" id="ontology-dialog">
+      <div class="dialog-head">
+        <span>LEARNMAP / ONTOLOGY RELEASE</span>
+        <button id="close-ontology" type="button" aria-label="온톨로지 정보 닫기">×</button>
+      </div>
+      <h2>기계가 읽는 관계와<br>사람이 보는 한계</h2>
+      <p>화면의 슬림 데이터와 아래 전체 RDF 아티팩트는 같은 P3 릴리스 계약을 따릅니다. 자동 검증 통과와 외부 교육 검토, 공식성, 권리는 서로 다른 상태입니다.</p>
+      <dl class="ontology-facts">
+        <div><dt>버전</dt><dd id="ontology-version">—</dd></div>
+        <div><dt>데이터 릴리스</dt><dd id="ontology-data-release">—</dd></div>
+        <div><dt>화면 데이터 해시</dt><dd id="ontology-payload-hash">—</dd></div>
+        <div><dt>릴리스</dt><dd id="ontology-release-status">—</dd></div>
+        <div><dt>자동 검증</dt><dd id="ontology-automated-review">—</dd></div>
+        <div><dt>외부 교육 검토</dt><dd id="ontology-external-review">—</dd></div>
+        <div><dt>공식성</dt><dd id="ontology-official-status">—</dd></div>
+        <div><dt>출처 권리</dt><dd id="ontology-rights">—</dd></div>
+      </dl>
+      <div class="ontology-limits">
+        <strong>해석 경계</strong>
+        <p>교육부·NCIC의 공식 온톨로지가 아니며 학습자 진단을 지원하지 않습니다. 공식 원문, 로케이터, 출처 URL은 공개 슬림 투영에서 제외했습니다.</p>
+      </div>
+      <div class="ontology-downloads">
+        <a id="ontology-turtle-download" href="./ontology/learning-map.ttl" download>
+          <strong>Turtle / TTL</strong>
+          <span id="ontology-turtle-hash">SHA-256 —</span>
+        </a>
+        <a id="ontology-jsonld-download" href="./ontology/learning-map.jsonld" download>
+          <strong>JSON-LD</strong>
+          <span id="ontology-jsonld-hash">SHA-256 —</span>
+        </a>
+      </div>
+      <button class="dialog-confirm" id="confirm-ontology" type="button">확인했습니다</button>
     </dialog>
 
     <noscript>이 배움 지도는 그래프 탐색을 위해 JavaScript가 필요합니다.</noscript>

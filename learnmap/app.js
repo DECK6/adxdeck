@@ -1,11 +1,32 @@
+import {
+  LEGACY_PROFILE_STORAGE_KEYS,
+  PROFILE_STORAGE_KEY as STORAGE_KEY,
+  createEmptyProfile,
+  migrateProfile,
+  sanitizeProfile,
+} from "./profile-schema.js";
+
 const DATA_URL = "./data/learnmap.json";
-const STORAGE_KEY = "dexa.learnmap.v1";
-const PROFILE_SCHEMA_VERSION = 1;
 
 const TOPIC_STATUSES = Object.freeze({
   familiar: "익숙해요",
   practicing: "연습 중이에요",
   preview: "먼저 살펴봐요",
+});
+
+const ALIGNMENT_LABELS = Object.freeze({
+  introduces: "도입",
+  supports: "지원",
+  extends: "확장",
+  assesses: "평가",
+});
+
+const VERIFICATION_LABELS = Object.freeze({
+  "official-source-checked": "공식 출처 식별 확인",
+  "public-doc-derived": "공개 문서 기반",
+  "workstream-reviewed": "작업 단위 검토",
+  "verification-review-needed": "추가 검토 필요",
+  "not-checked": "미확인",
 });
 
 const MODE_COPY = Object.freeze({
@@ -47,6 +68,8 @@ const els = {
   metricStandards: byId("metric-standards"),
   fitView: byId("fit-view"),
   openGuide: byId("open-guide"),
+  openOntology: byId("open-ontology"),
+  releaseLabel: byId("release-label"),
   modeButtons: [...document.querySelectorAll("[data-mode]")],
   profileNickname: byId("profile-nickname"),
   profileGrade: byId("profile-grade"),
@@ -84,6 +107,13 @@ const els = {
   selectedCode: byId("selected-code"),
   selectedTitle: byId("selected-title"),
   selectedDescription: byId("selected-description"),
+  selectedAlignment: byId("selected-alignment"),
+  selectedVerification: byId("selected-verification"),
+  selectedOntologyStatus: byId("selected-ontology-status"),
+  selectedSourceStatus: byId("selected-source-status"),
+  selectedTopicUri: byId("selected-topic-uri"),
+  selectedPathSummary: byId("selected-path-summary"),
+  selectedPathExamples: byId("selected-path-examples"),
   selectedAction: byId("selected-action"),
   selectedEvidence: byId("selected-evidence"),
   selectedQuestion: byId("selected-question"),
@@ -109,6 +139,21 @@ const els = {
   guideDialog: byId("guide-dialog"),
   closeGuide: byId("close-guide"),
   confirmGuide: byId("confirm-guide"),
+  ontologyDialog: byId("ontology-dialog"),
+  closeOntology: byId("close-ontology"),
+  confirmOntology: byId("confirm-ontology"),
+  ontologyVersion: byId("ontology-version"),
+  ontologyDataRelease: byId("ontology-data-release"),
+  ontologyPayloadHash: byId("ontology-payload-hash"),
+  ontologyReleaseStatus: byId("ontology-release-status"),
+  ontologyAutomatedReview: byId("ontology-automated-review"),
+  ontologyExternalReview: byId("ontology-external-review"),
+  ontologyOfficialStatus: byId("ontology-official-status"),
+  ontologyRights: byId("ontology-rights"),
+  ontologyTurtleDownload: byId("ontology-turtle-download"),
+  ontologyJsonldDownload: byId("ontology-jsonld-download"),
+  ontologyTurtleHash: byId("ontology-turtle-hash"),
+  ontologyJsonldHash: byId("ontology-jsonld-hash"),
 };
 
 const ctx = els.canvas?.getContext("2d", { alpha: true });
@@ -185,12 +230,14 @@ async function init() {
   buildCoordinates();
   renderFilters();
   renderProfileControls();
+  renderOntologyInfo();
   updateVisibleGraph();
   updateMetrics();
   setMode("map");
   setReady();
   fitView({ markUser: false });
   state.ready = true;
+  applyRouteFromHash();
   requestRender();
 }
 
@@ -209,6 +256,9 @@ function validatePayload(data) {
   assertCount(data.edges?.length, EXPECTED_COUNTS.edges, "edges length");
   assertCount(data.clusters?.length, EXPECTED_COUNTS.clusters, "clusters length");
   assertCount(data.standards?.length, EXPECTED_COUNTS.standards, "standards length");
+  if (data.meta?.schemaVersion !== 2 || data.meta?.ontology?.version !== "0.3.0-p3") {
+    throw new Error("온톨로지 의미 투영 버전이 올바르지 않습니다.");
+  }
 }
 
 function assertCount(actual, expected, label) {
@@ -243,15 +293,21 @@ function prepareData(data) {
   state.outgoing = new Map(state.nodes.map((node) => [node.id, []]));
 
   for (const edge of data.edges) {
-    const from = state.nodeById.get(edge.from);
-    const to = state.nodeById.get(edge.to);
-    if (!from || !to) {
+    const dependent = state.nodeById.get(edge.from);
+    const prerequisite = state.nodeById.get(edge.to);
+    if (!dependent || !prerequisite) {
       continue;
     }
-    const prepared = { ...edge, fromNode: from, toNode: to };
+    const prepared = {
+      ...edge,
+      dependentNode: dependent,
+      prerequisiteNode: prerequisite,
+      fromNode: prerequisite,
+      toNode: dependent,
+    };
     state.edges.push(prepared);
-    state.outgoing.get(from.id)?.push(prepared);
-    state.incoming.get(to.id)?.push(prepared);
+    state.incoming.get(dependent.id)?.push(prepared);
+    state.outgoing.get(prerequisite.id)?.push(prepared);
   }
 
   state.activeSubjects = new Set(state.subjects.map((subject) => subject.id));
@@ -365,72 +421,27 @@ function stableUnit(text) {
   return (hash >>> 0) / 4294967295;
 }
 
-function createEmptyProfile() {
-  return {
-    version: PROFILE_SCHEMA_VERSION,
-    nickname: "",
-    grade: "",
-    subjects: [],
-    statuses: {},
-    favorites: [],
-  };
-}
-
-function sanitizeProfile(value, allowed = {}) {
-  const profile = createEmptyProfile();
-  if (!value || typeof value !== "object" || Number(value.version) !== PROFILE_SCHEMA_VERSION) {
-    return profile;
-  }
-
-  profile.nickname = String(value.nickname ?? "").trim().slice(0, 24);
-  profile.grade = String(value.grade ?? "");
-  profile.subjects = uniqueStrings(value.subjects);
-  profile.favorites = uniqueStrings(value.favorites);
-
-  if (value.statuses && typeof value.statuses === "object" && !Array.isArray(value.statuses)) {
-    for (const [nodeId, status] of Object.entries(value.statuses)) {
-      if (Object.hasOwn(TOPIC_STATUSES, status)) {
-        profile.statuses[String(nodeId)] = status;
-      }
-    }
-  }
-
-  if (allowed.gradeIds && !allowed.gradeIds.has(profile.grade)) {
-    profile.grade = "";
-  }
-  if (allowed.subjectIds) {
-    profile.subjects = profile.subjects.filter((id) => allowed.subjectIds.has(id));
-  }
-  if (allowed.nodeIds) {
-    profile.favorites = profile.favorites.filter((id) => allowed.nodeIds.has(id));
-    profile.statuses = Object.fromEntries(
-      Object.entries(profile.statuses).filter(([id]) => allowed.nodeIds.has(id)),
-    );
-  }
-
-  return profile;
-}
-
-function uniqueStrings(value) {
-  if (!Array.isArray(value)) {
-    return [];
-  }
-  return [...new Set(value.map((item) => String(item)).filter(Boolean))];
-}
-
 function loadProfile() {
   try {
-    const stored = window.localStorage.getItem(STORAGE_KEY);
-    if (!stored) {
-      return createEmptyProfile();
+    for (const key of [STORAGE_KEY, ...LEGACY_PROFILE_STORAGE_KEYS]) {
+      const stored = window.localStorage.getItem(key);
+      if (!stored) continue;
+      try {
+        const parsed = JSON.parse(stored);
+        const migrated = migrateProfile(parsed);
+        if (!migrated) throw new Error(`지원하지 않는 프로필 스키마: ${parsed?.version ?? "없음"}`);
+        const profile = sanitizeProfile(migrated);
+        if (key !== STORAGE_KEY) {
+          window.localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
+          window.localStorage.removeItem(key);
+        }
+        return profile;
+      } catch (error) {
+        console.warn("손상된 브라우저 저장값을 비우고 새 설정으로 시작합니다.", error);
+        window.localStorage.removeItem(key);
+      }
     }
-    try {
-      return sanitizeProfile(JSON.parse(stored));
-    } catch (error) {
-      console.warn("손상된 브라우저 저장값을 비우고 새 설정으로 시작합니다.", error);
-      window.localStorage.removeItem(STORAGE_KEY);
-      return createEmptyProfile();
-    }
+    return createEmptyProfile();
   } catch (error) {
     state.storageEnabled = false;
     console.warn("브라우저 로컬 저장소를 읽을 수 없습니다.", error);
@@ -446,6 +457,7 @@ function persistProfile(message = "저장됨") {
 
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state.profile));
+    for (const key of LEGACY_PROFILE_STORAGE_KEYS) window.localStorage.removeItem(key);
     els.clearLocalData.disabled = !profileHasData();
     showSaveIndicator(message);
   } catch (error) {
@@ -458,6 +470,7 @@ function persistProfile(message = "저장됨") {
 function clearProfile() {
   try {
     window.localStorage.removeItem(STORAGE_KEY);
+    for (const key of LEGACY_PROFILE_STORAGE_KEYS) window.localStorage.removeItem(key);
     state.storageEnabled = true;
   } catch (error) {
     state.storageEnabled = false;
@@ -645,8 +658,8 @@ function parentNodesForMode(mode) {
   const connected = [];
   for (const node of rankedTracked) {
     connected.push(
-      ...(state.incoming.get(node.id) ?? []).map((edge) => edge.fromNode),
-      ...(state.outgoing.get(node.id) ?? []).map((edge) => edge.toNode),
+      ...(state.incoming.get(node.id) ?? []).map((edge) => edge.prerequisiteNode),
+      ...(state.outgoing.get(node.id) ?? []).map((edge) => edge.dependentNode),
     );
   }
   return uniqueNodes([
@@ -933,6 +946,34 @@ function updateMetrics() {
   els.metricStandards.textContent = formatNumber(EXPECTED_COUNTS.standards);
 }
 
+function renderOntologyInfo() {
+  const ontology = state.data?.meta?.ontology;
+  if (!ontology) return;
+  const turtle = ontology.artifacts?.turtle;
+  const jsonLd = ontology.artifacts?.jsonLd;
+
+  els.releaseLabel.textContent = `ONTOLOGY ${ontology.version}`;
+  els.ontologyVersion.textContent = ontology.version;
+  els.ontologyDataRelease.textContent = state.data?.meta?.taxonomyVersion ?? "—";
+  els.ontologyPayloadHash.textContent = shortHash(state.data?.meta?.payloadSha256);
+  els.ontologyReleaseStatus.textContent = ontology.releaseStatus === "formal" ? "정식 P3 릴리스" : ontology.releaseStatus;
+  els.ontologyAutomatedReview.textContent = ontology.automatedReviewStatus === "passed"
+    ? `${ontology.formalGateCount ?? "전체"}개 게이트 통과`
+    : ontology.automatedReviewStatus;
+  els.ontologyExternalReview.textContent = ontology.externalDomainReviewStatus === "ongoing" ? "진행 중" : ontology.externalDomainReviewStatus;
+  els.ontologyOfficialStatus.textContent = ontology.officialStatus === "independent-non-official" ? "독립 제작 · 비공식" : ontology.officialStatus;
+  els.ontologyRights.textContent = `${ontology.rights?.status ?? "—"} · 재배포 허락 아님`;
+
+  if (turtle) {
+    els.ontologyTurtleDownload.href = turtle.href;
+    els.ontologyTurtleHash.textContent = `SHA-256 ${shortHash(turtle.sha256)} · ${formatBytes(turtle.bytes)}`;
+  }
+  if (jsonLd) {
+    els.ontologyJsonldDownload.href = jsonLd.href;
+    els.ontologyJsonldHash.textContent = `SHA-256 ${shortHash(jsonLd.sha256)} · ${formatBytes(jsonLd.bytes)}`;
+  }
+}
+
 function wireStaticEvents() {
   els.fitView?.addEventListener("click", () => fitView({ markUser: true }));
   els.zoomIn?.addEventListener("click", () => zoomAtCenter(1.22));
@@ -1003,6 +1044,10 @@ function wireStaticEvents() {
   els.openGuide?.addEventListener("click", openGuide);
   els.closeGuide?.addEventListener("click", closeGuide);
   els.confirmGuide?.addEventListener("click", closeGuide);
+  els.openOntology?.addEventListener("click", openOntology);
+  els.closeOntology?.addEventListener("click", closeOntology);
+  els.confirmOntology?.addEventListener("click", closeOntology);
+  window.addEventListener("hashchange", () => applyRouteFromHash());
 
   els.canvas.addEventListener("pointerdown", onPointerDown);
   els.canvas.addEventListener("pointermove", onPointerMove);
@@ -1016,7 +1061,9 @@ function wireStaticEvents() {
     if (event.key !== "Escape") {
       return;
     }
-    if (isDialogOpen()) {
+    if (isDialogOpen(els.ontologyDialog)) {
+      closeOntology();
+    } else if (isDialogOpen(els.guideDialog)) {
       closeGuide();
     } else if (state.selectedId) {
       closeInspector();
@@ -1369,6 +1416,9 @@ function selectNode(nodeOrId, options = {}) {
   }
 
   state.selectedId = node.id;
+  if (options.updateRoute !== false) {
+    replaceRouteHash("topic", node.id);
+  }
   els.app.classList.add("inspector-open");
   els.inspector.setAttribute("aria-hidden", "false");
   fillInspector(node);
@@ -1398,6 +1448,12 @@ function fillInspector(node) {
   els.selectedCode.textContent = node.code ?? node.standard ?? "";
   els.selectedTitle.textContent = node.title ?? "제목 없음";
   els.selectedDescription.textContent = node.description ?? "설명 정보가 아직 없습니다.";
+  els.selectedAlignment.textContent = `${ALIGNMENT_LABELS[node.alignmentKind] ?? node.alignmentKind ?? "정렬"} (${node.alignmentKind ?? "—"})`;
+  els.selectedVerification.textContent = `${VERIFICATION_LABELS[node.verificationStatus] ?? node.verificationStatus ?? "—"} · 정렬 ${VERIFICATION_LABELS[node.alignmentVerificationStatus] ?? node.alignmentVerificationStatus ?? "—"}`;
+  const ontology = state.data?.meta?.ontology;
+  els.selectedOntologyStatus.textContent = `${ontology?.version ?? "—"} · ${ontology?.releaseStatus === "formal" ? "정식 릴리스" : ontology?.releaseStatus ?? "상태 없음"}`;
+  els.selectedSourceStatus.textContent = `${ontology?.rights?.status ?? "—"} · 공식 원문 미포함`;
+  els.selectedTopicUri.textContent = node.uri ?? node.id;
   els.selectedAction.textContent = topicAction(node);
   els.selectedQuestion.textContent = node.assessmentPrompt ?? "아이의 설명과 수행 과정을 함께 확인해 보세요.";
   els.selectedCluster.textContent = cluster?.title ?? "연결된 배움 묶음 없음";
@@ -1410,8 +1466,16 @@ function fillInspector(node) {
 
   els.prerequisiteCount.textContent = String(incoming.length);
   els.unlockCount.textContent = String(outgoing.length);
-  fillRelatedList(els.prerequisiteList, incoming.map((edge) => edge.fromNode), "먼저 배우는 주제가 없습니다.");
-  fillRelatedList(els.unlockList, outgoing.map((edge) => edge.toNode), "다음에 열리는 주제가 없습니다.");
+  const paths = node.pathSummary ?? {};
+  els.selectedPathSummary.replaceChildren(
+    summaryMetric("직접 선수", paths.directPrerequisites ?? incoming.length),
+    summaryMetric("간접 선수", paths.indirectPrerequisites ?? 0),
+    summaryMetric("직접 다음", paths.directUnlocks ?? outgoing.length),
+    summaryMetric("간접 다음", paths.indirectUnlocks ?? 0),
+  );
+  fillRelatedList(els.prerequisiteList, incoming, "prerequisiteNode", "먼저 배우는 주제가 없습니다.");
+  fillRelatedList(els.unlockList, outgoing, "dependentNode", "다음에 열리는 주제가 없습니다.");
+  fillPathExamples(node, incoming, outgoing);
   syncInspectorProfileState();
 }
 
@@ -1420,20 +1484,22 @@ function firstClusterFor(node) {
   return clusterId ? state.clusters.get(clusterId) : null;
 }
 
-function fillRelatedList(container, nodes, emptyText) {
-  if (!nodes.length) {
+function fillRelatedList(container, edges, nodeKey, emptyText) {
+  if (!edges.length) {
     container.replaceChildren(element("div", "related-empty", emptyText));
     return;
   }
 
   container.replaceChildren(
-    ...nodes.map((node) => {
+    ...edges.map((edge) => {
+      const node = edge[nodeKey];
       const button = document.createElement("button");
       button.type = "button";
       button.append(
         element("strong", "", node.title ?? "제목 없음"),
-        element("span", "", node.code ?? ""),
-        element("small", "", metaLine(node)),
+        relationBadge(edge.requirementLevel),
+        element("small", "related-meta", `${node.code ?? ""} · ${metaLine(node)}`),
+        element("small", "related-reason", edge.reason ?? "관계 설명 없음"),
       );
       button.addEventListener("click", () => selectNode(node, { center: true, focusCanvas: true }));
       return button;
@@ -1441,10 +1507,82 @@ function fillRelatedList(container, nodes, emptyText) {
   );
 }
 
+function relationBadge(level) {
+  return element(
+    "span",
+    `relation-badge ${level === "required" ? "required" : "recommended"}`,
+    level === "required" ? "필수" : "권장",
+  );
+}
+
+function summaryMetric(label, value) {
+  const item = element("span", "", "");
+  item.append(element("b", "", String(value)), document.createTextNode(label));
+  return item;
+}
+
+function fillPathExamples(node, incoming, outgoing) {
+  const examples = [];
+  for (const edge of incoming.slice(0, 2)) {
+    examples.push(pathExampleArticle(
+      `직접 선수 · ${relationLevelText(edge.requirementLevel)}`,
+      `${edge.prerequisiteNode.title ?? "선수 주제"}를 먼저 다루면 ${node.title ?? "이 주제"}로 이어가기 쉽습니다.`,
+      edge.reason ?? "검토된 한 단계 선수 관계입니다.",
+    ));
+  }
+
+  for (const example of (node.pathSummary?.indirectPrerequisiteExamples ?? []).slice(0, 2)) {
+    examples.push(pathExampleArticle(
+      `간접 선수 · ${example.hops}단계`,
+      pathTitleLine(example.path),
+      `단계별 의미: ${example.requirementLevels.map(relationLevelText).join(" / ")}`,
+    ));
+  }
+
+  for (const example of (node.pathSummary?.indirectUnlockExamples ?? []).slice(0, 1)) {
+    examples.push(pathExampleArticle(
+      `간접 다음 · ${example.hops}단계`,
+      pathTitleLine(example.path),
+      `단계별 의미: ${example.requirementLevels.map(relationLevelText).join(" / ")}`,
+    ));
+  }
+
+  if (!examples.length && outgoing.length) {
+    examples.push(pathExampleArticle(
+      "출발 주제",
+      "직접 선수 없이 시작할 수 있고, 이 주제 뒤에 이어지는 다음 주제가 있습니다.",
+      "필요하면 다음에 열리는 길에서 직접 관계를 확인하세요.",
+    ));
+  }
+
+  els.selectedPathExamples.replaceChildren(...examples);
+}
+
+function pathExampleArticle(label, body, meta) {
+  const article = document.createElement("article");
+  article.append(
+    element("strong", "", label),
+    element("p", "", body),
+    element("code", "", meta),
+  );
+  return article;
+}
+
+function pathTitleLine(pathIds = []) {
+  return pathIds
+    .map((nodeId) => state.nodeById.get(nodeId)?.title ?? nodeId)
+    .join(" → ");
+}
+
+function relationLevelText(level) {
+  return level === "required" ? "필수" : "권장";
+}
+
 function closeInspector() {
   state.selectedId = null;
   els.app.classList.remove("inspector-open");
   els.inspector.setAttribute("aria-hidden", "true");
+  clearRouteHash();
   updateSearchResults();
   renderTopicList();
   requestRender();
@@ -1466,7 +1604,7 @@ function openGuide() {
 }
 
 function closeGuide() {
-  if (typeof els.guideDialog.close === "function" && isDialogOpen()) {
+  if (typeof els.guideDialog.close === "function" && isDialogOpen(els.guideDialog)) {
     els.guideDialog.close();
   } else {
     els.guideDialog.removeAttribute("open");
@@ -1474,8 +1612,103 @@ function closeGuide() {
   els.openGuide?.focus({ preventScroll: true });
 }
 
-function isDialogOpen() {
-  return Boolean(els.guideDialog?.open);
+function openOntology() {
+  if (typeof els.ontologyDialog.showModal === "function") {
+    els.ontologyDialog.showModal();
+  } else {
+    els.ontologyDialog.setAttribute("open", "");
+  }
+}
+
+function closeOntology() {
+  if (typeof els.ontologyDialog.close === "function" && isDialogOpen(els.ontologyDialog)) {
+    els.ontologyDialog.close();
+  } else {
+    els.ontologyDialog.removeAttribute("open");
+  }
+  els.openOntology?.focus({ preventScroll: true });
+}
+
+function isDialogOpen(dialog) {
+  return Boolean(dialog?.open);
+}
+
+function applyRouteFromHash() {
+  if (!state.ready) {
+    return;
+  }
+  const route = parseRouteHash(window.location.hash);
+  if (!route) {
+    return;
+  }
+  const node = nodeForRoute(route);
+  if (!node) {
+    return;
+  }
+  ensureNodeVisible(node);
+  selectNode(node, { center: true, focusCanvas: false, updateRoute: false });
+}
+
+function parseRouteHash(hash) {
+  const match = /^#\/(topic|standard|cluster)\/(.+)$/.exec(hash ?? "");
+  if (!match) {
+    return null;
+  }
+  try {
+    return { kind: match[1], id: decodeURIComponent(match[2]) };
+  } catch {
+    return null;
+  }
+}
+
+function nodeForRoute(route) {
+  if (route.kind === "topic") {
+    return state.nodeById.get(route.id) ?? null;
+  }
+  if (route.kind === "standard") {
+    return state.nodes
+      .filter((node) => node.standard === route.id)
+      .sort(compareNodesForLayout)[0] ?? null;
+  }
+  if (route.kind === "cluster") {
+    return state.nodes
+      .filter((node) => Array.isArray(node.clusters) && node.clusters.includes(route.id))
+      .sort(compareNodesForLayout)[0] ?? null;
+  }
+  return null;
+}
+
+function ensureNodeVisible(node) {
+  let changed = false;
+  if (!state.activeSubjects.has(node.subject)) {
+    state.activeSubjects.add(node.subject);
+    changed = true;
+  }
+  if (!state.activeGrades.has(node.grade)) {
+    state.activeGrades.add(node.grade);
+    changed = true;
+  }
+  if (!changed) {
+    return;
+  }
+  syncFilterButtons();
+  updateVisibleGraph();
+  renderTopicList();
+}
+
+function replaceRouteHash(kind, id) {
+  const nextHash = `#/${kind}/${encodeURIComponent(id)}`;
+  if (window.location.hash === nextHash) {
+    return;
+  }
+  window.history.replaceState(window.history.state, "", `${window.location.pathname}${window.location.search}${nextHash}`);
+}
+
+function clearRouteHash() {
+  if (!parseRouteHash(window.location.hash)) {
+    return;
+  }
+  window.history.replaceState(window.history.state, "", `${window.location.pathname}${window.location.search}`);
 }
 
 function resizeCanvas() {
@@ -1821,4 +2054,13 @@ function element(tagName, className, text) {
 
 function formatNumber(value) {
   return new Intl.NumberFormat("ko-KR").format(value);
+}
+
+function shortHash(value) {
+  const hash = String(value ?? "");
+  return hash ? `${hash.slice(0, 12)}…${hash.slice(-8)}` : "—";
+}
+
+function formatBytes(value) {
+  return `${(Number(value) / 1024 / 1024).toFixed(1)} MB`;
 }
