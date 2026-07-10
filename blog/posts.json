@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-1password-secret-source",
+    "file": "_built/hermes-1password-secret-source.md",
+    "title": "Hermes 1Password 연동은 키 회전을 한 번의 변경으로 만든다",
+    "description": "Hermes Agent can resolve provider credentials from 1Password references when each process starts. This guide explains setup, precedence, caching, and non-interactive authentication.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-07-11",
+    "thumbnail": "images/hermes-1password-secret-source-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "the-surface-is-the-first-medium",
     "file": "_built/the-surface-is-the-first-medium.md",
     "title": "빛은 빈 벽을 만나지 않는다",
