@@ -40,6 +40,33 @@
             <p>점 하나는 배움 주제, 선 하나는 먼저 익히면 좋은 관계입니다. 과목과 학년군을 골라 흐름을 살펴보세요.</p>
           </section>
 
+          <nav class="mode-switcher" aria-label="배움 지도 보기 방식">
+            <button id="mode-map" type="button" data-mode="map" aria-pressed="true"><span>01</span>전체 배움 지도</button>
+            <button id="mode-path" type="button" data-mode="path" aria-pressed="false"><span>02</span>우리 아이 경로</button>
+            <button id="mode-week" type="button" data-mode="week" aria-pressed="false"><span>03</span>이번 주 집에서 해볼 것</button>
+          </nav>
+
+          <section class="profile-block" aria-labelledby="profile-label">
+            <div class="section-heading">
+              <h2 id="profile-label">우리 아이 설정</h2>
+              <span class="saved-indicator" id="saved-indicator" aria-live="polite">이 브라우저에 저장</span>
+            </div>
+            <label class="profile-field" for="profile-nickname">
+              <span>닉네임 <small>선택</small></span>
+              <input id="profile-nickname" type="text" maxlength="24" autocomplete="off" placeholder="예: 별이">
+            </label>
+            <label class="profile-field" for="profile-grade">
+              <span>학년군</span>
+              <select id="profile-grade">
+                <option value="">아직 고르지 않음</option>
+              </select>
+            </label>
+            <fieldset class="profile-subject-field">
+              <legend>관심 과목 <small>여러 개 선택</small></legend>
+              <div class="profile-subjects" id="profile-subjects"></div>
+            </fieldset>
+          </section>
+
           <section class="search-block" aria-labelledby="search-label">
             <label id="search-label" for="topic-search">주제 또는 성취기준 검색</label>
             <div class="search-field">
@@ -49,7 +76,7 @@
             <ul class="search-results" id="search-results" aria-label="검색 결과"></ul>
           </section>
 
-          <section class="filter-block" aria-labelledby="subject-label">
+          <section class="filter-block subject-filter-block" aria-labelledby="subject-label">
             <div class="section-heading">
               <h2 id="subject-label">과목</h2>
               <button class="mini-button" id="toggle-subjects" type="button">모두 끄기</button>
@@ -57,7 +84,7 @@
             <div class="subject-filters" id="subject-filters"></div>
           </section>
 
-          <section class="filter-block" aria-labelledby="grade-label">
+          <section class="filter-block grade-filter-block" aria-labelledby="grade-label">
             <div class="section-heading">
               <h2 id="grade-label">학년군</h2>
               <button class="mini-button" id="toggle-grades" type="button">모두 끄기</button>
@@ -70,6 +97,12 @@
             <span><i class="legend-line unlock"></i>다음에 열리는 길</span>
           </section>
 
+          <section class="privacy-note" aria-labelledby="privacy-label">
+            <strong id="privacy-label">저장은 이 브라우저 안에서만</strong>
+            <p>닉네임·학년군·관심 과목·주제 상태·즐겨찾기는 이 기기의 <code>localStorage</code>에만 저장됩니다. 서버 전송이나 계정 동기화는 하지 않습니다.</p>
+            <button id="clear-local-data" type="button" disabled>내가 저장한 내용 한 번에 지우기</button>
+          </section>
+
           <footer class="data-note">
             <span class="status-dot" aria-hidden="true"></span>
             <span id="data-status">데이터를 불러오는 중</span>
@@ -80,6 +113,7 @@
           <canvas id="graph-canvas" tabindex="0" aria-label="초등 배움 주제 관계 그래프. 드래그하여 이동하고 휠이나 두 손가락으로 확대할 수 있습니다."></canvas>
 
           <div class="canvas-toolbar" aria-label="그래프 보기 조절">
+            <button class="view-toggle" id="toggle-list-view" type="button" aria-pressed="false" aria-controls="topic-list-panel">목록</button>
             <button id="zoom-in" type="button" aria-label="확대">+</button>
             <output id="zoom-level" aria-label="현재 확대 비율">100%</output>
             <button id="zoom-out" type="button" aria-label="축소">−</button>
@@ -95,6 +129,7 @@
             <div>
               <strong>배움의 좌표를 계산하고 있습니다</strong>
               <span>1,956개의 주제를 학년군과 과목별로 놓는 중</span>
+              <button id="retry-data" type="button" hidden>데이터 다시 불러오기</button>
             </div>
           </div>
 
@@ -103,12 +138,41 @@
             <span>과목 또는 학년군 필터를 다시 켜주세요.</span>
           </div>
 
+          <section class="topic-list-panel" id="topic-list-panel" aria-labelledby="topic-list-title" hidden>
+            <div class="topic-list-head">
+              <div>
+                <span>KEYBOARD / LIST VIEW</span>
+                <h2 id="topic-list-title">주제를 목록으로 살펴보기</h2>
+              </div>
+              <button id="close-list-view" type="button">지도로 돌아가기</button>
+            </div>
+            <p>현재 과목·학년군 필터에 맞는 모든 주제입니다. Tab 키로 이동하고 Enter 키로 상세 내용을 열 수 있습니다.</p>
+            <div class="topic-list" id="topic-list"></div>
+          </section>
+
           <div class="hover-card" id="hover-card" hidden>
             <span id="hover-meta"></span>
             <strong id="hover-title"></strong>
           </div>
 
-          <p class="canvas-hint">DRAG TO PAN · WHEEL / PINCH TO ZOOM · SELECT A NODE</p>
+          <p class="canvas-hint">DRAG TO PAN · WHEEL / PINCH TO ZOOM · ARROW KEYS TO MOVE · SELECT A NODE</p>
+        </section>
+
+        <section class="parent-panel" id="parent-panel" aria-live="polite" hidden>
+          <header class="parent-panel-head">
+            <div>
+              <p class="eyebrow" id="parent-panel-eyebrow">PERSONAL LEARNING PATH</p>
+              <h2 id="parent-panel-title">우리 아이 경로</h2>
+              <p id="parent-panel-description"></p>
+            </div>
+            <div class="parent-summary" id="parent-summary" aria-label="저장한 주제 요약"></div>
+          </header>
+          <div class="parent-empty" id="parent-empty" hidden>
+            <strong id="parent-empty-title">우리 아이 설정을 먼저 골라주세요.</strong>
+            <p id="parent-empty-description">학년군과 관심 과목을 고르면 이곳에 맞춤 경로가 나타납니다.</p>
+            <button id="focus-profile" type="button">설정하러 가기</button>
+          </div>
+          <div class="parent-topic-grid" id="parent-topic-grid"></div>
         </section>
 
         <aside class="inspector" id="inspector" aria-label="선택한 배움 주제" aria-hidden="true">
@@ -126,13 +190,31 @@
             <h2 id="selected-title"></h2>
             <p class="selected-description" id="selected-description"></p>
 
-            <section class="detail-section">
-              <h3>배웠다는 증거</h3>
+            <section class="topic-actions" aria-labelledby="topic-status-title">
+              <div class="path-heading">
+                <h3 id="topic-status-title">우리 아이 상태</h3>
+                <button class="favorite-button" id="toggle-favorite" type="button" aria-pressed="false">☆ 즐겨찾기</button>
+              </div>
+              <div class="status-options" id="status-options" role="group" aria-label="주제 상태">
+                <button type="button" data-status-value="familiar" aria-pressed="false">익숙해요</button>
+                <button type="button" data-status-value="practicing" aria-pressed="false">연습 중이에요</button>
+                <button type="button" data-status-value="preview" aria-pressed="false">먼저 살펴봐요</button>
+              </div>
+              <button class="status-clear" id="clear-topic-status" type="button">상태 표시 지우기</button>
+            </section>
+
+            <section class="home-card action-card">
+              <span>ACTION / 집에서 해볼 행동</span>
+              <p id="selected-action"></p>
+            </section>
+
+            <section class="detail-section evidence-card">
+              <h3>EVIDENCE / 이렇게 보여주면 충분해요</h3>
               <ul id="selected-evidence"></ul>
             </section>
 
-            <section class="question-card">
-              <span>집에서 이렇게 물어보세요</span>
+            <section class="home-card question-card">
+              <span>PROMPT / 집에서 이렇게 물어보세요</span>
               <p id="selected-question"></p>
             </section>
 
@@ -174,6 +256,8 @@
         <li><b>원형 층</b><span>안쪽부터 1–2, 3–4, 5–6학년군입니다.</span></li>
         <li><b>검은 길</b><span>선택한 주제보다 먼저 배우는 흐름입니다.</span></li>
         <li><b>붉은 길</b><span>선택한 주제에서 다음으로 열리는 흐름입니다.</span></li>
+        <li><b>상태</b><span>표시는 진단이나 성적이 아니라, 집에서 다음 활동을 고르기 위한 개인 메모입니다.</span></li>
+        <li><b>저장</b><span>우리 아이 설정은 서버로 보내지 않고 현재 브라우저에만 보관합니다.</span></li>
       </ol>
       <button class="dialog-confirm" id="confirm-guide" type="button">지도를 살펴볼게요</button>
     </dialog>

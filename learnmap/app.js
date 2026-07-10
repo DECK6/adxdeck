@@ -1,4 +1,25 @@
 const DATA_URL = "./data/learnmap.json";
+const STORAGE_KEY = "dexa.learnmap.v1";
+const PROFILE_SCHEMA_VERSION = 1;
+
+const TOPIC_STATUSES = Object.freeze({
+  familiar: "익숙해요",
+  practicing: "연습 중이에요",
+  preview: "먼저 살펴봐요",
+});
+
+const MODE_COPY = Object.freeze({
+  path: {
+    eyebrow: "PERSONAL LEARNING PATH",
+    title: "우리 아이 경로",
+    description: "즐겨찾기와 주제 상태를 중심으로, 선택한 학년군과 관심 과목의 다음 흐름을 모았습니다.",
+  },
+  week: {
+    eyebrow: "THIS WEEK AT HOME",
+    title: "이번 주 집에서 해볼 것",
+    description: "연습 중인 주제를 먼저, 먼저 살펴볼 주제와 즐겨찾기를 이어서 최대 6개 활동으로 제안합니다.",
+  },
+});
 
 const EXPECTED_COUNTS = Object.freeze({
   nodes: 1956,
@@ -26,6 +47,12 @@ const els = {
   metricStandards: byId("metric-standards"),
   fitView: byId("fit-view"),
   openGuide: byId("open-guide"),
+  modeButtons: [...document.querySelectorAll("[data-mode]")],
+  profileNickname: byId("profile-nickname"),
+  profileGrade: byId("profile-grade"),
+  profileSubjects: byId("profile-subjects"),
+  savedIndicator: byId("saved-indicator"),
+  clearLocalData: byId("clear-local-data"),
   topicSearch: byId("topic-search"),
   clearSearch: byId("clear-search"),
   searchResults: byId("search-results"),
@@ -35,12 +62,17 @@ const els = {
   gradeFilters: byId("grade-filters"),
   dataStatus: byId("data-status"),
   canvas: byId("graph-canvas"),
+  toggleListView: byId("toggle-list-view"),
+  closeListView: byId("close-list-view"),
+  topicListPanel: byId("topic-list-panel"),
+  topicList: byId("topic-list"),
   zoomIn: byId("zoom-in"),
   zoomLevel: byId("zoom-level"),
   zoomOut: byId("zoom-out"),
   visibleNodes: byId("visible-nodes"),
   loadingPanel: byId("loading-panel"),
   emptyState: byId("empty-state"),
+  retryData: byId("retry-data"),
   hoverCard: byId("hover-card"),
   hoverMeta: byId("hover-meta"),
   hoverTitle: byId("hover-title"),
@@ -52,14 +84,28 @@ const els = {
   selectedCode: byId("selected-code"),
   selectedTitle: byId("selected-title"),
   selectedDescription: byId("selected-description"),
+  selectedAction: byId("selected-action"),
   selectedEvidence: byId("selected-evidence"),
   selectedQuestion: byId("selected-question"),
+  statusOptions: byId("status-options"),
+  clearTopicStatus: byId("clear-topic-status"),
+  toggleFavorite: byId("toggle-favorite"),
   prerequisiteCount: byId("prerequisite-count"),
   prerequisiteList: byId("prerequisite-list"),
   unlockCount: byId("unlock-count"),
   unlockList: byId("unlock-list"),
   selectedCluster: byId("selected-cluster"),
   selectedClusterSummary: byId("selected-cluster-summary"),
+  parentPanel: byId("parent-panel"),
+  parentPanelEyebrow: byId("parent-panel-eyebrow"),
+  parentPanelTitle: byId("parent-panel-title"),
+  parentPanelDescription: byId("parent-panel-description"),
+  parentSummary: byId("parent-summary"),
+  parentEmpty: byId("parent-empty"),
+  parentEmptyTitle: byId("parent-empty-title"),
+  parentEmptyDescription: byId("parent-empty-description"),
+  parentTopicGrid: byId("parent-topic-grid"),
+  focusProfile: byId("focus-profile"),
   guideDialog: byId("guide-dialog"),
   closeGuide: byId("close-guide"),
   confirmGuide: byId("confirm-guide"),
@@ -70,6 +116,11 @@ const graphPanel = els.canvas?.closest(".graph-panel") ?? null;
 const reducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
 
 const state = {
+  mode: "map",
+  listView: false,
+  profile: createEmptyProfile(),
+  storageEnabled: true,
+  saveIndicatorTimer: null,
   data: null,
   subjects: [],
   grades: [],
@@ -119,6 +170,7 @@ async function init() {
   }
 
   setLoading("데이터를 불러오는 중", "1,956개의 주제와 1,894개의 연결을 확인하는 중");
+  state.profile = loadProfile();
   wireStaticEvents();
   resizeCanvas();
 
@@ -132,8 +184,10 @@ async function init() {
   prepareData(data);
   buildCoordinates();
   renderFilters();
+  renderProfileControls();
   updateVisibleGraph();
   updateMetrics();
+  setMode("map");
   setReady();
   fitView({ markUser: false });
   state.ready = true;
@@ -167,6 +221,11 @@ function prepareData(data) {
   state.data = data;
   state.subjects = deriveSubjects(data);
   state.grades = deriveGrades(data);
+  state.profile = sanitizeProfile(state.profile, {
+    subjectIds: new Set(state.subjects.map((subject) => subject.id)),
+    gradeIds: new Set(state.grades.map((grade) => grade.id)),
+    nodeIds: new Set((data.nodes ?? []).map((node) => node.id)),
+  });
   state.nodes = data.nodes.map((node, index) => ({
     ...node,
     _index: index,
@@ -306,6 +365,473 @@ function stableUnit(text) {
   return (hash >>> 0) / 4294967295;
 }
 
+function createEmptyProfile() {
+  return {
+    version: PROFILE_SCHEMA_VERSION,
+    nickname: "",
+    grade: "",
+    subjects: [],
+    statuses: {},
+    favorites: [],
+  };
+}
+
+function sanitizeProfile(value, allowed = {}) {
+  const profile = createEmptyProfile();
+  if (!value || typeof value !== "object" || Number(value.version) !== PROFILE_SCHEMA_VERSION) {
+    return profile;
+  }
+
+  profile.nickname = String(value.nickname ?? "").trim().slice(0, 24);
+  profile.grade = String(value.grade ?? "");
+  profile.subjects = uniqueStrings(value.subjects);
+  profile.favorites = uniqueStrings(value.favorites);
+
+  if (value.statuses && typeof value.statuses === "object" && !Array.isArray(value.statuses)) {
+    for (const [nodeId, status] of Object.entries(value.statuses)) {
+      if (Object.hasOwn(TOPIC_STATUSES, status)) {
+        profile.statuses[String(nodeId)] = status;
+      }
+    }
+  }
+
+  if (allowed.gradeIds && !allowed.gradeIds.has(profile.grade)) {
+    profile.grade = "";
+  }
+  if (allowed.subjectIds) {
+    profile.subjects = profile.subjects.filter((id) => allowed.subjectIds.has(id));
+  }
+  if (allowed.nodeIds) {
+    profile.favorites = profile.favorites.filter((id) => allowed.nodeIds.has(id));
+    profile.statuses = Object.fromEntries(
+      Object.entries(profile.statuses).filter(([id]) => allowed.nodeIds.has(id)),
+    );
+  }
+
+  return profile;
+}
+
+function uniqueStrings(value) {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+  return [...new Set(value.map((item) => String(item)).filter(Boolean))];
+}
+
+function loadProfile() {
+  try {
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+    if (!stored) {
+      return createEmptyProfile();
+    }
+    try {
+      return sanitizeProfile(JSON.parse(stored));
+    } catch (error) {
+      console.warn("손상된 브라우저 저장값을 비우고 새 설정으로 시작합니다.", error);
+      window.localStorage.removeItem(STORAGE_KEY);
+      return createEmptyProfile();
+    }
+  } catch (error) {
+    state.storageEnabled = false;
+    console.warn("브라우저 로컬 저장소를 읽을 수 없습니다.", error);
+    return createEmptyProfile();
+  }
+}
+
+function persistProfile(message = "저장됨") {
+  if (!state.storageEnabled) {
+    showSaveIndicator("이 브라우저에서 저장을 사용할 수 없음", { persistent: true });
+    return;
+  }
+
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state.profile));
+    els.clearLocalData.disabled = !profileHasData();
+    showSaveIndicator(message);
+  } catch (error) {
+    state.storageEnabled = false;
+    console.warn("브라우저 로컬 저장소에 저장할 수 없습니다.", error);
+    showSaveIndicator("이 브라우저에서 저장을 사용할 수 없음", { persistent: true });
+  }
+}
+
+function clearProfile() {
+  try {
+    window.localStorage.removeItem(STORAGE_KEY);
+    state.storageEnabled = true;
+  } catch (error) {
+    state.storageEnabled = false;
+    console.warn("브라우저 로컬 저장소를 지울 수 없습니다.", error);
+  }
+
+  state.profile = createEmptyProfile();
+  renderProfileControls();
+  syncInspectorProfileState();
+  updateParentPanel();
+  requestRender();
+  showSaveIndicator(state.storageEnabled ? "저장한 내용 삭제됨" : "저장소를 지울 수 없음", {
+    persistent: !state.storageEnabled,
+  });
+}
+
+function showSaveIndicator(message, options = {}) {
+  if (!els.savedIndicator) {
+    return;
+  }
+  window.clearTimeout(state.saveIndicatorTimer);
+  els.savedIndicator.textContent = message;
+  els.savedIndicator.dataset.active = "true";
+  if (!options.persistent) {
+    state.saveIndicatorTimer = window.setTimeout(() => {
+      els.savedIndicator.textContent = "이 브라우저에만 저장";
+      delete els.savedIndicator.dataset.active;
+    }, reducedMotion ? 900 : 1800);
+  }
+}
+
+function profileHasData() {
+  return Boolean(
+    state.profile.nickname ||
+    state.profile.grade ||
+    state.profile.subjects.length ||
+    state.profile.favorites.length ||
+    Object.keys(state.profile.statuses).length,
+  );
+}
+
+function renderProfileControls() {
+  if (!state.data) {
+    return;
+  }
+
+  els.profileNickname.value = state.profile.nickname;
+  els.profileGrade.replaceChildren(
+    optionElement("", "아직 고르지 않음"),
+    ...state.grades.map((grade) => optionElement(grade.id, grade.label)),
+  );
+  els.profileGrade.value = state.profile.grade;
+
+  els.profileSubjects.replaceChildren(
+    ...state.subjects.map((subject) => {
+      const label = document.createElement("label");
+      label.className = "profile-subject-option";
+      const input = document.createElement("input");
+      input.type = "checkbox";
+      input.value = subject.id;
+      input.checked = state.profile.subjects.includes(subject.id);
+      input.dataset.profileSubjectId = subject.id;
+      input.addEventListener("change", () => {
+        const next = new Set(state.profile.subjects);
+        if (input.checked) {
+          next.add(subject.id);
+        } else {
+          next.delete(subject.id);
+        }
+        state.profile.subjects = [...next];
+        persistProfile();
+        updateParentPanel();
+      });
+      const swatch = element("i", "", "");
+      swatch.style.setProperty("--subject-color", subject.color);
+      label.append(input, swatch, element("span", "", subject.label));
+      return label;
+    }),
+  );
+
+  els.clearLocalData.disabled = !profileHasData();
+  if (!state.storageEnabled) {
+    showSaveIndicator("이 브라우저에서 저장을 사용할 수 없음", { persistent: true });
+  } else if (profileHasData()) {
+    els.savedIndicator.textContent = "저장됨 · 이 브라우저에만";
+  } else {
+    els.savedIndicator.textContent = "이 브라우저에만 저장";
+  }
+}
+
+function optionElement(value, label) {
+  const option = document.createElement("option");
+  option.value = value;
+  option.textContent = label;
+  return option;
+}
+
+function setMode(mode) {
+  state.mode = Object.hasOwn(MODE_COPY, mode) ? mode : "map";
+  const isMap = state.mode === "map";
+  els.app.dataset.mode = state.mode;
+  graphPanel.hidden = !isMap;
+  els.parentPanel.hidden = isMap;
+  els.fitView.disabled = !isMap;
+
+  for (const button of els.modeButtons) {
+    button.setAttribute("aria-pressed", String(button.dataset.mode === state.mode));
+  }
+
+  if (isMap) {
+    window.requestAnimationFrame(() => {
+      resizeCanvas();
+      requestRender();
+    });
+  } else {
+    setListView(false, { restoreFocus: false });
+    updateParentPanel();
+  }
+}
+
+function updateParentPanel() {
+  if (!state.data || state.mode === "map") {
+    return;
+  }
+
+  const copy = MODE_COPY[state.mode];
+  const nodes = parentNodesForMode(state.mode);
+  const hasSetup = profileHasData();
+  els.parentPanelEyebrow.textContent = copy.eyebrow;
+  els.parentPanelTitle.textContent = state.profile.nickname
+    ? `${state.profile.nickname}의 ${copy.title.replace("우리 아이 ", "")}`
+    : copy.title;
+  els.parentPanelDescription.textContent = copy.description;
+  renderParentSummary();
+  els.parentEmpty.hidden = hasSetup && nodes.length > 0;
+  els.parentTopicGrid.hidden = !els.parentEmpty.hidden;
+
+  if (!hasSetup) {
+    els.parentEmptyTitle.textContent = "우리 아이 설정을 먼저 골라주세요.";
+    els.parentEmptyDescription.textContent = "학년군이나 관심 과목을 고르거나, 지도에서 주제 상태와 즐겨찾기를 표시하면 맞춤 내용이 나타납니다.";
+    els.parentTopicGrid.replaceChildren();
+    return;
+  }
+
+  if (!nodes.length) {
+    els.parentEmptyTitle.textContent = "조건에 맞는 주제가 없습니다.";
+    els.parentEmptyDescription.textContent = "학년군 또는 관심 과목 설정을 바꾸거나 지도에서 다른 주제를 표시해 보세요.";
+    els.parentTopicGrid.replaceChildren();
+    return;
+  }
+
+  els.parentTopicGrid.replaceChildren(...nodes.map((node, index) => parentTopicCard(node, index)));
+}
+
+function renderParentSummary() {
+  const counts = Object.values(state.profile.statuses).reduce(
+    (result, status) => ({ ...result, [status]: (result[status] ?? 0) + 1 }),
+    {},
+  );
+  const entries = [
+    ["familiar", "익숙", counts.familiar ?? 0],
+    ["practicing", "연습", counts.practicing ?? 0],
+    ["preview", "먼저", counts.preview ?? 0],
+    ["favorites", "즐겨찾기", state.profile.favorites.length],
+  ];
+  els.parentSummary.replaceChildren(
+    ...entries.map(([key, label, count]) => {
+      const item = element("span", `summary-${key}`, "");
+      item.append(element("b", "", String(count)), document.createTextNode(label));
+      return item;
+    }),
+  );
+}
+
+function parentNodesForMode(mode) {
+  const matchesProfile = state.nodes.filter((node) => nodeMatchesProfile(node));
+  const tracked = matchesProfile.filter((node) => topicStatus(node.id) || isFavorite(node.id));
+  const rankedTracked = [...tracked].sort(compareParentPriority);
+
+  if (mode === "week") {
+    const active = matchesProfile.filter((node) => topicStatus(node.id) !== "familiar");
+    return uniqueNodes([...rankedTracked, ...active.sort(compareParentPriority)]).slice(0, 6);
+  }
+
+  const connected = [];
+  for (const node of rankedTracked) {
+    connected.push(
+      ...(state.incoming.get(node.id) ?? []).map((edge) => edge.fromNode),
+      ...(state.outgoing.get(node.id) ?? []).map((edge) => edge.toNode),
+    );
+  }
+  return uniqueNodes([
+    ...rankedTracked,
+    ...connected.filter((node) => nodeMatchesProfile(node)),
+    ...matchesProfile.sort(compareParentPriority),
+  ]).slice(0, 18);
+}
+
+function nodeMatchesProfile(node) {
+  if (state.profile.grade && node.grade !== state.profile.grade) {
+    return false;
+  }
+  return state.profile.subjects.length === 0 || state.profile.subjects.includes(node.subject);
+}
+
+function compareParentPriority(a, b) {
+  const rank = { practicing: 0, preview: 1, familiar: 3 };
+  const aStatus = topicStatus(a.id);
+  const bStatus = topicStatus(b.id);
+  const aRank = rank[aStatus] ?? (isFavorite(a.id) ? 2 : 4);
+  const bRank = rank[bStatus] ?? (isFavorite(b.id) ? 2 : 4);
+  return aRank - bRank || gradeSortValue(a.grade) - gradeSortValue(b.grade) || compareNodesForLayout(a, b);
+}
+
+function uniqueNodes(nodes) {
+  const seen = new Set();
+  return nodes.filter((node) => node && !seen.has(node.id) && seen.add(node.id));
+}
+
+function parentTopicCard(node, index) {
+  const article = document.createElement("article");
+  article.className = "parent-topic-card";
+  article.dataset.nodeId = node.id;
+  const status = topicStatus(node.id);
+  const head = element("div", "parent-topic-card-head", "");
+  head.append(
+    element("span", "card-index", String(index + 1).padStart(2, "0")),
+    element("span", `topic-state state-${status || "new"}`, status ? TOPIC_STATUSES[status] : "살펴볼 주제"),
+  );
+
+  const title = document.createElement("button");
+  title.type = "button";
+  title.className = "parent-topic-title";
+  title.textContent = node.title ?? "제목 없음";
+  title.addEventListener("click", () => selectNode(node));
+
+  const evidence = Array.isArray(node.evidence) ? node.evidence[0] : "아이의 말과 활동 결과를 함께 살펴보세요.";
+  const favorite = document.createElement("button");
+  favorite.type = "button";
+  favorite.className = "card-favorite";
+  favorite.setAttribute("aria-pressed", String(isFavorite(node.id)));
+  favorite.setAttribute("aria-label", `${node.title ?? "주제"} 즐겨찾기`);
+  favorite.textContent = isFavorite(node.id) ? "★ 저장됨" : "☆ 즐겨찾기";
+  favorite.addEventListener("click", () => toggleFavoriteFor(node.id));
+
+  const detail = document.createElement("button");
+  detail.type = "button";
+  detail.className = "card-detail";
+  detail.textContent = "상세와 배움 경로 보기";
+  detail.addEventListener("click", () => selectNode(node));
+
+  const actions = element("div", "parent-topic-actions", "");
+  actions.append(favorite, detail);
+  article.append(
+    head,
+    element("p", "parent-topic-meta", `${node.code ?? "성취기준"} · ${metaLine(node)}`),
+    title,
+    cardInfo("ACTION", topicAction(node)),
+    cardInfo("EVIDENCE", evidence),
+    cardInfo("PROMPT", node.assessmentPrompt ?? "어떻게 생각하고 해냈는지 아이의 말로 들려줄래?"),
+    actions,
+  );
+  return article;
+}
+
+function cardInfo(label, text) {
+  const section = element("section", "parent-card-info", "");
+  section.append(element("span", "", label), element("p", "", text));
+  return section;
+}
+
+function topicAction(node) {
+  const summary = state.standards.get(node.standard)?.summary ?? node.title ?? "이 주제";
+  if (node.type === "PROCEDURAL") {
+    return `집에 있는 재료나 일상 장면으로 ‘${summary}’ 활동을 10분 해보고, 선택한 방법을 아이가 직접 말하게 해보세요.`;
+  }
+  if (node.type === "REFLECTIVE") {
+    return `‘${summary}’ 활동을 돌아보며 잘된 점 하나와 다음에 바꿀 점 하나를 함께 적어보세요.`;
+  }
+  return `‘${summary}’를 아이의 말로 설명하고, 생활 속 예를 하나 찾아 연결해 보세요.`;
+}
+
+function topicStatus(nodeId) {
+  return state.profile.statuses[nodeId] ?? "";
+}
+
+function isFavorite(nodeId) {
+  return state.profile.favorites.includes(nodeId);
+}
+
+function setTopicStatus(nodeId, status) {
+  if (!state.nodeById.has(nodeId)) {
+    return;
+  }
+  if (status && Object.hasOwn(TOPIC_STATUSES, status)) {
+    state.profile.statuses[nodeId] = status;
+  } else {
+    delete state.profile.statuses[nodeId];
+  }
+  persistProfile();
+  syncInspectorProfileState();
+  updateParentPanel();
+  renderTopicList();
+  requestRender();
+}
+
+function toggleFavoriteFor(nodeId) {
+  if (!state.nodeById.has(nodeId)) {
+    return;
+  }
+  const favorites = new Set(state.profile.favorites);
+  if (favorites.has(nodeId)) {
+    favorites.delete(nodeId);
+  } else {
+    favorites.add(nodeId);
+  }
+  state.profile.favorites = [...favorites];
+  persistProfile();
+  syncInspectorProfileState();
+  updateParentPanel();
+  renderTopicList();
+  requestRender();
+}
+
+function syncInspectorProfileState() {
+  if (!state.selectedId) {
+    return;
+  }
+  const status = topicStatus(state.selectedId);
+  for (const button of els.statusOptions.querySelectorAll("[data-status-value]")) {
+    button.setAttribute("aria-pressed", String(button.dataset.statusValue === status));
+  }
+  els.clearTopicStatus.disabled = !status;
+  const favorite = isFavorite(state.selectedId);
+  els.toggleFavorite.setAttribute("aria-pressed", String(favorite));
+  els.toggleFavorite.textContent = favorite ? "★ 즐겨찾기됨" : "☆ 즐겨찾기";
+}
+
+function setListView(visible, options = {}) {
+  state.listView = Boolean(visible && state.mode === "map");
+  els.topicListPanel.hidden = !state.listView;
+  els.toggleListView.setAttribute("aria-pressed", String(state.listView));
+  els.toggleListView.textContent = state.listView ? "지도" : "목록";
+  if (state.listView) {
+    renderTopicList();
+    els.closeListView.focus({ preventScroll: true });
+  } else if (options.restoreFocus !== false && document.activeElement === els.closeListView) {
+    els.toggleListView.focus({ preventScroll: true });
+  }
+}
+
+function renderTopicList() {
+  if (!state.listView || !els.topicList) {
+    return;
+  }
+
+  const fragment = document.createDocumentFragment();
+  for (const node of state.visibleNodes) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.nodeId = node.id;
+    button.setAttribute("aria-current", String(node.id === state.selectedId));
+    const status = topicStatus(node.id);
+    button.append(
+      element("span", "topic-list-code", node.code ?? "—"),
+      element("strong", "", node.title ?? "제목 없음"),
+      element("small", "", `${metaLine(node)}${status ? ` · ${TOPIC_STATUSES[status]}` : ""}${isFavorite(node.id) ? " · ★" : ""}`),
+    );
+    button.addEventListener("click", () => selectNode(node));
+    fragment.append(button);
+  }
+  els.topicList.replaceChildren(fragment);
+}
+
 function renderFilters() {
   els.subjectFilters.replaceChildren(
     ...state.subjects.map((subject) => {
@@ -363,6 +889,7 @@ function onFiltersChanged() {
   syncFilterButtons();
   updateVisibleGraph();
   updateSearchResults();
+  renderTopicList();
   updateHover(null);
   requestRender();
 }
@@ -439,6 +966,38 @@ function wireStaticEvents() {
     updateSearchResults();
     els.topicSearch.focus();
   });
+
+  for (const button of els.modeButtons) {
+    button.addEventListener("click", () => setMode(button.dataset.mode));
+  }
+  els.profileNickname?.addEventListener("input", () => {
+    state.profile.nickname = els.profileNickname.value.slice(0, 24);
+    persistProfile();
+    updateParentPanel();
+  });
+  els.profileNickname?.addEventListener("blur", () => {
+    state.profile.nickname = state.profile.nickname.trim();
+    els.profileNickname.value = state.profile.nickname;
+    persistProfile();
+  });
+  els.profileGrade?.addEventListener("change", () => {
+    state.profile.grade = els.profileGrade.value;
+    persistProfile();
+    updateParentPanel();
+  });
+  els.clearLocalData?.addEventListener("click", clearProfile);
+  els.toggleListView?.addEventListener("click", () => setListView(!state.listView));
+  els.closeListView?.addEventListener("click", () => setListView(false));
+  els.retryData?.addEventListener("click", () => window.location.reload());
+  els.focusProfile?.addEventListener("click", () => {
+    els.profileGrade?.scrollIntoView({ block: "center", behavior: reducedMotion ? "auto" : "smooth" });
+    els.profileGrade?.focus({ preventScroll: true });
+  });
+  for (const button of els.statusOptions?.querySelectorAll("[data-status-value]") ?? []) {
+    button.addEventListener("click", () => setTopicStatus(state.selectedId, button.dataset.statusValue));
+  }
+  els.clearTopicStatus?.addEventListener("click", () => setTopicStatus(state.selectedId, ""));
+  els.toggleFavorite?.addEventListener("click", () => toggleFavoriteFor(state.selectedId));
 
   els.closeInspector?.addEventListener("click", closeInspector);
   els.openGuide?.addEventListener("click", openGuide);
@@ -594,13 +1153,83 @@ function onWheel(event) {
 }
 
 function onCanvasKeyDown(event) {
+  if (event.key.toLocaleLowerCase() === "l") {
+    event.preventDefault();
+    setListView(true);
+    return;
+  }
+
+  const directions = {
+    ArrowLeft: { x: -1, y: 0 },
+    ArrowRight: { x: 1, y: 0 },
+    ArrowUp: { x: 0, y: -1 },
+    ArrowDown: { x: 0, y: 1 },
+  };
+  if (directions[event.key]) {
+    event.preventDefault();
+    const next = nextNodeInDirection(directions[event.key]);
+    if (next) {
+      selectNode(next, { center: true });
+      els.canvas.focus({ preventScroll: true });
+    }
+    return;
+  }
+
   if (event.key === "Enter") {
-    const node = state.hoveredId ? state.nodeById.get(state.hoveredId) : null;
+    const node = state.selectedId
+      ? state.nodeById.get(state.selectedId)
+      : state.hoveredId
+        ? state.nodeById.get(state.hoveredId)
+        : nearestNodeToScreenCenter();
     if (node) {
       event.preventDefault();
       selectNode(node, { center: false });
     }
   }
+}
+
+function nextNodeInDirection(direction) {
+  const current = state.nodeById.get(state.selectedId) ?? nearestNodeToScreenCenter();
+  if (!current) {
+    return null;
+  }
+  const origin = worldToScreen(current);
+  let best = null;
+  let bestScore = Infinity;
+  for (const node of state.visibleNodes) {
+    if (node.id === current.id) {
+      continue;
+    }
+    const point = worldToScreen(node);
+    const dx = point.x - origin.x;
+    const dy = point.y - origin.y;
+    const forward = dx * direction.x + dy * direction.y;
+    if (forward <= 2) {
+      continue;
+    }
+    const sideways = Math.abs(dx * direction.y - dy * direction.x);
+    const score = forward + sideways * 2.4;
+    if (score < bestScore) {
+      best = node;
+      bestScore = score;
+    }
+  }
+  return best;
+}
+
+function nearestNodeToScreenCenter() {
+  const center = { x: state.size.width / 2, y: state.size.height / 2 };
+  let nearest = null;
+  let nearestDistance = Infinity;
+  for (const node of state.visibleNodes) {
+    const point = worldToScreen(node);
+    const nextDistance = distance(point, center);
+    if (nextDistance < nearestDistance) {
+      nearest = node;
+      nearestDistance = nextDistance;
+    }
+  }
+  return nearest;
 }
 
 function makePinchState() {
@@ -744,6 +1373,7 @@ function selectNode(nodeOrId, options = {}) {
   els.inspector.setAttribute("aria-hidden", "false");
   fillInspector(node);
   updateSearchResults();
+  renderTopicList();
 
   if (options.center && isNodeFilterVisible(node)) {
     centerNode(node);
@@ -768,6 +1398,7 @@ function fillInspector(node) {
   els.selectedCode.textContent = node.code ?? node.standard ?? "";
   els.selectedTitle.textContent = node.title ?? "제목 없음";
   els.selectedDescription.textContent = node.description ?? "설명 정보가 아직 없습니다.";
+  els.selectedAction.textContent = topicAction(node);
   els.selectedQuestion.textContent = node.assessmentPrompt ?? "아이의 설명과 수행 과정을 함께 확인해 보세요.";
   els.selectedCluster.textContent = cluster?.title ?? "연결된 배움 묶음 없음";
   els.selectedClusterSummary.textContent = cluster?.parentSummary ?? cluster?.summary ?? "이 주제와 연결된 묶음 설명이 아직 없습니다.";
@@ -781,6 +1412,7 @@ function fillInspector(node) {
   els.unlockCount.textContent = String(outgoing.length);
   fillRelatedList(els.prerequisiteList, incoming.map((edge) => edge.fromNode), "먼저 배우는 주제가 없습니다.");
   fillRelatedList(els.unlockList, outgoing.map((edge) => edge.toNode), "다음에 열리는 주제가 없습니다.");
+  syncInspectorProfileState();
 }
 
 function firstClusterFor(node) {
@@ -814,6 +1446,7 @@ function closeInspector() {
   els.app.classList.remove("inspector-open");
   els.inspector.setAttribute("aria-hidden", "true");
   updateSearchResults();
+  renderTopicList();
   requestRender();
 }
 
@@ -981,7 +1614,9 @@ function drawNodes() {
     }
     const isSelected = node.id === state.selectedId;
     const isHovered = node.id === state.hoveredId;
-    const radius = isSelected ? 6.2 : isHovered ? 5.3 : 3.4;
+    const status = topicStatus(node.id);
+    const favorite = isFavorite(node.id);
+    const radius = isSelected ? 6.2 : isHovered ? 5.3 : status || favorite ? 4.2 : 3.4;
 
     ctx.beginPath();
     ctx.fillStyle = node._color ?? SUBJECT_FALLBACK;
@@ -989,10 +1624,10 @@ function drawNodes() {
     ctx.arc(point.x, point.y, radius, 0, TAU);
     ctx.fill();
 
-    if (isSelected || isHovered) {
+    if (isSelected || isHovered || status || favorite) {
       ctx.globalAlpha = 1;
-      ctx.lineWidth = isSelected ? 2 : 1.4;
-      ctx.strokeStyle = isSelected ? CHARCOAL : RED;
+      ctx.lineWidth = isSelected ? 2 : favorite ? 1.8 : 1.2;
+      ctx.strokeStyle = isSelected || status === "familiar" ? CHARCOAL : RED;
       ctx.stroke();
     }
   }
@@ -1089,6 +1724,9 @@ function pointNearViewport(point, margin) {
 
 function setLoading(title, detail) {
   els.app.dataset.state = "loading";
+  if (els.retryData) {
+    els.retryData.hidden = true;
+  }
   setStatus("데이터를 불러오는 중");
   const strong = els.loadingPanel?.querySelector("strong");
   const span = els.loadingPanel?.querySelector("div span");
@@ -1118,6 +1756,9 @@ function showError(error) {
   }
   if (span) {
     span.textContent = error.message;
+  }
+  if (els.retryData) {
+    els.retryData.hidden = false;
   }
   requestRender();
 }
