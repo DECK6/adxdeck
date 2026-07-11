@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#0b0d0c"/>
   <rect x="1" y="1" width="1198" height="628" fill="none" stroke="#2b302b"/>
-  <text x="64" y="76" fill="#c8ff3d" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">ONTOLOGY ALIGNMENT BENCHMARK · 2026</text>
+  <text x="64" y="76" fill="#c8ff3d" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">8-MODEL ONTOLOGY ALIGNMENT · 2026</text>
   <text x="1136" y="76" fill="#f3f1e8" font-family="Arial, sans-serif" font-size="20" font-weight="800" text-anchor="end" letter-spacing="2">DEXA</text>
   <text x="64" y="215" fill="#c8ff3d" font-family="Arial, sans-serif" font-size="88" font-weight="900" letter-spacing="-6">AI는</text>
   <text x="64" y="306" fill="#f3f1e8" font-family="Arial, sans-serif" font-size="88" font-weight="900" letter-spacing="-6">초등학교를</text>
@@ -9,12 +9,12 @@
   <text x="66" y="520" fill="#b8beb5" font-family="Arial, sans-serif" font-size="25">정답을 아는 것과 배움의 구조를 이해하는 것은 다르다.</text>
   <g transform="translate(672 437)">
     <rect width="214" height="132" fill="#121512" stroke="#c8ff3d"/>
-    <text x="22" y="32" fill="#9ea49b" font-family="Arial, sans-serif" font-size="15">GPT-5.6-sol</text>
-    <text x="22" y="108" fill="#f3f1e8" font-family="Arial, sans-serif" font-size="72" font-weight="900">56</text>
+    <text x="22" y="32" fill="#9ea49b" font-family="Arial, sans-serif" font-size="15">Claude Fable 5</text>
+    <text x="22" y="108" fill="#f3f1e8" font-family="Arial, sans-serif" font-size="72" font-weight="900">62</text>
   </g>
   <g transform="translate(900 437)">
     <rect width="236" height="132" fill="#121512" stroke="#5ef2c2"/>
-    <text x="22" y="32" fill="#9ea49b" font-family="Arial, sans-serif" font-size="15">Claude Sonnet</text>
-    <text x="22" y="108" fill="#f3f1e8" font-family="Arial, sans-serif" font-size="72" font-weight="900">44</text>
+    <text x="22" y="32" fill="#9ea49b" font-family="Arial, sans-serif" font-size="15">Claude Opus 4.8</text>
+    <text x="22" y="108" fill="#f3f1e8" font-family="Arial, sans-serif" font-size="72" font-weight="900">52</text>
   </g>
 </svg>

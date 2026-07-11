@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b0d0c">
   <title>AI는 초등학교를 이해하는가? — 교육과정 온톨로지 정렬 벤치마크</title>
-  <meta name="description" content="한국 초등 교육과정 학습 온톨로지의 교차 성취기준 선수 관계 50문항으로 AI 모델의 교육과정 구조 이해를 공개 검증합니다.">
+  <meta name="description" content="한국 초등교육 온톨로지의 교차 성취기준 선수 관계 50문항으로 GPT·Claude·Gemini 8개 모델의 구조 정렬도를 공개 검증합니다.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="AI는 초등학교를 이해하는가?">
-  <meta property="og:description" content="GPT-5.6-sol 56% · Claude Sonnet 44% — 정답을 아는 것과 배움의 구조를 이해하는 것은 다릅니다.">
+  <meta property="og:description" content="Claude Fable 5 62% · Claude Opus 4.8 52% — GPT·Claude·Gemini 8개 모델 재평가.">
   <meta property="og:image" content="https://dexa.art/ai-school/og.png">
   <meta property="og:url" content="https://dexa.art/ai-school/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://dexa.art/ai-school/">
-  <link rel="stylesheet" href="styles.css?v=20260711-1">
-  <script type="module" src="app.js?v=20260711-1"></script>
+  <link rel="stylesheet" href="styles.css?v=20260711-2">
+  <script type="module" src="app.js?v=20260711-2"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
@@ -30,7 +30,7 @@
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">Korean Elementary Curriculum Reasoning Benchmark · v0.1</p>
+        <p class="eyebrow">Korean Elementary Curriculum Reasoning Benchmark · Results v0.2</p>
         <h1 id="hero-title"><span>AI는</span> 초등학교를<br>이해하는가?</h1>
         <p class="hero-deck">정답을 아는 것과 <strong>배움의 구조</strong>를 이해하는 것은 다릅니다. 한국 초등교육 온톨로지의 교차 성취기준 관계를 모델이 얼마나 복원하는지 측정했습니다.</p>
         <div class="hero-actions">
@@ -38,14 +38,14 @@
           <button class="button ghost" id="share-button" type="button">결과 공유</button>
         </div>
       </div>
-      <div class="hero-figure" aria-label="두 모델의 온톨로지 정렬 점수 비교">
+      <div class="hero-figure" aria-label="상위 두 모델의 온톨로지 정렬 점수 비교">
         <div class="score-orbit score-orbit-a">
-          <span class="score-label">GPT-5.6-sol</span>
-          <strong>56</strong><small>/100</small>
+          <span class="score-label" id="hero-model-1">TOP 1</span>
+          <strong id="hero-score-1">—</strong><small>/100</small>
         </div>
         <div class="score-orbit score-orbit-b">
-          <span class="score-label">Claude Sonnet</span>
-          <strong>44</strong><small>/100</small>
+          <span class="score-label" id="hero-model-2">TOP 2</span>
+          <strong id="hero-score-2">—</strong><small>/100</small>
         </div>
         <svg class="orbit-lines" viewBox="0 0 520 520" aria-hidden="true">
           <circle cx="260" cy="260" r="192"/>
@@ -61,7 +61,7 @@
       <article><strong>50</strong><span>교차 성취기준 문항</span></article>
       <article><strong>510</strong><span>후보 직접 선수 관계</span></article>
       <article><strong>7</strong><span>평가 표본 교과</span></article>
-      <article><strong>0</strong><span>외부 검색·도구 호출</span></article>
+      <article><strong id="model-count">—</strong><span>동일 조건 평가 모델</span></article>
     </section>
 
     <section class="thesis section-grid">
@@ -77,11 +77,12 @@
       <div class="section-heading">
         <div>
           <p class="section-number">02 / RESULTS</p>
-          <h2 id="results-title">첫 공개 결과</h2>
+          <h2 id="results-title">8개 모델 재평가</h2>
         </div>
-        <p>2026-07-11 · 25문항 × 2배치 · exact match</p>
+        <p id="run-summary">2026-07-11 · 모델별 2–5배치 · exact match</p>
       </div>
       <div id="leaderboard" class="leaderboard" aria-live="polite"></div>
+      <div id="model-legend" class="model-legend" aria-label="모델 색상 범례"></div>
 
       <div class="result-grid">
         <article class="data-panel">
@@ -96,8 +97,8 @@
 
       <aside class="finding">
         <p class="finding-kicker">THE GAP</p>
-        <strong>수학 100%<br>통합교과 0–16.7%</strong>
-        <p>두 모델 모두 구조가 명시적인 수학에서는 강했지만, 생활 맥락과 활동 간 연결이 중요한 통합교과에서는 급격히 무너졌습니다. 이 차이는 모델 성능뿐 아니라 현재 온톨로지 관계가 언어만으로 얼마나 복원 가능한지도 함께 보여줍니다.</p>
+        <strong id="finding-stat">교과별 범위 계산 중</strong>
+        <p id="finding-copy">모델별 교과 정렬도 범위를 계산하고 있습니다.</p>
       </aside>
     </section>
 
@@ -133,7 +134,7 @@
       </div>
       <div class="disclosure">
         <h3>중요한 한계</h3>
-        <p>골드는 교과 전문가 합의가 아니라 현재 공개 온톨로지의 모델 상대적 추천 구조입니다. 50문항은 전체 관계의 탐색적 표본이며, 다수의 교육적으로 타당한 대안이 존재할 수 있습니다. 외부 전문가 검토와 공식 출처별 재사용 권리 확인은 진행 중입니다.</p>
+        <p>골드는 교과 전문가 합의가 아니라 현재 공개 온톨로지의 모델 상대적 추천 구조입니다. 50문항은 전체 관계의 탐색적 표본이며, 다수의 교육적으로 타당한 대안이 존재할 수 있습니다. 모델별 단일 실행이므로 순위보다 실패 패턴을 우선 봐야 합니다. 외부 전문가 검토와 공식 출처별 재사용 권리 확인은 진행 중입니다.</p>
       </div>
       <div class="download-row">
         <a class="button primary" href="benchmark.v1.json" download>문항 JSON</a>
@@ -145,7 +146,7 @@
   </main>
 
   <footer>
-    <p>Built by <a href="https://dexa.art/">DEXA</a> · 공개 연구 제품 v0.1</p>
+    <p>Built by <a href="https://dexa.art/">DEXA</a> · 공개 연구 제품 v0.2</p>
     <p>공식 교육과정 온톨로지·승인 제품이 아니며 개별 학습자를 진단하지 않습니다.</p>
   </footer>
 </body>
