@@ -39,7 +39,7 @@ function renderHero() {
   document.querySelector("#run-progress-count").textContent = `${results.completedRuns}/${results.plannedRuns}`;
   document.querySelector("#run-summary").textContent = `2026-07-11 · ${results.completedModelCount}개 모델 × ${results.runsPerModel}회 비교 완료 · ${results.completedRuns}/${results.plannedRuns} 수집`;
   const pending = results.pendingModels[0];
-  document.querySelector("#interim-status").textContent = pending
+  document.querySelector("#collection-status").textContent = pending
     ? `${pending.label}은 ${pending.completedRuns}/${pending.plannedRuns}회 완료 상태로 평균 순위에서 제외했습니다. 현재 공개 비교는 ${results.completedModelCount}개 모델의 ${results.comparableRuns}회만 사용합니다.`
     : "모든 모델의 반복 수집이 완료됐습니다.";
   document.querySelector(".hero-figure").setAttribute("aria-label", `${leaders.map((model) => `${model.label} 평균 ${formatScore(model.overall.score)}점`).join(", ")} 비교`);
@@ -176,7 +176,7 @@ function describeAnswer(question, answerId) {
 function setupSharing() {
   document.querySelector("#share-button").addEventListener("click", async () => {
     const leaders = results.models.slice(0, 3).map((model) => `${model.label} 평균 ${formatScore(model.overall.score)}% (${formatScore(model.overall.min)}–${formatScore(model.overall.max)})`).join(" · ");
-    const text = `AI는 초등학교를 이해하는가? 완료 ${results.completedModelCount}개 모델 × ${results.runsPerModel}회: ${leaders}. 5회 반복의 중간 결과와 한계를 공개했습니다.`;
+    const text = `AI는 초등학교를 이해하는가? ${results.completedModelCount}개 모델 × ${results.runsPerModel}회: ${leaders}. 40회 반복 결과와 5회 표본의 한계를 공개했습니다.`;
     if (navigator.share) {
       await navigator.share({ title: document.title, text, url: location.href });
       return;

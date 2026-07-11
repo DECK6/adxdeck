@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="#0b0d0c"/>
   <rect x="1" y="1" width="1198" height="628" fill="none" stroke="#2b302b"/>
-  <text x="64" y="76" fill="#c8ff3d" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">7 MODELS × 5 RUNS · INTERIM 2026</text>
+  <text x="64" y="76" fill="#c8ff3d" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">8 MODELS × 5 RUNS · COMPLETE 2026</text>
   <text x="1136" y="76" fill="#f3f1e8" font-family="Arial, sans-serif" font-size="20" font-weight="800" text-anchor="end" letter-spacing="2">DEXA</text>
   <text x="64" y="215" fill="#c8ff3d" font-family="Arial, sans-serif" font-size="88" font-weight="900" letter-spacing="-6">AI는</text>
   <text x="64" y="306" fill="#f3f1e8" font-family="Arial, sans-serif" font-size="88" font-weight="900" letter-spacing="-6">초등학교를</text>
   <text x="64" y="397" fill="#f3f1e8" font-family="Arial, sans-serif" font-size="88" font-weight="900" letter-spacing="-6">이해하는가?</text>
-  <text x="66" y="500" fill="#b8beb5" font-family="Arial, sans-serif" font-size="23">36/40 RUNS COLLECTED · SAME-DAY n=5 SAMPLE</text>
+  <text x="66" y="500" fill="#b8beb5" font-family="Arial, sans-serif" font-size="23">40/40 RUNS COMPLETE · SAME-DAY n=5 SAMPLE</text>
   <text x="66" y="535" fill="#8f968c" font-family="Arial, sans-serif" font-size="18">평균 · 범위 · 문항별 안정성과 한계를 함께 공개</text>
   <g transform="translate(672 437)">
     <rect width="214" height="132" fill="#121512" stroke="#c8ff3d"/>
@@ -16,8 +16,8 @@
   </g>
   <g transform="translate(900 437)">
     <rect width="236" height="132" fill="#121512" stroke="#5ef2c2"/>
-    <text x="22" y="28" fill="#9ea49b" font-family="Arial, sans-serif" font-size="15">Claude Sonnet 5 · MEAN</text>
-    <text x="22" y="91" fill="#f3f1e8" font-family="Arial, sans-serif" font-size="62" font-weight="900">46.8</text>
-    <text x="22" y="118" fill="#9ea49b" font-family="Arial, sans-serif" font-size="14">RANGE 40–62</text>
+    <text x="22" y="28" fill="#9ea49b" font-family="Arial, sans-serif" font-size="15">Claude Opus 4.8 · MEAN</text>
+    <text x="22" y="91" fill="#f3f1e8" font-family="Arial, sans-serif" font-size="62" font-weight="900">50.8</text>
+    <text x="22" y="118" fill="#9ea49b" font-family="Arial, sans-serif" font-size="14">RANGE 48–52</text>
   </g>
 </svg>
