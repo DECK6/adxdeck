@@ -3,6 +3,7 @@ const taskLabels = {
   "direction-choice": "관계 방향 판별",
   "edge-audit": "비기록 관계 탐지",
 };
+const seriesColors = ["#c8ff3d", "#5ef2c2", "#76a9ff", "#ff735c", "#ffc75e", "#b58cff", "#52d6ff", "#f28fc7"];
 
 const [results, gold] = await Promise.all([
   fetch("results.json").then(assertOk).then((response) => response.json()),
@@ -12,9 +13,12 @@ const [results, gold] = await Promise.all([
 const questions = new Map(gold.questions.map((question) => [question.id, question]));
 let visibleFailures = 8;
 
+renderHero();
 renderLeaderboard();
+renderModelLegend();
 renderTaskChart();
 renderSubjectChart();
+renderFinding();
 setupFilters();
 renderFailures();
 setupSharing();
@@ -24,12 +28,23 @@ function assertOk(response) {
   return response;
 }
 
+function renderHero() {
+  const leaders = results.models.slice(0, 2);
+  leaders.forEach((model, index) => {
+    document.querySelector(`#hero-model-${index + 1}`).textContent = model.label;
+    document.querySelector(`#hero-score-${index + 1}`).textContent = formatScore(model.overall.score);
+  });
+  document.querySelector("#model-count").textContent = String(results.modelCount);
+  document.querySelector("#run-summary").textContent = `2026-07-11 · ${results.modelCount}개 모델 · 모델별 2–5배치 · exact match`;
+  document.querySelector(".hero-figure").setAttribute("aria-label", `${leaders.map((model) => `${model.label} ${formatScore(model.overall.score)}점`).join(", ")} 비교`);
+}
+
 function renderLeaderboard() {
   const root = document.querySelector("#leaderboard");
   root.innerHTML = results.models.map((model, index) => `
-    <article class="model-card" data-rank="${index + 1}">
+    <article class="model-card provider-${providerClass(model.provider)}" data-rank="${index + 1}" style="--series-color:${seriesColors[index % seriesColors.length]}">
       <div class="model-top">
-        <div><span class="model-rank">RANK ${String(index + 1).padStart(2, "0")}</span><h3 class="model-name">${escapeHtml(model.label)}</h3></div>
+        <div><span class="model-rank">RANK ${String(index + 1).padStart(2, "0")} · ${escapeHtml(model.provider)}</span><h3 class="model-name">${escapeHtml(model.label)}</h3></div>
         <div class="model-score"><strong>${formatScore(model.overall.score)}</strong><span>ONTOLOGY ALIGNMENT</span></div>
       </div>
       <div class="model-meta">
@@ -40,17 +55,22 @@ function renderLeaderboard() {
     </article>`).join("");
 }
 
+function renderModelLegend() {
+  document.querySelector("#model-legend").innerHTML = results.models.map((model, index) => `
+    <span class="legend-item" style="--series-color:${seriesColors[index % seriesColors.length]}"><i></i>${escapeHtml(model.label)}</span>`).join("");
+}
+
 function renderTaskChart() {
   const types = Object.keys(taskLabels);
   document.querySelector("#task-chart").innerHTML = types.map((type) => `
     <div class="bar-group">
       <span>${taskLabels[type]}</span>
-      ${results.models.map((model) => barRow(model.label, model.byType[type].score)).join("")}
+      ${results.models.map((model, index) => barRow(model.label, model.byType[type].score, model.provider, seriesColors[index % seriesColors.length])).join("")}
     </div>`).join("");
 }
 
-function barRow(label, value) {
-  return `<div class="bar-row"><b>${escapeHtml(label)}</b><div class="bar-track"><div class="bar-fill" style="width:${value}%"></div></div><span class="bar-value">${formatScore(value)}</span></div>`;
+function barRow(label, value, provider, color) {
+  return `<div class="bar-row provider-${providerClass(provider)}" style="--series-color:${color}"><b>${escapeHtml(label)}</b><div class="bar-track"><div class="bar-fill" style="width:${value}%"></div></div><span class="bar-value">${formatScore(value)}</span></div>`;
 }
 
 function renderSubjectChart() {
@@ -58,13 +78,20 @@ function renderSubjectChart() {
   document.querySelector("#subject-chart").innerHTML = subjects.map((subject) => `
     <div class="subject-row">
       <span>${escapeHtml(subject)}</span>
-      <div class="subject-bars">
-        ${results.models.map((model) => {
+      <div class="subject-bars" style="--model-count:${results.models.length}">
+        ${results.models.map((model, index) => {
           const value = model.bySubject[subject].score;
-          return `<div class="subject-bar" title="${escapeHtml(model.label)} ${value}%"><i style="width:${value}%"></i><b>${formatScore(value)}</b></div>`;
+          return `<div class="subject-bar provider-${providerClass(model.provider)}" style="--series-color:${seriesColors[index % seriesColors.length]}" title="${escapeHtml(model.label)} ${value}%"><i style="width:${value}%"></i><b>${formatScore(value)}</b></div>`;
         }).join("")}
       </div>
     </div>`).join("");
+}
+
+function renderFinding() {
+  const math = results.models.map((model) => model.bySubject["수학"]?.score).filter(Number.isFinite);
+  const integrated = results.models.map((model) => model.bySubject["통합교과"]?.score).filter(Number.isFinite);
+  document.querySelector("#finding-stat").innerHTML = `수학 ${scoreRange(math)}<br>통합교과 ${scoreRange(integrated)}`;
+  document.querySelector("#finding-copy").textContent = `${results.modelCount}개 모델은 교과에 따라 크게 다른 정렬도를 보였습니다. 이 차이는 모델 성능뿐 아니라 현재 온톨로지 관계가 주제명만으로 얼마나 복원 가능한지도 함께 보여줍니다.`;
 }
 
 function setupFilters() {
@@ -118,7 +145,8 @@ function describeAnswer(question, answerId) {
 
 function setupSharing() {
   document.querySelector("#share-button").addEventListener("click", async () => {
-    const text = "AI는 초등학교를 이해하는가? GPT-5.6-sol 56%, Claude Sonnet 44%. 정답을 아는 것과 배움의 구조를 이해하는 것은 달랐습니다.";
+    const leaders = results.models.slice(0, 3).map((model) => `${model.label} ${formatScore(model.overall.score)}%`).join(" · ");
+    const text = `AI는 초등학교를 이해하는가? ${results.modelCount}개 모델 재평가: ${leaders}. 정답을 아는 것과 배움의 구조를 이해하는 것은 달랐습니다.`;
     if (navigator.share) {
       await navigator.share({ title: document.title, text, url: location.href });
       return;
@@ -128,6 +156,17 @@ function setupSharing() {
     button.textContent = "링크 복사됨";
     setTimeout(() => { button.textContent = "결과 공유"; }, 1800);
   });
+}
+
+function scoreRange(values) {
+  if (values.length === 0) return "—";
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  return min === max ? `${formatScore(min)}%` : `${formatScore(min)}–${formatScore(max)}%`;
+}
+
+function providerClass(provider) {
+  return String(provider).toLowerCase().replace(/[^a-z0-9]+/g, "-");
 }
 
 function formatScore(value) {
