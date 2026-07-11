@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b0d0c">
   <title>AI는 초등학교를 이해하는가? — 교육과정 온톨로지 정렬 벤치마크</title>
-  <meta name="description" content="한국 초등교육 온톨로지 50문항으로 7개 AI 모델의 5회 반복 결과를 비교한 중간 릴리스입니다. 총 36/40회 수집 현황과 5회 표본의 한계를 함께 공개합니다.">
+  <meta name="description" content="한국 초등교육 온톨로지 50문항으로 GPT·Claude·Gemini 8개 모델을 각 5회, 총 40회 평가해 평균·범위·안정성과 5회 표본의 한계를 공개합니다.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="AI는 초등학교를 이해하는가?">
-  <meta property="og:description" content="7개 모델 × 5회 비교 완료 · 36/40회 수집 — 평균·범위·문항별 안정성과 5회 표본의 한계를 공개합니다.">
+  <meta property="og:description" content="8개 모델 × 5회, 총 40회 완료 — 평균·범위·문항별 안정성과 5회 표본의 한계를 공개합니다.">
   <meta property="og:image" content="https://dexa.art/ai-school/og.png">
   <meta property="og:url" content="https://dexa.art/ai-school/">
   <meta name="twitter:card" content="summary_large_image">
@@ -30,7 +30,7 @@
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">Korean Elementary Curriculum Reasoning Benchmark · v0.3 Interim</p>
+        <p class="eyebrow">Korean Elementary Curriculum Reasoning Benchmark · Results v0.3</p>
         <h1 id="hero-title"><span>AI는</span> 초등학교를<br>이해하는가?</h1>
         <p class="hero-deck">정답을 아는 것과 <strong>배움의 구조</strong>를 이해하는 것은 다릅니다. 같은 50문항을 모델마다 다섯 번 실행해 평균 성능과 흔들리는 지점을 함께 측정했습니다.</p>
         <div class="hero-actions">
@@ -78,13 +78,13 @@
       <div class="section-heading">
         <div>
           <p class="section-number">02 / RESULTS</p>
-          <h2 id="results-title">5회 반복 중간결과</h2>
+          <h2 id="results-title">40회 반복 최종 결과</h2>
         </div>
         <p id="run-summary">2026-07-11 · 8개 모델 × 5회 · 총 40회 · exact match</p>
       </div>
-      <aside class="interim-notice" aria-label="중간 결과 공개 상태">
-        <strong>INTERIM · 36/40 RUNS COLLECTED</strong>
-        <p id="interim-status">완료 모델과 진행 중 모델을 분리하고 있습니다.</p>
+      <aside class="completion-notice" aria-label="반복 평가 완료 상태">
+        <strong>COMPLETE · 40/40 RUNS COLLECTED</strong>
+        <p id="collection-status">8개 모델의 반복 평가가 모두 완료됐습니다.</p>
       </aside>
       <div id="leaderboard" class="leaderboard" aria-live="polite"></div>
       <div id="model-legend" class="model-legend" aria-label="모델 색상 범례"></div>
@@ -145,7 +145,7 @@
       </div>
       <div class="disclosure">
         <h3>중요한 한계</h3>
-        <p><strong>모델별 5회는 단일 실행보다 낫지만 여전히 작은 표본입니다.</strong> 골드는 교과 전문가 합의가 아니라 현재 공개 온톨로지의 모델 상대적 추천 구조입니다. 50문항은 전체 관계의 탐색적 표본이며, 세 CLI에 공통인 seed·temperature 제어는 없습니다. 같은 날 수행한 5회 반복과 bootstrap 구간은 이 문항 안의 실행 변동만 보여주며 전체 교육 능력, 장기 서비스 변화, 미래 실행에 대한 신뢰구간이 아닙니다. 현재는 36/40회 수집 중간 릴리스로 Opus를 평균 순위에서 제외했습니다.</p>
+        <p><strong>모델별 5회는 단일 실행보다 낫지만 여전히 작은 표본입니다.</strong> 골드는 교과 전문가 합의가 아니라 현재 공개 온톨로지의 모델 상대적 추천 구조입니다. 50문항은 전체 관계의 탐색적 표본이며, 세 CLI에 공통인 seed·temperature 제어는 없습니다. 같은 날 수행한 5회 반복과 bootstrap 구간은 이 문항 안의 실행 변동만 보여주며 전체 교육 능력, 장기 서비스 변화, 미래 실행에 대한 신뢰구간이 아닙니다.</p>
       </div>
       <div class="download-row">
         <a class="button primary" href="benchmark.v1.json" download>문항 JSON</a>
@@ -157,7 +157,7 @@
   </main>
 
   <footer>
-    <p>Built by <a href="https://dexa.art/">DEXA</a> · 공개 연구 제품 v0.3 Interim</p>
+    <p>Built by <a href="https://dexa.art/">DEXA</a> · 공개 연구 제품 v0.3</p>
     <p>공식 교육과정 온톨로지·승인 제품이 아니며 개별 학습자를 진단하지 않습니다.</p>
   </footer>
 </body>
