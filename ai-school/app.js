@@ -16,6 +16,7 @@ let visibleFailures = 8;
 renderHero();
 renderLeaderboard();
 renderModelLegend();
+renderStability();
 renderTaskChart();
 renderSubjectChart();
 renderFinding();
@@ -34,9 +35,14 @@ function renderHero() {
     document.querySelector(`#hero-model-${index + 1}`).textContent = model.label;
     document.querySelector(`#hero-score-${index + 1}`).textContent = formatScore(model.overall.score);
   });
-  document.querySelector("#model-count").textContent = String(results.modelCount);
-  document.querySelector("#run-summary").textContent = `2026-07-11 · ${results.modelCount}개 모델 · 모델별 2–5배치 · exact match`;
-  document.querySelector(".hero-figure").setAttribute("aria-label", `${leaders.map((model) => `${model.label} ${formatScore(model.overall.score)}점`).join(", ")} 비교`);
+  document.querySelector("#completed-model-count").textContent = String(results.completedModelCount);
+  document.querySelector("#run-progress-count").textContent = `${results.completedRuns}/${results.plannedRuns}`;
+  document.querySelector("#run-summary").textContent = `2026-07-11 · ${results.completedModelCount}개 모델 × ${results.runsPerModel}회 비교 완료 · ${results.completedRuns}/${results.plannedRuns} 수집`;
+  const pending = results.pendingModels[0];
+  document.querySelector("#interim-status").textContent = pending
+    ? `${pending.label}은 ${pending.completedRuns}/${pending.plannedRuns}회 완료 상태로 평균 순위에서 제외했습니다. 현재 공개 비교는 ${results.completedModelCount}개 모델의 ${results.comparableRuns}회만 사용합니다.`
+    : "모든 모델의 반복 수집이 완료됐습니다.";
+  document.querySelector(".hero-figure").setAttribute("aria-label", `${leaders.map((model) => `${model.label} 평균 ${formatScore(model.overall.score)}점`).join(", ")} 비교`);
 }
 
 function renderLeaderboard() {
@@ -45,14 +51,30 @@ function renderLeaderboard() {
     <article class="model-card provider-${providerClass(model.provider)}" data-rank="${index + 1}" style="--series-color:${seriesColors[index % seriesColors.length]}">
       <div class="model-top">
         <div><span class="model-rank">RANK ${String(index + 1).padStart(2, "0")} · ${escapeHtml(model.provider)}</span><h3 class="model-name">${escapeHtml(model.label)}</h3></div>
-        <div class="model-score"><strong>${formatScore(model.overall.score)}</strong><span>ONTOLOGY ALIGNMENT</span></div>
+        <div class="model-score"><strong>${formatScore(model.overall.score)}</strong><span>MEAN ALIGNMENT</span></div>
       </div>
+      <div class="run-strip" aria-label="${escapeHtml(model.label)} 실행별 점수">${model.runs.map((run) => `<span title="${run.runId} · ${run.score}%">${formatScore(run.score)}</span>`).join("")}</div>
       <div class="model-meta">
-        <span><strong>${model.overall.correct}/${model.overall.total}</strong> correct</span>
-        <span><strong>${model.coverage.answered}/${model.coverage.total}</strong> answered</span>
-        <span><strong>${model.meanAbsoluteCalibrationError}</strong> confidence error</span>
+        <span><strong>${formatScore(model.overall.correct)}/${model.overall.total}</strong> 평균 정답</span>
+        <span><strong>${formatScore(model.overall.median)}</strong> 중앙값</span>
+        <span><strong>${formatScore(model.overall.min)}–${formatScore(model.overall.max)}</strong> 범위</span>
+        <span><strong>SD ${formatScore(model.overall.standardDeviation)}</strong> 표준편차</span>
+        <span><strong>${model.stability.stableIncorrectItems}</strong> 일관 오답</span>
       </div>
     </article>`).join("");
+}
+
+function renderStability() {
+  const root = document.querySelector("#stability-table");
+  root.innerHTML = `<div class="stability-row stability-head"><span>모델</span><span>5회 점수</span><span>평균</span><span>95% CI</span><span>순위 범위</span><span>문항 일치율</span></div>${results.models.map((model, index) => `
+    <div class="stability-row" style="--series-color:${seriesColors[index % seriesColors.length]}">
+      <strong>${escapeHtml(model.label)}</strong>
+      <span class="run-values">${model.runs.map((run) => `<i>${formatScore(run.score)}</i>`).join("")}</span>
+      <b>${formatScore(model.overall.score)}</b>
+      <span>${formatScore(model.overall.ci95[0])}–${formatScore(model.overall.ci95[1])}</span>
+      <span>${model.overall.rankMin}–${model.overall.rankMax}위</span>
+      <span>${formatScore(model.stability.meanModalAgreement * 100)}%</span>
+    </div>`).join("")}`;
 }
 
 function renderModelLegend() {
@@ -91,7 +113,7 @@ function renderFinding() {
   const math = results.models.map((model) => model.bySubject["수학"]?.score).filter(Number.isFinite);
   const integrated = results.models.map((model) => model.bySubject["통합교과"]?.score).filter(Number.isFinite);
   document.querySelector("#finding-stat").innerHTML = `수학 ${scoreRange(math)}<br>통합교과 ${scoreRange(integrated)}`;
-  document.querySelector("#finding-copy").textContent = `${results.modelCount}개 모델은 교과에 따라 크게 다른 정렬도를 보였습니다. 이 차이는 모델 성능뿐 아니라 현재 온톨로지 관계가 주제명만으로 얼마나 복원 가능한지도 함께 보여줍니다.`;
+  document.querySelector("#finding-copy").textContent = `${results.completedModelCount}개 완료 모델은 교과에 따라 크게 다른 정렬도를 보였습니다. 이 차이는 모델 성능뿐 아니라 현재 온톨로지 관계가 주제명만으로 얼마나 복원 가능한지도 함께 보여줍니다.`;
 }
 
 function setupFilters() {
@@ -108,13 +130,19 @@ function setupFilters() {
 
 function renderFailures() {
   const modelId = document.querySelector("#model-filter").value;
+  const stability = document.querySelector("#stability-filter").value;
   const subject = document.querySelector("#subject-filter").value;
   const task = document.querySelector("#task-filter").value;
   const model = results.models.find((candidate) => candidate.id === modelId) ?? results.models[0];
-  const failures = model.items.filter((item) => !item.correct && (subject === "all" || item.subject === subject) && (task === "all" || item.type === task));
+  const failures = model.items
+    .filter((item) => item.score < 100
+      && (stability === "all" || (stability === "variable" && !item.unanimous) || (stability === "consistent-miss" && item.unanimous && item.correctRuns === 0))
+      && (subject === "all" || item.subject === subject)
+      && (task === "all" || item.type === task))
+    .sort((a, b) => a.score - b.score || a.questionId.localeCompare(b.questionId));
   const shown = failures.slice(0, visibleFailures);
   const root = document.querySelector("#failure-list");
-  root.innerHTML = shown.length ? shown.map((item) => failureCard(model, item)).join("") : `<p class="empty-state">이 조건에는 실패 사례가 없습니다.</p>`;
+  root.innerHTML = shown.length ? shown.map((item) => failureCard(model, item)).join("") : `<p class="empty-state">이 조건에서는 5회 모두 온톨로지와 정렬됐습니다.</p>`;
   const loadMore = document.querySelector("#load-more");
   loadMore.hidden = shown.length >= failures.length;
   loadMore.textContent = `더 보기 · ${shown.length}/${failures.length}`;
@@ -124,11 +152,13 @@ function failureCard(model, item) {
   const question = questions.get(item.questionId);
   const modelAnswer = describeAnswer(question, item.modelAnswerId);
   const correctAnswer = describeAnswer(question, item.correctAnswerId);
+  const distribution = item.answerDistribution.map((answer) => `${describeAnswer(question, answer.answerId)} ${answer.count}/${item.totalRuns}`).join(" · ");
+  const state = item.unanimous && item.correctRuns === 0 ? "CONSISTENT MISS" : item.correctRuns === 0 ? "MISS" : "UNSTABLE";
   return `<article class="failure-card">
-    <div class="failure-meta"><strong>MISS · ${item.questionId}</strong>${escapeHtml(item.subject)} · ${item.gradeBand}학년군<br>${taskLabels[item.type]}<br>confidence ${Math.round(item.confidence * 100)}%</div>
+    <div class="failure-meta"><strong>${state} · ${item.questionId}</strong>${escapeHtml(item.subject)} · ${item.gradeBand}학년군<br>${taskLabels[item.type]}<br>${item.correctRuns}/${item.totalRuns}회 정렬 · 평균 신뢰도 ${Math.round(item.confidence * 100)}%</div>
     <div class="failure-question"><h3>${escapeHtml(question.prompt)}</h3><p>${escapeHtml(question.rationale)}</p></div>
     <div class="failure-answer answer-pair">
-      <div class="answer-item"><span>${escapeHtml(model.label)} 선택</span><p>${escapeHtml(modelAnswer)}</p></div>
+      <div class="answer-item"><span>${escapeHtml(model.label)} 최빈 선택 · 정렬도 ${formatScore(item.score)}%</span><p>${escapeHtml(modelAnswer)}</p><small>${escapeHtml(distribution)}</small></div>
       <div class="answer-item correct"><span>온톨로지 정렬 답</span><p>${escapeHtml(correctAnswer)}</p></div>
     </div>
   </article>`;
@@ -145,8 +175,8 @@ function describeAnswer(question, answerId) {
 
 function setupSharing() {
   document.querySelector("#share-button").addEventListener("click", async () => {
-    const leaders = results.models.slice(0, 3).map((model) => `${model.label} ${formatScore(model.overall.score)}%`).join(" · ");
-    const text = `AI는 초등학교를 이해하는가? ${results.modelCount}개 모델 재평가: ${leaders}. 정답을 아는 것과 배움의 구조를 이해하는 것은 달랐습니다.`;
+    const leaders = results.models.slice(0, 3).map((model) => `${model.label} 평균 ${formatScore(model.overall.score)}% (${formatScore(model.overall.min)}–${formatScore(model.overall.max)})`).join(" · ");
+    const text = `AI는 초등학교를 이해하는가? 완료 ${results.completedModelCount}개 모델 × ${results.runsPerModel}회: ${leaders}. 5회 반복의 중간 결과와 한계를 공개했습니다.`;
     if (navigator.share) {
       await navigator.share({ title: document.title, text, url: location.href });
       return;

@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0b0d0c">
   <title>AI는 초등학교를 이해하는가? — 교육과정 온톨로지 정렬 벤치마크</title>
-  <meta name="description" content="한국 초등교육 온톨로지의 교차 성취기준 선수 관계 50문항으로 GPT·Claude·Gemini 8개 모델의 구조 정렬도를 공개 검증합니다.">
+  <meta name="description" content="한국 초등교육 온톨로지 50문항으로 7개 AI 모델의 5회 반복 결과를 비교한 중간 릴리스입니다. 총 36/40회 수집 현황과 5회 표본의 한계를 함께 공개합니다.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="AI는 초등학교를 이해하는가?">
-  <meta property="og:description" content="Claude Fable 5 62% · Claude Opus 4.8 52% — GPT·Claude·Gemini 8개 모델 재평가.">
+  <meta property="og:description" content="7개 모델 × 5회 비교 완료 · 36/40회 수집 — 평균·범위·문항별 안정성과 5회 표본의 한계를 공개합니다.">
   <meta property="og:image" content="https://dexa.art/ai-school/og.png">
   <meta property="og:url" content="https://dexa.art/ai-school/">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://dexa.art/ai-school/">
-  <link rel="stylesheet" href="styles.css?v=20260711-2">
-  <script type="module" src="app.js?v=20260711-2"></script>
+  <link rel="stylesheet" href="styles.css?v=20260711-3">
+  <script type="module" src="app.js?v=20260711-3"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">본문으로 건너뛰기</a>
@@ -30,9 +30,9 @@
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <p class="eyebrow">Korean Elementary Curriculum Reasoning Benchmark · Results v0.2</p>
+        <p class="eyebrow">Korean Elementary Curriculum Reasoning Benchmark · v0.3 Interim</p>
         <h1 id="hero-title"><span>AI는</span> 초등학교를<br>이해하는가?</h1>
-        <p class="hero-deck">정답을 아는 것과 <strong>배움의 구조</strong>를 이해하는 것은 다릅니다. 한국 초등교육 온톨로지의 교차 성취기준 관계를 모델이 얼마나 복원하는지 측정했습니다.</p>
+        <p class="hero-deck">정답을 아는 것과 <strong>배움의 구조</strong>를 이해하는 것은 다릅니다. 같은 50문항을 모델마다 다섯 번 실행해 평균 성능과 흔들리는 지점을 함께 측정했습니다.</p>
         <div class="hero-actions">
           <a class="button primary" href="#results">결과 보기</a>
           <button class="button ghost" id="share-button" type="button">결과 공유</button>
@@ -61,7 +61,8 @@
       <article><strong>50</strong><span>교차 성취기준 문항</span></article>
       <article><strong>510</strong><span>후보 직접 선수 관계</span></article>
       <article><strong>7</strong><span>평가 표본 교과</span></article>
-      <article><strong id="model-count">—</strong><span>동일 조건 평가 모델</span></article>
+      <article><strong id="completed-model-count">—</strong><span>5회 완료 모델</span></article>
+      <article><strong id="run-progress-count">—</strong><span>수집 실행 / 계획</span></article>
     </section>
 
     <section class="thesis section-grid">
@@ -77,20 +78,29 @@
       <div class="section-heading">
         <div>
           <p class="section-number">02 / RESULTS</p>
-          <h2 id="results-title">8개 모델 재평가</h2>
+          <h2 id="results-title">5회 반복 중간결과</h2>
         </div>
-        <p id="run-summary">2026-07-11 · 모델별 2–5배치 · exact match</p>
+        <p id="run-summary">2026-07-11 · 8개 모델 × 5회 · 총 40회 · exact match</p>
       </div>
+      <aside class="interim-notice" aria-label="중간 결과 공개 상태">
+        <strong>INTERIM · 36/40 RUNS COLLECTED</strong>
+        <p id="interim-status">완료 모델과 진행 중 모델을 분리하고 있습니다.</p>
+      </aside>
       <div id="leaderboard" class="leaderboard" aria-live="polite"></div>
       <div id="model-legend" class="model-legend" aria-label="모델 색상 범례"></div>
 
+      <article class="data-panel stability-panel">
+        <div class="panel-heading"><h3>실행 안정성</h3><span>실행×문항 2-way bootstrap · CI 중첩 시 우열 단정 금지</span></div>
+        <div id="stability-table" class="stability-table"></div>
+      </article>
+
       <div class="result-grid">
         <article class="data-panel">
-          <div class="panel-heading"><h3>과제별 정렬도</h3><span>높을수록 온톨로지와 일치</span></div>
+          <div class="panel-heading"><h3>과제별 평균 정렬도</h3><span>5회 평균 · 높을수록 온톨로지와 일치</span></div>
           <div id="task-chart" class="bar-chart"></div>
         </article>
         <article class="data-panel">
-          <div class="panel-heading"><h3>교과별 정렬도</h3><span>문항 수가 다른 탐색적 표본</span></div>
+          <div class="panel-heading"><h3>교과별 평균 정렬도</h3><span>5회 평균 · 문항 수가 다른 탐색적 표본</span></div>
           <div id="subject-chart" class="subject-chart"></div>
         </article>
       </div>
@@ -105,13 +115,14 @@
     <section class="failure-section" id="failures" aria-labelledby="failures-title">
       <div class="section-heading">
         <div>
-          <p class="section-number">03 / FAILURE EXPLORER</p>
-          <h2 id="failures-title">모델은 어디서<br>길을 잃었나</h2>
+          <p class="section-number">03 / STABILITY EXPLORER</p>
+          <h2 id="failures-title">모델은 어디서<br>흔들렸나</h2>
         </div>
-        <p>모든 실패는 원문 응답과 골드 관계에 연결됩니다.</p>
+        <p>5회 중 한 번이라도 온톨로지와 달랐던 문항을 실행별 응답 분포와 함께 봅니다.</p>
       </div>
       <div class="filters" aria-label="실패 사례 필터">
         <label>모델<select id="model-filter"></select></label>
+        <label>안정성<select id="stability-filter"><option value="all">전체 비정렬</option><option value="variable">응답 변동</option><option value="consistent-miss">일관 오답</option></select></label>
         <label>교과<select id="subject-filter"><option value="all">전체 교과</option></select></label>
         <label>과제<select id="task-filter"><option value="all">전체 과제</option></select></label>
       </div>
@@ -129,12 +140,12 @@
       <div class="method-grid">
         <article><span>01</span><h3>블라인드 입력</h3><p>주제 ID와 성취기준 번호를 제거하고 한국어 주제명만 제공했습니다.</p></article>
         <article><span>02</span><h3>교차 관계만</h3><p>서로 다른 성취기준을 잇는 510개 직접 선수 주장만 표본 후보로 사용했습니다.</p></article>
-        <article><span>03</span><h3>고정 출력</h3><p>설명 없이 선택지 ID와 신뢰도만 받았으며 exact match로 계산했습니다.</p></article>
+        <article><span>03</span><h3>모델당 5회</h3><p>같은 50문항을 모델마다 다섯 번 실행하고 평균·범위·표준편차와 문항별 일치율을 계산했습니다.</p></article>
         <article><span>04</span><h3>해석 경계</h3><p>점수는 온톨로지 정렬도입니다. 보편적 교수 순서나 모델의 전체 교육 능력이 아닙니다.</p></article>
       </div>
       <div class="disclosure">
         <h3>중요한 한계</h3>
-        <p>골드는 교과 전문가 합의가 아니라 현재 공개 온톨로지의 모델 상대적 추천 구조입니다. 50문항은 전체 관계의 탐색적 표본이며, 다수의 교육적으로 타당한 대안이 존재할 수 있습니다. 모델별 단일 실행이므로 순위보다 실패 패턴을 우선 봐야 합니다. 외부 전문가 검토와 공식 출처별 재사용 권리 확인은 진행 중입니다.</p>
+        <p><strong>모델별 5회는 단일 실행보다 낫지만 여전히 작은 표본입니다.</strong> 골드는 교과 전문가 합의가 아니라 현재 공개 온톨로지의 모델 상대적 추천 구조입니다. 50문항은 전체 관계의 탐색적 표본이며, 세 CLI에 공통인 seed·temperature 제어는 없습니다. 같은 날 수행한 5회 반복과 bootstrap 구간은 이 문항 안의 실행 변동만 보여주며 전체 교육 능력, 장기 서비스 변화, 미래 실행에 대한 신뢰구간이 아닙니다. 현재는 36/40회 수집 중간 릴리스로 Opus를 평균 순위에서 제외했습니다.</p>
       </div>
       <div class="download-row">
         <a class="button primary" href="benchmark.v1.json" download>문항 JSON</a>
@@ -146,7 +157,7 @@
   </main>
 
   <footer>
-    <p>Built by <a href="https://dexa.art/">DEXA</a> · 공개 연구 제품 v0.2</p>
+    <p>Built by <a href="https://dexa.art/">DEXA</a> · 공개 연구 제품 v0.3 Interim</p>
     <p>공식 교육과정 온톨로지·승인 제품이 아니며 개별 학습자를 진단하지 않습니다.</p>
   </footer>
 </body>
