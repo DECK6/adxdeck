@@ -1,5 +1,24 @@
 [
   {
+    "slug": "trevor-paglen-and-the-landscapes-of-invisible-power",
+    "file": "_built/trevor-paglen-and-the-landscapes-of-invisible-power.md",
+    "title": "보이지 않는 권력은 왜 아름다운 풍경이 되는가",
+    "description": "트레버 패글런의 초망원 사진, 비밀 위성 추적, AI 데이터셋 작업을 통해 아름다운 이미지가 보이지 않는 권력의 거리와 분류 체계를 어떻게 드러내는지 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "Trevor-Paglen",
+      "surveillance",
+      "machine-vision",
+      "AI",
+      "infrastructure",
+      "photography"
+    ],
+    "date": "2026-07-12",
+    "thumbnail": "images/trevor-paglen-invisible-power-cover.png",
+    "author": "DEXA"
+  },
+  {
     "slug": "hermes-1password-secret-source",
     "file": "_built/hermes-1password-secret-source.md",
     "title": "Hermes 1Password 연동은 키 회전을 한 번의 변경으로 만든다",
