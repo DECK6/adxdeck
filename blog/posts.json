@@ -1,5 +1,24 @@
 [
   {
+    "slug": "rafael-lozano-hemmer-and-the-public-pulse",
+    "file": "_built/rafael-lozano-hemmer-and-the-public-pulse.md",
+    "title": "맥박이 공공 공간을 켤 때",
+    "description": "라파엘 로자노헤머의 심박·빛·음성·네트워크 설치를 통해 관객 참여가 어떻게 공공성을 만들면서 동시에 측정과 통제의 장치가 되는지 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "Rafael-Lozano-Hemmer",
+      "interactive-art",
+      "participation",
+      "biometric-media",
+      "public-art",
+      "surveillance"
+    ],
+    "date": "2026-07-12",
+    "thumbnail": "images/rafael-lozano-hemmer-public-pulse-cover.png",
+    "author": "DEXA"
+  },
+  {
     "slug": "hermes-1password-secret-source",
     "file": "_built/hermes-1password-secret-source.md",
     "title": "Hermes 1Password 연동은 키 회전을 한 번의 변경으로 만든다",
