@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d0c">
+  <title>AI는 초등학교를 이해하는가? — 교육과정 온톨로지 정렬 벤치마크</title>
+  <meta name="description" content="한국 초등 교육과정 학습 온톨로지의 교차 성취기준 선수 관계 50문항으로 AI 모델의 교육과정 구조 이해를 공개 검증합니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="AI는 초등학교를 이해하는가?">
+  <meta property="og:description" content="GPT-5.6-sol 56% · Claude Sonnet 44% — 정답을 아는 것과 배움의 구조를 이해하는 것은 다릅니다.">
+  <meta property="og:image" content="https://dexa.art/ai-school/og.png">
+  <meta property="og:url" content="https://dexa.art/ai-school/">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://dexa.art/ai-school/">
+  <link rel="stylesheet" href="styles.css?v=20260711-1">
+  <script type="module" src="app.js?v=20260711-1"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+  <header class="site-header">
+    <a class="brand" href="https://dexa.art/" aria-label="DEXA 홈">DEXA <span>Research Product 01</span></a>
+    <nav aria-label="주요 메뉴">
+      <a href="#results">결과</a>
+      <a href="#failures">실패 사례</a>
+      <a href="#method">방법론</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Korean Elementary Curriculum Reasoning Benchmark · v0.1</p>
+        <h1 id="hero-title"><span>AI는</span> 초등학교를<br>이해하는가?</h1>
+        <p class="hero-deck">정답을 아는 것과 <strong>배움의 구조</strong>를 이해하는 것은 다릅니다. 한국 초등교육 온톨로지의 교차 성취기준 관계를 모델이 얼마나 복원하는지 측정했습니다.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#results">결과 보기</a>
+          <button class="button ghost" id="share-button" type="button">결과 공유</button>
+        </div>
+      </div>
+      <div class="hero-figure" aria-label="두 모델의 온톨로지 정렬 점수 비교">
+        <div class="score-orbit score-orbit-a">
+          <span class="score-label">GPT-5.6-sol</span>
+          <strong>56</strong><small>/100</small>
+        </div>
+        <div class="score-orbit score-orbit-b">
+          <span class="score-label">Claude Sonnet</span>
+          <strong>44</strong><small>/100</small>
+        </div>
+        <svg class="orbit-lines" viewBox="0 0 520 520" aria-hidden="true">
+          <circle cx="260" cy="260" r="192"/>
+          <circle cx="260" cy="260" r="128"/>
+          <path d="M68 260 C142 72 378 72 452 260 C378 448 142 448 68 260Z"/>
+          <path d="M260 68 C448 142 448 378 260 452 C72 378 72 142 260 68Z"/>
+        </svg>
+        <p>ONTOLOGY<br>ALIGNMENT</p>
+      </div>
+    </section>
+
+    <section class="signal-strip" aria-label="벤치마크 핵심 수치">
+      <article><strong>50</strong><span>교차 성취기준 문항</span></article>
+      <article><strong>510</strong><span>후보 직접 선수 관계</span></article>
+      <article><strong>7</strong><span>평가 표본 교과</span></article>
+      <article><strong>0</strong><span>외부 검색·도구 호출</span></article>
+    </section>
+
+    <section class="thesis section-grid">
+      <p class="section-number">01 / RESEARCH QUESTION</p>
+      <div>
+        <h2>AI는 답을 생성한다.<br><em>순서를 설명할 수 있는가?</em></h2>
+        <p>초등 학습은 개념의 목록이 아니라 선후 관계의 구조입니다. 이 벤치마크는 같은 성취기준 안의 명백한 ‘이해→적용’ 관계를 제외하고, 서로 다른 성취기준을 잇는 직접 선수 추천만 사용합니다.</p>
+      </div>
+      <blockquote>“분수를 설명할 수 있는 모델이, 분수 전에 무엇을 배워야 하는지도 아는가?”</blockquote>
+    </section>
+
+    <section class="results-section" id="results" aria-labelledby="results-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-number">02 / RESULTS</p>
+          <h2 id="results-title">첫 공개 결과</h2>
+        </div>
+        <p>2026-07-11 · 25문항 × 2배치 · exact match</p>
+      </div>
+      <div id="leaderboard" class="leaderboard" aria-live="polite"></div>
+
+      <div class="result-grid">
+        <article class="data-panel">
+          <div class="panel-heading"><h3>과제별 정렬도</h3><span>높을수록 온톨로지와 일치</span></div>
+          <div id="task-chart" class="bar-chart"></div>
+        </article>
+        <article class="data-panel">
+          <div class="panel-heading"><h3>교과별 정렬도</h3><span>문항 수가 다른 탐색적 표본</span></div>
+          <div id="subject-chart" class="subject-chart"></div>
+        </article>
+      </div>
+
+      <aside class="finding">
+        <p class="finding-kicker">THE GAP</p>
+        <strong>수학 100%<br>통합교과 0–16.7%</strong>
+        <p>두 모델 모두 구조가 명시적인 수학에서는 강했지만, 생활 맥락과 활동 간 연결이 중요한 통합교과에서는 급격히 무너졌습니다. 이 차이는 모델 성능뿐 아니라 현재 온톨로지 관계가 언어만으로 얼마나 복원 가능한지도 함께 보여줍니다.</p>
+      </aside>
+    </section>
+
+    <section class="failure-section" id="failures" aria-labelledby="failures-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-number">03 / FAILURE EXPLORER</p>
+          <h2 id="failures-title">모델은 어디서<br>길을 잃었나</h2>
+        </div>
+        <p>모든 실패는 원문 응답과 골드 관계에 연결됩니다.</p>
+      </div>
+      <div class="filters" aria-label="실패 사례 필터">
+        <label>모델<select id="model-filter"></select></label>
+        <label>교과<select id="subject-filter"><option value="all">전체 교과</option></select></label>
+        <label>과제<select id="task-filter"><option value="all">전체 과제</option></select></label>
+      </div>
+      <div id="failure-list" class="failure-list" aria-live="polite"></div>
+      <button id="load-more" class="button ghost load-more" type="button">더 보기</button>
+    </section>
+
+    <section class="method-section" id="method" aria-labelledby="method-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-number">04 / METHOD & LIMITS</p>
+          <h2 id="method-title">측정한 것과<br>측정하지 않은 것</h2>
+        </div>
+      </div>
+      <div class="method-grid">
+        <article><span>01</span><h3>블라인드 입력</h3><p>주제 ID와 성취기준 번호를 제거하고 한국어 주제명만 제공했습니다.</p></article>
+        <article><span>02</span><h3>교차 관계만</h3><p>서로 다른 성취기준을 잇는 510개 직접 선수 주장만 표본 후보로 사용했습니다.</p></article>
+        <article><span>03</span><h3>고정 출력</h3><p>설명 없이 선택지 ID와 신뢰도만 받았으며 exact match로 계산했습니다.</p></article>
+        <article><span>04</span><h3>해석 경계</h3><p>점수는 온톨로지 정렬도입니다. 보편적 교수 순서나 모델의 전체 교육 능력이 아닙니다.</p></article>
+      </div>
+      <div class="disclosure">
+        <h3>중요한 한계</h3>
+        <p>골드는 교과 전문가 합의가 아니라 현재 공개 온톨로지의 모델 상대적 추천 구조입니다. 50문항은 전체 관계의 탐색적 표본이며, 다수의 교육적으로 타당한 대안이 존재할 수 있습니다. 외부 전문가 검토와 공식 출처별 재사용 권리 확인은 진행 중입니다.</p>
+      </div>
+      <div class="download-row">
+        <a class="button primary" href="benchmark.v1.json" download>문항 JSON</a>
+        <a class="button ghost" href="results.json" download>결과 JSON</a>
+        <a class="text-link" href="https://github.com/DECK6/korean-elementary-learning-map">원본 온톨로지 ↗</a>
+        <a class="text-link" href="https://dexa.art/learnmap/">학습 지도 탐색 ↗</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built by <a href="https://dexa.art/">DEXA</a> · 공개 연구 제품 v0.1</p>
+    <p>공식 교육과정 온톨로지·승인 제품이 아니며 개별 학습자를 진단하지 않습니다.</p>
+  </footer>
+</body>
+</html>

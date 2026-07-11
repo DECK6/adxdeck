@@ -1,0 +1,1165 @@
+{
+  "benchmarkId": "kecro-align-v0.1",
+  "title": "AI는 초등학교를 이해하는가?",
+  "subtitle": "한국 초등 교육과정 학습 온톨로지 정렬 벤치마크",
+  "releaseDate": "2026-07-11",
+  "scoredAt": "2026-07-11T01:57:49.486Z",
+  "ontology": {
+    "repository": "https://github.com/DECK6/korean-elementary-learning-map",
+    "taxonomyVersion": "kr-full-depth-v0.4",
+    "topics": 1956,
+    "directPrerequisiteAssertions": 1894,
+    "subjects": 11,
+    "sampledSubjects": 7
+  },
+  "interpretation": "이 점수는 모델 응답이 공개 온톨로지의 직접 선수 추천 구조와 얼마나 일치하는지 측정합니다. 보편적 교수 순서, 학습 효과, 개별 학습자 진단을 측정하지 않습니다.",
+  "modelCount": 2,
+  "models": [
+    {
+      "id": "gpt-5-6-sol",
+      "label": "GPT-5.6-sol",
+      "provider": "OpenAI",
+      "version": "gpt-5.6-sol via codex-cli 0.144.1",
+      "runAt": "2026-07-11T01:50:53.129Z",
+      "coverage": {
+        "answered": 50,
+        "total": 50
+      },
+      "overall": {
+        "correct": 28,
+        "total": 50,
+        "score": 56
+      },
+      "meanAbsoluteCalibrationError": 0.431,
+      "byType": {
+        "prerequisite-choice": {
+          "correct": 22,
+          "total": 30,
+          "score": 73.3
+        },
+        "direction-choice": {
+          "correct": 3,
+          "total": 10,
+          "score": 30
+        },
+        "edge-audit": {
+          "correct": 3,
+          "total": 10,
+          "score": 30
+        }
+      },
+      "bySubject": {
+        "과학": {
+          "correct": 8,
+          "total": 9,
+          "score": 88.9
+        },
+        "국어": {
+          "correct": 3,
+          "total": 9,
+          "score": 33.3
+        },
+        "도덕": {
+          "correct": 4,
+          "total": 7,
+          "score": 57.1
+        },
+        "수학": {
+          "correct": 7,
+          "total": 7,
+          "score": 100
+        },
+        "실과(기술·가정)/정보": {
+          "correct": 3,
+          "total": 6,
+          "score": 50
+        },
+        "영어": {
+          "correct": 2,
+          "total": 6,
+          "score": 33.3
+        },
+        "통합교과": {
+          "correct": 1,
+          "total": 6,
+          "score": 16.7
+        }
+      },
+      "items": [
+        {
+          "questionId": "Q001",
+          "type": "prerequisite-choice",
+          "subject": "과학",
+          "gradeBand": "3-4",
+          "modelAnswerId": "A",
+          "correctAnswerId": "A",
+          "correct": true,
+          "confidence": 0.96
+        },
+        {
+          "questionId": "Q002",
+          "type": "prerequisite-choice",
+          "subject": "국어",
+          "gradeBand": "1-2",
+          "modelAnswerId": "A",
+          "correctAnswerId": "A",
+          "correct": true,
+          "confidence": 0.88
+        },
+        {
+          "questionId": "Q003",
+          "type": "prerequisite-choice",
+          "subject": "도덕",
+          "gradeBand": "3-4",
+          "modelAnswerId": "C",
+          "correctAnswerId": "C",
+          "correct": true,
+          "confidence": 0.91
+        },
+        {
+          "questionId": "Q004",
+          "type": "prerequisite-choice",
+          "subject": "수학",
+          "gradeBand": "1-2",
+          "modelAnswerId": "A",
+          "correctAnswerId": "A",
+          "correct": true,
+          "confidence": 0.98
+        },
+        {
+          "questionId": "Q005",
+          "type": "prerequisite-choice",
+          "subject": "실과(기술·가정)/정보",
+          "gradeBand": "5-6",
+          "modelAnswerId": "C",
+          "correctAnswerId": "C",
+          "correct": true,
+          "confidence": 0.84
+        },
+        {
+          "questionId": "Q006",
+          "type": "prerequisite-choice",
+          "subject": "영어",
+          "gradeBand": "3-4",
+          "modelAnswerId": "A",
+          "correctAnswerId": "A",
+          "correct": true,
+          "confidence": 0.74
+        },
+        {
+          "questionId": "Q007",
+          "type": "prerequisite-choice",
+          "subject": "통합교과",
+          "gradeBand": "1-2",
+          "modelAnswerId": "A",
+          "correctAnswerId": "D",
+          "correct": false,
+          "confidence": 0.79
+        },
+        {
+          "questionId": "Q008",
+          "type": "prerequisite-choice",
+          "subject": "과학",
+          "gradeBand": "5-6",
+          "modelAnswerId": "B",
+          "correctAnswerId": "B",
+          "correct": true,
+          "confidence": 0.98
+        },
+        {
+          "questionId": "Q009",
+          "type": "prerequisite-choice",
+          "subject": "국어",
+          "gradeBand": "3-4",
+          "modelAnswerId": "C",
+          "correctAnswerId": "A",
+          "correct": false,
+          "confidence": 0.98
+        },
+        {
+          "questionId": "Q010",
+          "type": "prerequisite-choice",
+          "subject": "도덕",
+          "gradeBand": "5-6",
+          "modelAnswerId": "A",
+          "correctAnswerId": "A",
+          "correct": true,
+          "confidence": 0.94
+        },
+        {
+          "questionId": "Q011",
+          "type": "prerequisite-choice",
+          "subject": "수학",
+          "gradeBand": "3-4",
+          "modelAnswerId": "D",
+          "correctAnswerId": "D",
+          "correct": true,
+          "confidence": 0.97
+        },
+        {
+          "questionId": "Q012",
+          "type": "prerequisite-choice",
+          "subject": "실과(기술·가정)/정보",
+          "gradeBand": "5-6",
+          "modelAnswerId": "A",
+          "correctAnswerId": "A",
+          "correct": true,
+          "confidence": 0.95
+        },
+        {
+          "questionId": "Q013",
+          "type": "prerequisite-choice",
+          "subject": "영어",
+          "gradeBand": "5-6",
+          "modelAnswerId": "B",
+          "correctAnswerId": "C",
+          "correct": false,
+          "confidence": 0.82
+        },
+        {
+          "questionId": "Q014",
+          "type": "prerequisite-choice",
+          "subject": "통합교과",
+          "gradeBand": "1-2",
+          "modelAnswerId": "A",
+          "correctAnswerId": "C",
+          "correct": false,
+          "confidence": 0.84
+        },
+        {
+          "questionId": "Q015",
+          "type": "prerequisite-choice",
+          "subject": "과학",
+          "gradeBand": "3-4",
+          "modelAnswerId": "D",
+          "correctAnswerId": "D",
+          "correct": true,
+          "confidence": 0.9
+        },
+        {
+          "questionId": "Q016",
+          "type": "prerequisite-choice",
+          "subject": "국어",
+          "gradeBand": "5-6",
+          "modelAnswerId": "B",
+          "correctAnswerId": "B",
+          "correct": true,
+          "confidence": 0.88
+        },
+        {
+          "questionId": "Q017",
+          "type": "prerequisite-choice",
+          "subject": "도덕",
+          "gradeBand": "5-6",
+          "modelAnswerId": "B",
+          "correctAnswerId": "B",
+          "correct": true,
+          "confidence": 0.93
+        },
+        {
+          "questionId": "Q018",
+          "type": "prerequisite-choice",
+          "subject": "수학",
+          "gradeBand": "5-6",
+          "modelAnswerId": "B",
+          "correctAnswerId": "B",
+          "correct": true,
+          "confidence": 0.97
+        },
+        {
+          "questionId": "Q019",
+          "type": "prerequisite-choice",
+          "subject": "실과(기술·가정)/정보",
+          "gradeBand": "5-6",
+          "modelAnswerId": "A",
+          "correctAnswerId": "D",
+          "correct": false,
+          "confidence": 0.87
+        },
+        {
+          "questionId": "Q020",
+          "type": "prerequisite-choice",
+          "subject": "영어",
+          "gradeBand": "3-4",
+          "modelAnswerId": "B",
+          "correctAnswerId": "A",
+          "correct": false,
+          "confidence": 0.86
+        },
+        {
+          "questionId": "Q021",
+          "type": "prerequisite-choice",
+          "subject": "통합교과",
+          "gradeBand": "1-2",
+          "modelAnswerId": "A",
+          "correctAnswerId": "A",
+          "correct": true,
+          "confidence": 0.9
+        },
+        {
+          "questionId": "Q022",
+          "type": "prerequisite-choice",
+          "subject": "과학",
+          "gradeBand": "5-6",
+          "modelAnswerId": "B",
+          "correctAnswerId": "B",
+          "correct": true,
+          "confidence": 0.99
+        },
+        {
+          "questionId": "Q023",
+          "type": "prerequisite-choice",
+          "subject": "국어",
+          "gradeBand": "1-2",
+          "modelAnswerId": "D",
+          "correctAnswerId": "D",
+          "correct": true,
+          "confidence": 0.9
+        },
+        {
+          "questionId": "Q024",
+          "type": "prerequisite-choice",
+          "subject": "도덕",
+          "gradeBand": "3-4",
+          "modelAnswerId": "C",
+          "correctAnswerId": "C",
+          "correct": true,
+          "confidence": 0.94
+        },
+        {
+          "questionId": "Q025",
+          "type": "prerequisite-choice",
+          "subject": "수학",
+          "gradeBand": "1-2",
+          "modelAnswerId": "A",
+          "correctAnswerId": "A",
+          "correct": true,
+          "confidence": 0.97
+        },
+        {
+          "questionId": "Q026",
+          "type": "prerequisite-choice",
+          "subject": "실과(기술·가정)/정보",
+          "gradeBand": "5-6",
+          "modelAnswerId": "C",
+          "correctAnswerId": "C",
+          "correct": true,
+          "confidence": 0.73
+        },
+        {
+          "questionId": "Q027",
+          "type": "prerequisite-choice",
+          "subject": "영어",
+          "gradeBand": "5-6",
+          "modelAnswerId": "C",
+          "correctAnswerId": "C",
+          "correct": true,
+          "confidence": 0.97
+        },
+        {
+          "questionId": "Q028",
+          "type": "prerequisite-choice",
+          "subject": "통합교과",
+          "gradeBand": "1-2",
+          "modelAnswerId": "B",
+          "correctAnswerId": "D",
+          "correct": false,
+          "confidence": 0.86
+        },
+        {
+          "questionId": "Q029",
+          "type": "prerequisite-choice",
+          "subject": "과학",
+          "gradeBand": "3-4",
+          "modelAnswerId": "A",
+          "correctAnswerId": "A",
+          "correct": true,
+          "confidence": 0.94
+        },
+        {
+          "questionId": "Q030",
+          "type": "prerequisite-choice",
+          "subject": "국어",
+          "gradeBand": "3-4",
+          "modelAnswerId": "C",
+          "correctAnswerId": "B",
+          "correct": false,
+          "confidence": 0.79
+        },
+        {
+          "questionId": "Q031",
+          "type": "direction-choice",
+          "subject": "과학",
+          "gradeBand": "3-4",
+          "modelAnswerId": "A_BEFORE_B",
+          "correctAnswerId": "A_BEFORE_B",
+          "correct": true,
+          "confidence": 0.66
+        },
+        {
+          "questionId": "Q032",
+          "type": "direction-choice",
+          "subject": "국어",
+          "gradeBand": "1-2",
+          "modelAnswerId": "A_BEFORE_B",
+          "correctAnswerId": "B_BEFORE_A",
+          "correct": false,
+          "confidence": 0.84
+        },
+        {
+          "questionId": "Q033",
+          "type": "direction-choice",
+          "subject": "도덕",
+          "gradeBand": "3-4",
+          "modelAnswerId": "A_BEFORE_B",
+          "correctAnswerId": "B_BEFORE_A",
+          "correct": false,
+          "confidence": 0.93
+        },
+        {
+          "questionId": "Q034",
+          "type": "direction-choice",
+          "subject": "수학",
+          "gradeBand": "1-2",
+          "modelAnswerId": "B_BEFORE_A",
+          "correctAnswerId": "B_BEFORE_A",
+          "correct": true,
+          "confidence": 0.88
+        },
+        {
+          "questionId": "Q035",
+          "type": "direction-choice",
+          "subject": "실과(기술·가정)/정보",
+          "gradeBand": "5-6",
+          "modelAnswerId": "NO_DIRECT_RELATION",
+          "correctAnswerId": "A_BEFORE_B",
+          "correct": false,
+          "confidence": 0.74
+        },
+        {
+          "questionId": "Q036",
+          "type": "direction-choice",
+          "subject": "영어",
+          "gradeBand": "3-4",
+          "modelAnswerId": "A_BEFORE_B",
+          "correctAnswerId": "B_BEFORE_A",
+          "correct": false,
+          "confidence": 0.89
+        },
+        {
+          "questionId": "Q037",
+          "type": "direction-choice",
+          "subject": "통합교과",
+          "gradeBand": "1-2",
+          "modelAnswerId": "NO_DIRECT_RELATION",
+          "correctAnswerId": "B_BEFORE_A",
+          "correct": false,
+          "confidence": 0.97
+        },
+        {
+          "questionId": "Q038",
+          "type": "direction-choice",
+          "subject": "과학",
+          "gradeBand": "5-6",
+          "modelAnswerId": "B_BEFORE_A",
+          "correctAnswerId": "B_BEFORE_A",
+          "correct": true,
+          "confidence": 0.92
+        },
+        {
+          "questionId": "Q039",
+          "type": "direction-choice",
+          "subject": "국어",
+          "gradeBand": "3-4",
+          "modelAnswerId": "B_BEFORE_A",
+          "correctAnswerId": "A_BEFORE_B",
+          "correct": false,
+          "confidence": 0.71
+        },
+        {
+          "questionId": "Q040",
+          "type": "direction-choice",
+          "subject": "도덕",
+          "gradeBand": "5-6",
+          "modelAnswerId": "NO_DIRECT_RELATION",
+          "correctAnswerId": "B_BEFORE_A",
+          "correct": false,
+          "confidence": 0.94
+        },
+        {
+          "questionId": "Q041",
+          "type": "edge-audit",
+          "subject": "국어",
+          "gradeBand": "1-2",
+          "modelAnswerId": "D",
+          "correctAnswerId": "A",
+          "correct": false,
+          "confidence": 0.88
+        },
+        {
+          "questionId": "Q042",
+          "type": "edge-audit",
+          "subject": "수학",
+          "gradeBand": "1-2",
+          "modelAnswerId": "C",
+          "correctAnswerId": "C",
+          "correct": true,
+          "confidence": 0.98
+        },
+        {
+          "questionId": "Q043",
+          "type": "edge-audit",
+          "subject": "과학",
+          "gradeBand": "3-4",
+          "modelAnswerId": "C",
+          "correctAnswerId": "A",
+          "correct": false,
+          "confidence": 0.95
+        },
+        {
+          "questionId": "Q044",
+          "type": "edge-audit",
+          "subject": "영어",
+          "gradeBand": "3-4",
+          "modelAnswerId": "A",
+          "correctAnswerId": "D",
+          "correct": false,
+          "confidence": 0.91
+        },
+        {
+          "questionId": "Q045",
+          "type": "edge-audit",
+          "subject": "도덕",
+          "gradeBand": "3-4",
+          "modelAnswerId": "C",
+          "correctAnswerId": "B",
+          "correct": false,
+          "confidence": 0.74
+        },
+        {
+          "questionId": "Q046",
+          "type": "edge-audit",
+          "subject": "실과(기술·가정)/정보",
+          "gradeBand": "5-6",
+          "modelAnswerId": "D",
+          "correctAnswerId": "B",
+          "correct": false,
+          "confidence": 0.98
+        },
+        {
+          "questionId": "Q047",
+          "type": "edge-audit",
+          "subject": "통합교과",
+          "gradeBand": "1-2",
+          "modelAnswerId": "B",
+          "correctAnswerId": "A",
+          "correct": false,
+          "confidence": 0.76
+        },
+        {
+          "questionId": "Q048",
+          "type": "edge-audit",
+          "subject": "국어",
+          "gradeBand": "1-2",
+          "modelAnswerId": "D",
+          "correctAnswerId": "B",
+          "correct": false,
+          "confidence": 0.82
+        },
+        {
+          "questionId": "Q049",
+          "type": "edge-audit",
+          "subject": "수학",
+          "gradeBand": "1-2",
+          "modelAnswerId": "D",
+          "correctAnswerId": "D",
+          "correct": true,
+          "confidence": 0.95
+        },
+        {
+          "questionId": "Q050",
+          "type": "edge-audit",
+          "subject": "과학",
+          "gradeBand": "5-6",
+          "modelAnswerId": "C",
+          "correctAnswerId": "C",
+          "correct": true,
+          "confidence": 0.76
+        }
+      ]
+    },
+    {
+      "id": "claude-sonnet",
+      "label": "Claude Sonnet",
+      "provider": "Anthropic",
+      "version": "sonnet alias via Claude Code 2.1.207",
+      "runAt": "2026-07-11T01:57:49.486Z",
+      "coverage": {
+        "answered": 50,
+        "total": 50
+      },
+      "overall": {
+        "correct": 22,
+        "total": 50,
+        "score": 44
+      },
+      "meanAbsoluteCalibrationError": 0.493,
+      "byType": {
+        "prerequisite-choice": {
+          "correct": 12,
+          "total": 30,
+          "score": 40
+        },
+        "direction-choice": {
+          "correct": 5,
+          "total": 10,
+          "score": 50
+        },
+        "edge-audit": {
+          "correct": 5,
+          "total": 10,
+          "score": 50
+        }
+      },
+      "bySubject": {
+        "과학": {
+          "correct": 7,
+          "total": 9,
+          "score": 77.8
+        },
+        "국어": {
+          "correct": 1,
+          "total": 9,
+          "score": 11.1
+        },
+        "도덕": {
+          "correct": 2,
+          "total": 7,
+          "score": 28.6
+        },
+        "수학": {
+          "correct": 7,
+          "total": 7,
+          "score": 100
+        },
+        "실과(기술·가정)/정보": {
+          "correct": 4,
+          "total": 6,
+          "score": 66.7
+        },
+        "영어": {
+          "correct": 1,
+          "total": 6,
+          "score": 16.7
+        },
+        "통합교과": {
+          "correct": 0,
+          "total": 6,
+          "score": 0
+        }
+      },
+      "items": [
+        {
+          "questionId": "Q001",
+          "type": "prerequisite-choice",
+          "subject": "과학",
+          "gradeBand": "3-4",
+          "modelAnswerId": "A",
+          "correctAnswerId": "A",
+          "correct": true,
+          "confidence": 0.55
+        },
+        {
+          "questionId": "Q002",
+          "type": "prerequisite-choice",
+          "subject": "국어",
+          "gradeBand": "1-2",
+          "modelAnswerId": "C",
+          "correctAnswerId": "A",
+          "correct": false,
+          "confidence": 0.7
+        },
+        {
+          "questionId": "Q003",
+          "type": "prerequisite-choice",
+          "subject": "도덕",
+          "gradeBand": "3-4",
+          "modelAnswerId": "B",
+          "correctAnswerId": "C",
+          "correct": false,
+          "confidence": 0.55
+        },
+        {
+          "questionId": "Q004",
+          "type": "prerequisite-choice",
+          "subject": "수학",
+          "gradeBand": "1-2",
+          "modelAnswerId": "A",
+          "correctAnswerId": "A",
+          "correct": true,
+          "confidence": 0.85
+        },
+        {
+          "questionId": "Q005",
+          "type": "prerequisite-choice",
+          "subject": "실과(기술·가정)/정보",
+          "gradeBand": "5-6",
+          "modelAnswerId": "C",
+          "correctAnswerId": "C",
+          "correct": true,
+          "confidence": 0.6
+        },
+        {
+          "questionId": "Q006",
+          "type": "prerequisite-choice",
+          "subject": "영어",
+          "gradeBand": "3-4",
+          "modelAnswerId": "C",
+          "correctAnswerId": "A",
+          "correct": false,
+          "confidence": 0.45
+        },
+        {
+          "questionId": "Q007",
+          "type": "prerequisite-choice",
+          "subject": "통합교과",
+          "gradeBand": "1-2",
+          "modelAnswerId": "C",
+          "correctAnswerId": "D",
+          "correct": false,
+          "confidence": 0.75
+        },
+        {
+          "questionId": "Q008",
+          "type": "prerequisite-choice",
+          "subject": "과학",
+          "gradeBand": "5-6",
+          "modelAnswerId": "B",
+          "correctAnswerId": "B",
+          "correct": true,
+          "confidence": 0.75
+        },
+        {
+          "questionId": "Q009",
+          "type": "prerequisite-choice",
+          "subject": "국어",
+          "gradeBand": "3-4",
+          "modelAnswerId": "C",
+          "correctAnswerId": "A",
+          "correct": false,
+          "confidence": 0.55
+        },
+        {
+          "questionId": "Q010",
+          "type": "prerequisite-choice",
+          "subject": "도덕",
+          "gradeBand": "5-6",
+          "modelAnswerId": "B",
+          "correctAnswerId": "A",
+          "correct": false,
+          "confidence": 0.65
+        },
+        {
+          "questionId": "Q011",
+          "type": "prerequisite-choice",
+          "subject": "수학",
+          "gradeBand": "3-4",
+          "modelAnswerId": "D",
+          "correctAnswerId": "D",
+          "correct": true,
+          "confidence": 0.75
+        },
+        {
+          "questionId": "Q012",
+          "type": "prerequisite-choice",
+          "subject": "실과(기술·가정)/정보",
+          "gradeBand": "5-6",
+          "modelAnswerId": "B",
+          "correctAnswerId": "A",
+          "correct": false,
+          "confidence": 0.7
+        },
+        {
+          "questionId": "Q013",
+          "type": "prerequisite-choice",
+          "subject": "영어",
+          "gradeBand": "5-6",
+          "modelAnswerId": "B",
+          "correctAnswerId": "C",
+          "correct": false,
+          "confidence": 0.4
+        },
+        {
+          "questionId": "Q014",
+          "type": "prerequisite-choice",
+          "subject": "통합교과",
+          "gradeBand": "1-2",
+          "modelAnswerId": "B",
+          "correctAnswerId": "C",
+          "correct": false,
+          "confidence": 0.75
+        },
+        {
+          "questionId": "Q015",
+          "type": "prerequisite-choice",
+          "subject": "과학",
+          "gradeBand": "3-4",
+          "modelAnswerId": "B",
+          "correctAnswerId": "D",
+          "correct": false,
+          "confidence": 0.35
+        },
+        {
+          "questionId": "Q016",
+          "type": "prerequisite-choice",
+          "subject": "국어",
+          "gradeBand": "5-6",
+          "modelAnswerId": "D",
+          "correctAnswerId": "B",
+          "correct": false,
+          "confidence": 0.7
+        },
+        {
+          "questionId": "Q017",
+          "type": "prerequisite-choice",
+          "subject": "도덕",
+          "gradeBand": "5-6",
+          "modelAnswerId": "C",
+          "correctAnswerId": "B",
+          "correct": false,
+          "confidence": 0.7
+        },
+        {
+          "questionId": "Q018",
+          "type": "prerequisite-choice",
+          "subject": "수학",
+          "gradeBand": "5-6",
+          "modelAnswerId": "B",
+          "correctAnswerId": "B",
+          "correct": true,
+          "confidence": 0.65
+        },
+        {
+          "questionId": "Q019",
+          "type": "prerequisite-choice",
+          "subject": "실과(기술·가정)/정보",
+          "gradeBand": "5-6",
+          "modelAnswerId": "D",
+          "correctAnswerId": "D",
+          "correct": true,
+          "confidence": 0.35
+        },
+        {
+          "questionId": "Q020",
+          "type": "prerequisite-choice",
+          "subject": "영어",
+          "gradeBand": "3-4",
+          "modelAnswerId": "B",
+          "correctAnswerId": "A",
+          "correct": false,
+          "confidence": 0.4
+        },
+        {
+          "questionId": "Q021",
+          "type": "prerequisite-choice",
+          "subject": "통합교과",
+          "gradeBand": "1-2",
+          "modelAnswerId": "C",
+          "correctAnswerId": "A",
+          "correct": false,
+          "confidence": 0.75
+        },
+        {
+          "questionId": "Q022",
+          "type": "prerequisite-choice",
+          "subject": "과학",
+          "gradeBand": "5-6",
+          "modelAnswerId": "B",
+          "correctAnswerId": "B",
+          "correct": true,
+          "confidence": 0.85
+        },
+        {
+          "questionId": "Q023",
+          "type": "prerequisite-choice",
+          "subject": "국어",
+          "gradeBand": "1-2",
+          "modelAnswerId": "A",
+          "correctAnswerId": "D",
+          "correct": false,
+          "confidence": 0.75
+        },
+        {
+          "questionId": "Q024",
+          "type": "prerequisite-choice",
+          "subject": "도덕",
+          "gradeBand": "3-4",
+          "modelAnswerId": "D",
+          "correctAnswerId": "C",
+          "correct": false,
+          "confidence": 0.75
+        },
+        {
+          "questionId": "Q025",
+          "type": "prerequisite-choice",
+          "subject": "수학",
+          "gradeBand": "1-2",
+          "modelAnswerId": "A",
+          "correctAnswerId": "A",
+          "correct": true,
+          "confidence": 0.8
+        },
+        {
+          "questionId": "Q026",
+          "type": "prerequisite-choice",
+          "subject": "실과(기술·가정)/정보",
+          "gradeBand": "5-6",
+          "modelAnswerId": "C",
+          "correctAnswerId": "C",
+          "correct": true,
+          "confidence": 0.55
+        },
+        {
+          "questionId": "Q027",
+          "type": "prerequisite-choice",
+          "subject": "영어",
+          "gradeBand": "5-6",
+          "modelAnswerId": "C",
+          "correctAnswerId": "C",
+          "correct": true,
+          "confidence": 0.65
+        },
+        {
+          "questionId": "Q028",
+          "type": "prerequisite-choice",
+          "subject": "통합교과",
+          "gradeBand": "1-2",
+          "modelAnswerId": "B",
+          "correctAnswerId": "D",
+          "correct": false,
+          "confidence": 0.55
+        },
+        {
+          "questionId": "Q029",
+          "type": "prerequisite-choice",
+          "subject": "과학",
+          "gradeBand": "3-4",
+          "modelAnswerId": "A",
+          "correctAnswerId": "A",
+          "correct": true,
+          "confidence": 0.55
+        },
+        {
+          "questionId": "Q030",
+          "type": "prerequisite-choice",
+          "subject": "국어",
+          "gradeBand": "3-4",
+          "modelAnswerId": "C",
+          "correctAnswerId": "B",
+          "correct": false,
+          "confidence": 0.65
+        },
+        {
+          "questionId": "Q031",
+          "type": "direction-choice",
+          "subject": "과학",
+          "gradeBand": "3-4",
+          "modelAnswerId": "A_BEFORE_B",
+          "correctAnswerId": "A_BEFORE_B",
+          "correct": true,
+          "confidence": 0.55
+        },
+        {
+          "questionId": "Q032",
+          "type": "direction-choice",
+          "subject": "국어",
+          "gradeBand": "1-2",
+          "modelAnswerId": "A_BEFORE_B",
+          "correctAnswerId": "B_BEFORE_A",
+          "correct": false,
+          "confidence": 0.55
+        },
+        {
+          "questionId": "Q033",
+          "type": "direction-choice",
+          "subject": "도덕",
+          "gradeBand": "3-4",
+          "modelAnswerId": "B_BEFORE_A",
+          "correctAnswerId": "B_BEFORE_A",
+          "correct": true,
+          "confidence": 0.55
+        },
+        {
+          "questionId": "Q034",
+          "type": "direction-choice",
+          "subject": "수학",
+          "gradeBand": "1-2",
+          "modelAnswerId": "B_BEFORE_A",
+          "correctAnswerId": "B_BEFORE_A",
+          "correct": true,
+          "confidence": 0.6
+        },
+        {
+          "questionId": "Q035",
+          "type": "direction-choice",
+          "subject": "실과(기술·가정)/정보",
+          "gradeBand": "5-6",
+          "modelAnswerId": "A_BEFORE_B",
+          "correctAnswerId": "A_BEFORE_B",
+          "correct": true,
+          "confidence": 0.6
+        },
+        {
+          "questionId": "Q036",
+          "type": "direction-choice",
+          "subject": "영어",
+          "gradeBand": "3-4",
+          "modelAnswerId": "A_BEFORE_B",
+          "correctAnswerId": "B_BEFORE_A",
+          "correct": false,
+          "confidence": 0.65
+        },
+        {
+          "questionId": "Q037",
+          "type": "direction-choice",
+          "subject": "통합교과",
+          "gradeBand": "1-2",
+          "modelAnswerId": "NO_DIRECT_RELATION",
+          "correctAnswerId": "B_BEFORE_A",
+          "correct": false,
+          "confidence": 0.5
+        },
+        {
+          "questionId": "Q038",
+          "type": "direction-choice",
+          "subject": "과학",
+          "gradeBand": "5-6",
+          "modelAnswerId": "B_BEFORE_A",
+          "correctAnswerId": "B_BEFORE_A",
+          "correct": true,
+          "confidence": 0.6
+        },
+        {
+          "questionId": "Q039",
+          "type": "direction-choice",
+          "subject": "국어",
+          "gradeBand": "3-4",
+          "modelAnswerId": "B_BEFORE_A",
+          "correctAnswerId": "A_BEFORE_B",
+          "correct": false,
+          "confidence": 0.6
+        },
+        {
+          "questionId": "Q040",
+          "type": "direction-choice",
+          "subject": "도덕",
+          "gradeBand": "5-6",
+          "modelAnswerId": "NO_DIRECT_RELATION",
+          "correctAnswerId": "B_BEFORE_A",
+          "correct": false,
+          "confidence": 0.5
+        },
+        {
+          "questionId": "Q041",
+          "type": "edge-audit",
+          "subject": "국어",
+          "gradeBand": "1-2",
+          "modelAnswerId": "D",
+          "correctAnswerId": "A",
+          "correct": false,
+          "confidence": 0.45
+        },
+        {
+          "questionId": "Q042",
+          "type": "edge-audit",
+          "subject": "수학",
+          "gradeBand": "1-2",
+          "modelAnswerId": "C",
+          "correctAnswerId": "C",
+          "correct": true,
+          "confidence": 0.8
+        },
+        {
+          "questionId": "Q043",
+          "type": "edge-audit",
+          "subject": "과학",
+          "gradeBand": "3-4",
+          "modelAnswerId": "A",
+          "correctAnswerId": "A",
+          "correct": true,
+          "confidence": 0.5
+        },
+        {
+          "questionId": "Q044",
+          "type": "edge-audit",
+          "subject": "영어",
+          "gradeBand": "3-4",
+          "modelAnswerId": "A",
+          "correctAnswerId": "D",
+          "correct": false,
+          "confidence": 0.4
+        },
+        {
+          "questionId": "Q045",
+          "type": "edge-audit",
+          "subject": "도덕",
+          "gradeBand": "3-4",
+          "modelAnswerId": "B",
+          "correctAnswerId": "B",
+          "correct": true,
+          "confidence": 0.5
+        },
+        {
+          "questionId": "Q046",
+          "type": "edge-audit",
+          "subject": "실과(기술·가정)/정보",
+          "gradeBand": "5-6",
+          "modelAnswerId": "C",
+          "correctAnswerId": "B",
+          "correct": false,
+          "confidence": 0.5
+        },
+        {
+          "questionId": "Q047",
+          "type": "edge-audit",
+          "subject": "통합교과",
+          "gradeBand": "1-2",
+          "modelAnswerId": "B",
+          "correctAnswerId": "A",
+          "correct": false,
+          "confidence": 0.5
+        },
+        {
+          "questionId": "Q048",
+          "type": "edge-audit",
+          "subject": "국어",
+          "gradeBand": "1-2",
+          "modelAnswerId": "B",
+          "correctAnswerId": "B",
+          "correct": true,
+          "confidence": 0.5
+        },
+        {
+          "questionId": "Q049",
+          "type": "edge-audit",
+          "subject": "수학",
+          "gradeBand": "1-2",
+          "modelAnswerId": "D",
+          "correctAnswerId": "D",
+          "correct": true,
+          "confidence": 0.5
+        },
+        {
+          "questionId": "Q050",
+          "type": "edge-audit",
+          "subject": "과학",
+          "gradeBand": "5-6",
+          "modelAnswerId": "B",
+          "correctAnswerId": "C",
+          "correct": false,
+          "confidence": 0.5
+        }
+      ]
+    }
+  ]
+}

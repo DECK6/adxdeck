@@ -1,0 +1,11 @@
+{
+  "benchmarkId": "kecro-align-v0.1",
+  "seed": "kecro-align-2026-07-11",
+  "publicSha256": "2920330610636a0e112d581e1a42718a383f1a06a1253a74a82b36011b31fcc9",
+  "goldSha256": "05dff0554b108d7cdb310aa070e3d125b97d3a1eb4fd02785e66099e10395fdb",
+  "source": {
+    "taxonomyVersion": "kr-full-depth-v0.4",
+    "topicCount": 1956,
+    "edgeCount": 1894
+  }
+}

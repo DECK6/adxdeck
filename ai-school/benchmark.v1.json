@@ -1,0 +1,1844 @@
+{
+  "benchmarkId": "kecro-align-v0.1",
+  "title": "AI는 초등학교를 이해하는가?",
+  "subtitle": "한국 초등 교육과정 학습 온톨로지 정렬 벤치마크",
+  "createdAt": "2026-07-11",
+  "locale": "ko-KR",
+  "questionCount": 50,
+  "taskCounts": {
+    "prerequisite-choice": 30,
+    "direction-choice": 10,
+    "edge-audit": 10
+  },
+  "ontology": {
+    "repository": "https://github.com/DECK6/korean-elementary-learning-map",
+    "taxonomyVersion": "kr-full-depth-v0.4",
+    "topics": 1956,
+    "directPrerequisiteAssertions": 1894,
+    "subjects": 11,
+    "sampledSubjects": 7
+  },
+  "interpretation": "이 점수는 모델 응답이 공개 온톨로지의 직접 선수 추천 구조와 얼마나 일치하는지 측정합니다. 보편적 교수 순서, 학습 효과, 개별 학습자 진단을 측정하지 않습니다.",
+  "questions": [
+    {
+      "id": "Q001",
+      "type": "prerequisite-choice",
+      "subject": "과학",
+      "gradeBand": "3-4",
+      "prompt": "‘우리 생활에 생명과학이 이용되는 사례를 소개하는 자료를 만들어 공유 - 개념 확인’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.science.life.microbes-life.g4-12-03.concept",
+        "target": "우리 생활에 생명과학이 이용되는 사례를 소개하는 자료를 만들어 공유 - 개념 확인",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "균류·원생생물·세균이 우리 생활에 미치는 영향을 조사하여 발표 - 탐구 적용",
+          "topicId": "kr.mt.science.life.microbes-life.g4-12-02.procedure"
+        },
+        {
+          "id": "B",
+          "label": "동물의 특징을 이용하여 일상생활에서 활용할 수 있는 생활용품을 설계하여 협력적으로 소통 - 탐구 적용",
+          "topicId": "kr.mt.science.life.animal-life.g4-02-03.procedure"
+        },
+        {
+          "id": "C",
+          "label": "균류·원생생물·세균을 관찰하여 특징과 사는 곳을 설명 - 탐구 적용",
+          "topicId": "kr.mt.science.life.microbes-life.g4-12-01.procedure"
+        },
+        {
+          "id": "D",
+          "label": "생태계의 구성 요소를 조사하여 생물 요소와 비생물 요소로 분류 - 개념 확인",
+          "topicId": "kr.mt.science.life.organisms-environment.g4-14-01.concept"
+        }
+      ]
+    },
+    {
+      "id": "Q002",
+      "type": "prerequisite-choice",
+      "subject": "국어",
+      "gradeBand": "1-2",
+      "prompt": "‘작품 속 인물을 상상해 다양한 방식으로 표현하기 - 작품 요소와 갈래 단서 파악’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.korean.literature.1-2.2guk0503.01",
+        "target": "작품 속 인물을 상상해 다양한 방식으로 표현하기 - 작품 요소와 갈래 단서 파악",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "작품을 듣거나 읽고 느낌과 생각 말하기 - 문학 향유와 삶 연결 성찰",
+          "topicId": "kr.mt.korean.literature.1-2.2guk0502.04"
+        },
+        {
+          "id": "B",
+          "label": "시·노래·이야기에 흥미 가지기 - 작품 요소와 갈래 단서 파악",
+          "topicId": "kr.mt.korean.literature.1-2.2guk0504.01"
+        },
+        {
+          "id": "C",
+          "label": "작품을 듣거나 읽고 느낌과 생각 말하기 - 작품 요소와 갈래 단서 파악",
+          "topicId": "kr.mt.korean.literature.1-2.2guk0502.01"
+        },
+        {
+          "id": "D",
+          "label": "작품 속 인물을 상상해 다양한 방식으로 표현하기 - 감상 근거와 반응 표현",
+          "topicId": "kr.mt.korean.literature.1-2.2guk0503.02"
+        }
+      ]
+    },
+    {
+      "id": "Q003",
+      "type": "prerequisite-choice",
+      "subject": "도덕",
+      "gradeBand": "3-4",
+      "prompt": "‘공감과 도덕적 상상력 가치 개념’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.moral.relationships.g3-4.4do-02-03.concept",
+        "target": "공감과 도덕적 상상력 가치 개념",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "공감과 도덕적 상상력 실천 성찰",
+          "topicId": "kr.mt.moral.relationships.g3-4.4do-02-03.reflection"
+        },
+        {
+          "id": "B",
+          "label": "친구 사이의 배려 가치 개념",
+          "topicId": "kr.mt.moral.relationships.g3-4.4do-02-02.concept"
+        },
+        {
+          "id": "C",
+          "label": "친구 사이의 배려 실천 성찰",
+          "topicId": "kr.mt.moral.relationships.g3-4.4do-02-02.reflection"
+        },
+        {
+          "id": "D",
+          "label": "가족 행복과 효·우애 도덕 탐구",
+          "topicId": "kr.mt.moral.relationships.g3-4.4do-02-01.inquiry"
+        }
+      ]
+    },
+    {
+      "id": "Q004",
+      "type": "prerequisite-choice",
+      "subject": "수학",
+      "gradeBand": "1-2",
+      "prompt": "‘[2수01-04] 네 자리 이하의 수 - 개념 확인’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.math.number-operations.g1-2.s2-01-04.concept",
+        "target": "[2수01-04] 네 자리 이하의 수 - 개념 확인",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "[2수01-03] 네 자리 이하의 수 - 적용과 설명",
+          "topicId": "kr.mt.math.number-operations.g1-2.s2-01-03.application"
+        },
+        {
+          "id": "B",
+          "label": "[2수01-07] 두 자리 수 범위의 덧셈과 뺄셈 - 적용과 설명",
+          "topicId": "kr.mt.math.number-operations.g1-2.s2-01-07.application"
+        },
+        {
+          "id": "C",
+          "label": "[2수01-06] 두 자리 수 범위의 덧셈과 뺄셈 - 표현과 연결",
+          "topicId": "kr.mt.math.number-operations.g1-2.s2-01-06.representation"
+        },
+        {
+          "id": "D",
+          "label": "[2수01-11] 한 자리 수의 곱셈 - 개념 확인",
+          "topicId": "kr.mt.math.number-operations.g1-2.s2-01-11.concept"
+        }
+      ]
+    },
+    {
+      "id": "Q005",
+      "type": "prerequisite-choice",
+      "subject": "실과(기술·가정)/정보",
+      "gradeBand": "5-6",
+      "prompt": "‘로봇 코딩과 융합 기술 생활 적용’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.practical.sustainable-technology-convergence.5-6.0406.practice",
+        "target": "로봇 코딩과 융합 기술 생활 적용",
+        "relationStrength": "hard"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "로봇 종류와 작동 원리 생활 적용",
+          "topicId": "kr.mt.practical.sustainable-technology-convergence.5-6.0405.practice"
+        },
+        {
+          "id": "B",
+          "label": "동식물 자원과 생명기술 개념 탐색",
+          "topicId": "kr.mt.practical.sustainable-technology-convergence.5-6.0407.concept"
+        },
+        {
+          "id": "C",
+          "label": "명령 체험과 기초 프로그래밍 생활 적용",
+          "topicId": "kr.mt.practical.digital-society-ai.5-6.0502.practice"
+        },
+        {
+          "id": "D",
+          "label": "디지털 기기와 콘텐츠 저작 개념 탐색",
+          "topicId": "kr.mt.practical.sustainable-technology-convergence.5-6.0402.concept"
+        }
+      ]
+    },
+    {
+      "id": "Q006",
+      "type": "prerequisite-choice",
+      "subject": "영어",
+      "gradeBand": "3-4",
+      "prompt": "‘기초 어휘 의미 연결’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.english-efl.3-4.understanding.4영01-05.01.기초-어휘-의미-연결",
+        "target": "기초 어휘 의미 연결",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "짧은 어구와 문장 소리내어 읽기",
+          "topicId": "kr.mt.english-efl.3-4.understanding.4영01-04.03.짧은-어구와-문장-소리내어-읽기"
+        },
+        {
+          "id": "B",
+          "label": "짧은 문장 억양 재현",
+          "topicId": "kr.mt.english-efl.3-4.expression.4영02-01.03.짧은-문장-억양-재현"
+        },
+        {
+          "id": "C",
+          "label": "소리 듣고 첫 글자 쓰기",
+          "topicId": "kr.mt.english-efl.3-4.expression.4영02-03.01.소리-듣고-첫-글자-쓰기"
+        },
+        {
+          "id": "D",
+          "label": "매체 자료에 흥미 표현",
+          "topicId": "kr.mt.english-efl.3-4.understanding.4영01-08.03.매체-자료에-흥미-표현"
+        }
+      ]
+    },
+    {
+      "id": "Q007",
+      "type": "prerequisite-choice",
+      "subject": "통합교과",
+      "gradeBand": "1-2",
+      "prompt": "‘차이와 다양성을 존중하는 생활 태도 - 생활 맥락 이해’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.integrated.right-life.where.2ba0203.01",
+        "target": "차이와 다양성을 존중하는 생활 태도 - 생활 맥락 이해",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "가족과 주변 사람을 배려하며 관계 맺기 - 성찰과 습관화",
+          "topicId": "kr.mt.integrated.right-life.who.2ba0103.03"
+        },
+        {
+          "id": "B",
+          "label": "지속가능한 삶의 방식을 찾아 실천하기 - 성찰과 습관화",
+          "topicId": "kr.mt.integrated.right-life.now.2ba0304.03"
+        },
+        {
+          "id": "C",
+          "label": "생활 습관과 학습 습관 되돌아보기 - 생활 맥락 이해",
+          "topicId": "kr.mt.integrated.right-life.doing.2ba0404.01"
+        },
+        {
+          "id": "D",
+          "label": "우리나라의 소중함과 나라 사랑 마음 기르기 - 성찰과 습관화",
+          "topicId": "kr.mt.integrated.right-life.where.2ba0202.03"
+        }
+      ]
+    },
+    {
+      "id": "Q008",
+      "type": "prerequisite-choice",
+      "subject": "과학",
+      "gradeBand": "5-6",
+      "prompt": "‘용질이나 용매의 양에 따라 용액의 진하기가 달라짐을 관찰하고, 용액의 상대적인 진하 기를 비교 - 개념 확인’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.science.matter.dissolving-solution.g6-03-02.concept",
+        "target": "용질이나 용매의 양에 따라 용액의 진하기가 달라짐을 관찰하고, 용액의 상대적인 진하 기를 비교 - 개념 확인",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "용액에 지시약을 넣었을 때의 변화를 관찰하여 용액을 산성 용액과 염기성 용 액으로 분류 - 자료 표현",
+          "topicId": "kr.mt.science.matter.acid-base.g6-09-01.representation"
+        },
+        {
+          "id": "B",
+          "label": "용해 현상의 의미를 알고, 용질의 종류와 물의 온도에 따라 물에 녹는 용질의 양이 달라 짐을 비교 - 탐구 적용",
+          "topicId": "kr.mt.science.matter.dissolving-solution.g6-03-01.procedure"
+        },
+        {
+          "id": "C",
+          "label": "알갱이의 크기가 다른 고체 혼합물과 골고루 섞이지 않는 액체 혼합물을 분리 - 탐구 적용",
+          "topicId": "kr.mt.science.matter.mixture-separation.g6-05-01.procedure"
+        },
+        {
+          "id": "D",
+          "label": "연소 과정에서 생성되는 물질로 인한 생태계의 피해 사례를 수집하고 분석하여 해결책을 제안하고 공유 - 탐구 적용",
+          "topicId": "kr.mt.science.matter.combustion.g6-14-04.procedure"
+        }
+      ]
+    },
+    {
+      "id": "Q009",
+      "type": "prerequisite-choice",
+      "subject": "국어",
+      "gradeBand": "3-4",
+      "prompt": "‘매체를 활용해 간단한 발표 자료 만들기 - 정보 탐색·선별·신뢰성 판단’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.korean.media.3-4.4guk0602.02",
+        "target": "매체를 활용해 간단한 발표 자료 만들기 - 정보 탐색·선별·신뢰성 판단",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "목적과 주제에 맞게 자료를 정리해 발표하기 - 듣기 단서와 정보 조직",
+          "topicId": "kr.mt.korean.listening-speaking.3-4.4guk0105.02"
+        },
+        {
+          "id": "B",
+          "label": "매체 소통 윤리를 고려해 자료 활용·공유하기 - 매체 종류·양식·목적 파악",
+          "topicId": "kr.mt.korean.media.3-4.4guk0603.01"
+        },
+        {
+          "id": "C",
+          "label": "인터넷에서 학습 자료를 탐색하고 선택하기 - 정보 탐색·선별·신뢰성 판단",
+          "topicId": "kr.mt.korean.media.3-4.4guk0601.02"
+        },
+        {
+          "id": "D",
+          "label": "매체 소통 윤리를 고려해 자료 활용·공유하기 - 정보 탐색·선별·신뢰성 판단",
+          "topicId": "kr.mt.korean.media.3-4.4guk0603.02"
+        }
+      ]
+    },
+    {
+      "id": "Q010",
+      "type": "prerequisite-choice",
+      "subject": "도덕",
+      "gradeBand": "5-6",
+      "prompt": "‘지구 환경 위기와 실천 가치 개념’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.moral.nature-coexistence.g5-6.6do-04-01.concept",
+        "target": "지구 환경 위기와 실천 가치 개념",
+        "relationStrength": "hard"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "인간과 자연의 공생 실천 성찰",
+          "topicId": "kr.mt.moral.nature-coexistence.g3-4.4do-04-02.reflection"
+        },
+        {
+          "id": "B",
+          "label": "지구 환경 위기와 실천 사례 읽기",
+          "topicId": "kr.mt.moral.nature-coexistence.g5-6.6do-04-01.case"
+        },
+        {
+          "id": "C",
+          "label": "지속가능한 삶과 미래 세대 책임 실천 성찰",
+          "topicId": "kr.mt.moral.nature-coexistence.g5-6.6do-04-02.reflection"
+        },
+        {
+          "id": "D",
+          "label": "지속가능한 삶과 미래 세대 책임 대화와 표현",
+          "topicId": "kr.mt.moral.nature-coexistence.g5-6.6do-04-02.dialogue"
+        }
+      ]
+    },
+    {
+      "id": "Q011",
+      "type": "prerequisite-choice",
+      "subject": "수학",
+      "gradeBand": "3-4",
+      "prompt": "‘[4수03-09] 여러 가지 삼각형 - 개념 확인’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.math.geometry-measurement.g3-4.s4-03-09.concept",
+        "target": "[4수03-09] 여러 가지 삼각형 - 개념 확인",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "[4수03-08] 여러 가지 삼각형 - 개념 확인",
+          "topicId": "kr.mt.math.geometry-measurement.g3-4.s4-03-08.concept"
+        },
+        {
+          "id": "B",
+          "label": "[4수03-20] 무게 - 개념 확인",
+          "topicId": "kr.mt.math.geometry-measurement.g3-4.s4-03-20.concept"
+        },
+        {
+          "id": "C",
+          "label": "[4수03-01] 도형의 기초 - 표현과 연결",
+          "topicId": "kr.mt.math.geometry-measurement.g3-4.s4-03-01.representation"
+        },
+        {
+          "id": "D",
+          "label": "[4수03-08] 여러 가지 삼각형 - 적용과 설명",
+          "topicId": "kr.mt.math.geometry-measurement.g3-4.s4-03-08.application"
+        }
+      ]
+    },
+    {
+      "id": "Q012",
+      "type": "prerequisite-choice",
+      "subject": "실과(기술·가정)/정보",
+      "gradeBand": "5-6",
+      "prompt": "‘로봇 종류와 작동 원리 개념 탐색’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.practical.sustainable-technology-convergence.5-6.0405.concept",
+        "target": "로봇 종류와 작동 원리 개념 탐색",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "로봇 개념과 구조 생활 적용",
+          "topicId": "kr.mt.practical.sustainable-technology-convergence.5-6.0404.practice"
+        },
+        {
+          "id": "B",
+          "label": "로봇 개념과 구조 개념 탐색",
+          "topicId": "kr.mt.practical.sustainable-technology-convergence.5-6.0404.concept"
+        },
+        {
+          "id": "C",
+          "label": "로봇 종류와 작동 원리 생활 적용",
+          "topicId": "kr.mt.practical.sustainable-technology-convergence.5-6.0405.practice"
+        },
+        {
+          "id": "D",
+          "label": "로봇 코딩과 융합 기술 생활 적용",
+          "topicId": "kr.mt.practical.sustainable-technology-convergence.5-6.0406.practice"
+        }
+      ]
+    },
+    {
+      "id": "Q013",
+      "type": "prerequisite-choice",
+      "subject": "영어",
+      "gradeBand": "5-6",
+      "prompt": "‘짧은 대화 요지 파악’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.english-efl.5-6.understanding.6영01-05.01.짧은-대화-요지-파악",
+        "target": "짧은 대화 요지 파악",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "위치 표현으로 길 안내",
+          "topicId": "kr.mt.english-efl.5-6.expression.6영02-05.01.위치-표현으로-길-안내"
+        },
+        {
+          "id": "B",
+          "label": "시간ㆍ장소 세부 정보 찾기",
+          "topicId": "kr.mt.english-efl.5-6.understanding.6영01-04.01.시간-장소-세부-정보-찾기"
+        },
+        {
+          "id": "C",
+          "label": "표와 그림에서 정보 대조",
+          "topicId": "kr.mt.english-efl.5-6.understanding.6영01-04.03.표와-그림에서-정보-대조"
+        },
+        {
+          "id": "D",
+          "label": "절차 글 순서 배열",
+          "topicId": "kr.mt.english-efl.5-6.understanding.6영01-06.02.절차-글-순서-배열"
+        }
+      ]
+    },
+    {
+      "id": "Q014",
+      "type": "prerequisite-choice",
+      "subject": "통합교과",
+      "gradeBand": "1-2",
+      "prompt": "‘자유롭게 상상하며 놀이하기 - 감각과 상상 열기’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.integrated.joyful-life.doing.2jeul0402.01",
+        "target": "자유롭게 상상하며 놀이하기 - 감각과 상상 열기",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "다른 나라 문화 예술 체험 - 감상과 나눔",
+          "topicId": "kr.mt.integrated.joyful-life.where.2jeul0203.03"
+        },
+        {
+          "id": "B",
+          "label": "안전과 안녕을 위한 아동 권리 알고 누리기 - 감각과 상상 열기",
+          "topicId": "kr.mt.integrated.joyful-life.now.2jeul0304.01"
+        },
+        {
+          "id": "C",
+          "label": "주변 물건을 활용한 놀잇감 만들기 - 감상과 나눔",
+          "topicId": "kr.mt.integrated.joyful-life.doing.2jeul0401.03"
+        },
+        {
+          "id": "D",
+          "label": "참여할 수 있는 문화 예술 향유 - 놀이와 표현하기",
+          "topicId": "kr.mt.integrated.joyful-life.where.2jeul0201.02"
+        }
+      ]
+    },
+    {
+      "id": "Q015",
+      "type": "prerequisite-choice",
+      "subject": "과학",
+      "gradeBand": "3-4",
+      "prompt": "‘생물의 한살이 과정을 조사하여 생물에 따라 한살이의 유형이 다양함을 소개하는 자료를 만들어 공유 - 개념 확인’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.science.life.life-cycle.g4-04-03.concept",
+        "target": "생물의 한살이 과정을 조사하여 생물에 따라 한살이의 유형이 다양함을 소개하는 자료를 만들어 공유 - 개념 확인",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "생물의 한살이 과정을 조사하여 생물에 따라 한살이의 유형이 다양함을 소개하는 자료를 만들어 공유 - 자료 표현",
+          "topicId": "kr.mt.science.life.life-cycle.g4-04-03.representation"
+        },
+        {
+          "id": "B",
+          "label": "식물의 특징을 이용하여 일상생활에서 활용할 수 있는 생활용품을 설계하여 협력적으로 소통 - 탐구 적용",
+          "topicId": "kr.mt.science.life.plant-life.g4-03-03.procedure"
+        },
+        {
+          "id": "C",
+          "label": "식물을 관찰하여 특징에 따라 식물을 분류 - 탐구 적용",
+          "topicId": "kr.mt.science.life.plant-life.g4-03-01.procedure"
+        },
+        {
+          "id": "D",
+          "label": "식물이 자라는 데 필요한 조건을 찾는 실험을 설계하여 수행 - 탐구 적용",
+          "topicId": "kr.mt.science.life.life-cycle.g4-04-02.procedure"
+        }
+      ]
+    },
+    {
+      "id": "Q016",
+      "type": "prerequisite-choice",
+      "subject": "국어",
+      "gradeBand": "5-6",
+      "prompt": "‘문맥으로 생략·함축 내용을 추론하기 - 글자·어휘·문장 단서 확인’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.korean.reading.5-6.6guk0202.01",
+        "target": "문맥으로 생략·함축 내용을 추론하기 - 글자·어휘·문장 단서 확인",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "내용 타당성과 표현 적절성 평가하기 - 글자·어휘·문장 단서 확인",
+          "topicId": "kr.mt.korean.reading.5-6.6guk0203.01"
+        },
+        {
+          "id": "B",
+          "label": "글 구조를 고려해 주제·주장을 파악하고 요약하기 - 읽기 과정 점검과 독서 태도",
+          "topicId": "kr.mt.korean.reading.5-6.6guk0201.04"
+        },
+        {
+          "id": "C",
+          "label": "긍정적 읽기 동기와 적극적 읽기 참여 - 중심 내용과 구조 파악",
+          "topicId": "kr.mt.korean.reading.5-6.6guk0205.02"
+        },
+        {
+          "id": "D",
+          "label": "글 구조를 고려해 주제·주장을 파악하고 요약하기 - 글자·어휘·문장 단서 확인",
+          "topicId": "kr.mt.korean.reading.5-6.6guk0201.01"
+        }
+      ]
+    },
+    {
+      "id": "Q017",
+      "type": "prerequisite-choice",
+      "subject": "도덕",
+      "gradeBand": "5-6",
+      "prompt": "‘정의와 공동체 규칙 가치 개념’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.moral.community.g5-6.6do-03-02.concept",
+        "target": "정의와 공동체 규칙 가치 개념",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "인권 감수성과 실천 가치 개념",
+          "topicId": "kr.mt.moral.community.g5-6.6do-03-01.concept"
+        },
+        {
+          "id": "B",
+          "label": "인권 감수성과 실천 성찰",
+          "topicId": "kr.mt.moral.community.g5-6.6do-03-01.reflection"
+        },
+        {
+          "id": "C",
+          "label": "정의와 공동체 규칙 사례 읽기",
+          "topicId": "kr.mt.moral.community.g5-6.6do-03-02.case"
+        },
+        {
+          "id": "D",
+          "label": "통일 과정과 이후 사회 사례 읽기",
+          "topicId": "kr.mt.moral.community.g5-6.6do-03-03.case"
+        }
+      ]
+    },
+    {
+      "id": "Q018",
+      "type": "prerequisite-choice",
+      "subject": "수학",
+      "gradeBand": "5-6",
+      "prompt": "‘[6수04-04] 가능성 - 개념 확인’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.math.data-probability.g5-6.s6-04-04.concept",
+        "target": "[6수04-04] 가능성 - 개념 확인",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "[6수04-06] 가능성 - 적용과 설명",
+          "topicId": "kr.mt.math.data-probability.g5-6.s6-04-06.application"
+        },
+        {
+          "id": "B",
+          "label": "[6수04-03] 자료의 수집과 정리 - 적용과 설명",
+          "topicId": "kr.mt.math.data-probability.g5-6.s6-04-03.application"
+        },
+        {
+          "id": "C",
+          "label": "[6수04-04] 가능성 - 표현과 연결",
+          "topicId": "kr.mt.math.data-probability.g5-6.s6-04-04.representation"
+        },
+        {
+          "id": "D",
+          "label": "[6수04-01] 자료의 수집과 정리 - 적용과 설명",
+          "topicId": "kr.mt.math.data-probability.g5-6.s6-04-01.application"
+        }
+      ]
+    },
+    {
+      "id": "Q019",
+      "type": "prerequisite-choice",
+      "subject": "실과(기술·가정)/정보",
+      "gradeBand": "5-6",
+      "prompt": "‘식재료 생산과 선택 개념 탐색’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.practical.life-environment-sustainable-choice.5-6.0204.concept",
+        "target": "식재료 생산과 선택 개념 탐색",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "생태 지향 의식주 생활 적용",
+          "topicId": "kr.mt.practical.life-environment-sustainable-choice.5-6.0211.practice"
+        },
+        {
+          "id": "B",
+          "label": "간식과 식사 마련 생활 적용",
+          "topicId": "kr.mt.practical.life-environment-sustainable-choice.5-6.0205.practice"
+        },
+        {
+          "id": "C",
+          "label": "우리나라 밥상차림과 식사 예절 생활 적용",
+          "topicId": "kr.mt.practical.life-environment-sustainable-choice.5-6.0206.practice"
+        },
+        {
+          "id": "D",
+          "label": "재활용과 환경 고려 관리 생활 적용",
+          "topicId": "kr.mt.practical.life-environment-sustainable-choice.5-6.0203.practice"
+        }
+      ]
+    },
+    {
+      "id": "Q020",
+      "type": "prerequisite-choice",
+      "subject": "영어",
+      "gradeBand": "3-4",
+      "prompt": "‘단어 강세 듣기’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.english-efl.3-4.understanding.4영01-03.01.단어-강세-듣기",
+        "target": "단어 강세 듣기",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "교실 자료에서 알파벳 찾기",
+          "topicId": "kr.mt.english-efl.3-4.understanding.4영01-02.03.교실-자료에서-알파벳-찾기"
+        },
+        {
+          "id": "B",
+          "label": "챈트 리듬으로 어구 말하기",
+          "topicId": "kr.mt.english-efl.3-4.expression.4영02-01.02.챈트-리듬으로-어구-말하기"
+        },
+        {
+          "id": "C",
+          "label": "이름ㆍ나이ㆍ좋아하는 것 말하기",
+          "topicId": "kr.mt.english-efl.3-4.expression.4영02-05.01.이름-나이-좋아하는-것-말하기"
+        },
+        {
+          "id": "D",
+          "label": "대문자와 소문자 모양 식별",
+          "topicId": "kr.mt.english-efl.3-4.understanding.4영01-02.01.대문자와-소문자-모양-식별"
+        }
+      ]
+    },
+    {
+      "id": "Q021",
+      "type": "prerequisite-choice",
+      "subject": "통합교과",
+      "gradeBand": "1-2",
+      "prompt": "‘상상한 것을 매체와 재료로 구현하기 - 탐구 질문 만들기’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.integrated.wise-life.doing.2seul0402.01",
+        "target": "상상한 것을 매체와 재료로 구현하기 - 탐구 질문 만들기",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "생활도구의 모양과 기능 탐색 및 바꾸기 - 탐구 결과 설명",
+          "topicId": "kr.mt.integrated.wise-life.doing.2seul0401.03"
+        },
+        {
+          "id": "B",
+          "label": "사람, 자연, 동식물이 어우러진 생태 탐구 - 관찰과 자료 읽기",
+          "topicId": "kr.mt.integrated.wise-life.who.2seul0104.02"
+        },
+        {
+          "id": "C",
+          "label": "경험에서 관심 주제를 정하고 조사하기 - 탐구 질문 만들기",
+          "topicId": "kr.mt.integrated.wise-life.doing.2seul0403.01"
+        },
+        {
+          "id": "D",
+          "label": "궁금한 세계를 여러 매체로 탐색하기 - 탐구 결과 설명",
+          "topicId": "kr.mt.integrated.wise-life.where.2seul0204.03"
+        }
+      ]
+    },
+    {
+      "id": "Q022",
+      "type": "prerequisite-choice",
+      "subject": "과학",
+      "gradeBand": "5-6",
+      "prompt": "‘속력과 관련된 안전 수칙과 안전장치를 조사한 결과를 공유하고 일상생활에서 교통안전을 실천 - 개념 확인’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.science.motion-energy.object-motion.g6-10-03.concept",
+        "target": "속력과 관련된 안전 수칙과 안전장치를 조사한 결과를 공유하고 일상생활에서 교통안전을 실천 - 개념 확인",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "물체를 보기 위해서 빛이 있어야 함을 알고, 빛의 성질에 대해 흥미를 느낄 - 자료 표현",
+          "topicId": "kr.mt.science.motion-energy.light-properties.g6-02-01.representation"
+        },
+        {
+          "id": "B",
+          "label": "물체의 이동 거리와 걸린 시간을 측정하여 속력을 구하고 빠르기를 비교 - 탐구 적용",
+          "topicId": "kr.mt.science.motion-energy.object-motion.g6-10-02.procedure"
+        },
+        {
+          "id": "C",
+          "label": "온도가 다른 두 물체가 접촉했을 때 두 물체의 온도 변화를 관찰하고 그 원인을 추리 - 자료 표현",
+          "topicId": "kr.mt.science.motion-energy.heat-life.g6-07-02.representation"
+        },
+        {
+          "id": "D",
+          "label": "빛이 나아가는 현상을 관찰하여 빛이 직진, 반사, 굴절하는 성질이 있음을 말 - 탐구 적용",
+          "topicId": "kr.mt.science.motion-energy.light-properties.g6-02-02.procedure"
+        }
+      ]
+    },
+    {
+      "id": "Q023",
+      "type": "prerequisite-choice",
+      "subject": "국어",
+      "gradeBand": "1-2",
+      "prompt": "‘문장과 문장 부호를 알맞게 쓰기 - 국어 자료 관찰과 개념화’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.korean.grammar.1-2.2guk0403.01",
+        "target": "문장과 문장 부호를 알맞게 쓰기 - 국어 자료 관찰과 개념화",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "소리와 표기의 차이를 고려하여 읽고 쓰기 - 국어 자료 관찰과 개념화",
+          "topicId": "kr.mt.korean.grammar.1-2.2guk0402.01"
+        },
+        {
+          "id": "B",
+          "label": "문장과 문장 부호를 알맞게 쓰기 - 상황 맥락에 맞는 표현 조정",
+          "topicId": "kr.mt.korean.grammar.1-2.2guk0403.03"
+        },
+        {
+          "id": "C",
+          "label": "소리와 표기의 차이를 고려하여 읽고 쓰기 - 음운·표기·어휘·문장 규칙 적용",
+          "topicId": "kr.mt.korean.grammar.1-2.2guk0402.02"
+        },
+        {
+          "id": "D",
+          "label": "소리와 표기의 차이를 고려하여 읽고 쓰기 - 언어생활 성찰과 국어 의식",
+          "topicId": "kr.mt.korean.grammar.1-2.2guk0402.04"
+        }
+      ]
+    },
+    {
+      "id": "Q024",
+      "type": "prerequisite-choice",
+      "subject": "도덕",
+      "gradeBand": "3-4",
+      "prompt": "‘통일 감수성과 방향 가치 개념’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.moral.community.g3-4.4do-03-03.concept",
+        "target": "통일 감수성과 방향 가치 개념",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "디지털 사회와 정보통신 윤리 사례 읽기",
+          "topicId": "kr.mt.moral.community.g3-4.4do-03-02.case"
+        },
+        {
+          "id": "B",
+          "label": "디지털 사회와 정보통신 윤리 대화와 표현",
+          "topicId": "kr.mt.moral.community.g3-4.4do-03-02.dialogue"
+        },
+        {
+          "id": "C",
+          "label": "디지털 사회와 정보통신 윤리 실천 성찰",
+          "topicId": "kr.mt.moral.community.g3-4.4do-03-02.reflection"
+        },
+        {
+          "id": "D",
+          "label": "통일 감수성과 방향 도덕 탐구",
+          "topicId": "kr.mt.moral.community.g3-4.4do-03-03.inquiry"
+        }
+      ]
+    },
+    {
+      "id": "Q025",
+      "type": "prerequisite-choice",
+      "subject": "수학",
+      "gradeBand": "1-2",
+      "prompt": "‘[2수03-07] 시각과 시간 - 개념 확인’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.math.geometry-measurement.g1-2.s2-03-07.concept",
+        "target": "[2수03-07] 시각과 시간 - 개념 확인",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "[2수03-06] 양의 비교 - 적용과 설명",
+          "topicId": "kr.mt.math.geometry-measurement.g1-2.s2-03-06.application"
+        },
+        {
+          "id": "B",
+          "label": "[2수03-07] 시각과 시간 - 적용과 설명",
+          "topicId": "kr.mt.math.geometry-measurement.g1-2.s2-03-07.application"
+        },
+        {
+          "id": "C",
+          "label": "[2수03-08] 시각과 시간 - 표현과 연결",
+          "topicId": "kr.mt.math.geometry-measurement.g1-2.s2-03-08.representation"
+        },
+        {
+          "id": "D",
+          "label": "[2수03-04] 평면도형과 그 구성 요소 - 표현과 연결",
+          "topicId": "kr.mt.math.geometry-measurement.g1-2.s2-03-04.representation"
+        }
+      ]
+    },
+    {
+      "id": "Q026",
+      "type": "prerequisite-choice",
+      "subject": "실과(기술·가정)/정보",
+      "gradeBand": "5-6",
+      "prompt": "‘발명사고와 기술적 문제 해결 개념 탐색’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.practical.technological-problem-solving-innovation.5-6.0302.concept",
+        "target": "발명사고와 기술적 문제 해결 개념 탐색",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "발명사고와 기술적 문제 해결 생활 적용",
+          "topicId": "kr.mt.practical.technological-problem-solving-innovation.5-6.0302.practice"
+        },
+        {
+          "id": "B",
+          "label": "수송 의미와 발달 개념 탐색",
+          "topicId": "kr.mt.practical.technological-problem-solving-innovation.5-6.0304.concept"
+        },
+        {
+          "id": "C",
+          "label": "간단한 생활용품 만들기 생활 적용",
+          "topicId": "kr.mt.practical.life-environment-sustainable-choice.5-6.0208.practice"
+        },
+        {
+          "id": "D",
+          "label": "특허와 지식재산권 생활 적용",
+          "topicId": "kr.mt.practical.technological-problem-solving-innovation.5-6.0303.practice"
+        }
+      ]
+    },
+    {
+      "id": "Q027",
+      "type": "prerequisite-choice",
+      "subject": "영어",
+      "gradeBand": "5-6",
+      "prompt": "‘문장 첫 글자 대문자 쓰기’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.english-efl.5-6.expression.6영02-03.01.문장-첫-글자-대문자-쓰기",
+        "target": "문장 첫 글자 대문자 쓰기",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "짧은 이메일 형식 쓰기",
+          "topicId": "kr.mt.english-efl.5-6.expression.6영02-08.02.짧은-이메일-형식-쓰기"
+        },
+        {
+          "id": "B",
+          "label": "다양한 관점 수용하기",
+          "topicId": "kr.mt.english-efl.5-6.understanding.6영01-10.02.다양한-관점-수용하기"
+        },
+        {
+          "id": "C",
+          "label": "알파벳 카드 보고 쓰기",
+          "topicId": "kr.mt.english-efl.3-4.expression.4영02-02.03.알파벳-카드-보고-쓰기"
+        },
+        {
+          "id": "D",
+          "label": "디지털 도구로 짧은 글 구성",
+          "topicId": "kr.mt.english-efl.5-6.expression.6영02-09.02.디지털-도구로-짧은-글-구성"
+        }
+      ]
+    },
+    {
+      "id": "Q028",
+      "type": "prerequisite-choice",
+      "subject": "통합교과",
+      "gradeBand": "1-2",
+      "prompt": "‘생활과 관련된 지속가능성 사례 탐색 - 탐구 질문 만들기’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.integrated.wise-life.now.2seul0304.01",
+        "target": "생활과 관련된 지속가능성 사례 탐색 - 탐구 질문 만들기",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "학교 안팎의 모습과 생활 탐색 및 안전한 학교 생활 - 탐구 결과 설명",
+          "topicId": "kr.mt.integrated.wise-life.who.2seul0101.03"
+        },
+        {
+          "id": "B",
+          "label": "배운 것과 배울 것을 연결하며 배움 상상 - 탐구 질문 만들기",
+          "topicId": "kr.mt.integrated.wise-life.doing.2seul0404.01"
+        },
+        {
+          "id": "C",
+          "label": "하루의 변화와 사람들의 하루 생활 탐색 - 탐구 결과 설명",
+          "topicId": "kr.mt.integrated.wise-life.now.2seul0301.03"
+        },
+        {
+          "id": "D",
+          "label": "지속가능한 삶의 방식을 찾아 실천하기 - 성찰과 습관화",
+          "topicId": "kr.mt.integrated.right-life.now.2ba0304.03"
+        }
+      ]
+    },
+    {
+      "id": "Q029",
+      "type": "prerequisite-choice",
+      "subject": "과학",
+      "gradeBand": "3-4",
+      "prompt": "‘밀물과 썰물의 차이를 알고, 갯벌의 가치와 보전의 필요성을 설득·홍보 - 개념 확인’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.science.earth-space.earth-sea.g4-06-03.concept",
+        "target": "밀물과 썰물의 차이를 알고, 갯벌의 가치와 보전의 필요성을 설득·홍보 - 개념 확인",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "바닷물의 특징을 육지의 물과 비교하고, 바닷가에서 볼 수 있는 다양한 지형을 조사 - 탐구 적용",
+          "topicId": "kr.mt.science.earth-space.earth-sea.g4-06-02.procedure"
+        },
+        {
+          "id": "B",
+          "label": "화산 활동과 지진이 우리 생활에 미치는 영향을 조사하여, 대처 방법을 실천 - 탐구 적용",
+          "topicId": "kr.mt.science.earth-space.land-change.g4-11-04.procedure"
+        },
+        {
+          "id": "C",
+          "label": "지구가 대기로 둘러싸여 있음을 알고, 지구 표면을 구성하는 육지와 바다의 특징을 비교 - 탐구 적용",
+          "topicId": "kr.mt.science.earth-space.earth-sea.g4-06-01.procedure"
+        },
+        {
+          "id": "D",
+          "label": "별의 정의를 알고, 북극성 주변의 별자리를 관찰 - 탐구 적용",
+          "topicId": "kr.mt.science.earth-space.night-sky.g4-13-03.procedure"
+        }
+      ]
+    },
+    {
+      "id": "Q030",
+      "type": "prerequisite-choice",
+      "subject": "국어",
+      "gradeBand": "3-4",
+      "prompt": "‘절차와 결과가 드러나는 보고 글쓰기 - 내용 생성과 목적·독자 설정’의 직접 선수 추천으로 온톨로지에 기록된 주제를 고르세요.",
+      "context": {
+        "targetId": "kr.mt.korean.writing.3-4.4guk0302.01",
+        "target": "절차와 결과가 드러나는 보고 글쓰기 - 내용 생성과 목적·독자 설정",
+        "relationStrength": "soft"
+      },
+      "options": [
+        {
+          "id": "A",
+          "label": "쓰기 과정을 점검하며 자신감 갖기 - 문장·문단·장르 구성",
+          "topicId": "kr.mt.korean.writing.3-4.4guk0305.02"
+        },
+        {
+          "id": "B",
+          "label": "중심 문장과 뒷받침 문장을 갖춘 문단 쓰기 - 고쳐쓰기·공유와 쓰기 태도",
+          "topicId": "kr.mt.korean.writing.3-4.4guk0301.04"
+        },
+        {
+          "id": "C",
+          "label": "쓰기 과정을 점검하며 자신감 갖기 - 내용 생성과 목적·독자 설정",
+          "topicId": "kr.mt.korean.writing.3-4.4guk0305.01"
+        },
+        {
+          "id": "D",
+          "label": "목적과 주제를 고려해 마음을 전하는 글쓰기 - 문장·문단·장르 구성",
+          "topicId": "kr.mt.korean.writing.3-4.4guk0304.02"
+        }
+      ]
+    },
+    {
+      "id": "Q031",
+      "type": "direction-choice",
+      "subject": "과학",
+      "gradeBand": "3-4",
+      "prompt": "두 주제 사이의 온톨로지 직접 선수 방향을 고르세요.",
+      "context": {
+        "topicAId": "kr.mt.science.motion-energy.force-life.g4-01-01.procedure",
+        "topicA": "물체를 밀거나 당길 때 나타나는 현상을 관찰 - 탐구 적용",
+        "topicBId": "kr.mt.science.motion-energy.force-life.g4-01-02.concept",
+        "topicB": "수평잡기 활동을 통해 물체의 무게를 비교 - 개념 확인"
+      },
+      "options": [
+        {
+          "id": "A_BEFORE_B",
+          "label": "주제 A가 주제 B보다 먼저"
+        },
+        {
+          "id": "B_BEFORE_A",
+          "label": "주제 B가 주제 A보다 먼저"
+        },
+        {
+          "id": "NO_DIRECT_RELATION",
+          "label": "직접 선수 관계 없음"
+        }
+      ]
+    },
+    {
+      "id": "Q032",
+      "type": "direction-choice",
+      "subject": "국어",
+      "gradeBand": "1-2",
+      "prompt": "두 주제 사이의 온톨로지 직접 선수 방향을 고르세요.",
+      "context": {
+        "topicAId": "kr.mt.korean.writing.1-2.2guk0304.01",
+        "topicA": "겪은 일을 자유롭게 쓰고 함께 읽기 - 내용 생성과 목적·독자 설정",
+        "topicBId": "kr.mt.korean.writing.1-2.2guk0303.04",
+        "topicB": "주변 소재를 소개하는 글쓰기 - 고쳐쓰기·공유와 쓰기 태도"
+      },
+      "options": [
+        {
+          "id": "A_BEFORE_B",
+          "label": "주제 A가 주제 B보다 먼저"
+        },
+        {
+          "id": "B_BEFORE_A",
+          "label": "주제 B가 주제 A보다 먼저"
+        },
+        {
+          "id": "NO_DIRECT_RELATION",
+          "label": "직접 선수 관계 없음"
+        }
+      ]
+    },
+    {
+      "id": "Q033",
+      "type": "direction-choice",
+      "subject": "도덕",
+      "gradeBand": "3-4",
+      "prompt": "두 주제 사이의 온톨로지 직접 선수 방향을 고르세요.",
+      "context": {
+        "topicAId": "kr.mt.moral.nature-coexistence.g3-4.4do-04-02.concept",
+        "topicA": "인간과 자연의 공생 가치 개념",
+        "topicBId": "kr.mt.moral.nature-coexistence.g3-4.4do-04-01.reflection",
+        "topicB": "생명 존중 실천 성찰"
+      },
+      "options": [
+        {
+          "id": "A_BEFORE_B",
+          "label": "주제 A가 주제 B보다 먼저"
+        },
+        {
+          "id": "B_BEFORE_A",
+          "label": "주제 B가 주제 A보다 먼저"
+        },
+        {
+          "id": "NO_DIRECT_RELATION",
+          "label": "직접 선수 관계 없음"
+        }
+      ]
+    },
+    {
+      "id": "Q034",
+      "type": "direction-choice",
+      "subject": "수학",
+      "gradeBand": "1-2",
+      "prompt": "두 주제 사이의 온톨로지 직접 선수 방향을 고르세요.",
+      "context": {
+        "topicAId": "kr.mt.math.geometry-measurement.g1-2.s2-03-04.concept",
+        "topicA": "[2수03-04] 평면도형과 그 구성 요소 - 개념 확인",
+        "topicBId": "kr.mt.math.geometry-measurement.g1-2.s2-03-03.application",
+        "topicB": "[2수03-03] 평면도형과 그 구성 요소 - 적용과 설명"
+      },
+      "options": [
+        {
+          "id": "A_BEFORE_B",
+          "label": "주제 A가 주제 B보다 먼저"
+        },
+        {
+          "id": "B_BEFORE_A",
+          "label": "주제 B가 주제 A보다 먼저"
+        },
+        {
+          "id": "NO_DIRECT_RELATION",
+          "label": "직접 선수 관계 없음"
+        }
+      ]
+    },
+    {
+      "id": "Q035",
+      "type": "direction-choice",
+      "subject": "실과(기술·가정)/정보",
+      "gradeBand": "5-6",
+      "prompt": "두 주제 사이의 온톨로지 직접 선수 방향을 고르세요.",
+      "context": {
+        "topicAId": "kr.mt.practical.human-development-self-directed-life.5-6.0106.practice",
+        "topicA": "가정일의 가치와 종류 생활 적용",
+        "topicBId": "kr.mt.practical.life-environment-sustainable-choice.5-6.0201.concept",
+        "topicB": "생활자원 제한성과 사용 가치 개념 탐색"
+      },
+      "options": [
+        {
+          "id": "A_BEFORE_B",
+          "label": "주제 A가 주제 B보다 먼저"
+        },
+        {
+          "id": "B_BEFORE_A",
+          "label": "주제 B가 주제 A보다 먼저"
+        },
+        {
+          "id": "NO_DIRECT_RELATION",
+          "label": "직접 선수 관계 없음"
+        }
+      ]
+    },
+    {
+      "id": "Q036",
+      "type": "direction-choice",
+      "subject": "영어",
+      "gradeBand": "3-4",
+      "prompt": "두 주제 사이의 온톨로지 직접 선수 방향을 고르세요.",
+      "context": {
+        "topicAId": "kr.mt.english-efl.3-4.expression.4영02-09.01.그림-카드로-의미-표현",
+        "topicA": "그림 카드로 의미 표현",
+        "topicBId": "kr.mt.english-efl.3-4.expression.4영02-08.03.짝-대화에서-핵심-답하기",
+        "topicB": "짝 대화에서 핵심 답하기"
+      },
+      "options": [
+        {
+          "id": "A_BEFORE_B",
+          "label": "주제 A가 주제 B보다 먼저"
+        },
+        {
+          "id": "B_BEFORE_A",
+          "label": "주제 B가 주제 A보다 먼저"
+        },
+        {
+          "id": "NO_DIRECT_RELATION",
+          "label": "직접 선수 관계 없음"
+        }
+      ]
+    },
+    {
+      "id": "Q037",
+      "type": "direction-choice",
+      "subject": "통합교과",
+      "gradeBand": "1-2",
+      "prompt": "두 주제 사이의 온톨로지 직접 선수 방향을 고르세요.",
+      "context": {
+        "topicAId": "kr.mt.integrated.joyful-life.where.2jeul0201.01",
+        "topicA": "참여할 수 있는 문화 예술 향유 - 감각과 상상 열기",
+        "topicBId": "kr.mt.integrated.wise-life.where.2seul0201.03",
+        "topicB": "마을과 사람들이 생활하는 모습 살펴보기 - 탐구 결과 설명"
+      },
+      "options": [
+        {
+          "id": "A_BEFORE_B",
+          "label": "주제 A가 주제 B보다 먼저"
+        },
+        {
+          "id": "B_BEFORE_A",
+          "label": "주제 B가 주제 A보다 먼저"
+        },
+        {
+          "id": "NO_DIRECT_RELATION",
+          "label": "직접 선수 관계 없음"
+        }
+      ]
+    },
+    {
+      "id": "Q038",
+      "type": "direction-choice",
+      "subject": "과학",
+      "gradeBand": "5-6",
+      "prompt": "두 주제 사이의 온톨로지 직접 선수 방향을 고르세요.",
+      "context": {
+        "topicAId": "kr.mt.science.earth-space.earth-motion.g6-12-03.concept",
+        "topicA": "지구의 공전을 알고, 계절에 따라 달라지는 별자리를 관찰 - 개념 확인",
+        "topicBId": "kr.mt.science.earth-space.earth-motion.g6-12-02.procedure",
+        "topicB": "지구의 자전을 알고, 낮과 밤이 생기는 이유를 설명 - 탐구 적용"
+      },
+      "options": [
+        {
+          "id": "A_BEFORE_B",
+          "label": "주제 A가 주제 B보다 먼저"
+        },
+        {
+          "id": "B_BEFORE_A",
+          "label": "주제 B가 주제 A보다 먼저"
+        },
+        {
+          "id": "NO_DIRECT_RELATION",
+          "label": "직접 선수 관계 없음"
+        }
+      ]
+    },
+    {
+      "id": "Q039",
+      "type": "direction-choice",
+      "subject": "국어",
+      "gradeBand": "3-4",
+      "prompt": "두 주제 사이의 온톨로지 직접 선수 방향을 고르세요.",
+      "context": {
+        "topicAId": "kr.mt.korean.reading.3-4.4guk0205.04",
+        "topicA": "글과 자료 출처의 믿을 만함 판단 - 읽기 과정 점검과 독서 태도",
+        "topicBId": "kr.mt.korean.reading.3-4.4guk0206.01",
+        "topicB": "바람직한 읽기 습관과 읽기 자신감 - 글자·어휘·문장 단서 확인"
+      },
+      "options": [
+        {
+          "id": "A_BEFORE_B",
+          "label": "주제 A가 주제 B보다 먼저"
+        },
+        {
+          "id": "B_BEFORE_A",
+          "label": "주제 B가 주제 A보다 먼저"
+        },
+        {
+          "id": "NO_DIRECT_RELATION",
+          "label": "직접 선수 관계 없음"
+        }
+      ]
+    },
+    {
+      "id": "Q040",
+      "type": "direction-choice",
+      "subject": "도덕",
+      "gradeBand": "5-6",
+      "prompt": "두 주제 사이의 온톨로지 직접 선수 방향을 고르세요.",
+      "context": {
+        "topicAId": "kr.mt.moral.community.g5-6.6do-03-01.concept",
+        "topicA": "인권 감수성과 실천 가치 개념",
+        "topicBId": "kr.mt.moral.community.g3-4.4do-03-03.reflection",
+        "topicB": "통일 감수성과 방향 실천 성찰"
+      },
+      "options": [
+        {
+          "id": "A_BEFORE_B",
+          "label": "주제 A가 주제 B보다 먼저"
+        },
+        {
+          "id": "B_BEFORE_A",
+          "label": "주제 B가 주제 A보다 먼저"
+        },
+        {
+          "id": "NO_DIRECT_RELATION",
+          "label": "직접 선수 관계 없음"
+        }
+      ]
+    },
+    {
+      "id": "Q041",
+      "type": "edge-audit",
+      "subject": "국어",
+      "gradeBand": "1-2",
+      "prompt": "다음 네 개의 ‘선수 주제 → 목표 주제’ 중 온톨로지의 직접 선수 추천으로 기록되지 않은 하나를 고르세요.",
+      "relations": [
+        {
+          "id": "A",
+          "prerequisite": {
+            "id": "kr.mt.korean.listening-speaking.1-2.2guk0103.01",
+            "label": "집중해서 듣고 말차례를 지키는 대화 - 담화 상황과 목적 파악"
+          },
+          "target": {
+            "id": "kr.mt.korean.listening-speaking.1-2.2guk0102.01",
+            "label": "바르고 고운 말로 감정을 나누는 대화 - 담화 상황과 목적 파악"
+          }
+        },
+        {
+          "id": "B",
+          "prerequisite": {
+            "id": "kr.mt.korean.listening-speaking.1-2.2guk0101.04",
+            "label": "중요 내용과 사건 순서를 고려하는 듣기·말하기 - 참여 태도와 조정 성찰"
+          },
+          "target": {
+            "id": "kr.mt.korean.listening-speaking.1-2.2guk0102.01",
+            "label": "바르고 고운 말로 감정을 나누는 대화 - 담화 상황과 목적 파악"
+          }
+        },
+        {
+          "id": "C",
+          "prerequisite": {
+            "id": "kr.mt.korean.listening-speaking.3-4.4guk0103.04",
+            "label": "상황에 맞는 준언어·비언어 표현 활용 - 참여 태도와 조정 성찰"
+          },
+          "target": {
+            "id": "kr.mt.korean.listening-speaking.3-4.4guk0104.01",
+            "label": "상황과 상대 입장을 이해하고 예의를 지키는 대화 - 담화 상황과 목적 파악"
+          }
+        },
+        {
+          "id": "D",
+          "prerequisite": {
+            "id": "kr.mt.korean.grammar.5-6.6guk0403.04",
+            "label": "고유어와 관용 표현의 가치와 상황별 사용 - 언어생활 성찰과 국어 의식"
+          },
+          "target": {
+            "id": "kr.mt.korean.grammar.5-6.6guk0404.01",
+            "label": "문장 성분과 호응 관계에 맞는 문장 구성 - 국어 자료 관찰과 개념화"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q042",
+      "type": "edge-audit",
+      "subject": "수학",
+      "gradeBand": "1-2",
+      "prompt": "다음 네 개의 ‘선수 주제 → 목표 주제’ 중 온톨로지의 직접 선수 추천으로 기록되지 않은 하나를 고르세요.",
+      "relations": [
+        {
+          "id": "A",
+          "prerequisite": {
+            "id": "kr.mt.math.change-relationships.g5-6.s6-02-04.application",
+            "label": "[6수02-04] 비례식과 비례배분 - 적용과 설명"
+          },
+          "target": {
+            "id": "kr.mt.math.change-relationships.g5-6.s6-02-05.concept",
+            "label": "[6수02-05] 비례식과 비례배분 - 개념 확인"
+          }
+        },
+        {
+          "id": "B",
+          "prerequisite": {
+            "id": "kr.mt.math.number-operations.g3-4.s4-01-09.application",
+            "label": "[4수01-09] 분수 - 적용과 설명"
+          },
+          "target": {
+            "id": "kr.mt.math.number-operations.g3-4.s4-01-10.concept",
+            "label": "[4수01-10] 분수 - 개념 확인"
+          }
+        },
+        {
+          "id": "C",
+          "prerequisite": {
+            "id": "kr.mt.math.number-operations.g1-2.s2-01-10.application",
+            "label": "[2수01-10] 한 자리 수의 곱셈 - 적용과 설명"
+          },
+          "target": {
+            "id": "kr.mt.math.number-operations.g1-2.s2-01-02.concept",
+            "label": "[2수01-02] 네 자리 이하의 수 - 개념 확인"
+          }
+        },
+        {
+          "id": "D",
+          "prerequisite": {
+            "id": "kr.mt.math.number-operations.g1-2.s2-01-01.application",
+            "label": "[2수01-01] 네 자리 이하의 수 - 적용과 설명"
+          },
+          "target": {
+            "id": "kr.mt.math.number-operations.g1-2.s2-01-02.concept",
+            "label": "[2수01-02] 네 자리 이하의 수 - 개념 확인"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q043",
+      "type": "edge-audit",
+      "subject": "과학",
+      "gradeBand": "3-4",
+      "prompt": "다음 네 개의 ‘선수 주제 → 목표 주제’ 중 온톨로지의 직접 선수 추천으로 기록되지 않은 하나를 고르세요.",
+      "relations": [
+        {
+          "id": "A",
+          "prerequisite": {
+            "id": "kr.mt.science.earth-space.land-change.g4-11-04.concept",
+            "label": "화산 활동과 지진이 우리 생활에 미치는 영향을 조사하여, 대처 방법을 실천 - 개념 확인"
+          },
+          "target": {
+            "id": "kr.mt.science.earth-space.land-change.g4-11-02.concept",
+            "label": "화산의 의미와 화산 활동으로 나오는 물질을 알고, 화산 활동을 모형으로 표현 - 개념 확인"
+          }
+        },
+        {
+          "id": "B",
+          "prerequisite": {
+            "id": "kr.mt.science.science-society.climate-life.g4-16-01.procedure",
+            "label": "기후변화 현상의 예를 알고, 기후변화가 인간의 활동과 관련되어 있음을 토의 - 탐구 적용"
+          },
+          "target": {
+            "id": "kr.mt.science.science-society.climate-life.g4-16-02.concept",
+            "label": "기후변화의 심각성에 관심을 가지고, 기후변화가 우리 생활과 환경에 미치는 영향을 설 명 - 개념 확인"
+          }
+        },
+        {
+          "id": "C",
+          "prerequisite": {
+            "id": "kr.mt.science.earth-space.land-change.g4-11-01.procedure",
+            "label": "흐르는 물의 작용과 강 주변 지형의 특징을 관련지을 - 탐구 적용"
+          },
+          "target": {
+            "id": "kr.mt.science.earth-space.land-change.g4-11-02.concept",
+            "label": "화산의 의미와 화산 활동으로 나오는 물질을 알고, 화산 활동을 모형으로 표현 - 개념 확인"
+          }
+        },
+        {
+          "id": "D",
+          "prerequisite": {
+            "id": "kr.mt.science.earth-space.weather-life.g6-06-01.procedure",
+            "label": "기상 요소를 조사하고, 날씨가 우리 생활에 주는 영향을 인식 - 탐구 적용"
+          },
+          "target": {
+            "id": "kr.mt.science.earth-space.weather-life.g6-06-02.concept",
+            "label": "이슬, 안개, 구름을 관찰하고, 공통점과 차이점을 찾을 - 개념 확인"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q044",
+      "type": "edge-audit",
+      "subject": "영어",
+      "gradeBand": "3-4",
+      "prompt": "다음 네 개의 ‘선수 주제 → 목표 주제’ 중 온톨로지의 직접 선수 추천으로 기록되지 않은 하나를 고르세요.",
+      "relations": [
+        {
+          "id": "A",
+          "prerequisite": {
+            "id": "kr.mt.english-efl.3-4.understanding.4영01-01.03.그림-단서로-들은-기초-어휘-확인",
+            "label": "그림 단서로 들은 기초 어휘 확인"
+          },
+          "target": {
+            "id": "kr.mt.english-efl.3-4.understanding.4영01-02.01.대문자와-소문자-모양-식별",
+            "label": "대문자와 소문자 모양 식별"
+          }
+        },
+        {
+          "id": "B",
+          "prerequisite": {
+            "id": "kr.mt.english-efl.5-6.expression.6영02-09.03.전략-선택해-의사-전달",
+            "label": "전략 선택해 의사 전달"
+          },
+          "target": {
+            "id": "kr.mt.english-efl.5-6.expression.6영02-10.01.모둠-대화-역할-수행",
+            "label": "모둠 대화 역할 수행"
+          }
+        },
+        {
+          "id": "C",
+          "prerequisite": {
+            "id": "kr.mt.english-efl.3-4.understanding.4영01-10.02.다른-생활-방식-존중하기",
+            "label": "다른 생활 방식 존중하기"
+          },
+          "target": {
+            "id": "kr.mt.english-efl.3-4.expression.4영02-10.02.실수해도-다시-말하기",
+            "label": "실수해도 다시 말하기"
+          }
+        },
+        {
+          "id": "D",
+          "prerequisite": {
+            "id": "kr.mt.english-efl.3-4.expression.4영02-08.03.짝-대화에서-핵심-답하기",
+            "label": "짝 대화에서 핵심 답하기"
+          },
+          "target": {
+            "id": "kr.mt.english-efl.3-4.expression.4영02-10.02.실수해도-다시-말하기",
+            "label": "실수해도 다시 말하기"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q045",
+      "type": "edge-audit",
+      "subject": "도덕",
+      "gradeBand": "3-4",
+      "prompt": "다음 네 개의 ‘선수 주제 → 목표 주제’ 중 온톨로지의 직접 선수 추천으로 기록되지 않은 하나를 고르세요.",
+      "relations": [
+        {
+          "id": "A",
+          "prerequisite": {
+            "id": "kr.mt.moral.self-agency.g5-6.6do-01-01.reflection",
+            "label": "자주적인 생활계획 실천 성찰"
+          },
+          "target": {
+            "id": "kr.mt.moral.self-agency.g5-6.6do-01-02.concept",
+            "label": "생활 습관 성찰 가치 개념"
+          }
+        },
+        {
+          "id": "B",
+          "prerequisite": {
+            "id": "kr.mt.moral.relationships.g3-4.4do-02-01.inquiry",
+            "label": "가족 행복과 효·우애 도덕 탐구"
+          },
+          "target": {
+            "id": "kr.mt.moral.relationships.g3-4.4do-02-02.concept",
+            "label": "친구 사이의 배려 가치 개념"
+          }
+        },
+        {
+          "id": "C",
+          "prerequisite": {
+            "id": "kr.mt.moral.self-agency.g3-4.4do-01-04.reflection",
+            "label": "관점 수용과 도덕규범 실천 성찰"
+          },
+          "target": {
+            "id": "kr.mt.moral.self-agency.g5-6.6do-01-01.concept",
+            "label": "자주적인 생활계획 가치 개념"
+          }
+        },
+        {
+          "id": "D",
+          "prerequisite": {
+            "id": "kr.mt.moral.relationships.g3-4.4do-02-01.reflection",
+            "label": "가족 행복과 효·우애 실천 성찰"
+          },
+          "target": {
+            "id": "kr.mt.moral.relationships.g3-4.4do-02-02.concept",
+            "label": "친구 사이의 배려 가치 개념"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q046",
+      "type": "edge-audit",
+      "subject": "실과(기술·가정)/정보",
+      "gradeBand": "5-6",
+      "prompt": "다음 네 개의 ‘선수 주제 → 목표 주제’ 중 온톨로지의 직접 선수 추천으로 기록되지 않은 하나를 고르세요.",
+      "relations": [
+        {
+          "id": "A",
+          "prerequisite": {
+            "id": "kr.mt.practical.life-environment-sustainable-choice.5-6.0204.practice",
+            "label": "식재료 생산과 선택 생활 적용"
+          },
+          "target": {
+            "id": "kr.mt.practical.life-environment-sustainable-choice.5-6.0205.concept",
+            "label": "간식과 식사 마련 개념 탐색"
+          }
+        },
+        {
+          "id": "B",
+          "prerequisite": {
+            "id": "kr.mt.practical.digital-society-ai.5-6.0501.concept",
+            "label": "컴퓨터 활용 문제 해결과 알고리즘 개념 탐색"
+          },
+          "target": {
+            "id": "kr.mt.practical.digital-society-ai.5-6.0503.practice",
+            "label": "협력 프로그래밍과 공유 생활 적용"
+          }
+        },
+        {
+          "id": "C",
+          "prerequisite": {
+            "id": "kr.mt.practical.sustainable-technology-convergence.5-6.0403.practice",
+            "label": "사이버 공유와 정보기기 활용 생활 적용"
+          },
+          "target": {
+            "id": "kr.mt.practical.digital-society-ai.5-6.0503.practice",
+            "label": "협력 프로그래밍과 공유 생활 적용"
+          }
+        },
+        {
+          "id": "D",
+          "prerequisite": {
+            "id": "kr.mt.practical.sustainable-technology-convergence.5-6.0403.practice",
+            "label": "사이버 공유와 정보기기 활용 생활 적용"
+          },
+          "target": {
+            "id": "kr.mt.practical.sustainable-technology-convergence.5-6.0404.concept",
+            "label": "로봇 개념과 구조 개념 탐색"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q047",
+      "type": "edge-audit",
+      "subject": "통합교과",
+      "gradeBand": "1-2",
+      "prompt": "다음 네 개의 ‘선수 주제 → 목표 주제’ 중 온톨로지의 직접 선수 추천으로 기록되지 않은 하나를 고르세요.",
+      "relations": [
+        {
+          "id": "A",
+          "prerequisite": {
+            "id": "kr.mt.integrated.joyful-life.where.2jeul0204.01",
+            "label": "다양한 세상을 상상하고 표현하기 - 감각과 상상 열기"
+          },
+          "target": {
+            "id": "kr.mt.integrated.joyful-life.where.2jeul0202.01",
+            "label": "우리나라 문화 예술 즐기기 - 감각과 상상 열기"
+          }
+        },
+        {
+          "id": "B",
+          "prerequisite": {
+            "id": "kr.mt.integrated.joyful-life.who.2jeul0101.03",
+            "label": "즐겁게 놀이하며 건강하고 안전하게 생활하기 - 감상과 나눔"
+          },
+          "target": {
+            "id": "kr.mt.integrated.joyful-life.who.2jeul0102.01",
+            "label": "놀이 속 몸 움직임과 감각 느끼기 - 감각과 상상 열기"
+          }
+        },
+        {
+          "id": "C",
+          "prerequisite": {
+            "id": "kr.mt.integrated.healthy-life.active-movement.2geon0204.03",
+            "label": "도구를 다루는 움직임을 알고 서로 배려하며 상황에 맞게 수행하기 - 움직임 연결과 참여 돌아보기"
+          },
+          "target": {
+            "id": "kr.mt.integrated.healthy-life.active-movement.2geon0205.01",
+            "label": "친구들과 어울려 여러 움직임을 이어서 수행하기 - 움직임 특성과 상황 파악"
+          }
+        },
+        {
+          "id": "D",
+          "prerequisite": {
+            "id": "kr.mt.integrated.wise-life.where.2seul0202.03",
+            "label": "우리나라의 모습과 문화 조사하기 - 탐구 결과 설명"
+          },
+          "target": {
+            "id": "kr.mt.integrated.joyful-life.where.2jeul0202.01",
+            "label": "우리나라 문화 예술 즐기기 - 감각과 상상 열기"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q048",
+      "type": "edge-audit",
+      "subject": "국어",
+      "gradeBand": "1-2",
+      "prompt": "다음 네 개의 ‘선수 주제 → 목표 주제’ 중 온톨로지의 직접 선수 추천으로 기록되지 않은 하나를 고르세요.",
+      "relations": [
+        {
+          "id": "A",
+          "prerequisite": {
+            "id": "kr.mt.korean.listening-speaking.1-2.2guk0103.04",
+            "label": "집중해서 듣고 말차례를 지키는 대화 - 참여 태도와 조정 성찰"
+          },
+          "target": {
+            "id": "kr.mt.korean.listening-speaking.1-2.2guk0104.01",
+            "label": "경험과 생각을 바른 자세로 발표하기 - 담화 상황과 목적 파악"
+          }
+        },
+        {
+          "id": "B",
+          "prerequisite": {
+            "id": "kr.mt.korean.listening-speaking.1-2.2guk0103.02",
+            "label": "집중해서 듣고 말차례를 지키는 대화 - 듣기 단서와 정보 조직"
+          },
+          "target": {
+            "id": "kr.mt.korean.listening-speaking.1-2.2guk0104.01",
+            "label": "경험과 생각을 바른 자세로 발표하기 - 담화 상황과 목적 파악"
+          }
+        },
+        {
+          "id": "C",
+          "prerequisite": {
+            "id": "kr.mt.korean.grammar.3-4.4guk0404.04",
+            "label": "높임·지시·접속 표현을 상황에 맞게 사용 - 언어생활 성찰과 국어 의식"
+          },
+          "target": {
+            "id": "kr.mt.korean.grammar.3-4.4guk0405.01",
+            "label": "언어를 소통과 관계 형성의 수단으로 이해 - 국어 자료 관찰과 개념화"
+          }
+        },
+        {
+          "id": "D",
+          "prerequisite": {
+            "id": "kr.mt.korean.reading.5-6.6guk0204.04",
+            "label": "여러 관점의 글을 문제 해결에 활용하기 - 읽기 과정 점검과 독서 태도"
+          },
+          "target": {
+            "id": "kr.mt.korean.reading.5-6.6guk0205.01",
+            "label": "긍정적 읽기 동기와 적극적 읽기 참여 - 글자·어휘·문장 단서 확인"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q049",
+      "type": "edge-audit",
+      "subject": "수학",
+      "gradeBand": "1-2",
+      "prompt": "다음 네 개의 ‘선수 주제 → 목표 주제’ 중 온톨로지의 직접 선수 추천으로 기록되지 않은 하나를 고르세요.",
+      "relations": [
+        {
+          "id": "A",
+          "prerequisite": {
+            "id": "kr.mt.math.geometry-measurement.g3-4.s4-03-13.application",
+            "label": "[4수03-13] 시각과 시간 - 적용과 설명"
+          },
+          "target": {
+            "id": "kr.mt.math.geometry-measurement.g3-4.s4-03-14.concept",
+            "label": "[4수03-14] 시각과 시간 - 개념 확인"
+          }
+        },
+        {
+          "id": "B",
+          "prerequisite": {
+            "id": "kr.mt.math.geometry-measurement.g1-2.s2-03-10.application",
+            "label": "[2수03-10] 길이 - 적용과 설명"
+          },
+          "target": {
+            "id": "kr.mt.math.geometry-measurement.g1-2.s2-03-11.concept",
+            "label": "[2수03-11] 길이 - 개념 확인"
+          }
+        },
+        {
+          "id": "C",
+          "prerequisite": {
+            "id": "kr.mt.math.number-operations.g5-6.s6-01-11.application",
+            "label": "[6수01-11] 분수의 곱셈과 나눗셈 - 적용과 설명"
+          },
+          "target": {
+            "id": "kr.mt.math.number-operations.g5-6.s6-01-12.concept",
+            "label": "[6수01-12] 분수와 소수의 관계 - 개념 확인"
+          }
+        },
+        {
+          "id": "D",
+          "prerequisite": {
+            "id": "kr.mt.math.geometry-measurement.g1-2.s2-03-12.concept",
+            "label": "[2수03-12] 길이 - 개념 확인"
+          },
+          "target": {
+            "id": "kr.mt.math.geometry-measurement.g1-2.s2-03-11.concept",
+            "label": "[2수03-11] 길이 - 개념 확인"
+          }
+        }
+      ]
+    },
+    {
+      "id": "Q050",
+      "type": "edge-audit",
+      "subject": "과학",
+      "gradeBand": "5-6",
+      "prompt": "다음 네 개의 ‘선수 주제 → 목표 주제’ 중 온톨로지의 직접 선수 추천으로 기록되지 않은 하나를 고르세요.",
+      "relations": [
+        {
+          "id": "A",
+          "prerequisite": {
+            "id": "kr.mt.science.matter.gases.g4-15-04.procedure",
+            "label": "기체의 성질을 이용하여 작동시킬 수 있는 장치를 설계하고 만들 - 탐구 적용"
+          },
+          "target": {
+            "id": "kr.mt.science.matter.combustion.g6-14-01.concept",
+            "label": "물질의 성질이 달라지는 변화와 달라지지 않는 변화를 관찰하여 비교 - 개념 확인"
+          }
+        },
+        {
+          "id": "B",
+          "prerequisite": {
+            "id": "kr.mt.science.matter.objects-materials.g4-05-02.procedure",
+            "label": "물질의 세 가지 상태인 고체, 액체, 기체의 성질을 관찰하여 비교 - 탐구 적용"
+          },
+          "target": {
+            "id": "kr.mt.science.matter.objects-materials.g4-05-03.concept",
+            "label": "물질의 성질을 이용하여 쓰임새 있는 물체를 설계 - 개념 확인"
+          }
+        },
+        {
+          "id": "C",
+          "prerequisite": {
+            "id": "kr.mt.science.matter.combustion.g6-14-03.representation",
+            "label": "연소 전과 후의 물질을 비교하여 연소 과정에서 물질의 성질이 달라짐을 설명 - 자료 표현"
+          },
+          "target": {
+            "id": "kr.mt.science.matter.mixture-separation.g6-05-02.concept",
+            "label": "물을 증발시켜 물에 용해된 고체 물질을 분리 - 개념 확인"
+          }
+        },
+        {
+          "id": "D",
+          "prerequisite": {
+            "id": "kr.mt.science.matter.mixture-separation.g6-05-01.procedure",
+            "label": "알갱이의 크기가 다른 고체 혼합물과 골고루 섞이지 않는 액체 혼합물을 분리 - 탐구 적용"
+          },
+          "target": {
+            "id": "kr.mt.science.matter.mixture-separation.g6-05-02.concept",
+            "label": "물을 증발시켜 물에 용해된 고체 물질을 분리 - 개념 확인"
+          }
+        }
+      ]
+    }
+  ]
+}
