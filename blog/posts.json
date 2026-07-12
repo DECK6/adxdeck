@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-dm-pairing-access-control",
+    "file": "_built/hermes-dm-pairing-access-control.md",
+    "title": "Hermes DM Pairing은 Gateway 접근 승인을 일회용 코드로 바꾼다",
+    "description": "Hermes Agent can approve messaging users with short-lived pairing codes instead of collecting platform IDs in advance. This guide explains the authorization flow, CLI commands, storage, and operational boundaries.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-07-13",
+    "thumbnail": "images/hermes-dm-pairing-access-control-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "the-image-travels-through-compression",
     "file": "_built/the-image-travels-through-compression.md",
     "title": "이미지는 망가지며 이동한다",
