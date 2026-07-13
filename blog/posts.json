@@ -1,5 +1,16 @@
 [
   {
+    "slug": "hermes-modern-tui",
+    "file": "_built/hermes-modern-tui.md",
+    "title": "Hermes TUI는 긴 에이전트 세션을 한 터미널에서 지휘한다",
+    "description": "Hermes Agent's modern TUI turns long interactive runs into a responsive terminal workspace with overlays, live session switching, and shared session history. This guide explains launch options, configuration, requirements, and boundaries.",
+    "category": "Post",
+    "tags": [],
+    "date": "2026-07-14",
+    "thumbnail": "images/hermes-modern-tui-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "olafur-eliasson-and-public-perception",
     "file": "_built/olafur-eliasson-and-public-perception.md",
     "title": "인공 태양 아래서 감각은 공공의 일이 된다",
