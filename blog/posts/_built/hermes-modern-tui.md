@@ -7,7 +7,11 @@ author:
   - "Deck"
 date created: 2026-07-14
 date modified: 2026-07-14
-tags: [hermes, ai-agent, workflow, tui]
+tags:
+  - hermes
+  - ai-agent
+  - workflow
+  - tui
 description: Hermes Agent's modern TUI turns long interactive runs into a responsive terminal workspace with overlays, live session switching, and shared session history. This guide explains launch options, configuration, requirements, and boundaries.
 thumbnail: images/hermes-modern-tui-cover.png
 status: completed

@@ -5,7 +5,12 @@
     "title": "Hermes TUI는 긴 에이전트 세션을 한 터미널에서 지휘한다",
     "description": "Hermes Agent's modern TUI turns long interactive runs into a responsive terminal workspace with overlays, live session switching, and shared session history. This guide explains launch options, configuration, requirements, and boundaries.",
     "category": "Post",
-    "tags": [],
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "tui"
+    ],
     "date": "2026-07-14",
     "thumbnail": "images/hermes-modern-tui-cover.png",
     "author": "Deck"
