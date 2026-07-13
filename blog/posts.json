@@ -1,5 +1,24 @@
 [
   {
+    "slug": "olafur-eliasson-and-public-perception",
+    "file": "_built/olafur-eliasson-and-public-perception.md",
+    "title": "인공 태양 아래서 감각은 공공의 일이 된다",
+    "description": "올라퍼 엘리아슨의 인공 태양, 색채 통로, 녹는 빙하를 통해 몰입을 기술 스펙터클이 아니라 몸의 지각과 공동 책임을 조직하는 미디어아트 방법으로 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "Olafur-Eliasson",
+      "installation",
+      "phenomenology",
+      "light-art",
+      "climate-art",
+      "immersion"
+    ],
+    "date": "2026-07-14",
+    "thumbnail": "images/olafur-eliasson-public-perception-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-dm-pairing-access-control",
     "file": "_built/hermes-dm-pairing-access-control.md",
     "title": "Hermes DM Pairing은 Gateway 접근 승인을 일회용 코드로 바꾼다",
