@@ -5,7 +5,12 @@
     "title": "Hermes Session Handoff는 터미널의 긴 작업을 메신저로 이어 보낸다",
     "description": "Hermes Agent can hand a live CLI session to a messaging platform without discarding its transcript or tool history. This guide explains the handoff flow, prerequisites, thread behavior, and recovery boundaries.",
     "category": "Post",
-    "tags": [],
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "session-handoff"
+    ],
     "date": "2026-07-15",
     "thumbnail": "images/hermes-cross-platform-session-handoff-cover.png",
     "author": "Deck"

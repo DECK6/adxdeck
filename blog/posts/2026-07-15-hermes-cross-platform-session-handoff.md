@@ -7,7 +7,11 @@ author:
   - "Deck"
 date created: 2026-07-15
 date modified: 2026-07-15
-tags: [hermes, ai-agent, workflow, session-handoff]
+tags:
+  - hermes
+  - ai-agent
+  - workflow
+  - session-handoff
 description: Hermes Agent can hand a live CLI session to a messaging platform without discarding its transcript or tool history. This guide explains the handoff flow, prerequisites, thread behavior, and recovery boundaries.
 thumbnail: images/hermes-cross-platform-session-handoff-cover.png
 status: completed
