@@ -1,5 +1,28 @@
 [
   {
+    "slug": "the-emancipated-spectator-in-media-art",
+    "file": "_built/the-emancipated-spectator-in-media-art.md",
+    "title": "움직인다고 관객이 해방되는 것은 아니다",
+    "description": "자크 랑시에르의 해방된 관객과 감각의 배치 개념을 통해, 미디어아트의 참여·몰입·인터페이스가 실제로 관객의 해석과 평등을 여는지 묻는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "Jacques-Ranciere",
+      "spectatorship",
+      "participation",
+      "immersion",
+      "interface",
+      "AI",
+      "aesthetics",
+      "politics",
+      "theory"
+    ],
+    "date": "2026-07-15",
+    "thumbnail": "images/emancipated-spectator-media-art-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-modern-tui",
     "file": "_built/hermes-modern-tui.md",
     "title": "Hermes TUI는 긴 에이전트 세션을 한 터미널에서 지휘한다",
