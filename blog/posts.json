@@ -1,5 +1,23 @@
 [
   {
+    "slug": "when-media-becomes-a-tactic",
+    "file": "_built/when-media-becomes-a-tactic.md",
+    "title": "미디어는 권력의 틈에서 전술이 된다",
+    "description": "전술 미디어를 저항적 이미지의 스타일이 아니라 기존 채널과 권위의 형식을 잠시 전유해 권력 관계를 드러내는 사건의 기술로 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "tactical-media",
+      "media-activism",
+      "platform-critique",
+      "critical-engineering"
+    ],
+    "date": "2026-07-16",
+    "thumbnail": "images/tactical-media-power-gap-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-cross-platform-session-handoff",
     "file": "_built/hermes-cross-platform-session-handoff.md",
     "title": "Hermes Session Handoff는 터미널의 긴 작업을 메신저로 이어 보낸다",
