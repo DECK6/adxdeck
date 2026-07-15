@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-projects-multi-folder-workspaces",
+    "file": "_built/hermes-projects-multi-folder-workspaces.md",
+    "title": "Hermes Projects는 여러 저장소를 하나의 작업 단위로 묶는다",
+    "description": "Hermes Projects turns multiple folders and repositories into one named workspace. This guide explains primary folders, Desktop session grouping, per-profile state, and Kanban bindings.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "projects"
+    ],
+    "date": "2026-07-16",
+    "thumbnail": "images/hermes-projects-multi-folder-workspaces-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "when-media-becomes-a-tactic",
     "file": "_built/when-media-becomes-a-tactic.md",
     "title": "미디어는 권력의 틈에서 전술이 된다",

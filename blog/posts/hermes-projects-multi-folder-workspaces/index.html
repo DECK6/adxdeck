@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Projects는 여러 저장소를 하나의 작업 단위로 묶는다 | DEXA Blog</title>
+    <meta name="description" content="Hermes Projects turns multiple folders and repositories into one named workspace. This guide explains primary folders, Desktop session grouping, per-profile state, and Kanban bindings." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-projects-multi-folder-workspaces/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Projects는 여러 저장소를 하나의 작업 단위로 묶는다" />
+    <meta property="og:description" content="Hermes Projects turns multiple folders and repositories into one named workspace. This guide explains primary folders, Desktop session grouping, per-profile state, and Kanban bindings." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-projects-multi-folder-workspaces/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-projects-multi-folder-workspaces-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-07-16" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta property="article:tag" content="projects" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Projects는 여러 저장소를 하나의 작업 단위로 묶는다" />
+    <meta name="twitter:description" content="Hermes Projects turns multiple folders and repositories into one named workspace. This guide explains primary folders, Desktop session grouping, per-profile state, and Kanban bindings." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-projects-multi-folder-workspaces-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Projects는 여러 저장소를 하나의 작업 단위로 묶는다","description":"Hermes Projects turns multiple folders and repositories into one named workspace. This guide explains primary folders, Desktop session grouping, per-profile state, and Kanban bindings.","image":"https://dexa.art/blog/images/hermes-projects-multi-folder-workspaces-cover.png","datePublished":"2026-07-16","dateModified":"2026-07-16","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-projects-multi-folder-workspaces/"},"keywords":"hermes, ai-agent, workflow, projects"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 7월 16일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Projects는 여러 저장소를 하나의 작업 단위로 묶는다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">Hermes Projects turns multiple folders and repositories into one named workspace. This guide explains primary folders, Desktop session grouping, per-profile state, and Kanban bindings.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">projects</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-projects-multi-folder-workspaces-cover.png" alt="Hermes Projects multi-folder workspace cover" loading="lazy"></p>
+<p>하나의 제품이 앱 저장소, 문서 폴더, 에셋 디렉터리로 흩어지면 <code>cd</code>만으로는 “이 폴더들이 같은 일”이라는 사실을 남길 수 없다. Hermes Agent의 <strong>Projects</strong>는 여러 폴더와 저장소를 사람이 읽을 수 있는 이름 아래 묶고, 세션과 작업 보드가 공유할 기준점을 만든다.</p>
+<h2>기능 개요 — 폴더 목록보다 오래 사는 작업 경계</h2>
+<p>Project는 이름과 안정적인 slug, 하나 이상의 folder, 대표 위치인 primary folder, 선택적인 Kanban board 연결을 가진다. 활성 상태와 archive 상태도 별도로 기록된다. 단순 즐겨찾기가 아니라 Desktop의 세션 그룹과 작업 위치를 결정하는 명시적 workspace 객체다.</p>
+<p>Hermes는 세션의 현재 작업 디렉터리가 어느 Project folder 아래에 있는지 비교해 Desktop 목록을 묶는다. 여러 경로가 겹치면 더 구체적인 경로가 우선한다. GUI에서 Project를 전환하면 현재 채팅의 workspace도 primary folder로 이동한다. 반면 터미널에서 실행한 일회성 <code>cd</code>는 Project를 만들거나 바꾸지 않는다.</p>
+<p>상태는 profile마다 <code>$HERMES_HOME/projects.db</code>에 저장된다. 따라서 같은 컴퓨터라도 profile A와 profile B의 Project 목록은 독립적이다. 별도의 <code>config.yaml</code> 키는 필요하지 않으며, CLI와 Desktop이 이 작은 SQLite 저장소를 함께 사용한다.</p>
+<h2>어떻게 만들고 운영하는가</h2>
+<p>두 폴더를 하나의 Project로 만들고 앱 저장소를 primary로 지정해 보자.</p>
+<pre><code class="language-bash">hermes project create &quot;Aurora Demo&quot; \
+  ~/work/aurora-app ~/work/aurora-docs \
+  --slug aurora-demo \
+  --primary ~/work/aurora-app \
+  --use</code></pre>
+<p>생성 뒤에는 slug나 ID로 조회한다. <code>list</code>의 별표는 현재 active Project를 뜻한다.</p>
+<pre><code class="language-bash">hermes project list
+hermes project show aurora-demo
+hermes project add-folder aurora-demo ~/work/aurora-assets --label assets
+hermes project set-primary aurora-demo ~/work/aurora-app
+hermes project use aurora-demo</code></pre>
+<p>Project에 board를 연결하면 project-linked Kanban task가 primary 저장소를 기준으로 예측 가능한 worktree와 branch 규칙을 사용할 수 있다. Project와 board의 데이터베이스가 합쳐지는 것은 아니다.</p>
+<pre><code class="language-bash">hermes project bind-board aurora-demo delivery
+hermes project archive aurora-demo
+hermes project restore aurora-demo</code></pre>
+<p>Archive는 삭제가 아니라 복구 가능한 숨김이다. 연결을 해제하려면 board 인자를 빼고 <code>hermes project bind-board aurora-demo</code>를 실행한다.</p>
+<h2>짧은 실제 사용 사이드바</h2>
+<p>한 운영 셋업에서는 공개 웹앱과 원고 폴더가 서로 다른 위치에 있지만, 빌드와 검증은 하나의 결과물로 이어진다. 두 위치를 한 Project로 묶고 앱 저장소를 primary로 두면 Desktop의 관련 세션을 같은 경계에서 찾고, 검증 작업도 동일한 저장소 기준으로 배치할 수 있다. 역할이 다른 profile들은 각자 Project 상태를 유지한다.</p>
+<h2>Pitfalls / tips</h2>
+<ul><li><strong>Profile과 혼동하지 않는다.</strong> Profile은 모델·도구·기억·설정을 격리하고, Project는 그 안에서 폴더와 작업 맥락을 묶는다.</li><li><strong>Kanban이나 Worktree의 대체물이 아니다.</strong> Kanban은 durable task와 dependency를 관리하고, Git worktree는 브랜치 파일을 격리한다. Project는 둘이 참조할 workspace 기준점이다.</li><li><strong>폴더를 먼저 확인한다.</strong> 잘못된 경로도 문자열로 등록될 수 있으므로 <code>hermes project show</code>로 primary와 folder 목록을 검토한다.</li><li><strong>기존 task가 자동 이동한다고 가정하지 않는다.</strong> board binding 이후에도 task가 Project에 연결되었는지 확인해야 한다.</li><li><strong><code>projects.db</code>를 직접 편집하지 않는다.</strong> 이름 변경, 폴더 제거, archive와 restore는 <code>hermes project</code> 명령으로 처리한다.</li></ul>
+<p>폴더 하나에서 끝나는 짧은 작업은 셸의 현재 디렉터리만으로 충분하다. 여러 저장소와 문서, 반복 세션, Kanban 실행이 하나의 제품 경계를 공유해야 할 때 Projects를 쓰면 “어디서 일하는가”를 매번 다시 설명하지 않아도 된다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/when-media-becomes-a-tactic/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>미디어는 권력의 틈에서 전술이 된다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
