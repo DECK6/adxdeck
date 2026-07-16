@@ -14,6 +14,6 @@
   <!-- Wordmark -->
   <text x="140" y="82" fill="#F7FAFC"
         font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-        font-size="66" font-weight="800" letter-spacing="5">DEXA</text>
+        font-size="66" font-weight="800" textLength="200" lengthAdjust="spacingAndGlyphs">DEXA</text>
   <circle cx="360" cy="78" r="6" fill="#5EE7F3"/>
 </svg>
