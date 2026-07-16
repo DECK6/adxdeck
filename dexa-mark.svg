@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title desc">
+  <title id="title">DEXA symbol</title>
+  <desc id="desc">A triangular DEXA mark composed of three converging forms</desc>
+  <g stroke-linejoin="round">
+    <path d="M60 10 109 95H11Z" fill="none" stroke="#F7FAFC" stroke-width="5.5"/>
+    <path d="M60 20 79 53H41Z" fill="#F7FAFC"/>
+    <path d="M36 57 55 90H17Z" fill="#F7FAFC"/>
+    <path d="M84 57 103 90H65Z" fill="#5EE7F3"/>
+    <path d="M60 51 79 84H41Z" fill="#050607" stroke="#F7FAFC" stroke-width="3.5"/>
+  </g>
+</svg>
