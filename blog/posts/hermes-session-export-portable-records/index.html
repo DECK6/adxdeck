@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html class="dark" lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes Session Export는 대화 기록을 검증 가능한 파일로 꺼낸다 | DEXA Blog</title>
+    <meta name="description" content="Hermes Agent can export saved sessions as JSONL, Markdown, QMD, HTML, or agent traces. This guide explains filters, redaction, lineage handling, and safe cleanup boundaries." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-session-export-portable-records/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes Session Export는 대화 기록을 검증 가능한 파일로 꺼낸다" />
+    <meta property="og:description" content="Hermes Agent can export saved sessions as JSONL, Markdown, QMD, HTML, or agent traces. This guide explains filters, redaction, lineage handling, and safe cleanup boundaries." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-session-export-portable-records/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-session-export-portable-records-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-07-17" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta property="article:tag" content="session-export" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes Session Export는 대화 기록을 검증 가능한 파일로 꺼낸다" />
+    <meta name="twitter:description" content="Hermes Agent can export saved sessions as JSONL, Markdown, QMD, HTML, or agent traces. This guide explains filters, redaction, lineage handling, and safe cleanup boundaries." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-session-export-portable-records-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Session Export는 대화 기록을 검증 가능한 파일로 꺼낸다","description":"Hermes Agent can export saved sessions as JSONL, Markdown, QMD, HTML, or agent traces. This guide explains filters, redaction, lineage handling, and safe cleanup boundaries.","image":"https://dexa.art/blog/images/hermes-session-export-portable-records-cover.png","datePublished":"2026-07-17","dateModified":"2026-07-17","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-session-export-portable-records/"},"keywords":"hermes, ai-agent, workflow, session-export"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#00F0FF", "primary-hover": "#00C2CC",
+                        "background-light": "#000000", "background-dark": "#000000",
+                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
+                    },
+                    fontFamily: {
+                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
+                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
+                    }
+                }
+            }
+        };
+    </script>
+    <style>
+        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
+        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
+        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
+        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
+        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
+        .prose-dexa strong { color: #fff; font-weight: 600; }
+        .prose-dexa em { color: #6b7280; }
+        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
+        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
+        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
+        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
+        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
+        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
+        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
+        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
+        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
+        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
+        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
+        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
+        .prose-dexa tr:last-child td { border-bottom: none; }
+        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
+        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
+        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
+    </style>
+</head>
+<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
+    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
+                    <img src="/dexa_logo.svg?v=20260716c" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
+                </a>
+                <div class="hidden md:flex space-x-10 items-center">
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
+                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <main class="pt-32 pb-24 lg:pt-40">
+        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10">
+                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
+                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
+                </a>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Post</span>
+                    <span class="text-gray-600 font-mono text-xs">2026년 7월 17일</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">Hermes Session Export는 대화 기록을 검증 가능한 파일로 꺼낸다</h1>
+                <p class="text-lg text-gray-500 leading-relaxed">Hermes Agent can export saved sessions as JSONL, Markdown, QMD, HTML, or agent traces. This guide explains filters, redaction, lineage handling, and safe cleanup boundaries.</p>
+                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">session-export</span></div>
+            </div>
+            <div class="prose-dexa">
+<p><img src="/blog/images/hermes-session-export-portable-records-cover.png" alt="Hermes Session Export portable records cover" loading="lazy"></p>
+<p>에이전트와 나눈 대화가 로컬 데이터베이스에만 남아 있으면 다시 이어 가기에는 편하지만, 백업·감사·공유·장기 보관에는 다루기 어렵다. Hermes Agent의 <strong>Session Export</strong>는 저장된 세션을 목적에 맞는 파일 형식으로 꺼내고, 어떤 기록을 내보냈는지 검증할 수 있게 한다.</p>
+<h2>기능 개요 — 세션 저장소와 전달 파일을 분리한다</h2>
+<p>Hermes는 CLI, Gateway, Cron, API 등에서 생긴 대화를 <code>~/.hermes/state.db</code>에 세션으로 저장한다. 여기에는 제목, source, 모델, 메시지, tool call과 결과, token·시간 정보가 함께 들어간다. <code>hermes sessions export</code>는 이 원본 저장소를 직접 복사하는 대신 선택한 세션을 이식 가능한 표현으로 만든다.</p>
+<p>형식은 용도별로 나뉜다. 기본 <code>jsonl</code>은 세션마다 JSON 객체 하나를 기록해 백업과 기계 처리가 쉽다. <code>md</code>와 <code>qmd</code>는 사람이 읽을 파일을 세션별로 만들고, <code>manifest.jsonl</code>에 파일 경로·메시지 수·lineage ID·SHA-256을 남긴다. <code>html</code>은 외부 의존성 없는 단일 열람 페이지를 만들고, <code>trace</code>는 에이전트 실행 분석 도구가 읽는 Claude Code JSONL 형태를 사용한다.</p>
+<p>압축이나 정리와 역할도 다르다. <code>/compress</code>는 현재 모델이 읽는 context를 줄이고, <code>archive</code>는 목록에서 기록을 숨기며, <code>prune</code>과 <code>delete</code>는 저장소에서 행을 제거한다. Export는 그보다 앞에서 기록을 파일로 보존하는 단계다.</p>
+<h2>어떻게 내보내는가</h2>
+<p>먼저 목록에서 source와 session ID를 확인한다.</p>
+<pre><code class="language-bash">hermes sessions list --source cron --limit 30</code></pre>
+<p>시간·source·제목·모델·작업 디렉터리·메시지 수 필터를 조합할 수 있다. 파일을 쓰기 전 <code>--dry-run</code>으로 대상을 확인하고, 공유 가능성이 있으면 <code>--redact</code>를 붙인다.</p>
+<pre><code class="language-bash">hermes sessions export cron-archive.jsonl \
+  --source cron --older-than 30 --redact --dry-run
+
+hermes sessions export cron-archive.jsonl \
+  --source cron --older-than 30 --redact</code></pre>
+<p>하나의 긴 작업이 압축으로 여러 세션에 이어졌다면 Markdown export에서 <code>--lineage logical</code>을 사용해 한 논리적 기록으로 묶을 수 있다.</p>
+<pre><code class="language-bash">hermes sessions export --format md \
+  --session-id &lt;session-id&gt; --lineage logical --redact \
+  ~/archives/hermes-sessions</code></pre>
+<p>검토용 단일 파일에는 HTML이 맞다. 실행 분석용 trace는 외부 반출을 고려해 기본 redaction이 적용된다.</p>
+<pre><code class="language-bash">hermes sessions export --format html \
+  --session-id &lt;session-id&gt; --redact session-review.html
+
+hermes sessions export --format trace \
+  --session-id &lt;session-id&gt; session-trace.jsonl</code></pre>
+<p>별도 설정은 필요 없다. 각 프로파일의 <code>state.db</code>는 독립적이므로 기록이 있는 프로파일에서 실행한다.</p>
+<h2>짧은 실제 사용 사이드바</h2>
+<p>한 운영 셋업에서는 지식·개발·운영 역할과 예약 작업이 서로 다른 프로파일과 source로 기록된다. 오래된 예약 작업을 정리할 때는 먼저 source와 기간으로 <code>--dry-run</code>하고, 필요한 기록을 redacted Markdown과 manifest로 보존한 뒤에만 정리 대상을 판단한다. 진행 로그를 장기 memory에 억지로 넣지 않으면서도 근거는 다시 열어 볼 수 있는 방식이다.</p>
+<h2>Pitfalls / tips</h2>
+<ul><li><strong>Redaction을 최종 익명화로 오해하지 않는다.</strong> <code>--redact</code>는 키·토큰·자격 증명 패턴을 가리지만, 사람 이름이나 업무 문맥까지 판단하지 않는다. 외부 공유 전에는 생성 파일을 다시 읽는다.</li><li><strong>필터 없는 bulk export를 습관화하지 않는다.</strong> active session까지 포함될 수 있으므로 source·기간·제목을 좁히고 <code>--dry-run</code> 결과를 확인한다.</li><li><strong>Export와 삭제를 한 단계로 붙이지 않는다.</strong> <code>--delete-after-verified</code>는 단일 session의 Markdown/QMD export에서만 제한적으로 제공된다. manifest와 파일을 확인하기 전에는 <code>prune</code>이나 <code>delete</code>를 실행하지 않는다.</li><li><strong>Trace upload는 외부 작업이다.</strong> 공개 옵션을 쓰기 전 권한과 redaction 결과를 검토한다.</li></ul>
+<p>대화를 잠깐 이어 갈 목적이면 <code>--continue</code>나 <code>--resume</code>이면 충분하고, 과거 내용을 찾는 일은 <code>session_search</code>가 더 빠르다. 세션을 사람이 읽거나 다른 도구로 분석하고, 정리 전 보존 근거까지 남겨야 할 때 Session Export가 기록을 검증 가능한 산출물로 바꿔 준다.</p>
+            </div>
+            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/technology-does-not-make-only-one-world/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>기술은 하나의 세계만 만들지 않는다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg?v=20260716c" alt="DEXA" class="h-12 w-auto"></a>
+                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

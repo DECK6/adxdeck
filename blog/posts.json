@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-session-export-portable-records",
+    "file": "_built/hermes-session-export-portable-records.md",
+    "title": "Hermes Session Export는 대화 기록을 검증 가능한 파일로 꺼낸다",
+    "description": "Hermes Agent can export saved sessions as JSONL, Markdown, QMD, HTML, or agent traces. This guide explains filters, redaction, lineage handling, and safe cleanup boundaries.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "session-export"
+    ],
+    "date": "2026-07-17",
+    "thumbnail": "images/hermes-session-export-portable-records-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "technology-does-not-make-only-one-world",
     "file": "_built/technology-does-not-make-only-one-world.md",
     "title": "기술은 하나의 세계만 만들지 않는다",
