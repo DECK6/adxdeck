@@ -1,5 +1,24 @@
 [
   {
+    "slug": "technology-does-not-make-only-one-world",
+    "file": "_built/technology-does-not-make-only-one-world.md",
+    "title": "기술은 하나의 세계만 만들지 않는다",
+    "description": "육 후이의 코스모테크닉스를 통해 기술을 보편적 도구가 아니라 세계관과 윤리, 몸과 환경이 결합된 복수의 실천으로 읽고, 미디어아트와 AI가 다른 기술 세계를 만들 수 있는지 묻는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "cosmotechnics",
+      "yuk-hui",
+      "technodiversity",
+      "philosophy-of-technology",
+      "AI"
+    ],
+    "date": "2026-07-17",
+    "thumbnail": "images/cosmotechnics-multiple-technical-worlds-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-projects-multi-folder-workspaces",
     "file": "_built/hermes-projects-multi-folder-workspaces.md",
     "title": "Hermes Projects는 여러 저장소를 하나의 작업 단위로 묶는다",
