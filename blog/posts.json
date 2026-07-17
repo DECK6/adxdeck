@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-security-audit-supply-chain",
+    "file": "_built/hermes-security-audit-supply-chain.md",
+    "title": "Hermes Security Audit은 venv 밖의 확장면까지 검사한다",
+    "description": "Hermes Agent can audit its active Python environment, plugin dependency pins, and version-pinned MCP servers against OSV.dev. This guide explains scope, exit thresholds, automation, and the boundaries that still need manual review.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "security-audit"
+    ],
+    "date": "2026-07-18",
+    "thumbnail": "images/hermes-security-audit-supply-chain-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "mark-hansen-and-media-before-consciousness",
     "file": "_built/mark-hansen-and-media-before-consciousness.md",
     "title": "인터페이스는 우리가 느끼기 전에 움직인다",
