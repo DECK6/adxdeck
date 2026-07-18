@@ -1,5 +1,25 @@
 [
   {
+    "slug": "when-enjoyment-becomes-platform-value",
+    "file": "_built/when-enjoyment-becomes-platform-value.md",
+    "title": "좋아서 한 일이 플랫폼의 자산이 될 때",
+    "description": "프리 레이버 개념을 통해 자발적인 창작과 참여가 어떻게 플랫폼의 데이터·운영·평판 자산으로 전환되는지 살피고, 미디어아트와 AI 공동체가 기여의 권리와 보상을 다시 설계하는 기준을 제안한다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "free-labor",
+      "digital-labor",
+      "participation",
+      "platform-critique",
+      "AI",
+      "creative-labor"
+    ],
+    "date": "2026-07-19",
+    "thumbnail": "images/free-labor-platform-value-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-security-audit-supply-chain",
     "file": "_built/hermes-security-audit-supply-chain.md",
     "title": "Hermes Security Audit은 venv 밖의 확장면까지 검사한다",
