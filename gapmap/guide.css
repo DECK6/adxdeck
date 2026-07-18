@@ -1,0 +1,567 @@
+:root {
+  color-scheme: light;
+  --accent: #ff6b35;
+  --accent-soft: #ffe8de;
+  --blue: #1b4d5c;
+  --blue-deep: #102f3a;
+  --canvas: #f6f3ec;
+  --ink: #17272e;
+  --muted: #5c6a70;
+  --line: #d8d3c6;
+  --panel: #fffdf8;
+  --smooth: #2f7d5b;
+  --smooth-soft: #e2f2ea;
+  --shadow: 0 12px 34px rgba(17, 44, 52, 0.09);
+  --radius: 16px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: Pretendard, "Noto Sans KR", "Apple SD Gothic Neo", system-ui, sans-serif;
+  font-size: 18px;
+  line-height: 1.7;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* readability: comfortable single column on every viewport */
+.guide-header,
+.guide-main,
+.guide-footer {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--ink);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: 0 0 8px 0;
+  z-index: 20;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+a {
+  color: var(--blue);
+}
+
+/* ---- header ---- */
+.guide-header {
+  padding-top: 24px;
+  padding-bottom: 8px;
+}
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.brand {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--blue-deep);
+}
+.brand-sub {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+.mode-toggle label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 8px 12px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+}
+.mode-toggle input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--blue);
+}
+body.teacher-mode .mode-toggle label {
+  border-color: var(--blue);
+  color: var(--blue-deep);
+  background: #e8f0f2;
+}
+
+/* ---- main ---- */
+.guide-main {
+  padding-top: 12px;
+  padding-bottom: 40px;
+  min-height: 50vh;
+  outline: none;
+}
+.load-state,
+.load-error {
+  padding: 40px 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+.load-error {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ---- home: grade picker ---- */
+.home-question {
+  font-size: 1.9rem;
+  line-height: 1.35;
+  margin: 18px 0 8px;
+  letter-spacing: -0.01em;
+}
+.home-help {
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+.grade-group {
+  margin-bottom: 22px;
+}
+.grade-group-title {
+  font-size: 1.05rem;
+  color: var(--muted);
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+.grade-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.grade-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 16px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  cursor: pointer;
+  text-align: left;
+  font: inherit;
+  color: var(--ink);
+  transition: border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.grade-btn:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+.grade-btn.is-transition {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.grade-btn-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+.grade-btn-tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--muted);
+}
+.grade-btn.is-transition .grade-btn-tag {
+  color: var(--accent);
+}
+
+/* ---- grade screen ---- */
+.back-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 8px 0 18px;
+}
+.back-btn,
+.preview-link {
+  font: inherit;
+  font-weight: 700;
+  color: var(--blue);
+  background: none;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.back-btn:hover,
+.preview-link:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.crumb {
+  color: var(--muted);
+  font-weight: 600;
+}
+.grade-kicker {
+  margin: 0;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+.grade-headline {
+  font-size: 1.75rem;
+  line-height: 1.35;
+  margin: 6px 0 10px;
+}
+.grade-summary {
+  font-size: 1.1rem;
+  margin: 0 0 12px;
+}
+.subject-count-note {
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+
+.upcoming-card {
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  padding: 20px;
+  margin-top: 12px;
+}
+.upcoming-card h2 {
+  margin: 0 0 6px;
+  font-size: 1.2rem;
+}
+.preview-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+/* ---- subject cards ---- */
+.subject-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.subject {
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  overflow: hidden;
+}
+.subject.is-smooth {
+  background: var(--smooth-soft);
+  border-color: #b7ddca;
+}
+.subject-summary {
+  cursor: pointer;
+  padding: 18px 20px;
+  list-style: none;
+}
+.subject-summary::-webkit-details-marker {
+  display: none;
+}
+.subject-summary::after {
+  content: "펼치기 ▾";
+  float: right;
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+.subject[open] .subject-summary::after {
+  content: "접기 ▴";
+}
+.subject-title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.subject-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+.badges {
+  display: inline-flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: #b4431c;
+}
+.badge-smooth {
+  background: #cdeadd;
+  color: var(--smooth);
+}
+.subject-lead {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+.subject.is-smooth .subject-lead {
+  color: #2f6a52;
+}
+
+.subject-body {
+  padding: 4px 20px 22px;
+  border-top: 1px dashed var(--line);
+}
+.subject-intro {
+  font-size: 1.05rem;
+  margin: 16px 0 0;
+}
+.sub-block,
+.field-signal,
+.new-concepts {
+  margin-top: 20px;
+}
+.section-h {
+  font-size: 1.1rem;
+  margin: 0 0 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.sub-block p,
+.field-signal p {
+  margin: 0 0 8px;
+}
+.ai-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  padding: 1px 8px;
+}
+
+.field-signal {
+  background: #f3eefa;
+  border: 1px solid #d9c9ef;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+.field-caveat {
+  color: #6a4b93;
+  font-size: 0.92rem;
+  margin-bottom: 0 !important;
+}
+
+/* ---- new concepts ---- */
+.new-concepts-help {
+  color: var(--muted);
+  margin: 0 0 12px;
+  font-size: 0.98rem;
+}
+.concept-domain {
+  margin-bottom: 14px;
+}
+.concept-domain-title {
+  font-size: 1rem;
+  margin: 0 0 6px;
+  color: var(--blue-deep);
+}
+.concept-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.concept-item {
+  border-left: 3px solid var(--accent-soft);
+  padding-left: 12px;
+}
+.concept-label {
+  margin: 0;
+  font-weight: 700;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.concept-explain {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+/* code chips: hidden until 교사 모드 */
+.code-chip {
+  display: none;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: var(--blue);
+  background: #e8f0f2;
+  border-radius: 6px;
+  padding: 1px 6px;
+}
+body.teacher-mode .code-chip {
+  display: inline-block;
+}
+
+/* ---- evidence fold ---- */
+.evidence {
+  margin-top: 20px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #faf8f2;
+}
+.evidence > summary {
+  cursor: pointer;
+  padding: 12px 16px;
+  font-weight: 700;
+  color: var(--blue);
+  font-size: 0.95rem;
+}
+.evidence-body {
+  padding: 4px 16px 16px;
+  font-size: 0.95rem;
+}
+.evidence-facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 16px;
+  margin: 8px 0 0;
+}
+.evidence-facts dt {
+  font-weight: 700;
+  color: var(--muted);
+}
+.evidence-facts dd {
+  margin: 0;
+}
+.evidence-sub {
+  font-size: 0.95rem;
+  margin: 14px 0 4px;
+}
+.evidence-rationale,
+.evidence-basis {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+.evidence-rationale li,
+.evidence-basis li {
+  margin-bottom: 4px;
+}
+
+/* ---- footer ---- */
+.guide-footer {
+  border-top: 1px solid var(--line);
+  padding-top: 18px;
+  padding-bottom: 40px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+.guide-footer p {
+  margin: 0 0 8px;
+}
+.expert-link a {
+  font-weight: 700;
+}
+
+/* ---- focus visibility (keyboard) ---- */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ---- responsive ---- */
+@media (max-width: 520px) {
+  body {
+    font-size: 17px;
+  }
+  .grade-buttons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .home-question {
+    font-size: 1.6rem;
+  }
+  .grade-headline {
+    font-size: 1.5rem;
+  }
+}
+
+/* ---- reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+    transition: none !important;
+    animation: none !important;
+  }
+  .grade-btn:hover {
+    transform: none;
+  }
+}
+
+/* ---- print: one grade → clean A4 pages ---- */
+@media print {
+  body {
+    background: #fff;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  .guide-header .mode-toggle,
+  .back-bar,
+  .skip-link,
+  .subject-summary::after,
+  .preview-links,
+  .expert-link {
+    display: none !important;
+  }
+  .guide-header,
+  .guide-main,
+  .guide-footer {
+    max-width: none;
+    padding: 0;
+  }
+  /* force every fold open so the printout is complete */
+  .subject[open],
+  .subject {
+    break-inside: avoid;
+    page-break-inside: avoid;
+    box-shadow: none;
+    border: 1px solid #999;
+  }
+  .subject-body {
+    display: block !important;
+  }
+  details:not([open]) > .subject-body,
+  .evidence-body {
+    display: block !important;
+  }
+  .code-chip {
+    display: inline-block !important;
+  }
+  .subject-summary::after {
+    content: "";
+  }
+  .guide-footer {
+    border-top: 1px solid #999;
+    color: #333;
+  }
+}
