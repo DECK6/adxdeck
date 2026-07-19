@@ -1,5 +1,24 @@
 [
   {
+    "slug": "when-the-camera-stops-imitating-the-eye",
+    "file": "_built/when-the-camera-stops-imitating-the-eye.md",
+    "title": "카메라는 눈을 흉내 내지 않는다",
+    "description": "Steina Vasulka는 카메라와 비디오 신호를 기록 도구가 아니라 스스로 움직이고 변조되는 지각 장치로 바꾸었다. Steina의 초기 전자영상 실험을 오늘의 기계 시각과 다시 연결해 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-art",
+      "video-art",
+      "steina-vasulka",
+      "machine-vision",
+      "electronic-signal",
+      "feedback",
+      "media-archaeology"
+    ],
+    "date": "2026-07-20",
+    "thumbnail": "images/steina-vasulka-machine-vision-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-automation-blueprints-confirmed-forms",
     "file": "_built/hermes-automation-blueprints-confirmed-forms.md",
     "title": "Hermes Automation Blueprints는 cron 문법보다 먼저 목적을 묻는다",
