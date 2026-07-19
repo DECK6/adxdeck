@@ -1,4 +1,4 @@
-import{t as e}from"./neural-worker-aLSnMOmf.js";
+import{t as e}from"./neural-worker-CblLSqyP.js";
 /*!
 * ONNX Runtime Web v1.27.0
 * Copyright (c) Microsoft Corporation. All rights reserved.
