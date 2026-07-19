@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-managed-scope-per-key-policy",
+    "file": "_built/hermes-managed-scope-per-key-policy.md",
+    "title": "Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다",
+    "description": "Hermes Agent Managed Scope lets administrators pin selected configuration and environment keys without locking every user setting. This guide explains precedence, setup, write guards, and the POSIX-first security boundary.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "managed-scope"
+    ],
+    "date": "2026-07-20",
+    "thumbnail": "images/hermes-managed-scope-per-key-policy-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "when-the-camera-stops-imitating-the-eye",
     "file": "_built/when-the-camera-stops-imitating-the-eye.md",
     "title": "카메라는 눈을 흉내 내지 않는다",
