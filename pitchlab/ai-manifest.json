@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-07-19T08:08:37.085Z",
+  "model": {
+    "version": "v0.1.1",
+    "license": "MIT",
+    "source": "https://raw.githubusercontent.com/lars76/swift_f0/v0.1.1/swift_f0/model.onnx",
+    "path": "models/swiftf0-v0.1.1.fa91bb45512b.onnx",
+    "fileName": "swiftf0-v0.1.1.fa91bb45512b.onnx",
+    "sha256": "fa91bb45512b90339cf4b00a599ba8fe3a253c46419fcfe6b46df77a8a8336a5",
+    "rawBytes": 399114,
+    "gzipBytes": 362841,
+    "brotliBytes": 358125,
+    "input": {
+      "name": "input_audio",
+      "dtype": "float32",
+      "shape": [
+        1,
+        4096
+      ]
+    },
+    "outputs": [
+      {
+        "name": "pitch_hz",
+        "dtype": "float32"
+      },
+      {
+        "name": "confidence",
+        "dtype": "float32"
+      }
+    ]
+  },
+  "runtime": {
+    "package": "onnxruntime-web",
+    "version": "1.27.0",
+    "backend": "wasm",
+    "mjs": {
+      "path": "ort/ort-wasm-simd-threaded.0a1e718d99c4.mjs",
+      "fileName": "ort-wasm-simd-threaded.0a1e718d99c4.mjs",
+      "sha256": "0a1e718d99c41b22c21f2520ff4f9e883a6b5533856e398d21816ee8eb8185d3",
+      "rawBytes": 24180,
+      "gzipBytes": 9092,
+      "brotliBytes": 8017
+    },
+    "wasm": {
+      "path": "ort/ort-wasm-simd-threaded.d1ab1b94b16a.wasm",
+      "fileName": "ort-wasm-simd-threaded.d1ab1b94b16a.wasm",
+      "sha256": "d1ab1b94b16a65b29d710d0b587b29e7bed336827577623913479b8afe8113e6",
+      "rawBytes": 13479978,
+      "gzipBytes": 3453562,
+      "brotliBytes": 2201471
+    }
+  },
+  "total": {
+    "rawBytes": 13903272,
+    "gzipBytes": 3825495,
+    "brotliBytes": 2567613
+  }
+}
