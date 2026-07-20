@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="ko">
+<html lang="ko">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,92 +25,43 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"몸은 어떻게 실시간 인터페이스가 되는가","description":"An essay on Daito Manabe's body-centered media art: how biosignals, sensors, real-time control, choreography, machine learning, and stage engineering turn the human body into an interface rather than a stable expressive origin.","image":"https://dexa.art/blog/images/2026-05-13-body-as-realtime-interface-cover.png","datePublished":"2026-05-13","dateModified":"2026-05-13","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/the-body-as-realtime-interface/"},"keywords":"media-art, performance, realtime, body-interface"}</script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#00F0FF", "primary-hover": "#00C2CC",
-                        "background-light": "#000000", "background-dark": "#000000",
-                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
-                    },
-                    fontFamily: {
-                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
-                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
-                    }
-                }
-            }
-        };
-    </script>
-    <style>
-        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
-        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
-        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
-        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
-        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
-        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
-        .prose-dexa strong { color: #fff; font-weight: 600; }
-        .prose-dexa em { color: #6b7280; }
-        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
-        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
-        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
-        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
-        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
-        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
-        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
-        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
-        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
-        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
-        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
-        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
-        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
-        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
-        .prose-dexa tr:last-child td { border-bottom: none; }
-        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
-        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
-        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
 </head>
-<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
-    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
-                    <img src="/dexa_logo.svg?v=20260716c" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
-                </a>
-                <div class="hidden md:flex space-x-10 items-center">
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
-                </div>
-            </div>
+<body>
+    <nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/blog/" class="active">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
         </div>
     </nav>
-    <main class="pt-32 pb-24 lg:pt-40">
-        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-10">
-                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
-                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
-                </a>
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
-                    <span class="text-gray-600 font-mono text-xs">2026년 5월 13일</span>
-                </div>
-                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">몸은 어떻게 실시간 인터페이스가 되는가</h1>
-                <p class="text-lg text-gray-500 leading-relaxed">An essay on Daito Manabe's body-centered media art: how biosignals, sensors, real-time control, choreography, machine learning, and stage engineering turn the human body into an interface rather than a stable expressive origin.</p>
-                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">performance</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">realtime</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">body-interface</span></div>
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-kicker" style="margin-top:20px;">Article · 2026.05.13</div>
             </div>
-            <div class="prose-dexa">
+            <div class="prose">
+                <h1>몸은 어떻게 실시간 인터페이스가 되는가</h1>
+                <p style="color:var(--muted);font-size:17px;">An essay on Daito Manabe's body-centered media art: how biosignals, sensors, real-time control, choreography, machine learning, and stage engineering turn the human body into an interface rather than a stable expressive origin.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">media-art</span><span class="dx-tag-chip">performance</span><span class="dx-tag-chip">realtime</span><span class="dx-tag-chip">body-interface</span></div>
 <p><img src="/blog/images/2026-05-13-body-as-realtime-interface-cover.png" alt="cover" loading="lazy"></p>
 <p>다이토 마나베(Daito Manabe)의 작업을 볼 때 가장 먼저 눈에 들어오는 것은 기술이다. 전기 자극을 받은 얼굴, 움직임을 따라 반응하는 빛, 무용수와 드론이 동시에 움직이는 무대, AI와 모션 캡처가 결합된 안무. 하지만 이 작업들을 “최신 기술을 쓴 공연”으로만 읽으면 핵심은 사라진다. 마나베가 반복해서 묻는 것은 더 근본적이다. 몸은 어디까지 입력 장치가 될 수 있는가. 감각은 어디까지 제어 신호가 될 수 있는가. 무대는 언제부터 이미지가 아니라 실시간 시스템이 되는가.</p>
 <p>그의 작업에서 몸은 더 이상 표현의 출발점으로 안정되어 있지 않다. 몸은 센서로 읽히고, 데이터로 분해되고, 전기 자극으로 다시 움직이며, 빛과 소리와 영상의 제어값으로 번역된다. 즉 몸은 감정을 표현하는 자연스러운 기관이 아니라, 읽고 쓰고 매핑하고 동기화할 수 있는 인터페이스가 된다. 이 전환이 마나베를 동시대 미디어아트에서 중요한 작가로 만든다.</p>
@@ -133,19 +84,25 @@
 <p>마나베의 작업이 남기는 가장 강한 기준은 “몸을 이미지로 보여주는가, 아니면 몸이 시스템 안에서 어떻게 작동하는지 드러내는가”다. 전자는 시각효과에 머물 수 있다. 후자는 몸과 기술의 관계를 다시 묻게 만든다.</p>
 <p>동시대 미디어아트가 AI, 센서, XR, 로봇, 실시간 엔진을 더 많이 사용할수록 이 구분은 중요해진다. 좋은 기술 기반 작업은 장비를 자랑하지 않는다. 그것은 장비가 몸, 감각, 시간, 제어권을 어떻게 다시 배열하는지 보이게 만든다. 마나베의 작업은 그 배열이 아름답고 불안하며, 때로는 위험할 수 있다는 사실을 동시에 보여준다. 그래서 그의 무대에서 몸은 표현하는 주체이자, 제어되는 장치이자, 아직 완전히 이해되지 않은 인터페이스로 남는다.</p>
             </div>
-            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
-                <a id="prev-post" href="/blog/posts/hermes-skills-system/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes Skills — 에이전트에게 절차 기억을 주입하는 법</span></a>
-                <a id="next-post" href="/blog/posts/hermes-dashboard-control-room/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span>Hermes 대시보드는 에이전트 운영의 조종석이다</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-skills-system/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>Hermes Skills — 에이전트에게 절차 기억을 주입하는 법</span></a>
+                <a id="next-post" href="/blog/posts/hermes-dashboard-control-room/" class="spec-row" style="text-decoration:none;"><span>Hermes 대시보드는 에이전트 운영의 조종석이다</span><span class="k">NEXT →</span></a>
             </nav>
         </article>
     </main>
-    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg?v=20260716c" alt="DEXA" class="h-12 w-auto"></a>
-                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
-            </div>
-        </div>
+    <footer class="dx-footer" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
+        <a href="/" style="display:flex;align-items:center;gap:10px;">
+            <svg viewBox="4 4 112 98" width="28" height="24" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+        </a>
+        <p class="dx-footer-note" style="margin:0;text-align:right;">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
     </footer>
 </body>
 </html>

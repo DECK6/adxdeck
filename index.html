@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="ko">
+<html lang="ko">
 
 <head>
     <!-- Google tag (gtag.js) -->
@@ -58,412 +58,248 @@
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Noto+Sans+KR:wght@300;400;500;700&amp;display=swap"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap"
         rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#00F0FF", // Neon Cyan/Electric Blue
-                        "primary-hover": "#00C2CC",
-                        "background-light": "#000000",
-                        "background-dark": "#000000",
-                        "card-dark": "#0A0A0A",
-                        "accent-green": "#39FF14", // Neon Green
-                        "accent-purple": "#BC13FE", // Neon Purple
-                    },
-                    fontFamily: {
-                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
-                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
-                    },
-                    backgroundImage: {
-                        'hero-glow': 'radial-gradient(circle at center, rgba(0, 240, 255, 0.1) 0%, rgba(0,0,0,0) 70%)',
-                        'grid-pattern': "linear-gradient(to right, #1a1a1a 1px, transparent 1px), linear-gradient(to bottom, #1a1a1a 1px, transparent 1px)",
-                    }
-                },
-            },
-        };
-    </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
     <style>
-        body {
-            font-family: 'Noto Sans KR', 'Inter', sans-serif;
-            /* background-color: #000000; Removed to show canvas */
-            color: #e5e7eb;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
+        .dx-badge, .dx-badge-dark { text-transform: uppercase; }
+        .work-card .spec span { text-transform: uppercase; }
+        .dx-link { font-family: var(--font-mono); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; color: var(--orange); text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; }
+        .dx-link:hover { color: var(--orange-hover); }
+        .dx-grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 44px; }
+        .btn-primary, .btn-secondary, .btn-outline-dark { text-transform: uppercase; }
+
+        #mobile-menu-btn { display: none; align-items: center; justify-content: center; }
+        @media (max-width: 768px) {
+            .dx-nav-links { display: none; }
+            #mobile-menu-btn { display: inline-flex; }
+        }
+        @media (min-width: 769px) {
+            #mobile-menu { display: none !important; }
         }
 
-        html {
-            scroll-behavior: smooth;
+        @keyframes dexa-spin { to { transform: rotate(360deg); } }
+
+        .opacity-0 { opacity: 0 !important; }
+        #video-modal { transition: opacity 0.5s; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .modal-content { width: 100%; height: 100%; flex-direction: column; }
+        .modal-video-pane { width: 100%; height: 50vh; }
+        .modal-info-pane { width: 100%; height: 50vh; overflow-y: auto; border-top: 1px solid var(--ink-key); }
+        @media (min-width: 768px) {
+            .modal-content { width: 90%; height: 90%; flex-direction: row; }
+            .modal-video-pane { width: 75%; height: 100%; }
+            .modal-info-pane { width: 25%; height: 100%; border-top: none; border-left: 1px solid var(--ink-key); }
         }
 
-        /* Canvas background z-index fix */
-        canvas {
-            display: block;
-            width: 100vw;
-            height: 100vh;
-            background-color: #000000;
-        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--paper); }
+        ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 0; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--orange); }
 
-        #hero {
-            position: relative;
-            z-index: 10;
-            background: transparent;
-            /* Ensure transparency so canvas shows through */
-        }
-
-        .section-bg {
-            background-color: rgba(0, 0, 0, 0.8);
-            /* Add semi-transparent background to other sections to ensure readability */
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: #000000;
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 0px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00F0FF;
-        }
-
-        .neon-text {
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.5), 0 0 20px rgba(0, 240, 255, 0.3);
-        }
-
-        .neon-border {
-            box-shadow: 0 0 5px rgba(0, 240, 255, 0.2), inset 0 0 5px rgba(0, 240, 255, 0.1);
-        }
-
-        .card-hover-effect {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .card-hover-effect:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 0 20px rgba(0, 240, 255, 0.15);
-            border-color: #00F0FF;
-        }
-
-        .grid-bg {
-            background-size: 40px 40px;
-            background-image: linear-gradient(to right, #111 1px, transparent 1px), linear-gradient(to bottom, #111 1px, transparent 1px);
-        }
-
-        /* Video Modal Styles */
-        #video-modal {
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-
-        .modal-content {
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
-        }
+        .fade-in-up { opacity: 0; transform: translateY(12px); transition: opacity 0.5s, transform 0.5s; }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+        @media (prefers-reduced-motion: reduce) { .fade-in-up { opacity: 1; transform: none; transition: none; } }
     </style>
 </head>
 
-<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
-    <!-- Container for p5.js canvas if needed specific placement, otherwise sketch.js handles it -->
-    <div id="hero-canvas-container" class="fixed inset-0 pointer-events-none z-[-1] bg-black">
-    </div>
-
-    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
-                    <img src="dexa_logo.svg?v=20260716c" alt="DEXA Logo"
-                        class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
-                </div>
-                <div class="hidden md:flex space-x-10 items-center">
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors hover:drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]"
-                        href="/">HOME</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors hover:drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]"
-                        href="#studio">STUDIO</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#39FF14] transition-colors hover:drop-shadow-[0_0_5px_rgba(57,255,20,0.5)]"
-                        href="#solutions">SOLUTIONS</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors hover:drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]"
-                        href="/blog/">BLOG</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors hover:drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]"
-                        href="about-deck.html">ABOUT</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors hover:drop-shadow-[0_0_5px_rgba(188,19,254,0.5)]"
-                        href="#contact">CONTACT</a>
-                </div>
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-400 hover:text-[#00F0FF]" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
-                        <span class="material-symbols-outlined" aria-hidden="true">menu</span>
-                    </button>
-                </div>
-            </div>
+<body>
+    <nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="#studio">STUDIO</a>
+            <a href="#solutions">SOLUTIONS</a>
+            <a href="/blog/">BLOG</a>
+            <a href="about-deck.html">ABOUT</a>
+            <a href="#contact">CONTACT</a>
         </div>
-        <!-- Mobile Navigation -->
-        <nav id="mobile-menu" class="md:hidden bg-black/95 border-t border-white/10 hidden">
-            <div class="px-4 py-2 space-y-2">
-                <a href="/" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">HOME</a>
-                <a href="#studio" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">STUDIO</a>
-                <a href="#solutions"
-                    class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">SOLUTIONS</a>
-                <a href="/blog/"
-                    class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">BLOG</a>
-                <a href="about-deck.html"
-                    class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">ABOUT</a>
-                <a href="#contact" class="block py-2 text-gray-300 hover:text-blue-400 transition-colors">CONTACT</a>
-            </div>
-        </nav>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
     </nav>
-    <header id="hero" class="relative pt-32 pb-24 lg:pt-48 lg:pb-40 overflow-hidden">
-        <!-- Decorative elements removed for debugging -->
-        <div class="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
-            <div
-                class="inline-block mb-4 px-3 py-1 border border-[#00F0FF]/30 rounded-full bg-[#00F0FF]/5 backdrop-blur-sm">
-                <span class="text-[#00F0FF] text-xs font-mono tracking-widest uppercase">High Contrast
-                    Intelligence</span>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="#studio">STUDIO</a>
+        <a href="#solutions">SOLUTIONS</a>
+        <a href="/blog/">BLOG</a>
+        <a href="about-deck.html">ABOUT</a>
+        <a href="#contact">CONTACT</a>
+    </nav>
+
+    <header id="hero" class="hero-wrap">
+        <div class="hero-panel">
+            <div class="screw tl"></div>
+            <div class="screw tr"></div>
+            <div class="screw bl"></div>
+            <div class="screw br"></div>
+
+            <div class="hero-status">
+                <span class="path">DEXA.ART / SIGNAL PATH</span>
+                <span class="live"><span class="blink" style="width:6px;height:6px;border-radius:50%;background:var(--cyan);display:inline-block;"></span>LIVE — INCHEON, KR</span>
             </div>
-            <h1 class="text-6xl md:text-8xl font-black tracking-tighter mb-8 text-white drop-shadow-2xl leading-[0.9]">
-                <span class="block text-white">Where AI</span>
-                <span class="block text-[#00F0FF] neon-text mt-2">Meets Art</span>
-            </h1>
-            <p class="mt-8 text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-light">
-                <span class="text-white font-medium">Translating the Language of Tech into the Experience of
-                    Art.</span><br class="hidden md:block" />
+
+            <div class="hero-display">HIGH CONTRAST INTELLIGENCE — SYS OK</div>
+
+            <h1>Where AI<br><span class="cy">Meets Art</span></h1>
+            <p class="hero-sub">
+                <strong style="color:#F7FAFC;">Translating the Language of Tech into the Experience of Art.</strong><br>
                 DEXA는 AI 미디어아트, 인터랙티브 전시, 브랜드 경험, 교육 프로그램을 기획·제작합니다.<br>
                 기술의 언어를 예술의 경험으로 번역해, 실제 의뢰 가능한 결과물로 연결합니다.
             </p>
-            <div class="mt-12 flex flex-col sm:flex-row justify-center gap-6">
-                <a class="group relative px-8 py-4 bg-[#00F0FF] text-black font-bold uppercase tracking-wider hover:bg-white transition-all duration-300 flex items-center justify-center gap-2"
-                    href="#contact">
-                    <span class="absolute inset-0 bg-[#00F0FF]/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                    <span class="relative flex items-center gap-2">Start a Project <span
-                            class="material-symbols-outlined text-lg">north_east</span></span>
-                </a>
-                <a class="px-8 py-4 bg-white/5 hover:bg-white/10 text-white border border-white/10 font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2"
-                    href="#studio">
-                    View Portfolio <span class="material-symbols-outlined text-lg">arrow_forward</span>
-                </a>
+
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                <a href="#contact" class="btn-primary">Start a Project</a>
+                <a href="#studio" class="btn-outline-dark">View Portfolio</a>
+            </div>
+
+            <div class="keyrow">
+                <div></div><div></div><div></div><div></div><div></div><div></div>
+                <div></div><div></div><div></div><div></div><div></div><div></div>
+                <div></div><div></div><div></div><div></div><div></div><div></div>
+                <div></div><div></div><div></div><div></div><div></div><div></div>
             </div>
         </div>
     </header>
-    <section id="intro" class="section py-20 bg-black text-center border-t border-white/5 relative overflow-hidden">
-        <div class="max-w-6xl mx-auto px-4 relative z-10">
-            <h2 class="text-4xl md:text-5xl font-black mb-4 text-white uppercase tracking-tighter">
-                We are <span class="text-[#00F0FF]">DEXA</span>.
-            </h2>
-            <h3 class="text-xl text-gray-500 font-mono mb-8 tracking-widest uppercase">Creative Tech Studio</h3>
-            <p class="text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed mb-16">
-                DEXA(덱사)는 미디어 아티스트 <strong class="text-white">Deck(육대근)</strong>이 이끄는 크리에이티브 테크 그룹입니다.<br
-                    class="hidden md:block">
-                우리는 차가운 AI 기술에 예술적 온기를 불어넣어, 세상에 없던 경험을 설계합니다.
-            </p>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-left mb-16">
-                <div
-                    class="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-[#00F0FF] transition-colors group min-h-[220px]">
-                    <div
-                        class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-[#00F0FF] mb-4">
-                        D</div>
-                    <h3 class="text-lg font-bold text-white mb-2">Deck's Perspective</h3>
-                    <p class="text-sm text-gray-500 uppercase tracking-[0.18em] font-mono mb-3">Distinct Creative Direction</p>
-                    <p class="text-sm text-gray-400 leading-relaxed">프로젝트 초반부터 차별화된 콘셉트와 서사를 설계해,
-                        브랜드와 공간에 맞는 방향을 선명하게 잡습니다.</p>
-                </div>
-                <div
-                    class="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-[#BC13FE] transition-colors group min-h-[220px]">
-                    <div
-                        class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-[#BC13FE] mb-4">
-                        E</div>
-                    <h3 class="text-lg font-bold text-white mb-2">Emotional Tech</h3>
-                    <p class="text-sm text-gray-500 uppercase tracking-[0.18em] font-mono mb-3">Technology You Can Feel</p>
-                    <p class="text-sm text-gray-400 leading-relaxed">기술 시연에 머무르지 않고, 관람객과 고객이 실제로 감각하고
-                        기억할 수 있는 경험으로 구현합니다.</p>
-                </div>
-                <div
-                    class="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-[#00F0FF] transition-colors group min-h-[220px]">
-                    <div
-                        class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-[#00F0FF] mb-4">
-                        X</div>
-                    <h3 class="text-lg font-bold text-white mb-2">X-over Thinking</h3>
-                    <p class="text-sm text-gray-500 uppercase tracking-[0.18em] font-mono mb-3">Cross-Disciplinary Production</p>
-                    <p class="text-sm text-gray-400 leading-relaxed">예술, 브랜드, 공간, 데이터를 넘나드는 융합적 접근으로
-                        복합적인 요구를 하나의 경험으로 연결합니다.</p>
-                </div>
-                <div
-                    class="bg-white/5 p-6 rounded-xl border border-white/10 hover:border-[#BC13FE] transition-colors group min-h-[220px]">
-                    <div
-                        class="text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-white to-[#BC13FE] mb-4">
-                        A</div>
-                    <h3 class="text-lg font-bold text-white mb-2">Advanced Output</h3>
-                    <p class="text-sm text-gray-500 uppercase tracking-[0.18em] font-mono mb-3">Production-Ready Results</p>
-                    <p class="text-sm text-gray-400 leading-relaxed">아이디어나 데모에 그치지 않고, 공개 가능한 결과물과 실행 단계까지
-                        책임 있게 완성합니다.</p>
-                </div>
+    <section id="intro" class="dx-section">
+        <div class="dx-section-head"><span class="dx-section-num">01</span><h2>We are <span style="color:var(--orange);">DEXA</span>.</h2></div>
+        <p class="dx-kicker" style="margin:0 0 20px;">Creative Tech Studio</p>
+        <p class="dx-section-desc" style="max-width:720px;">
+            DEXA(덱사)는 미디어 아티스트 <strong>Deck(육대근)</strong>이 이끄는 크리에이티브 테크 그룹입니다.<br>
+            우리는 차가운 AI 기술에 예술적 온기를 불어넣어, 세상에 없던 경험을 설계합니다.
+        </p>
+
+        <div class="tile-grid" style="grid-template-columns:repeat(auto-fit,minmax(220px,1fr));margin-bottom:40px;">
+            <div class="dexa-tile">
+                <span class="letter">D</span>
+                <h3>Deck's Perspective</h3>
+                <span class="tag">Distinct Creative Direction</span>
+                <p>프로젝트 초반부터 차별화된 콘셉트와 서사를 설계해, 브랜드와 공간에 맞는 방향을 선명하게 잡습니다.</p>
             </div>
-
-            <a class="inline-flex items-center gap-2 text-sm font-bold text-[#00F0FF] hover:text-white transition-colors uppercase tracking-wider"
-                href="about-deck.html">
-                More About Director <span class="material-symbols-outlined text-lg">arrow_outward</span>
-            </a>
+            <div class="dexa-tile">
+                <span class="letter">E</span>
+                <h3>Emotional Tech</h3>
+                <span class="tag">Technology You Can Feel</span>
+                <p>기술 시연에 머무르지 않고, 관람객과 고객이 실제로 감각하고 기억할 수 있는 경험으로 구현합니다.</p>
+            </div>
+            <div class="dexa-tile">
+                <span class="letter">X</span>
+                <h3>X-over Thinking</h3>
+                <span class="tag">Cross-Disciplinary Production</span>
+                <p>예술, 브랜드, 공간, 데이터를 넘나드는 융합적 접근으로 복합적인 요구를 하나의 경험으로 연결합니다.</p>
+            </div>
+            <div class="dexa-tile">
+                <span class="letter">A</span>
+                <h3>Advanced Output</h3>
+                <span class="tag">Production-Ready Results</span>
+                <p>아이디어나 데모에 그치지 않고, 공개 가능한 결과물과 실행 단계까지 책임 있게 완성합니다.</p>
+            </div>
         </div>
+
+        <a class="dx-link" href="about-deck.html">More About Director ↗</a>
     </section>
 
     <!-- Blog Preview Section -->
-    <section class="py-24 bg-black border-t border-white/5 relative" id="blog-preview">
-        <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#00F0FF]/5 to-transparent pointer-events-none"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b border-[#333] pb-6">
-                <div>
-                    <h2 class="text-5xl font-black mb-2 tracking-tighter text-white">Blog<span class="text-[#00F0FF]">.</span></h2>
-                    <p class="text-gray-500 font-mono text-sm tracking-widest uppercase">/// Thoughts on AI, Art & Technology</p>
-                </div>
-                <a class="hidden md:flex items-center gap-2 text-sm font-bold text-[#00F0FF] hover:text-white transition-colors mt-4 md:mt-0 uppercase tracking-wider"
-                    href="/blog/">
-                    View All Posts <span class="material-symbols-outlined text-lg">arrow_outward</span>
-                </a>
-            </div>
-            <div id="blog-preview-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- STATIC_BLOG_PREVIEW_START -->
-<article class="post-card card-hover-effect block bg-[#0A0A0A] border border-white/10 rounded-xl overflow-hidden group" data-category="Post">
-  <a href="/blog/posts/hermes-managed-scope-per-key-policy/" class="block h-full" aria-label="Read Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다">
-    <div class="aspect-video overflow-hidden bg-[#111]"><img src="/blog/images/hermes-managed-scope-per-key-policy-cover.png" alt="Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다 — Hermes Agent Managed Scope lets administrators pin selected configuration and environment keys without locking every user setting. T" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"></div>
-    <div class="p-6">
-      <div class="flex items-center gap-3 mb-3">
-        <span class="text-xs font-mono uppercase tracking-widest px-2 py-0.5 rounded-sm border border-[#00F0FF]/30 bg-[#00F0FF]/10 text-[#00F0FF]">Post</span>
-        <time datetime="2026-07-20" class="text-xs text-gray-600 font-mono">2026년 7월 20일</time>
-      </div>
-      <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#00F0FF] transition-colors leading-snug">Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다</h3>
-      <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">Hermes Agent Managed Scope lets administrators pin selected configuration and environment keys without locking every user setting. This guide explains precedence, setup, write guards, and the POSIX-first security boundary.</p>
-      <div class="flex flex-wrap gap-1.5 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">managed-scope</span></div>
-      <div class="mt-4 flex items-center gap-1 text-xs font-mono text-gray-600 group-hover:text-[#00F0FF] transition-colors">Read more <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span></div>
-    </div>
-  </a>
-</article>
-                <article class="post-card card-hover-effect block bg-[#0A0A0A] border border-white/10 rounded-xl overflow-hidden group" data-category="Article">
-  <a href="/blog/posts/when-the-camera-stops-imitating-the-eye/" class="block h-full" aria-label="Read 카메라는 눈을 흉내 내지 않는다">
-    <div class="aspect-video overflow-hidden bg-[#111]"><img src="/blog/images/steina-vasulka-machine-vision-cover.png" alt="카메라는 눈을 흉내 내지 않는다 — Steina Vasulka는 카메라와 비디오 신호를 기록 도구가 아니라 스스로 움직이고 변조되는 지각 장치로 바꾸었다. Steina의 초기 전자영상 실험을 오늘의 기계 시각과 다시 연결해 읽는다." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"></div>
-    <div class="p-6">
-      <div class="flex items-center gap-3 mb-3">
-        <span class="text-xs font-mono uppercase tracking-widest px-2 py-0.5 rounded-sm border border-[#00F0FF]/30 bg-[#00F0FF]/10 text-[#00F0FF]">Article</span>
-        <time datetime="2026-07-20" class="text-xs text-gray-600 font-mono">2026년 7월 20일</time>
-      </div>
-      <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#00F0FF] transition-colors leading-snug">카메라는 눈을 흉내 내지 않는다</h3>
-      <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">Steina Vasulka는 카메라와 비디오 신호를 기록 도구가 아니라 스스로 움직이고 변조되는 지각 장치로 바꾸었다. Steina의 초기 전자영상 실험을 오늘의 기계 시각과 다시 연결해 읽는다.</p>
-      <div class="flex flex-wrap gap-1.5 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">video-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">steina-vasulka</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">machine-vision</span></div>
-      <div class="mt-4 flex items-center gap-1 text-xs font-mono text-gray-600 group-hover:text-[#00F0FF] transition-colors">Read more <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span></div>
-    </div>
-  </a>
-</article>
-                <article class="post-card card-hover-effect block bg-[#0A0A0A] border border-white/10 rounded-xl overflow-hidden group" data-category="Post">
-  <a href="/blog/posts/hermes-automation-blueprints-confirmed-forms/" class="block h-full" aria-label="Read Hermes Automation Blueprints는 cron 문법보다 먼저 목적을 묻는다">
-    <div class="aspect-video overflow-hidden bg-[#111]"><img src="/blog/images/hermes-automation-blueprints-confirmed-forms-cover.png" alt="Hermes Automation Blueprints는 cron 문법보다 먼저 목적을 묻는다 — Hermes Agent Automation Blueprints turn common recurring tasks into validated forms and conversational setup flows. This guide " class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"></div>
-    <div class="p-6">
-      <div class="flex items-center gap-3 mb-3">
-        <span class="text-xs font-mono uppercase tracking-widest px-2 py-0.5 rounded-sm border border-[#00F0FF]/30 bg-[#00F0FF]/10 text-[#00F0FF]">Post</span>
-        <time datetime="2026-07-19" class="text-xs text-gray-600 font-mono">2026년 7월 19일</time>
-      </div>
-      <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#00F0FF] transition-colors leading-snug">Hermes Automation Blueprints는 cron 문법보다 먼저 목적을 묻는다</h3>
-      <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">Hermes Agent Automation Blueprints turn common recurring tasks into validated forms and conversational setup flows. This guide explains typed slots, explicit confirmation, cron execution, and shareable blueprint skills.</p>
-      <div class="flex flex-wrap gap-1.5 mt-4"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">hermes</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai-agent</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">workflow</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">automation-blueprints</span></div>
-      <div class="mt-4 flex items-center gap-1 text-xs font-mono text-gray-600 group-hover:text-[#00F0FF] transition-colors">Read more <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span></div>
-    </div>
-  </a>
-</article>
+    <section class="dx-section" id="blog-preview">
+        <div class="dx-section-head"><span class="dx-section-num">02</span><h2>Blog<span style="color:var(--orange);">.</span></h2></div>
+        <p class="dx-kicker" style="margin:0 0 44px;">/// Thoughts on AI, Art &amp; Technology</p>
+
+        <div id="blog-preview-grid" class="dx-grid-3">
+            <!-- STATIC_BLOG_PREVIEW_START -->
+<a class="post-card panel-card" href="/blog/posts/hermes-managed-scope-per-key-policy/" data-category="Post" aria-label="Read Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다">
+  <div class="card-frame"><img src="/blog/images/hermes-managed-scope-per-key-policy-cover.png" alt="Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다 — Hermes Agent Managed Scope lets administrators pin selected configuration and environment keys without locking every user setting. T" loading="lazy"></div>
+  <span class="dx-meta"><span class="dx-badge">Post</span><time datetime="2026-07-20" class="dx-date">2026.07.20</time></span>
+  <h3>Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다</h3>
+  <p>Hermes Agent Managed Scope lets administrators pin selected configuration and environment keys without locking every user setting. This guide explains precedence, setup, write guards, and the POSIX-first security boundary.</p>
+  <span class="dx-more">READ MORE →</span>
+</a>
+                <a class="post-card panel-card" href="/blog/posts/when-the-camera-stops-imitating-the-eye/" data-category="Article" aria-label="Read 카메라는 눈을 흉내 내지 않는다">
+  <div class="card-frame"><img src="/blog/images/steina-vasulka-machine-vision-cover.png" alt="카메라는 눈을 흉내 내지 않는다 — Steina Vasulka는 카메라와 비디오 신호를 기록 도구가 아니라 스스로 움직이고 변조되는 지각 장치로 바꾸었다. Steina의 초기 전자영상 실험을 오늘의 기계 시각과 다시 연결해 읽는다." loading="lazy"></div>
+  <span class="dx-meta"><span class="dx-badge">Article</span><time datetime="2026-07-20" class="dx-date">2026.07.20</time></span>
+  <h3>카메라는 눈을 흉내 내지 않는다</h3>
+  <p>Steina Vasulka는 카메라와 비디오 신호를 기록 도구가 아니라 스스로 움직이고 변조되는 지각 장치로 바꾸었다. Steina의 초기 전자영상 실험을 오늘의 기계 시각과 다시 연결해 읽는다.</p>
+  <span class="dx-more">READ MORE →</span>
+</a>
+                <a class="post-card panel-card" href="/blog/posts/hermes-automation-blueprints-confirmed-forms/" data-category="Post" aria-label="Read Hermes Automation Blueprints는 cron 문법보다 먼저 목적을 묻는다">
+  <div class="card-frame"><img src="/blog/images/hermes-automation-blueprints-confirmed-forms-cover.png" alt="Hermes Automation Blueprints는 cron 문법보다 먼저 목적을 묻는다 — Hermes Agent Automation Blueprints turn common recurring tasks into validated forms and conversational setup flows. This guide " loading="lazy"></div>
+  <span class="dx-meta"><span class="dx-badge">Post</span><time datetime="2026-07-19" class="dx-date">2026.07.19</time></span>
+  <h3>Hermes Automation Blueprints는 cron 문법보다 먼저 목적을 묻는다</h3>
+  <p>Hermes Agent Automation Blueprints turn common recurring tasks into validated forms and conversational setup flows. This guide explains typed slots, explicit confirmation, cron execution, and shareable blueprint skills.</p>
+  <span class="dx-more">READ MORE →</span>
+</a>
                 <!-- STATIC_BLOG_PREVIEW_END -->
-            </div>
-            <div class="md:hidden mt-8 text-center">
-                <a class="inline-flex items-center gap-2 text-sm font-bold text-[#00F0FF] hover:text-white transition-colors uppercase tracking-wider"
-                    href="/blog/">
-                    View All Posts <span class="material-symbols-outlined text-lg">arrow_outward</span>
-                </a>
-            </div>
+        </div>
+        <div style="margin-top:32px;text-align:right;">
+            <a class="dx-link" href="/blog/">View All Posts ↗</a>
         </div>
     </section>
 
-    <section class="py-24 bg-black border-t border-white/5 relative" id="studio">
-        <div
-            class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-[#00F0FF]/5 to-transparent pointer-events-none">
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div
-                class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b border-[#333] pb-6">
-                <div>
-                    <h2 class="text-5xl md:text-5xl font-black mb-2 tracking-tighter text-white">Selected Projects<span
-                            class="text-[#00F0FF]">.</span></h2>
-                    <p class="text-gray-500 font-mono text-sm tracking-widest uppercase">/// LATEST WORKS</p>
+    <section id="studio" class="works-band">
+        <div class="works-inner">
+            <div class="works-head">
+                <div style="display:flex;align-items:baseline;gap:16px;">
+                    <span class="dx-section-num">03</span>
+                    <h2>Selected Projects<span style="color:var(--cyan);">.</span></h2>
                 </div>
-                <!-- <a class="hidden md:flex items-center gap-2 text-sm font-bold text-[#00F0FF] hover:text-white transition-colors mt-4 md:mt-0 uppercase tracking-wider"
-                    href="#">
-                    View All Projects <span class="material-symbols-outlined text-lg">arrow_outward</span>
-                </a> -->
+                <span class="side">/// LATEST WORKS</span>
             </div>
             <!-- Dynamic Project Grid Container -->
-            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div id="project-grid" class="works-grid">
                 <!-- Data will be loaded from projects.json -->
-                <div class="col-span-3 text-center py-20">
-                    <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#00F0FF]">
-                    </div>
-                    <p class="mt-4 text-gray-500 font-mono text-xs">Loading Projects...</p>
+                <div style="grid-column:1/-1;text-align:center;padding:80px 0;">
+                    <div style="display:inline-block;width:32px;height:32px;border-radius:50%;border:2px solid var(--ink-key);border-top-color:var(--cyan);border-bottom-color:var(--cyan);animation:dexa-spin 0.8s linear infinite;"></div>
+                    <p class="mono" style="margin-top:16px;color:var(--ink-text-dim);font-size:12px;">Loading Projects...</p>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Upcoming Works Section -->
-    <section class="py-16 bg-[#030303] border-t border-white/5 relative" id="upcoming">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="flex items-end mb-8 border-b border-[#222] pb-4">
-                <div>
-                    <h3 class="text-2xl font-bold mb-1 tracking-tight text-gray-300">Upcoming Works<span
-                            class="text-[#BC13FE]">.</span></h3>
-                    <p class="text-gray-600 font-mono text-xs tracking-widest uppercase">/// R&D LAB PREVIEWS</p>
+        <!-- Upcoming Works Section -->
+        <section id="upcoming" style="border-top:1px solid var(--ink-key);">
+            <div class="works-inner" style="padding:56px 40px 64px;">
+                <div class="works-head" style="margin-bottom:0;">
+                    <h3 style="font-size:22px;font-weight:700;margin:0;color:#F7FAFC;">Upcoming Works<span style="color:var(--cyan);">.</span></h3>
+                    <span class="side">/// R&amp;D LAB PREVIEWS</span>
                 </div>
+                <!-- Dynamic Upcoming Grid Container -->
+                <div id="upcoming-grid" class="works-grid" style="margin-top:32px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));"></div>
             </div>
-            <!-- Dynamic Upcoming Grid Container -->
-            <div id="upcoming-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Data will be loaded from projects.json -->
-            </div>
-        </div>
+        </section>
     </section>
 
     <!-- Cinematic Video Modal -->
-    <div id="video-modal"
-        class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-500 flex items-center justify-center bg-black/95">
+    <div id="video-modal" class="hidden opacity-0" style="position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;background:rgba(13,14,16,0.95);">
 
         <!-- Close Button -->
-        <button onclick="closeVideoModal()"
-            class="absolute top-8 right-8 z-[110] text-white hover:text-[#00F0FF] transition-colors group">
-            <span
-                class="material-symbols-outlined text-4xl group-hover:rotate-90 transition-transform duration-300">close</span>
-        </button>
+        <button onclick="closeVideoModal()" aria-label="Close video" style="position:absolute;top:32px;right:32px;z-index:110;background:none;border:none;cursor:pointer;color:#F7FAFC;font-size:32px;line-height:1;">×</button>
 
-        <div
-            class="modal-content relative w-full h-full md:w-[90%] md:h-[90%] max-w-7xl mx-auto flex flex-col md:flex-row bg-[#050505] overflow-hidden rounded-sm border border-[#333]">
+        <div class="modal-content" style="position:relative;margin:0 auto;display:flex;background:var(--ink-display);overflow:hidden;border:1px solid var(--ink-key);border-radius:4px;">
 
             <!-- Video Container (Left/Top) -->
-            <div class="w-full md:w-3/4 h-[50vh] md:h-full bg-black relative flex items-center justify-center group">
-                <div id="modal-video-container" class="w-full h-full">
+            <div class="modal-video-pane" style="background:#000;position:relative;display:flex;align-items:center;justify-content:center;">
+                <div id="modal-video-container" style="width:100%;height:100%;">
                     <!-- Video will be injected here -->
                 </div>
                 <!-- Video Controls Overlay -->
-                <div
-                    class="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div class="flex items-center gap-4">
-                        <button id="modal-play-btn" class="text-white hover:text-[#00F0FF]">
-                            <span class="material-symbols-outlined text-3xl">play_arrow</span>
-                        </button>
-                        <div class="text-xs font-mono text-gray-400">
+                <div style="position:absolute;bottom:0;left:0;width:100%;padding:24px;background:linear-gradient(to top, rgba(0,0,0,0.8), transparent);">
+                    <div style="display:flex;align-items:center;gap:16px;">
+                        <button id="modal-play-btn" style="background:none;border:none;cursor:pointer;color:#F7FAFC;font-size:16px;">▶</button>
+                        <div class="mono" style="font-size:11px;color:var(--ink-text);">
                             <span id="video-current-time">00:00</span> / <span id="video-duration">00:00</span>
                         </div>
                     </div>
@@ -471,198 +307,140 @@
             </div>
 
             <!-- Info Container (Right/Bottom) -->
-            <div
-                class="w-full md:w-1/4 h-[50vh] md:h-full bg-[#0A0A0A] p-8 md:p-12 overflow-y-auto border-l border-[#222]">
-                <div class="h-full flex flex-col">
-                    <div class="mb-8">
-                        <span id="modal-category"
-                            class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Category</span>
-                    </div>
+            <div class="modal-info-pane" style="background:var(--ink-display);padding:32px;">
+                <div style="margin-bottom:24px;">
+                    <span id="modal-category" class="dx-badge-dark">Category</span>
+                </div>
 
-                    <h2 id="modal-title" class="text-3xl md:text-4xl font-black text-white mb-2 leading-tight">Project
-                        Title</h2>
-                    <h3 id="modal-subtitle" class="text-xl text-gray-400 font-light mb-8 font-display">English Title
-                    </h3>
+                <h2 id="modal-title" style="font-size:28px;font-weight:700;color:#F7FAFC;margin:0 0 4px;">Project Title</h2>
+                <h3 id="modal-subtitle" style="font-size:16px;font-weight:400;color:var(--ink-text);margin:0 0 20px;">English Title</h3>
 
-                    <p id="modal-description"
-                        class="text-gray-300 leading-relaxed mb-12 text-sm md:text-base border-l-2 border-[#333] pl-4">
-                        Description goes here.
-                    </p>
+                <p id="modal-description" style="color:var(--ink-text);line-height:1.7;font-size:14px;margin:0 0 24px;border-left:2px solid var(--ink-key);padding-left:16px;">
+                    Description goes here.
+                </p>
 
-                    <div class="mt-auto">
-                        <h4 class="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Tech Stack</h4>
-                        <div id="modal-tags" class="flex flex-wrap gap-2">
-                            <!-- Tags injected here -->
-                        </div>
+                <div>
+                    <h4 class="mono" style="font-size:11px;font-weight:700;color:var(--ink-text-dim);text-transform:uppercase;letter-spacing:0.06em;margin:0 0 12px;">Tech Stack</h4>
+                    <div id="modal-tags" style="display:flex;flex-wrap:wrap;gap:8px;">
+                        <!-- Tags injected here -->
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <section class="py-24 bg-[#050505] border-t border-white/5 relative overflow-hidden" id="solutions">
-        <div
-            class="absolute top-0 left-0 w-1/3 h-full bg-gradient-to-r from-[#BC13FE]/5 to-transparent pointer-events-none">
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div
-                class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b border-[#333] pb-6">
-                <div>
-                    <h2 class="text-5xl font-black mb-2 tracking-tighter text-white">DEXA Academy & Speaking<span
-                            class="text-[#BC13FE]">.</span></h2>
-                    <p class="text-gray-500 font-mono text-sm tracking-widest uppercase">/// Master the future of
-                        creation</p>
-                </div>
-                <a class="hidden md:flex items-center gap-2 text-sm font-bold text-[#BC13FE] hover:text-white transition-colors mt-4 md:mt-0 uppercase tracking-wider"
-                    href="#contact">
-                    Education Inquiry <span class="material-symbols-outlined text-lg">arrow_outward</span>
-                </a>
+    <section class="dx-section" id="solutions">
+        <div class="dx-section-head"><span class="dx-section-num">04</span><h2>DEXA Academy &amp; Speaking<span style="color:var(--orange);">.</span></h2></div>
+        <p class="dx-kicker" style="margin:0 0 44px;">/// Master the future of creation</p>
+
+        <!-- Dynamic Academy Grid Container -->
+        <div id="academy-grid" class="dx-grid-3">
+            <!-- Data will be loaded from projects.json -->
+            <div style="grid-column:1/-1;text-align:center;padding:80px 0;">
+                <div style="display:inline-block;width:32px;height:32px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--orange);border-bottom-color:var(--orange);animation:dexa-spin 0.8s linear infinite;"></div>
+                <p class="mono" style="margin-top:16px;color:var(--muted);font-size:12px;">Loading Curriculum...</p>
             </div>
-            <!-- Dynamic Academy Grid Container -->
-            <div id="academy-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Data will be loaded from projects.json -->
-                <div class="col-span-3 text-center py-20">
-                    <div class="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-[#BC13FE]">
-                    </div>
-                    <p class="mt-4 text-gray-500 font-mono text-xs">Loading Curriculum...</p>
+        </div>
+        <div style="margin-top:32px;text-align:right;">
+            <a class="dx-link" href="#contact">Education Inquiry ↗</a>
+        </div>
+    </section>
+
+    <section id="contact" class="dx-section">
+        <div class="dx-section-head"><span class="dx-section-num">05</span><h2 style="font-size:20px;">Contact</h2></div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;margin-top:8px;">
+            <div>
+                <h2 style="font-size:clamp(32px,4.5vw,48px);font-weight:700;letter-spacing:-0.02em;margin:0 0 20px;">
+                    Ready to visualize<br><span style="color:var(--orange);">your imagination?</span>
+                </h2>
+                <p class="dx-section-desc" style="margin-bottom:32px;">
+                    AI 프로젝트 의뢰부터 교육 문의까지,<br>
+                    DEXA와 함께 새로운 경험의 시작을 만들어보세요.
+                </p>
+                <div>
+                    <h4 style="font-weight:700;margin:0 0 4px;">Studio</h4>
+                    <p class="mono" style="color:var(--muted);font-size:13px;line-height:1.6;margin:0;">Incheon &amp; Seoul (Mapo-gu)<br>Republic of Korea</p>
                 </div>
+            </div>
+
+            <div class="panel-card" style="padding:32px;">
+                <!-- Success Message -->
+                <div id="success-message" class="hidden form-note-ok" style="margin-bottom:24px;">
+                    <p class="mono" style="margin:0;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.04em;">✓ Message Sent Successfully</p>
+                    <p class="mono" style="margin:8px 0 0;font-size:12px;color:var(--muted);">We will respond within 24 hours.</p>
+                </div>
+
+                <!-- Error Message -->
+                <div id="error-message" class="hidden form-note-err" style="margin-bottom:24px;">
+                    <p class="mono" style="margin:0;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:0.04em;">! Transmission Failed</p>
+                    <p class="mono" style="margin:8px 0 0;font-size:12px;">Please try again later.</p>
+                </div>
+
+                <form id="contact-form" action="https://api.web3forms.com/submit" method="POST"
+                    onsubmit="return submitContactForm(event)" style="display:flex;flex-direction:column;gap:20px;">
+                    <input type="hidden" name="access_key" value="583f79fe-49c9-4234-8a2e-473f73c020b9">
+                    <input type="hidden" name="subject" value="DEXA Website New Inquiry">
+                    <input type="hidden" name="from_name" value="DEXA Website">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+                    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:20px;">
+                        <div>
+                            <label class="field-label" for="name">Name</label>
+                            <input id="name" name="name" required class="field" type="text" />
+                        </div>
+                        <div>
+                            <label class="field-label" for="email">Email</label>
+                            <input id="email" name="email" required class="field" type="email" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="field-label" for="message">Message</label>
+                        <textarea id="message" name="message" required class="field" rows="4"></textarea>
+                    </div>
+                    <div>
+                        <button id="submit-btn" class="btn-primary" style="width:100%;display:flex;align-items:center;justify-content:center;gap:8px;" type="submit">
+                            <span id="submit-text">Send Message</span>
+                            <svg id="loading-spinner" class="hidden" style="width:16px;height:16px;animation:dexa-spin 0.8s linear infinite;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle style="opacity:0.25;" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path style="opacity:0.75;" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-24 bg-black border-t border-white/5 relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div>
-                    <h2 class="text-4xl md:text-5xl font-black mb-6 tracking-tighter text-white">
-                        Ready to visualize<br /><span class="text-[#00F0FF]">your imagination?</span>
-                    </h2>
-                    <p class="text-gray-400 text-lg mb-12 leading-relaxed">
-                        AI 프로젝트 의뢰부터 교육 문의까지,<br />
-                        DEXA와 함께 새로운 경험의 시작을 만들어보세요.
-                    </p>
-
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <span class="material-symbols-outlined text-[#00F0FF] mt-1">location_on</span>
-                            <div>
-                                <h4 class="font-bold text-white mb-1">Studio</h4>
-                                <p class="text-gray-500 font-mono text-sm leading-relaxed">Incheon & Seoul
-                                    (Mapo-gu)<br>Republic of Korea</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-[#050505] p-8 border border-white/10 rounded-xl">
-                    <!-- Success Message -->
-                    <div id="success-message"
-                        class="hidden mb-6 p-4 bg-[#00F0FF]/10 border border-[#00F0FF] rounded-sm">
-                        <div class="flex items-center">
-                            <span class="material-symbols-outlined text-[#00F0FF] mr-2">check_circle</span>
-                            <p class="text-[#00F0FF] font-medium font-mono text-sm uppercase tracking-wider">Message
-                                Sent Successfully</p>
-                        </div>
-                        <p class="text-gray-400 text-xs mt-2 font-mono">We will respond within 24 hours.</p>
-                    </div>
-
-                    <!-- Error Message -->
-                    <div id="error-message" class="hidden mb-6 p-4 bg-red-900/20 border border-red-500 rounded-sm">
-                        <div class="flex items-center">
-                            <span class="material-symbols-outlined text-red-500 mr-2">error</span>
-                            <p class="text-red-500 font-medium font-mono text-sm uppercase tracking-wider">Transmission
-                                Failed</p>
-                        </div>
-                        <p class="text-red-400 text-xs mt-2 font-mono">Please try again later.</p>
-                    </div>
-
-                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST"
-                        onsubmit="return submitContactForm(event)" class="space-y-6">
-                        <input type="hidden" name="access_key" value="583f79fe-49c9-4234-8a2e-473f73c020b9">
-                        <input type="hidden" name="subject" value="DEXA Website New Inquiry">
-                        <input type="hidden" name="from_name" value="DEXA Website">
-                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-
-                        <div class="grid grid-cols-2 gap-6">
-                            <div class="group">
-                                <label
-                                    class="block text-xs font-mono text-gray-500 mb-2 uppercase tracking-wider group-focus-within:text-[#00F0FF]">Name</label>
-                                <input id="name" name="name" required
-                                    class="w-full bg-[#111] border border-[#333] rounded-lg px-4 py-3 text-sm focus:ring-0 focus:border-[#00F0FF] text-white placeholder-gray-700 transition-colors"
-                                    type="text" />
-                            </div>
-                            <div class="group">
-                                <label
-                                    class="block text-xs font-mono text-gray-500 mb-2 uppercase tracking-wider group-focus-within:text-[#00F0FF]">Email</label>
-                                <input id="email" name="email" required
-                                    class="w-full bg-[#111] border border-[#333] rounded-lg px-4 py-3 text-sm focus:ring-0 focus:border-[#00F0FF] text-white placeholder-gray-700 transition-colors"
-                                    type="email" />
-                            </div>
-                        </div>
-                        <div class="group">
-                            <label
-                                class="block text-xs font-mono text-gray-500 mb-2 uppercase tracking-wider group-focus-within:text-[#00F0FF]">Message</label>
-                            <textarea id="message" name="message" required
-                                class="w-full bg-[#111] border border-[#333] rounded-lg px-4 py-3 text-sm focus:ring-0 focus:border-[#00F0FF] text-white placeholder-gray-700 transition-colors"
-                                rows="4"></textarea>
-                        </div>
-                        <div class="pt-2">
-                            <button id="submit-btn"
-                                class="w-full bg-white hover:bg-[#00F0FF] text-black font-bold py-4 px-8 rounded-lg uppercase tracking-widest text-xs transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] flex items-center justify-center gap-2"
-                                type="submit">
-                                <span id="submit-text">Send Message</span>
-                                <svg id="loading-spinner" class="hidden animate-spin h-4 w-4 text-black"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                        stroke-width="4"></circle>
-                                    <path class="opacity-75" fill="currentColor"
-                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                    </path>
-                                </svg>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+    <footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#studio">Studio</a></li>
+                    <li><a href="#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
             </div>
         </div>
-    </section>
-
-    <footer class="bg-black text-white pt-20 pb-10 border-t border-[#1a1a1a]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-8 mb-16">
-                <div class="flex items-center gap-3">
-                    <img src="dexa_logo.svg?v=20260716c" alt="DEXA" class="h-24 w-auto">
-                </div>
-                <!-- Social media icons removed for now as URLs are unknown -->
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 border-t border-[#1a1a1a] pt-12">
-                <div>
-                    <h4 class="text-xs font-bold text-white uppercase tracking-widest mb-4">Sitemap</h4>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <li><a class="hover:text-[#00F0FF] transition-colors" href="/">Home</a></li>
-                        <li><a class="hover:text-[#00F0FF] transition-colors" href="#studio">Studio</a></li>
-                        <li><a class="hover:text-[#00F0FF] transition-colors" href="#solutions">Solutions</a></li>
-                        <li><a class="hover:text-[#00F0FF] transition-colors" href="/blog/">Blog</a></li>
-                        <li><a class="hover:text-[#00F0FF] transition-colors" href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="text-xs font-bold text-white uppercase tracking-widest mb-4">Legal</h4>
-                    <ul class="space-y-2 text-sm text-gray-600">
-                        <!-- Placeholders -->
-                    </ul>
-                </div>
-                <div class="col-span-2 md:text-right">
-                    <p class="text-[10px] text-gray-700 font-mono">
-                        Where AI Meets Art.<br />
-                        © 2025 DEXA. All rights reserved.<br />
-                        (formerly ADX Worklab)
-                    </p>
-                </div>
-            </div>
-        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
     </footer>
-    <script src="sketch.js"></script>
     <script src="script.js"></script>
 </body>
 

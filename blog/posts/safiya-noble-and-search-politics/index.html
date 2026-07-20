@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="ko">
+<html lang="ko">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,92 +25,43 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"검색창은 누구를 먼저 보여 주는가","description":"사피야 우모자 노블의 검색 정치학을 통해 검색엔진, 플랫폼 랭킹, 생성형 AI 인터페이스가 중립적 도구가 아니라 가시성과 지식 질서를 배치하는 장치임을 읽는다.","image":"https://dexa.art/blog/images/safiya-noble-search-politics-cover.png","datePublished":"2026-06-19","dateModified":"2026-06-19","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/safiya-noble-and-search-politics/"},"keywords":"media-theory, algorithmic-bias, platform-culture, media-art"}</script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#00F0FF", "primary-hover": "#00C2CC",
-                        "background-light": "#000000", "background-dark": "#000000",
-                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
-                    },
-                    fontFamily: {
-                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
-                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
-                    }
-                }
-            }
-        };
-    </script>
-    <style>
-        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
-        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
-        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
-        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
-        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
-        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
-        .prose-dexa strong { color: #fff; font-weight: 600; }
-        .prose-dexa em { color: #6b7280; }
-        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
-        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
-        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
-        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
-        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
-        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
-        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
-        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
-        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
-        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
-        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
-        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
-        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
-        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
-        .prose-dexa tr:last-child td { border-bottom: none; }
-        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
-        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
-        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
 </head>
-<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
-    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
-                    <img src="/dexa_logo.svg?v=20260716c" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
-                </a>
-                <div class="hidden md:flex space-x-10 items-center">
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
-                </div>
-            </div>
+<body>
+    <nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/blog/" class="active">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
         </div>
     </nav>
-    <main class="pt-32 pb-24 lg:pt-40">
-        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-10">
-                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
-                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
-                </a>
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
-                    <span class="text-gray-600 font-mono text-xs">2026년 6월 19일</span>
-                </div>
-                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">검색창은 누구를 먼저 보여 주는가</h1>
-                <p class="text-lg text-gray-500 leading-relaxed">사피야 우모자 노블의 검색 정치학을 통해 검색엔진, 플랫폼 랭킹, 생성형 AI 인터페이스가 중립적 도구가 아니라 가시성과 지식 질서를 배치하는 장치임을 읽는다.</p>
-                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-theory</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">algorithmic-bias</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">platform-culture</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span></div>
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-kicker" style="margin-top:20px;">Article · 2026.06.19</div>
             </div>
-            <div class="prose-dexa">
+            <div class="prose">
+                <h1>검색창은 누구를 먼저 보여 주는가</h1>
+                <p style="color:var(--muted);font-size:17px;">사피야 우모자 노블의 검색 정치학을 통해 검색엔진, 플랫폼 랭킹, 생성형 AI 인터페이스가 중립적 도구가 아니라 가시성과 지식 질서를 배치하는 장치임을 읽는다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">media-theory</span><span class="dx-tag-chip">algorithmic-bias</span><span class="dx-tag-chip">platform-culture</span><span class="dx-tag-chip">media-art</span></div>
 <p><img src="/blog/images/safiya-noble-search-politics-cover.png" alt="검색 정치학을 위한 추상적 미디어아트 커버" loading="lazy"></p>
 <p>검색창은 가장 평범한 인터페이스처럼 보인다. 몇 글자를 입력하면 결과가 나오고, 우리는 그 결과를 정보의 자연스러운 순서처럼 받아들인다. 그러나 사피야 우모자 노블(Safiya Umoja Noble)의 작업은 이 익숙한 장면을 전혀 다른 방식으로 보게 만든다. 검색 결과는 세계를 그대로 반영하는 목록이 아니라, 어떤 존재를 먼저 보이게 하고 어떤 목소리를 아래로 밀어내며 어떤 이미지를 신뢰 가능한 지식처럼 포장하는 권력의 배열이다.</p>
 <p>노블의 대표 저작 <em>Algorithms of Oppression</em>이 여전히 중요한 이유는 알고리즘 비판을 단순한 기술 오류의 문제로 축소하지 않기 때문이다. 그녀에게 검색엔진의 차별적 결과는 우연한 버그가 아니라 광고 모델, 검색 최적화, 클릭 경제, 플랫폼 정책, 인종화된 문화가 함께 만든 구조적 산물이다. 이 관점은 오늘날 생성형 AI 검색, 추천 피드, 자동 요약 인터페이스를 읽는 데도 그대로 확장된다. 이제 질문은 “답이 맞는가”만이 아니다. 더 근본적인 질문은 “누가 답의 재료로 선택되고, 누가 사라지며, 누가 어떤 방식으로 보이는가”이다.</p>
@@ -130,19 +81,25 @@
 <p>노블을 읽고 나면 검색창은 더 이상 투명한 입구가 아니다. 그것은 세계를 배열하는 문턱이다. 따라서 좋은 검색, 좋은 추천, 좋은 AI 응답은 빠르고 편리한 결과만으로 평가될 수 없다. 그것은 자신이 어떤 기준으로 보이게 하고 숨기는지 설명할 수 있어야 하며, 잘못된 표상에 대해 수정 가능해야 하고, 공적 지식의 입구로 기능하는 만큼 공적 책임을 져야 한다.</p>
 <p>미디어아트와 미디어이론이 여기서 던질 수 있는 질문은 분명하다. 우리는 알고리즘이 만든 화면을 단지 더 세련된 인터페이스로 볼 것인가, 아니면 사회가 스스로를 어떤 순서로 보도록 훈련받는 장면으로 볼 것인가. 검색창 앞에서 가장 먼저 보이는 것은 정보가 아니라, 그 사회가 누구를 먼저 믿고 누구를 늦게 발견하도록 설계되어 있는가의 흔적이다.</p>
             </div>
-            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
-                <a id="prev-post" href="/blog/posts/hermes-deliverable-mode-artifacts/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes Deliverable Mode는 파일 경로를 실제 첨부물로 바꾼다</span></a>
-                <a id="next-post" href="/blog/posts/hermes-subscription-proxy/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span>Hermes Subscription Proxy는 구독 인증을 로컬 API로 바꾼다</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-deliverable-mode-artifacts/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>Hermes Deliverable Mode는 파일 경로를 실제 첨부물로 바꾼다</span></a>
+                <a id="next-post" href="/blog/posts/hermes-subscription-proxy/" class="spec-row" style="text-decoration:none;"><span>Hermes Subscription Proxy는 구독 인증을 로컬 API로 바꾼다</span><span class="k">NEXT →</span></a>
             </nav>
         </article>
     </main>
-    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg?v=20260716c" alt="DEXA" class="h-12 w-auto"></a>
-                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
-            </div>
-        </div>
+    <footer class="dx-footer" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
+        <a href="/" style="display:flex;align-items:center;gap:10px;">
+            <svg viewBox="4 4 112 98" width="28" height="24" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+        </a>
+        <p class="dx-footer-note" style="margin:0;text-align:right;">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
     </footer>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="ko">
+<html lang="ko">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,92 +26,43 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"미디어아트의 역사","description":"Long-form article tracing media art from early kinetic experiments to AI art, ending with Korean trajectories and key theoretical turning points for contemporary readers.","image":"https://dexa.art/blog/images/history-of-media-art-cover.png","datePublished":"2026-04-15","dateModified":"2026-04-15","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/history-of-media-art/"},"keywords":"media-art, art-history, new-media, digital-art, generative-art"}</script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#00F0FF", "primary-hover": "#00C2CC",
-                        "background-light": "#000000", "background-dark": "#000000",
-                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
-                    },
-                    fontFamily: {
-                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
-                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
-                    }
-                }
-            }
-        };
-    </script>
-    <style>
-        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
-        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
-        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
-        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
-        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
-        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
-        .prose-dexa strong { color: #fff; font-weight: 600; }
-        .prose-dexa em { color: #6b7280; }
-        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
-        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
-        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
-        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
-        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
-        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
-        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
-        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
-        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
-        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
-        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
-        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
-        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
-        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
-        .prose-dexa tr:last-child td { border-bottom: none; }
-        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
-        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
-        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
 </head>
-<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
-    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
-                    <img src="/dexa_logo.svg?v=20260716c" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
-                </a>
-                <div class="hidden md:flex space-x-10 items-center">
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
-                </div>
-            </div>
+<body>
+    <nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/blog/" class="active">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
         </div>
     </nav>
-    <main class="pt-32 pb-24 lg:pt-40">
-        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-10">
-                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
-                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
-                </a>
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
-                    <span class="text-gray-600 font-mono text-xs">2026년 4월 15일</span>
-                </div>
-                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">미디어아트의 역사</h1>
-                <p class="text-lg text-gray-500 leading-relaxed">Long-form article tracing media art from early kinetic experiments to AI art, ending with Korean trajectories and key theoretical turning points for contemporary readers.</p>
-                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">art-history</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">new-media</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">digital-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">generative-art</span></div>
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-kicker" style="margin-top:20px;">Article · 2026.04.15</div>
             </div>
-            <div class="prose-dexa">
+            <div class="prose">
+                <h1>미디어아트의 역사</h1>
+                <p style="color:var(--muted);font-size:17px;">Long-form article tracing media art from early kinetic experiments to AI art, ending with Korean trajectories and key theoretical turning points for contemporary readers.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">media-art</span><span class="dx-tag-chip">art-history</span><span class="dx-tag-chip">new-media</span><span class="dx-tag-chip">digital-art</span><span class="dx-tag-chip">generative-art</span></div>
 <p><img src="/blog/images/history-of-media-art-cover.png" alt="History of Media Art cover" loading="lazy"></p>
 <h2>1. 개요</h2>
 <p>미디어아트는 특정 장르 이름이기보다 기술 매체가 예술의 주제, 재료, 환경, 인터페이스가 되는 순간을 가리키는 넓은 역사적 범주다. 1960년대 플럭서스와 비디오아트가 TV와 전자장치를 예술의 표면으로 끌어들였다면, 1990년대는 컴퓨터, 센서, 네트워크가 관객의 참여와 연결되며 작품의 구조 자체를 바꾸었다. 2000년대 이후 데이터, 알고리즘, 소프트웨어는 이미지 뒤의 인프라를 전면화했고, 2010년대의 이머시브 설치는 그 인프라를 공간 경험과 체험경제로 확장했다. 2020년대 AI아트는 다시 한 번 저자성, 데이터셋, 기계 상상력, 인간 감각의 관계를 재정의하며 미디어아트를 &quot;기술의 표현&quot;이 아니라 &quot;지능과 감각의 협상장&quot;으로 만들고 있다.</p>
@@ -168,19 +119,25 @@
 <p>실천의 차원에서 보면 Marshall McLuhan은 Nam June Paik과 비디오아트에, Jack Burnham은 인터랙티브 시스템과 환경 설치에, Rosalind Krauss는 혼성 매체 이후의 동시대 미술에, Lev Manovich는 데이터와 소프트웨어 기반 예술에, Karen Barad는 인간-기계-환경의 얽힘을 다루는 AI 설치에 특히 강하게 적용된다. 이론은 작품을 해설하는 부록이 아니라, 작가가 무엇을 만들고 있는지를 분간하게 하는 감지 장치다. 그래서 미디어아트의 역사를 공부한다는 것은 작품을 나열하는 것이 아니라, 각 시대가 &quot;매체&quot;, &quot;장치&quot;, &quot;신체&quot;, &quot;데이터&quot;, &quot;지능&quot;을 어떤 개념으로 사유했는지를 함께 추적하는 일이다. 이 점에서 이론적 전환점은 연표의 옆주석이 아니라, 실제 실천을 움직여 온 비가시적 인프라라고 할 수 있다.</p>
 <ul><li>계보 압축: Marshall McLuhan → Jack Burnham → Rosalind Krauss → Lev Manovich → Karen Barad.</li><li>실천과 교차하는 키워드: Apparatus, Aura, Technical Image, Database vs Narrative, Cyborg, post-media.</li><li>핵심 질문: 매체는 무엇을 확장하고, 장치는 무엇을 절단하며, 소프트웨어는 무엇을 자연화하고, AI는 무엇을 다시 배치하는가.</li></ul>
             </div>
-            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
-                <a id="prev-post" href="/blog/posts/history-of-korean-media-art/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>한국 미디어아트 역사</span></a>
-                <a id="next-post" href="/blog/posts/gpt-image-2-vs-nano-banana-2/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span>GPT Image 2는 정말 Nano Banana 2를 넘었나: LM Arena `duct-tape`가 보여준 것</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/history-of-korean-media-art/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>한국 미디어아트 역사</span></a>
+                <a id="next-post" href="/blog/posts/gpt-image-2-vs-nano-banana-2/" class="spec-row" style="text-decoration:none;"><span>GPT Image 2는 정말 Nano Banana 2를 넘었나: LM Arena `duct-tape`가 보여준 것</span><span class="k">NEXT →</span></a>
             </nav>
         </article>
     </main>
-    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg?v=20260716c" alt="DEXA" class="h-12 w-auto"></a>
-                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
-            </div>
-        </div>
+    <footer class="dx-footer" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
+        <a href="/" style="display:flex;align-items:center;gap:10px;">
+            <svg viewBox="4 4 112 98" width="28" height="24" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+        </a>
+        <p class="dx-footer-note" style="margin:0;text-align:right;">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
     </footer>
 </body>
 </html>

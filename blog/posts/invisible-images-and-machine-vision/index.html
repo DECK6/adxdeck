@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="ko">
+<html lang="ko">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,92 +27,43 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"이미지는 더 이상 우리를 기다리지 않는다","description":"트레버 패글런의 Invisible Images 개념을 통해 인간 관객을 지나치지 않고 기계가 분류하고 판단하는 이미지 생태계를 읽는다. 머신 비전, 데이터셋, 감시, AI 교육과 미디어아트 비평에서 왜 보이지 않는 이미지를 다시 보아야 하는지 다룬다.","image":"https://dexa.art/blog/images/invisible-images-machine-vision-cover.png","datePublished":"2026-05-26","dateModified":"2026-05-26","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/invisible-images-and-machine-vision/"},"keywords":"media-art, media-theory, machine-vision, ai, surveillance, image-politics"}</script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#00F0FF", "primary-hover": "#00C2CC",
-                        "background-light": "#000000", "background-dark": "#000000",
-                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
-                    },
-                    fontFamily: {
-                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
-                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
-                    }
-                }
-            }
-        };
-    </script>
-    <style>
-        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
-        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
-        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
-        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
-        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
-        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
-        .prose-dexa strong { color: #fff; font-weight: 600; }
-        .prose-dexa em { color: #6b7280; }
-        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
-        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
-        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
-        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
-        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
-        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
-        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
-        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
-        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
-        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
-        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
-        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
-        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
-        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
-        .prose-dexa tr:last-child td { border-bottom: none; }
-        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
-        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
-        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
 </head>
-<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
-    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
-                    <img src="/dexa_logo.svg?v=20260716c" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
-                </a>
-                <div class="hidden md:flex space-x-10 items-center">
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
-                </div>
-            </div>
+<body>
+    <nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/blog/" class="active">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
         </div>
     </nav>
-    <main class="pt-32 pb-24 lg:pt-40">
-        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-10">
-                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
-                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
-                </a>
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
-                    <span class="text-gray-600 font-mono text-xs">2026년 5월 26일</span>
-                </div>
-                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">이미지는 더 이상 우리를 기다리지 않는다</h1>
-                <p class="text-lg text-gray-500 leading-relaxed">트레버 패글런의 Invisible Images 개념을 통해 인간 관객을 지나치지 않고 기계가 분류하고 판단하는 이미지 생태계를 읽는다. 머신 비전, 데이터셋, 감시, AI 교육과 미디어아트 비평에서 왜 보이지 않는 이미지를 다시 보아야 하는지 다룬다.</p>
-                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-theory</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">machine-vision</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">ai</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">surveillance</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">image-politics</span></div>
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-kicker" style="margin-top:20px;">Article · 2026.05.26</div>
             </div>
-            <div class="prose-dexa">
+            <div class="prose">
+                <h1>이미지는 더 이상 우리를 기다리지 않는다</h1>
+                <p style="color:var(--muted);font-size:17px;">트레버 패글런의 Invisible Images 개념을 통해 인간 관객을 지나치지 않고 기계가 분류하고 판단하는 이미지 생태계를 읽는다. 머신 비전, 데이터셋, 감시, AI 교육과 미디어아트 비평에서 왜 보이지 않는 이미지를 다시 보아야 하는지 다룬다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">media-art</span><span class="dx-tag-chip">media-theory</span><span class="dx-tag-chip">machine-vision</span><span class="dx-tag-chip">ai</span><span class="dx-tag-chip">surveillance</span><span class="dx-tag-chip">image-politics</span></div>
 <p><img src="/blog/images/invisible-images-machine-vision-cover.png" alt="비가시적 이미지와 머신 비전 커버" loading="lazy"></p>
 <p>우리는 여전히 이미지를 인간의 눈앞에 도착하는 것으로 생각한다. 사진은 누군가가 보고, 영화는 관객이 앉아 보며, 전시장의 영상은 시선과 몸을 초대한다고 믿는다. 그러나 동시대 이미지의 상당수는 그런 약속을 더 이상 필요로 하지 않는다. 이미지는 우리에게 보여지기 전에 이미 잘리고, 압축되고, 라벨링되고, 점수화된다. 어떤 이미지는 아예 사람에게 보이기 위해 만들어지지 않는다.</p>
 <p>트레버 패글런(Trevor Paglen)이 말한 <strong>Invisible Images</strong>, 곧 비가시적 이미지는 바로 이 전환을 가리킨다. CCTV, 위성, 드론, 자율주행차, 얼굴 인증, 콘텐츠 moderation, 의료 스캐너, 플랫폼 추천 시스템에서 이미지는 더 이상 재현과 감상의 대상만이 아니다. 그것은 출입을 허가하고, 위험을 분류하고, 구매 가능성을 예측하고, 경찰적 개입을 촉발하고, 모델을 다시 학습시키는 작동 단위가 된다.</p>
@@ -136,19 +87,25 @@
 <p>비가시적 이미지의 시대에 이미지 윤리는 “이 이미지를 볼 수 있는가”만으로 충분하지 않다. 우리는 더 구체적으로 물어야 한다. 어떤 이미지가 수집되는가. 얼마 동안 저장되는가. 누구의 서버와 모델로 들어가는가. 어떤 라벨이 붙는가. 판정에 이의제기할 수 있는가. 삭제할 수 있는가. 그 이미지가 다시 누군가를 분류하는 학습 데이터가 되는가.</p>
 <p>이미지는 더 이상 우리를 기다리지 않는다. 우리가 볼지 말지 결정하기 전에 이미지는 세계를 계산하고 있다. 그래서 오늘의 이미지 비평은 더 늦기 전에 관객석을 떠나야 한다. 화면에 나타난 것만이 아니라, 화면 아래에서 이미 현실을 조직하고 있는 보이지 않는 이미지들을 추적해야 한다. 미디어아트가 할 수 있는 가장 중요한 일도 여기에 있다. 보이지 않는 것을 예쁘게 만드는 것이 아니라, 보이지 않기 때문에 책임지지 않았던 회로를 다시 공적 질문으로 돌려놓는 일이다.</p>
             </div>
-            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
-                <a id="prev-post" href="/blog/posts/hermes-setup-first-checks/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes 설치는 끝이 아니라 첫 진단 루프의 시작이다</span></a>
-                <a id="next-post" href="/blog/posts/hermes-image-generation-provider/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span>Hermes 이미지 생성은 프롬프트보다 provider 설정이 먼저다</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-setup-first-checks/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>Hermes 설치는 끝이 아니라 첫 진단 루프의 시작이다</span></a>
+                <a id="next-post" href="/blog/posts/hermes-image-generation-provider/" class="spec-row" style="text-decoration:none;"><span>Hermes 이미지 생성은 프롬프트보다 provider 설정이 먼저다</span><span class="k">NEXT →</span></a>
             </nav>
         </article>
     </main>
-    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg?v=20260716c" alt="DEXA" class="h-12 w-auto"></a>
-                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
-            </div>
-        </div>
+    <footer class="dx-footer" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
+        <a href="/" style="display:flex;align-items:center;gap:10px;">
+            <svg viewBox="4 4 112 98" width="28" height="24" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+        </a>
+        <p class="dx-footer-note" style="margin:0;text-align:right;">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
     </footer>
 </body>
 </html>

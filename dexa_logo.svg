@@ -2,18 +2,16 @@
   <title id="title">DEXA</title>
   <desc id="desc">DEXA triad symbol and wordmark</desc>
 
-  <!-- Triad symbol: direction, convergence, and production -->
+  
   <g stroke-linejoin="round">
-    <path d="M60 10 109 95H11Z" fill="none" stroke="#F7FAFC" stroke-width="5.5"/>
-    <path d="M60 20 79 53H41Z" fill="#F7FAFC"/>
-    <path d="M36 57 55 90H17Z" fill="#F7FAFC"/>
-    <path d="M84 57 103 90H65Z" fill="#5EE7F3"/>
-    <path d="M60 51 79 84H41Z" fill="#050607" stroke="#F7FAFC" stroke-width="3.5"/>
+    <path d="M60 10 109 95H11Z" fill="none" stroke="#F7FAFC" stroke-width="5.5"></path>
+    <path d="M60 20 79 53H41Z" fill="#F7FAFC"></path>
+    <path d="M36 57 55 90H17Z" fill="#F7FAFC"></path>
+    <path d="M84 57 103 90H65Z" fill="#5EE7F3"></path>
+    <path d="M60 51 79 84H41Z" fill="#050607" stroke="#F7FAFC" stroke-width="3.5"></path>
   </g>
 
-  <!-- Wordmark -->
-  <text x="140" y="82" fill="#F7FAFC"
-        font-family="Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
-        font-size="66" font-weight="800" textLength="200" lengthAdjust="spacingAndGlyphs">DEXA</text>
-  <circle cx="360" cy="78" r="6" fill="#5EE7F3"/>
+  
+  <text x="140" y="82" fill="#F7FAFC" font-family="&#39;Space Grotesk&#39;, -apple-system, BlinkMacSystemFont, &#39;Segoe UI&#39;, sans-serif" font-size="66" font-weight="800" textLength="200" lengthAdjust="spacingAndGlyphs">DEXA</text>
+  <circle cx="360" cy="78" r="6" fill="#5EE7F3"></circle>
 </svg>

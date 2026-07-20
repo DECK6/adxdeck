@@ -19,108 +19,106 @@
     <meta property="og:title" content="About DECK - 육대근 | DEXA" />
     <meta property="og:description" content="AX 컨설팅·개발, 기업강의, AI 콘텐츠 제작 이력을 한 화면에서 확인하고 문의할 수 있는 DEXA DECK 프로필입니다." />
     <meta property="og:image" content="https://dexa.art/deck-avatar.jpg" />
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+    <link rel="stylesheet" href="/dexa-theme.css">
     <link rel="stylesheet" href="styles.css">
     <style>
-        :root {
-            --deck-bg: #06110d;
-            --deck-panel: rgba(9, 20, 16, 0.82);
-            --deck-line: rgba(255, 255, 255, 0.1);
-            --deck-muted: rgba(255, 255, 255, 0.58);
-            --deck-pink: #e985aa;
-            --deck-cyan: #00F0FF;
-            --deck-green: #39FF14;
-            --deck-purple: #BC13FE;
-        }
-
         html { scroll-behavior: smooth; }
-        body.bio-page {
-            background: radial-gradient(circle at top, rgba(0, 240, 255, 0.10), transparent 34rem),
-                        radial-gradient(circle at 80% 0%, rgba(233, 133, 170, 0.13), transparent 28rem),
-                        var(--deck-bg);
-            color: #f7f7f4;
-        }
+        body.bio-page { background: var(--paper); color: var(--ink); }
         .bio-shell { width: min(100% - 2rem, 760px); margin: 0 auto; position: relative; z-index: 2; }
-        .skip-link { position: absolute; left: -999px; top: 1rem; background: #fff; color: #000; padding: .75rem 1rem; border-radius: 999px; z-index: 100; }
+        .skip-link { position: absolute; left: -999px; top: 1rem; background: var(--orange); color: var(--ink); padding: .75rem 1rem; border-radius: 999px; z-index: 100; font-family: var(--font-mono); font-size: .8rem; font-weight: 700; }
         .skip-link:focus { left: 1rem; }
-        .topbar { display: flex; align-items: center; justify-content: space-between; padding: 1.4rem 0 1rem; }
-        .brand-lockup { display: inline-flex; align-items: center; gap: .7rem; color: #fff; font-weight: 900; letter-spacing: .06em; }
-        .brand-lockup img { height: 38px; width: auto; }
-        .top-links { display: flex; gap: .55rem; flex-wrap: wrap; justify-content: flex-end; }
-        .round-link { display:inline-flex; align-items:center; justify-content:center; width: 2.55rem; height: 2.55rem; border:1px solid var(--deck-line); border-radius:999px; color:#d7ddd9; background:rgba(255,255,255,.04); transition:.2s ease; }
-        .round-link:hover { color:#000; background:var(--deck-cyan); border-color:var(--deck-cyan); }
-        .cover-card { min-height: 290px; border: 1px solid rgba(255,255,255,.08); border-radius: 0 0 2rem 2rem; overflow: hidden; background: linear-gradient(135deg, rgba(0,240,255,.18), rgba(57,255,20,.10) 42%, rgba(233,133,170,.22)); position: relative; box-shadow: 0 30px 100px rgba(0,0,0,.28); }
-        .cover-grid { position:absolute; inset:0; opacity:.22; background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px); background-size: 42px 42px; }
+
+        .cover-card { min-height: 290px; border: none; border-radius: 0 0 2rem 2rem; overflow: hidden; background: var(--ink); position: relative; }
+        .cover-grid { position:absolute; inset:0; opacity:.16; background-image: linear-gradient(rgba(255,255,255,.10) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.10) 1px, transparent 1px); background-size: 42px 42px; }
         .cover-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 190px; gap: 2rem; align-items: center; padding: 3rem 2rem; }
-        .cover-kicker { color: rgba(255,255,255,.86); font-weight: 800; letter-spacing:.12em; font-size:.78rem; text-transform:uppercase; margin-bottom: 1rem; }
-        .cover-title { font-size: clamp(2.3rem, 8vw, 4.2rem); line-height: .92; font-weight: 900; letter-spacing: -.06em; text-transform: uppercase; }
-        .cover-sub { color: rgba(255,255,255,.78); margin-top: 1.3rem; line-height: 1.8; font-weight: 600; }
-        .portrait-wrap { justify-self: end; width: 185px; aspect-ratio: 1; border: 6px solid rgba(255,255,255,.85); border-radius: 2.2rem; padding: 0; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.35); background:#111; }
+        .cover-kicker { font-family: var(--font-mono); color: var(--cyan); font-weight: 700; letter-spacing:.12em; font-size:.78rem; text-transform:uppercase; margin-bottom: 1rem; }
+        .cover-title { color: #F7FAFC; font-size: clamp(2.3rem, 8vw, 4.2rem); line-height: .92; font-weight: 700; letter-spacing: -.04em; text-transform: uppercase; }
+        .cover-sub { color: var(--ink-text); margin-top: 1.3rem; line-height: 1.8; font-weight: 500; }
+        .portrait-wrap { justify-self: end; width: 185px; aspect-ratio: 1; border: 6px solid rgba(247,250,252,.85); border-radius: 2.2rem; padding: 0; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,.35); background:#111; }
         .portrait-wrap img { width:100%; height:100%; object-fit:cover; }
+
         .profile-section { text-align: center; padding: 2.3rem 0 1rem; }
-        .profile-section h1 { font-size: clamp(2rem, 6vw, 3rem); font-weight: 900; letter-spacing: -.05em; }
-        .verified-dot { display:inline-flex; width:1.15rem; height:1.15rem; align-items:center; justify-content:center; border-radius:999px; background:var(--deck-pink); color:#111; font-size:.72rem; margin-left:.35rem; transform: translateY(-.15rem); }
-        .role-line { color:#fff; font-weight:800; margin-top:.65rem; }
-        .bio-copy { color: var(--deck-muted); line-height: 1.9; margin: 1.2rem auto 0; max-width: 660px; }
-        .bio-copy strong { color: var(--deck-pink); }
-        .fact-card { margin: 2rem auto 0; text-align:left; border:1px solid var(--deck-line); border-radius:1.35rem; background:rgba(0,0,0,.22); overflow:hidden; }
-        .fact-row { display:grid; grid-template-columns: 145px 1fr; gap: 1.2rem; padding: .9rem 1.1rem; border-bottom:1px solid rgba(255,255,255,.08); align-items:center; }
-        .fact-row:last-child { border-bottom:0; }
-        .fact-key { font-weight:900; color:#fff; }
-        .fact-value { color:var(--deck-muted); line-height:1.65; }
+        .profile-section h1 { font-size: clamp(2rem, 6vw, 3rem); font-weight: 700; letter-spacing: -.03em; }
+        .verified-dot { display:inline-flex; width:1.15rem; height:1.15rem; align-items:center; justify-content:center; border-radius:999px; background:var(--orange); color:var(--ink); font-size:.72rem; margin-left:.35rem; transform: translateY(-.15rem); }
+        .role-line { color:var(--ink); font-weight:700; margin-top:.65rem; }
+        .bio-copy { color: var(--muted); line-height: 1.9; margin: 1.2rem auto 0; max-width: 660px; }
+        .bio-copy strong { color: var(--orange); }
+
+        .fact-card { margin: 2rem auto 0; text-align:left; border:1px solid var(--line); border-radius:1.1rem; background:var(--line); display:flex; flex-direction:column; gap:1px; overflow:hidden; }
+        .fact-row { display:grid; grid-template-columns: 145px 1fr; gap: 1.2rem; padding: .9rem 1.1rem; background:var(--panel); align-items:center; font-family: var(--font-mono); }
+        .fact-key { font-weight:700; color:var(--muted); font-size:.78rem; letter-spacing:.04em; text-transform:uppercase; }
+        .fact-value { color:var(--ink); line-height:1.65; font-family: var(--font-sans); font-size:.92rem; }
+        .fact-value a { color: var(--orange); font-weight: 700; }
+
         .metric-block { margin: 2rem 0 1.25rem; display:grid; grid-template-columns: repeat(3,1fr); gap:.75rem; }
-        .metric { border:1px solid var(--deck-line); border-radius:1.1rem; padding:1rem .75rem; background:rgba(255,255,255,.035); text-align:center; }
-        .metric strong { display:block; font-size:1.55rem; color:#fff; font-weight:900; }
-        .metric span { display:block; margin-top:.25rem; color:rgba(255,255,255,.48); font-size:.75rem; text-transform:uppercase; letter-spacing:.08em; }
+        .metric { border:1px solid var(--line); border-radius:1.1rem; padding:1rem .75rem; background:var(--panel); text-align:center; }
+        .metric strong { display:block; font-size:1.55rem; color:var(--ink); font-weight:700; font-family: var(--font-mono); }
+        .metric span { display:block; margin-top:.25rem; color:var(--muted); font-size:.75rem; text-transform:uppercase; letter-spacing:.08em; font-family: var(--font-mono); }
+
         .social-row { display:flex; justify-content:center; flex-wrap:wrap; gap:.7rem; margin:1.35rem 0 2rem; }
-        .social-row a { display:inline-flex; align-items:center; gap:.35rem; border:1px solid var(--deck-line); color:rgba(255,255,255,.72); border-radius:999px; padding:.72rem 1rem; background:rgba(255,255,255,.035); transition:.2s ease; font-weight:700; font-size:.86rem; }
-        .social-row a:hover { border-color:var(--deck-cyan); color:#fff; box-shadow:0 0 24px rgba(0,240,255,.12); }
+        .social-row a { display:inline-flex; align-items:center; gap:.35rem; border:1px solid var(--line); color:var(--muted); border-radius:999px; padding:.72rem 1rem; background:var(--panel); transition:.2s ease; font-weight:700; font-size:.86rem; font-family: var(--font-mono); letter-spacing:.02em; }
+        .social-row a:hover { border-color:var(--orange); color:var(--ink); background:var(--panel2); }
+
         .cta-row { display:grid; grid-template-columns: 1fr 1fr; gap:.75rem; margin:1rem 0 2.2rem; }
-        .cta-primary, .cta-secondary { display:flex; align-items:center; justify-content:center; gap:.5rem; min-height:3.35rem; border-radius:1rem; font-weight:900; transition:.2s ease; }
-        .cta-primary { background:var(--deck-pink); color:#111; }
-        .cta-secondary { background:rgba(255,255,255,.055); color:#fff; border:1px solid var(--deck-line); }
-        .cta-primary:hover, .cta-secondary:hover { transform: translateY(-2px); box-shadow:0 16px 40px rgba(233,133,170,.18); }
-        .section-card { margin: 2rem 0; border:1px solid var(--deck-line); border-radius:1.6rem; padding:1.35rem; background:rgba(0,0,0,.20); }
+        .cta-primary, .cta-secondary { display:flex; align-items:center; justify-content:center; gap:.5rem; min-height:3.35rem; border-radius:1rem; font-weight:700; transition:.2s ease; font-size:.92rem; }
+        .cta-primary { background:var(--orange); color:var(--ink); }
+        .cta-secondary { background:var(--panel); color:var(--ink); border:1px solid var(--line); }
+        .cta-primary:hover { background:var(--orange-hover); transform: translateY(-2px); }
+        .cta-secondary:hover { background:var(--panel2); transform: translateY(-2px); }
+
+        .section-card { margin: 2rem 0; border:1px solid var(--line); border-radius:1.6rem; padding:1.35rem; background:var(--panel); }
         .section-heading { display:flex; align-items:end; justify-content:space-between; gap:1rem; margin-bottom:1rem; }
-        .section-heading h2 { font-size:1.35rem; font-weight:900; letter-spacing:-.03em; }
-        .section-heading p { color:rgba(255,255,255,.45); font-size:.82rem; }
+        .section-heading h2 { font-size:1.35rem; font-weight:700; letter-spacing:-.02em; margin:0; }
+        .section-heading p { color:var(--muted); font-size:.82rem; margin:0; }
+
         .filter-bar { display:flex; gap:.55rem; overflow-x:auto; padding:.35rem 0 1rem; scrollbar-width: thin; }
-        .filter-btn { white-space:nowrap; border:1px solid var(--deck-line); color:#d5d9d6; background:rgba(255,255,255,.03); border-radius:999px; padding:.72rem .95rem; font-weight:900; font-size:.84rem; transition:.18s ease; }
-        .filter-btn.active, .filter-btn:hover { color:#111; background:var(--deck-pink); border-color:var(--deck-pink); }
-        .filter-note { color:var(--deck-muted); font-size:.85rem; line-height:1.7; margin-bottom:1rem; }
+        .filter-btn { white-space:nowrap; border:1px solid var(--line); color:var(--ink); background:var(--paper); border-radius:999px; padding:.72rem .95rem; font-weight:700; font-size:.84rem; font-family: var(--font-mono); transition:.18s ease; }
+        .filter-btn.active, .filter-btn:hover { color:var(--ink); background:var(--orange); border-color:var(--orange); }
+        .filter-note { color:var(--muted); font-size:.85rem; line-height:1.7; margin-bottom:1rem; }
         .career-list { display:grid; gap:.85rem; }
 
         .career-lane { display:grid; gap:.9rem; margin-top:1rem; }
         .career-lane.is-hidden { display:none; }
-        .lane-heading { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.95rem 1rem; border:1px solid rgba(255,255,255,.08); border-radius:1rem; background:rgba(255,255,255,.035); }
-        .lane-eyebrow { display:block; color:var(--deck-pink); font-size:.68rem; font-weight:900; letter-spacing:.12em; text-transform:uppercase; margin-bottom:.25rem; }
-        .lane-heading h3 { color:#fff; font-size:1.05rem; font-weight:900; letter-spacing:-.03em; }
+        .lane-heading { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.95rem 1rem; border:1px solid var(--line); border-radius:1rem; background:var(--paper); }
+        .lane-eyebrow { display:block; font-family: var(--font-mono); color:var(--orange); font-size:.68rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; margin-bottom:.25rem; }
+        .lane-heading h3 { color:var(--ink); font-size:1.05rem; font-weight:700; letter-spacing:-.02em; margin:0; }
         .lane-list { display:grid; gap:.85rem; }
-        .rank-badge { color:#111 !important; background:var(--deck-pink); border-radius:999px; padding:.1rem .42rem; font-weight:900; letter-spacing:.04em; }
+        .rank-badge { font-family: var(--font-mono); color:var(--ink) !important; background:var(--orange); border-radius:999px; padding:.1rem .42rem; font-weight:700; letter-spacing:.04em; }
 
-        .career-card { display:grid; grid-template-columns: 3.2rem 1fr 1.6rem; gap:1rem; align-items:center; border:1px solid var(--deck-line); background:rgba(4,11,8,.76); border-radius:1.2rem; padding:1rem; transition:.22s ease; }
-        .career-card:hover { transform:translateY(-2px); border-color:rgba(233,133,170,.45); background:rgba(10,22,18,.92); }
+        .career-card { display:grid; grid-template-columns: 3.2rem 1fr 1.6rem; gap:1rem; align-items:center; border:1px solid var(--line); background:var(--paper); border-radius:1.2rem; padding:1rem; transition:.22s ease; }
+        .career-card:hover { transform:translateY(-2px); border-color:var(--orange); background:var(--panel); }
         .career-card.is-hidden { display:none; }
-        .career-icon { width:3.2rem; height:3.2rem; border-radius:1rem; display:flex; align-items:center; justify-content:center; background:rgba(233,133,170,.12); color:var(--deck-pink); }
-        .career-topline { display:flex; flex-wrap:wrap; gap:.45rem .8rem; color:rgba(255,255,255,.42); font-size:.72rem; font-family:'Montserrat', sans-serif; letter-spacing:.06em; text-transform:uppercase; margin-bottom:.3rem; }
-        .career-body h3 { font-size:1rem; font-weight:900; color:#fff; line-height:1.45; }
-        .career-body p { color:var(--deck-muted); line-height:1.75; margin:.35rem 0 .65rem; font-size:.9rem; }
+        .career-icon { width:3.2rem; height:3.2rem; border-radius:1rem; display:flex; align-items:center; justify-content:center; background:var(--panel); color:var(--orange); font-family: var(--font-mono); font-weight:700; font-size:.8rem; letter-spacing:.02em; }
+        .career-topline { display:flex; flex-wrap:wrap; gap:.45rem .8rem; color:var(--muted); font-size:.72rem; font-family: var(--font-mono); letter-spacing:.06em; text-transform:uppercase; margin-bottom:.3rem; }
+        .career-body h3 { font-size:1rem; font-weight:700; color:var(--ink); line-height:1.45; margin:0; }
+        .career-body p { color:var(--muted); line-height:1.75; margin:.35rem 0 .65rem; font-size:.9rem; }
         .career-chips { display:flex; flex-wrap:wrap; gap:.35rem; }
-        .career-chips span { background:rgba(233,133,170,.14); color:#f0a4bf; border-radius:999px; padding:.2rem .48rem; font-size:.68rem; font-weight:800; }
-        .career-arrow { color:rgba(255,255,255,.28); }
+        .career-chips span { font-family: var(--font-mono); background:var(--panel); border:1px solid var(--line); color:var(--muted); border-radius:999px; padding:.2rem .48rem; font-size:.68rem; font-weight:700; letter-spacing:.02em; }
+        .career-arrow { color:var(--muted); font-size:.9rem; }
         .clients { display:flex; flex-wrap:wrap; gap:.55rem; }
-        .clients span { color:rgba(255,255,255,.62); border:1px solid rgba(255,255,255,.08); border-radius:999px; padding:.42rem .72rem; background:rgba(255,255,255,.03); font-size:.78rem; }
+        .clients span { font-family: var(--font-mono); color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:.42rem .72rem; background:var(--paper); font-size:.78rem; }
+
         .contact-panel { display:grid; grid-template-columns: .85fr 1.15fr; gap:1rem; align-items:start; }
         .contact-copy { padding:1rem 0; }
-        .contact-copy h2 { font-size:clamp(2rem, 6vw, 3rem); line-height:1; font-weight:900; letter-spacing:-.06em; }
-        .contact-copy p { color:var(--deck-muted); line-height:1.8; margin-top:1rem; }
-        .contact-form-card { border:1px solid var(--deck-line); border-radius:1.2rem; background:rgba(0,0,0,.26); padding:1.1rem; }
-        .form-label { display:block; color:rgba(255,255,255,.50); font-size:.72rem; text-transform:uppercase; letter-spacing:.1em; font-weight:800; margin-bottom:.45rem; }
-        .form-input { width:100%; background:#111; border:1px solid #333; border-radius:.8rem; padding:.88rem 1rem; color:#fff; outline:none; transition:.2s ease; }
-        .form-input:focus { border-color:var(--deck-cyan); box-shadow:0 0 0 3px rgba(0,240,255,.08); }
-        .footer-note { padding:3rem 0 2rem; text-align:center; color:rgba(255,255,255,.38); font-size:.82rem; }
+        .contact-copy h2 { font-size:clamp(2rem, 6vw, 3rem); line-height:1; font-weight:700; letter-spacing:-.04em; }
+        .contact-copy p { color:var(--muted); line-height:1.8; margin-top:1rem; }
+        .accent-mark { color: var(--orange); }
+        .contact-location { font-size:.85rem; color:var(--muted); margin-top:1rem; font-family: var(--font-mono); }
+        .contact-form-card { border:1px solid var(--line); border-radius:1.2rem; background:var(--paper); padding:1.1rem; }
+        #contact-form > * + * { margin-top: 1.1rem; }
+        .form-grid-2 { display:grid; grid-template-columns: 1fr; gap:1rem; }
+        .note-head { display:flex; align-items:center; gap:.5rem; }
+        .note-head p { margin:0; font-family: var(--font-mono); font-size:.78rem; text-transform:uppercase; letter-spacing:.04em; font-weight:700; }
+        .form-note-ok .note-head p { color: var(--ink); }
+        .form-note-err .note-head p { color: var(--red-text); }
+        .note-sub { color:var(--muted); font-size:.72rem; margin:.5rem 0 0; font-family: var(--font-mono); }
+        .footer-note { padding:3rem 0 2rem; text-align:center; color:var(--muted); font-size:.82rem; font-family: var(--font-mono); }
+        .animate-spin { animation: dexa-spin 1s linear infinite; }
+        @keyframes dexa-spin { to { transform: rotate(360deg); } }
+
         @media (max-width: 760px) {
             .cover-inner { grid-template-columns: 1fr; padding:2rem 1.25rem; }
             .portrait-wrap { justify-self:start; width:142px; border-radius:1.5rem; }
@@ -129,20 +127,32 @@
             .career-card { grid-template-columns:2.6rem 1fr; }
             .career-arrow { display:none; }
         }
+        @media (min-width: 640px) {
+            .form-grid-2 { grid-template-columns: 1fr 1fr; }
+        }
     </style>
 </head>
 
 <body class="bio-page">
     <a class="skip-link" href="#career-gateway">경력 목록으로 이동</a>
-    <div id="canvas-container"></div>
+    <div id="canvas-container" style="display:none;"></div>
 
-    <header class="bio-shell topbar" aria-label="DEXA profile navigation">
-        <a href="index.html" class="brand-lockup" aria-label="DEXA home">
-            <img src="dexa_logo.svg?v=20260716c" alt="DEXA Logo">
+    <header class="dx-nav" aria-label="DEXA profile navigation">
+        <a href="index.html" class="dx-nav-brand" aria-label="DEXA home">
+            <svg viewBox="4 4 112 98" width="30" height="26" aria-hidden="true">
+              <g stroke-linejoin="round">
+                <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+              </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
         </a>
-        <nav class="top-links" aria-label="빠른 링크">
-            <a class="round-link" href="index.html" aria-label="Home"><span class="material-symbols-outlined">home</span></a>
-            <a class="round-link" href="/blog/" aria-label="Blog"><span class="material-symbols-outlined">article</span></a>
+        <nav class="dx-nav-links" aria-label="빠른 링크">
+            <a href="index.html">HOME</a>
+            <a href="/blog/">BLOG</a>
         </nav>
     </header>
 
@@ -162,7 +172,7 @@
         </section>
 
         <section class="profile-section" aria-labelledby="profile-title">
-            <h1 id="profile-title">육대근 <span class="opacity-70">DECK</span><span class="verified-dot">✓</span></h1>
+            <h1 id="profile-title">육대근 <span style="opacity:.7;">DECK</span><span class="verified-dot">✓</span></h1>
             <p class="role-line">Founder & Director, DEXA · AX Consultant · Generative AI Educator</p>
             <p class="bio-copy">
                 육대근(DECK)은 DEXA의 Founder & Director이자 <strong>AX 전문가</strong>입니다.
@@ -174,7 +184,7 @@
                 <div class="fact-row"><div class="fact-key">AX 전문가</div><div class="fact-value">조직의 업무 흐름을 분석해 AI 도입, 자동화, 교육, 프로토타입으로 연결합니다.</div></div>
                 <div class="fact-row"><div class="fact-key">기업강의</div><div class="fact-value">임원·실무자 대상 생성형 AI, ChatGPT x Python, 업무 적용형 워크숍을 진행합니다.</div></div>
                 <div class="fact-row"><div class="fact-key">콘텐츠</div><div class="fact-value">이미지·영상 생성, OSMU, 아나모픽/공간형 콘텐츠 제작 흐름을 다룹니다.</div></div>
-                <div class="fact-row"><div class="fact-key">Contact</div><div class="fact-value"><a class="text-[#e985aa] font-bold" href="#contact">아래 문의 폼을 이용해 주세요.</a> · Incheon, South Korea</div></div>
+                <div class="fact-row"><div class="fact-key">Contact</div><div class="fact-value"><a href="mailto:deck@dexa.art">deck@dexa.art</a> · Incheon, South Korea</div></div>
             </div>
 
             <div class="metric-block" aria-label="공개 신뢰도 지표">
@@ -184,13 +194,13 @@
             </div>
 
             <div class="social-row" aria-label="주요 링크">
-                <a href="https://dexa.art"><span class="material-symbols-outlined text-sm">language</span>dexa.art</a>
-                <a href="/blog/"><span class="material-symbols-outlined text-sm">article</span>DEXA Blog</a>
+                <a href="https://dexa.art">dexa.art</a>
+                <a href="/blog/">DEXA Blog</a>
             </div>
 
             <div class="cta-row" aria-label="주요 문의 액션">
-                <a href="#contact" class="cta-primary" data-inquiry-type="강의 문의"><span class="material-symbols-outlined">school</span>강의 문의</a>
-                <a href="#contact" class="cta-secondary" data-inquiry-type="협업 문의"><span class="material-symbols-outlined">handshake</span>협업 문의</a>
+                <a href="#contact" class="cta-primary" data-inquiry-type="강의 문의">강의 문의</a>
+                <a href="#contact" class="cta-secondary" data-inquiry-type="협업 문의">협업 문의</a>
             </div>
         </section>
 
@@ -214,7 +224,7 @@
                     </div>
                     <div class="lane-list">
                         <article class="career-card" data-groups="ax training corp" data-record-id="lecture-lg-ax-camp" data-lane="corp" data-rank="01">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#01</span><span>Corporate / Consulting</span><span>강사진</span>
@@ -223,10 +233,10 @@
         <p>LG 그룹 임원진 AX CAMP 강사진 · AI 전환 교육</p>
         <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>ax-dev</span><span>기업강의</span><span>AX</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training corp" data-record-id="lecture-samsung-smartbizexpo-2025" data-lane="corp" data-rank="02">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#02</span><span>Corporate / Consulting</span><span>강연 · 2025</span>
@@ -235,10 +245,10 @@
         <p>삼성전자·중소벤처기업부 스마트비즈엑스포 AI/비즈니스 전환 강연</p>
         <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>public-policy</span><span>기업강의</span><span>AX</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training corp" data-record-id="lecture-sk-innovation-genai-camp-2" data-lane="corp" data-rank="03">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#03</span><span>Corporate / Consulting</span><span>코치</span>
@@ -247,10 +257,10 @@
         <p>SK Innovation 생성 AI 개발캠프 2기 코칭</p>
         <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>ax-dev</span><span>기업강의</span><span>AI개발</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training corp" data-record-id="lecture-skt-genai-camp" data-lane="corp" data-rank="04">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#04</span><span>Corporate / Consulting</span><span>코치</span>
@@ -259,10 +269,10 @@
         <p>SKT 생성 AI CAMP 코칭</p>
         <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>ax-dev</span><span>기업강의</span><span>생성형AI</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training corp" data-record-id="lecture-skt-adot-judge" data-lane="corp" data-rank="05">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#05</span><span>Corporate / Consulting</span><span>심사위원</span>
@@ -271,10 +281,10 @@
         <p>SKT A.dot 얼리어닷터 프로그램 심사</p>
         <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>ax-dev</span><span>기업강의</span><span>AI서비스</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training corp" data-record-id="lecture-hyundai-autoever-chatgpt-python" data-lane="corp" data-rank="06">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#06</span><span>Corporate / Consulting</span><span>강사</span>
@@ -283,10 +293,10 @@
         <p>현대오토에버 ChatGPT 기반 Python 교육</p>
         <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>ax-dev</span><span>기업강의</span><span>AI개발</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training corp" data-record-id="lecture-ecobit-ai-practical" data-lane="corp" data-rank="07">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#07</span><span>Corporate / Consulting</span><span>강사</span>
@@ -295,10 +305,10 @@
         <p>에코비트 임직원 대상 AI 활용 실무 교육</p>
         <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>ax-dev</span><span>기업강의</span><span>AX</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training content corp" data-record-id="edu-sbs-ant-media-art" data-lane="corp" data-rank="08">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#08</span><span>Education</span><span>AI/Python 강사</span>
@@ -307,10 +317,10 @@
         <p>SBS A&amp;T 기술융합 미디어아트 과정 AI·Python 교육</p>
         <div class="career-chips"><span>Education</span><span>corporate-training</span><span>media-art-immersive</span><span>AI교육</span><span>Python</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training corp" data-record-id="consulting-expertbrand-association" data-lane="corp" data-rank="09">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#09</span><span>Corporate / Consulting</span><span>컨설턴트</span>
@@ -319,10 +329,10 @@
         <p>엑스퍼트브랜드 협회 AX/브랜드 컨설팅</p>
         <div class="career-chips"><span>Corporate / Consulting</span><span>ax-dev</span><span>corporate-training</span><span>컨설팅</span><span>AX</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training corp" data-record-id="lecture-fertiline-corporate-training" data-lane="corp" data-rank="10">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#10</span><span>Corporate / Consulting</span><span>강사</span>
@@ -331,7 +341,7 @@
         <p>퍼틸레인 기업 교육</p>
         <div class="career-chips"><span>Corporate / Consulting</span><span>corporate-training</span><span>ax-dev</span><span>기업강의</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
                     </div>
                 </section>
@@ -342,7 +352,7 @@
                     </div>
                     <div class="lane-list">
                         <article class="career-card" data-groups="training institution" data-record-id="role-google-ai-opportunity-fund-apac" data-lane="institution" data-rank="11">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#11</span><span>Role</span><span>Trainer</span>
@@ -351,10 +361,10 @@
         <p>Google.org AI Opportunity Fund: Asia-Pacific Trainer · AI 교육 확산 프로그램</p>
         <div class="career-chips"><span>Role</span><span>corporate-training</span><span>public-policy</span><span>AI교육</span><span>기업강의</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training institution" data-record-id="public-supreme-prosecutors-chatgpt-python" data-lane="institution" data-rank="12">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#12</span><span>Public Sector</span><span>강사</span>
@@ -363,10 +373,10 @@
         <p>대검찰청 ChatGPT 기반 Python 교육</p>
         <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>corporate-training</span><span>공공기관</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training institution" data-record-id="public-incheon-customs-chatgpt-python" data-lane="institution" data-rank="13">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#13</span><span>Public Sector</span><span>강사</span>
@@ -375,10 +385,10 @@
         <p>인천세관 ChatGPT 기반 Python 교육</p>
         <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>corporate-training</span><span>공공기관</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training institution" data-record-id="public-gyeonggi-hrd-ai-avengers" data-lane="institution" data-rank="14">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#14</span><span>Public Sector</span><span>강사</span>
@@ -387,10 +397,10 @@
         <p>경기도인재개발원 AI 어벤저스 캠프 1·2기 강의</p>
         <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>corporate-training</span><span>공공기관</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training institution" data-record-id="public-gangwon-ai-avengers" data-lane="institution" data-rank="15">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#15</span><span>Public Sector</span><span>특강 강사</span>
@@ -399,10 +409,10 @@
         <p>강원도청 AI 어벤저스 발대식 특강</p>
         <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>corporate-training</span><span>공공기관</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training institution" data-record-id="public-hoengseong-chatgpt" data-lane="institution" data-rank="16">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#16</span><span>Public Sector</span><span>강사</span>
@@ -411,10 +421,10 @@
         <p>횡성군청 전 직원 대상 ChatGPT 활용 강의</p>
         <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>corporate-training</span><span>공공기관</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training institution" data-record-id="public-gyeonggi-agritech-chatbot" data-lane="institution" data-rank="17">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#17</span><span>Public Sector</span><span>강사</span>
@@ -423,10 +433,10 @@
         <p>경기도 농업기술원 업무비서 챗봇 만들기 강의</p>
         <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>ax-dev</span><span>공공기관</span><span>AI개발</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training content institution" data-record-id="public-korea-post-sns-ai" data-lane="institution" data-rank="18">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#18</span><span>Public Sector</span><span>강사</span>
@@ -435,10 +445,10 @@
         <p>우정사업본부 SNS 콘텐츠 제작 AI 활용 교육</p>
         <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>ai-content-media</span><span>공공기관</span><span>콘텐츠자동화</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training institution" data-record-id="public-komir-ai-special-lecture" data-lane="institution" data-rank="19">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#19</span><span>Public Sector</span><span>특강 강사</span>
@@ -447,10 +457,10 @@
         <p>한국광해광업공단·원주시 공공기관 감사 회의 AI 활용 특강</p>
         <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>corporate-training</span><span>공공기관</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax institution" data-record-id="public-gwangju-ai-special-committee-advisor" data-lane="institution" data-rank="20">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#20</span><span>Public Sector</span><span>전문자문위원</span>
@@ -459,10 +469,10 @@
         <p>광주광역시의회 인공지능실증도시 전문자문 · AI 정책/실증도시 맥락</p>
         <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>ax-dev</span><span>공공기관</span><span>정책자문</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="content institution" data-record-id="public-ministry-environment-sns-advisor" data-lane="institution" data-rank="21">
-    <div class="career-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
+    <div class="career-icon" aria-hidden="true">CT</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#21</span><span>Public Sector</span><span>자문위원</span>
@@ -471,10 +481,10 @@
         <p>환경부 SNS 운영 자문 · 공공 커뮤니케이션 운영 자문</p>
         <div class="career-chips"><span>Public Sector</span><span>public-policy</span><span>ai-content-media</span><span>공공기관</span><span>정책자문</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training content institution" data-record-id="career-kocca-nca3-2025-current" data-lane="institution" data-rank="22">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#22</span><span>Career</span><span>이머시브 공간/공연 모듈 담임 퍼실리테이터 · 2025-09 ~ 현재</span>
@@ -483,10 +493,10 @@
         <p>한국콘텐츠진흥원 NCA 3기 이머시브 공간/공연 모듈 담임 퍼실리테이션 · 프로젝트 멘토링</p>
         <div class="career-chips"><span>Career</span><span>media-art-immersive</span><span>corporate-training</span><span>미디어아트</span><span>이머시브</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training content institution" data-record-id="edu-kocca-nca3-facilitator" data-lane="institution" data-rank="23">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#23</span><span>Education</span><span>담임 퍼실리테이터 · 2025-09 ~ 현재</span>
@@ -495,10 +505,10 @@
         <p>NCA 3기 이머시브 공간/공연 모듈 실습형 프로젝트 교육 · 팀 멘토링</p>
         <div class="career-chips"><span>Education</span><span>media-art-immersive</span><span>corporate-training</span><span>AI교육</span><span>미디어아트</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training content institution" data-record-id="edu-kocca-nca2-art-tech" data-lane="institution" data-rank="24">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#24</span><span>Education</span><span>강사</span>
@@ -507,10 +517,10 @@
         <p>NCA 2기 아트&amp;테크 과정 강의</p>
         <div class="career-chips"><span>Education</span><span>media-art-immersive</span><span>corporate-training</span><span>AI교육</span><span>미디어아트</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training content institution" data-record-id="culture-gwangju-icca-ai-immersive" data-lane="institution" data-rank="25">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#25</span><span>Culture / Content</span><span>강사</span>
@@ -519,10 +529,10 @@
         <p>광주정보문화산업진흥원 AI x 실감콘텐츠 강의</p>
         <div class="career-chips"><span>Culture / Content</span><span>media-art-immersive</span><span>ai-content-media</span><span>미디어아트</span><span>실감콘텐츠</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training content institution" data-record-id="culture-gwangju-film-ai-video" data-lane="institution" data-rank="26">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#26</span><span>Culture / Content</span><span>강사</span>
@@ -531,10 +541,10 @@
         <p>광주영상진흥원 AI 영상콘텐츠 제작 강의</p>
         <div class="career-chips"><span>Culture / Content</span><span>ai-content-media</span><span>media-art-immersive</span><span>이미지영상</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training content institution" data-record-id="culture-bifan-univ" data-lane="institution" data-rank="27">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#27</span><span>Culture / Content</span><span>강사/멘토</span>
@@ -543,10 +553,10 @@
         <p>부천국제판타스틱영화제 BIFAN 환상영화학교 UNIV 강사/멘토</p>
         <div class="career-chips"><span>Culture / Content</span><span>ai-content-media</span><span>media-art-immersive</span><span>영화</span><span>콘텐츠</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training content institution" data-record-id="culture-guro-ai-arts" data-lane="institution" data-rank="28">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#28</span><span>Culture / Content</span><span>강사</span>
@@ -555,10 +565,10 @@
         <p>구로문화재단 ‘AI로 만나는 문화예술’ 강의</p>
         <div class="career-chips"><span>Culture / Content</span><span>public-policy</span><span>corporate-training</span><span>문화예술교육</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training institution" data-record-id="edu-hanyang-women-genai" data-lane="institution" data-rank="29">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#29</span><span>Education</span><span>컨설턴트/특강 강사</span>
@@ -567,10 +577,10 @@
         <p>한양여대 생성형 AI 도입 컨설팅 및 특강</p>
         <div class="career-chips"><span>Education</span><span>corporate-training</span><span>public-policy</span><span>교육기관</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training content institution" data-record-id="edu-hanyang-women-ai-design" data-lane="institution" data-rank="30">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#30</span><span>Education</span><span>특강 강사</span>
@@ -579,10 +589,10 @@
         <p>한양여대 AI 디자인 특강</p>
         <div class="career-chips"><span>Education</span><span>ai-content-media</span><span>corporate-training</span><span>교육기관</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training content institution" data-record-id="edu-hanyang-women-ai-shortform" data-lane="institution" data-rank="31">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#31</span><span>Education</span><span>특강 강사</span>
@@ -591,10 +601,10 @@
         <p>한양여대 AI 숏폼 제작 특강</p>
         <div class="career-chips"><span>Education</span><span>ai-content-media</span><span>corporate-training</span><span>교육기관</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training institution" data-record-id="edu-jeonghwa-faculty-workshop" data-lane="institution" data-rank="32">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#32</span><span>Education</span><span>워크숍 강사</span>
@@ -603,10 +613,10 @@
         <p>정화예대 교수 포럼 생성 AI 워크숍</p>
         <div class="career-chips"><span>Education</span><span>corporate-training</span><span>public-policy</span><span>교육기관</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training content institution" data-record-id="edu-jeonghwa-student-ai-design-online" data-lane="institution" data-rank="33">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#33</span><span>Education</span><span>온라인 강의 강사</span>
@@ -615,10 +625,10 @@
         <p>정화예대 학생 대상 AI 디자인 온라인 강의</p>
         <div class="career-chips"><span>Education</span><span>ai-content-media</span><span>corporate-training</span><span>교육기관</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training content institution" data-record-id="edu-daejeon-univ-ai-pr" data-lane="institution" data-rank="34">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#34</span><span>Education</span><span>특강 강사</span>
@@ -627,10 +637,10 @@
         <p>대전대·서울대·연세대 등 5개 대학 대상 AI 마케팅 콘텐츠 강의</p>
         <div class="career-chips"><span>Education</span><span>ai-content-media</span><span>corporate-training</span><span>교육기관</span><span>콘텐츠자동화</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training institution" data-record-id="role-incheon-citizen-professor" data-lane="institution" data-rank="35">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#35</span><span>Role</span><span>인천 시민교수</span>
@@ -639,10 +649,10 @@
         <p>인천 시민교수 · 지역 시민 대상 문화예술/AI 교육</p>
         <div class="career-chips"><span>Role</span><span>public-policy</span><span>corporate-training</span><span>공공기관</span><span>문화예술교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax institution" data-record-id="role-gwangju-ai-special-committee" data-lane="institution" data-rank="36">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#36</span><span>Role</span><span>전문자문위원</span>
@@ -651,10 +661,10 @@
         <p>광주광역시의회 인공지능실증도시 전문자문 · AI 정책/실증도시 맥락</p>
         <div class="career-chips"><span>Role</span><span>public-policy</span><span>ax-dev</span><span>정책자문</span><span>공공기관</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training institution" data-record-id="community-google-snu-parent-ai" data-lane="institution" data-rank="37">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#37</span><span>Community</span><span>강사</span>
@@ -663,10 +673,10 @@
         <p>Google.org AI Opportunity Fund 연계 학부모 AI 교육 강사</p>
         <div class="career-chips"><span>Community</span><span>corporate-training</span><span>public-policy</span><span>AI교육</span><span>공공교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training institution" data-record-id="community-google-career-jump" data-lane="institution" data-rank="38">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#38</span><span>Community</span><span>강사</span>
@@ -675,7 +685,7 @@
         <p>Google.org AI Opportunity Fund 커리어 점프 취준생 AI 교육 강사</p>
         <div class="career-chips"><span>Community</span><span>corporate-training</span><span>public-policy</span><span>AI교육</span><span>커리어교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
                     </div>
                 </section>
@@ -686,7 +696,7 @@
                     </div>
                     <div class="lane-list">
                         <article class="career-card" data-groups="ax training content" data-record-id="career-dexa-founder-director-current" data-lane="ax" data-rank="39">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#39</span><span>Career</span><span>Founder &amp; Director · 현재</span>
@@ -695,10 +705,10 @@
         <p>DEXA Founder &amp; Director · AI 교육, AX 컨설팅, 미디어아트, 콘텐츠 자동화 통합 운영</p>
         <div class="career-chips"><span>Career</span><span>ax-dev</span><span>ai-content-media</span><span>AX</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training content" data-record-id="career-dinomad-dx-lab-2022-2024" data-lane="ax" data-rank="40">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#40</span><span>Career</span><span>크리에이티브 디렉터 · 2022-10 ~ 2024-11</span>
@@ -707,10 +717,10 @@
         <p>DX 연구소 크리에이티브 디렉션 · 생성형 AI 교육, 자동화 솔루션, 콘텐츠 제작 워크플로우 기획/운영</p>
         <div class="career-chips"><span>Career</span><span>ax-dev</span><span>corporate-training</span><span>AX</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training" data-record-id="project-akm-agent-knowledge-management" data-lane="ax" data-rank="41">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#41</span><span>Project</span><span>기획·설계·개발 · 2026</span>
@@ -719,10 +729,10 @@
         <p>AI 에이전트 지식 운영체계 AKM 기획/설계 · 원본, 맥락, 절차, 실행 기록, 평가 분리</p>
         <div class="career-chips"><span>Project</span><span>ax-dev</span><span>corporate-training</span><span>AX</span><span>AI개발</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training content" data-record-id="project-rfp-proposal-ai-solution" data-lane="ax" data-rank="42">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#42</span><span>Project</span><span>기획·개발</span>
@@ -731,10 +741,10 @@
         <p>RFP 분석과 제안서 초안 생성을 지원하는 AI 솔루션 기획/개발</p>
         <div class="career-chips"><span>Project</span><span>ax-dev</span><span>corporate-training</span><span>AX</span><span>AI개발</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training content" data-record-id="project-press-release-aar-automation" data-lane="ax" data-rank="43">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#43</span><span>Project</span><span>기획·개발</span>
@@ -743,10 +753,10 @@
         <p>보도자료·사후 보고서 작성 흐름 자동화 · AI 기반 업무 효율화 솔루션 기획</p>
         <div class="career-chips"><span>Project</span><span>ax-dev</span><span>ai-content-media</span><span>AX</span><span>콘텐츠자동화</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax content" data-record-id="project-cv-crowd-monitoring" data-lane="ax" data-rank="44">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#44</span><span>Project</span><span>기획·개발</span>
@@ -755,10 +765,10 @@
         <p>컴퓨터 비전 기반 군중 모니터링 · 현장 안전/운영 효율 AI 적용 사례</p>
         <div class="career-chips"><span>Project</span><span>ax-dev</span><span>media-art-immersive</span><span>AI개발</span><span>컴퓨터비전</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training content" data-record-id="project-ai-experience-programs" data-lane="ax" data-rank="45">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#45</span><span>Project</span><span>기획·운영</span>
@@ -767,10 +777,10 @@
         <p>AI 체험 프로그램 개발/운영 · 교육과 체험형 콘텐츠 연결</p>
         <div class="career-chips"><span>Project</span><span>ai-content-media</span><span>corporate-training</span><span>AI교육</span><span>콘텐츠자동화</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training content" data-record-id="project-osmu-ai-news-content-automation" data-lane="ax" data-rank="46">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#46</span><span>Project</span><span>기획·교안·자동화 워크플로우 설계 · 2026-06 ~ 2026-07</span>
@@ -779,10 +789,10 @@
         <p>리서치 요약본을 블로그, 카드뉴스, 숏폼, 영상 생성 흐름으로 확장하는 OSMU 콘텐츠 자동화 워크플로우</p>
         <div class="career-chips"><span>Project</span><span>ai-content-media</span><span>corporate-training</span><span>콘텐츠자동화</span><span>이미지영상</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax content" data-record-id="project-curved-projection-tool" data-lane="ax" data-rank="47">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#47</span><span>Project</span><span>기획·개발 · 2026</span>
@@ -791,10 +801,10 @@
         <p>멀티프로젝터 곡면·돔 와핑 도구 기획/개발 · 엣지 블렌딩, 마스킹, 색 보정, 프리셋 운영</p>
         <div class="career-chips"><span>Project</span><span>media-art-immersive</span><span>ax-dev</span><span>프로젝션매핑</span><span>곡면투사</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax content" data-record-id="project-anamorphic-sim" data-lane="ax" data-rank="48">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#48</span><span>Project</span><span>기획·개발 · 2026</span>
@@ -803,10 +813,10 @@
         <p>평면/ㄱ자 LED 아나모픽 콘텐츠 변환 엔진 · sweet spot 재투영, 픽셀맵, 영상 export, AI 원본 가이드</p>
         <div class="career-chips"><span>Project</span><span>media-art-immersive</span><span>ai-content-media</span><span>아나모픽</span><span>LED</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax content" data-record-id="project-ringsplat-360-gaussian-splat" data-lane="ax" data-rank="49">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#49</span><span>Project</span><span>기획·개발 · 2026</span>
@@ -815,7 +825,7 @@
         <p>Apple Silicon 기반 360 파노라마 → 3D Gaussian Splat 변환 파이프라인</p>
         <div class="career-chips"><span>Project</span><span>ax-dev</span><span>media-art-immersive</span><span>AI개발</span><span>3DGS</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
                     </div>
                 </section>
@@ -826,7 +836,7 @@
                     </div>
                     <div class="lane-list">
                         <article class="career-card" data-groups="training content community" data-record-id="role-gpters-partner-operator" data-lane="community" data-rank="50">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#50</span><span>Role</span><span>파트너 및 운영진 · 2024 ~ 현재</span>
@@ -835,10 +845,10 @@
         <p>GPTers 10기~23기 AI 부트캠프/스터디 파트너 및 운영진</p>
         <div class="career-chips"><span>Role</span><span>corporate-training</span><span>ai-content-media</span><span>커뮤니티</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training content community" data-record-id="community-gpters-bootcamp-study-10-23" data-lane="community" data-rank="51">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#51</span><span>Community</span><span>파트너/스터디장/운영진 · 2024 ~ 현재</span>
@@ -847,10 +857,10 @@
         <p>GPTers 10기~23기 AI 부트캠프/스터디 운영</p>
         <div class="career-chips"><span>Community</span><span>corporate-training</span><span>ai-content-media</span><span>커뮤니티</span><span>AI교육</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training content community" data-record-id="community-likelion-ai-designer" data-lane="community" data-rank="52">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#52</span><span>Community</span><span>강사</span>
@@ -859,10 +869,10 @@
         <p>멋쟁이사자처럼 AI 디자이너 과정 강의</p>
         <div class="career-chips"><span>Community</span><span>ai-content-media</span><span>corporate-training</span><span>AI교육</span><span>콘텐츠제작</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training content community" data-record-id="community-crowdworks-ai-designer" data-lane="community" data-rank="53">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#53</span><span>Community</span><span>강사</span>
@@ -871,10 +881,10 @@
         <p>크라우드웍스 AI 디자이너 과정 강의</p>
         <div class="career-chips"><span>Community</span><span>ai-content-media</span><span>corporate-training</span><span>AI교육</span><span>콘텐츠제작</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training content community" data-record-id="community-aity-ecommerce-intro" data-lane="community" data-rank="54">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#54</span><span>Community</span><span>강사</span>
@@ -883,10 +893,10 @@
         <p>AITY 이커머스 입문과정 강의</p>
         <div class="career-chips"><span>Community</span><span>ai-content-media</span><span>corporate-training</span><span>AI교육</span><span>이커머스</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="ax training content community" data-record-id="community-aity-genai-expert" data-lane="community" data-rank="55">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#55</span><span>Community</span><span>강사</span>
@@ -895,10 +905,10 @@
         <p>AITY 생성형 AI 전문가과정 강의</p>
         <div class="career-chips"><span>Community</span><span>ai-content-media</span><span>corporate-training</span><span>AI교육</span><span>생성형AI</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training community" data-record-id="role-human-intelligence-conference-speaker" data-lane="community" data-rank="56">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#56</span><span>Role</span><span>연사</span>
@@ -907,10 +917,10 @@
         <p>AI시대의 인간지능 컨퍼런스 연사</p>
         <div class="career-chips"><span>Role</span><span>corporate-training</span><span>one-page-core</span><span>AI교육</span><span>컨퍼런스</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training community" data-record-id="role-career-transfer-conference-speaker" data-lane="community" data-rank="57">
-    <div class="career-icon"><span class="material-symbols-outlined">school</span></div>
+    <div class="career-icon" aria-hidden="true">ED</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#57</span><span>Role</span><span>연사</span>
@@ -919,7 +929,7 @@
         <p>커리어전 컨퍼런스 ‘꿈도 환승이 되나요’ 연사</p>
         <div class="career-chips"><span>Role</span><span>corporate-training</span><span>one-page-core</span><span>AI교육</span><span>커리어</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
                     </div>
                 </section>
@@ -930,7 +940,7 @@
                     </div>
                     <div class="lane-list">
                         <article class="career-card" data-groups="training content" data-record-id="project-ai-media-art-experience" data-lane="content" data-rank="58">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#58</span><span>Project</span><span>기획·제작</span>
@@ -939,10 +949,10 @@
         <p>AI x 미디어아트 체험형 콘텐츠 기획 · 기술을 감각적 경험으로 전환</p>
         <div class="career-chips"><span>Project</span><span>media-art-immersive</span><span>ai-content-media</span><span>미디어아트</span><span>이미지영상</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="training content" data-record-id="project-immersive-module-facilitation" data-lane="content" data-rank="59">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#59</span><span>Project</span><span>담임 퍼실리테이터 / 멘토 · 2025-09 ~ 현재</span>
@@ -951,10 +961,10 @@
         <p>이머시브 공간/공연 프로젝트 기획·제작·발표 퍼실리테이션 · 팀별 프로젝트 멘토링</p>
         <div class="career-chips"><span>Project</span><span>media-art-immersive</span><span>corporate-training</span><span>이머시브</span><span>미디어아트</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="content" data-record-id="career-prectxe-2019-2020" data-lane="content" data-rank="60">
-    <div class="career-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
+    <div class="career-icon" aria-hidden="true">CT</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#60</span><span>Career</span><span>런칭 / 총괄 제작 · 2019 ~ 2020</span>
@@ -963,10 +973,10 @@
         <p>미디어아트 종합 페스티벌 PRECTXE 런칭 및 총괄 제작</p>
         <div class="career-chips"><span>Career</span><span>media-art-immersive</span><span>culture-planning</span><span>미디어아트</span><span>문화기획</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="content" data-record-id="career-jandari-festa-2012-2018" data-lane="content" data-rank="61">
-    <div class="career-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
+    <div class="career-icon" aria-hidden="true">CT</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#61</span><span>Project</span><span>글로벌 쇼케이스 운영 · 2012-10 ~ 2018-10</span>
@@ -975,10 +985,10 @@
         <p>국내 최초 글로벌 쇼케이스 음악 페스티벌 기획실장/디렉터 · SXSW, Milano Expo, Liverpool Sound City, V-ROX 교류 기반 글로벌 쇼케이스 운영</p>
         <div class="career-chips"><span>Project</span><span>culture-planning</span><span>media-art-immersive</span><span>문화기획</span><span>글로벌교류</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="content" data-record-id="project-louis-vuitton-bts-2021fw" data-lane="content" data-rank="62">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#62</span><span>Project</span><span>공간/로케이션 운영</span>
@@ -987,10 +997,10 @@
         <p>Louis Vuitton x BTS 2021 F/W 온라인 패션쇼 공간/로케이션 운영</p>
         <div class="career-chips"><span>Project</span><span>culture-planning</span><span>media-art-immersive</span><span>공간운영</span><span>브랜드프로젝트</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="content" data-record-id="project-kill-boksoon-location" data-lane="content" data-rank="63">
-    <div class="career-icon"><span class="material-symbols-outlined">hub</span></div>
+    <div class="career-icon" aria-hidden="true">AX</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#63</span><span>Project</span><span>공간/로케이션 운영</span>
@@ -999,10 +1009,10 @@
         <p>Netflix 영화 길복순 제작 현장 공간/로케이션 운영</p>
         <div class="career-chips"><span>Project</span><span>culture-planning</span><span>media-art-immersive</span><span>공간운영</span><span>영상제작지원</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
 <article class="career-card" data-groups="content" data-record-id="culture-gimpo-pyeongtaek-video-production" data-lane="content" data-rank="64">
-    <div class="career-icon"><span class="material-symbols-outlined">auto_awesome</span></div>
+    <div class="career-icon" aria-hidden="true">CT</div>
     <div class="career-body">
         <div class="career-topline">
             <span class="rank-badge">#64</span><span>Culture / Content</span><span>제작/기획 역할 보강 필요</span>
@@ -1011,7 +1021,7 @@
         <p>김포시·평택시 영상 제작 클라이언트 프로젝트</p>
         <div class="career-chips"><span>Culture / Content</span><span>ai-content-media</span><span>public-policy</span><span>영상제작</span><span>공공기관</span></div>
     </div>
-    <span class="career-arrow material-symbols-outlined">arrow_forward</span>
+    <span class="career-arrow" aria-hidden="true">&rarr;</span>
 </article>
                     </div>
                 </section>
@@ -1031,56 +1041,56 @@
         <section id="contact" class="section-card" aria-labelledby="contact-title">
             <div class="contact-panel">
                 <div class="contact-copy">
-                    <h2 id="contact-title">강의와 협업을<br><span class="text-[#00F0FF]">문의하세요.</span></h2>
+                    <h2 id="contact-title">강의와 협업을<br><span class="accent-mark">문의하세요.</span></h2>
                     <p>AI 도입 컨설팅, 기업강의, 콘텐츠 제작, 공간형 미디어 프로젝트까지 필요한 맥락을 남겨주시면 확인 후 회신드립니다.</p>
-                    <p class="text-sm text-gray-500 mt-4"><span class="material-symbols-outlined text-sm align-middle text-[#00F0FF]">location_on</span> Incheon & Seoul · Republic of Korea</p>
+                    <p class="contact-location">Incheon & Seoul · Republic of Korea</p>
                 </div>
                 <div class="contact-form-card">
-                    <div id="success-message" class="hidden mb-6 p-4 bg-[#00F0FF]/10 border border-[#00F0FF] rounded-sm">
-                        <div class="flex items-center"><span class="material-symbols-outlined text-[#00F0FF] mr-2">check_circle</span><p class="text-[#00F0FF] font-medium font-mono text-sm uppercase tracking-wider">Message Sent Successfully</p></div>
-                        <p class="text-gray-400 text-xs mt-2 font-mono">We will respond within 24 hours.</p>
+                    <div id="success-message" class="hidden form-note-ok" style="margin-bottom:1.5rem;">
+                        <div class="note-head"><span aria-hidden="true" style="color:var(--cyan);">✓</span><p>Message Sent Successfully</p></div>
+                        <p class="note-sub">We will respond within 24 hours.</p>
                     </div>
-                    <div id="error-message" class="hidden mb-6 p-4 bg-red-900/20 border border-red-500 rounded-sm">
-                        <div class="flex items-center"><span class="material-symbols-outlined text-red-500 mr-2">error</span><p class="text-red-500 font-medium font-mono text-sm uppercase tracking-wider">Transmission Failed</p></div>
-                        <p class="text-red-400 text-xs mt-2 font-mono">Please try again later.</p>
+                    <div id="error-message" class="hidden form-note-err" style="margin-bottom:1.5rem;">
+                        <div class="note-head"><span aria-hidden="true" style="color:var(--red-text);">!</span><p>Transmission Failed</p></div>
+                        <p class="note-sub">Please try again later.</p>
                     </div>
-                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="return submitContactForm(event)" class="space-y-5">
+                    <form id="contact-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="return submitContactForm(event)">
                         <input type="hidden" name="access_key" value="583f79fe-49c9-4234-8a2e-473f73c020b9">
                         <input type="hidden" name="subject" value="DEXA About DECK Inquiry">
                         <input type="hidden" name="from_name" value="DEXA Website">
                         <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
                         <div>
-                            <label for="inquiry-type" class="form-label">Inquiry Type</label>
-                            <select id="inquiry-type" name="inquiry_type" class="form-input">
+                            <label for="inquiry-type" class="field-label">Inquiry Type</label>
+                            <select id="inquiry-type" name="inquiry_type" class="field">
                                 <option value="강의 문의">강의 문의</option>
                                 <option value="협업 문의">협업 문의</option>
                                 <option value="AX 컨설팅 문의">AX 컨설팅 문의</option>
                                 <option value="콘텐츠 제작 문의">콘텐츠 제작 문의</option>
                             </select>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="form-grid-2">
                             <div>
-                                <label for="name" class="form-label">Name</label>
-                                <input id="name" name="name" required class="form-input" type="text" autocomplete="name" />
+                                <label for="name" class="field-label">Name</label>
+                                <input id="name" name="name" required class="field" type="text" autocomplete="name" />
                             </div>
                             <div>
-                                <label for="email" class="form-label">Email</label>
-                                <input id="email" name="email" required class="form-input" type="email" autocomplete="email" />
+                                <label for="email" class="field-label">Email</label>
+                                <input id="email" name="email" required class="field" type="email" autocomplete="email" />
                             </div>
                         </div>
                         <div>
-                            <label for="organization" class="form-label">Organization</label>
-                            <input id="organization" name="organization" class="form-input" type="text" autocomplete="organization" />
+                            <label for="organization" class="field-label">Organization</label>
+                            <input id="organization" name="organization" class="field" type="text" autocomplete="organization" />
                         </div>
                         <div>
-                            <label for="message" class="form-label">Message</label>
-                            <textarea id="message" name="message" required class="form-input" rows="5" placeholder="문의 목적, 일정, 대상, 필요한 산출물이나 협업 범위를 적어주세요."></textarea>
+                            <label for="message" class="field-label">Message</label>
+                            <textarea id="message" name="message" required class="field" rows="5" placeholder="문의 목적, 일정, 대상, 필요한 산출물이나 협업 범위를 적어주세요."></textarea>
                         </div>
-                        <button id="submit-btn" class="w-full bg-white hover:bg-[#00F0FF] text-black font-bold py-4 px-8 rounded-xl uppercase tracking-widest text-xs transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,240,255,0.4)] flex items-center justify-center gap-2" type="submit">
+                        <button id="submit-btn" class="btn-primary" style="width:100%;display:flex;align-items:center;justify-content:center;gap:.5rem;" type="submit">
                             <span id="submit-text">메시지 전송</span>
-                            <svg id="loading-spinner" class="hidden animate-spin h-4 w-4 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            <svg id="loading-spinner" class="hidden animate-spin" style="width:1rem;height:1rem;color:var(--ink);" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle style="opacity:.25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path style="opacity:.75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                             </svg>
                         </button>
                     </form>

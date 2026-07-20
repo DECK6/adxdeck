@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="ko">
+<html lang="ko">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,92 +28,43 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"도구 목록만으로는 작품이 되지 않는다","description":"매체 특정성은 순수한 장르로 돌아가자는 말이 아니라, 장비·소프트웨어·데이터·공간·관객 조건이 작품을 어떻게 필연적으로 조직하는지 묻는 비평 언어다.","image":"https://dexa.art/blog/images/medium-specificity-after-tool-effects-cover.png","datePublished":"2026-07-10","dateModified":"2026-07-10","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/medium-specificity-after-tool-effects/"},"keywords":"media-art, media-theory, medium-specificity, post-media, software-studies, AI, installation"}</script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#00F0FF", "primary-hover": "#00C2CC",
-                        "background-light": "#000000", "background-dark": "#000000",
-                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
-                    },
-                    fontFamily: {
-                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
-                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
-                    }
-                }
-            }
-        };
-    </script>
-    <style>
-        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
-        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
-        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
-        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
-        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
-        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
-        .prose-dexa strong { color: #fff; font-weight: 600; }
-        .prose-dexa em { color: #6b7280; }
-        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
-        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
-        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
-        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
-        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
-        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
-        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
-        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
-        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
-        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
-        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
-        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
-        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
-        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
-        .prose-dexa tr:last-child td { border-bottom: none; }
-        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
-        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
-        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
 </head>
-<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
-    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
-                    <img src="/dexa_logo.svg?v=20260716c" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
-                </a>
-                <div class="hidden md:flex space-x-10 items-center">
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
-                </div>
-            </div>
+<body>
+    <nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/blog/" class="active">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
         </div>
     </nav>
-    <main class="pt-32 pb-24 lg:pt-40">
-        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-10">
-                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
-                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
-                </a>
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">Article</span>
-                    <span class="text-gray-600 font-mono text-xs">2026년 7월 10일</span>
-                </div>
-                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">도구 목록만으로는 작품이 되지 않는다</h1>
-                <p class="text-lg text-gray-500 leading-relaxed">매체 특정성은 순수한 장르로 돌아가자는 말이 아니라, 장비·소프트웨어·데이터·공간·관객 조건이 작품을 어떻게 필연적으로 조직하는지 묻는 비평 언어다.</p>
-                <div class="flex flex-wrap gap-2 mt-6"><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-art</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">media-theory</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">medium-specificity</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">post-media</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">software-studies</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">AI</span><span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">installation</span></div>
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-kicker" style="margin-top:20px;">Article · 2026.07.10</div>
             </div>
-            <div class="prose-dexa">
+            <div class="prose">
+                <h1>도구 목록만으로는 작품이 되지 않는다</h1>
+                <p style="color:var(--muted);font-size:17px;">매체 특정성은 순수한 장르로 돌아가자는 말이 아니라, 장비·소프트웨어·데이터·공간·관객 조건이 작품을 어떻게 필연적으로 조직하는지 묻는 비평 언어다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">media-art</span><span class="dx-tag-chip">media-theory</span><span class="dx-tag-chip">medium-specificity</span><span class="dx-tag-chip">post-media</span><span class="dx-tag-chip">software-studies</span><span class="dx-tag-chip">AI</span><span class="dx-tag-chip">installation</span></div>
 <p><img src="/blog/images/medium-specificity-after-tool-effects-cover.png" alt="매체 특정성을 설명하는 장치와 공간의 구성" loading="lazy"></p>
 <p>미디어아트 설명은 종종 장비 목록으로 시작된다. AI를 썼다, 센서를 달았다, 프로젝션 매핑을 했다, 실시간 렌더링을 했다, 관객이 반응하면 화면이 바뀐다. 이런 문장은 작품이 어떤 기술 환경 안에서 만들어졌는지 알려 주지만, 아직 작품이 왜 그렇게 존재해야 하는지는 설명하지 못한다. 기술은 필요조건일 수 있지만, 그 자체로 미학적 필연성이 되지는 않는다.</p>
 <p>매체 특정성, 곧 Medium Specificity는 이 지점에서 다시 중요해진다. 이 개념은 한때 회화의 평면성이나 조각의 물질성처럼 각 예술 장르의 고유 조건을 강조하는 형식주의 언어로 이해되었다. 그러나 오늘의 미디어아트에서 매체 특정성은 순수한 장르로 돌아가자는 말이 아니다. 오히려 장르가 섞이고, 소프트웨어가 문화 형식을 조직하며, AI와 플랫폼이 창작 조건을 바꾸는 시대에 “무엇이 이 작품을 이 작품답게 작동하게 하는가”를 묻는 더 실용적인 질문이 된다.</p>
@@ -138,19 +89,25 @@
 <p>가장 단순한 테스트는 이것이다. 무엇을 빼면 이 작품은 무너지는가. 프로젝터를 다른 디스플레이로 바꿔도 되는가. 네트워크 지연이 사라지면 더 좋아지는가, 아니면 작품의 긴장이 사라지는가. AI 모델이 다른 모델로 바뀌면 같은 작품인가. 관객이 움직이지 않아도 작품이 성립하는가. 소프트웨어 버전과 장비의 실패는 제거해야 할 오류인가, 아니면 작품이 자기 시대를 드러내는 표면인가.</p>
 <p>이 질문을 통과할 때 기술은 단순한 효과가 아니라 매체가 된다. 그리고 작품은 도구 목록을 넘어, 자기 조건을 스스로 드러내는 구조가 된다.</p>
             </div>
-            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
-                <a id="prev-post" href="/blog/posts/hermes-skill-bundles/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>Hermes Skill Bundles는 반복 작업의 준비 단계를 하나의 명령으로 접는다</span></a>
-                <a id="next-post" href="/blog/posts/hermes-openrouter-provider-routing/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span>Hermes Provider Routing은 OpenRouter 안의 경로까지 고른다</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-skill-bundles/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>Hermes Skill Bundles는 반복 작업의 준비 단계를 하나의 명령으로 접는다</span></a>
+                <a id="next-post" href="/blog/posts/hermes-openrouter-provider-routing/" class="spec-row" style="text-decoration:none;"><span>Hermes Provider Routing은 OpenRouter 안의 경로까지 고른다</span><span class="k">NEXT →</span></a>
             </nav>
         </article>
     </main>
-    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg?v=20260716c" alt="DEXA" class="h-12 w-auto"></a>
-                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
-            </div>
-        </div>
+    <footer class="dx-footer" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
+        <a href="/" style="display:flex;align-items:center;gap:10px;">
+            <svg viewBox="4 4 112 98" width="28" height="24" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+        </a>
+        <p class="dx-footer-note" style="margin:0;text-align:right;">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
     </footer>
 </body>
 </html>

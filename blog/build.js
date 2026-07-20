@@ -343,6 +343,10 @@ function formatDateHuman(dateStr) {
     return d.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
+function formatDateDots(dateStr) {
+    return String(dateStr || '').replace(/-/g, '.');
+}
+
 function postPageHtml(post, bodyHtml, prev, next) {
     const canonical = `${SITE_URL}/blog/posts/${post.slug}/`;
     const ogImage = post.thumbnail
@@ -370,18 +374,18 @@ function postPageHtml(post, bodyHtml, prev, next) {
     };
 
     const prevLink = prev
-        ? `<a id="prev-post" href="/blog/posts/${prev.slug}/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span class="material-symbols-outlined text-lg">arrow_back</span><span>${escapeHtml(prev.title)}</span></a>`
+        ? `<a id="prev-post" href="/blog/posts/${prev.slug}/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>${escapeHtml(prev.title)}</span></a>`
         : '<span></span>';
     const nextLink = next
-        ? `<a id="next-post" href="/blog/posts/${next.slug}/" class="flex items-center gap-2 text-sm text-gray-500 hover:text-[#00F0FF] transition-colors"><span>${escapeHtml(next.title)}</span><span class="material-symbols-outlined text-lg">arrow_forward</span></a>`
+        ? `<a id="next-post" href="/blog/posts/${next.slug}/" class="spec-row" style="text-decoration:none;"><span>${escapeHtml(next.title)}</span><span class="k">NEXT →</span></a>`
         : '<span></span>';
 
     const tagsHtml = (post.tags || []).map(t =>
-        `<span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">${escapeHtml(t)}</span>`
+        `<span class="dx-tag-chip">${escapeHtml(t)}</span>`
     ).join('');
 
     return `<!DOCTYPE html>
-<html class="dark" lang="ko">
+<html lang="ko">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -404,107 +408,64 @@ function postPageHtml(post, bodyHtml, prev, next) {
     <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#00F0FF", "primary-hover": "#00C2CC",
-                        "background-light": "#000000", "background-dark": "#000000",
-                        "card-dark": "#0A0A0A", "accent-green": "#39FF14", "accent-purple": "#BC13FE"
-                    },
-                    fontFamily: {
-                        display: ['"Noto Sans KR"', '"Inter"', "sans-serif"],
-                        body: ['"Noto Sans KR"', '"Inter"', "sans-serif"]
-                    }
-                }
-            }
-        };
-    </script>
-    <style>
-        body { font-family: 'Noto Sans KR', 'Inter', sans-serif; background-color: #000; color: #e5e7eb; margin: 0; padding: 0; }
-        html { scroll-behavior: smooth; }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #333; border-radius: 0; }
-        ::-webkit-scrollbar-thumb:hover { background: #00F0FF; }
-        .prose-dexa h1 { font-size: 2.5rem; font-weight: 900; color: #fff; letter-spacing: -0.025em; margin-bottom: 1.5rem; line-height: 1.1; }
-        .prose-dexa h2 { font-size: 1.5rem; font-weight: 700; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(255,255,255,.1); }
-        .prose-dexa h3 { font-size: 1.2rem; font-weight: 600; color: #e5e7eb; margin-top: 2rem; margin-bottom: 0.75rem; }
-        .prose-dexa p { color: #9ca3af; line-height: 1.8; margin-bottom: 1.25rem; }
-        .prose-dexa strong { color: #fff; font-weight: 600; }
-        .prose-dexa em { color: #6b7280; }
-        .prose-dexa a { color: #00F0FF; text-decoration: none; border-bottom: 1px solid rgba(0,240,255,.3); transition: border-color .2s; }
-        .prose-dexa a:hover { border-bottom-color: #00F0FF; }
-        .prose-dexa ul, .prose-dexa ol { color: #9ca3af; margin-bottom: 1.25rem; padding-left: 1.5rem; }
-        .prose-dexa li { margin-bottom: 0.5rem; line-height: 1.7; }
-        .prose-dexa ul li::marker, .prose-dexa ol li::marker { color: #00F0FF; }
-        .prose-dexa blockquote { border-left: 3px solid #00F0FF; padding-left: 1.25rem; margin: 1.5rem 0; color: #6b7280; font-style: italic; }
-        .prose-dexa pre { background: #0a0a0a; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; padding: 1.25rem; overflow-x: auto; margin: 1.5rem 0; }
-        .prose-dexa code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.875rem; }
-        .prose-dexa p code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
-        .prose-dexa pre code { background: none; color: #e5e7eb; padding: 0; }
-        .prose-dexa .table-scroll { overflow-x: auto; margin: 1.5rem 0; border: 1px solid rgba(255,255,255,.1); border-radius: 8px; }
-        .prose-dexa table { width: 100%; border-collapse: collapse; min-width: 640px; background: rgba(255,255,255,.02); }
-        .prose-dexa th, .prose-dexa td { padding: 0.85rem 1rem; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; color: #9ca3af; line-height: 1.6; }
-        .prose-dexa th { color: #fff; font-weight: 700; background: rgba(0,240,255,.08); font-size: 0.9rem; }
-        .prose-dexa tr:last-child td { border-bottom: none; }
-        .prose-dexa td code { background: rgba(0,240,255,.1); color: #00F0FF; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85em; }
-        .prose-dexa hr { border: none; border-top: 1px solid rgba(255,255,255,.1); margin: 2.5rem 0; }
-        .prose-dexa img { border-radius: 8px; border: 1px solid rgba(255,255,255,.1); margin: 1.5rem 0; max-width: 100%; height: auto; }
-    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
 </head>
-<body class="text-gray-300 antialiased selection:bg-[#00F0FF] selection:text-black">
-    <nav class="fixed w-full z-50 bg-black border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <a href="/" class="flex-shrink-0 flex items-center gap-3 group cursor-pointer">
-                    <img src="/dexa_logo.svg?v=20260716c" alt="DEXA Logo" class="h-16 w-auto group-hover:drop-shadow-[0_0_8px_rgba(0,240,255,0.8)] transition-all">
-                </a>
-                <div class="hidden md:flex space-x-10 items-center">
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/">HOME</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/#studio">STUDIO</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-[#00F0FF] drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" href="/blog/">BLOG</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#00F0FF] transition-colors" href="/about-deck.html">ABOUT</a>
-                    <a class="text-sm font-semibold uppercase tracking-wider text-gray-400 hover:text-[#BC13FE] transition-colors" href="/#contact">CONTACT</a>
-                </div>
-            </div>
+<body>
+    <nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/blog/" class="active">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
         </div>
     </nav>
-    <main class="pt-32 pb-24 lg:pt-40">
-        <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="mb-10">
-                <a href="/blog/" class="inline-flex items-center gap-1 text-xs font-mono text-gray-500 hover:text-[#00F0FF] transition-colors mb-6 uppercase tracking-wider">
-                    <span class="material-symbols-outlined text-sm">arrow_back</span> Back to Blog
-                </a>
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-[#00F0FF] font-mono text-xs uppercase tracking-widest border border-[#00F0FF]/30 px-2 py-1 rounded-sm bg-[#00F0FF]/5">${escapeHtml(post.category)}</span>
-                    <span class="text-gray-600 font-mono text-xs">${formatDateHuman(post.date)}</span>
-                </div>
-                <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-white mt-6 mb-4 leading-tight">${escapeHtml(post.title)}</h1>
-                <p class="text-lg text-gray-500 leading-relaxed">${escapeHtml(desc)}</p>
-                <div class="flex flex-wrap gap-2 mt-6">${tagsHtml}</div>
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-kicker" style="margin-top:20px;">${escapeHtml(post.category)} · ${formatDateDots(post.date)}</div>
             </div>
-            <div class="prose-dexa">
+            <div class="prose">
+                <h1>${escapeHtml(post.title)}</h1>
+                <p style="color:var(--muted);font-size:17px;">${escapeHtml(desc)}</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;">${tagsHtml}</div>
 ${bodyHtml}
             </div>
-            <nav class="mt-16 pt-8 border-t border-white/10 flex justify-between items-center" aria-label="Post navigation">
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
                 ${prevLink}
                 ${nextLink}
             </nav>
         </article>
     </main>
-    <footer class="bg-black text-white pt-12 pb-8 border-t border-[#1a1a1a]">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <a href="/" class="flex items-center gap-3"><img src="/dexa_logo.svg?v=20260716c" alt="DEXA" class="h-12 w-auto"></a>
-                <p class="text-[10px] text-gray-700 font-mono text-center md:text-right">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
-            </div>
-        </div>
+    <footer class="dx-footer" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
+        <a href="/" style="display:flex;align-items:center;gap:10px;">
+            <svg viewBox="4 4 112 98" width="28" height="24" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+        </a>
+        <p class="dx-footer-note" style="margin:0;text-align:right;">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
     </footer>
 </body>
 </html>
@@ -525,24 +486,15 @@ function postImageAlt(post) {
 function staticPostCardHtml(post) {
     const img = postImageSrc(post);
     const imageHtml = img
-        ? `<div class="aspect-video overflow-hidden bg-[#111]"><img src="${escapeAttr(img)}" alt="${escapeAttr(postImageAlt(post))}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"></div>`
-        : `<div class="aspect-video bg-gradient-to-br from-[#111] to-[#0A0A0A] flex items-center justify-center"><span class="material-symbols-outlined text-5xl text-gray-800" aria-hidden="true">article</span></div>`;
-    const tags = (post.tags || []).slice(0, 4).map(tag => `<span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">${escapeHtml(tag)}</span>`).join('');
-    return `<article class="post-card card-hover-effect block bg-[#0A0A0A] border border-white/10 rounded-xl overflow-hidden group" data-category="${escapeAttr(post.category)}">
-  <a href="/blog/posts/${escapeAttr(post.slug)}/" class="block h-full" aria-label="Read ${escapeAttr(post.title)}">
-    ${imageHtml}
-    <div class="p-6">
-      <div class="flex items-center gap-3 mb-3">
-        <span class="text-xs font-mono uppercase tracking-widest px-2 py-0.5 rounded-sm border border-[#00F0FF]/30 bg-[#00F0FF]/10 text-[#00F0FF]">${escapeHtml(post.category)}</span>
-        <time datetime="${escapeAttr(post.date)}" class="text-xs text-gray-600 font-mono">${formatDateHuman(post.date)}</time>
-      </div>
-      <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#00F0FF] transition-colors leading-snug">${escapeHtml(post.title)}</h3>
-      <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">${escapeHtml(post.description || '')}</p>
-      <div class="flex flex-wrap gap-1.5 mt-4">${tags}</div>
-      <div class="mt-4 flex items-center gap-1 text-xs font-mono text-gray-600 group-hover:text-[#00F0FF] transition-colors">Read more <span class="material-symbols-outlined text-sm" aria-hidden="true">arrow_forward</span></div>
-    </div>
-  </a>
-</article>`;
+        ? `<div class="card-frame"><img src="${escapeAttr(img)}" alt="${escapeAttr(postImageAlt(post))}" loading="lazy"></div>`
+        : '';
+    return `<a class="post-card panel-card" href="/blog/posts/${escapeAttr(post.slug)}/" data-category="${escapeAttr(post.category)}" aria-label="Read ${escapeAttr(post.title)}">
+  ${imageHtml}
+  <span class="dx-meta"><span class="dx-badge">${escapeHtml(post.category)}</span><time datetime="${escapeAttr(post.date)}" class="dx-date">${escapeHtml(formatDateDots(post.date))}</time></span>
+  <h3>${escapeHtml(post.title)}</h3>
+  <p>${escapeHtml(post.description || '')}</p>
+  <span class="dx-more">READ MORE →</span>
+</a>`;
 }
 
 function replaceGeneratedBlock(html, start, end, content) {
@@ -560,8 +512,8 @@ function updateBlogIndex(postsPublic) {
     let html = fs.readFileSync(blogIndexPath, 'utf8');
     const categories = [...new Set(postsPublic.map(p => p.category).filter(Boolean))];
     const filters = [
-        `<button class="filter-btn active px-4 py-2 text-xs font-mono uppercase tracking-wider border border-white/20 rounded-sm transition-all hover:border-[#00F0FF] hover:text-[#00F0FF]" data-filter="all">All</button>`,
-        ...categories.map(cat => `<button class="filter-btn px-4 py-2 text-xs font-mono uppercase tracking-wider border border-white/20 rounded-sm transition-all hover:border-[#00F0FF] hover:text-[#00F0FF]" data-filter="${escapeAttr(cat)}">${escapeHtml(cat)}</button>`)
+        `<button class="dx-tag-chip active" type="button" data-filter="all">All</button>`,
+        ...categories.map(cat => `<button class="dx-tag-chip" type="button" data-filter="${escapeAttr(cat)}">${escapeHtml(cat)}</button>`)
     ].join('\n                ');
     const cards = postsPublic.map(staticPostCardHtml).join('\n                ');
     const blogJsonLd = {

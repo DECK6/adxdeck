@@ -32,26 +32,11 @@
     }
 
     function formatDate(dateStr) {
-        const d = new Date(dateStr + 'T00:00:00');
-        return d.toLocaleDateString('ko-KR', {
-            year: 'numeric', month: 'long', day: 'numeric'
-        });
+        return String(dateStr || '').replace(/-/g, '.');
     }
 
     function getSlugFromURL() {
         return new URLSearchParams(window.location.search).get('slug');
-    }
-
-    function getCategoryColor(category) {
-        const colors = {
-            'Article': '#00F0FF',
-            'Tech': '#00F0FF',
-            'Project': '#BC13FE',
-            'Thought': '#39FF14',
-            'Tutorial': '#39FF14',
-            'News': '#E50914',
-        };
-        return colors[category] || '#00F0FF';
     }
 
     // ─── Blog Listing Page ───
@@ -62,10 +47,9 @@
         const posts = await fetchPosts();
         if (!posts.length) {
             if (!hasStaticPosts && grid) grid.innerHTML = `
-                <div class="col-span-full text-center py-20">
-                    <span class="material-symbols-outlined text-4xl text-gray-700 mb-4">article</span>
-                    <p class="text-gray-600 font-mono text-sm">No posts yet.</p>
-                    <p class="text-gray-700 font-mono text-xs mt-2">Run <code class="text-[#00F0FF]">node blog/build.js</code> to generate posts.json</p>
+                <div style="grid-column:1/-1;text-align:center;padding:80px 0;">
+                    <p class="mono" style="color:var(--muted);font-size:13px;">No posts yet.</p>
+                    <p class="mono" style="color:var(--muted);font-size:11px;margin-top:8px;">Run <code style="background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:2px 6px;">node blog/build.js</code> to generate posts.json</p>
                 </div>`;
             buildFilters([]);
             return;
@@ -80,20 +64,21 @@
         if (!filterBar) return;
 
         const categories = [...new Set(posts.map(p => p.category))];
-        const existing = new Set([...filterBar.querySelectorAll('.filter-btn')].map(btn => btn.dataset.filter));
+        const existing = new Set([...filterBar.querySelectorAll('.dx-tag-chip')].map(btn => btn.dataset.filter));
         categories.forEach(cat => {
             if (existing.has(cat)) return;
             const btn = document.createElement('button');
-            btn.className = 'filter-btn px-4 py-2 text-xs font-mono uppercase tracking-wider border border-white/20 rounded-sm transition-all hover:border-[#00F0FF] hover:text-[#00F0FF]';
+            btn.className = 'dx-tag-chip';
+            btn.type = 'button';
             btn.dataset.filter = cat;
             btn.textContent = cat;
             filterBar.appendChild(btn);
         });
 
         filterBar.addEventListener('click', (e) => {
-            const btn = e.target.closest('.filter-btn');
+            const btn = e.target.closest('.dx-tag-chip');
             if (!btn) return;
-            filterBar.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            filterBar.querySelectorAll('.dx-tag-chip').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             const filter = btn.dataset.filter;
             document.querySelectorAll('.post-card').forEach(card => {
@@ -108,43 +93,20 @@
         grid.innerHTML = '';
 
         posts.forEach(post => {
-            const color = getCategoryColor(post.category);
             const card = document.createElement('a');
             card.href = `posts/${encodeURIComponent(post.slug)}/`;
-            card.className = 'post-card card-hover-effect block bg-[#0A0A0A] border border-white/10 rounded-xl overflow-hidden group';
+            card.className = 'post-card panel-card';
             card.dataset.category = post.category;
 
             card.innerHTML = `
                 ${post.thumbnail
-                    ? `<div class="aspect-video overflow-hidden bg-[#111]">
-                        <img src="${post.thumbnail}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                       </div>`
-                    : `<div class="aspect-video bg-gradient-to-br from-[#111] to-[#0A0A0A] flex items-center justify-center relative overflow-hidden">
-                        <div class="absolute inset-0 opacity-20" style="background: radial-gradient(circle at 30% 40%, ${color}22, transparent 70%)"></div>
-                        <span class="material-symbols-outlined text-5xl text-gray-800 group-hover:text-[${color}] transition-colors duration-300">article</span>
-                       </div>`
+                    ? `<div class="card-frame"><img src="${post.thumbnail}" alt="${post.title}" loading="lazy"></div>`
+                    : ''
                 }
-                <div class="p-6">
-                    <div class="flex items-center gap-3 mb-3">
-                        <span class="text-xs font-mono uppercase tracking-widest px-2 py-0.5 rounded-sm border"
-                            style="color: ${color}; border-color: ${color}33; background: ${color}11">
-                            ${post.category}
-                        </span>
-                        <span class="text-xs text-gray-600 font-mono">${formatDate(post.date)}</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-white mb-2 group-hover:text-[#00F0FF] transition-colors leading-snug">
-                        ${post.title}
-                    </h3>
-                    <p class="text-sm text-gray-500 leading-relaxed line-clamp-2">
-                        ${post.description}
-                    </p>
-                    <div class="flex flex-wrap gap-1.5 mt-4">
-                        ${post.tags.map(tag => `<span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">${tag}</span>`).join('')}
-                    </div>
-                    <div class="mt-4 flex items-center gap-1 text-xs font-mono text-gray-600 group-hover:text-[#00F0FF] transition-colors">
-                        Read more <span class="material-symbols-outlined text-sm">arrow_forward</span>
-                    </div>
-                </div>`;
+                <span class="dx-meta"><span class="dx-badge">${post.category}</span><span class="dx-date">${formatDate(post.date)}</span></span>
+                <h3>${post.title}</h3>
+                <p>${post.description}</p>
+                <span class="dx-more">READ MORE →</span>`;
             grid.appendChild(card);
         });
     }
@@ -167,25 +129,22 @@
 
         if (!post) {
             document.getElementById('post-content').innerHTML = `
-                <div class="text-center py-20">
-                    <span class="material-symbols-outlined text-5xl text-gray-700 mb-4">error_outline</span>
-                    <p class="text-gray-500 font-mono">Post not found.</p>
-                    <a href="index.html" class="inline-block mt-4 text-[#00F0FF] font-mono text-sm hover:underline">Back to Blog</a>
+                <div style="text-align:center;padding:80px 0;">
+                    <p class="mono" style="color:var(--muted);">Post not found.</p>
+                    <a href="index.html" class="btn-ghost">Back to Blog</a>
                 </div>`;
             return;
         }
 
         document.title = `${post.title} | DEXA Blog`;
 
-        const color = getCategoryColor(post.category);
         document.getElementById('post-category').textContent = post.category;
-        document.getElementById('post-category').style.color = color;
-        document.getElementById('post-category').style.borderColor = color + '55';
-        document.getElementById('post-category').style.background = color + '11';
+        document.getElementById('post-category').className = 'dx-badge';
         document.getElementById('post-date').textContent = formatDate(post.date);
+        document.getElementById('post-date').className = 'dx-date';
 
         document.getElementById('post-tags').innerHTML = post.tags.map(tag =>
-            `<span class="text-[10px] font-mono text-gray-600 bg-white/5 px-2 py-0.5 rounded">${tag}</span>`
+            `<span class="dx-tag-chip">${tag}</span>`
         ).join('');
 
         // Fetch markdown content
@@ -203,10 +162,9 @@
             document.getElementById('post-content').innerHTML = marked.parse(cleanMarkdown(mdText));
         } else {
             document.getElementById('post-content').innerHTML = `
-                <div class="text-center py-20">
-                    <span class="material-symbols-outlined text-5xl text-gray-700 mb-4">error_outline</span>
-                    <p class="text-gray-500 font-mono">Failed to load post content.</p>
-                    <p class="text-gray-700 font-mono text-xs mt-2">로컬 테스트: <code class="text-[#00F0FF]">npx serve .</code> (adxdeck 폴더에서)</p>
+                <div style="text-align:center;padding:80px 0;">
+                    <p class="mono" style="color:var(--muted);">Failed to load post content.</p>
+                    <p class="mono" style="color:var(--muted);font-size:11px;margin-top:8px;">로컬 테스트: <code style="background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:2px 6px;">npx serve .</code> (adxdeck 폴더에서)</p>
                 </div>`;
         }
 
