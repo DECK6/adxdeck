@@ -113,7 +113,7 @@ img{max-width:100%;display:block;}
 .work-card:hover{border-color:var(--cyan);}
 .work-card.wide{grid-column:span 2;}
 @media (max-width:700px){.work-card.wide{grid-column:auto;}}
-.work-card .frame{aspect-ratio:4/3;overflow:hidden;background:var(--ink-key);}
+.work-card .frame{aspect-ratio:4/3;flex:1;overflow:hidden;background:var(--ink-key);}
 .work-card .frame img{width:100%;height:100%;object-fit:cover;}
 .work-card .caption{padding:16px 18px;display:flex;flex-direction:column;gap:8px;margin-top:auto;}
 .work-card .title{font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--cyan);text-transform:uppercase;}

@@ -6,7 +6,10 @@
     "englishTitle": "le voyage dans l'imagenation",
     "category": "Immersive Exhibition",
     "description": "1채널 파일럿 전시, 458 갤러리 — 텍스트가 공간으로 확장되는 이머시브 전시",
-    "tags": ["Media Art", "Interactive"],
+    "tags": [
+      "Media Art",
+      "Interactive"
+    ],
     "icon": "view_in_ar",
     "color": "from-[#E50914]",
     "image": "sangsang.jpg",
@@ -19,24 +22,14 @@
     "englishTitle": "",
     "category": "Festival Production",
     "description": "Digital Media Art Festival General Production",
-    "tags": ["Directing", "Production"],
+    "tags": [
+      "Directing",
+      "Production"
+    ],
     "icon": "festival",
     "color": "from-[#39FF14]",
     "image": "prectxe.png",
     "size": "large"
-  },
-  {
-    "id": "project-mice-safety-agent",
-    "section": "work",
-    "title": "MICE Safety Agent",
-    "englishTitle": "Korea MICE Safety Agent",
-    "category": "Public Safety Simulation",
-    "description": "행사 유형, 예상 인파, 베뉴, 지자체 조건을 입력해 MICE·옥외행사 안전 적용성을 확인하는 오프라인 온톨로지 기반 웹 시뮬레이터.",
-    "tags": ["MICE Safety", "Ontology"],
-    "icon": "health_and_safety",
-    "color": "from-[#00F0FF]",
-    "url": "/mice-safety/",
-    "size": "normal"
   },
   {
     "id": "project-04",
@@ -45,7 +38,12 @@
     "englishTitle": "Afterimage of the Hand",
     "category": "Generative Data Visualization",
     "description": "회화적 선의 축적과 표면 — Rokkaku 작가의 핸드페인팅 감각을 전시 데이터 기반 520개 스트로크 시스템으로 복원. 토탈미술관 AI해커톤 선정작, 베를린 P61갤러리 전시",
-    "tags": ["Data Visualization", "Canvas 2D", "Total Museum", "Berlin P61"],
+    "tags": [
+      "Data Visualization",
+      "Canvas 2D",
+      "Total Museum",
+      "Berlin P61"
+    ],
     "icon": "gesture",
     "color": "from-[#BC13FE]",
     "image": "hand_afterimage.jpg",
@@ -58,7 +56,12 @@
     "englishTitle": "Breath of Chaos",
     "category": "Generative Data Visualization",
     "description": "입자 군집의 구성과 순환 — 108점의 작품 색채, 서울 겨울 기후, 관람객 통계를 9,000개 큐브 입자로 재구성. 토탈미술관 AI해커톤 선정작, 베를린 P61갤러리 전시",
-    "tags": ["Data Visualization", "Three.js", "Total Museum", "Berlin P61"],
+    "tags": [
+      "Data Visualization",
+      "Three.js",
+      "Total Museum",
+      "Berlin P61"
+    ],
     "icon": "blur_on",
     "color": "from-[#00F0FF]",
     "image": "breath_of_chaos.jpg",
@@ -71,7 +74,10 @@
     "englishTitle": "Christmas at the Incinerator",
     "category": "Interactive Exhibition",
     "description": "장소특정적 인터랙티브 체험 전시 — 부천아트벙커 B39",
-    "tags": ["Site-Specific", "Interactive"],
+    "tags": [
+      "Site-Specific",
+      "Interactive"
+    ],
     "icon": "celebration",
     "color": "from-[#E50914]",
     "image": "christmas_b39.jpg",
@@ -84,7 +90,10 @@
     "englishTitle": "Afterglow",
     "category": "Permanent Installation",
     "description": "장소특정적 상설 인스톨레이션 — 부천아트벙커 B39",
-    "tags": ["Site-Specific", "Installation"],
+    "tags": [
+      "Site-Specific",
+      "Installation"
+    ],
     "icon": "flare",
     "color": "from-[#39FF14]",
     "image": "afterglow_b39.jpg",
@@ -97,7 +106,10 @@
     "englishTitle": "Zandari Festa",
     "category": "Creative Direction",
     "description": "Global Music Festival Creative Direction",
-    "tags": ["Creative Direction", "Music Festival"],
+    "tags": [
+      "Creative Direction",
+      "Music Festival"
+    ],
     "icon": "equalizer",
     "color": "from-[#00F0FF]",
     "image": "zandari.jpg",
@@ -110,7 +122,10 @@
     "englishTitle": "",
     "category": "Anamorphic Content",
     "description": "생성형 AI를 활용한 아나모픽 컨텐츠 제작",
-    "tags": ["Generative AI", "Anamorphic"],
+    "tags": [
+      "Generative AI",
+      "Anamorphic"
+    ],
     "icon": "animation",
     "color": "from-[#BC13FE]",
     "video": "assets/videos/project02.mp4",
@@ -126,7 +141,10 @@
     "icon": "school",
     "color": "from-[#BC13FE]",
     "video": "assets/videos/academy01.mp4",
-    "tags": ["Workshop", "Generative AI"]
+    "tags": [
+      "Workshop",
+      "Generative AI"
+    ]
   },
   {
     "id": "academy-02",
@@ -138,7 +156,10 @@
     "icon": "settings_suggest",
     "color": "from-[#00F0FF]",
     "video": "assets/videos/academy02.mp4",
-    "tags": ["Automation", "Productivity"]
+    "tags": [
+      "Automation",
+      "Productivity"
+    ]
   },
   {
     "id": "academy-03",
@@ -150,6 +171,156 @@
     "icon": "chat",
     "color": "from-[#39FF14]",
     "video": "assets/videos/academy03.mp4",
-    "tags": ["Prompt Eng", "LLM"]
+    "tags": [
+      "Prompt Eng",
+      "LLM"
+    ]
+  },
+  {
+    "id": "dev-01",
+    "section": "dev",
+    "title": "AKM",
+    "category": "Markdown · Agent OS",
+    "year": "2026",
+    "description": "도구 불문 마크다운 지식 OS — 에이전트 지식관리(AKM) 레퍼런스 구현",
+    "tags": [
+      "Agent",
+      "PKM"
+    ],
+    "url": "https://github.com/DECK6/akm",
+    "size": "large",
+    "badge": "FEATURED",
+    "image": "images/dev/akm.jpg"
+  },
+  {
+    "id": "dev-02",
+    "section": "dev",
+    "title": "Anamorphic Sim",
+    "category": "TypeScript · WebGL",
+    "year": "2026",
+    "description": "평면/ㄱ자 LED 아나모픽 콘텐츠 변환 엔진 — sweet spot 재투영, 곡면 세그먼트, 픽셀맵 출력, AI 원본 콘텐츠 가이드",
+    "tags": [
+      "LED",
+      "Anamorphic"
+    ],
+    "image": "images/dev/anamorphic-sim.jpg",
+    "badge": "R&D",
+    "size": "normal"
+  },
+  {
+    "id": "dev-03",
+    "section": "dev",
+    "title": "Bentroom",
+    "category": "C++ · openFrameworks",
+    "year": "2026",
+    "description": "휘어진 공간을 위한 범용 이머시브 미디어 엔진 — 곡면·다면 공간 투사와 상영을 하나의 도구로",
+    "tags": [
+      "Immersive",
+      "Projection"
+    ],
+    "badge": "R&D",
+    "size": "normal"
+  },
+  {
+    "id": "dev-04",
+    "section": "dev",
+    "title": "MICE Safety Agent",
+    "category": "TypeScript · Ontology",
+    "year": "2026",
+    "description": "행사 유형, 예상 인파, 베뉴, 지자체 조건을 입력해 MICE·옥외행사 안전 적용성을 확인하는 오프라인 온톨로지 기반 웹 시뮬레이터.",
+    "tags": [
+      "MICE Safety",
+      "Ontology"
+    ],
+    "image": "images/dev/mice-safety.jpg",
+    "url": "/mice-safety/",
+    "size": "normal"
+  },
+  {
+    "id": "dev-05",
+    "section": "dev",
+    "title": "Elementary Learning Map",
+    "category": "JavaScript · Ontology",
+    "year": "2026",
+    "description": "한국 2022 개정 초등 교육과정 학습 온톨로지 — 학습 주제 1,956개를 연결한 인터랙티브 학습 지도",
+    "tags": [
+      "Education",
+      "Ontology"
+    ],
+    "image": "images/dev/learnmap.jpg",
+    "url": "https://dexa.art/learnmap/",
+    "size": "normal"
+  },
+  {
+    "id": "dev-06",
+    "section": "dev",
+    "title": "Secondary Learning Map",
+    "category": "JavaScript · Ontology",
+    "year": "2026",
+    "description": "2022 개정 중학교·고등학교 교육과정 학습 온톨로지 — 초등 학습 지도의 중등 확장",
+    "tags": [
+      "Education",
+      "Ontology"
+    ],
+    "url": "https://github.com/DECK6/korean-secondary-learning-map",
+    "size": "normal"
+  },
+  {
+    "id": "dev-07",
+    "section": "dev",
+    "title": "Transition Gap Map",
+    "category": "JavaScript · Ontology",
+    "year": "2026",
+    "description": "2022 개정 교육과정 학교급 전환 갭 온톨로지 — 전환기 길잡이 인터랙티브 맵",
+    "tags": [
+      "Education",
+      "Ontology"
+    ],
+    "image": "images/dev/gapmap.jpg",
+    "url": "https://dexa.art/gapmap/",
+    "size": "normal"
+  },
+  {
+    "id": "dev-08",
+    "section": "dev",
+    "title": "Learning Path MCP",
+    "category": "TypeScript · MCP",
+    "year": "2026",
+    "description": "한국 K-12 학습 경로·선수 개념을 검증하는 MCP 서버",
+    "tags": [
+      "MCP",
+      "Education"
+    ],
+    "url": "https://github.com/DECK6/learning-path-check-mcp",
+    "size": "normal"
+  },
+  {
+    "id": "dev-09",
+    "section": "dev",
+    "title": "ringsplat",
+    "category": "Python · 3DGS",
+    "year": "2026",
+    "description": "360 파노라마 → 3D Gaussian Splat 변환 파이프라인, Apple Silicon 엔드투엔드",
+    "tags": [
+      "3DGS",
+      "Apple Silicon"
+    ],
+    "url": "https://github.com/DECK6/ringsplat",
+    "size": "normal"
+  },
+  {
+    "id": "dev-10",
+    "section": "dev",
+    "title": "Obsidian Galaxy Graph",
+    "category": "TypeScript · Three.js",
+    "year": "2026",
+    "description": "옵시디언 볼트를 반투명 3D 은하 그래프로 렌더링하는 이머시브 그래프 플러그인",
+    "tags": [
+      "Obsidian",
+      "3D"
+    ],
+    "image": "images/dev/galaxy-graph.jpg",
+    "url": "https://github.com/DECK6/obsidian-galaxy-graph",
+    "size": "normal"
   }
 ]

@@ -494,19 +494,6 @@ const PORTFOLIO_DATA = [
         "size": "large"
     },
     {
-        "id": "project-mice-safety-agent",
-        "section": "work",
-        "title": "MICE Safety Agent",
-        "englishTitle": "Korea MICE Safety Agent",
-        "category": "Public Safety Simulation",
-        "description": "행사 유형, 예상 인파, 베뉴, 지자체 조건을 입력해 MICE·옥외행사 안전 적용성을 확인하는 오프라인 온톨로지 기반 웹 시뮬레이터.",
-        "tags": ["MICE Safety", "Ontology"],
-        "icon": "health_and_safety",
-        "color": "from-[#00F0FF]",
-        "url": "/mice-safety/",
-        "size": "normal"
-    },
-    {
         "id": "project-04",
         "section": "work",
         "title": "손의 잔향",
@@ -619,7 +606,17 @@ const PORTFOLIO_DATA = [
         "color": "from-[#39FF14]",
         "video": "assets/videos/academy03.mp4",
         "tags": ["Prompt Eng", "LLM"]
-    }
+    },
+    {"id": "dev-01", "section": "dev", "title": "AKM", "category": "Markdown · Agent OS", "year": "2026", "description": "도구 불문 마크다운 지식 OS — 에이전트 지식관리(AKM) 레퍼런스 구현", "tags": ["Agent", "PKM"], "url": "https://github.com/DECK6/akm", "size": "large", "badge": "FEATURED", "image": "images/dev/akm.jpg"},
+    {"id": "dev-02", "section": "dev", "title": "Anamorphic Sim", "category": "TypeScript · WebGL", "year": "2026", "description": "평면/ㄱ자 LED 아나모픽 콘텐츠 변환 엔진 — sweet spot 재투영, 곡면 세그먼트, 픽셀맵 출력, AI 원본 콘텐츠 가이드", "tags": ["LED", "Anamorphic"], "image": "images/dev/anamorphic-sim.jpg", "badge": "R&D", "size": "normal"},
+    {"id": "dev-03", "section": "dev", "title": "Bentroom", "category": "C++ · openFrameworks", "year": "2026", "description": "휘어진 공간을 위한 범용 이머시브 미디어 엔진 — 곡면·다면 공간 투사와 상영을 하나의 도구로", "tags": ["Immersive", "Projection"], "badge": "R&D", "size": "normal"},
+    {"id": "dev-04", "section": "dev", "title": "MICE Safety Agent", "category": "TypeScript · Ontology", "year": "2026", "description": "행사 유형, 예상 인파, 베뉴, 지자체 조건을 입력해 MICE·옥외행사 안전 적용성을 확인하는 오프라인 온톨로지 기반 웹 시뮬레이터.", "tags": ["MICE Safety", "Ontology"], "image": "images/dev/mice-safety.jpg", "url": "/mice-safety/", "size": "normal"},
+    {"id": "dev-05", "section": "dev", "title": "Elementary Learning Map", "category": "JavaScript · Ontology", "year": "2026", "description": "한국 2022 개정 초등 교육과정 학습 온톨로지 — 학습 주제 1,956개를 연결한 인터랙티브 학습 지도", "tags": ["Education", "Ontology"], "image": "images/dev/learnmap.jpg", "url": "https://dexa.art/learnmap/", "size": "normal"},
+    {"id": "dev-06", "section": "dev", "title": "Secondary Learning Map", "category": "JavaScript · Ontology", "year": "2026", "description": "2022 개정 중학교·고등학교 교육과정 학습 온톨로지 — 초등 학습 지도의 중등 확장", "tags": ["Education", "Ontology"], "url": "https://github.com/DECK6/korean-secondary-learning-map", "size": "normal"},
+    {"id": "dev-07", "section": "dev", "title": "Transition Gap Map", "category": "JavaScript · Ontology", "year": "2026", "description": "2022 개정 교육과정 학교급 전환 갭 온톨로지 — 전환기 길잡이 인터랙티브 맵", "tags": ["Education", "Ontology"], "image": "images/dev/gapmap.jpg", "url": "https://dexa.art/gapmap/", "size": "normal"},
+    {"id": "dev-08", "section": "dev", "title": "Learning Path MCP", "category": "TypeScript · MCP", "year": "2026", "description": "한국 K-12 학습 경로·선수 개념을 검증하는 MCP 서버", "tags": ["MCP", "Education"], "url": "https://github.com/DECK6/learning-path-check-mcp", "size": "normal"},
+    {"id": "dev-09", "section": "dev", "title": "ringsplat", "category": "Python · 3DGS", "year": "2026", "description": "360 파노라마 → 3D Gaussian Splat 변환 파이프라인, Apple Silicon 엔드투엔드", "tags": ["3DGS", "Apple Silicon"], "url": "https://github.com/DECK6/ringsplat", "size": "normal"},
+    {"id": "dev-10", "section": "dev", "title": "Obsidian Galaxy Graph", "category": "TypeScript · Three.js", "year": "2026", "description": "옵시디언 볼트를 반투명 3D 은하 그래프로 렌더링하는 이머시브 그래프 플러그인", "tags": ["Obsidian", "3D"], "image": "images/dev/galaxy-graph.jpg", "url": "https://github.com/DECK6/obsidian-galaxy-graph", "size": "normal"}
 ];
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -649,9 +646,13 @@ function renderProjects(projects) {
     const workProjects = projects.filter(p => !p.section || p.section === 'work');
     const upcomingProjects = projects.filter(p => p.section === 'upcoming');
     const academyProjects = projects.filter(p => p.section === 'academy');
+    const devProjects = projects.filter(p => p.section === 'dev');
 
     const upcomingGrid = document.getElementById('upcoming-grid');
     if (upcomingGrid) upcomingGrid.innerHTML = '';
+
+    const devGrid = document.getElementById('dev-grid');
+    if (devGrid) devGrid.innerHTML = '';
 
     // --- Render Work Projects ---
     if (workGrid) {
@@ -727,6 +728,28 @@ function renderProjects(projects) {
                 <span class="dx-more">WATCH PREVIEW →</span>
             </div>`;
             academyGrid.insertAdjacentHTML('beforeend', cardHTML);
+        });
+    }
+
+    // --- Render Dev Lab Projects ---
+    if (devGrid) {
+        devProjects.forEach((project) => {
+            const mediaContent = project.image
+                ? `<img src="${project.image}" alt="${project.title}" loading="lazy">`
+                : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--ink-text-dim);font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;text-align:center;padding:0 16px;">${project.category || ''}</div>`;
+            const cardHTML = `
+            <div class="work-card${project.size === 'large' ? ' wide' : ''}"${project.url ? ` onclick="window.open('${project.url}','_blank','noopener')"` : ' style="cursor:default;"'}>
+                <div class="frame">${mediaContent}</div>
+                <div class="caption">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+                        <span class="title">${project.title}</span>
+                        <span class="dx-badge-dark">${project.badge || 'OPEN'}</span>
+                    </div>
+                    <span class="spec"><span>${(project.category || '').toUpperCase()}</span><span>${project.year || ''}</span></span>
+                    <p class="desc">${project.description}</p>
+                </div>
+            </div>`;
+            devGrid.insertAdjacentHTML('beforeend', cardHTML);
         });
     }
 
