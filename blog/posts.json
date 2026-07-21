@@ -1,5 +1,21 @@
 [
   {
+    "slug": "hermes-python-library-in-process-agent-loop",
+    "file": "_built/hermes-python-library-in-process-agent-loop.md",
+    "title": "Hermes Python Library는 에이전트 루프를 앱 안으로 넣는다",
+    "description": "Hermes Agent can run in-process as a Python library through AIAgent, without a CLI or subprocess. This guide covers chat(), run_conversation(), tool boundaries, state handling, and concurrency safety.",
+    "category": "Post",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "python-library"
+    ],
+    "date": "2026-07-22",
+    "thumbnail": "images/hermes-python-library-in-process-agent-loop-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "when-information-leaves-its-context",
     "file": "_built/when-information-leaves-its-context.md",
     "title": "정보는 맥락을 떠나는 순간 달라진다",
