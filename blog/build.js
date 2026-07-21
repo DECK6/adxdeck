@@ -351,7 +351,7 @@ function postPageHtml(post, bodyHtml, prev, next) {
     const canonical = `${SITE_URL}/blog/posts/${post.slug}/`;
     const ogImage = post.thumbnail
         ? `${SITE_URL}/blog/${post.thumbnail.replace(/^\/+/, '')}`
-        : `${SITE_URL}/dexa_logo.jpg`;
+        : `${SITE_URL}/og-image.jpg`;
     const desc = post.description || `${post.title} — DEXA Blog`;
 
     const jsonLd = {
