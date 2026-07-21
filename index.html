@@ -97,6 +97,11 @@
         ::-webkit-scrollbar-thumb { background: var(--line); border-radius: 0; }
         ::-webkit-scrollbar-thumb:hover { background: var(--orange); }
 
+        .hero-art { position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.7; }
+        .hero-art canvas { display: block; }
+        .hero-panel > :not(.hero-art) { position: relative; z-index: 1; }
+        .hero-panel > .screw { position: absolute; z-index: 1; }
+
         .fade-in-up { opacity: 0; transform: translateY(12px); transition: opacity 0.5s, transform 0.5s; }
         .fade-in-up.visible { opacity: 1; transform: translateY(0); }
         @media (prefers-reduced-motion: reduce) { .fade-in-up { opacity: 1; transform: none; transition: none; } }
@@ -144,6 +149,7 @@
 
     <header id="hero" class="hero-wrap">
         <div class="hero-panel">
+            <div id="hero-art" class="hero-art" aria-hidden="true"></div>
             <div class="screw tl"></div>
             <div class="screw tr"></div>
             <div class="screw bl"></div>
@@ -453,6 +459,8 @@
         </p>
     </footer>
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js" defer></script>
+    <script src="hero-art.js" defer></script>
 </body>
 
 </html>
