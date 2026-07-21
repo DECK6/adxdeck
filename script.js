@@ -467,156 +467,26 @@ document.addEventListener('DOMContentLoaded', function () {
 // Portfolio Data Fetching & Rendering
 // ==========================================
 const PORTFOLIO_DATA = [
-    {
-        "id": "project-01",
-        "section": "work",
-        "title": "상상유랑",
-        "englishTitle": "le voyage dans l'imagenation",
-        "category": "Immersive Exhibition",
-        "description": "1채널 파일럿 전시, 458 갤러리 — 텍스트가 공간으로 확장되는 이머시브 전시",
-        "tags": ["Media Art", "Interactive"],
-        "icon": "view_in_ar",
-        "color": "from-[#E50914]",
-        "image": "sangsang.jpg",
-        "size": "normal"
-    },
-    {
-        "id": "project-02",
-        "section": "work",
-        "title": "PRECTXE",
-        "englishTitle": "",
-        "category": "Festival Production",
-        "description": "Digital Media Art Festival General Production",
-        "tags": ["Directing", "Production"],
-        "icon": "festival",
-        "color": "from-[#39FF14]",
-        "image": "prectxe.png",
-        "size": "large"
-    },
-    {
-        "id": "project-04",
-        "section": "work",
-        "title": "손의 잔향",
-        "englishTitle": "Afterimage of the Hand",
-        "category": "Generative Data Visualization",
-        "description": "회화적 선의 축적과 표면 — Rokkaku 작가의 핸드페인팅 감각을 전시 데이터 기반 520개 스트로크 시스템으로 복원. 토탈미술관 AI해커톤 선정작, 베를린 P61갤러리 전시",
-        "tags": ["Data Visualization", "Canvas 2D", "Total Museum", "Berlin P61"],
-        "icon": "gesture",
-        "color": "from-[#BC13FE]",
-        "image": "hand_afterimage.jpg",
-        "size": "normal"
-    },
-    {
-        "id": "project-05",
-        "section": "work",
-        "title": "혼돈의 호흡",
-        "englishTitle": "Breath of Chaos",
-        "category": "Generative Data Visualization",
-        "description": "입자 군집의 구성과 순환 — 108점의 작품 색채, 서울 겨울 기후, 관람객 통계를 9,000개 큐브 입자로 재구성. 토탈미술관 AI해커톤 선정작, 베를린 P61갤러리 전시",
-        "tags": ["Data Visualization", "Three.js", "Total Museum", "Berlin P61"],
-        "icon": "blur_on",
-        "color": "from-[#00F0FF]",
-        "image": "breath_of_chaos.jpg",
-        "size": "normal"
-    },
-    {
-        "id": "project-06",
-        "section": "work",
-        "title": "소각장의 크리스마스",
-        "englishTitle": "Christmas at the Incinerator",
-        "category": "Interactive Exhibition",
-        "description": "장소특정적 인터랙티브 체험 전시 — 부천아트벙커 B39",
-        "tags": ["Site-Specific", "Interactive"],
-        "icon": "celebration",
-        "color": "from-[#E50914]",
-        "image": "christmas_b39.jpg",
-        "size": "normal"
-    },
-    {
-        "id": "project-07",
-        "section": "work",
-        "title": "잔광",
-        "englishTitle": "Afterglow",
-        "category": "Permanent Installation",
-        "description": "장소특정적 상설 인스톨레이션 — 부천아트벙커 B39",
-        "tags": ["Site-Specific", "Installation"],
-        "icon": "flare",
-        "color": "from-[#39FF14]",
-        "image": "afterglow_b39.jpg",
-        "size": "normal"
-    },
-    {
-        "id": "project-03",
-        "section": "work",
-        "title": "잔다리페스타",
-        "englishTitle": "Zandari Festa",
-        "category": "Creative Direction",
-        "description": "Global Music Festival Creative Direction",
-        "tags": ["Creative Direction", "Music Festival"],
-        "icon": "equalizer",
-        "color": "from-[#00F0FF]",
-        "image": "zandari.jpg",
-        "size": "normal"
-    },
-    {
-        "id": "upcoming-01",
-        "section": "upcoming",
-        "title": "Generative Anamorphic Media",
-        "englishTitle": "",
-        "category": "Anamorphic Content",
-        "description": "생성형 AI를 활용한 아나모픽 컨텐츠 제작",
-        "tags": ["Generative AI", "Anamorphic"],
-        "icon": "animation",
-        "color": "from-[#BC13FE]",
-        "video": "assets/videos/project02.mp4",
-        "size": "normal"
-    },
-    {
-        "id": "academy-01",
-        "section": "academy",
-        "title": "Generative AI Workshop",
-        "subtitle": "KOCCA / Corporate",
-        "description": "Midjourney, Stable Diffusion 등을 활용한 이미지/영상 생성 실무 워크숍.",
-        "courseId": "Course 01",
-        "icon": "school",
-        "color": "from-[#BC13FE]",
-        "video": "assets/videos/academy01.mp4",
-        "tags": ["Workshop", "Generative AI"]
-    },
-    {
-        "id": "academy-02",
-        "section": "academy",
-        "title": "AI Business Automation",
-        "subtitle": "Productivity",
-        "description": "ChatGPT, Make.com을 활용한 업무 자동화 및 생산성 혁신 강의.",
-        "courseId": "Course 02",
-        "icon": "settings_suggest",
-        "color": "from-[#00F0FF]",
-        "video": "assets/videos/academy02.mp4",
-        "tags": ["Automation", "Productivity"]
-    },
-    {
-        "id": "academy-03",
-        "section": "academy",
-        "title": "Prompt Engineering",
-        "subtitle": "Master Class",
-        "description": "AI와 소통하는 언어를 배우는 프롬프트 엔지니어링 마스터 클래스.",
-        "courseId": "Course 03",
-        "icon": "chat",
-        "color": "from-[#39FF14]",
-        "video": "assets/videos/academy03.mp4",
-        "tags": ["Prompt Eng", "LLM"]
-    },
-    {"id": "dev-01", "section": "dev", "title": "AKM", "category": "Markdown · Agent OS", "year": "2026", "description": "도구 불문 마크다운 지식 OS — 에이전트 지식관리(AKM) 레퍼런스 구현", "tags": ["Agent", "PKM"], "url": "https://github.com/DECK6/akm", "size": "large", "badge": "FEATURED", "image": "images/dev/akm.jpg"},
-    {"id": "dev-02", "section": "dev", "title": "Anamorphic Sim", "category": "TypeScript · WebGL", "year": "2026", "description": "평면/ㄱ자 LED 아나모픽 콘텐츠 변환 엔진 — sweet spot 재투영, 곡면 세그먼트, 픽셀맵 출력, AI 원본 콘텐츠 가이드", "tags": ["LED", "Anamorphic"], "image": "images/dev/anamorphic-sim.jpg", "badge": "R&D", "size": "normal"},
+    {"id": "project-01", "section": "work", "title": "상상유랑", "englishTitle": "le voyage dans l'imagenation", "category": "Immersive Exhibition", "description": "1채널 파일럿 전시, 458 갤러리 — 텍스트가 공간으로 확장되는 이머시브 전시", "tags": ["Media Art", "Interactive"], "icon": "view_in_ar", "color": "from-[#E50914]", "image": "sangsang.jpg", "size": "normal"},
+    {"id": "project-02", "section": "work", "title": "PRECTXE", "englishTitle": "", "category": "Festival Production", "description": "Digital Media Art Festival General Production", "tags": ["Directing", "Production"], "icon": "festival", "color": "from-[#39FF14]", "image": "prectxe.png", "size": "large"},
+    {"id": "project-04", "section": "work", "title": "손의 잔향", "englishTitle": "Afterimage of the Hand", "category": "Generative Data Visualization", "description": "회화적 선의 축적과 표면 — Rokkaku 작가의 핸드페인팅 감각을 전시 데이터 기반 520개 스트로크 시스템으로 복원. 토탈미술관 AI해커톤 선정작, 베를린 P61갤러리 전시", "tags": ["Data Visualization", "Canvas 2D", "Total Museum", "Berlin P61"], "icon": "gesture", "color": "from-[#BC13FE]", "image": "hand_afterimage.jpg", "size": "normal"},
+    {"id": "project-05", "section": "work", "title": "혼돈의 호흡", "englishTitle": "Breath of Chaos", "category": "Generative Data Visualization", "description": "입자 군집의 구성과 순환 — 108점의 작품 색채, 서울 겨울 기후, 관람객 통계를 9,000개 큐브 입자로 재구성. 토탈미술관 AI해커톤 선정작, 베를린 P61갤러리 전시", "tags": ["Data Visualization", "Three.js", "Total Museum", "Berlin P61"], "icon": "blur_on", "color": "from-[#00F0FF]", "image": "breath_of_chaos.jpg", "size": "normal"},
+    {"id": "project-06", "section": "work", "title": "소각장의 크리스마스", "englishTitle": "Christmas at the Incinerator", "category": "Interactive Exhibition", "description": "장소특정적 인터랙티브 체험 전시 — 부천아트벙커 B39", "tags": ["Site-Specific", "Interactive"], "icon": "celebration", "color": "from-[#E50914]", "image": "christmas_b39.jpg", "size": "normal"},
+    {"id": "project-07", "section": "work", "title": "잔광", "englishTitle": "Afterglow", "category": "Permanent Installation", "description": "장소특정적 상설 인스톨레이션 — 부천아트벙커 B39", "tags": ["Site-Specific", "Installation"], "icon": "flare", "color": "from-[#39FF14]", "image": "afterglow_b39.jpg", "size": "normal"},
+    {"id": "project-03", "section": "work", "title": "잔다리페스타", "englishTitle": "Zandari Festa", "category": "Creative Direction", "description": "Global Music Festival Creative Direction", "tags": ["Creative Direction", "Music Festival"], "icon": "equalizer", "color": "from-[#00F0FF]", "image": "zandari.jpg", "size": "normal"},
+    {"id": "academy-01", "section": "academy", "title": "AX Camp", "subtitle": "Corporate / Executive", "description": "임원·실무진 대상 기업 AI 전환(AX) 캠프 — 생성형 AI 실무부터 조직 워크플로 재설계까지.", "courseId": "Course 01", "tags": ["AX", "Corporate"]},
+    {"id": "academy-02", "section": "academy", "title": "AI Agent & Automation", "subtitle": "Agent Workflow", "description": "AI 에이전트·MCP 기반 업무 자동화 — 반복 업무를 에이전트 워크플로로 전환하는 실무 강의.", "courseId": "Course 02", "tags": ["Agent", "Automation"]},
+    {"id": "academy-03", "section": "academy", "title": "Agent Knowledge Management", "subtitle": "Master Class", "description": "AI와 함께 일하는 지식 시스템 설계 — AKM 방법론 기반 에이전트 지식관리 마스터클래스.", "courseId": "Course 03", "tags": ["AKM", "PKM"]},
+    {"id": "dev-01", "section": "dev", "title": "AKM", "category": "Markdown · Agent OS", "year": "2026", "description": "도구 불문 마크다운 지식 OS — 에이전트 지식관리(AKM) 레퍼런스 구현", "tags": ["Agent", "PKM"], "url": "https://github.com/DECK6/akm", "size": "large", "badge": "FEATURED"},
+    {"id": "dev-02", "section": "dev", "title": "Anamorphic Sim", "category": "TypeScript · WebGL", "year": "2026", "description": "평면/ㄱ자 LED 아나모픽 콘텐츠 변환 엔진 — sweet spot 재투영, 곡면 세그먼트, 픽셀맵 출력, AI 원본 콘텐츠 가이드", "tags": ["LED", "Anamorphic"], "badge": "R&D", "size": "normal"},
     {"id": "dev-03", "section": "dev", "title": "Bentroom", "category": "C++ · openFrameworks", "year": "2026", "description": "휘어진 공간을 위한 범용 이머시브 미디어 엔진 — 곡면·다면 공간 투사와 상영을 하나의 도구로", "tags": ["Immersive", "Projection"], "badge": "R&D", "size": "normal"},
-    {"id": "dev-04", "section": "dev", "title": "MICE Safety Agent", "category": "TypeScript · Ontology", "year": "2026", "description": "행사 유형, 예상 인파, 베뉴, 지자체 조건을 입력해 MICE·옥외행사 안전 적용성을 확인하는 오프라인 온톨로지 기반 웹 시뮬레이터.", "tags": ["MICE Safety", "Ontology"], "image": "images/dev/mice-safety.jpg", "url": "/mice-safety/", "size": "normal"},
-    {"id": "dev-05", "section": "dev", "title": "Elementary Learning Map", "category": "JavaScript · Ontology", "year": "2026", "description": "한국 2022 개정 초등 교육과정 학습 온톨로지 — 학습 주제 1,956개를 연결한 인터랙티브 학습 지도", "tags": ["Education", "Ontology"], "image": "images/dev/learnmap.jpg", "url": "https://dexa.art/learnmap/", "size": "normal"},
+    {"id": "dev-04", "section": "dev", "title": "MICE Safety Agent", "category": "TypeScript · Ontology", "year": "2026", "description": "행사 유형, 예상 인파, 베뉴, 지자체 조건을 입력해 MICE·옥외행사 안전 적용성을 확인하는 오프라인 온톨로지 기반 웹 시뮬레이터.", "tags": ["MICE Safety", "Ontology"], "url": "/mice-safety/", "size": "normal"},
+    {"id": "dev-05", "section": "dev", "title": "Elementary Learning Map", "category": "JavaScript · Ontology", "year": "2026", "description": "한국 2022 개정 초등 교육과정 학습 온톨로지 — 학습 주제 1,956개를 연결한 인터랙티브 학습 지도", "tags": ["Education", "Ontology"], "url": "https://dexa.art/learnmap/", "size": "normal"},
     {"id": "dev-06", "section": "dev", "title": "Secondary Learning Map", "category": "JavaScript · Ontology", "year": "2026", "description": "2022 개정 중학교·고등학교 교육과정 학습 온톨로지 — 초등 학습 지도의 중등 확장", "tags": ["Education", "Ontology"], "url": "https://github.com/DECK6/korean-secondary-learning-map", "size": "normal"},
-    {"id": "dev-07", "section": "dev", "title": "Transition Gap Map", "category": "JavaScript · Ontology", "year": "2026", "description": "2022 개정 교육과정 학교급 전환 갭 온톨로지 — 전환기 길잡이 인터랙티브 맵", "tags": ["Education", "Ontology"], "image": "images/dev/gapmap.jpg", "url": "https://dexa.art/gapmap/", "size": "normal"},
+    {"id": "dev-07", "section": "dev", "title": "Transition Gap Map", "category": "JavaScript · Ontology", "year": "2026", "description": "2022 개정 교육과정 학교급 전환 갭 온톨로지 — 전환기 길잡이 인터랙티브 맵", "tags": ["Education", "Ontology"], "url": "https://dexa.art/gapmap/", "size": "normal"},
     {"id": "dev-08", "section": "dev", "title": "Learning Path MCP", "category": "TypeScript · MCP", "year": "2026", "description": "한국 K-12 학습 경로·선수 개념을 검증하는 MCP 서버", "tags": ["MCP", "Education"], "url": "https://github.com/DECK6/learning-path-check-mcp", "size": "normal"},
     {"id": "dev-09", "section": "dev", "title": "ringsplat", "category": "Python · 3DGS", "year": "2026", "description": "360 파노라마 → 3D Gaussian Splat 변환 파이프라인, Apple Silicon 엔드투엔드", "tags": ["3DGS", "Apple Silicon"], "url": "https://github.com/DECK6/ringsplat", "size": "normal"},
-    {"id": "dev-10", "section": "dev", "title": "Obsidian Galaxy Graph", "category": "TypeScript · Three.js", "year": "2026", "description": "옵시디언 볼트를 반투명 3D 은하 그래프로 렌더링하는 이머시브 그래프 플러그인", "tags": ["Obsidian", "3D"], "image": "images/dev/galaxy-graph.jpg", "url": "https://github.com/DECK6/obsidian-galaxy-graph", "size": "normal"}
+    {"id": "dev-10", "section": "dev", "title": "Obsidian Galaxy Graph", "category": "TypeScript · Three.js", "year": "2026", "description": "옵시디언 볼트를 반투명 3D 은하 그래프로 렌더링하는 이머시브 그래프 플러그인", "tags": ["Obsidian", "3D"], "url": "https://github.com/DECK6/obsidian-galaxy-graph", "size": "normal"}
 ];
 
 document.addEventListener('DOMContentLoaded', async function () {
@@ -644,12 +514,9 @@ function renderProjects(projects) {
     if (academyGrid) academyGrid.innerHTML = '';
 
     const workProjects = projects.filter(p => !p.section || p.section === 'work');
-    const upcomingProjects = projects.filter(p => p.section === 'upcoming');
     const academyProjects = projects.filter(p => p.section === 'academy');
     const devProjects = projects.filter(p => p.section === 'dev');
 
-    const upcomingGrid = document.getElementById('upcoming-grid');
-    if (upcomingGrid) upcomingGrid.innerHTML = '';
 
     const devGrid = document.getElementById('dev-grid');
     if (devGrid) devGrid.innerHTML = '';
@@ -694,38 +561,19 @@ function renderProjects(projects) {
     }
 
 
-    // --- Render Upcoming Projects ---
-    if (upcomingGrid) {
-        upcomingProjects.forEach((project) => {
-            const cardHTML = `
-            <div class="work-card" style="opacity:0.75;">
-                <div class="frame" style="filter:grayscale(1);">
-                    <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--ink-text-dim);font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;text-align:center;padding:0 16px;">${project.category || ''}</div>
-                </div>
-                <div class="caption">
-                    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
-                        <span class="title">${project.title}</span>
-                        <span class="dx-badge-dark">COMING SOON</span>
-                    </div>
-                    <p class="desc">${project.description}</p>
-                </div>
-            </div>`;
-            upcomingGrid.insertAdjacentHTML('beforeend', cardHTML);
-        });
-    }
 
     // --- Render Academy Projects ---
     if (academyGrid) {
         academyProjects.forEach((project) => {
             const cardHTML = `
-            <div class="panel-card" onclick="openVideoModal('${project.id}')" style="cursor:pointer;">
+            <div class="panel-card" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})" style="cursor:pointer;">
                 <span class="dx-meta">
                     <span class="dx-badge">${project.courseId || 'Course'}</span>
                     ${project.subtitle ? `<span class="dx-date">${project.subtitle}</span>` : ''}
                 </span>
                 <h3>${project.title}</h3>
                 <p>${project.description}</p>
-                <span class="dx-more">WATCH PREVIEW →</span>
+                <span class="dx-more">INQUIRE →</span>
             </div>`;
             academyGrid.insertAdjacentHTML('beforeend', cardHTML);
         });
@@ -734,20 +582,15 @@ function renderProjects(projects) {
     // --- Render Dev Lab Projects ---
     if (devGrid) {
         devProjects.forEach((project) => {
-            const mediaContent = project.image
-                ? `<img src="${project.image}" alt="${project.title}" loading="lazy">`
-                : `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--ink-text-dim);font-family:var(--font-mono);font-size:11px;letter-spacing:0.06em;text-align:center;padding:0 16px;">${project.category || ''}</div>`;
+            const action = project.url ? ` onclick="window.open('${project.url}','_blank','noopener')"` : ' style="cursor:default;"';
             const cardHTML = `
-            <div class="work-card${project.size === 'large' ? ' wide' : ''}"${project.url ? ` onclick="window.open('${project.url}','_blank','noopener')"` : ' style="cursor:default;"'}>
-                <div class="frame">${mediaContent}</div>
-                <div class="caption">
-                    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
-                        <span class="title">${project.title}</span>
-                        <span class="dx-badge-dark">${project.badge || 'OPEN'}</span>
-                    </div>
-                    <span class="spec"><span>${(project.category || '').toUpperCase()}</span><span>${project.year || ''}</span></span>
-                    <p class="desc">${project.description}</p>
+            <div class="dev-card${project.size === 'large' ? ' wide' : ''}"${action}>
+                <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">
+                    <h3>${project.title}</h3>
+                    <span class="dx-badge-dark">${project.badge || 'OPEN'}</span>
                 </div>
+                <span class="spec"><span>${(project.category || '').toUpperCase()}</span><span>${project.year || ''}</span></span>
+                <p class="desc">${project.description}</p>
             </div>`;
             devGrid.insertAdjacentHTML('beforeend', cardHTML);
         });

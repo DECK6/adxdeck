@@ -121,6 +121,16 @@ img{max-width:100%;display:block;}
 .work-card .desc{font-size:13px;line-height:1.6;color:var(--ink-text);margin:0;}
 .dx-badge-dark{font-family:var(--font-mono);font-size:9px;letter-spacing:0.08em;padding:4px 8px;border-radius:20px;border:1px solid var(--cyan);color:var(--cyan);display:inline-block;}
 
+/* Dev Lab — typographic cards (no screenshots, title-led) */
+.dev-card{background:var(--ink-display);border:1px solid var(--ink-key);border-radius:12px;padding:26px 24px 24px;display:flex;flex-direction:column;gap:12px;cursor:pointer;transition:border-color 0.15s;}
+.dev-card:hover{border-color:var(--cyan);}
+.dev-card h3{margin:0;font-size:22px;font-weight:700;letter-spacing:-0.01em;color:#F7FAFC;line-height:1.25;}
+.dev-card .spec{display:flex;justify-content:space-between;gap:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.04em;color:var(--ink-text-dim);text-transform:uppercase;}
+.dev-card .desc{font-size:13px;line-height:1.6;color:var(--ink-text);margin:0;}
+.dev-card.wide{grid-column:span 2;}
+.dev-card.wide h3{font-size:28px;}
+@media (max-width:700px){.dev-card.wide{grid-column:auto;}}
+
 /* --------------------------------------------------------------------------
    CARDS on light chrome (blog previews, solutions, generic panels)
    -------------------------------------------------------------------------- */

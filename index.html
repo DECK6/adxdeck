@@ -177,8 +177,49 @@
         </div>
     </header>
 
+
+
+
+
+    <!-- Dev Lab Section -->
+    <section id="devlab" class="works-band" style="border-top:1px solid var(--ink-key);">
+        <div class="works-inner">
+            <div class="works-head">
+                <div style="display:flex;align-items:baseline;gap:16px;">
+                    <span class="dx-section-num">01</span>
+                    <h2>Dev Lab<span style="color:var(--cyan);">.</span></h2>
+                </div>
+                <span class="side">/// OPEN SOURCE &amp; TOOLS</span>
+            </div>
+            <p class="works-desc">미디어 엔진, 온톨로지, 에이전트 인프라 — 공개 레포와 R&amp;D 빌드로 운영하는 도구들.</p>
+            <div id="dev-grid" class="works-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr));"></div>
+        </div>
+    </section>
+
+    <section id="studio" class="works-band" style="border-top:1px solid var(--ink-key);">
+        <div class="works-inner">
+            <div class="works-head">
+                <div style="display:flex;align-items:baseline;gap:16px;">
+                    <span class="dx-section-num">02</span>
+                    <h2>Selected Projects<span style="color:var(--cyan);">.</span></h2>
+                </div>
+                <span class="side">/// LATEST WORKS</span>
+            </div>
+            <!-- Dynamic Project Grid Container -->
+            <div id="project-grid" class="works-grid">
+                <!-- Data will be loaded from projects.json -->
+                <div style="grid-column:1/-1;text-align:center;padding:80px 0;">
+                    <div style="display:inline-block;width:32px;height:32px;border-radius:50%;border:2px solid var(--ink-key);border-top-color:var(--cyan);border-bottom-color:var(--cyan);animation:dexa-spin 0.8s linear infinite;"></div>
+                    <p class="mono" style="margin-top:16px;color:var(--ink-text-dim);font-size:12px;">Loading Projects...</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Works Section -->
+    </section>
+
     <section id="intro" class="dx-section">
-        <div class="dx-section-head"><span class="dx-section-num">01</span><h2>We are <span style="color:var(--orange);">DEXA</span>.</h2></div>
+        <div class="dx-section-head"><span class="dx-section-num">03</span><h2>We are <span style="color:var(--orange);">DEXA</span>.</h2></div>
         <p class="dx-kicker" style="margin:0 0 20px;">Creative Tech Studio</p>
         <p class="dx-section-desc" style="max-width:720px;">
             DEXA(덱사)는 미디어 아티스트 <strong>Deck(육대근)</strong>이 이끄는 크리에이티브 테크 그룹입니다.<br>
@@ -213,88 +254,6 @@
         </div>
 
         <a class="dx-link" href="about-deck.html">More About Director ↗</a>
-    </section>
-
-    <!-- Blog Preview Section -->
-    <section class="dx-section" id="blog-preview">
-        <div class="dx-section-head"><span class="dx-section-num">02</span><h2>Blog<span style="color:var(--orange);">.</span></h2></div>
-        <p class="dx-kicker" style="margin:0 0 44px;">/// Thoughts on AI, Art &amp; Technology</p>
-
-        <div id="blog-preview-grid" class="dx-grid-3">
-            <!-- STATIC_BLOG_PREVIEW_START -->
-<a class="post-card panel-card" href="/blog/posts/hermes-managed-scope-per-key-policy/" data-category="Post" aria-label="Read Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다">
-  <div class="card-frame"><img src="/blog/images/hermes-managed-scope-per-key-policy-cover.png" alt="Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다 — Hermes Agent Managed Scope lets administrators pin selected configuration and environment keys without locking every user setting. T" loading="lazy"></div>
-  <span class="dx-meta"><span class="dx-badge">Post</span><time datetime="2026-07-20" class="dx-date">2026.07.20</time></span>
-  <h3>Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다</h3>
-  <p>Hermes Agent Managed Scope lets administrators pin selected configuration and environment keys without locking every user setting. This guide explains precedence, setup, write guards, and the POSIX-first security boundary.</p>
-  <span class="dx-more">READ MORE →</span>
-</a>
-                <a class="post-card panel-card" href="/blog/posts/when-the-camera-stops-imitating-the-eye/" data-category="Article" aria-label="Read 카메라는 눈을 흉내 내지 않는다">
-  <div class="card-frame"><img src="/blog/images/steina-vasulka-machine-vision-cover.png" alt="카메라는 눈을 흉내 내지 않는다 — Steina Vasulka는 카메라와 비디오 신호를 기록 도구가 아니라 스스로 움직이고 변조되는 지각 장치로 바꾸었다. Steina의 초기 전자영상 실험을 오늘의 기계 시각과 다시 연결해 읽는다." loading="lazy"></div>
-  <span class="dx-meta"><span class="dx-badge">Article</span><time datetime="2026-07-20" class="dx-date">2026.07.20</time></span>
-  <h3>카메라는 눈을 흉내 내지 않는다</h3>
-  <p>Steina Vasulka는 카메라와 비디오 신호를 기록 도구가 아니라 스스로 움직이고 변조되는 지각 장치로 바꾸었다. Steina의 초기 전자영상 실험을 오늘의 기계 시각과 다시 연결해 읽는다.</p>
-  <span class="dx-more">READ MORE →</span>
-</a>
-                <a class="post-card panel-card" href="/blog/posts/hermes-automation-blueprints-confirmed-forms/" data-category="Post" aria-label="Read Hermes Automation Blueprints는 cron 문법보다 먼저 목적을 묻는다">
-  <div class="card-frame"><img src="/blog/images/hermes-automation-blueprints-confirmed-forms-cover.png" alt="Hermes Automation Blueprints는 cron 문법보다 먼저 목적을 묻는다 — Hermes Agent Automation Blueprints turn common recurring tasks into validated forms and conversational setup flows. This guide " loading="lazy"></div>
-  <span class="dx-meta"><span class="dx-badge">Post</span><time datetime="2026-07-19" class="dx-date">2026.07.19</time></span>
-  <h3>Hermes Automation Blueprints는 cron 문법보다 먼저 목적을 묻는다</h3>
-  <p>Hermes Agent Automation Blueprints turn common recurring tasks into validated forms and conversational setup flows. This guide explains typed slots, explicit confirmation, cron execution, and shareable blueprint skills.</p>
-  <span class="dx-more">READ MORE →</span>
-</a>
-                <!-- STATIC_BLOG_PREVIEW_END -->
-        </div>
-        <div style="margin-top:32px;text-align:right;">
-            <a class="dx-link" href="/blog/">View All Posts ↗</a>
-        </div>
-    </section>
-
-    <section id="studio" class="works-band">
-        <div class="works-inner">
-            <div class="works-head">
-                <div style="display:flex;align-items:baseline;gap:16px;">
-                    <span class="dx-section-num">03</span>
-                    <h2>Selected Projects<span style="color:var(--cyan);">.</span></h2>
-                </div>
-                <span class="side">/// LATEST WORKS</span>
-            </div>
-            <!-- Dynamic Project Grid Container -->
-            <div id="project-grid" class="works-grid">
-                <!-- Data will be loaded from projects.json -->
-                <div style="grid-column:1/-1;text-align:center;padding:80px 0;">
-                    <div style="display:inline-block;width:32px;height:32px;border-radius:50%;border:2px solid var(--ink-key);border-top-color:var(--cyan);border-bottom-color:var(--cyan);animation:dexa-spin 0.8s linear infinite;"></div>
-                    <p class="mono" style="margin-top:16px;color:var(--ink-text-dim);font-size:12px;">Loading Projects...</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Upcoming Works Section -->
-        <section id="upcoming" style="border-top:1px solid var(--ink-key);">
-            <div class="works-inner" style="padding:56px 40px 64px;">
-                <div class="works-head" style="margin-bottom:0;">
-                    <h3 style="font-size:22px;font-weight:700;margin:0;color:#F7FAFC;">Upcoming Works<span style="color:var(--cyan);">.</span></h3>
-                    <span class="side">/// R&amp;D LAB PREVIEWS</span>
-                </div>
-                <!-- Dynamic Upcoming Grid Container -->
-                <div id="upcoming-grid" class="works-grid" style="margin-top:32px;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));"></div>
-            </div>
-        </section>
-    </section>
-
-    <!-- Dev Lab Section -->
-    <section id="devlab" class="works-band" style="border-top:1px solid var(--ink-key);">
-        <div class="works-inner">
-            <div class="works-head">
-                <div style="display:flex;align-items:baseline;gap:16px;">
-                    <span class="dx-section-num">04</span>
-                    <h2>Dev Lab<span style="color:var(--cyan);">.</span></h2>
-                </div>
-                <span class="side">/// OPEN SOURCE &amp; TOOLS</span>
-            </div>
-            <p class="works-desc">미디어 엔진, 온톨로지, 에이전트 인프라 — 공개 레포와 R&amp;D 빌드로 운영하는 도구들.</p>
-            <div id="dev-grid" class="works-grid" style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr));"></div>
-        </div>
     </section>
 
     <!-- Cinematic Video Modal -->
@@ -345,7 +304,7 @@
     </div>
 
     <section class="dx-section" id="solutions">
-        <div class="dx-section-head"><span class="dx-section-num">05</span><h2>DEXA Academy &amp; Speaking<span style="color:var(--orange);">.</span></h2></div>
+        <div class="dx-section-head"><span class="dx-section-num">04</span><h2>DEXA Academy &amp; Speaking<span style="color:var(--orange);">.</span></h2></div>
         <p class="dx-kicker" style="margin:0 0 44px;">/// Master the future of creation</p>
 
         <!-- Dynamic Academy Grid Container -->
@@ -362,7 +321,7 @@
     </section>
 
     <section id="contact" class="dx-section">
-        <div class="dx-section-head"><span class="dx-section-num">06</span><h2 style="font-size:20px;">Contact</h2></div>
+        <div class="dx-section-head"><span class="dx-section-num">05</span><h2 style="font-size:20px;">Contact</h2></div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:48px;margin-top:8px;">
             <div>
                 <h2 style="font-size:clamp(32px,4.5vw,48px);font-weight:700;letter-spacing:-0.02em;margin:0 0 20px;">
@@ -428,6 +387,41 @@
         </div>
     </section>
 
+
+    <!-- Blog Preview Section -->
+    <section class="dx-section" id="blog-preview">
+        <div class="dx-section-head"><span class="dx-section-num">06</span><h2>Blog<span style="color:var(--orange);">.</span></h2></div>
+        <p class="dx-kicker" style="margin:0 0 44px;">/// Thoughts on AI, Art &amp; Technology</p>
+
+        <div id="blog-preview-grid" class="dx-grid-3">
+            <!-- STATIC_BLOG_PREVIEW_START -->
+<a class="post-card panel-card" href="/blog/posts/hermes-managed-scope-per-key-policy/" data-category="Post" aria-label="Read Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다">
+  <div class="card-frame"><img src="/blog/images/hermes-managed-scope-per-key-policy-cover.png" alt="Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다 — Hermes Agent Managed Scope lets administrators pin selected configuration and environment keys without locking every user setting. T" loading="lazy"></div>
+  <span class="dx-meta"><span class="dx-badge">Post</span><time datetime="2026-07-20" class="dx-date">2026.07.20</time></span>
+  <h3>Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다</h3>
+  <p>Hermes Agent Managed Scope lets administrators pin selected configuration and environment keys without locking every user setting. This guide explains precedence, setup, write guards, and the POSIX-first security boundary.</p>
+  <span class="dx-more">READ MORE →</span>
+</a>
+                <a class="post-card panel-card" href="/blog/posts/when-the-camera-stops-imitating-the-eye/" data-category="Article" aria-label="Read 카메라는 눈을 흉내 내지 않는다">
+  <div class="card-frame"><img src="/blog/images/steina-vasulka-machine-vision-cover.png" alt="카메라는 눈을 흉내 내지 않는다 — Steina Vasulka는 카메라와 비디오 신호를 기록 도구가 아니라 스스로 움직이고 변조되는 지각 장치로 바꾸었다. Steina의 초기 전자영상 실험을 오늘의 기계 시각과 다시 연결해 읽는다." loading="lazy"></div>
+  <span class="dx-meta"><span class="dx-badge">Article</span><time datetime="2026-07-20" class="dx-date">2026.07.20</time></span>
+  <h3>카메라는 눈을 흉내 내지 않는다</h3>
+  <p>Steina Vasulka는 카메라와 비디오 신호를 기록 도구가 아니라 스스로 움직이고 변조되는 지각 장치로 바꾸었다. Steina의 초기 전자영상 실험을 오늘의 기계 시각과 다시 연결해 읽는다.</p>
+  <span class="dx-more">READ MORE →</span>
+</a>
+                <a class="post-card panel-card" href="/blog/posts/hermes-automation-blueprints-confirmed-forms/" data-category="Post" aria-label="Read Hermes Automation Blueprints는 cron 문법보다 먼저 목적을 묻는다">
+  <div class="card-frame"><img src="/blog/images/hermes-automation-blueprints-confirmed-forms-cover.png" alt="Hermes Automation Blueprints는 cron 문법보다 먼저 목적을 묻는다 — Hermes Agent Automation Blueprints turn common recurring tasks into validated forms and conversational setup flows. This guide " loading="lazy"></div>
+  <span class="dx-meta"><span class="dx-badge">Post</span><time datetime="2026-07-19" class="dx-date">2026.07.19</time></span>
+  <h3>Hermes Automation Blueprints는 cron 문법보다 먼저 목적을 묻는다</h3>
+  <p>Hermes Agent Automation Blueprints turn common recurring tasks into validated forms and conversational setup flows. This guide explains typed slots, explicit confirmation, cron execution, and shareable blueprint skills.</p>
+  <span class="dx-more">READ MORE →</span>
+</a>
+                <!-- STATIC_BLOG_PREVIEW_END -->
+        </div>
+        <div style="margin-top:32px;text-align:right;">
+            <a class="dx-link" href="/blog/">View All Posts ↗</a>
+        </div>
+    </section>
     <footer class="dx-footer">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
             <img src="dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">

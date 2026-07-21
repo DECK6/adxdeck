@@ -116,64 +116,39 @@
     "size": "normal"
   },
   {
-    "id": "upcoming-01",
-    "section": "upcoming",
-    "title": "Generative Anamorphic Media",
-    "englishTitle": "",
-    "category": "Anamorphic Content",
-    "description": "생성형 AI를 활용한 아나모픽 컨텐츠 제작",
-    "tags": [
-      "Generative AI",
-      "Anamorphic"
-    ],
-    "icon": "animation",
-    "color": "from-[#BC13FE]",
-    "video": "assets/videos/project02.mp4",
-    "size": "normal"
-  },
-  {
     "id": "academy-01",
     "section": "academy",
-    "title": "Generative AI Workshop",
-    "subtitle": "KOCCA / Corporate",
-    "description": "Midjourney, Stable Diffusion 등을 활용한 이미지/영상 생성 실무 워크숍.",
+    "title": "AX Camp",
+    "subtitle": "Corporate / Executive",
+    "description": "임원·실무진 대상 기업 AI 전환(AX) 캠프 — 생성형 AI 실무부터 조직 워크플로 재설계까지.",
     "courseId": "Course 01",
-    "icon": "school",
-    "color": "from-[#BC13FE]",
-    "video": "assets/videos/academy01.mp4",
     "tags": [
-      "Workshop",
-      "Generative AI"
+      "AX",
+      "Corporate"
     ]
   },
   {
     "id": "academy-02",
     "section": "academy",
-    "title": "AI Business Automation",
-    "subtitle": "Productivity",
-    "description": "ChatGPT, Make.com을 활용한 업무 자동화 및 생산성 혁신 강의.",
+    "title": "AI Agent & Automation",
+    "subtitle": "Agent Workflow",
+    "description": "AI 에이전트·MCP 기반 업무 자동화 — 반복 업무를 에이전트 워크플로로 전환하는 실무 강의.",
     "courseId": "Course 02",
-    "icon": "settings_suggest",
-    "color": "from-[#00F0FF]",
-    "video": "assets/videos/academy02.mp4",
     "tags": [
-      "Automation",
-      "Productivity"
+      "Agent",
+      "Automation"
     ]
   },
   {
     "id": "academy-03",
     "section": "academy",
-    "title": "Prompt Engineering",
+    "title": "Agent Knowledge Management",
     "subtitle": "Master Class",
-    "description": "AI와 소통하는 언어를 배우는 프롬프트 엔지니어링 마스터 클래스.",
+    "description": "AI와 함께 일하는 지식 시스템 설계 — AKM 방법론 기반 에이전트 지식관리 마스터클래스.",
     "courseId": "Course 03",
-    "icon": "chat",
-    "color": "from-[#39FF14]",
-    "video": "assets/videos/academy03.mp4",
     "tags": [
-      "Prompt Eng",
-      "LLM"
+      "AKM",
+      "PKM"
     ]
   },
   {
@@ -189,8 +164,7 @@
     ],
     "url": "https://github.com/DECK6/akm",
     "size": "large",
-    "badge": "FEATURED",
-    "image": "images/dev/akm.jpg"
+    "badge": "FEATURED"
   },
   {
     "id": "dev-02",
@@ -203,7 +177,6 @@
       "LED",
       "Anamorphic"
     ],
-    "image": "images/dev/anamorphic-sim.jpg",
     "badge": "R&D",
     "size": "normal"
   },
@@ -232,7 +205,6 @@
       "MICE Safety",
       "Ontology"
     ],
-    "image": "images/dev/mice-safety.jpg",
     "url": "/mice-safety/",
     "size": "normal"
   },
@@ -247,7 +219,6 @@
       "Education",
       "Ontology"
     ],
-    "image": "images/dev/learnmap.jpg",
     "url": "https://dexa.art/learnmap/",
     "size": "normal"
   },
@@ -276,7 +247,6 @@
       "Education",
       "Ontology"
     ],
-    "image": "images/dev/gapmap.jpg",
     "url": "https://dexa.art/gapmap/",
     "size": "normal"
   },
@@ -319,7 +289,6 @@
       "Obsidian",
       "3D"
     ],
-    "image": "images/dev/galaxy-graph.jpg",
     "url": "https://github.com/DECK6/obsidian-galaxy-graph",
     "size": "normal"
   }
