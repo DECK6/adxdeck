@@ -1,5 +1,24 @@
 [
   {
+    "slug": "when-information-leaves-its-context",
+    "file": "_built/when-information-leaves-its-context.md",
+    "title": "정보는 맥락을 떠나는 순간 달라진다",
+    "description": "헬렌 니센바움의 맥락적 무결성을 통해 관객 데이터, 플랫폼 로그, AI 입력이 원래의 관계를 벗어날 때 생기는 프라이버시 문제를 미디어아트의 언어로 읽는다.",
+    "category": "Article",
+    "tags": [
+      "media-theory",
+      "media-art",
+      "privacy",
+      "contextual-integrity",
+      "helen-nissenbaum",
+      "data-governance",
+      "AI"
+    ],
+    "date": "2026-07-22",
+    "thumbnail": "images/helen-nissenbaum-contextual-integrity-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-managed-scope-per-key-policy",
     "file": "_built/hermes-managed-scope-per-key-policy.md",
     "title": "Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다",
