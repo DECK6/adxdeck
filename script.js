@@ -754,6 +754,25 @@ document.addEventListener('DOMContentLoaded', function () {
 // ==========================================
 // Blog Preview on Main Page
 // ==========================================
+const BLOG_TRACK_LABELS = Object.freeze({
+    'media-art': 'Media Art',
+    'ai-ax': 'AI · AX'
+});
+
+function escapeBlogHtml(value) {
+    return String(value || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+}
+
+function blogPreviewImageSrc(value) {
+    const url = String(value || '');
+    if (/^(https?:|\/)/i.test(url)) return url;
+    return `/blog/${url.replace(/^\.?\//, '').replace(/^blog\//, '')}`;
+}
+
 async function loadBlogPosts() {
     try {
         const res = await fetch('blog/posts.json');
@@ -776,24 +795,24 @@ function renderBlogPreview(posts) {
 
     latest.forEach((post) => {
         const date = post.date.replace(/-/g, '.');
+        const trackLabel = post.trackLabel || BLOG_TRACK_LABELS[post.track] || post.track;
 
         const card = document.createElement('a');
-        card.href = `blog/posts/${post.slug}/`;
-        card.className = 'panel-card';
+        card.href = `/blog/posts/${encodeURIComponent(post.slug)}/`;
+        card.className = 'post-card panel-card';
+        card.dataset.track = post.track;
+        card.dataset.category = post.category;
+        card.setAttribute('aria-label', `Read ${post.title}`);
 
         const frame = post.thumbnail
-            ? `<div class="card-frame"><img src="blog/${post.thumbnail}" alt="${post.title}" loading="lazy"></div>`
-            : '';
-        const tagsRow = (post.tags || []).length
-            ? `<div style="display:flex;flex-wrap:wrap;gap:6px;">${post.tags.map(tag => `<span class="dx-tag-chip">${tag}</span>`).join('')}</div>`
+            ? `<div class="card-frame"><img src="${escapeBlogHtml(blogPreviewImageSrc(post.thumbnail))}" alt="${escapeBlogHtml(post.title)}" loading="lazy"></div>`
             : '';
 
         card.innerHTML = `
             ${frame}
-            <span class="dx-meta"><span class="dx-badge">${post.category}</span><span class="dx-date">${date}</span></span>
-            <h3>${post.title}</h3>
-            <p>${post.description}</p>
-            ${tagsRow}
+            <span class="dx-meta"><span class="dx-badge">${escapeBlogHtml(trackLabel)}</span><span class="dx-date">${escapeBlogHtml(post.category)} · <time datetime="${escapeBlogHtml(post.date)}">${date}</time></span></span>
+            <h3>${escapeBlogHtml(post.title)}</h3>
+            <p>${escapeBlogHtml(post.description)}</p>
             <span class="dx-more">READ MORE →</span>`;
 
         grid.appendChild(card);

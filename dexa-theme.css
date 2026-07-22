@@ -65,6 +65,13 @@ img{max-width:100%;display:block;}
 .dx-section-desc{color:var(--muted);font-size:15px;margin:0 0 44px;max-width:560px;line-height:1.6;}
 .dx-group-label{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.06em;margin-bottom:16px;}
 .dx-kicker{font-family:var(--font-mono);font-size:10px;color:var(--muted);letter-spacing:0.08em;text-transform:uppercase;}
+.dx-editorial-intro{max-width:900px;margin:18px 0 0;color:var(--muted);font-size:clamp(16px,2vw,19px);line-height:1.7;}
+.dx-track-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;margin:32px 0 44px;background:var(--line);border:1px solid var(--line);}
+.dx-track-card{min-height:250px;padding:28px 26px;background:var(--paper);display:flex;flex-direction:column;gap:14px;}
+.dx-track-card:hover{background:var(--panel);}
+.dx-track-card h3{margin:0;font-size:clamp(23px,3vw,32px);line-height:1.2;letter-spacing:-0.02em;}
+.dx-track-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.7;max-width:560px;}
+.dx-track-card .dx-more{margin-top:auto;}
 
 /* --------------------------------------------------------------------------
    HERO — dark hardware panel (exhibition surface)
@@ -195,4 +202,6 @@ img{max-width:100%;display:block;}
 
 @media (max-width:640px){
   .dx-nav,.hero-wrap,.works-inner,.dx-section,.dx-footer{padding-left:20px;padding-right:20px;}
+  .dx-track-grid{grid-template-columns:1fr;}
+  .dx-track-card{min-height:220px;padding:24px 20px;}
 }

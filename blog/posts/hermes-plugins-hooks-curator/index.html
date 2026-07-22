@@ -19,7 +19,7 @@
     <meta name="twitter:title" content="Hermes 확장은 플러그인을 켜고, 훅으로 흐름을 잡고, 큐레이터로 정리한다" />
     <meta name="twitter:description" content="A practical guide to Hermes Agent plugins, lifecycle hooks, and the Curator that keeps agent-created skills from becoming stale." />
     <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-plugins-hooks-curator-cover.png" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes 확장은 플러그인을 켜고, 훅으로 흐름을 잡고, 큐레이터로 정리한다","description":"A practical guide to Hermes Agent plugins, lifecycle hooks, and the Curator that keeps agent-created skills from becoming stale.","image":"https://dexa.art/blog/images/hermes-plugins-hooks-curator-cover.png","datePublished":"2026-05-27","dateModified":"2026-05-27","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-plugins-hooks-curator/"},"keywords":""}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes 확장은 플러그인을 켜고, 훅으로 흐름을 잡고, 큐레이터로 정리한다","description":"A practical guide to Hermes Agent plugins, lifecycle hooks, and the Curator that keeps agent-created skills from becoming stale.","image":"https://dexa.art/blog/images/hermes-plugins-hooks-curator-cover.png","datePublished":"2026-05-27","dateModified":"2026-05-27","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-plugins-hooks-curator/"},"articleSection":"AI · AX","keywords":""}</script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
@@ -53,7 +53,10 @@
         <article style="max-width:720px;margin:0 auto;">
             <div style="margin-bottom:40px;">
                 <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
-                <div class="dx-kicker" style="margin-top:20px;">Post · 2026.05.27</div>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Post · 2026.05.27</span>
+                </div>
             </div>
             <div class="prose">
                 <h1>Hermes 확장은 플러그인을 켜고, 훅으로 흐름을 잡고, 큐레이터로 정리한다</h1>
@@ -104,8 +107,8 @@ hermes curator rollback --list</code></pre>
 <p>새 tool, slash command, gateway adapter, observability, provider backend를 붙이고 싶다면 plugin을 쓴다. 메시지 수신, tool 호출, 세션 종료 같은 순간에 정책·로그·알림을 넣고 싶다면 hook을 쓴다. 스킬 중복과 오래된 절차가 문제라면 curator를 켠다. 단순 외부 API 연결은 먼저 MCP를 검토하고, 내부 동작 확장은 플러그인과 훅으로 내려가는 편이 안전하다.</p>
             </div>
             <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
-                <a id="prev-post" href="/blog/posts/hermes-image-generation-provider/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>Hermes 이미지 생성은 프롬프트보다 provider 설정이 먼저다</span></a>
-                <a id="next-post" href="/blog/posts/latent-epistemology-and-media-art/" class="spec-row" style="text-decoration:none;"><span>AI는 어떻게 생각의 지형을 미리 그리는가</span><span class="k">NEXT →</span></a>
+                <a id="prev-post" href="/blog/posts/latent-epistemology-and-media-art/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>AI는 어떻게 생각의 지형을 미리 그리는가</span></a>
+                <a id="next-post" href="/blog/posts/hermes-webhook-event-automation/" class="spec-row" style="text-decoration:none;"><span>Hermes Webhook은 외부 이벤트를 에이전트 실행으로 바꾼다</span><span class="k">NEXT →</span></a>
             </nav>
         </article>
     </main>

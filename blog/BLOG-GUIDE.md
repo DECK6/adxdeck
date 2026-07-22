@@ -24,6 +24,7 @@
 ```yaml
 ---
 type: article
+track: media-art
 aliases:
   - "한글 별칭"
   - "English Alias"
@@ -44,7 +45,8 @@ status: completed
 
 | 필드 | 설명 | 예시 |
 |------|------|------|
-| `tags` | 태그 목록 (첫 번째 태그가 카테고리 결정) | `- article` |
+| `track` | 상위 편집 축. 새 글은 명시적으로 작성 | `media-art` |
+| `tags` | 주제 태그와 보조 콘텐츠 유형 | `- article` |
 | `date created` | 작성일 (YYYY-MM-DD) | `2026-03-28` |
 
 ### 선택 필드
@@ -57,9 +59,32 @@ status: completed
 | `title` | 제목 (없으면 본문 `# 제목`에서 추출) | `제목` |
 | `date modified` | 수정일 | `2026-03-28` |
 
-### 카테고리 결정 규칙
+## 두 개의 상위 편집 축
 
-`tags`의 첫 번째 매칭 태그가 카테고리를 결정한다:
+공개 블로그의 상위 편집 축은 정확히 두 개다.
+
+| `track` slug | 공개 라벨 | 다루는 범위 |
+|--------------|-----------|-------------|
+| `media-art` | Media Art | 미디어아트 작품·이론, 장치와 공간 기술, 전시 제작 문제 |
+| `ai-ax` | AI · AX | AI가 실제 일과 조직을 바꾸는 방식 |
+
+`track` 값은 대소문자를 구분하지 않는다. canonical slug인 `media-art`, `ai-ax`와 friendly label인 `Media Art`, `AI · AX`를 허용한다. 비어 있는 `track`은 레거시 fallback을 사용하지만, 그 밖의 잘못된 명시값은 빌드를 즉시 실패시킨다.
+
+AI · AX는 Hermes 전용 시리즈가 아니다. Hermes 운영 경험에서 출발하되 AKM, 셀레브레스의 조직형 에이전트 사례, 그래프 엔지니어링, 지식 구조, 자동화, 거버넌스와 그 밖의 applied AI/AX 주제를 함께 다룬다.
+
+### 기존 글 fallback 우선순위
+
+기존 글에 `track`이 없을 때 `build.js`가 아래 순서로 하나의 축을 결정한다.
+
+1. `media-art`, `media-theory`, 전시·작품·설치 등 강한 Media Art 태그/문맥
+2. Hermes, agent, AKM, knowledge architecture, automation, governance, Graph Engineering, Cerebras, applied AI 등 AI · AX 태그/문맥
+3. 어느 신호도 없는 레거시 글은 역사적 편집 기본값인 `media-art`
+
+Media Art 판정을 먼저 수행하므로 AI를 비평하거나 AI를 재료로 쓰는 미디어아트 글은 generic AI 신호가 있더라도 `media-art`에 남는다. 마지막 catch-all도 고정되어 있어 같은 원본은 언제나 같은 결과를 만든다. 새 글은 이 fallback에 기대지 말고 `track`을 직접 지정한다.
+
+### 보조 콘텐츠 유형 결정 규칙
+
+`Article`, `Project`, `Thought`, `Tutorial`, `Post`는 상위 축이 아니라 카드에 표시되는 보조 콘텐츠 유형이다. `tags`의 매칭 태그가 아래 유형을 결정한다.
 
 | 태그 | 카테고리 | 카드 색상 |
 |------|----------|-----------|
@@ -69,7 +94,18 @@ status: completed
 | `tutorial` | Tutorial | 초록 (#39FF14) |
 | 없음 | Post | 시안 (#00F0FF) |
 
-카테고리 결정용 태그(`article`, `project`, `thought`, `tutorial`, `post`)는 카드의 태그 목록에서 자동 제외된다.
+콘텐츠 유형 결정용 태그(`article`, `project`, `thought`, `tutorial`, `post`)는 카드의 태그 목록에서 자동 제외된다. 블로그 상단 필터에는 이 유형들이 나타나지 않는다.
+
+### Track 딥 링크
+
+각 편집 축으로 바로 연결할 수 있다.
+
+```text
+/blog/?track=media-art
+/blog/?track=ai-ax
+```
+
+필터를 누르면 URL의 `track` 값도 함께 갱신되므로 해당 상태를 복사해 공유할 수 있다.
 
 ---
 

@@ -16,6 +16,122 @@ const POSTS_DIR = path.join(__dirname, 'posts');
 const OUTPUT = path.join(__dirname, 'posts.json');
 const SITE_URL = 'https://dexa.art';
 
+const EDITORIAL_TRACKS = Object.freeze([
+    Object.freeze({ slug: 'media-art', label: 'Media Art' }),
+    Object.freeze({ slug: 'ai-ax', label: 'AI · AX' })
+]);
+const TRACK_BY_SLUG = new Map(EDITORIAL_TRACKS.map(track => [track.slug, track]));
+const TRACK_ALIASES = new Map([
+    ['media-art', 'media-art'],
+    ['media art', 'media-art'],
+    ['ai-ax', 'ai-ax'],
+    ['ai · ax', 'ai-ax']
+]);
+const CONTENT_TYPE_TAGS = new Map([
+    ['article', 'Article'],
+    ['project', 'Project'],
+    ['thought', 'Thought'],
+    ['tutorial', 'Tutorial'],
+    ['post', 'Post']
+]);
+
+// Legacy classification is intentionally ordered. Strong media-art signals
+// win before generic AI signals so criticism about AI in art stays Media Art.
+const MEDIA_ART_TAG_SIGNALS = new Set([
+    'media-art', 'media-theory', 'media-art-theory', 'art-history',
+    'new-media', 'digital-art', 'media-archaeology', 'korean-media-art',
+    'installation', 'immersive', 'generative-art', 'interactive-art',
+    'sound-art', 'video-art', 'net-art', 'data-art', 'software-art',
+    'projection-mapping', 'light-installation'
+]);
+const STRONG_AI_AX_TAG_SIGNALS = new Set([
+    'ai-agent', 'agent', 'agents', 'hermes', 'workflow',
+    'automation', 'automation-blueprints', 'akm', 'knowledge-management',
+    'knowledge-architecture', 'graph-engineering', 'governance',
+    'data-governance', 'organizational-agent', 'cerebras', 'vibe-coding',
+    'ai-coding', 'codex', 'claude-code', 'openclaw', 'openai', 'mcp',
+    'gpt-5.4', 'gpt-5.5', 'gpt-image-2', 'image-generation'
+]);
+const MEDIA_ART_TEXT_SIGNALS = [
+    /\bmedia[\s-]?art\b/i,
+    /미디어\s*아트/,
+    /전시|작품|예술|설치\s*작업/,
+    /\bartist(?:ic)?\b|\b(?:art|media|interactive|immersive|digital|video|sound|light)\s+installation\b|\binstallation\s+art\b/i
+];
+const AI_AX_TEXT_SIGNALS = [
+    /\bhermes\b|허미스/i,
+    /\bakm\b|에이전트|\bagents?\b/i,
+    /자동화|\bautomation\b/i,
+    /지식\s*(?:관리|구조)|knowledge\s+(?:management|architecture)/i,
+    /그래프\s*엔지니어링|graph\s+engineering/i,
+    /거버넌스|\bgovernance\b/i,
+    /셀레브레스|\bcerebras\b/i,
+    /바이브\s*코딩|vibe\s*coding/i,
+    /\bcodex\b|\bclaude\b|\bopenai\b|\bgpt(?:-|\s|\d)/i,
+    /\bAI\b/i
+];
+
+function normalizeTag(tag) {
+    return String(tag || '').normalize('NFKC').trim().toLowerCase();
+}
+
+function normalizeTrackAlias(value) {
+    return String(value || '')
+        .normalize('NFKC')
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, ' ')
+        .replace(/\s*·\s*/g, ' · ');
+}
+
+function trackLabel(trackSlug) {
+    const track = TRACK_BY_SLUG.get(trackSlug);
+    if (!track) throw new Error(`Unknown resolved track: ${trackSlug}`);
+    return track.label;
+}
+
+function resolveTrack(meta, tags, searchableText, filename) {
+    const explicitValue = meta.track;
+    const explicitIsEmpty = explicitValue == null
+        || (Array.isArray(explicitValue) && explicitValue.length === 0)
+        || (!Array.isArray(explicitValue) && String(explicitValue).trim() === '');
+
+    if (!explicitIsEmpty) {
+        if (Array.isArray(explicitValue)) {
+            throw new Error(`[track] Invalid explicit track in ${filename}: track must be a single value.`);
+        }
+        const normalized = normalizeTrackAlias(explicitValue);
+        const track = TRACK_ALIASES.get(normalized);
+        if (!track) {
+            const accepted = EDITORIAL_TRACKS.map(item => `${item.slug} / ${item.label}`).join(', ');
+            throw new Error(`[track] Invalid explicit track "${explicitValue}" in ${filename}. Accepted values: ${accepted}.`);
+        }
+        return { track, source: 'explicit', reason: `frontmatter:${normalized}` };
+    }
+
+    const normalizedTags = tags.map(normalizeTag);
+    const mediaTag = normalizedTags.find(tag => MEDIA_ART_TAG_SIGNALS.has(tag));
+    if (mediaTag) return { track: 'media-art', source: 'fallback-media-art', reason: `tag:${mediaTag}` };
+
+    const aiAxTag = normalizedTags.find(tag => STRONG_AI_AX_TAG_SIGNALS.has(tag));
+    if (aiAxTag) return { track: 'ai-ax', source: 'fallback-ai-ax', reason: `tag:${aiAxTag}` };
+
+    const mediaText = MEDIA_ART_TEXT_SIGNALS.find(pattern => pattern.test(searchableText));
+    if (mediaText) return { track: 'media-art', source: 'fallback-media-art', reason: `text:${mediaText.source}` };
+
+    if (normalizedTags.includes('ai')) {
+        return { track: 'ai-ax', source: 'fallback-ai-ax', reason: 'tag:ai' };
+    }
+
+    const aiAxText = AI_AX_TEXT_SIGNALS.find(pattern => pattern.test(searchableText));
+    if (aiAxText) return { track: 'ai-ax', source: 'fallback-ai-ax', reason: `text:${aiAxText.source}` };
+
+    // Historical DEXA posts began as an art/creative-technology publication.
+    // Unknown legacy material therefore defaults to Media Art. New posts
+    // should always set track explicitly so they never depend on this catch-all.
+    return { track: 'media-art', source: 'catch-all', reason: 'legacy-default:media-art' };
+}
+
 function parseFrontmatter(content) {
     const match = content.match(/^---\n([\s\S]*?)\n---/);
     if (!match) return { meta: {}, body: content };
@@ -26,29 +142,34 @@ function parseFrontmatter(content) {
     let currentKey = null;
     let currentList = null;
 
+    const parseScalar = (rawValue) => {
+        let value = rawValue.trim();
+        const quote = value[0];
+        if (value.length >= 2 && (quote === '"' || quote === "'") && value.at(-1) === quote) {
+            value = value.slice(1, -1);
+        }
+        return value.replace(/\[\[([^\]]+)\]\]/g, '$1');
+    };
+
     for (const line of raw.split('\n')) {
-        const listMatch = line.match(/^\s+-\s+"?(.+?)"?\s*$/);
+        const listMatch = line.match(/^\s+-\s+(.+?)\s*$/);
         if (listMatch && currentKey) {
             if (!currentList) currentList = [];
-            currentList.push(listMatch[1].replace(/\[\[([^\]]+)\]\]/g, '$1'));
+            currentList.push(parseScalar(listMatch[1]));
             meta[currentKey] = currentList;
             continue;
         }
 
-        const kvMatch = line.match(/^([^:]+):\s*"?(.+?)"?\s*$/);
+        const kvMatch = line.match(/^([^:]+):\s*(.*?)\s*$/);
         if (kvMatch) {
             currentKey = kvMatch[1].trim();
-            const val = kvMatch[2].replace(/\[\[([^\]]+)\]\]/g, '$1').replace(/^"(.*)"$/, '$1');
-            meta[currentKey] = val;
-            currentList = null;
-            continue;
-        }
-
-        const keyOnly = line.match(/^([^:]+):\s*$/);
-        if (keyOnly) {
-            currentKey = keyOnly[1].trim();
-            currentList = [];
-            meta[currentKey] = currentList;
+            if (kvMatch[2] === '') {
+                currentList = [];
+                meta[currentKey] = currentList;
+            } else {
+                meta[currentKey] = parseScalar(kvMatch[2]);
+                currentList = null;
+            }
         }
     }
 
@@ -118,10 +239,10 @@ function normalizePostDate(filename, meta) {
 
 function categoryFromTags(tags) {
     if (!Array.isArray(tags)) return 'Post';
-    if (tags.includes('article')) return 'Article';
-    if (tags.includes('project')) return 'Project';
-    if (tags.includes('thought')) return 'Thought';
-    if (tags.includes('tutorial')) return 'Tutorial';
+    const normalizedTags = tags.map(normalizeTag);
+    for (const [tag, label] of CONTENT_TYPE_TAGS) {
+        if (normalizedTags.includes(tag)) return label;
+    }
     return 'Post';
 }
 
@@ -370,6 +491,7 @@ function postPageHtml(post, bodyHtml, prev, next) {
             'logo': { '@type': 'ImageObject', 'url': `${SITE_URL}/dexa_logo.jpg` }
         },
         'mainEntityOfPage': { '@type': 'WebPage', '@id': canonical },
+        'articleSection': post.trackLabel,
         'keywords': (post.tags || []).join(', ')
     };
 
@@ -439,7 +561,10 @@ function postPageHtml(post, bodyHtml, prev, next) {
         <article style="max-width:720px;margin:0 auto;">
             <div style="margin-bottom:40px;">
                 <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
-                <div class="dx-kicker" style="margin-top:20px;">${escapeHtml(post.category)} · ${formatDateDots(post.date)}</div>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">${escapeHtml(post.trackLabel)}</span>
+                    <span class="dx-date">${escapeHtml(post.category)} · ${formatDateDots(post.date)}</span>
+                </div>
             </div>
             <div class="prose">
                 <h1>${escapeHtml(post.title)}</h1>
@@ -488,9 +613,9 @@ function staticPostCardHtml(post) {
     const imageHtml = img
         ? `<div class="card-frame"><img src="${escapeAttr(img)}" alt="${escapeAttr(postImageAlt(post))}" loading="lazy"></div>`
         : '';
-    return `<a class="post-card panel-card" href="/blog/posts/${escapeAttr(post.slug)}/" data-category="${escapeAttr(post.category)}" aria-label="Read ${escapeAttr(post.title)}">
+    return `<a class="post-card panel-card" href="/blog/posts/${escapeAttr(post.slug)}/" data-track="${escapeAttr(post.track)}" data-category="${escapeAttr(post.category)}" aria-label="Read ${escapeAttr(post.title)}">
   ${imageHtml}
-  <span class="dx-meta"><span class="dx-badge">${escapeHtml(post.category)}</span><time datetime="${escapeAttr(post.date)}" class="dx-date">${escapeHtml(formatDateDots(post.date))}</time></span>
+  <span class="dx-meta"><span class="dx-badge">${escapeHtml(post.trackLabel)}</span><span class="dx-date">${escapeHtml(post.category)} · <time datetime="${escapeAttr(post.date)}">${escapeHtml(formatDateDots(post.date))}</time></span></span>
   <h3>${escapeHtml(post.title)}</h3>
   <p>${escapeHtml(post.description || '')}</p>
   <span class="dx-more">READ MORE →</span>
@@ -510,10 +635,9 @@ function trimTrailingWhitespace(text) {
 function updateBlogIndex(postsPublic) {
     const blogIndexPath = path.join(__dirname, 'index.html');
     let html = fs.readFileSync(blogIndexPath, 'utf8');
-    const categories = [...new Set(postsPublic.map(p => p.category).filter(Boolean))];
     const filters = [
-        `<button class="dx-tag-chip active" type="button" data-filter="all">All</button>`,
-        ...categories.map(cat => `<button class="dx-tag-chip" type="button" data-filter="${escapeAttr(cat)}">${escapeHtml(cat)}</button>`)
+        `<button class="dx-tag-chip active" type="button" data-filter="all" aria-pressed="true">All</button>`,
+        ...EDITORIAL_TRACKS.map(track => `<button class="dx-tag-chip" type="button" data-filter="${escapeAttr(track.slug)}" aria-pressed="false">${escapeHtml(track.label)}</button>`)
     ].join('\n                ');
     const cards = postsPublic.map(staticPostCardHtml).join('\n                ');
     const blogJsonLd = {
@@ -539,6 +663,7 @@ function updateBlogIndex(postsPublic) {
                     'headline': post.title,
                     'url': `${SITE_URL}/blog/posts/${post.slug}/`,
                     'datePublished': post.date,
+                    'articleSection': post.trackLabel,
                     'author': { '@type': 'Person', 'name': post.author || 'Deck' }
                 }))
             }
@@ -558,32 +683,34 @@ function updateHomePreview(postsPublic) {
     fs.writeFileSync(indexPath, trimTrailingWhitespace(html), 'utf8');
 }
 
+function classificationAudit(posts) {
+    const trackCounts = Object.fromEntries(EDITORIAL_TRACKS.map(track => [track.slug, 0]));
+    const sourceCounts = { explicit: 0, fallback: 0, 'catch-all': 0 };
+    const categoryCounts = {};
+
+    posts.forEach(post => {
+        trackCounts[post.track] += 1;
+        if (post._trackSource === 'explicit') sourceCounts.explicit += 1;
+        else if (post._trackSource === 'catch-all') sourceCounts['catch-all'] += 1;
+        else sourceCounts.fallback += 1;
+        categoryCounts[post.category] = (categoryCounts[post.category] || 0) + 1;
+    });
+
+    return { total: posts.length, trackCounts, sourceCounts, categoryCounts };
+}
+
 // ─── Main ───
-
-const BUILT_DIR = path.join(__dirname, 'posts', '_built');
-if (!fs.existsSync(BUILT_DIR)) fs.mkdirSync(BUILT_DIR, { recursive: true });
-
-// Clean old built .md files
-fs.readdirSync(BUILT_DIR).filter(f => f.endsWith('.md')).forEach(f => {
-    fs.unlinkSync(path.join(BUILT_DIR, f));
-});
-
-// Clean old static post directories (only directories directly under posts/, excluding _built)
-const postsEntries = fs.readdirSync(POSTS_DIR, { withFileTypes: true });
-postsEntries.forEach(ent => {
-    if (ent.isDirectory() && ent.name !== '_built') {
-        fs.rmSync(path.join(POSTS_DIR, ent.name), { recursive: true, force: true });
-    }
-});
 
 const files = fs.readdirSync(POSTS_DIR).filter(f => f.endsWith('.md'));
 
+// Parse and validate every source before replacing any generated output. This
+// keeps a bad explicit track value from leaving a half-cleaned public build.
 const posts = files.map(filename => {
     const content = fs.readFileSync(path.join(POSTS_DIR, filename), 'utf8');
     const { meta, body } = parseFrontmatter(content);
 
     const tags = Array.isArray(meta.tags) ? meta.tags : [];
-    const displayTags = tags.filter(t => !['article', 'project', 'thought', 'tutorial', 'post'].includes(t));
+    const displayTags = tags.filter(tag => !CONTENT_TYPE_TAGS.has(normalizeTag(tag)));
 
     let title = meta.title;
     if (!title) {
@@ -608,12 +735,8 @@ const posts = files.map(filename => {
         asciiSlug = 'post-' + Buffer.from(filename).toString('hex').slice(0, 8);
     }
 
-    fs.copyFileSync(
-        path.join(POSTS_DIR, filename),
-        path.join(BUILT_DIR, asciiSlug + '.md')
-    );
-
     const descriptionRaw = meta.description || extractDescription(body);
+    const resolvedTrack = resolveTrack(meta, tags, `${title}\n${descriptionRaw}\n${filename}`, filename);
 
     return {
         slug: asciiSlug,
@@ -621,16 +744,46 @@ const posts = files.map(filename => {
         title,
         description: descriptionRaw,
         category: categoryFromTags(tags),
+        track: resolvedTrack.track,
+        trackLabel: trackLabel(resolvedTrack.track),
         tags: displayTags,
         date: normalizePostDate(filename, meta),
         thumbnail: meta.thumbnail || '',
         author: Array.isArray(meta.author) ? meta.author[0] : (meta.author || 'Deck'),
-        _body: body
+        _body: body,
+        _sourceFilename: filename,
+        _trackSource: resolvedTrack.source,
+        _trackReason: resolvedTrack.reason
     };
 });
 
-// Sort newest first
-posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+// Sort newest first, then by stable ASCII slug for reproducible equal-date order.
+posts.sort((a, b) => {
+    if (a.date !== b.date) return a.date > b.date ? -1 : 1;
+    if (a.slug !== b.slug) return a.slug < b.slug ? -1 : 1;
+    return 0;
+});
+
+const BUILT_DIR = path.join(__dirname, 'posts', '_built');
+if (!fs.existsSync(BUILT_DIR)) fs.mkdirSync(BUILT_DIR, { recursive: true });
+
+// Replace generated markdown copies and static post directories only after all
+// source metadata has passed validation.
+fs.readdirSync(BUILT_DIR).filter(f => f.endsWith('.md')).forEach(f => {
+    fs.unlinkSync(path.join(BUILT_DIR, f));
+});
+const postsEntries = fs.readdirSync(POSTS_DIR, { withFileTypes: true });
+postsEntries.forEach(ent => {
+    if (ent.isDirectory() && ent.name !== '_built') {
+        fs.rmSync(path.join(POSTS_DIR, ent.name), { recursive: true, force: true });
+    }
+});
+posts.forEach(post => {
+    fs.copyFileSync(
+        path.join(POSTS_DIR, post._sourceFilename),
+        path.join(BUILT_DIR, post.slug + '.md')
+    );
+});
 
 // Emit static post pages
 posts.forEach((post, idx) => {
@@ -644,10 +797,7 @@ posts.forEach((post, idx) => {
 });
 
 // Write posts.json (for client-side listing & legacy post.html)
-const postsPublic = posts.map(({ _body, ...rest }) => ({
-    ...rest,
-    description: escapeHtml(rest.description)
-}));
+const postsPublic = posts.map(({ _body, _sourceFilename, _trackSource, _trackReason, ...rest }) => rest);
 fs.writeFileSync(OUTPUT, JSON.stringify(postsPublic, null, 2), 'utf8');
 updateBlogIndex(postsPublic);
 updateHomePreview(postsPublic);
@@ -685,7 +835,11 @@ Sitemap: ${SITE_URL}/sitemap.xml
 `;
 fs.writeFileSync(path.join(REPO_ROOT, 'robots.txt'), robotsTxt, 'utf8');
 
+const audit = classificationAudit(posts);
 console.log(`✓ Generated posts.json — ${posts.length} post(s)`);
 console.log(`✓ Generated ${posts.length} static post page(s) under blog/posts/[slug]/`);
 console.log(`✓ Generated sitemap.xml (${allUrls.length} URLs) and robots.txt`);
+console.log(`✓ Track audit — total=${audit.total}; ${EDITORIAL_TRACKS.map(track => `${track.slug}=${audit.trackCounts[track.slug]}`).join('; ')}`);
+console.log(`  classification: explicit=${audit.sourceCounts.explicit}; fallback=${audit.sourceCounts.fallback}; catch-all=${audit.sourceCounts['catch-all']}`);
+console.log(`  categories: ${Object.entries(audit.categoryCounts).sort(([a], [b]) => a.localeCompare(b)).map(([category, count]) => `${category}=${count}`).join('; ')}`);
 posts.forEach(p => console.log(`  ${p.date}  ${p.slug.padEnd(40)}  ${p.title}`));

@@ -331,27 +331,44 @@
     <!-- Blog Preview Section -->
     <section class="dx-section" id="blog-preview">
         <div class="dx-section-head"><span class="dx-section-num">05</span><h2>Blog<span style="color:var(--orange);">.</span></h2></div>
-        <p class="dx-kicker" style="margin:0 0 44px;">/// Thoughts on AI, Art &amp; Technology</p>
+        <p class="dx-editorial-intro">두 갈래로 씁니다. 하나는 기술이 감각과 공간을 바꾸는 미디어아트 이야기이고, 다른 하나는 AI가 실제 일과 조직에 들어왔을 때 벌어지는 AI·AX 이야기입니다.</p>
+
+        <div class="dx-track-grid" aria-label="DEXA blog editorial tracks">
+            <a class="dx-track-card" href="/blog/?track=media-art">
+                <span class="dx-kicker">01 / EDITORIAL TRACK</span>
+                <h3>Media Art</h3>
+                <p>작품과 이론만 소개하지 않습니다. 화면 뒤의 장치, 공간을 만드는 기술, 전시장에서 부딪힌 제작 문제까지 함께 기록합니다.</p>
+                <span class="dx-more">VIEW MEDIA ART →</span>
+            </a>
+            <a class="dx-track-card" href="/blog/?track=ai-ax">
+                <span class="dx-kicker">02 / EDITORIAL TRACK</span>
+                <h3>AI · AX</h3>
+                <p>허미스 운영 경험에서 출발하되 주제를 넓힙니다. AKM, 셀레브레스의 조직형 에이전트 사례, 그래프 엔지니어링, 지식 구조와 자동화처럼 AI가 실제 일을 바꾸는 방식을 기록합니다.</p>
+                <span class="dx-more">VIEW AI · AX →</span>
+            </a>
+        </div>
+
+        <p class="dx-group-label">LATEST WRITING / BOTH TRACKS</p>
 
         <div id="blog-preview-grid" class="dx-grid-3">
             <!-- STATIC_BLOG_PREVIEW_START -->
-<a class="post-card panel-card" href="/blog/posts/hermes-python-library-in-process-agent-loop/" data-category="Post" aria-label="Read Hermes Python Library는 에이전트 루프를 앱 안으로 넣는다">
+<a class="post-card panel-card" href="/blog/posts/hermes-python-library-in-process-agent-loop/" data-track="ai-ax" data-category="Post" aria-label="Read Hermes Python Library는 에이전트 루프를 앱 안으로 넣는다">
   <div class="card-frame"><img src="/blog/images/hermes-python-library-in-process-agent-loop-cover.png" alt="Hermes Python Library는 에이전트 루프를 앱 안으로 넣는다 — Hermes Agent can run in-process as a Python library through AIAgent, without a CLI or subprocess. This guide covers chat(), run_conversa" loading="lazy"></div>
-  <span class="dx-meta"><span class="dx-badge">Post</span><time datetime="2026-07-22" class="dx-date">2026.07.22</time></span>
+  <span class="dx-meta"><span class="dx-badge">AI · AX</span><span class="dx-date">Post · <time datetime="2026-07-22">2026.07.22</time></span></span>
   <h3>Hermes Python Library는 에이전트 루프를 앱 안으로 넣는다</h3>
   <p>Hermes Agent can run in-process as a Python library through AIAgent, without a CLI or subprocess. This guide covers chat(), run_conversation(), tool boundaries, state handling, and concurrency safety.</p>
   <span class="dx-more">READ MORE →</span>
 </a>
-                <a class="post-card panel-card" href="/blog/posts/when-information-leaves-its-context/" data-category="Article" aria-label="Read 정보는 맥락을 떠나는 순간 달라진다">
+                <a class="post-card panel-card" href="/blog/posts/when-information-leaves-its-context/" data-track="media-art" data-category="Article" aria-label="Read 정보는 맥락을 떠나는 순간 달라진다">
   <div class="card-frame"><img src="/blog/images/helen-nissenbaum-contextual-integrity-cover.png" alt="정보는 맥락을 떠나는 순간 달라진다 — 헬렌 니센바움의 맥락적 무결성을 통해 관객 데이터, 플랫폼 로그, AI 입력이 원래의 관계를 벗어날 때 생기는 프라이버시 문제를 미디어아트의 언어로 읽는다." loading="lazy"></div>
-  <span class="dx-meta"><span class="dx-badge">Article</span><time datetime="2026-07-22" class="dx-date">2026.07.22</time></span>
+  <span class="dx-meta"><span class="dx-badge">Media Art</span><span class="dx-date">Article · <time datetime="2026-07-22">2026.07.22</time></span></span>
   <h3>정보는 맥락을 떠나는 순간 달라진다</h3>
   <p>헬렌 니센바움의 맥락적 무결성을 통해 관객 데이터, 플랫폼 로그, AI 입력이 원래의 관계를 벗어날 때 생기는 프라이버시 문제를 미디어아트의 언어로 읽는다.</p>
   <span class="dx-more">READ MORE →</span>
 </a>
-                <a class="post-card panel-card" href="/blog/posts/hermes-managed-scope-per-key-policy/" data-category="Post" aria-label="Read Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다">
+                <a class="post-card panel-card" href="/blog/posts/hermes-managed-scope-per-key-policy/" data-track="ai-ax" data-category="Post" aria-label="Read Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다">
   <div class="card-frame"><img src="/blog/images/hermes-managed-scope-per-key-policy-cover.png" alt="Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다 — Hermes Agent Managed Scope lets administrators pin selected configuration and environment keys without locking every user setting. T" loading="lazy"></div>
-  <span class="dx-meta"><span class="dx-badge">Post</span><time datetime="2026-07-20" class="dx-date">2026.07.20</time></span>
+  <span class="dx-meta"><span class="dx-badge">AI · AX</span><span class="dx-date">Post · <time datetime="2026-07-20">2026.07.20</time></span></span>
   <h3>Hermes Managed Scope는 한 키만 고정하고 나머지 설정은 열어 둔다</h3>
   <p>Hermes Agent Managed Scope lets administrators pin selected configuration and environment keys without locking every user setting. This guide explains precedence, setup, write guards, and the POSIX-first security boundary.</p>
   <span class="dx-more">READ MORE →</span>

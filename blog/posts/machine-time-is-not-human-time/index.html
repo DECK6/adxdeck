@@ -22,7 +22,7 @@
     <meta name="twitter:title" content="Hermes 자동화의 시간 모델" />
     <meta name="twitter:description" content="A guide to choosing the right time model in Hermes automation: cron for recurring work, kanban dispatcher for durable queued work, and delegate_task for synchronous burst work. Use it when deciding how an AI-agent task should persist, retry, or return." />
     <meta name="twitter:image" content="https://dexa.art/blog/images/2026-05-11-machine-time-cover.png" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes 자동화의 시간 모델","description":"A guide to choosing the right time model in Hermes automation: cron for recurring work, kanban dispatcher for durable queued work, and delegate_task for synchronous burst work. Use it when deciding how an AI-agent task should persist, retry, or return.","image":"https://dexa.art/blog/images/2026-05-11-machine-time-cover.png","datePublished":"2026-05-11","dateModified":"2026-05-11","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/machine-time-is-not-human-time/"},"keywords":"hermes, ai-agent, workflow, automation"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes 자동화의 시간 모델","description":"A guide to choosing the right time model in Hermes automation: cron for recurring work, kanban dispatcher for durable queued work, and delegate_task for synchronous burst work. Use it when deciding how an AI-agent task should persist, retry, or return.","image":"https://dexa.art/blog/images/2026-05-11-machine-time-cover.png","datePublished":"2026-05-11","dateModified":"2026-05-11","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/machine-time-is-not-human-time/"},"articleSection":"AI · AX","keywords":"hermes, ai-agent, workflow, automation"}</script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
@@ -56,7 +56,10 @@
         <article style="max-width:720px;margin:0 auto;">
             <div style="margin-bottom:40px;">
                 <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
-                <div class="dx-kicker" style="margin-top:20px;">Article · 2026.05.11</div>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.05.11</span>
+                </div>
             </div>
             <div class="prose">
                 <h1>Hermes 자동화의 시간 모델</h1>
@@ -98,7 +101,7 @@
 <p>기계는 인간과 다른 시간으로 작동합니다. Hermes 자동화의 목표는 그 차이를 숨기는 것이 아닙니다. 오히려 반복, 지속, 순간 병렬성이라는 서로 다른 시간을 드러내고, 각각에 맞는 자리를 주는 것입니다. 좋은 자동화는 사람 대신 시간을 쓰는 기술이 아니라, 일이 살아 있어야 할 시간을 정확히 배치하는 기술입니다.</p>
             </div>
             <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
-                <a id="prev-post" href="/blog/posts/evidence-as-public-interface/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>증거는 어떻게 다시 시민의 것이 되는가</span></a>
+                <a id="prev-post" href="/blog/posts/recalibrating-cron-pace/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>Hermes Cron 시스템 사용법</span></a>
                 <a id="next-post" href="/blog/posts/hermes-profiles-and-workers/" class="spec-row" style="text-decoration:none;"><span>Hermes Profiles와 Workers: AI에게 역할과 작업 레인을 나누는 법</span><span class="k">NEXT →</span></a>
             </nav>
         </article>

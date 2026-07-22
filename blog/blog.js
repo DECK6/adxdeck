@@ -6,6 +6,11 @@
 (function () {
     const POSTS_JSON = 'posts.json';
     const POSTS_DIR = 'posts/';
+    const TRACK_LABELS = Object.freeze({
+        'media-art': 'Media Art',
+        'ai-ax': 'AI · AX'
+    });
+    const VALID_TRACKS = new Set(Object.keys(TRACK_LABELS));
 
     const isPostPage = window.location.pathname.includes('post.html');
 
@@ -39,6 +44,20 @@
         return new URLSearchParams(window.location.search).get('slug');
     }
 
+    function escapeHtml(value) {
+        return String(value || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+    }
+
+    function blogAssetUrl(value) {
+        const url = String(value || '');
+        if (/^(https?:|\/)/i.test(url)) return url;
+        return `/blog/${url.replace(/^\.?\//, '').replace(/^blog\//, '')}`;
+    }
+
     // ─── Blog Listing Page ───
 
     async function initBlogList() {
@@ -51,40 +70,45 @@
                     <p class="mono" style="color:var(--muted);font-size:13px;">No posts yet.</p>
                     <p class="mono" style="color:var(--muted);font-size:11px;margin-top:8px;">Run <code style="background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:2px 6px;">node blog/build.js</code> to generate posts.json</p>
                 </div>`;
-            buildFilters([]);
+            buildFilters();
             return;
         }
         posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-        buildFilters(posts);
         if (!hasStaticPosts) renderPostCards(posts);
+        buildFilters();
     }
 
-    function buildFilters(posts) {
+    function buildFilters() {
         const filterBar = document.getElementById('filter-bar');
         if (!filterBar) return;
 
-        const categories = [...new Set(posts.map(p => p.category))];
-        const existing = new Set([...filterBar.querySelectorAll('.dx-tag-chip')].map(btn => btn.dataset.filter));
-        categories.forEach(cat => {
-            if (existing.has(cat)) return;
-            const btn = document.createElement('button');
-            btn.className = 'dx-tag-chip';
-            btn.type = 'button';
-            btn.dataset.filter = cat;
-            btn.textContent = cat;
-            filterBar.appendChild(btn);
-        });
+        const applyFilter = (filter, updateUrl = false) => {
+            const resolved = VALID_TRACKS.has(filter) ? filter : 'all';
+            filterBar.querySelectorAll('.dx-tag-chip').forEach(button => {
+                const isActive = button.dataset.filter === resolved;
+                button.classList.toggle('active', isActive);
+                button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+            document.querySelectorAll('#post-grid .post-card').forEach(card => {
+                card.hidden = resolved !== 'all' && card.dataset.track !== resolved;
+            });
+
+            if (updateUrl) {
+                const url = new URL(window.location.href);
+                if (resolved === 'all') url.searchParams.delete('track');
+                else url.searchParams.set('track', resolved);
+                window.history.replaceState(null, '', url);
+            }
+        };
 
         filterBar.addEventListener('click', (e) => {
             const btn = e.target.closest('.dx-tag-chip');
-            if (!btn) return;
-            filterBar.querySelectorAll('.dx-tag-chip').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            const filter = btn.dataset.filter;
-            document.querySelectorAll('.post-card').forEach(card => {
-                card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
-            });
+            if (!btn || !filterBar.contains(btn)) return;
+            applyFilter(btn.dataset.filter, true);
         });
+
+        const requestedTrack = new URLSearchParams(window.location.search).get('track');
+        applyFilter(requestedTrack || 'all');
     }
 
     function renderPostCards(posts) {
@@ -94,18 +118,22 @@
 
         posts.forEach(post => {
             const card = document.createElement('a');
-            card.href = `posts/${encodeURIComponent(post.slug)}/`;
+            card.href = `/blog/posts/${encodeURIComponent(post.slug)}/`;
             card.className = 'post-card panel-card';
+            card.dataset.track = post.track;
             card.dataset.category = post.category;
+            card.setAttribute('aria-label', `Read ${post.title}`);
+
+            const trackLabel = post.trackLabel || TRACK_LABELS[post.track] || post.track;
 
             card.innerHTML = `
                 ${post.thumbnail
-                    ? `<div class="card-frame"><img src="${post.thumbnail}" alt="${post.title}" loading="lazy"></div>`
+                    ? `<div class="card-frame"><img src="${escapeHtml(blogAssetUrl(post.thumbnail))}" alt="${escapeHtml(post.title)}" loading="lazy"></div>`
                     : ''
                 }
-                <span class="dx-meta"><span class="dx-badge">${post.category}</span><span class="dx-date">${formatDate(post.date)}</span></span>
-                <h3>${post.title}</h3>
-                <p>${post.description}</p>
+                <span class="dx-meta"><span class="dx-badge">${escapeHtml(trackLabel)}</span><span class="dx-date">${escapeHtml(post.category)} · ${formatDate(post.date)}</span></span>
+                <h3>${escapeHtml(post.title)}</h3>
+                <p>${escapeHtml(post.description)}</p>
                 <span class="dx-more">READ MORE →</span>`;
             grid.appendChild(card);
         });

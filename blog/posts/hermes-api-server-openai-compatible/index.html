@@ -19,7 +19,7 @@
     <meta name="twitter:title" content="Hermes API Server는 에이전트를 OpenAI 호환 백엔드로 바꾼다" />
     <meta name="twitter:description" content="A practical guide to Hermes Agent's API Server: OpenAI-compatible endpoints, configuration, streaming runs, sessions, and security boundaries." />
     <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-api-server-openai-compatible-cover.png" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes API Server는 에이전트를 OpenAI 호환 백엔드로 바꾼다","description":"A practical guide to Hermes Agent's API Server: OpenAI-compatible endpoints, configuration, streaming runs, sessions, and security boundaries.","image":"https://dexa.art/blog/images/hermes-api-server-openai-compatible-cover.png","datePublished":"2026-06-13","dateModified":"2026-06-13","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-api-server-openai-compatible/"},"keywords":""}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes API Server는 에이전트를 OpenAI 호환 백엔드로 바꾼다","description":"A practical guide to Hermes Agent's API Server: OpenAI-compatible endpoints, configuration, streaming runs, sessions, and security boundaries.","image":"https://dexa.art/blog/images/hermes-api-server-openai-compatible-cover.png","datePublished":"2026-06-13","dateModified":"2026-06-13","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-api-server-openai-compatible/"},"articleSection":"AI · AX","keywords":""}</script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
@@ -53,7 +53,10 @@
         <article style="max-width:720px;margin:0 auto;">
             <div style="margin-bottom:40px;">
                 <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
-                <div class="dx-kicker" style="margin-top:20px;">Post · 2026.06.13</div>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Post · 2026.06.13</span>
+                </div>
             </div>
             <div class="prose">
                 <h1>Hermes API Server는 에이전트를 OpenAI 호환 백엔드로 바꾼다</h1>
@@ -102,8 +105,8 @@ hermes -p alice gateway run</code></pre>
 <p>Telegram, Discord, Slack처럼 사람과 대화하는 채널이 필요하면 Gateway가 먼저다. 정해진 시간에 반복 실행하려면 Cron이 맞고, 긴 작업을 여러 에이전트에게 나눌 때는 Kanban이나 delegation이 더 자연스럽다. 반대로 이미 OpenAI 호환 UI, 사내 대시보드, 자동화 클라이언트가 있고 그 뒤에 Hermes Agent의 실제 도구 실행력을 붙이고 싶다면 API Server가 가장 얇고 표준적인 연결면이다.</p>
             </div>
             <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
-                <a id="prev-post" href="/blog/posts/entropy-and-decaying-media/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>사라지는 매체가 남기는 시간</span></a>
-                <a id="next-post" href="/blog/posts/raqs-media-collective-and-the-politics-of-time/" class="spec-row" style="text-decoration:none;"><span>시간을 함께 읽는 집단적 기계</span><span class="k">NEXT →</span></a>
+                <a id="prev-post" href="/blog/posts/hermes-context-files-references/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>Hermes는 프로젝트의 규칙을 대화 전에 읽는다</span></a>
+                <a id="next-post" href="/blog/posts/entropy-and-decaying-media/" class="spec-row" style="text-decoration:none;"><span>사라지는 매체가 남기는 시간</span><span class="k">NEXT →</span></a>
             </nav>
         </article>
     </main>

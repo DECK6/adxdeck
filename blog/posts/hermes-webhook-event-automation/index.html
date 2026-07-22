@@ -22,7 +22,7 @@
     <meta name="twitter:title" content="Hermes Webhook은 외부 이벤트를 에이전트 실행으로 바꾼다" />
     <meta name="twitter:description" content="A practical guide to Hermes Agent webhooks: enabling the adapter, defining routes or dynamic subscriptions, securing payloads, and deciding when event-driven automation beats cron." />
     <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-webhook-event-automation-cover.png" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Webhook은 외부 이벤트를 에이전트 실행으로 바꾼다","description":"A practical guide to Hermes Agent webhooks: enabling the adapter, defining routes or dynamic subscriptions, securing payloads, and deciding when event-driven automation beats cron.","image":"https://dexa.art/blog/images/hermes-webhook-event-automation-cover.png","datePublished":"2026-05-28","dateModified":"2026-05-28","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-webhook-event-automation/"},"keywords":"hermes, ai-agent, workflow, webhook"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Webhook은 외부 이벤트를 에이전트 실행으로 바꾼다","description":"A practical guide to Hermes Agent webhooks: enabling the adapter, defining routes or dynamic subscriptions, securing payloads, and deciding when event-driven automation beats cron.","image":"https://dexa.art/blog/images/hermes-webhook-event-automation-cover.png","datePublished":"2026-05-28","dateModified":"2026-05-28","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-webhook-event-automation/"},"articleSection":"AI · AX","keywords":"hermes, ai-agent, workflow, webhook"}</script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
@@ -56,7 +56,10 @@
         <article style="max-width:720px;margin:0 auto;">
             <div style="margin-bottom:40px;">
                 <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
-                <div class="dx-kicker" style="margin-top:20px;">Post · 2026.05.28</div>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Post · 2026.05.28</span>
+                </div>
             </div>
             <div class="prose">
                 <h1>Hermes Webhook은 외부 이벤트를 에이전트 실행으로 바꾼다</h1>
@@ -114,8 +117,8 @@ hermes webhook test github-issues --payload '{&quot;issue&quot;:{&quot;number&qu
 <p>처음에는 <code>deliver: log</code>, 테스트 payload, 작은 event allowlist로 시작한다. 정해진 시간 반복은 Cron, 대화형 운영은 Gateway, 외부 도구 노출은 MCP가 맞다. 외부 시스템이 “지금 일이 생겼다”고 알려 주고 그 사건을 Hermes가 판단·전달·기록해야 할 때 webhook을 쓴다.</p>
             </div>
             <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
-                <a id="prev-post" href="/blog/posts/algorithmic-biopolitics-and-media-art/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>삶은 어떻게 점수의 형태로 관리되는가</span></a>
-                <a id="next-post" href="/blog/posts/wendy-chun-software-habit-and-discriminating-data/" class="spec-row" style="text-decoration:none;"><span>자유라는 인터페이스 뒤에서 습관은 어떻게 훈련되는가</span><span class="k">NEXT →</span></a>
+                <a id="prev-post" href="/blog/posts/hermes-plugins-hooks-curator/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>Hermes 확장은 플러그인을 켜고, 훅으로 흐름을 잡고, 큐레이터로 정리한다</span></a>
+                <a id="next-post" href="/blog/posts/algorithmic-biopolitics-and-media-art/" class="spec-row" style="text-decoration:none;"><span>삶은 어떻게 점수의 형태로 관리되는가</span><span class="k">NEXT →</span></a>
             </nav>
         </article>
     </main>

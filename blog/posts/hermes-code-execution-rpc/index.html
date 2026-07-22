@@ -23,7 +23,7 @@
     <meta name="twitter:title" content="Hermes Code Execution은 여러 도구 호출을 하나의 검증 가능한 스크립트로 묶는다" />
     <meta name="twitter:description" content="A feature guide to Hermes Agent Code Execution: how execute_code runs Python with RPC-backed tool access, when to use it, and what safety limits matter." />
     <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-code-execution-rpc-cover.png" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Code Execution은 여러 도구 호출을 하나의 검증 가능한 스크립트로 묶는다","description":"A feature guide to Hermes Agent Code Execution: how execute_code runs Python with RPC-backed tool access, when to use it, and what safety limits matter.","image":"https://dexa.art/blog/images/hermes-code-execution-rpc-cover.png","datePublished":"2026-06-06","dateModified":"2026-06-06","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-code-execution-rpc/"},"keywords":"hermes, ai-agent, workflow, code-execution, automation"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Code Execution은 여러 도구 호출을 하나의 검증 가능한 스크립트로 묶는다","description":"A feature guide to Hermes Agent Code Execution: how execute_code runs Python with RPC-backed tool access, when to use it, and what safety limits matter.","image":"https://dexa.art/blog/images/hermes-code-execution-rpc-cover.png","datePublished":"2026-06-06","dateModified":"2026-06-06","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-code-execution-rpc/"},"articleSection":"AI · AX","keywords":"hermes, ai-agent, workflow, code-execution, automation"}</script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
@@ -57,7 +57,10 @@
         <article style="max-width:720px;margin:0 auto;">
             <div style="margin-bottom:40px;">
                 <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
-                <div class="dx-kicker" style="margin-top:20px;">Post · 2026.06.06</div>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Post · 2026.06.06</span>
+                </div>
             </div>
             <div class="prose">
                 <h1>Hermes Code Execution은 여러 도구 호출을 하나의 검증 가능한 스크립트로 묶는다</h1>
@@ -99,8 +102,8 @@ hermes tools list</code></pre>
 <p>Code Execution은 Hermes가 “생각”을 잘하게 만드는 기능이라기보다, 도구 사용의 중간 소음을 줄이는 실행 레이어다. 한두 개 명령이면 일반 도구 호출이 빠르고, 장수명 작업이면 Cron·Kanban·terminal background가 낫다. 하지만 여러 도구 호출을 반복하고, 조건문으로 걸러내고, 최종 근거만 남겨야 한다면 <code>execute_code</code>는 긴 작업을 하나의 검증 가능한 Python 루프로 바꿔준다.</p>
             </div>
             <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
-                <a id="prev-post" href="/blog/posts/deep-time-of-the-media/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>진보의 직선 아래 묻힌 매체의 지층</span></a>
-                <a id="next-post" href="/blog/posts/networked-publics-and-the-unstable-audience/" class="spec-row" style="text-decoration:none;"><span>관객은 언제 공중이 되는가</span><span class="k">NEXT →</span></a>
+                <a id="prev-post" href="/blog/posts/cory-arcangel-and-software-archaeology/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>게임이 멈춘 자리에서 소프트웨어가 보인다</span></a>
+                <a id="next-post" href="/blog/posts/deep-time-of-the-media/" class="spec-row" style="text-decoration:none;"><span>진보의 직선 아래 묻힌 매체의 지층</span><span class="k">NEXT →</span></a>
             </nav>
         </article>
     </main>
