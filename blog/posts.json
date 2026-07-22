@@ -1,5 +1,27 @@
 [
   {
+    "slug": "when-networks-learn-to-organize",
+    "file": "_built/when-networks-learn-to-organize.md",
+    "title": "연결만으로는 공동체가 움직이지 않는다",
+    "description": "조직된 네트워크 개념을 통해 느슨한 연결이 의사결정, 인프라, 기억, 경제 기반을 갖춘 공동 역량으로 바뀌는 조건을 미디어아트와 AI 공동체에서 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "organized-networks",
+      "network-culture",
+      "governance",
+      "infrastructure",
+      "collective-practice",
+      "AI"
+    ],
+    "date": "2026-07-23",
+    "thumbnail": "images/orgnets-collective-capacity-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-python-library-in-process-agent-loop",
     "file": "_built/hermes-python-library-in-process-agent-loop.md",
     "title": "Hermes Python Library는 에이전트 루프를 앱 안으로 넣는다",
