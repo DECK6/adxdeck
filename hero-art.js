@@ -9,7 +9,12 @@
         const ORANGE = [255, 90, 31];
         const GRID = 12;
         const TAIL = 56;
+        const SPAWN_MS = 180;
+        const MOUSE_MAX = 24;
         let traces = [];
+        let mouseTraces = [];
+        let lastSpawn = 0;
+        let mouseSeen = false;
 
         function spawn(fromLeft) {
             const orange = s.random() < 0.08;
@@ -42,13 +47,16 @@
             if (t.pts.length > TAIL) t.pts.shift();
             t.vias.forEach((v) => v.age++);
             t.vias = t.vias.filter((v) => v.age < 90);
-            if (t.x > s.width + 10) Object.assign(t, spawn(true), { pts: [], vias: [] });
+            if (t.x > s.width + 10) {
+                if (t.fromMouse) t.dead = true;
+                else Object.assign(t, spawn(true), { pts: [], vias: [] });
+            }
         }
 
         function render() {
             s.clear();
             s.strokeWeight(1);
-            traces.forEach((t) => {
+            traces.concat(mouseTraces).forEach((t) => {
                 const n = t.pts.length;
                 for (let i = 1; i < n; i++) {
                     const a = t.alpha * (i / n);
@@ -67,8 +75,27 @@
             });
         }
 
+        function spawnAtMouse() {
+            if (reduced || !mouseSeen) return;
+            if (s.mouseX < 0 || s.mouseX > s.width || s.mouseY < 0 || s.mouseY > s.height) return;
+            const now = s.millis();
+            if (now - lastSpawn < SPAWN_MS) return;
+            lastSpawn = now;
+            const t = spawn(false);
+            t.x = s.mouseX;
+            t.y = Math.round(s.mouseY / GRID) * GRID;
+            t.alpha = s.random(90, 150);
+            t.speed = s.random(1.2, 2.4);
+            t.fromMouse = true;
+            mouseTraces.push(t);
+            if (mouseTraces.length > MOUSE_MAX) mouseTraces.shift();
+        }
+
         function step() {
+            spawnAtMouse();
             traces.forEach(move);
+            mouseTraces.forEach(move);
+            mouseTraces = mouseTraces.filter((t) => !t.dead);
             render();
         }
 
@@ -82,6 +109,8 @@
         };
 
         s.draw = step;
+
+        s.mouseMoved = () => { mouseSeen = true; };
 
         s.windowResized = () => {
             s.resizeCanvas(host.offsetWidth, host.offsetHeight);
