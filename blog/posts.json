@@ -1,5 +1,23 @@
 [
   {
+    "slug": "hermes-send-script-output-delivery",
+    "file": "_built/hermes-send-script-output-delivery.md",
+    "title": "Hermes send는 LLM 없이 스크립트 출력을 메신저로 보낸다",
+    "description": "Hermes send delivers script output to configured messaging platforms without starting an LLM or agent loop. This guide covers target discovery, stdin and file input, exit codes, and when to use Cron instead.",
+    "category": "Post",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "messaging"
+    ],
+    "date": "2026-07-23",
+    "thumbnail": "images/hermes-send-script-output-delivery-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "when-networks-learn-to-organize",
     "file": "_built/when-networks-learn-to-organize.md",
     "title": "연결만으로는 공동체가 움직이지 않는다",

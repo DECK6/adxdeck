@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hermes send는 LLM 없이 스크립트 출력을 메신저로 보낸다 | DEXA Blog</title>
+    <meta name="description" content="Hermes send delivers script output to configured messaging platforms without starting an LLM or agent loop. This guide covers target discovery, stdin and file input, exit codes, and when to use Cron instead." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/hermes-send-script-output-delivery/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Hermes send는 LLM 없이 스크립트 출력을 메신저로 보낸다" />
+    <meta property="og:description" content="Hermes send delivers script output to configured messaging platforms without starting an LLM or agent loop. This guide covers target discovery, stdin and file input, exit codes, and when to use Cron instead." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/hermes-send-script-output-delivery/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/hermes-send-script-output-delivery-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-07-23" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta property="article:tag" content="messaging" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hermes send는 LLM 없이 스크립트 출력을 메신저로 보낸다" />
+    <meta name="twitter:description" content="Hermes send delivers script output to configured messaging platforms without starting an LLM or agent loop. This guide covers target discovery, stdin and file input, exit codes, and when to use Cron instead." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-send-script-output-delivery-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes send는 LLM 없이 스크립트 출력을 메신저로 보낸다","description":"Hermes send delivers script output to configured messaging platforms without starting an LLM or agent loop. This guide covers target discovery, stdin and file input, exit codes, and when to use Cron instead.","image":"https://dexa.art/blog/images/hermes-send-script-output-delivery-cover.png","datePublished":"2026-07-23","dateModified":"2026-07-23","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-send-script-output-delivery/"},"articleSection":"AI · AX","keywords":"hermes, ai-agent, workflow, messaging"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/blog/" class="active">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+    </nav>
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Post · 2026.07.23</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>Hermes send는 LLM 없이 스크립트 출력을 메신저로 보낸다</h1>
+                <p style="color:var(--muted);font-size:17px;">Hermes send delivers script output to configured messaging platforms without starting an LLM or agent loop. This guide covers target discovery, stdin and file input, exit codes, and when to use Cron instead.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">hermes</span><span class="dx-tag-chip">ai-agent</span><span class="dx-tag-chip">workflow</span><span class="dx-tag-chip">messaging</span></div>
+<p><img src="/blog/images/hermes-send-script-output-delivery-cover.png" alt="Hermes send script output delivery cover" loading="lazy"></p>
+<p>셸 스크립트가 끝난 뒤 결과 한 줄을 Telegram이나 Slack으로 보내려면 보통 플랫폼마다 API 호출을 따로 작성해야 한다. <code>hermes send</code>는 이미 설정된 Hermes 메시징 연결을 재사용해 문자열, 표준 입력, 텍스트 파일을 지정한 채널로 보낸다. 이 과정에서는 모델도 에이전트 루프도 시작되지 않는다.</p>
+<p>이 명령이 해결하는 문제는 단순하다. 판단은 이미 스크립트가 끝냈고, 남은 일은 결과를 옮기는 것뿐일 때 플랫폼별 전송 코드를 다시 만들지 않아도 된다.</p>
+<h2>기능 개요: 에이전트 없는 전달 경로</h2>
+<p><code>hermes send</code>는 Gateway와 같은 플랫폼 어댑터를 쓰는 독립 CLI다. <code>~/.hermes/.env</code>의 자격 증명과 <code>~/.hermes/config.yaml</code>의 메시징 설정을 읽지만, 별도의 <code>send:</code> 설정 블록은 두지 않는다. Telegram, Discord, Slack처럼 bot token으로 전송하는 플랫폼은 대개 Gateway가 꺼져 있어도 REST endpoint로 바로 보낼 수 있다. 지속 연결을 쓰는 plugin 플랫폼은 실행 중인 Gateway가 필요할 수 있다.</p>
+<p>대상은 <code>platform</code>, <code>platform:chat_id</code>, <code>platform:chat_id:thread_id</code>, <code>platform:#channel</code> 형식으로 쓴다. 플랫폼 이름만 주면 설정된 home channel을 사용한다. 사람이 읽는 채널 이름은 <code>~/.hermes/channel_directory.json</code>에서 찾는다. 이 파일은 Gateway가 채널을 발견할 때 갱신하므로 먼저 목록을 확인하는 편이 안전하다.</p>
+<pre><code class="language-bash">hermes send --list
+hermes send --list telegram
+hermes send --list --json</code></pre>
+<p><code>--list</code>는 메시지를 보내지 않는다. 사람이 읽는 목록이나 JSON을 출력할 뿐이라 자동화 스크립트의 사전 점검에도 쓸 수 있다. 이름으로 채널을 지정해야 한다면 Gateway를 한 번 실행해 directory를 채운 뒤 <code>--list --json</code> 결과에서 대상이 실제로 보이는지 확인한다. 숫자 ID를 스크립트 여러 곳에 복사하는 것보다 채널 이름과 공용 directory를 쓰는 쪽이 변경에 덜 취약하다.</p>
+<h2>문자열, 파일, 파이프를 보내는 법</h2>
+<p>가장 짧은 호출은 대상과 문자열을 함께 주는 방식이다.</p>
+<pre><code class="language-bash">hermes send --to telegram &quot;build completed&quot;</code></pre>
+<p>이미 다른 명령이 결과를 출력한다면 표준 입력을 연결한다. <code>--subject</code>는 본문 앞에 제목 줄을 붙인다.</p>
+<pre><code class="language-bash">printf '%s\n' &quot;tests: 148 passed&quot; \
+  | hermes send --to slack:#builds --subject &quot;CI result&quot;</code></pre>
+<p>로그나 Markdown처럼 텍스트 파일에 결과가 있다면 <code>--file</code>을 쓴다.</p>
+<pre><code class="language-bash">hermes send --to discord:#ops --file ./report.md</code></pre>
+<p>메시지 본문은 위치 인자, <code>--file</code>, piped stdin 순서로 결정된다. 여러 입력을 함께 주면 앞선 항목이 뒤의 항목을 덮으므로 한 방식만 고르는 편이 분명하다. 입력이 없고 stdin이 TTY라면 기다리며 멈추지 않고 사용 오류를 반환한다. <code>--subject</code>는 플랫폼별 제목 metadata가 아니라 본문 첫 줄을 붙이는 기능이다. <code>--quiet</code>는 성공 시 stdout을 비우고 exit code만 남긴다. <code>--json</code>은 플랫폼 응답을 기계가 읽을 수 있는 형태로 내보낸다.</p>
+<pre><code class="language-bash">run_checks | hermes send --to telegram --quiet
+case $? in
+  0) echo &quot;delivered&quot; ;;
+  1) echo &quot;delivery failed&quot; &gt;&amp;2 ;;
+  2) echo &quot;usage or config error&quot; &gt;&amp;2 ;;
+esac</code></pre>
+<h2>실제 사용 사이드바</h2>
+<p>한 사용자의 셋업에서는 지식 작업, 개발, 운영이 서로 다른 profile과 메시징 topic으로 나뉘고, 긴 빌드와 발행은 추적 가능한 background 작업으로 실행된다. 모델이 조사하고 작성해야 하는 보고서는 Cron의 <code>deliver</code>가 맡고, 테스트 프로세스가 이미 만든 완료·실패 문자열은 <code>hermes send</code>로 바로 보낼 수 있으며, 이미지나 문서 산출물은 별도의 첨부 경로로 다룬다. 전송 명령의 exit code도 원래 실행 로그에 남겨 작업 성공과 알림 성공을 따로 확인하고, 알림 target은 해당 역할의 topic으로 고정해 다른 대화에 섞이지 않게 한다. 이런 분리는 단순 알림 때문에 새 agent session을 열거나 작업 topic에 중간 로그가 계속 쌓이는 일을 줄이고, 사람이 새 지시를 보낼 대화창도 비워 둔다.</p>
+<h2>함정과 선택 기준</h2>
+<p><code>--file</code>은 텍스트 본문을 읽는 옵션이다. 이미지나 문서를 첨부할 때는 현재 CLI 도움말에 나온 <code>MEDIA:&lt;path&gt;</code> 형식을 사용하고, 실제 파일이 존재하는지 먼저 확인한다. 알림 내용에 token이나 개인 정보를 넣으면 그대로 외부 플랫폼에 전송된다. 짧은 문자열은 shell history에도 남을 수 있으므로 민감한 본문은 권한을 제한한 파일이나 stdin으로 넘긴다.</p>
+<p>채널 이름이 목록에 없으면 Gateway를 한 번 실행해 <code>channel_directory.json</code>을 갱신한다. 대상 형식이나 설정 오류는 exit code 2, 플랫폼 인증·권한·네트워크 실패는 1이므로 자동화에서는 반드시 분기한다.</p>
+<p>메모리 부족이나 디스크 고갈처럼 Python 자체가 뜨지 못할 수 있는 경보는 최소한의 <code>curl</code> 경로를 따로 두는 편이 낫다. <code>hermes send</code>는 내용을 요약하거나 다음 행동을 판단하지 않는다. 정해진 문자열을 지금 보내는 일에는 <code>send</code>, 정해진 시간에 모델이 내용을 만들어야 하는 일에는 Cron, 살아 있는 대화를 다른 플랫폼에서 이어야 하는 일에는 Session Handoff가 맞다.</p>
+            </div>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/when-networks-learn-to-organize/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>연결만으로는 공동체가 움직이지 않는다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <footer class="dx-footer" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
+        <a href="/" style="display:flex;align-items:center;gap:10px;">
+            <svg viewBox="4 4 112 98" width="28" height="24" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+        </a>
+        <p class="dx-footer-note" style="margin:0;text-align:right;">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+    </footer>
+</body>
+</html>
