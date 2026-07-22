@@ -142,6 +142,7 @@ img{max-width:100%;display:block;}
    CARDS on light chrome (blog previews, solutions, generic panels)
    -------------------------------------------------------------------------- */
 .panel-card{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:26px 24px;display:flex;flex-direction:column;gap:14px;}
+#post-grid .post-card[hidden]{display:none !important;}
 .panel-card:hover{background:var(--panel);}
 .panel-card h3{margin:0;font-size:17px;font-weight:700;line-height:1.45;letter-spacing:-0.01em;}
 .panel-card p{margin:0;font-size:13px;line-height:1.6;color:var(--muted);}
