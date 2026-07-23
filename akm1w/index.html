@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AKM 1주차 수강생 워크벤치 | DEXA</title>
+<meta name="description" content="세 개의 노트로 답변 참고 지식과 에이전트 운영 지식을 분리하고, Verify와 Learn Back까지 완료하는 GPTERS 23기 AKM 1주차 수강생 워크벤치입니다.">
+<link rel="canonical" href="https://dexa.art/akm1w/">
+<meta property="og:title" content="AKM 1주차 수강생 워크벤치 | DEXA">
+<meta property="og:description" content="기존 지식관리 시스템을 지키면서 세 노트 마이크로 마이그레이션을 완주하는 20+60분 실습 페이지">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dexa.art/akm1w/">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F5F1E6;
+  --panel:#EBE4D3;
+  --panel2:#E3DBC6;
+  --ink:#17181B;
+  --line:#D9D0BB;
+  --muted:#6A644F;
+  --orange:#FF5A1F;
+  --orange-hover:#E64D14;
+  --cyan:#5EE7F3;
+  --red:#E0402A;
+  --red-text:#B33320;
+  --display:#0D0E10;
+  --dark-key:#2A2B2E;
+  --content:1280px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Space Grotesk","Pretendard","Noto Sans KR","Apple SD Gothic Neo",sans-serif;font-size:16px;line-height:1.65;overflow-wrap:anywhere}
+body,input,textarea,select,button{font:inherit}
+::selection{background:var(--orange);color:var(--ink)}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:4px}
+a:hover{color:var(--orange-hover)}
+button,input,textarea,select{border-radius:0}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+[hidden]{display:none!important}
+section[id]{scroll-margin-top:92px}
+.skip-link{position:fixed;left:12px;top:12px;z-index:999;padding:10px 14px;background:var(--orange);color:var(--ink);font-weight:700;transform:translateY(-160%)}
+.skip-link:focus{transform:none}
+.mono,.eyebrow,.label,.section-no,.chip,.status-copy,code,pre,th{font-family:"JetBrains Mono","D2Coding","SFMono-Regular",Consolas,monospace}
+.site-nav{position:sticky;top:0;z-index:80;background:var(--paper);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:var(--content);margin:0 auto;min-height:70px;padding:10px 28px;display:flex;align-items:center;gap:22px}
+.brand{display:flex;align-items:center;gap:10px;flex:0 0 auto;min-height:44px;text-decoration:none}
+.brand-name{font-size:18px;font-weight:700;letter-spacing:-.02em}.brand-name b{color:var(--orange)}
+.brand-sub{padding-left:10px;border-left:1px solid var(--line);font-size:10px;letter-spacing:.06em;color:var(--muted);white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:6px;margin-left:auto;overflow-x:auto;scrollbar-width:thin;padding:4px 0}
+.nav-links a{padding:9px 10px;border:1px solid transparent;text-decoration:none;font-size:10px;font-weight:600;letter-spacing:.05em;white-space:nowrap}
+.nav-links a:hover{border-color:var(--line);color:var(--ink);background:var(--panel)}
+.shell{max-width:var(--content);margin:0 auto;padding:0 28px}
+.hero{padding:72px 0 46px;border-bottom:1px solid var(--line)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(320px,.75fr);gap:40px;align-items:start}
+.signal-line{display:flex;align-items:center;gap:10px;margin-bottom:26px}.signal-dot{width:9px;height:9px;background:var(--orange)}
+.eyebrow,.label{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;color:var(--muted)}
+h1{font-size:clamp(46px,7.5vw,98px);line-height:.96;letter-spacing:-.055em;margin:0 0 30px;max-width:900px}
+.hero-lead{max-width:760px;margin:0 0 32px;font-size:clamp(18px,2.1vw,23px);line-height:1.55;font-weight:500;letter-spacing:-.015em}
+.hero-note{max-width:760px;margin:0;color:var(--muted)}
+.hero-note strong{color:var(--ink)}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:30px}
+.btn{border:1px solid var(--ink);background:transparent;color:var(--ink);padding:12px 17px;font-weight:700;min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.btn:hover{background:var(--ink);color:var(--paper)}
+.btn.primary{border-color:var(--orange);background:var(--orange);color:var(--ink)}
+.btn.primary:hover{background:var(--orange-hover);border-color:var(--orange-hover);color:var(--ink)}
+.btn.ghost{border-color:var(--line);background:var(--panel)}
+.btn.ghost:hover{background:var(--panel2);color:var(--ink)}
+.instrument{background:var(--ink);color:#F7FAFC;padding:26px;position:relative;border:1px solid var(--display)}
+.instrument:before,.instrument:after{content:"";position:absolute;width:7px;height:7px;background:#3A3B3F;top:12px}.instrument:before{left:12px}.instrument:after{right:12px}
+.instrument-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:18px;color:#8A8D93}
+.live-mark{display:flex;align-items:center;gap:7px;color:var(--cyan)}.live-mark i{display:block;width:7px;height:7px;background:var(--cyan)}
+.progress-display{background:var(--display);border:1px solid #2A2B2E;padding:18px;margin-bottom:18px}
+.progress-number{display:flex;align-items:baseline;justify-content:space-between;gap:12px;color:var(--cyan)}
+.progress-number strong{font-size:36px;line-height:1}.progress-number span{font-size:11px;letter-spacing:.06em}
+.progress-track{height:10px;background:#2A2B2E;margin-top:14px;overflow:hidden}
+#progressBar{height:100%;width:0;background:var(--cyan)}
+#progressBar[role="progressbar"]{min-width:0}
+.progress-list{display:grid;gap:1px;background:#2A2B2E;border:1px solid #2A2B2E}
+.progress-item{display:flex;align-items:flex-start;gap:10px;padding:10px 11px;background:var(--ink);color:#D7D8DA;font-size:12px}
+.progress-item input{margin:3px 0 0;accent-color:var(--cyan);width:17px;height:17px;flex:0 0 auto}
+.local-note{margin:16px 0 0;padding:12px;border-left:3px solid var(--cyan);background:var(--display);color:#B9BBC0;font-size:12px}
+.section{padding:76px 0;border-bottom:1px solid var(--line)}
+.section-head{display:grid;grid-template-columns:110px minmax(0,1fr);gap:22px;align-items:start;margin-bottom:34px}
+.section-no{color:var(--orange-hover);font-size:11px;letter-spacing:.08em;padding-top:8px}
+.section-head h2{font-size:clamp(30px,4vw,50px);line-height:1.05;letter-spacing:-.035em;margin:0 0 12px}
+.section-head p{max-width:790px;margin:0;color:var(--muted);font-size:17px}
+h2,h3,h4{letter-spacing:-.025em}
+h3{font-size:22px;line-height:1.25;margin:0 0 12px}h4{font-size:17px;margin:0 0 8px}
+p{margin:0 0 14px}.muted{color:var(--muted)}
+.grid-2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+.card{border:1px solid var(--line);background:var(--panel);padding:24px}.card.paper{background:var(--paper)}.card.dark{background:var(--ink);border-color:var(--ink);color:#F7FAFC}.card.dark .muted{color:#A5A7AC}.card.dark .label{color:var(--cyan)}
+.card p:last-child,.card ul:last-child{margin-bottom:0}
+.compact{margin:0;padding-left:20px}.compact li+li{margin-top:7px}
+.callout{border-left:5px solid var(--orange);background:var(--panel);padding:20px 22px;margin:22px 0}.callout.alert{border-left-color:var(--red)}.callout.dark{border-left-color:var(--cyan);background:var(--ink);color:#F7FAFC}.callout.dark p{color:#C7C8CB}
+.knowledge-split{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#2A2B2E;border:1px solid #2A2B2E;margin-top:22px}.knowledge-column{background:var(--display);padding:20px}.knowledge-column .label{color:var(--cyan)}.knowledge-chain{font-size:18px;color:#F7FAFC;margin:9px 0 0}.knowledge-chain b{color:var(--cyan)}
+.timeline{display:grid;gap:1px;background:var(--line);border:1px solid var(--line)}
+.timeline-row{display:grid;grid-template-columns:120px 170px minmax(0,1fr) 210px;gap:16px;background:var(--paper);padding:17px 18px;align-items:start}.timeline-row.head{background:var(--ink);color:#F7FAFC}.timeline-row.head div{color:var(--cyan)}.time{font-weight:700;color:var(--orange-hover)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);background:var(--line);margin:18px 0 28px;max-width:100%}
+table{border-collapse:collapse;width:100%;min-width:760px;background:var(--paper)}
+th,td{border:1px solid var(--line);padding:13px 14px;text-align:left;vertical-align:top}th{background:var(--ink);color:#F7FAFC;font-size:10px;letter-spacing:.05em}td{font-size:14px}tbody tr:nth-child(even) td{background:var(--panel)}
+.check-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.check{display:flex;align-items:flex-start;gap:10px;padding:13px;border:1px solid var(--line);background:var(--paper)}.check input{width:18px;height:18px;margin:3px 0 0;accent-color:var(--orange);flex:0 0 auto}
+.code-panel{border:1px solid var(--ink);margin:18px 0 26px}.code-head{display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--ink);color:#F7FAFC;padding:9px 12px}.code-head .label{color:var(--cyan)}.copy-btn{border:1px solid #4A4B4F;background:var(--dark-key);color:#F7FAFC;padding:8px 11px;font-size:11px}.copy-btn:hover{background:var(--cyan);color:var(--display);border-color:var(--cyan)}
+pre{margin:0;background:var(--display);color:#E8E9EA;padding:20px;overflow:auto;white-space:pre;tab-size:2;max-width:100%}code{font-size:12px;line-height:1.6}.inline-code{font-family:"JetBrains Mono","D2Coding",monospace;background:var(--panel2);padding:2px 5px;font-size:.88em}
+.tabs{display:inline-flex;gap:1px;background:var(--line);border:1px solid var(--line);margin:0 0 16px;max-width:100%;overflow-x:auto}.tab{border:0;background:var(--panel);color:var(--muted);padding:12px 18px;font-family:"JetBrains Mono","D2Coding",monospace;font-size:11px;font-weight:700;white-space:nowrap}.tab[aria-selected="true"]{background:var(--ink);color:var(--cyan)}
+.tab-panel{border:1px solid var(--line);padding:22px;background:var(--paper)}
+.lane-selector{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin-bottom:18px}.lane-btn{border:0;background:var(--panel);padding:20px;text-align:left;min-height:118px}.lane-btn strong{display:block;font-size:18px;margin-bottom:5px}.lane-btn span{display:block;color:var(--muted);font-size:13px}.lane-btn[aria-pressed="true"]{background:var(--orange);color:var(--ink)}.lane-btn[aria-pressed="true"] span{color:var(--ink)}
+.lane-readout{background:var(--ink);color:#F7FAFC;padding:22px;border-left:5px solid var(--cyan)}.lane-readout .label{color:var(--cyan)}
+.repo-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}.repo-card{background:var(--paper);padding:22px;min-height:210px}.repo-card .file{display:inline-block;background:var(--ink);color:var(--cyan);padding:6px 8px;font-size:11px;margin-bottom:18px}.repo-card p{font-size:14px;color:var(--muted)}
+.field-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.field-wrap{display:flex;flex-direction:column;gap:7px}.field-wrap.full{grid-column:1/-1}.field-label{font-family:"JetBrains Mono","D2Coding",monospace;font-size:10px;font-weight:700;color:var(--muted);letter-spacing:.05em}.field,.select{width:100%;border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:11px 12px;min-height:46px}.field:focus,.select:focus{border-color:var(--orange)}textarea.field{min-height:96px;resize:vertical;line-height:1.55}.table-field{min-width:150px;min-height:74px;border:1px solid var(--line);background:var(--paper);padding:8px;width:100%;resize:vertical}
+.note-card{border:1px solid var(--line);background:var(--panel);padding:22px}.note-card .note-letter{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;background:var(--orange);font-family:"JetBrains Mono",monospace;font-weight:700;margin-bottom:14px}
+.template-intro{display:flex;align-items:start;justify-content:space-between;gap:18px;margin-bottom:8px}.chip{display:inline-block;border:1px solid var(--line);padding:5px 8px;font-size:9px;letter-spacing:.06em;color:var(--muted);background:var(--paper)}
+.verify-list{display:grid;gap:8px}.verify-item{display:flex;align-items:flex-start;gap:11px;padding:13px;border:1px solid var(--line);background:var(--paper)}.verify-item input{width:18px;height:18px;margin:3px 0 0;accent-color:var(--orange);flex:0 0 auto}
+.sentence-frame{padding:18px 20px;background:var(--ink);color:#F7FAFC;border-left:5px solid var(--cyan);font-size:17px}.sentence-frame code{color:var(--cyan);white-space:normal}
+.export-panel{background:var(--ink);color:#F7FAFC;padding:28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center}.export-panel .label{color:var(--cyan)}.export-actions{display:flex;gap:9px;flex-wrap:wrap;justify-content:flex-end}.export-actions .btn.ghost{background:var(--dark-key);border-color:#4A4B4F;color:#F7FAFC}.export-actions .btn.ghost:hover{background:var(--cyan);border-color:var(--cyan);color:var(--display)}
+.reset-zone{border:1px solid var(--line);background:var(--panel);padding:20px;margin-top:16px;display:flex;align-items:center;justify-content:space-between;gap:18px}.reset-actions{display:flex;gap:8px;flex-wrap:wrap}.btn.danger{border-color:var(--red);color:var(--red-text)}.btn.danger:hover{background:var(--red);color:#fff}.confirm-box{border-left:4px solid var(--red);padding:12px 14px;background:var(--paper)}
+.live-region{position:fixed;right:18px;bottom:18px;z-index:100;max-width:min(420px,calc(100vw - 36px));background:var(--ink);color:#F7FAFC;border-left:5px solid var(--cyan);padding:13px 16px;font-size:13px}.live-region:empty{display:none}
+.print-value{display:none}
+.footer{padding:34px 0 52px}.footer-inner{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.footer p{font-size:12px;color:var(--muted);max-width:740px}.footer-mark{white-space:nowrap;font-weight:700}.footer-mark b{color:var(--orange)}
+@media (max-width:980px){
+  .hero-grid{grid-template-columns:1fr}.instrument{max-width:760px}.grid-4,.repo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.timeline-row{grid-template-columns:100px 150px minmax(0,1fr)}.timeline-row>:last-child{grid-column:3}.export-panel{grid-template-columns:1fr}.export-actions{justify-content:flex-start}
+}
+@media (max-width:720px){
+  html{scroll-padding-top:78px}section[id]{scroll-margin-top:78px}.nav-inner{padding:9px 16px;gap:10px;min-height:62px}.brand-sub{display:none}.nav-links{gap:2px}.nav-links a{display:inline-flex;align-items:center;min-height:44px;padding:12px 10px;font-size:10px}.shell{padding:0 16px}.hero{padding:52px 0 38px}h1{font-size:clamp(44px,15vw,66px)}.hero-grid{gap:28px}.section{padding:56px 0}.section-head{grid-template-columns:1fr;gap:7px}.section-no{padding-top:0}.section-head h2{font-size:36px}.grid-2,.grid-3,.check-grid,.field-grid,.knowledge-split{grid-template-columns:1fr}.grid-4,.repo-grid{grid-template-columns:1fr}.timeline-row,.timeline-row.head{grid-template-columns:74px minmax(0,1fr);gap:9px}.timeline-row>:nth-child(3),.timeline-row>:last-child{grid-column:1/-1}.timeline-row.head>:nth-child(3),.timeline-row.head>:last-child{display:none}.lane-selector{grid-template-columns:1fr}.lane-btn{min-height:auto}.instrument{padding:22px 18px}.progress-list{grid-template-columns:1fr 1fr}.template-intro{display:block}.template-intro .chip{margin-top:10px}.export-panel{padding:22px}.reset-zone{align-items:flex-start;flex-direction:column}.footer-inner{display:block}.footer-mark{margin-top:16px}.live-region{left:16px;right:16px;bottom:16px;max-width:none}pre{padding:16px}code{font-size:11px}
+}
+@media (max-width:430px){.progress-list{grid-template-columns:1fr}.hero-actions,.export-actions,.reset-actions{display:grid;grid-template-columns:1fr;width:100%}.btn{width:100%}.tabs{width:100%}.tab{flex:1}.card,.note-card{padding:19px}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+@media print{
+  @page{margin:15mm}
+  html,body{background:#fff;color:#000;font-size:10.5pt;scroll-padding:0}
+  .site-nav,.hero-actions,.copy-btn,.export-actions,.reset-zone,.live-region,.skip-link{display:none!important}
+  .shell{max-width:none;padding:0}.hero,.section{padding:20px 0;border-color:#999}.hero-grid{display:block}.instrument{margin-top:18px;background:#fff;color:#000;border:1px solid #333}.progress-display,.progress-list,.progress-item,.knowledge-column,.card.dark,.callout.dark,.lane-readout,.sentence-frame,.export-panel{background:#fff!important;color:#000!important;border-color:#333}.progress-number,.knowledge-column .label,.card.dark .label,.callout.dark .label,.lane-readout .label,.export-panel .label{color:#000!important}.progress-track{border:1px solid #333;background:#fff}.progress-track #progressBar{background:#000}.section-head{grid-template-columns:70px 1fr;margin-bottom:18px}.grid-2,.grid-3,.grid-4,.repo-grid{break-inside:avoid}.card,.note-card,.code-panel,.table-wrap,.callout,.lane-readout,.field-wrap{break-inside:avoid;background:#fff}.field,.select,.table-field,textarea.field{display:none!important}.print-value{display:block;min-height:30px;border:1px solid #777;padding:6px;white-space:pre-wrap}.table-wrap{overflow:visible}.table-wrap table{min-width:0;font-size:8.5pt}th{background:#eee;color:#000}.code-head,pre{background:#fff;color:#000;border-color:#333}pre{white-space:pre-wrap;overflow:visible}.lane-selector{grid-template-columns:repeat(3,1fr)}.lane-btn[aria-pressed="true"]{background:#ddd}.footer{padding:20px 0}.footer p{color:#333}a{text-decoration:none;color:#000}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 바로가기</a>
+<nav class="site-nav" aria-label="수강생 워크벤치 목차">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="DEXA AKM 1주차 처음으로">
+      <svg viewBox="4 4 112 98" width="32" height="29" aria-hidden="true">
+        <g stroke-linejoin="round"><path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path><path d="M60 20 79 53H41Z" fill="#17181B"></path><path d="M36 57 55 90H17Z" fill="#17181B"></path><path d="M84 57 103 90H65Z" fill="#FF5A1F"></path><path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path></g>
+      </svg>
+      <span class="brand-name">DEXA<b>.</b></span>
+      <span class="brand-sub mono">AKM / WEEK 01</span>
+    </a>
+    <div class="nav-links">
+      <a href="#why">WHY</a><a href="#install">INSTALL</a><a href="#anatomy">ANATOMY</a><a href="#lanes">LANE</a><a href="#mapping">MAP</a><a href="#migration">3 NOTES</a><a href="#templates">TEMPLATES</a><a href="#verify">VERIFY</a><a href="#export">EXPORT</a>
+    </div>
+  </div>
+</nav>
+<header id="top" class="hero">
+  <div class="shell hero-grid">
+    <div>
+      <div class="signal-line"><span class="signal-dot"></span><span class="eyebrow">GPTERS 23 · AGENT KNOWLEDGE MANAGEMENT</span></div>
+      <h1>세 노트로<br>AKM을 시작합니다.</h1>
+      <p class="hero-lead">기존 지식관리 시스템을 버리지 않고, 답변에 참고할 지식과 에이전트가 실행할 때 읽는 운영 지식을 분리합니다. 마지막에는 직접 읽어 검증하고, 실패를 다음 구조 수정으로 되돌립니다.</p>
+      <p class="hero-note"><strong>오늘의 성공 단위는 전체 Vault 이전이 아닙니다.</strong> 별도 실습 폴더, privacy-safe 노트 세 개, 답변 참고용 정본 노트 한 개, 에이전트 운영 카드 한 개, Verify 한 번, Learn Back 한 줄이면 충분합니다.</p>
+      <div class="hero-actions"><a class="btn primary" href="#install">실습 시작</a><a class="btn" href="#journey">20+60분 흐름 보기</a><a class="btn ghost" href="https://github.com/DECK6/akm">공개 AKM 저장소 ↗</a></div>
+    </div>
+    <aside class="instrument" aria-labelledby="progressTitle">
+      <div class="instrument-head"><span id="progressTitle" class="label">SESSION PROGRESS / LOCAL</span><span class="live-mark mono"><i></i>READY</span></div>
+      <div class="progress-display">
+        <div class="progress-number"><strong id="progressText">0%</strong><span>8 CHECKPOINTS</span></div>
+        <div class="progress-track"><div id="progressBar" role="progressbar" aria-label="실습 진행률" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div></div>
+      </div>
+      <div class="progress-list">
+        <label class="progress-item"><input type="checkbox" data-progress="safe" aria-label="안전 자료 확인 완료"><span>안전 자료 확인</span></label>
+        <label class="progress-item"><input type="checkbox" data-progress="install" aria-label="설치 판정 완료"><span>설치 판정</span></label>
+        <label class="progress-item"><input type="checkbox" data-progress="anatomy" aria-label="저장소 해부 완료"><span>저장소 해부</span></label>
+        <label class="progress-item"><input type="checkbox" data-progress="map" aria-label="현재 시스템 매핑 완료"><span>현재 시스템 매핑</span></label>
+        <label class="progress-item"><input type="checkbox" data-progress="manifest" aria-label="3행 Manifest 완료"><span>3행 Manifest</span></label>
+        <label class="progress-item"><input type="checkbox" data-progress="artifacts" aria-label="노트와 카드 분리 완료"><span>노트+카드 분리</span></label>
+        <label class="progress-item"><input type="checkbox" data-progress="verify" aria-label="Verify와 Learn Back 완료"><span>Verify·Learn Back</span></label>
+        <label class="progress-item"><input type="checkbox" data-progress="exit" aria-label="Exit Ticket 완료"><span>Exit Ticket</span></label>
+      </div>
+      <p class="local-note"><strong>저장은 이 브라우저 안에서만.</strong><br>선택한 레인, 체크 상태, 워크시트 입력은 이 기기의 <span class="mono">localStorage</span>에만 저장됩니다. 서버 전송, 계정, 동기화, 분석 도구는 없습니다.</p>
+    </aside>
+  </div>
+</header>
+<main id="main">
+<section id="why" class="section">
+  <div class="shell">
+    <div class="section-head"><span class="section-no">01 / WHY AKM</span><div><h2>왜 AKM인가</h2><p>노트가 많다는 사실만으로 AI가 원본, 현재 결정, 적용 범위, 실행 절차를 구분하지는 못합니다. AKM은 기존 지식의 집을 허무는 앱이 아니라, 에이전트가 그 집의 방과 규칙을 읽는 운영 지도입니다.</p></div></div>
+    <div class="grid-2">
+      <article class="card"><span class="label">BEFORE / 자주 생기는 장면</span><h3>자료는 있는데 매번 다시 설명합니다.</h3><ul class="compact"><li>원본 링크, 개인 해석, 프로젝트 결정, 체크리스트, 실패 기록이 한곳에 섞입니다.</li><li>좋은 답변은 대화에 묻히고, 오래된 초안이 현재 기준처럼 다시 사용됩니다.</li><li>검색 결과가 나와도 그것이 권위 있는 최신 기준인지 다시 확인해야 합니다.</li></ul></article>
+      <article class="card dark"><span class="label">AFTER / 책임을 분리한 상태</span><h3>같은 내용을 서로 다른 책임으로 나눕니다.</h3><ul class="compact"><li>원본은 Source로 보존하고, 재사용 판단은 Knowledge로 합성합니다.</li><li>프로젝트 조건은 Context, 반복 단계와 stop rule은 Procedure로 둡니다.</li><li>실패를 Evaluation에서 판정하고 수정할 레이어로 Learn Back합니다.</li></ul></article>
+    </div>
+    <div class="callout"><p><strong>Obsidian, Notion, Logseq, 폴더를 그대로 유지합니다.</strong> 기존 위치를 가리키는 포인터와 작은 manifest부터 시작합니다. 첫 주에 전체 Vault를 옮기지 않습니다.</p></div>
+    <div class="card dark">
+      <span class="label">TWO KNOWLEDGE ZONES</span>
+      <div class="knowledge-split">
+        <div class="knowledge-column"><span class="label">답변 참고 지식</span><p class="knowledge-chain"><b>Source → Knowledge</b><br>사실 · 근거 · 정본 · 충돌</p></div>
+        <div class="knowledge-column"><span class="label">에이전트 운영 지식</span><p class="knowledge-chain"><b>Context + Operational Memory + Procedure</b><br>→ Action → Evaluation → Learn Back</p></div>
+      </div>
+      <p style="margin:18px 0 0;color:#C7C8CB">답변 참고 지식은 “무엇을 말할 것인가”를 담당합니다. 에이전트 운영 지식은 “누구의 어떤 상황에서 어떤 순서와 제한으로 실행하고 검증할 것인가”를 담당합니다. <strong style="color:#F7FAFC">Context는 답변과 무관한 격리 구역이 아닙니다.</strong> 사용자와 프로젝트 상황에 따라 답변의 적용 범위와 강조점을 바꿀 수 있습니다. Operational Memory는 매번 먼저 알아야 하는 짧고 안정적인 포인터이며, 긴 문서와 일시적 상태를 모두 넣는 곳이 아닙니다.</p>
+    </div>
+    <div class="template-intro" style="margin-top:34px"><div><span class="label">FAILURE → LEARN BACK</span><h3>오래된 초안이 현재 기준처럼 쓰였다면</h3></div><span class="chip">VERIFY, FIX, RE-RUN</span></div>
+    <div class="grid-4">
+      <article class="card paper"><span class="label">01 / NOTICE</span><p><strong>오래된 초안</strong>이 현재 결정처럼 사용된 지점을 찾습니다.</p></article>
+      <article class="card paper"><span class="label">02 / DIRECT READ</span><p>어느 source가 더 권위 있는지 원문에서 직접 확인합니다.</p></article>
+      <article class="card paper"><span class="label">03 / FIX SYSTEM</span><p>Procedure 또는 Evaluation의 source·authority·scope 확인 단계를 고칩니다.</p></article>
+      <article class="card paper"><span class="label">04 / RE-RUN</span><p><strong>같은 입력으로 다시 실행</strong>해 오래된 초안이 기준이 되지 않는지 Verify합니다.</p></article>
+    </div>
+    <div class="callout dark"><span class="label">SECONDARY CASE / CEREBRAS</span><p>Cerebras는 Slack, 코드, 문서, 내부 시스템을 한곳으로 강제 이관하기보다 기존 출처에서 정보를 모아 사람·자동화·AI 에이전트가 함께 쓰는 검색 계층을 구축했다고 공개했습니다. 하루 15,000건 이상의 질의는 Cerebras의 자체 보고이며 독립 검증되지 않았습니다. 이 숫자는 보편 권장값이 아니라 “자료 위치”보다 “근거와 권한의 연결”이 중요하다는 보조 사례로만 읽습니다.</p></div>
+    <div id="journey" style="margin-top:46px">
+      <div class="template-intro"><div><span class="label">20 + 60 MINUTES</span><h3>사례에서 실습까지 한 번에 닫는 흐름</h3></div><span class="chip">TOTAL 80 MIN</span></div>
+      <div class="timeline" aria-label="20분 사례와 60분 실습 흐름">
+        <div class="timeline-row head"><div>전체</div><div>블록</div><div>하는 일</div><div>남는 것</div></div>
+        <div class="timeline-row"><div class="time">0–20분</div><div>왜 AKM인가</div><div>문제 장면 → 두 지식 구역 → Before/After → 실패와 Learn Back → 오늘 산출물 미리보기</div><div>작은 성공 단위 이해</div></div>
+        <div class="timeline-row"><div class="time">20–28분</div><div>안전한 설치</div><div>별도 실습 위치에서 clone하고 4분 blocker stop rule을 적용합니다.</div><div>short HEAD 또는 정직한 판정</div></div>
+        <div class="timeline-row"><div class="time">28–34분</div><div>저장소 해부</div><div>INDEX · SCHEMA · ROUTER · LOOP 네 파일의 역할만 확인합니다.</div><div>네 파일 역할표</div></div>
+        <div class="timeline-row"><div class="time">34–40분</div><div>현재 시스템 매핑</div><div>기존 위치를 옮기지 않고 AKM 역할 후보를 표시합니다.</div><div>레이어 매핑표</div></div>
+        <div class="timeline-row"><div class="time">40–54분</div><div>세 노트 선택</div><div>원본·해석·적용 노트를 골라 Migration Manifest 세 행을 채웁니다.</div><div>3행 Manifest</div></div>
+        <div class="timeline-row"><div class="time">54–68분</div><div>두 artifact 제작</div><div>답변 참고용 정본 노트와 별도의 에이전트 운영 카드를 만듭니다.</div><div>Markdown 2개</div></div>
+        <div class="timeline-row"><div class="time">68–76분</div><div>Verify · Learn Back</div><div>source direct read로 주장과 범위를 확인하고 수정할 레이어를 정합니다.</div><div>판정과 수정 대상</div></div>
+        <div class="timeline-row"><div class="time">76–80분</div><div>Exit Ticket</div><div>다음 7일 source, 검증 질문, 완료 evidence를 약속합니다.</div><div>다음 행동</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section id="install" class="section">
+  <div class="shell">
+    <div class="section-head"><span class="section-no">02 / SAFE INSTALL</span><div><h2>안전한 별도 경로에서 시작합니다.</h2><p>기존 개인 Vault, Notion export 폴더, 운영 Git 저장소, 이미 쓰는 <span class="inline-code">akm</span> 폴더 안에서 실행하지 않습니다. 설치가 막혀도 구조와 노트 실습은 계속하되 설치 성공을 주장하지 않습니다.</p></div></div>
+    <div class="card paper" style="margin-bottom:18px">
+      <span class="label">BEFORE CLASS / 수업 전 준비</span>
+      <div class="grid-2" style="margin-top:14px">
+        <ul class="compact"><li><strong>Git 설치 여부</strong>를 확인합니다.</li><li><strong>새로운 빈 실습 폴더</strong>를 만들 수 있는 컴퓨터를 준비합니다.</li><li>원본·기록 노트, 해석·요약 노트, 적용·프로젝트 노트를 한 개씩 고릅니다.</li></ul>
+        <ul class="compact"><li>기존 PKM을 쓴다면 현재 구조를 짧게 설명할 준비를 합니다.</li><li>기존 Vault나 지식관리 시스템은 이동하거나 삭제하지 않습니다.</li><li>설치가 막히면 privacy-safe 공개 샘플과 읽기 전용 fallback으로 노트 실습을 계속합니다.</li></ul>
+      </div>
+    </div>
+    <div class="callout alert"><h3>먼저 자료를 확인합니다.</h3><div class="check-grid">
+      <label class="check"><input type="checkbox" data-field="privacy.personal" data-export-section="개인정보·보안 확인" aria-label="고객 직원 제3자의 개인정보가 없음"><span>고객·직원·제3자의 개인정보가 없는가?</span></label>
+      <label class="check"><input type="checkbox" data-field="privacy.sensitiveDomains" data-export-section="개인정보·보안 확인" aria-label="계약 인사 의료 법률 분쟁 자료가 없음"><span>계약·인사·의료·법률 분쟁 자료가 없는가?</span></label>
+      <label class="check"><input type="checkbox" data-field="privacy.secrets" data-export-section="개인정보·보안 확인" aria-label="비밀번호 API key token cookie가 없음"><span>비밀번호·API key·token·cookie가 없는가?</span></label>
+      <label class="check"><input type="checkbox" data-field="privacy.practiceCopy" data-export-section="개인정보·보안 확인" aria-label="실습용 복사본 또는 공개 자료임"><span>원본이 아닌 실습용 복사본 또는 공개 자료인가?</span></label>
+      <label class="check"><input type="checkbox" data-field="privacy.externalAi" data-export-section="개인정보·보안 확인" aria-label="외부 AI 입력 가능 여부를 확인함"><span>외부 AI에 입력해도 되는 자료인지 확인했는가?</span></label>
+      <label class="check"><input type="checkbox" data-field="privacy.sampleFallback" data-export-section="개인정보·보안 확인" aria-label="불확실하면 공개 샘플 source로 교체함"><span>불확실하면 공개 샘플 source로 바꿨는가?</span></label>
+    </div><p style="margin-top:14px">하나라도 확실하지 않으면 개인 노트를 사용하지 않습니다. token, proxy secret, 개인 credential로 회사 정책을 우회하지 않습니다.</p></div>
+    <div id="osTabs" class="tabs" role="tablist" aria-label="운영체제별 설치 명령">
+      <button id="tab-unix" class="tab" type="button" role="tab" data-os="unix" aria-selected="true" aria-controls="panel-unix" tabindex="0">macOS · LINUX</button>
+      <button id="tab-windows" class="tab" type="button" role="tab" data-os="windows" aria-selected="false" aria-controls="panel-windows" tabindex="-1">WINDOWS POWERSHELL</button>
+    </div>
+    <div id="panel-unix" class="tab-panel" role="tabpanel" aria-labelledby="tab-unix">
+      <div class="code-panel"><div class="code-head"><span class="label">TERMINAL / macOS · Linux</span><button type="button" class="copy-btn" data-copy-target="code-unix">COPY</button></div><pre><code id="code-unix">mkdir -p "$HOME/akm-lab-gpters23"
+cd "$HOME/akm-lab-gpters23"
+pwd
+git --version
+git clone https://github.com/DECK6/akm.git akm-week1
+cd akm-week1
+git rev-parse --short HEAD</code></pre></div>
+    </div>
+    <div id="panel-windows" class="tab-panel" role="tabpanel" aria-labelledby="tab-windows" hidden inert>
+      <div class="code-panel"><div class="code-head"><span class="label">POWERSHELL / Windows</span><button type="button" class="copy-btn" data-copy-target="code-windows">COPY</button></div><pre><code id="code-windows">$LabRoot = Join-Path $HOME "akm-lab-gpters23"
+New-Item -ItemType Directory -Force -Path $LabRoot | Out-Null
+Set-Location $LabRoot
+Get-Location
+git --version
+git clone https://github.com/DECK6/akm.git akm-week1
+Set-Location akm-week1
+git rev-parse --short HEAD</code></pre></div>
+    </div>
+    <div class="grid-2" style="margin-top:18px">
+      <article class="card"><span class="label">4-MINUTE BLOCKER STOP RULE</span><h3>네트워크·권한 문제를 오래 끌지 않습니다.</h3><ol class="compact"><li>Git 미설치, 네트워크 차단, 권한 문제가 4분 안에 풀리지 않으면 troubleshooting을 멈춥니다.</li><li>검증된 읽기 전용 fallback 또는 pair-observer 방식으로 구조·노트 실습을 계속합니다.</li><li>직접 설치하지 않았다면 <strong>NOT TESTED</strong>, 정책·권한 때문에 멈췄다면 <strong>HOLD</strong>입니다.</li><li>fallback은 설치 성공 evidence가 아닙니다. Node.js와 lint도 첫 실습의 필수 조건이 아닙니다.</li></ol></article>
+      <article class="card paper"><span class="label">INSTALL EVIDENCE / WORKSHEET</span><div class="field-grid">
+        <div class="field-wrap"><label class="field-label" for="install-os">OS</label><input class="field" id="install-os" type="text" data-field="install.os" data-export-section="설치 증거"></div>
+        <div class="field-wrap"><label class="field-label" for="git-version">Git version</label><input class="field" id="git-version" type="text" data-field="install.gitVersion" data-export-section="설치 증거"></div>
+        <div class="field-wrap"><label class="field-label" for="lab-path">별도 실습 위치</label><input class="field" id="lab-path" type="text" data-field="install.labPath" data-export-section="설치 증거" placeholder="개인정보가 없는 일반 경로만 기록"></div>
+        <div class="field-wrap"><label class="field-label" for="short-head">short HEAD</label><input class="field" id="short-head" type="text" data-field="install.shortHead" data-export-section="설치 증거"></div>
+        <div class="field-wrap full"><span class="field-label">CLONE URL</span><p class="inline-code" style="margin:0">https://github.com/DECK6/akm.git</p></div>
+        <div class="field-wrap"><label class="field-label" for="install-index">99-system/INDEX.md</label><select class="select" id="install-index" data-field="install.index" data-export-section="설치 증거"><option value="">선택</option><option>PASS</option><option>FAIL</option></select></div>
+        <div class="field-wrap"><label class="field-label" for="install-schema">99-system/SCHEMA.md</label><select class="select" id="install-schema" data-field="install.schema" data-export-section="설치 증거"><option value="">선택</option><option>PASS</option><option>FAIL</option></select></div>
+        <div class="field-wrap"><label class="field-label" for="install-router">99-system/ROUTER.md</label><select class="select" id="install-router" data-field="install.router" data-export-section="설치 증거"><option value="">선택</option><option>PASS</option><option>FAIL</option></select></div>
+        <div class="field-wrap"><label class="field-label" for="install-loop">99-system/LOOP.md</label><select class="select" id="install-loop" data-field="install.loop" data-export-section="설치 증거"><option value="">선택</option><option>PASS</option><option>FAIL</option></select></div>
+        <div class="field-wrap"><label class="field-label" for="install-verdict">최종 설치 판정</label><select class="select" id="install-verdict" data-field="install.verdict" data-export-section="설치 증거"><option value="">선택</option><option>PASS</option><option>HOLD</option><option>FAIL</option><option>NOT TESTED</option></select></div>
+        <div class="field-wrap"><label class="field-label" for="install-reason">근거 한 문장</label><input class="field" id="install-reason" type="text" data-field="install.reason" data-export-section="설치 증거"></div>
+      </div></article>
+    </div>
+  </div>
+</section>
+<section id="anatomy" class="section">
+  <div class="shell">
+    <div class="section-head"><span class="section-no">03 / ANATOMY</span><div><h2>저장소에서는 네 파일만 먼저 엽니다.</h2><p>폴더 전체를 외우지 않습니다. “어디부터 읽고, 어떤 형식으로 쓰고, 새 자료를 어디로 보내고, 어떻게 Learn Back하는가”만 확인합니다.</p></div></div>
+    <div class="repo-grid">
+      <article class="repo-card"><span class="file mono">99-system/INDEX.md</span><h3>어디부터 읽는가</h3><p>현재 구조와 핵심 파일을 찾는 출발점입니다. 목록이 존재한다고 내용이 사실로 확정되는 것은 아닙니다.</p></article>
+      <article class="repo-card"><span class="file mono">99-system/SCHEMA.md</span><h3>어떤 역할로 쓰는가</h3><p>레이어, frontmatter, 상태와 형식의 공통 계약을 확인합니다.</p></article>
+      <article class="repo-card"><span class="file mono">99-system/ROUTER.md</span><h3>새 자료를 어디로 보내는가</h3><p>원본, 재사용 지식, 프로젝트 맥락, 절차, 실행 기록을 구분합니다.</p></article>
+      <article class="repo-card"><span class="file mono">99-system/LOOP.md</span><h3>어떻게 닫는가</h3><p>Ingest에서 Verify, Learn Back까지 작업이 다음 개선으로 돌아가는 흐름을 봅니다.</p></article>
+    </div>
+    <div class="callout"><p><span class="inline-code">examples/minimal-akm/</span>에서 Source와 Knowledge 예시를 나란히 읽습니다. 검색·lint·AI 답변을 원본 대신 사용하지 않습니다. 검색 점수와 lint 통과는 후보 찾기와 형식 점검이지, truth나 사실 검증이 아닙니다.</p></div>
+  </div>
+</section>
+<section id="lanes" class="section">
+  <div class="shell">
+    <div class="section-head"><span class="section-no">04 / CHOOSE LANE</span><div><h2>깊이는 달라도 마지막 검증은 같습니다.</h2><p>Advanced는 더 많이 쓰는 레인이 아닙니다. authority, freshness, scope 충돌을 더 엄격히 다루는 레인입니다. 모든 레인은 direct-read Verify와 Exit Ticket에서 다시 만납니다.</p></div></div>
+    <div id="laneSelector" class="lane-selector" aria-label="실습 난이도 선택">
+      <button type="button" class="lane-btn" data-lane="beginner" aria-pressed="true"><strong>Beginner</strong><span>샘플 source · 구조 이해 · 결론 1개 · stop rule 1줄</span></button>
+      <button type="button" class="lane-btn" data-lane="intermediate" aria-pressed="false"><strong>Existing PKM · Intermediate</strong><span>현재 시스템 보존 · 3노트 매핑 · source-to-claim · 적용 범위</span></button>
+      <button type="button" class="lane-btn" data-lane="advanced" aria-pressed="false"><strong>Advanced</strong><span>authority · freshness · scope 충돌 · Procedure/Evaluation 수정 후보</span></button>
+    </div>
+    <div id="laneReadout" class="lane-readout" aria-live="polite"><span class="label">CURRENT LANE / BEGINNER</span><h3>공개 샘플로 Source와 Knowledge를 나누고, 답변 노트 하나와 운영 카드 하나를 만듭니다.</h3><p>출처 세 개와 결론 한 개를 연결하고, 운영 카드에 사용 시점과 stop rule을 한 줄씩 쓰면 통과합니다.</p></div>
+    <div class="callout"><p><strong>Advanced 필수 확인 필드:</strong> source · authority · scope · effective date · supersedes · reviewer · evidence · stop rule. 최신 파일이라는 이유만으로 정본을 고르지 않습니다.</p></div>
+  </div>
+</section>
+<section id="mapping" class="section">
+  <div class="shell">
+    <div class="section-head"><span class="section-no">05 / MAP CURRENT SYSTEM</span><div><h2>이동 전에 현재 시스템을 매핑합니다.</h2><p>현재 위치와 역할을 기록한 뒤 “그대로 둘지, 연결할지, 선택 합성할지”를 결정합니다. 복사부터 시작하지 않습니다.</p></div></div>
+    <div id="worksheet">
+      <div class="card paper">
+        <span class="label">CURRENT SYSTEM / WORKSHEET</span>
+        <div class="field-grid" style="margin-top:15px">
+          <div class="field-wrap"><label class="field-label" for="current-system">현재 사용하는 시스템</label><input class="field" id="current-system" type="text" data-field="system.name" data-export-section="현재 지식관리 시스템" placeholder="Obsidian / Notion / Logseq / 폴더 / 기타"></div>
+          <div class="field-wrap"><label class="field-label" for="hard-question">현재 가장 찾기 어려운 질문</label><input class="field" id="hard-question" type="text" data-field="system.hardQuestion" data-export-section="현재 지식관리 시스템"></div>
+          <div class="field-wrap"><label class="field-label" for="source-location">원본 자료가 있는 곳</label><textarea class="field" id="source-location" data-field="system.sourceLocation" data-export-section="현재 지식관리 시스템"></textarea></div>
+          <div class="field-wrap"><label class="field-label" for="knowledge-location">내가 정리한 지식이 있는 곳</label><textarea class="field" id="knowledge-location" data-field="system.knowledgeLocation" data-export-section="현재 지식관리 시스템"></textarea></div>
+          <div class="field-wrap"><label class="field-label" for="context-location">프로젝트 전용 조건이 있는 곳</label><textarea class="field" id="context-location" data-field="system.contextLocation" data-export-section="현재 지식관리 시스템"></textarea></div>
+          <div class="field-wrap"><label class="field-label" for="procedure-location">반복 체크리스트·템플릿이 있는 곳</label><textarea class="field" id="procedure-location" data-field="system.procedureLocation" data-export-section="현재 지식관리 시스템"></textarea></div>
+          <div class="field-wrap full"><label class="field-label" for="evaluation-location">실패·검증 기록이 있는 곳</label><textarea class="field" id="evaluation-location" data-field="system.evaluationLocation" data-export-section="현재 지식관리 시스템"></textarea></div>
+        </div>
+      </div>
+      <div class="table-wrap" data-table-wrap><table><thead><tr><th>구역</th><th>현재 위치·노트</th><th>들어 있는 내용</th><th>AKM 역할 후보</th><th>그대로 둘지·연결할지</th><th>이유</th></tr></thead><tbody>
+        <tr><td>답변 참고 지식</td><td><textarea class="table-field" aria-label="Source 현재 위치" data-field="map.source.place" data-export-section="AKM 레이어 매핑"></textarea></td><td>Source</td><td>Source</td><td><textarea class="table-field" aria-label="Source 처리" data-field="map.source.action" data-export-section="AKM 레이어 매핑"></textarea></td><td><textarea class="table-field" aria-label="Source 이유" data-field="map.source.reason" data-export-section="AKM 레이어 매핑"></textarea></td></tr>
+        <tr><td>답변 참고 지식</td><td><textarea class="table-field" aria-label="Knowledge 현재 위치" data-field="map.knowledge.place" data-export-section="AKM 레이어 매핑"></textarea></td><td>재사용 판단</td><td>Knowledge</td><td><textarea class="table-field" aria-label="Knowledge 처리" data-field="map.knowledge.action" data-export-section="AKM 레이어 매핑"></textarea></td><td><textarea class="table-field" aria-label="Knowledge 이유" data-field="map.knowledge.reason" data-export-section="AKM 레이어 매핑"></textarea></td></tr>
+        <tr><td>에이전트 운영 지식</td><td><textarea class="table-field" aria-label="Context 현재 위치" data-field="map.context.place" data-export-section="AKM 레이어 매핑"></textarea></td><td>프로젝트 조건</td><td>Context</td><td><textarea class="table-field" aria-label="Context 처리" data-field="map.context.action" data-export-section="AKM 레이어 매핑"></textarea></td><td><textarea class="table-field" aria-label="Context 이유" data-field="map.context.reason" data-export-section="AKM 레이어 매핑"></textarea></td></tr>
+        <tr><td>에이전트 운영 지식</td><td><textarea class="table-field" aria-label="Procedure 현재 위치" data-field="map.procedure.place" data-export-section="AKM 레이어 매핑"></textarea></td><td>반복 단계</td><td>Procedure</td><td><textarea class="table-field" aria-label="Procedure 처리" data-field="map.procedure.action" data-export-section="AKM 레이어 매핑"></textarea></td><td><textarea class="table-field" aria-label="Procedure 이유" data-field="map.procedure.reason" data-export-section="AKM 레이어 매핑"></textarea></td></tr>
+        <tr><td>에이전트 운영 지식</td><td><textarea class="table-field" aria-label="Evaluation 현재 위치" data-field="map.evaluation.place" data-export-section="AKM 레이어 매핑"></textarea></td><td>실패·품질 기준</td><td>Evaluation</td><td><textarea class="table-field" aria-label="Evaluation 처리" data-field="map.evaluation.action" data-export-section="AKM 레이어 매핑"></textarea></td><td><textarea class="table-field" aria-label="Evaluation 이유" data-field="map.evaluation.reason" data-export-section="AKM 레이어 매핑"></textarea></td></tr>
+      </tbody></table></div>
+    </div>
+  </div>
+</section>
+<section id="migration" class="section">
+  <div class="shell">
+    <div class="section-head"><span class="section-no">06 / THREE NOTES</span><div><h2>privacy-safe 세 노트만 고릅니다.</h2><p>원본이나 기록에 가까운 노트, 내가 정리한 해석 노트, 실제 프로젝트에 적용한 노트입니다. 원본을 훼손하지 않고 경로 판단만 완료해도 첫 주 마이그레이션은 통과할 수 있습니다.</p></div></div>
+    <div class="grid-3">
+      <article class="note-card"><span class="note-letter">A</span><h3>Source A · 원본·기록</h3><div class="field-wrap"><label class="field-label" for="note-a-name">노트명</label><input class="field" id="note-a-name" type="text" data-field="notes.a.name" data-export-section="세 노트 선택"></div><div class="field-wrap"><label class="field-label" for="note-a-nature">성격</label><textarea class="field" id="note-a-nature" data-field="notes.a.nature" data-export-section="세 노트 선택"></textarea></div><div class="field-wrap"><label class="field-label" for="note-a-date">작성일 또는 source 날짜</label><input class="field" id="note-a-date" type="text" data-field="notes.a.date" data-export-section="세 노트 선택"></div><div class="field-wrap"><label class="field-label" for="note-a-sensitivity">민감도</label><input class="field" id="note-a-sensitivity" type="text" data-field="notes.a.sensitivity" data-export-section="세 노트 선택"></div><div class="field-wrap"><label class="field-label" for="note-a-preserve">원본을 직접 수정하지 않는가</label><select class="select" id="note-a-preserve" data-field="notes.a.preserve" data-export-section="세 노트 선택"><option value="">선택</option><option>YES</option><option>NO</option></select></div></article>
+      <article class="note-card"><span class="note-letter">B</span><h3>Source B · 해석·요약</h3><div class="field-wrap"><label class="field-label" for="note-b-name">노트명</label><input class="field" id="note-b-name" type="text" data-field="notes.b.name" data-export-section="세 노트 선택"></div><div class="field-wrap"><label class="field-label" for="note-b-relation">Source A와의 관계</label><textarea class="field" id="note-b-relation" data-field="notes.b.relation" data-export-section="세 노트 선택"></textarea></div><div class="field-wrap"><label class="field-label" for="note-b-separated">확인된 내용과 내 해석이 구분되는가</label><textarea class="field" id="note-b-separated" data-field="notes.b.separated" data-export-section="세 노트 선택"></textarea></div><div class="field-wrap"><label class="field-label" for="note-b-conflict">오래되었거나 충돌하는 부분</label><textarea class="field" id="note-b-conflict" data-field="notes.b.conflict" data-export-section="세 노트 선택"></textarea></div></article>
+      <article class="note-card"><span class="note-letter">C</span><h3>Source C · 적용·프로젝트</h3><div class="field-wrap"><label class="field-label" for="note-c-name">노트명</label><input class="field" id="note-c-name" type="text" data-field="notes.c.name" data-export-section="세 노트 선택"></div><div class="field-wrap"><label class="field-label" for="note-c-project">적용한 프로젝트·업무</label><textarea class="field" id="note-c-project" data-field="notes.c.project" data-export-section="세 노트 선택"></textarea></div><div class="field-wrap"><label class="field-label" for="note-c-conditions">특정 상황에서만 참인 조건</label><textarea class="field" id="note-c-conditions" data-field="notes.c.conditions" data-export-section="세 노트 선택"></textarea></div><div class="field-wrap"><label class="field-label" for="note-c-risk">다른 프로젝트에 일반화하면 위험한 내용</label><textarea class="field" id="note-c-risk" data-field="notes.c.risk" data-export-section="세 노트 선택"></textarea></div></article>
+    </div>
+    <div class="template-intro" style="margin-top:38px"><div><span class="label">MIGRATION MANIFEST</span><h3>정확히 세 행만 결정합니다.</h3></div><span class="chip">PRESERVE → POINT → SYNTHESIZE</span></div>
+    <div class="table-wrap" data-table-wrap><table><thead><tr><th>기존 노트</th><th>구역</th><th>현재 역할</th><th>AKM 목적지 후보</th><th>처리 방식</th><th>민감도</th><th>이유</th></tr></thead><tbody>
+      <tr><td>Source A</td><td>답변 참고 지식</td><td><textarea class="table-field" aria-label="Source A 현재 역할" data-field="manifest.a.role" data-export-section="Migration Manifest"></textarea></td><td><textarea class="table-field" aria-label="Source A 목적지" data-field="manifest.a.target" data-export-section="Migration Manifest" placeholder="10-sources"></textarea></td><td><textarea class="table-field" aria-label="Source A 처리 방식" data-field="manifest.a.action" data-export-section="Migration Manifest" placeholder="원본 유지·포인터 / 복사"></textarea></td><td><textarea class="table-field" aria-label="Source A 민감도" data-field="manifest.a.sensitivity" data-export-section="Migration Manifest"></textarea></td><td><textarea class="table-field" aria-label="Source A 이유" data-field="manifest.a.reason" data-export-section="Migration Manifest"></textarea></td></tr>
+      <tr><td>Source B</td><td>답변 참고 지식</td><td><textarea class="table-field" aria-label="Source B 현재 역할" data-field="manifest.b.role" data-export-section="Migration Manifest"></textarea></td><td><textarea class="table-field" aria-label="Source B 목적지" data-field="manifest.b.target" data-export-section="Migration Manifest" placeholder="20-knowledge"></textarea></td><td><textarea class="table-field" aria-label="Source B 처리 방식" data-field="manifest.b.action" data-export-section="Migration Manifest" placeholder="합성 / 연결"></textarea></td><td><textarea class="table-field" aria-label="Source B 민감도" data-field="manifest.b.sensitivity" data-export-section="Migration Manifest"></textarea></td><td><textarea class="table-field" aria-label="Source B 이유" data-field="manifest.b.reason" data-export-section="Migration Manifest"></textarea></td></tr>
+      <tr><td>Source C</td><td>에이전트 운영 지식</td><td><textarea class="table-field" aria-label="Source C 현재 역할" data-field="manifest.c.role" data-export-section="Migration Manifest"></textarea></td><td><textarea class="table-field" aria-label="Source C 목적지" data-field="manifest.c.target" data-export-section="Migration Manifest" placeholder="30-context / 50-procedures"></textarea></td><td><textarea class="table-field" aria-label="Source C 처리 방식" data-field="manifest.c.action" data-export-section="Migration Manifest" placeholder="Context·Procedure 연결"></textarea></td><td><textarea class="table-field" aria-label="Source C 민감도" data-field="manifest.c.sensitivity" data-export-section="Migration Manifest"></textarea></td><td><textarea class="table-field" aria-label="Source C 이유" data-field="manifest.c.reason" data-export-section="Migration Manifest"></textarea></td></tr>
+    </tbody></table></div>
+  </div>
+</section>
+<section id="templates" class="section">
+  <div class="shell">
+    <div class="section-head"><span class="section-no">07 / TWO ARTIFACTS</span><div><h2>근거와 실행 규칙을 별도 파일로 만듭니다.</h2><p>답변 참고용 정본 노트는 질문, source, 사실, 합성 판단, 충돌과 적용 범위를 담습니다. 에이전트 운영 카드는 언제 읽고, 어떤 Context와 Procedure로 실행하며, 언제 멈추고 무엇을 evidence로 남길지 정합니다.</p></div></div>
+    <div class="template-intro"><div><span class="label">ARTIFACT 01 / ANSWER REFERENCE</span><h3>답변 참고용 정본 노트</h3></div><span class="chip">SOURCE + KNOWLEDGE</span></div>
+    <div class="code-panel"><div class="code-head"><span class="label">MARKDOWN TEMPLATE</span><button type="button" class="copy-btn" data-copy-target="canonical-template">COPY TEMPLATE</button></div><pre><code id="canonical-template">---
+type: note
+aliases:
+  - ""
+description: "English relevance hint describing what this note helps a future human or agent retrieve."
+author:
+  - ""
+date created: 2026-07-23
+date modified: 2026-07-23
+tags:
+  - AKM
+  - GPTERS
+status: inProgress
+sourceNotes:
+  - "Source A"
+  - "Source B"
+  - "Source C"
+---
+
+# 내가 다시 사용할 지식
+
+## 이번 노트가 답할 질문
+
+이 세 자료를 다시 찾는 이유는 무엇인가?
+
+## 사용한 원본
+
+- Source A:
+- Source B:
+- Source C:
+
+## 확인된 사실
+
+- 원본에서 직접 확인한 사실
+- 여러 source에서 공통으로 확인된 내용
+
+## 합성한 판단
+
+다음 작업에도 재사용할 수 있는 판단을 작성합니다.
+
+## 충돌·불확실성
+
+- 서로 다르게 말하는 부분
+- 아직 확인하지 못한 부분
+- HOLD로 남길 내용
+
+## 적용 범위
+
+이 판단은 누구와 어떤 프로젝트에서 유효합니까?</code></pre></div>
+    <div class="template-intro" style="margin-top:42px"><div><span class="label">ARTIFACT 02 / AGENT OPERATIONS</span><h3>에이전트 운영 카드</h3></div><span class="chip">CONTEXT + PROCEDURE + EVALUATION</span></div>
+    <div class="code-panel"><div class="code-head"><span class="label">MARKDOWN TEMPLATE</span><button type="button" class="copy-btn" data-copy-target="operations-template">COPY TEMPLATE</button></div><pre><code id="operations-template">---
+type: procedure
+aliases:
+  - ""
+description: "English relevance hint describing when an agent should load and use this operating card."
+author:
+  - ""
+date created: 2026-07-23
+date modified: 2026-07-23
+tags:
+  - AKM
+  - agent-operations
+status: inProgress
+sourceNotes:
+  - "답변 참고용 정본 노트"
+---
+
+# 에이전트 운영 카드
+
+## 언제 읽는가
+
+
+## 먼저 읽을 답변 참고 지식
+
+
+## 사용자·프로젝트 Context
+
+
+## 실행 Procedure
+
+1.
+2.
+3.
+
+## Stop·HOLD 조건
+
+
+## 완료 Evidence
+
+
+## 실패 시 Learn Back 대상
+
+Context / Procedure / Evaluation 중 어디를 수정할지 작성합니다.</code></pre></div>
+  </div>
+</section>
+<section id="claim" class="section">
+  <div class="shell">
+    <div class="section-head"><span class="section-no">08 / SOURCE-TO-CLAIM</span><div><h2>주장마다 원문 구간을 연결합니다.</h2><p>최신성만 보지 말고 authority와 scope를 함께 확인합니다. 원본의 사실과 작성자의 해석, proposal과 승인 결정을 분리합니다.</p></div></div>
+    <div class="table-wrap" data-table-wrap><table><thead><tr><th>정본 노트의 주장</th><th>Source</th><th>직접 확인한 문장·구간</th><th>Authority</th><th>Scope</th><th>판정</th></tr></thead><tbody>
+      <tr><td><textarea class="table-field" aria-label="첫 번째 주장" data-field="claims.1.claim" data-export-section="Source-to-Claim"></textarea></td><td><textarea class="table-field" aria-label="첫 번째 Source" data-field="claims.1.source" data-export-section="Source-to-Claim"></textarea></td><td><textarea class="table-field" aria-label="첫 번째 직접 확인 구간" data-field="claims.1.quote" data-export-section="Source-to-Claim"></textarea></td><td><textarea class="table-field" aria-label="첫 번째 Authority" data-field="claims.1.authority" data-export-section="Source-to-Claim"></textarea></td><td><textarea class="table-field" aria-label="첫 번째 Scope" data-field="claims.1.scope" data-export-section="Source-to-Claim"></textarea></td><td><select class="select" aria-label="첫 번째 판정" data-field="claims.1.verdict" data-export-section="Source-to-Claim"><option value="">선택</option><option>PASS</option><option>PASS_WITH_NOTE</option><option>HOLD</option><option>FAIL</option><option>NOT TESTED</option></select></td></tr>
+      <tr><td><textarea class="table-field" aria-label="두 번째 주장" data-field="claims.2.claim" data-export-section="Source-to-Claim"></textarea></td><td><textarea class="table-field" aria-label="두 번째 Source" data-field="claims.2.source" data-export-section="Source-to-Claim"></textarea></td><td><textarea class="table-field" aria-label="두 번째 직접 확인 구간" data-field="claims.2.quote" data-export-section="Source-to-Claim"></textarea></td><td><textarea class="table-field" aria-label="두 번째 Authority" data-field="claims.2.authority" data-export-section="Source-to-Claim"></textarea></td><td><textarea class="table-field" aria-label="두 번째 Scope" data-field="claims.2.scope" data-export-section="Source-to-Claim"></textarea></td><td><select class="select" aria-label="두 번째 판정" data-field="claims.2.verdict" data-export-section="Source-to-Claim"><option value="">선택</option><option>PASS</option><option>PASS_WITH_NOTE</option><option>HOLD</option><option>FAIL</option><option>NOT TESTED</option></select></td></tr>
+      <tr><td><textarea class="table-field" aria-label="세 번째 주장" data-field="claims.3.claim" data-export-section="Source-to-Claim"></textarea></td><td><textarea class="table-field" aria-label="세 번째 Source" data-field="claims.3.source" data-export-section="Source-to-Claim"></textarea></td><td><textarea class="table-field" aria-label="세 번째 직접 확인 구간" data-field="claims.3.quote" data-export-section="Source-to-Claim"></textarea></td><td><textarea class="table-field" aria-label="세 번째 Authority" data-field="claims.3.authority" data-export-section="Source-to-Claim"></textarea></td><td><textarea class="table-field" aria-label="세 번째 Scope" data-field="claims.3.scope" data-export-section="Source-to-Claim"></textarea></td><td><select class="select" aria-label="세 번째 판정" data-field="claims.3.verdict" data-export-section="Source-to-Claim"><option value="">선택</option><option>PASS</option><option>PASS_WITH_NOTE</option><option>HOLD</option><option>FAIL</option><option>NOT TESTED</option></select></td></tr>
+    </tbody></table></div>
+  </div>
+</section>
+<section id="verify" class="section">
+  <div class="shell">
+    <div class="section-head"><span class="section-no">09 / VERIFY</span><div><h2>원문을 다시 열고 판정합니다.</h2><p>결과가 그럴듯한지보다 source를 직접 읽었는지 확인합니다. 확인할 수 없는 내용은 지우거나 단정하지 않고 HOLD로 보존합니다.</p></div></div>
+    <div class="grid-2">
+      <div class="card"><span class="label">DIRECT-READ CHECKLIST</span><div class="verify-list" style="margin-top:14px">
+        <label class="verify-item"><input type="checkbox" data-field="verify.sourceOpened" data-export-section="Verify" aria-label="핵심 주장마다 source를 직접 열었음"><span>핵심 주장마다 source를 직접 열었다.</span></label>
+        <label class="verify-item"><input type="checkbox" data-field="verify.decisionTypes" data-export-section="Verify" aria-label="proposal 회의 발언 승인 결정을 구분했음"><span>proposal·회의 발언·승인 결정을 구분했다.</span></label>
+        <label class="verify-item"><input type="checkbox" data-field="verify.authority" data-export-section="Verify" aria-label="최신 파일과 권위 있는 파일을 구분했음"><span>최신 파일과 권위 있는 파일을 구분했다.</span></label>
+        <label class="verify-item"><input type="checkbox" data-field="verify.scope" data-export-section="Verify" aria-label="적용 범위를 과장하지 않았음"><span>적용 범위를 과장하지 않았다.</span></label>
+        <label class="verify-item"><input type="checkbox" data-field="verify.directRead" data-export-section="Verify" aria-label="검색 요약 AI 답변을 원본 대신 사용하지 않았음"><span>검색·요약·AI 답변을 원본 대신 사용하지 않았다.</span></label>
+        <label class="verify-item"><input type="checkbox" data-field="verify.hold" data-export-section="Verify" aria-label="확인할 수 없는 내용을 HOLD로 남겼음"><span>확인할 수 없는 내용은 HOLD로 남겼다.</span></label>
+        <label class="verify-item"><input type="checkbox" data-field="verify.separate" data-export-section="Verify" aria-label="답변 근거와 에이전트 운영 규칙을 별도 파일로 나눴음"><span>답변의 근거와 에이전트 운영 규칙이 별도 파일로 나뉘었다.</span></label>
+        <label class="verify-item"><input type="checkbox" data-field="verify.pointer" data-export-section="Verify" aria-label="운영 카드가 답변 참고 지식 노트를 가리킴"><span>운영 카드가 먼저 읽을 답변 참고 지식 노트를 가리킨다.</span></label>
+      </div></div>
+      <div class="card paper"><span class="label">VERIFY RESULT</span><div class="field-grid" style="margin-top:14px">
+        <div class="field-wrap"><label class="field-label" for="verify-verdict">판정</label><select class="select" id="verify-verdict" data-field="verify.verdict" data-export-section="Verify 결과"><option value="">선택</option><option>PASS</option><option>PASS_WITH_NOTE</option><option>HOLD</option><option>FAIL</option><option>NOT TESTED</option></select></div>
+        <div class="field-wrap"><label class="field-label" for="verify-evidence">가장 강한 근거</label><textarea class="field" id="verify-evidence" data-field="verify.evidence" data-export-section="Verify 결과"></textarea></div>
+        <div class="field-wrap"><label class="field-label" for="verify-uncertainty">가장 큰 불확실성</label><textarea class="field" id="verify-uncertainty" data-field="verify.uncertainty" data-export-section="Verify 결과"></textarea></div>
+        <div class="field-wrap"><label class="field-label" for="verify-next">다시 확인할 사람·문서</label><textarea class="field" id="verify-next" data-field="verify.next" data-export-section="Verify 결과"></textarea></div>
+      </div></div>
+    </div>
+  </div>
+</section>
+<section id="learnback" class="section">
+  <div class="shell">
+    <div class="section-head"><span class="section-no">10 / LEARN BACK</span><div><h2>실패를 다음 구조 수정으로 돌려보냅니다.</h2><p>프롬프트만 다시 쓰고 끝내지 않습니다. 어떤 레이어의 어떤 필드나 단계를 고칠지 정한 뒤 같은 세 source로 재검증합니다.</p></div></div>
+    <div class="sentence-frame"><code>`[실패 또는 불확실성]`을 발견해 `[Procedure/Evaluation/Context]`의 `[필드 또는 단계]`를 수정하고, 같은 세 source로 다시 확인했습니다. 결과는 `[판정]`입니다.</code></div>
+    <div class="card paper" style="margin-top:18px"><div class="field-grid">
+      <div class="field-wrap"><label class="field-label" for="learn-problem">발견한 문제</label><textarea class="field" id="learn-problem" data-field="learnback.problem" data-export-section="Learn Back"></textarea></div>
+      <div class="field-wrap"><label class="field-label" for="learn-layer">수정할 레이어</label><select class="select" id="learn-layer" data-field="learnback.layer" data-export-section="Learn Back"><option value="">선택</option><option>Context</option><option>Procedure</option><option>Evaluation</option><option>Knowledge</option></select></div>
+      <div class="field-wrap"><label class="field-label" for="learn-field">수정할 필드·단계</label><textarea class="field" id="learn-field" data-field="learnback.field" data-export-section="Learn Back"></textarea></div>
+      <div class="field-wrap"><label class="field-label" for="learn-result">같은 입력으로 재검증한 결과</label><select class="select" id="learn-result" data-field="learnback.result" data-export-section="Learn Back"><option value="">선택</option><option>PASS</option><option>PASS_WITH_NOTE</option><option>HOLD</option><option>FAIL</option><option>NOT TESTED</option></select></div>
+      <div class="field-wrap full"><label class="field-label" for="learn-sentence">Learn Back 한 문장</label><textarea class="field" id="learn-sentence" data-field="learnback.sentence" data-export-section="Learn Back" placeholder="문장 틀을 사용해 작성"></textarea></div>
+    </div></div>
+  </div>
+</section>
+<section id="exit-ticket" class="section">
+  <div class="shell">
+    <div class="section-head"><span class="section-no">11 / EXIT TICKET</span><div><h2>다음 7일 행동까지 적습니다.</h2><p>설치 성공을 과장하지 않고, 무엇을 유지하고 무엇을 새로 연결했는지 말합니다. 마지막 세 문항은 다음 source, 검증 질문, 완료 evidence를 한 묶음으로 고정합니다.</p></div></div>
+    <div class="card paper"><div class="field-grid">
+      <div class="field-wrap"><label class="field-label" for="exit-1">1. 내 설치 판정과 근거</label><textarea class="field" id="exit-1" data-field="exit.1" data-export-section="Exit Ticket"></textarea></div>
+      <div class="field-wrap"><label class="field-label" for="exit-2">2. 기존 시스템에서 유지할 것</label><textarea class="field" id="exit-2" data-field="exit.2" data-export-section="Exit Ticket"></textarea></div>
+      <div class="field-wrap"><label class="field-label" for="exit-3">3. AKM과 새로 연결한 것</label><textarea class="field" id="exit-3" data-field="exit.3" data-export-section="Exit Ticket"></textarea></div>
+      <div class="field-wrap"><label class="field-label" for="exit-4">4. 오늘 만든 답변 참고 노트</label><textarea class="field" id="exit-4" data-field="exit.4" data-export-section="Exit Ticket"></textarea></div>
+      <div class="field-wrap"><label class="field-label" for="exit-5">5. 오늘 만든 에이전트 운영 카드와 사용 시점</label><textarea class="field" id="exit-5" data-field="exit.5" data-export-section="Exit Ticket"></textarea></div>
+      <div class="field-wrap"><label class="field-label" for="exit-6">6. 가장 권위 있는 source와 이유</label><textarea class="field" id="exit-6" data-field="exit.6" data-export-section="Exit Ticket"></textarea></div>
+      <div class="field-wrap"><label class="field-label" for="exit-7">7. HOLD로 남긴 내용</label><textarea class="field" id="exit-7" data-field="exit.7" data-export-section="Exit Ticket"></textarea></div>
+      <div class="field-wrap"><label class="field-label" for="exit-8">8. 수정할 레이어와 artifact</label><textarea class="field" id="exit-8" data-field="exit.8" data-export-section="Exit Ticket"></textarea></div>
+      <div class="field-wrap"><label class="field-label" for="exit-9">9. 다음 7일 안에 처리할 privacy-safe source</label><textarea class="field" id="exit-9" data-field="exit.9" data-export-section="Exit Ticket"></textarea></div>
+      <div class="field-wrap"><label class="field-label" for="exit-10">10. 그 source로 답할 검증 질문</label><textarea class="field" id="exit-10" data-field="exit.10" data-export-section="Exit Ticket"></textarea></div>
+      <div class="field-wrap full"><label class="field-label" for="exit-11">11. 완료를 확인할 증거</label><textarea class="field" id="exit-11" data-field="exit.11" data-export-section="Exit Ticket"></textarea></div>
+    </div></div>
+  </div>
+</section>
+<section id="export" class="section">
+  <div class="shell">
+    <div class="section-head"><span class="section-no">12 / TAKE IT WITH YOU</span><div><h2>워크시트를 내 브라우저에서 꺼냅니다.</h2><p>입력 내용은 자동으로 외부에 올라가지 않습니다. Markdown을 복사하거나 파일로 내려받아 본인이 선택한 안전한 위치에 저장합니다.</p></div></div>
+    <div class="export-panel"><div><span class="label">LOCAL MARKDOWN PROJECTION</span><h3>선택 레인 · 진행률 · 모든 입력을 한 파일로 만듭니다.</h3><p style="margin:0;color:#C7C8CB">빈 항목도 질문 구조로 남기므로 이후에 이어 쓸 수 있습니다. 서버로 전송하지 않습니다.</p></div><div class="export-actions"><button id="copyMarkdown" type="button" class="btn ghost">Markdown 복사</button><button id="exportMarkdown" type="button" class="btn primary">.md 내려받기</button></div></div>
+    <div class="reset-zone"><div><span class="label">CLEAR LOCAL DATA</span><p style="margin:5px 0 0">이 페이지가 저장한 레인·진행·워크시트 값만 지웁니다. 다른 사이트 데이터는 건드리지 않습니다.</p></div><div class="reset-actions"><button id="resetLocal" type="button" class="btn danger">로컬 데이터 초기화</button></div></div>
+    <div id="resetConfirm" class="confirm-box" hidden><p><strong>정말 초기화할까요?</strong> 이 페이지의 로컬 입력은 되돌릴 수 없습니다. 먼저 Markdown으로 내보낼 수 있습니다.</p><div class="reset-actions"><button id="confirmReset" type="button" class="btn danger" data-reset-confirm>초기화 확인</button><button id="cancelReset" type="button" class="btn ghost">취소</button></div></div>
+  </div>
+</section>
+</main>
+<footer class="footer"><div class="shell footer-inner"><p>이 페이지는 수강생 개인 실습을 위한 정적 워크벤치입니다. 계정, 분석 도구, 서버 저장소, 원격 제출 기능이 없습니다. 실제 전체 Vault 마이그레이션이나 설치 성공을 대신 증명하지 않으며, 최종 판단은 원문 직접 읽기와 사람의 검토로 확인합니다.</p><div class="footer-mark">DEXA<b>.</b> / AKM W01</div></div></footer>
+<div id="liveRegion" class="live-region" role="status" aria-live="polite" aria-atomic="true"></div>
+<script>
+(() => {
+  'use strict';
+  const STORAGE_KEY = 'akm1w.workbench.v1';
+  const LANES = {
+    beginner: {
+      label: 'CURRENT LANE / BEGINNER',
+      title: '공개 샘플로 Source와 Knowledge를 나누고, 답변 노트 하나와 운영 카드 하나를 만듭니다.',
+      text: '출처 세 개와 결론 한 개를 연결하고, 운영 카드에 사용 시점과 stop rule을 한 줄씩 쓰면 통과합니다.'
+    },
+    intermediate: {
+      label: 'CURRENT LANE / EXISTING PKM · INTERMEDIATE',
+      title: '현재 시스템을 보존하고 세 노트만 매핑·연결합니다.',
+      text: 'source-to-claim 표, 적용 범위와 불확실성을 추가하고, 이동보다 preserve-and-link를 먼저 검토합니다.'
+    },
+    advanced: {
+      label: 'CURRENT LANE / ADVANCED',
+      title: 'authority, freshness, scope 충돌을 해결하고 수정할 운영 레이어를 정합니다.',
+      text: 'source, authority, scope, effective date, supersedes, reviewer, evidence, stop rule을 확인합니다. 더 많이 쓰는 것이 목표는 아닙니다.'
+    }
+  };
+  const defaultState = () => ({ version: 1, lane: 'beginner', progress: {}, fields: {} });
+  let state = defaultState();
+  let announceTimer = 0;
+
+  const liveRegion = document.getElementById('liveRegion');
+  const announce = (message) => {
+    window.clearTimeout(announceTimer);
+    liveRegion.textContent = message;
+    announceTimer = window.setTimeout(() => { liveRegion.textContent = ''; }, 3600);
+  };
+  const plainObject = value => value && typeof value === 'object' && !Array.isArray(value);
+  const validateState = value => {
+    if (!plainObject(value) || value.version !== 1 || !Object.hasOwn(LANES, value.lane)) return null;
+    const progress = {};
+    if (plainObject(value.progress)) {
+      for (const [key, checked] of Object.entries(value.progress)) {
+        if (/^[a-z-]{1,32}$/.test(key) && typeof checked === 'boolean') progress[key] = checked;
+      }
+    }
+    const fields = {};
+    if (plainObject(value.fields)) {
+      for (const [key, fieldValue] of Object.entries(value.fields)) {
+        if (/^[a-z0-9.]{1,64}$/i.test(key) && (typeof fieldValue === 'string' || typeof fieldValue === 'boolean')) fields[key] = typeof fieldValue === 'string' ? fieldValue.slice(0, 12000) : fieldValue;
+      }
+    }
+    return { version: 1, lane: value.lane, progress, fields };
+  };
+  const loadState = () => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return defaultState();
+      const checked = validateState(JSON.parse(raw));
+      if (!checked) throw new Error('invalid local state');
+      return checked;
+    } catch (_) {
+      try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
+      return defaultState();
+    }
+  };
+  const saveState = () => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      return true;
+    } catch (_) {
+      announce('브라우저 로컬 저장에 실패했습니다. Markdown으로 복사해 보관해 주세요.');
+      return false;
+    }
+  };
+
+  const progressControls = [...document.querySelectorAll('[data-progress]')];
+  const renderProgress = () => {
+    progressControls.forEach(input => { input.checked = state.progress[input.dataset.progress] === true; });
+    const done = progressControls.filter(input => input.checked).length;
+    const percent = Math.round((done / progressControls.length) * 100);
+    const bar = document.getElementById('progressBar');
+    bar.style.width = `${percent}%`;
+    bar.setAttribute('aria-valuenow', String(percent));
+    document.getElementById('progressText').textContent = `${percent}%`;
+  };
+  progressControls.forEach(input => input.addEventListener('change', () => {
+    state.progress[input.dataset.progress] = input.checked;
+    saveState();
+    renderProgress();
+  }));
+
+  const renderLane = () => {
+    document.querySelectorAll('[data-lane]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.lane === state.lane)));
+    const lane = LANES[state.lane];
+    const readout = document.getElementById('laneReadout');
+    readout.innerHTML = `<span class="label">${lane.label}</span><h3>${lane.title}</h3><p>${lane.text}</p>`;
+  };
+  document.querySelectorAll('[data-lane]').forEach(button => button.addEventListener('click', () => {
+    state.lane = button.dataset.lane;
+    const saved = saveState();
+    renderLane();
+    if (saved) announce(`${button.textContent.trim()} 레인을 선택했습니다.`);
+  }));
+
+  const fieldControls = [...document.querySelectorAll('[data-field]')];
+  const fieldValue = control => control.type === 'checkbox' ? control.checked : control.value;
+  const setFieldValue = (control, value) => {
+    if (control.type === 'checkbox') control.checked = value === true;
+    else control.value = typeof value === 'string' ? value : '';
+  };
+  const syncPrintValue = control => {
+    let mirror = control.nextElementSibling;
+    if (!mirror || !mirror.classList.contains('print-value')) {
+      mirror = document.createElement('div');
+      mirror.className = 'print-value';
+      control.insertAdjacentElement('afterend', mirror);
+    }
+    const label = control.type === 'checkbox' ? (control.checked ? '☑ 확인' : '☐ 미확인') : (control.value || '—');
+    mirror.textContent = label;
+  };
+  const renderFields = () => fieldControls.forEach(control => {
+    setFieldValue(control, state.fields[control.dataset.field]);
+    syncPrintValue(control);
+  });
+  fieldControls.forEach(control => {
+    const eventName = control.type === 'checkbox' || control.tagName === 'SELECT' ? 'change' : 'input';
+    control.addEventListener(eventName, () => {
+      state.fields[control.dataset.field] = fieldValue(control);
+      syncPrintValue(control);
+      saveState();
+    });
+  });
+  window.addEventListener('beforeprint', () => fieldControls.forEach(syncPrintValue));
+
+  const osTabs = [...document.querySelectorAll('[data-os]')];
+  const selectOsTab = (tab, focus = false) => {
+    osTabs.forEach(candidate => {
+      const active = candidate === tab;
+      candidate.setAttribute('aria-selected', String(active));
+      candidate.tabIndex = active ? 0 : -1;
+      const panel = document.getElementById(candidate.getAttribute('aria-controls'));
+      panel.hidden = !active;
+      if (active) panel.removeAttribute('inert'); else panel.setAttribute('inert', '');
+    });
+    if (focus) tab.focus();
+  };
+  osTabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => selectOsTab(tab));
+    tab.addEventListener('keydown', event => {
+      let next = index;
+      if (event.key === 'ArrowRight') next = (index + 1) % osTabs.length;
+      else if (event.key === 'ArrowLeft') next = (index - 1 + osTabs.length) % osTabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = osTabs.length - 1;
+      else return;
+      event.preventDefault();
+      selectOsTab(osTabs[next], true);
+    });
+  });
+
+  const legacyClipboardWrite = text => {
+    const helper = document.createElement('textarea');
+    helper.value = text;
+    helper.setAttribute('aria-hidden', 'true');
+    helper.style.position = 'fixed';
+    helper.style.opacity = '0';
+    document.body.appendChild(helper);
+    helper.select();
+    const copied = document.execCommand('copy');
+    helper.remove();
+    if (!copied) throw new Error('copy unavailable');
+  };
+  const clipboardWrite = async text => {
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return;
+      } catch (_) {
+        legacyClipboardWrite(text);
+        return;
+      }
+    }
+    legacyClipboardWrite(text);
+  };
+  document.querySelectorAll('[data-copy-target]').forEach(button => button.addEventListener('click', async () => {
+    const target = document.getElementById(button.dataset.copyTarget);
+    try {
+      await clipboardWrite(target.textContent);
+      const old = button.textContent;
+      button.textContent = 'COPIED';
+      announce('코드 또는 템플릿을 복사했습니다.');
+      window.setTimeout(() => { button.textContent = old; }, 1600);
+    } catch (_) { announce('자동 복사에 실패했습니다. 코드 블록을 직접 선택해 복사해 주세요.'); }
+  }));
+
+  const labelFor = control => {
+    const id = control.id;
+    if (id) {
+      const label = document.querySelector(`label[for="${CSS.escape(id)}"]`);
+      if (label) return label.textContent.trim();
+    }
+    return control.getAttribute('aria-label') || control.dataset.field;
+  };
+  const markdownProjection = () => {
+    const lines = ['# AKM 1주차 수강생 워크시트', '', `- 선택 레인: ${LANES[state.lane].label.replace('CURRENT LANE / ', '')}`, `- 진행률: ${document.getElementById('progressText').textContent}`, `- 저장 방식: 이 브라우저의 localStorage만 사용`, '', '## 진행 체크'];
+    progressControls.forEach(input => lines.push(`- [${input.checked ? 'x' : ' '}] ${input.nextElementSibling.textContent.trim()}`));
+    const sections = new Map();
+    fieldControls.forEach(control => {
+      const section = control.dataset.exportSection || '워크시트';
+      if (!sections.has(section)) sections.set(section, []);
+      const value = control.type === 'checkbox' ? (control.checked ? 'YES' : 'NO') : control.value.trim();
+      sections.get(section).push({ label: labelFor(control), value });
+    });
+    for (const [section, entries] of sections) {
+      lines.push('', `## ${section}`);
+      entries.forEach(entry => lines.push('', `### ${entry.label}`, '', entry.value || ''));
+    }
+    lines.push('', '## Learn Back 문장 틀', '', '`[실패 또는 불확실성]`을 발견해 `[Procedure/Evaluation/Context]`의 `[필드 또는 단계]`를 수정하고, 같은 세 source로 다시 확인했습니다. 결과는 `[판정]`입니다.', '');
+    return lines.join('\n');
+  };
+  document.getElementById('copyMarkdown').addEventListener('click', async () => {
+    try { await clipboardWrite(markdownProjection()); announce('워크시트 Markdown을 복사했습니다.'); }
+    catch (_) { announce('Markdown 자동 복사에 실패했습니다. .md 내려받기를 사용해 주세요.'); }
+  });
+  document.getElementById('exportMarkdown').addEventListener('click', () => {
+    const blob = new Blob([markdownProjection()], { type: 'text/markdown' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = 'akm-week1-workbench.md';
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+    announce('워크시트 Markdown 파일을 만들었습니다.');
+  });
+
+  const resetBox = document.getElementById('resetConfirm');
+  document.getElementById('resetLocal').addEventListener('click', () => {
+    resetBox.hidden = false;
+    document.getElementById('confirmReset').focus();
+    announce('초기화 확인 단계입니다. 아직 데이터는 지워지지 않았습니다.');
+  });
+  document.getElementById('cancelReset').addEventListener('click', () => {
+    resetBox.hidden = true;
+    document.getElementById('resetLocal').focus();
+  });
+  document.getElementById('confirmReset').addEventListener('click', () => {
+    try { localStorage.removeItem(STORAGE_KEY); } catch (_) {}
+    state = defaultState();
+    resetBox.hidden = true;
+    renderLane();
+    renderProgress();
+    renderFields();
+    announce('이 페이지의 로컬 데이터를 초기화했습니다.');
+    document.getElementById('resetLocal').focus();
+  });
+
+  state = loadState();
+  renderLane();
+  renderProgress();
+  renderFields();
+})();
+</script>
+</body>
+</html>
