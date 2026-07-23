@@ -1,5 +1,26 @@
 [
   {
+    "slug": "the-observer-is-inside-the-system",
+    "file": "_built/the-observer-is-inside-the-system.md",
+    "title": "시스템을 보는 사람도 시스템 안에 있다",
+    "description": "2차 사이버네틱스를 통해 관객, 작가, 센서, 큐레이터와 기관이 작품을 관찰하면서 동시에 그 시스템을 바꾸는 방식을 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "second-order-cybernetics",
+      "cybernetics",
+      "observer",
+      "feedback",
+      "AI"
+    ],
+    "date": "2026-07-24",
+    "thumbnail": "images/the-observer-is-inside-the-system-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-send-script-output-delivery",
     "file": "_built/hermes-send-script-output-delivery.md",
     "title": "Hermes send는 LLM 없이 스크립트 출력을 메신저로 보낸다",
