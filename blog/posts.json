@@ -1,5 +1,23 @@
 [
   {
+    "slug": "hermes-insights-usage-analytics",
+    "file": "_built/hermes-insights-usage-analytics.md",
+    "title": "Hermes Insights는 에이전트 운영을 사용 기록으로 보여 준다",
+    "description": "Hermes Insights turns local session history into token, model, platform, tool, skill, and activity summaries. This guide explains its filters, data source, privacy boundary, and the difference from live usage and billing records.",
+    "category": "Post",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "insights"
+    ],
+    "date": "2026-07-24",
+    "thumbnail": "images/hermes-insights-usage-analytics-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "the-observer-is-inside-the-system",
     "file": "_built/the-observer-is-inside-the-system.md",
     "title": "시스템을 보는 사람도 시스템 안에 있다",
