@@ -295,29 +295,29 @@
   {
     "id": "dev-11",
     "section": "dev",
-    "title": "나라장터 입찰 탐색기",
+    "title": "Nara Bid Finder",
     "category": "JavaScript · GovTech · LLM",
     "year": "2026",
-    "description": "나라장터 용역 공고와 사전규격을 다중 조건으로 탐색하고, HWP·HWPX·DOCX·PDF·ZIP 첨부까지 분석해 지역·실적·면허 등 자격요건과 회사 적합도를 판정하는 로컬 입찰 워크스페이스. 관심 공고 저장, 마감·모니터링 알림, 공고별 AI 질의와 전체 첨부 기반 제안서 초안 생성을 한 흐름으로 연결한다.",
+    "description": "나라장터 입찰 탐색기 — 나라장터 용역 공고와 사전규격을 다중 조건으로 탐색하고, HWP·HWPX·DOCX·PDF·ZIP 첨부까지 분석해 지역·실적·면허 등 자격요건과 회사 적합도를 판정하는 로컬 입찰 워크스페이스. 관심 공고 저장, 마감·모니터링 알림, 공고별 AI 질의와 전체 첨부 기반 제안서 초안 생성을 한 흐름으로 연결한다.",
     "tags": [
       "Public Procurement",
       "Document AI"
     ],
     "badge": "R&D",
-    "size": "large"
+    "size": "normal"
   },
   {
     "id": "dev-12",
     "section": "dev",
-    "title": "제안서 초안 생성기",
+    "title": "Proposal MCP",
     "category": "TypeScript · MCP · RAG",
     "year": "2026",
-    "description": "RFP와 회사 프로필을 바탕으로 제안서 아카이브에서 유사 사례와 전략·콘셉트·수행방법론·KPI 패턴을 검색해 PPT 장표별 구성안을 만드는 MCP 기반 초안 생성 시스템. HWP·HWPX·PDF를 구조화하고 사업 유형별 목차, 타깃 페르소나, 근거·검증 메모를 결합해 작성 에이전트가 재사용 가능한 제안 논리를 제공한다.",
+    "description": "제안서 초안 생성기 — RFP와 회사 프로필을 바탕으로 제안서 아카이브에서 유사 사례와 전략·콘셉트·수행방법론·KPI 패턴을 검색해 PPT 장표별 구성안을 만드는 MCP 기반 초안 생성 시스템. HWP·HWPX·PDF를 구조화하고 사업 유형별 목차, 타깃 페르소나, 근거·검증 메모를 결합해 작성 에이전트가 재사용 가능한 제안 논리를 제공한다.",
     "tags": [
       "Proposal Automation",
       "Knowledge Base"
     ],
     "badge": "R&D",
-    "size": "large"
+    "size": "normal"
   }
 ]
