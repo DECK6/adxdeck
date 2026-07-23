@@ -7,7 +7,8 @@ const DATA_FILES = {
   performanceVenues: "data/kopis-venue-directory.json",
   workerSafety: "data/worker-safety-references.json",
   localOrdinances: "data/local-ordinance-pack.json",
-  sources: "data/source-registry.json"
+  sources: "data/source-registry.json",
+  personas: "data/nemotron-persona-sample.json"
 };
 
 const EVENT_TYPES = [
@@ -107,6 +108,14 @@ const TEMPLATES = [
   ["exhibition", "🏛 전시·박람회", "부스 설치·철거"],
   ["convention", "🎓 컨벤션·컨퍼런스", "실내 + 참가자 등록"],
   ["unhosted", "👥 무주최 운집 대비", "주최 없는 인파"]
+];
+
+const PERSONA_PRESETS = [
+  ["national", "전국 대표 샘플", "전국 분산 샘플로 기본 사각지대를 점검합니다."],
+  ["host_region", "개최 지역 중심", "입력한 관할 시도의 합성 페르소나를 우선합니다."],
+  ["senior_inclusive", "고령층 포함", "65세 이상을 최소 40% 포함해 이동·휴식·의료 대응을 점검합니다."],
+  ["family_inclusive", "가족 동반 포함", "자녀·다세대 가구를 최소 45% 포함해 보호자·재결합 절차를 점검합니다."],
+  ["operations_workforce", "작업자·협력업체", "경비·운송·식음료·시설·의료 직군을 우선해 현장 브리핑을 점검합니다."]
 ];
 
 const VENUE_JURISDICTION_HINTS = {
@@ -518,6 +527,254 @@ function decisionSummary(input) {
   ];
 }
 
+function personaStableHash(value) {
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return hash >>> 0;
+}
+
+function personaAgeBand(age) {
+  if (age < 35) return "19–34세";
+  if (age < 50) return "35–49세";
+  if (age < 65) return "50–64세";
+  if (age < 75) return "65–74세";
+  return "75세 이상";
+}
+
+function personaProvince(value) {
+  const token = String(value ?? "").replace(/\s+/g, "");
+  const aliases = {
+    서울특별시: "서울", 부산광역시: "부산", 대구광역시: "대구", 인천광역시: "인천",
+    광주광역시: "광주", 대전광역시: "대전", 울산광역시: "울산", 세종특별자치시: "세종",
+    경기도: "경기", 강원특별자치도: "강원", 강원도: "강원", 충청북도: "충북", 충청남도: "충남",
+    전북특별자치도: "전북", 전라북도: "전북", 전라남도: "전남", 경상북도: "경북", 경상남도: "경남",
+    제주특별자치도: "제주"
+  };
+  const exact = Object.keys(aliases).find((key) => token.includes(key));
+  return exact ? aliases[exact] : token.replace(/특별자치도|특별자치시|특별시|광역시|도/g, "");
+}
+
+function personaFamilySignal(persona) {
+  return /자녀|3세대|한부모|모와|부와/.test(persona.familyType ?? "");
+}
+
+function personaPlainLanguageSignal(persona) {
+  return /무학|초등학교|중학교/.test(persona.educationLevel ?? "");
+}
+
+function personaOccupationGroup(persona) {
+  const value = persona.occupation ?? "";
+  if (/간호|의사|의료|응급|보건/.test(value)) return "의료·응급";
+  if (/경비|보안|경찰|소방/.test(value)) return "경비·보안";
+  if (/운전|운송|택배|지게차|화물|물류/.test(value)) return "운송·물류";
+  if (/조리|음식|식품|서비스|판매|급식/.test(value)) return "식음료·서비스";
+  if (/전기|시설|건설|정비|설치|기계|청소/.test(value)) return "시설·작업";
+  if (/사무|개발|연구|교사|공무원|관리|전문/.test(value)) return "사무·전문";
+  return "기타";
+}
+
+function personaWorkforceSignal(persona) {
+  return ["의료·응급", "경비·보안", "운송·물류", "식음료·서비스", "시설·작업"].includes(personaOccupationGroup(persona));
+}
+
+function samplePersonaCohort(input) {
+  const source = DATA.personas.personas ?? [];
+  const preset = input.personaPreset || "national";
+  const requestedSize = Math.max(10, Math.min(200, Math.trunc(input.cohortSize || 100)));
+  const seed = 20260710;
+  const ordered = [...source].sort((a, b) => personaStableHash(`${seed}:${a.id}`) - personaStableHash(`${seed}:${b.id}`));
+  const selected = [];
+  const selectedIds = new Set();
+  const warnings = [];
+  const add = (items, target) => {
+    for (const item of items) {
+      if (selected.length >= target) break;
+      if (selectedIds.has(item.id)) continue;
+      selected.push(item);
+      selectedIds.add(item.id);
+    }
+  };
+  if (preset === "host_region") {
+    const target = personaProvince(input.jurisdiction || "");
+    if (target) add(ordered.filter((persona) => personaProvince(persona.province) === target), requestedSize);
+    if (!target) warnings.push("관할 지역이 없어 전국 샘플로 보충했습니다.");
+    else if (selected.length < requestedSize) warnings.push(`${target} 표본이 ${selected.length}명이라 전국 샘플로 보충했습니다.`);
+  }
+  if (preset === "senior_inclusive") add(ordered.filter((persona) => persona.age >= 65), Math.ceil(requestedSize * 0.4));
+  if (preset === "family_inclusive") add(ordered.filter(personaFamilySignal), Math.ceil(requestedSize * 0.45));
+  if (preset === "operations_workforce") add(ordered.filter(personaWorkforceSignal), Math.ceil(requestedSize * 0.5));
+  add(ordered, requestedSize);
+  const count = (predicate) => selected.filter(predicate).length;
+  const actualSize = selected.length;
+  const ratio = (value) => actualSize ? Number((value / actualSize).toFixed(3)) : 0;
+  const counts = {
+    senior: count((persona) => persona.age >= 65),
+    verySenior: count((persona) => persona.age >= 75),
+    familyCoordination: count(personaFamilySignal),
+    plainLanguageSupport: count(personaPlainLanguageSignal),
+    operationsWorkforce: count(personaWorkforceSignal)
+  };
+  const shares = Object.fromEntries(Object.entries(counts).map(([key, value]) => [key, ratio(value)]));
+  const presetMeta = PERSONA_PRESETS.find(([id]) => id === preset) ?? PERSONA_PRESETS[0];
+  const profiles = [];
+  const ageBands = new Set();
+  for (const persona of selected) {
+    const band = personaAgeBand(persona.age);
+    if (ageBands.has(band)) continue;
+    profiles.push({
+      id: persona.id,
+      ageBand: band,
+      province: persona.province,
+      familyType: persona.familyType,
+      educationLevel: persona.educationLevel,
+      occupation: persona.occupation,
+      occupationGroup: personaOccupationGroup(persona)
+    });
+    ageBands.add(band);
+    if (profiles.length >= 6) break;
+  }
+  for (const persona of selected) {
+    if (profiles.length >= 6) break;
+    if (profiles.some((profile) => profile.id === persona.id)) continue;
+    profiles.push({
+      id: persona.id,
+      ageBand: personaAgeBand(persona.age),
+      province: persona.province,
+      familyType: persona.familyType,
+      educationLevel: persona.educationLevel,
+      occupation: persona.occupation,
+      occupationGroup: personaOccupationGroup(persona)
+    });
+  }
+  return {
+    preset,
+    presetLabel: presetMeta[1],
+    presetDescription: presetMeta[2],
+    actualSize,
+    counts,
+    shares,
+    profiles,
+    warnings,
+    provenance: DATA.personas.provenance,
+    limitations: DATA.personas.limitations ?? []
+  };
+}
+
+function staticPlanCoverageText(result) {
+  return [
+    ...result.duties.flatMap((item) => [item.title, item.requiredWhen]),
+    ...result.hazards.flatMap((item) => [item.label, ...(item.controls ?? [])]),
+    ...result.venueRules.flatMap((item) => [item.summary, ...(item.checkpoints ?? [])]),
+    ...result.workerSafetyReferences.flatMap((item) => [item.title, item.summary]),
+    "현장 방송 문자 전광판 스태프 안내",
+    "한국어 English 日本語 中文 다국어 방문객 안전 안내"
+  ].filter(Boolean).join(" ");
+}
+
+function buildPersonaStressTest(input, result) {
+  const cohort = samplePersonaCohort(input);
+  const text = staticPlanCoverageText(result);
+  const findings = [];
+  const hasAny = (terms) => terms.some((term) => text.includes(term));
+  const hasAtLeast = (terms, needed) => terms.filter((term) => text.includes(term)).length >= needed;
+  const add = (id, title, priority, covered, recommendation, sentinel = false, audienceShare) => findings.push({
+    id, title, priority, status: covered ? "covered" : "gap", recommendation, sentinel, audienceShare
+  });
+  if (cohort.shares.senior >= 0.15 || cohort.shares.verySenior >= 0.05) {
+    add("senior_assisted_egress", "고령층 보조 이동·단계적 대피", "high",
+      hasAny(["이동지원", "보조 이동", "대피 도우미"]) && hasAny(["고령자", "노약자"]),
+      "대피 도우미, 계단 회피 대안, 휴식 지점, 승강기 정지 시 이동지원 절차를 명시하세요.", false, cohort.shares.senior);
+    add("channel_redundancy", "방송·표지·대면 안내 중복", "medium",
+      hasAtLeast(["방송", "안내판", "문자", "전광판", "스태프"], 3),
+      "앱·문자만 의존하지 말고 방송, 큰 글자 안내판, 전광판, 스태프 구두 안내를 같은 행동 문구로 맞추세요.", false, cohort.shares.senior);
+  }
+  if ((input.outdoor || input.outdoorEvent) && cohort.counts.senior > 0) {
+    add("outdoor_rest_medical", "옥외 휴식·폭염·의료 여유", "high",
+      hasAny(["그늘", "휴식구역", "냉방쉼터"]) && hasAny(["폭염", "온열질환", "의료"]),
+      "그늘·좌석·급수·냉방쉼터와 온열질환 관찰, 의료 이송 기준을 동선도와 런시트에 넣으세요.", false, cohort.shares.senior);
+  }
+  if (cohort.shares.familyCoordination >= 0.2) {
+    add("family_reunification", "미아·보호자 인계·가족 재결합", "high",
+      hasAny(["가족 재결합", "보호자 인계", "미아", "실종자"]),
+      "가족 분리 신고, 보호자 신원 확인, 재결합 장소와 개인정보 보호 절차를 추가하세요.", false, cohort.shares.familyCoordination);
+  }
+  if (cohort.shares.plainLanguageSupport >= 0.1) {
+    add("plain_language_pictogram", "쉬운 한국어·그림문자", "medium",
+      hasAny(["쉬운 한국어", "그림문자", "픽토그램", "행동형 문구"]),
+      "안내문을 한 문장 한 행동 원칙으로 줄이고 출구·금지·대기·도움 요청을 그림문자와 함께 제공하세요.", false, cohort.shares.plainLanguageSupport);
+  }
+  if (cohort.preset === "operations_workforce" || input.setupTeardown) {
+    add("workforce_briefing", "작업자·협력업체 브리핑", "medium",
+      hasAny(["TBM", "작업 전 교육", "작업자 안전교육"]) && hasAny(["작업중지", "비상연락"]),
+      "협력업체별 TBM, 작업중지권, 비상연락, 교대 인수인계를 훈련 시나리오로 만드세요.", false, cohort.shares.operationsWorkforce);
+  }
+  add("accessibility_sentinel", "장애·이동 접근성 센티널", "high",
+    hasAny(["휠체어", "이동약자"]) && hasAny(["시각장애", "청각장애", "수어", "촉지도"]),
+    "휠체어, 시각·청각 장애, 보조견, 이동지원 대피를 고정 테스트 케이스로 검증하세요.", true);
+  add("child_guardian_sentinel", "아동·보호자 센티널", "high",
+    hasAny(["아동", "영유아"]) && hasAny(["보호자", "미아", "가족 재결합"]),
+    "성인 전용 데이터셋의 공백을 보완하도록 아동 분리, 유모차, 보호자 인계 시나리오를 항상 실행하세요.", true);
+  add("non_korean_sentinel", "비한국어 방문객 센티널", "medium",
+    hasAny(["다국어", "English", "日本語", "中文"]) && hasAny(["그림문자", "픽토그램", "통역"]),
+    "다국어 문구, 그림문자, 통역·도움 요청 지점을 고정 점검하세요.", true);
+  const weights = { high: 3, medium: 2, low: 1 };
+  const totalWeight = findings.reduce((sum, finding) => sum + weights[finding.priority], 0);
+  const coveredWeight = findings.filter((finding) => finding.status === "covered").reduce((sum, finding) => sum + weights[finding.priority], 0);
+  return {
+    cohort,
+    findings,
+    gaps: findings.filter((finding) => finding.status === "gap"),
+    covered: findings.filter((finding) => finding.status === "covered"),
+    score: totalWeight ? Math.round((coveredWeight / totalWeight) * 100) : 100
+  };
+}
+
+function renderPersonaPanel(stress, focused = false) {
+  const { cohort, gaps, covered } = stress;
+  const pct = (value) => `${Math.round(Number(value || 0) * 100)}%`;
+  const body = [
+    '<section class="card persona-audit" id="persona-audit">',
+    '<div class="card-topline"><div><p class="eyebrow">Synthetic audience safety QA</p><h2>한국형 관람객 안전 스트레스 테스트</h2></div>',
+    `<span class="pill">${escapeHtml(stress.score)}/100</span></div>`,
+    `<p><strong>${escapeHtml(cohort.presetLabel)}</strong> ${escapeHtml(cohort.actualSize)}명 · 실제 참석자 예측이 아닌 합성 계획서 QA</p>`,
+    '<div class="chips">',
+    [
+      `고령층 ${pct(cohort.shares.senior)}`,
+      `가족·보호자 ${pct(cohort.shares.familyCoordination)}`,
+      `쉬운 안내 지원 ${pct(cohort.shares.plainLanguageSupport)}`,
+      `현장 직군 ${pct(cohort.shares.operationsWorkforce)}`
+    ].map((item) => chip(item)).join(""),
+    '</div>',
+    cohort.warnings.map((warning) => `<div class="notice">${escapeHtml(warning)}</div>`).join(""),
+    '</section>',
+    '<section class="card"><h2>사람 중심 보완 필요</h2><div class="list">',
+    gaps.length ? gaps.map((finding) => card(
+      finding.title,
+      finding.sentinel ? "필수 센티널" : finding.priority,
+      finding.recommendation,
+      finding.priority === "high" ? "tone-danger" : "tone-warning"
+    )).join("") : '<p class="muted">주요 페르소나 QA 공백 없음</p>',
+    '</div></section>',
+    '<section class="card"><h2>확인된 항목</h2><div class="chips">',
+    covered.length ? covered.map((finding) => chip(finding.title, "good")).join("") : '<span class="muted">확인된 항목 없음</span>',
+    '</div></section>',
+    '<details class="collapsed-section"' + (focused ? " open" : "") + '><summary>대표 합성 프로필</summary><div class="grid">',
+    cohort.profiles.map((profile) => card(
+      `${profile.ageBand} · ${profile.province}`,
+      profile.occupationGroup,
+      [profile.familyType, profile.educationLevel, profile.occupation].filter(Boolean).join(" / ")
+    )).join(""),
+    '</div></details>',
+    '<section class="card"><div class="notice">아동·장애 접근성·비한국어 방문객은 표본 빈도와 무관하게 필수 센티널로 검사합니다. 이 점수는 법적 적합성 또는 실제 사고확률 점수가 아닙니다.</div>',
+    `<details class="evidence"><summary>데이터 출처·제약</summary><p>NVIDIA ${escapeHtml(cohort.provenance?.dataset || "Nemotron-Personas-Korea")} · revision ${escapeHtml(String(cohort.provenance?.revision || "확인 필요").slice(0, 12))} · ${escapeHtml(cohort.provenance?.license || "license 확인 필요")}</p>${list(cohort.limitations)}</details>`,
+    '</section>'
+  ].join("");
+  return body;
+}
+
 function lawRefEvidence(lawRefs) {
   const lines = [];
   for (const ref of lawRefs ?? []) {
@@ -607,6 +864,7 @@ function renderResult(result) {
   const input = result.input;
   const decisions = decisionSummary(input);
   const actions = buildPriorityActions(input, result);
+  const personaStress = buildPersonaStressTest(input, result);
   const resultEl = $("#result");
   resultEl.innerHTML = [
     '<section class="card">',
@@ -630,6 +888,7 @@ function renderResult(result) {
       ? `<ol class="action-list">${actions.map((item) => `<li><strong>${escapeHtml(item.title)}</strong> — ${escapeHtml(item.detail)}${evidenceDetails(item.evidence)}</li>`).join("")}</ol>`
       : '<p class="muted">우선 액션 후보가 없습니다.</p>',
     '</section>',
+    renderPersonaPanel(personaStress),
     '<section class="card"><h2>적용/비적용 판단</h2><div class="grid">',
     decisions.map((item) => card(item.title, item.status, item.reason, toneForDecision(item.status))).join(""),
     '</div></section>',
@@ -678,7 +937,9 @@ function formInput() {
     eventTypes,
     venueId: $("#venueId").value || undefined,
     jurisdiction: $("#jurisdiction").value.trim() || undefined,
-    expectedCrowd: $("#expectedCrowd").value ? Number($("#expectedCrowd").value) : undefined
+    expectedCrowd: $("#expectedCrowd").value ? Number($("#expectedCrowd").value) : undefined,
+    personaPreset: $("#personaPreset").value || "national",
+    cohortSize: $("#cohortSize").value ? Number($("#cohortSize").value) : 100
   };
   for (const [key] of FEATURES) {
     input[key] = Boolean(document.querySelector(`#featureFlags input[value="${key}"]`)?.checked);
@@ -692,6 +953,8 @@ function applyInput(input) {
   $("#expectedCrowd").value = input.expectedCrowd ?? "";
   $("#venueId").value = input.venueId || "";
   $("#jurisdiction").value = input.jurisdiction || "";
+  if (input.personaPreset) $("#personaPreset").value = input.personaPreset;
+  if (input.cohortSize) $("#cohortSize").value = input.cohortSize;
   for (const box of document.querySelectorAll("#eventTypes input")) box.checked = (input.eventTypes || []).includes(box.value);
   for (const box of document.querySelectorAll("#featureFlags input")) box.checked = Boolean(input[box.value]);
 }
@@ -709,6 +972,21 @@ function runSimulation(event) {
   }
 }
 
+function runPersonaSimulation() {
+  if (!DATA) return;
+  $("#status").textContent = "관람객 QA 중";
+  try {
+    const input = formInput();
+    const result = simulate(input);
+    const stress = buildPersonaStressTest(input, result);
+    $("#result").innerHTML = renderPersonaPanel(stress, true);
+    $("#status").textContent = "완료";
+  } catch (err) {
+    $("#result").innerHTML = `<div class="notice error">${escapeHtml(err.message || err)}</div>`;
+    $("#status").textContent = "오류";
+  }
+}
+
 async function loadJson(path) {
   const response = await fetch(path);
   if (!response.ok) throw new Error(`${path} load failed`);
@@ -719,7 +997,13 @@ async function init() {
   renderCheckboxes($("#eventTypes"), EVENT_TYPES, ["exhibition"]);
   renderFeatureGroups($("#featureFlags"));
   renderTemplateCards($("#templateCards"));
+  $("#personaPreset").innerHTML = PERSONA_PRESETS.map(([id, label]) => `<option value="${escapeHtml(id)}">${escapeHtml(label)}</option>`).join("");
   $("#sim-form").addEventListener("submit", runSimulation);
+  $("#personaBtn").addEventListener("click", runPersonaSimulation);
+  $("#personaPreset").addEventListener("change", () => {
+    const preset = PERSONA_PRESETS.find(([id]) => id === $("#personaPreset").value) ?? PERSONA_PRESETS[0];
+    $("#personaDescription").textContent = `${preset[2]} 실제 참석자 예측에는 사용하지 않습니다.`;
+  });
   $("#printBtn").addEventListener("click", () => window.print());
   let printOpenedDetails = [];
   window.addEventListener("beforeprint", () => {

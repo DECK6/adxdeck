@@ -304,6 +304,28 @@ select {
   font-size: 12px;
 }
 
+.persona-input {
+  border: 1px solid #b9c9f5;
+  border-radius: 8px;
+  background: var(--blue-soft);
+  padding: 12px;
+}
+
+.persona-audit {
+  border-top: 4px solid var(--blue);
+}
+
+.persona-audit .card-topline h2 {
+  margin-bottom: 6px;
+}
+
+.persona-audit .pill {
+  color: var(--blue);
+  border-color: #b9c9f5;
+  background: var(--blue-soft);
+  font-size: 15px;
+}
+
 details.expert,
 details.evidence,
 details.collapsed-section {
