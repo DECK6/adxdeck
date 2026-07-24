@@ -1,5 +1,27 @@
 [
   {
+    "slug": "machine-vision-does-not-see-everyone-equally",
+    "file": "_built/machine-vision-does-not-see-everyone-equally.md",
+    "title": "기계의 시선은 모두를 똑같이 보지 않는다",
+    "description": "조이 부올라미니의 Gender Shades와 예술 실천을 통해 평균 정확도가 가리는 얼굴 분석의 격차, 알고리즘 감사의 공적 역할, 더 정확한 감시가 답이 아닐 수 있는 이유를 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "joy-buolamwini",
+      "gender-shades",
+      "machine-vision",
+      "algorithmic-bias",
+      "facial-analysis",
+      "AI"
+    ],
+    "date": "2026-07-25",
+    "thumbnail": "images/machine-vision-does-not-see-everyone-equally-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-insights-usage-analytics",
     "file": "_built/hermes-insights-usage-analytics.md",
     "title": "Hermes Insights는 에이전트 운영을 사용 기록으로 보여 준다",
