@@ -1,5 +1,23 @@
 [
   {
+    "slug": "hermes-shell-hooks-consent-guardrails",
+    "file": "_built/hermes-shell-hooks-consent-guardrails.md",
+    "title": "도구 실행 전에 멈추고, LLM 호출 전에 맥락을 넣는 Hermes Shell Hooks",
+    "description": "Hermes Shell Hooks attach reviewed scripts to agent lifecycle events without requiring a Python plugin. This guide covers the JSON protocol, consent model, blocking and context injection, and the checks to run before enabling hooks in unattended sessions.",
+    "category": "Post",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "hooks"
+    ],
+    "date": "2026-07-25",
+    "thumbnail": "images/hermes-shell-hooks-consent-guardrails-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "machine-vision-does-not-see-everyone-equally",
     "file": "_built/machine-vision-does-not-see-everyone-equally.md",
     "title": "기계의 시선은 모두를 똑같이 보지 않는다",
