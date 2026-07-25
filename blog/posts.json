@@ -1,5 +1,24 @@
 [
   {
+    "slug": "when-dataset-labor-becomes-the-artwork",
+    "file": "_built/when-dataset-labor-becomes-the-artwork.md",
+    "title": "데이터셋을 만드는 손까지 작품이 된다",
+    "description": "안나 리들러의 Myriad (Tulips), Mosaic Virus, Fall of the House of Usher를 통해 AI 이미지 뒤에 감춰진 데이터셋 제작의 노동과 판단을 살펴본다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "anna-ridler",
+      "dataset",
+      "machine-learning",
+      "generative-art"
+    ],
+    "date": "2026-07-26",
+    "thumbnail": "images/anna-ridler-handmade-dataset-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "evaluating-evidence-beyond-fluent-reports",
     "file": "_built/evaluating-evidence-beyond-fluent-reports.md",
     "title": "유창한 보고서 너머의 근거 평가",
