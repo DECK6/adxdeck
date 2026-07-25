@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>에이전트의 맥락은 작업마다 다시 편성되어야 한다 | DEXA Blog</title>
+    <meta name="description" content="에이전트 지식 시스템에서 저장량보다 작업별 context budget과 선별 규칙이 중요한 이유를 연구와 AKM 공개 설계에 연결해 살핀다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/task-specific-context-budgets/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="에이전트의 맥락은 작업마다 다시 편성되어야 한다" />
+    <meta property="og:description" content="에이전트 지식 시스템에서 저장량보다 작업별 context budget과 선별 규칙이 중요한 이유를 연구와 AKM 공개 설계에 연결해 살핀다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/task-specific-context-budgets/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/task-specific-context-budgets-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-07-25" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="context-engineering" />
+    <meta property="article:tag" content="knowledge-management" />
+    <meta property="article:tag" content="akm" />
+    <meta property="article:tag" content="AI" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="에이전트의 맥락은 작업마다 다시 편성되어야 한다" />
+    <meta name="twitter:description" content="에이전트 지식 시스템에서 저장량보다 작업별 context budget과 선별 규칙이 중요한 이유를 연구와 AKM 공개 설계에 연결해 살핀다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/task-specific-context-budgets-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"에이전트의 맥락은 작업마다 다시 편성되어야 한다","description":"에이전트 지식 시스템에서 저장량보다 작업별 context budget과 선별 규칙이 중요한 이유를 연구와 AKM 공개 설계에 연결해 살핀다.","image":"https://dexa.art/blog/images/task-specific-context-budgets-cover.png","datePublished":"2026-07-25","dateModified":"2026-07-25","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/task-specific-context-budgets/"},"articleSection":"AI · AX","keywords":"ai-agent, context-engineering, knowledge-management, akm, AI"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/blog/" class="active">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+    </nav>
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.07.25</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>에이전트의 맥락은 작업마다 다시 편성되어야 한다</h1>
+                <p style="color:var(--muted);font-size:17px;">에이전트 지식 시스템에서 저장량보다 작업별 context budget과 선별 규칙이 중요한 이유를 연구와 AKM 공개 설계에 연결해 살핀다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">ai-agent</span><span class="dx-tag-chip">context-engineering</span><span class="dx-tag-chip">knowledge-management</span><span class="dx-tag-chip">akm</span><span class="dx-tag-chip">AI</span></div>
+<p><img src="/blog/images/task-specific-context-budgets-cover.png" alt="수많은 맥락 조각 가운데 일부만 선택되어 제한된 작업 공간으로 들어가는 추상 설치 장면" loading="lazy"></p>
+<h2>현재 문제</h2>
+<p>에이전트의 기억을 말할 때 저장량부터 세기 쉽다. 더 많은 대화, 더 긴 문서, 더 큰 벡터 저장소를 붙이면 이전보다 잘 일할 것처럼 보인다. 그러나 저장할 수 있다는 것과 지금 모델에게 보여 줘야 한다는 것은 다른 문제다. 회의록 한 장은 나중에 검색할 수 있어야 하지만, 코드 리뷰와 보도자료 교정에 매번 들어갈 이유는 없다.</p>
+<p>긴 context window도 이 구분을 없애지 않는다. 최대 입력 길이는 상한이지, 그만큼 채우라는 권고가 아니다. 현재 요청, 금지 조건, 최신 파일, 도구 결과, 과거 결정이 한 창 안에서 자리를 다툰다. 관련 없는 기억이 늘면 어떤 근거를 따라야 하는지 흐려진다. 오래된 결정과 최신 정책에 권위와 시점 표시가 없다면 충돌을 조정하기도 어렵다.</p>
+<p>그래서 에이전트형 지식 관리의 질문은 &quot;얼마나 많이 기억하는가&quot;에서 &quot;이 작업에 어떤 정보를 얼마만큼, 어떤 순서로 넣는가&quot;로 옮겨가야 한다.</p>
+<h2>개념과 근거</h2>
+<p>맥락 예산(context budget)은 모델의 물리적 한도와 다르다. 한 작업에서 목표·제약·증거·절차·작업 기록에 배정할 입력 예산과 답변·도구 호출을 위해 남겨 둘 여유를 뜻한다. 선별 규칙은 후보를 고르고 제외하며, 필요하면 다시 읽게 만드는 운영 계약이다.</p>
+<p>연구는 &quot;창이 길면 모두 잘 읽는다&quot;는 가정을 지지하지 않는다. Liu 등의 TACL 2024 논문 <em>Lost in the Middle</em>은 다중 문서 질의응답과 key-value 검색에서 관련 정보의 위치만 바뀌어도 성능이 크게 달라질 수 있음을 보였다. 정보가 긴 입력의 처음이나 끝에 있을 때보다 가운데 있을 때 성능이 낮아지는 현상은 long-context 모델에서도 나타났다. Hsieh 등의 RULER 연구는 단순한 needle-in-a-haystack를 넘어 다중 needle, multi-hop tracing, aggregation을 시험했다. 32K 이상을 표방한 17개 모델 가운데 32K에서 만족스러운 성능을 유지한 모델은 절반뿐이었고, 거의 모든 모델이 길이가 늘수록 큰 성능 저하를 보였다.</p>
+<p>두 결과가 짧은 prompt가 언제나 우월하다고 증명하는 것은 아니다. 다만 표기된 context 길이와 실제 과업 수행 길이가 같지 않으며, 정보의 위치와 과업 복잡도가 결과에 관여한다는 근거는 된다. Anthropic도 2025년 공식 기술 글에서 context를 한계효용이 줄어드는 유한 자원으로 다루고, 원하는 결과의 가능성을 높이는 &quot;가장 작은 고신호 토큰 집합&quot;을 찾는 것을 context engineering의 원칙으로 제시했다.</p>
+<h2>작동 방식</h2>
+<p>실무에서는 검색 전에 작업을 먼저 분류해야 한다. 사실 확인인지, 코드 수정인지, 기획 초안인지에 따라 필요한 근거와 허용 가능한 누락이 다르다. 같은 &quot;프로젝트 기억&quot;이라도 사실 확인에는 원문과 최신성이 중요하고, 코드 수정에는 현재 diff와 테스트 규칙이 먼저이며, 기획에는 사용자 제약과 결정 이력이 더 큰 몫을 차지한다.</p>
+<p>맥락 패킷은 목표, 산출물, 금지 사항처럼 빠지면 작업 자체가 달라지는 항목부터 채운다. 그다음 현재 상태와 직접 읽은 근거를 넣는다. 절차와 과거 실패는 해당 부분만 붙이고, 큰 로그와 중간 검색 결과는 요약·경로·위치 정보(locator)를 남긴 뒤 내보낸다. 새 주제로 넘어갈 때는 이전 세션 전체를 넘기지 말고 패킷을 다시 만든다.</p>
+<p>선별 순서도 명시해야 한다. 프로젝트 범위와 접근 정책을 통과한 자료만 후보로 삼고, 관련성 점수보다 출처 권위와 적용 범위를 먼저 본다. 신선성은 자격이 같은 자료 사이에서 따진다. 같은 원본의 여러 조각이 상위권을 독점하지 못하게 출처 단위 중복 제거와 상한을 두고, 주변 문맥은 최종 후보에만 확장한다. 중요한 주장은 검색 발췌문이 아니라 직접 읽은 원문으로 확인한다. 제외 이유도 남겨야 다음 실패를 고칠 수 있다.</p>
+<p>고정된 마법의 비율은 없다. 예산은 토큰 수만이 아니라 정보 역할별 상한과 퇴출 조건까지 포함해야 한다. 예를 들어 도구 실행이 끝난 뒤 원시 출력은 빼되 명령, 종료 상태, 핵심 관찰, 파일 경로는 남길 수 있다. 반대로 법적 문구나 정밀한 수치처럼 요약 과정에서 손실되기 쉬운 내용은 원문 위치 정보와 함께 보존해야 한다.</p>
+<h2>AKM/공개 GitHub 연결</h2>
+<p>2026년 7월 25일 직접 확인한 공개 저장소 <a href="https://github.com/DECK6/akm">DECK6/akm</a>의 default branch는 <code>main</code>이었다. 당시 HEAD <code>2efc02b040ec86948005fa634ae1a3b43a184a3f</code>의 <a href="https://github.com/DECK6/akm/blob/2efc02b040ec86948005fa634ae1a3b43a184a3f/README.ko.md">README.ko.md</a>는 AKM의 7개 레이어를 로딩 관점에서 Memory, Brain, Vault로 묶는다. Memory는 매 세션 읽는 짧은 포인터, Brain은 작업할 때 읽는 절차·결정·실패 패턴, Vault는 지식이 필요할 때 찾는 원본·지식·맥락·산출물이다. 저장 위치와 로딩 시점을 분리한 셈이다.</p>
+<p>같은 커밋의 <a href="https://github.com/DECK6/akm/blob/2efc02b040ec86948005fa634ae1a3b43a184a3f/99-system/EVIDENCE-SCHEMA.md">EVIDENCE-SCHEMA.md</a>는 후보와 검증을 구분하고, 중요한 주장을 직접 읽은 자료에 연결한다. 범위와 권위는 관련성·신선성보다 앞선다. 출처 단위 중복 제거, 출처별 상한, 선택 결과에만 적용하는 주변 문맥 확장도 명시한다. EvidencePacket 지표에는 입력 바이트와 추정 맥락 토큰이 들어간다. <a href="https://github.com/DECK6/akm/blob/2efc02b040ec86948005fa634ae1a3b43a184a3f/99-system/templates/project-retrieval-manifest.yaml">project retrieval manifest 템플릿</a>은 허용·차단 범위, 검색 경로, 결과 상한, 직접 읽기 정책을 프로젝트 단위로 선언하게 한다.</p>
+<p>이 공개 코어가 작업별 토큰 예산을 자동 배분한다고 말할 수는 없다. 현재 설계에서 읽을 수 있는 것은 토대다. 다음 단계는 작업 계약(task contract)이 작업 유형, 입력 상한, 필수 근거 슬롯, 출처 상한, 퇴출 조건을 선언하고, 실행 후 누락·과잉 주입을 <code>70-evaluation/</code>으로 되돌리는 것이다.</p>
+<h2>한계</h2>
+<p>선별은 손실을 만든다. 처음에는 주변 정보처럼 보였던 문장이 뒤늦게 핵심 조건으로 드러날 수 있고, 검색 질의가 나쁘면 좋은 자료는 후보에도 오르지 못한다. 요약은 수치와 예외를 지우기 쉽다. 권위와 최신성 규칙도 조직마다 다르며, token 수가 적다고 맥락의 질이 자동으로 높아지지는 않는다.</p>
+<p>예산은 한 번 정하고 끝나는 값이 아니다. 누락 때문인지, 낡은 정보 때문인지, 한 출처의 독점 때문인지 구분해 고쳐야 한다. 고위험 작업에서는 절약보다 원문 확인과 충돌 보존이 우선이다.</p>
+<h2>설계 시사점</h2>
+<p>기억 시스템은 모든 기억을 현재형으로 만들 필요가 없다. 많이 저장하되 이번 작업에는 적게, 정확히 불러와야 한다. 예산은 모델이나 사용자에게 하나의 숫자로 붙이지 말고 작업 계약에 붙인다. 검색 결과는 후보로 두고, 중요한 주장은 직접 읽은 근거로 승격한다. 선택과 제외의 이유를 남기고, 실패가 생기면 저장량보다 선별 규칙을 먼저 고친다. 필요할 때 원본으로 돌아가 작은 패킷을 다시 만들 수 있어야 장기 작업도 덜 흐려진다.</p>
+<h2>Sources consulted</h2>
+<ul><li>Liu et al., <a href="https://aclanthology.org/2024.tacl-1.9/">&quot;Lost in the Middle: How Language Models Use Long Contexts&quot;</a>, TACL 2024.</li><li>Hsieh et al., <a href="https://arxiv.org/abs/2404.06654">&quot;RULER: What's the Real Context Size of Your Long-Context Language Models?&quot;</a>, COLM 2024.</li><li>Anthropic, <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents">&quot;Effective context engineering for AI agents&quot;</a>, 2025-09-29.</li><li><a href="https://github.com/DECK6/akm">DECK6/akm public repository</a> (<code>main</code> 확인)</li><li>AKM <a href="https://github.com/DECK6/akm/blob/2efc02b040ec86948005fa634ae1a3b43a184a3f/README.ko.md"><code>README.ko.md</code></a> (확인 커밋 고정)</li><li>AKM <a href="https://github.com/DECK6/akm/blob/2efc02b040ec86948005fa634ae1a3b43a184a3f/99-system/EVIDENCE-SCHEMA.md"><code>EVIDENCE-SCHEMA.md</code></a> (확인 커밋 고정)</li><li>AKM <a href="https://github.com/DECK6/akm/blob/2efc02b040ec86948005fa634ae1a3b43a184a3f/99-system/templates/project-retrieval-manifest.yaml"><code>project-retrieval-manifest.yaml</code></a> (확인 커밋 고정)</li></ul>
+            </div>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/hermes-insights-usage-analytics/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>Hermes Insights는 에이전트 운영을 사용 기록으로 보여 준다</span></a>
+                <a id="next-post" href="/blog/posts/machine-vision-does-not-see-everyone-equally/" class="spec-row" style="text-decoration:none;"><span>기계의 시선은 모두를 똑같이 보지 않는다</span><span class="k">NEXT →</span></a>
+            </nav>
+        </article>
+    </main>
+    <footer class="dx-footer" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
+        <a href="/" style="display:flex;align-items:center;gap:10px;">
+            <svg viewBox="4 4 112 98" width="28" height="24" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+        </a>
+        <p class="dx-footer-note" style="margin:0;text-align:right;">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+    </footer>
+</body>
+</html>
