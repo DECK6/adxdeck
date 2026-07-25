@@ -1,5 +1,25 @@
 [
   {
+    "slug": "evaluating-evidence-beyond-fluent-reports",
+    "file": "_built/evaluating-evidence-beyond-fluent-reports.md",
+    "title": "유창한 보고서 너머의 근거 평가",
+    "description": "딥 리서치 에이전트를 보고서, 근거, 검색 과정으로 나누어 평가하고 AKM EvidencePacket이 메우려는 간극을 살핀다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-agent",
+      "deep-research",
+      "evaluation",
+      "evidence",
+      "akm",
+      "AI"
+    ],
+    "date": "2026-07-25",
+    "thumbnail": "images/evaluating-evidence-beyond-fluent-reports-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hermes-shell-hooks-consent-guardrails",
     "file": "_built/hermes-shell-hooks-consent-guardrails.md",
     "title": "도구 실행 전에 멈추고, LLM 호출 전에 맥락을 넣는 Hermes Shell Hooks",
