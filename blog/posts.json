@@ -1,5 +1,25 @@
 [
   {
+    "slug": "event-scores-as-executable-art",
+    "file": "_built/event-scores-as-executable-art.md",
+    "title": "이벤트 스코어, 작품을 실행하는 문장",
+    "description": "플럭서스의 이벤트 스코어와 배포, 재실행을 따라 작품의 단위가 오브제에서 사건으로 이동한 과정을 살펴본다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "fluxus",
+      "event-score",
+      "performance-art",
+      "intermedia"
+    ],
+    "date": "2026-07-27",
+    "thumbnail": "images/fluxus-object-to-event-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "when-dataset-labor-becomes-the-artwork",
     "file": "_built/when-dataset-labor-becomes-the-artwork.md",
     "title": "데이터셋을 만드는 손까지 작품이 된다",
