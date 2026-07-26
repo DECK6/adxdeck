@@ -20,6 +20,25 @@
     "author": "육대근"
   },
   {
+    "slug": "format-compliance-is-not-verification",
+    "file": "_built/format-compliance-is-not-verification.md",
+    "title": "형식이 맞는 답은 아직 검증된 답이 아니다",
+    "description": "구조화 생성이 토큰 단계에서 보장하는 형식의 범위와, 사실·근거·권한 검증이 별도 계층으로 남는 이유를 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "structured-generation",
+      "constrained-decoding",
+      "inference",
+      "akm",
+      "AI"
+    ],
+    "date": "2026-07-27",
+    "thumbnail": "images/format-compliance-is-not-verification-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "when-dataset-labor-becomes-the-artwork",
     "file": "_built/when-dataset-labor-becomes-the-artwork.md",
     "title": "데이터셋을 만드는 손까지 작품이 된다",
