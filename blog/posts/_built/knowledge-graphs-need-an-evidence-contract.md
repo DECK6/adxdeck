@@ -1,0 +1,90 @@
+---
+type: article
+track: ai-ax
+title: 지식 그래프는 문서에서 바로 나오지 않는다
+slug: knowledge-graphs-need-an-evidence-contract
+aliases:
+  - Knowledge Graphs Need an Evidence Contract
+author: 육대근
+date created: 2026-07-28
+date modified: 2026-07-28
+tags:
+  - article
+  - graph-engineering
+  - knowledge-graph
+  - GraphRAG
+  - provenance
+  - akm
+  - AI
+description: 문서를 지식 그래프로 바꾸는 추출·정규화·출처 계보·검색 단계를 GraphRAG와 LightRAG의 최근 근거로 살피고, AKM에서 그래프를 정본이 아닌 감사 가능한 파생물로 다루는 설계 원칙을 제안한다.
+thumbnail: images/knowledge-graphs-need-an-evidence-contract-cover.png
+status: completed
+---
+
+# 지식 그래프는 문서에서 바로 나오지 않는다
+
+![흩어진 빛 조각이 정규화된 노드와 제한된 서브그래프로 이어지는 추상 개념 이미지](images/knowledge-graphs-need-an-evidence-contract-cover.png)
+
+## 지금의 질문
+
+벡터 RAG는 질문과 가까운 문단을 찾는 데 강하다. 하지만 "이 자료 전체를 관통하는 쟁점은 무엇인가"처럼 코퍼스 전반의 구조를 묻는 질문에는 가까운 문단 몇 개만으로 답하기 어렵다. 2024년 GraphRAG 논문은 이 차이를 명시했다. 개별 사실 검색이 아니라 전체 자료를 대상으로 한 질의 중심 요약이 필요하다는 것이다.
+
+지식 그래프가 다시 주목받는 이유다. DEXA가 이 글에서 묻는 2026년의 실무 질문은 그래프 데이터베이스 채택 여부보다 원문에서 추출된 이름과 관계를 어떻게 정규화하고 되돌릴지, 답에서 원출처까지 어떻게 추적할지에 있다. 연결선을 그렸다고 그래프가 완성되는 것은 아니다. 이하의 `unresolved` 상태, 엣지별 계보 필드, JSON·테이블 사용 제안은 두 논문의 실험 결과를 옮긴 내용이 아니다. 그 한계를 바탕으로 DEXA가 제안하는 운영 설계다.
+
+2026년 7월 28일 확인했을 때 Microsoft GraphRAG의 `main`은 커밋 `14a00ad`였고, 최신 GitHub 릴리스 `v3.1.1`(UTC 2026-07-18)과 일치했다. 같은 커밋의 README와 RAI transparency note는 인덱싱 비용이 크므로 작은 데이터셋에서 먼저 시험하라고 권한다. LightRAG의 공개 `main`은 `bbebdd6`이었다. GitHub가 `latest`로 표시한 릴리스는 이름상 릴리스 후보인 `v1.5.5rc1`(UTC 2026-07-13, 한국시간 7월 14일)이었다. 버전은 구현 스냅샷일 뿐 그래프 품질을 보증하지 않는다.
+
+## 개념과 직접 근거
+
+GraphRAG는 원문에서 엔티티 지식 그래프를 만든 뒤, 서로 가까운 엔티티의 커뮤니티를 찾고 커뮤니티 요약을 미리 생성한다. 전체 코퍼스를 묻는 질문이 들어오면 여러 커뮤니티 요약에서 부분 답을 만들고 이를 다시 합친다. 2024년 4월 24일 공개되고 2025년 2월 19일 갱신된 [GraphRAG 논문](https://arxiv.org/abs/2404.16130v2)은 약 100만 토큰의 팟캐스트 전사와 약 170만 토큰의 뉴스 기사 코퍼스를 사용했다. 각 코퍼스에서 생성한 전역적 의미 파악 질문 125개를 대상으로 네 커뮤니티 계층, 원문 map-reduce 요약, 벡터 의미 검색을 비교했다. 저자들은 LLM 쌍대 판정과 v2의 주장 수·클러스터 수 분석에서 포괄성과 다양성이 개선됐다고 보고했다. 두 코퍼스의 전역 질문에서 얻은 결과다. 모든 도메인과 질문 유형, 원문 기반 사실 정확도에 같은 결론을 적용할 수는 없다.
+
+현재 [GraphRAG 인덱싱 문서](https://github.com/microsoft/graphrag/blob/14a00ad88fc33cf2b52f4f113f25807556f8e25e/docs/index/overview.md)는 이 과정을 하나의 데이터 파이프라인으로 정의한다. 원문에서 엔티티와 관계를 추출하고, 엔티티 커뮤니티를 탐지하며, 여러 해상도의 커뮤니티 보고서와 텍스트 임베딩을 만든다. [기본 데이터 흐름](https://github.com/microsoft/graphrag/blob/14a00ad88fc33cf2b52f4f113f25807556f8e25e/docs/index/default_dataflow.md)은 `Document`, `TextUnit`, `Entity`, `Relationship`, `Covariate`, `Community`, `Community Report`를 별도 산출물로 둔다. 엔티티와 관계 추출은 기본 흐름에 포함되지만, claim extraction과 그 산출물인 `Covariate`는 선택 사항이며 기본값은 꺼져 있다. 지식 그래프는 프롬프트 한 번으로 얻는 파일이 아니라 여러 변환 단계를 거친 결과다.
+
+2024년 10월 8일 공개되고 2025년 4월 28일 갱신된 [LightRAG 논문](https://arxiv.org/abs/2410.05779v3)은 다른 설계를 제시한다. 그래프 구조와 벡터 표현을 함께 쓰고, 구체적인 엔티티·관계를 찾는 저수준 검색과 더 넓은 주제를 찾는 고수준 검색을 나눈다. 새 문서를 받을 때 전체 인덱스를 다시 만드는 대신 증분 갱신하는 방법도 포함한다. 비교 실험은 UltraDomain에서 고른 Agriculture, CS, Legal, Mix 네 데이터셋을 사용했다. 규모는 약 61만~508만 토큰이었고, 데이터셋마다 LLM이 만든 전역적 의미 파악 질문 125개를 평가했다. 주요 답변 품질 비교는 GPT-4o-mini의 쌍대 판정에 의존했다. 이 결과를 지역적 사실 검색이나 모든 코퍼스의 사실 정확도 우위로 일반화할 수는 없다.
+
+두 논문을 함께 보면 "GraphRAG"는 하나의 고정 레시피가 아니다. 추출할 구조, 요약 단위, 질문 유형에 맞는 검색 경로를 따로 정해야 하는 설계 계열에 가깝다.
+
+## 문서가 검색 가능한 그래프로 바뀌는 과정
+
+첫 단계는 원문 보존이다. 문서를 일정 크기의 `TextUnit`으로 나누더라도 원문 ID와 위치가 끊기면 안 된다. GraphRAG 논문은 청크가 클수록 LLM 호출 수는 줄지만 한 청크에서 추출되는 엔티티가 적어질 수 있다고 보고했다. HotPotQA 표본에서 GPT-4는 600토큰 청크에서 2,400토큰 청크보다 거의 두 배 많은 엔티티 참조를 추출했다. 청크 크기는 비용과 엔티티 회수량 사이의 선택이며, 청크 앞부분이 특별히 누락된다는 근거는 이 논문에 없다.
+
+둘째, 엔티티·관계·주장을 추출한다. 추출 결과에는 먼저 후보 상태를 부여해야 한다. 스키마는 필드 모양을 제한할 수 있지만, 누락된 엔티티를 찾아 주거나 잘못된 관계를 사실로 바꾸지는 못한다. 같은 표기가 실제로 같은 실체를 가리키는지, 서로 다른 표기가 한 실체를 가리키는지 판정하는 정규화 단계도 필요하다. 여기서 과도하게 합치면 서로 다른 사람이나 조직이 한 노드가 되고, 덜 합치면 같은 실체가 여러 노드로 갈라진다. 애매한 표기는 삭제하지 말고 `unresolved` 상태로 남겨야 나중에 다시 판단할 수 있다.
+
+셋째, 그래프를 질문에 맞는 검색 구조로 바꾼다. GraphRAG의 [로컬 검색](https://github.com/microsoft/graphrag/blob/14a00ad88fc33cf2b52f4f113f25807556f8e25e/docs/query/local_search.md)은 질문과 가까운 엔티티를 진입점으로 삼아 연결된 관계, 커뮤니티 보고서, 원문 청크를 우선순위화한다. [글로벌 검색](https://github.com/microsoft/graphrag/blob/14a00ad88fc33cf2b52f4f113f25807556f8e25e/docs/query/global_search.md)은 커뮤니티 보고서를 map-reduce 방식으로 합친다. 구체적인 인물이나 사건을 묻는 질문과 자료 전체의 주제를 묻는 질문이 같은 검색기를 쓸 이유는 없다.
+
+마지막은 답에서 원문으로 돌아가는 경로다. 엔티티 설명과 커뮤니티 요약도 LLM이 만든 텍스트다. 이 텍스트를 다시 근거처럼 사용하면 추출 오류가 요약을 거쳐 답까지 증폭될 수 있다. 엣지마다 원문 ID와 위치, 추출 스키마 버전, 검증 상태를 남기고, 답에 쓰인 경로에서 원문을 다시 열 수 있어야 한다. 그래프의 연결성과 답의 사실성은 같은 지표가 아니다.
+
+## AKM에 적용할 때의 경계
+
+앞선 DEXA 글들이 같은 상태 계약을 보고서 근거 평가와 구조화 출력의 경계에 적용했다면, 여기서는 이를 LLM이 추출한 그래프 엣지의 검증과 롤백 문제로 한정해 확장한다. 2026년 7월 28일 다시 확인한 공개 [DECK6/akm](https://github.com/DECK6/akm) 저장소는 `main` 브랜치와 커밋 [`2efc02b`](https://github.com/DECK6/akm/tree/2efc02b040ec86948005fa634ae1a3b43a184a3f)를 공개 기준으로 사용하고 있었다. 이 버전의 [`EVIDENCE-SCHEMA.md`](https://github.com/DECK6/akm/blob/2efc02b040ec86948005fa634ae1a3b43a184a3f/99-system/EVIDENCE-SCHEMA.md)는 evidence plane을 정본 Markdown과 원출처 위에 놓이는 "derived, disposable projection"으로 규정한다. 검색된 항목은 `candidate`, 원문 위치를 직접 읽은 항목은 `direct-read`, 특정 주장을 실제로 뒷받침하는 항목만 `claim-supported`로 구분한다.
+
+`EVIDENCE-SCHEMA.md`는 P0 `EvidenceRow`·`EvidencePacket` 데이터 계약의 공개 원문이지, 실행 중인 그래프 컴파일러나 평가 서비스의 설명서가 아니다. 문서 자체도 P1 인덱스는 P0 통과 뒤에 만들 수 있다고 하며, P0가 connector, database, embedding model, reranker를 구현하지 않는다고 명시한다.
+
+다음은 이 P0 계약을 그래프 엣지에 적용해 보는 DEXA의 설계 해석이다. LLM이 만든 노드와 엣지는 후보 상태에서 시작하고, 원출처 위치를 직접 읽고 특정 주장의 지지 관계를 확인한 뒤에만 그 주장에 한해 검증된 상태로 올린다. `sourceId`, `sourceLocator`, `schemaVersion`, `status`는 DEXA가 제안하는 단순화된 엣지 필드 예시이며, AKM에 같은 이름의 그래프 런타임 필드가 이미 구현됐다는 뜻이 아니다. 그래프 컴파일러는 원문을 바꾸지 않고 재생성 가능한 파생물을 만들어야 하며, 별칭 통합에 실패한 표기와 충돌도 별도 큐에 남긴다.
+
+AKM의 [`LOOP.md`](https://github.com/DECK6/akm/blob/2efc02b040ec86948005fa634ae1a3b43a184a3f/99-system/LOOP.md)는 `Ingest → Classify → Compile → Contextualize → Execute → Verify → Learn Back`을 둔다. 이 순서 자체는 공개 문서의 직접 근거다. 그래프를 Compile 산출물로 두고 Verify를 요구하는 것은 DEXA의 적용 해석이다. 그래프 검색이 직접 경로 검색이나 벡터 검색보다 실제로 나은 질문이 무엇인지 먼저 고정하고, 같은 질문 묶음으로 비교해야 한다. 이득이 없다면 그래프를 유지할 이유도 약하다.
+
+## 한계와 넘겨짚지 말아야 할 것
+
+GraphRAG 논문의 실험 범위는 약 100만 토큰의 팟캐스트 전사, 약 170만 토큰의 뉴스 기사, 코퍼스별 전역적 의미 파악 질문 125개다. 모든 도메인과 질문 유형에서 벡터 RAG보다 우월하다는 증거가 아니다. 현재 Microsoft 문서도 글로벌 검색을 자원 집약적인 방식으로 설명한다. 커뮤니티 계층을 더 자세히 쓰면 답이 풍부해질 수 있지만, 처리 시간과 LLM 사용량도 늘어난다.
+
+추출 품질은 사용한 모델, 프롬프트, 엔티티 유형, 청크 크기에 따라 달라진다. LightRAG의 증분 갱신은 전체 재색인 비용을 줄이는 설계지만, 새 노드가 기존 노드와 충돌하거나 잘못 합쳐지는 문제까지 자동으로 없애지는 않는다. 두 논문의 저자들이 보고한 값은 각자의 데이터셋과 평가 조건 안에서 읽어야 한다. 특히 LLM 평가자가 판단한 품질 점수는 원문 기반 사실 검증과 같지 않다.
+
+그래프 데이터베이스도 필수 조건이 아니다. 작은 코퍼스라면 JSON이나 테이블로도 엔티티·관계·출처를 관리할 수 있다. 단일 문서의 한 구절을 찾는 질문에는 직접 검색이 더 싸고 투명할 수 있다. 여러 문서의 관계를 따라가야만 풀 수 있는 질문이 있을 때 그래프의 비용이 정당화된다.
+
+## 실무 설계 원칙
+
+1. 먼저 다중 문서 관계가 필요한 질문 묶음과 직접 검색·벡터 RAG 기준선을 고정한다.
+2. 작은 코퍼스에서 엔티티·관계 스키마를 정하고, 추출 precision과 recall을 함께 측정한다.
+3. 별칭 통합률, 과도한 병합, 미해결 표기, 고립 노드와 출처 없는 엣지를 별도 지표로 본다.
+4. 모든 파생 노드와 엣지에서 원문 위치로 돌아갈 수 있게 하고, 검증 전에는 후보 상태를 유지한다.
+5. 질문 유형별 정확도와 함께 인덱싱 비용, 갱신 시간, 검색 지연, 답에 사용된 원문 비율을 비교한다.
+6. 그래프가 기준선을 넘지 못하면 범위를 줄이거나 제거한다. 유지비도 평가 결과의 일부다.
+
+연결선이 많다는 사실은 답이 맞다는 증거가 아니다. 지식 그래프는 문서에서 관계 후보를 만들고, 서로 다른 표기를 정리하고, 질문에 필요한 부분을 원문과 함께 제시하는 컴파일 결과다. 검색에 넣기 전에 그 그래프가 어떻게 만들어졌고 어디에서 틀릴 수 있는지부터 답할 수 있어야 한다.
+
+## Sources consulted
+
+- Edge et al., ["From Local to Global: A GraphRAG Approach to Query-Focused Summarization"](https://arxiv.org/abs/2404.16130v2), 2024-04-24 공개, 2025-02-19 갱신.
+- Microsoft, [GraphRAG 공개 저장소](https://github.com/microsoft/graphrag), `v3.1.1` (2026-07-18); [index overview](https://github.com/microsoft/graphrag/blob/14a00ad88fc33cf2b52f4f113f25807556f8e25e/docs/index/overview.md), [default dataflow](https://github.com/microsoft/graphrag/blob/14a00ad88fc33cf2b52f4f113f25807556f8e25e/docs/index/default_dataflow.md), [RAI transparency note](https://github.com/microsoft/graphrag/blob/14a00ad88fc33cf2b52f4f113f25807556f8e25e/RAI_TRANSPARENCY.md).
+- Guo et al., ["LightRAG: Simple and Fast Retrieval-Augmented Generation"](https://arxiv.org/abs/2410.05779v3), 2024-10-08 공개, 2025-04-28 갱신; [공개 구현](https://github.com/HKUDS/LightRAG).
+- [DECK6/akm 공개 저장소](https://github.com/DECK6/akm), `main` commit [`2efc02b`](https://github.com/DECK6/akm/tree/2efc02b040ec86948005fa634ae1a3b43a184a3f) (2026-07-24); [`EVIDENCE-SCHEMA.md`](https://github.com/DECK6/akm/blob/2efc02b040ec86948005fa634ae1a3b43a184a3f/99-system/EVIDENCE-SCHEMA.md), [`LOOP.md`](https://github.com/DECK6/akm/blob/2efc02b040ec86948005fa634ae1a3b43a184a3f/99-system/LOOP.md).
