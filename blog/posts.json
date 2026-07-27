@@ -1,5 +1,25 @@
 [
   {
+    "slug": "how-digital-art-entered-the-museum",
+    "file": "_built/how-digital-art-entered-the-museum.md",
+    "title": "디지털 예술은 미술관에 어떻게 들어왔나",
+    "description": "크리스티안 폴의 artport와 저술을 따라 디지털 작품을 전시하고 분류하며 보존하는 미술관의 문법이 어떻게 만들어졌는지 살펴본다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "christiane-paul",
+      "digital-art",
+      "curating",
+      "preservation"
+    ],
+    "date": "2026-07-28",
+    "thumbnail": "images/how-digital-art-entered-the-museum-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "event-scores-as-executable-art",
     "file": "_built/event-scores-as-executable-art.md",
     "title": "이벤트 스코어, 작품을 실행하는 문장",
