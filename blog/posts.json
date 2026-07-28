@@ -1,5 +1,25 @@
 [
   {
+    "slug": "long-term-agent-memory-is-a-time-problem",
+    "file": "_built/long-term-agent-memory-is-a-time-problem.md",
+    "title": "에이전트의 장기 기억은 검색보다 시간 관리가 어렵다",
+    "description": "장기 기억 에이전트가 과거 정보를 찾는 데서 그치지 않고 변경 시점, 유효 기간, 충돌과 기권을 다뤄야 하는 이유를 최근 벤치마크와 AKM 공개 설계에 연결해 살핀다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-agent",
+      "long-term-memory",
+      "temporal-reasoning",
+      "knowledge-management",
+      "akm",
+      "AI"
+    ],
+    "date": "2026-07-29",
+    "thumbnail": "images/long-term-agent-memory-is-a-time-problem-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "when-machines-take-on-the-body-of-desire",
     "file": "_built/when-machines-take-on-the-body-of-desire.md",
     "title": "기계가 욕망의 몸을 얻을 때",
