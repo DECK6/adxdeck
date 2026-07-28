@@ -60,4 +60,4 @@ status: completed
 
 ## 참고한 자료
 
-- [국립현대미술관, 《MMCA 현대차 시리즈 2022: 최우람 - 작은 방주》](https://www.mmca.go.kr/eng/exhibitions/exhibitionsDetail.do?exhFlag=2&exhId=202208240001557)
+- [국립현대미술관, 《MMCA 현대차 시리즈 2022: 최우람 - 작은 방주》](https://www.mmca.go.kr/eng/exhibitions/exhibitionsDetail.do?exhId=202208240001557)
