@@ -1,5 +1,25 @@
 [
   {
+    "slug": "when-hallucination-blurs-error-and-art",
+    "file": "_built/when-hallucination-blurs-error-and-art.md",
+    "title": "환각이라는 말이 오류와 예술을 뒤섞을 때",
+    "description": "AI 환각을 출처 오류, 시각 생성의 은유, 미디어아트의 재료로 나누어 보고, 비사실성이 책임 있는 작품이 되기 위한 조건을 살펴본다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "hallucination",
+      "generative-ai",
+      "ai-art",
+      "epistemology"
+    ],
+    "date": "2026-07-30",
+    "thumbnail": "images/hallucination-error-and-art-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "long-term-agent-memory-is-a-time-problem",
     "file": "_built/long-term-agent-memory-is-a-time-problem.md",
     "title": "에이전트의 장기 기억은 검색보다 시간 관리가 어렵다",
