@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AKM 2주차 — 첫 작업의 판단을 두 번째 작업이 다시 쓰게 만들기 | DEXA</title>
+  <meta name="description" content="첫 작업의 판단을 Knowledge v1로 남기고, 두 번째 작업에서 재사용한 뒤 지식 복리의 근거를 확인하는 AKM 2주차 실습 가이드.">
+  <link rel="canonical" href="https://dexa.art/akm2w/">
+  <meta property="og:title" content="AKM 2주차 — 첫 작업의 판단을 두 번째 작업이 다시 쓰게 만들기">
+  <meta property="og:description" content="CAPTURE → REUSE → PROVE. 플랫폼 중립 프롬프트로 지식 복리를 직접 확인합니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dexa.art/akm2w/">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2317181B'/%3E%3Cpath d='M32 8 56 54H8Z' fill='none' stroke='%23FF5A1F' stroke-width='6'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+  <style>
+    :root{--paper:#F5F1E6;--panel:#EBE4D3;--ink:#17181B;--orange:#FF5A1F;--cyan:#5EE7F3;--red:#E0402A;--line:2px solid var(--ink);--shell:min(1180px,calc(100% - 40px))}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:var(--paper);color:var(--ink);font-family:"Space Grotesk","Pretendard","Noto Sans KR",system-ui,sans-serif;line-height:1.72;overflow-x:hidden}
+    a{color:inherit;text-decoration-thickness:2px;text-underline-offset:3px}
+    button,a{touch-action:manipulation}
+    :focus-visible{outline:4px solid var(--orange);outline-offset:3px}
+    .skip{position:fixed;z-index:100;top:8px;left:8px;padding:12px 16px;background:var(--ink);color:var(--cyan);transform:translateY(-150%)}
+    .skip:focus{transform:none}
+    .shell{width:var(--shell);margin-inline:auto}
+    .mono,.eyebrow,.step-tag,code,pre,.copy-status{font-family:"JetBrains Mono","Noto Sans Mono CJK KR",monospace}
+    .site-nav{position:sticky;z-index:50;top:0;border-bottom:var(--line);background:var(--paper)}
+    .nav-inner{width:var(--shell);min-height:68px;margin:auto;display:flex;align-items:center;gap:24px}
+    .brand{font-weight:700;text-decoration:none;letter-spacing:-.03em;font-size:1.2rem}
+    .brand span{color:var(--orange)}
+    .nav-links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:thin;margin-left:auto;padding:8px 0}
+    .nav-links a{white-space:nowrap;padding:10px 12px;min-height:44px;display:inline-flex;align-items:center;text-decoration:none;font:600 .76rem "JetBrains Mono",monospace;text-transform:uppercase}
+    .nav-links a:hover{background:var(--ink);color:var(--cyan)}
+    .hero{border-bottom:var(--line);background:var(--ink);color:var(--paper);min-height:calc(100svh - 68px);display:grid;align-items:center;padding:48px 0}
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(280px,.65fr);gap:48px;align-items:end}
+    .eyebrow{color:var(--cyan);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+    h1,h2,h3,h4{line-height:1.08;letter-spacing:-.045em;margin:0}
+    h1{font-size:clamp(2.8rem,7vw,6.9rem);max-width:1000px;margin:20px 0}
+    h2{font-size:clamp(2rem,5vw,4.3rem)}
+    h3{font-size:clamp(1.35rem,2.5vw,2rem)}
+    h4{font-size:1.05rem}
+    p{margin:0 0 1em}
+    .hero-lede{max-width:780px;font-size:clamp(1.05rem,2vw,1.35rem)}
+    .criterion{border:2px solid var(--cyan);padding:22px;color:var(--cyan);font-weight:700;font-size:1.12rem}
+    .criterion small{display:block;color:var(--paper);font:600 .7rem "JetBrains Mono",monospace;letter-spacing:.1em;margin-bottom:10px}
+    .instrument{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--paper);margin-top:32px}
+    .instrument div{padding:14px;border-right:2px solid var(--paper)}
+    .instrument div:last-child{border:0}
+    .instrument b{color:var(--cyan);font-family:"JetBrains Mono",monospace;font-size:.72rem}
+    .instrument span{display:block;font-weight:700}
+    .privacy{background:var(--red);color:#000;border-bottom:var(--line);padding:20px 0}
+    .privacy strong{display:block;font-size:1.12rem}
+    .section{padding:88px 0;border-bottom:var(--line)}
+    .section.alt{background:var(--panel)}
+    .section-head{display:grid;grid-template-columns:190px minmax(0,1fr);gap:28px;margin-bottom:48px}
+    .section-head p{max-width:760px;font-size:1.08rem;margin-top:16px}
+    .step-tag{font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em}
+    .grid-2,.grid-3,.grid-4{display:grid;gap:20px}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .panel,.example,.blocked-card{border:var(--line);padding:26px;background:var(--paper)}
+    .panel h3,.panel h4,.blocked-card h3{margin-bottom:14px}
+    .dark{background:var(--ink);color:var(--paper)}
+    .dark .step-tag,.dark strong{color:var(--cyan)}
+    ul,ol{margin:10px 0;padding-left:1.35em}
+    li+li{margin-top:7px}
+    .checklist{list-style:none;padding:0;margin:0}
+    .checklist li{position:relative;padding-left:34px}
+    .checklist li::before{content:"";position:absolute;left:0;top:.33em;width:18px;height:18px;border:2px solid currentColor}
+    .flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border:var(--line);background:var(--ink);color:var(--paper)}
+    .flow div{padding:20px 14px;border-right:var(--line);text-align:center;font-weight:700}
+    .flow div:last-child{border:0}
+    .flow div:nth-child(odd){color:var(--cyan)}
+    .term{font-weight:700;text-decoration:underline;text-decoration-style:dotted;text-decoration-thickness:2px;text-underline-offset:4px;cursor:help}
+    .term::after{content:" ↘";font:600 .72em "JetBrains Mono",monospace;color:var(--orange)}
+    .term-pop{position:relative;display:inline}
+    .term-note{display:none;position:absolute;z-index:20;left:0;top:calc(100% + 8px);width:min(320px,80vw);padding:14px;border:var(--line);background:var(--paper);color:var(--ink);font-size:.9rem;font-weight:400}
+    .term-pop.open .term-note{display:block}
+    .term-note a{display:inline-block;margin-top:8px;font-weight:700}
+    .prompt-card{border:var(--line);background:var(--paper);margin-top:28px}
+    .prompt-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;padding:24px;border-bottom:var(--line)}
+    .prompt-top p{margin:8px 0 0}
+    .copy-wrap{flex:0 0 auto;text-align:right}
+    .copy-btn{min-height:46px;border:0;background:var(--orange);color:var(--ink);font:700 .8rem "JetBrains Mono",monospace;padding:12px 18px;cursor:pointer}
+    .copy-btn:hover{background:var(--ink);color:var(--cyan)}
+    .copy-status{display:block;min-height:1.5em;margin-top:7px;font-size:.72rem;font-weight:700}
+    .code-panel{margin:0;padding:24px;background:var(--ink);color:var(--paper);border:0;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word;overflow-x:auto;font-size:.82rem;line-height:1.65;max-width:100%}
+    .prompt-help{display:grid;grid-template-columns:1fr 1fr;border-top:var(--line)}
+    .prompt-help>div{padding:24px;min-width:0}
+    .prompt-help>div+div{border-left:var(--line)}
+    .prompt-help h4{margin-bottom:12px}
+    .success-quote{margin:30px 0 0;border:4px solid var(--orange);padding:28px;font-size:clamp(1.25rem,2.5vw,2rem);font-weight:700;line-height:1.35}
+    .share-list{counter-reset:share;list-style:none;padding:0}
+    .share-list li{counter-increment:share;border-top:var(--line);padding:20px 10px 20px 64px;position:relative}
+    .share-list li:last-child{border-bottom:var(--line)}
+    .share-list li::before{content:"0" counter(share);position:absolute;left:8px;color:var(--orange);font:700 .9rem "JetBrains Mono",monospace}
+    .glossary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;border:var(--line)}
+    .glossary article{padding:24px;border-bottom:var(--line);min-width:0}
+    .glossary article:nth-child(odd){border-right:var(--line)}
+    .glossary article:nth-last-child(-n+2){border-bottom:0}
+    .glossary h3{font-size:1.25rem;margin-bottom:10px}
+    .return{display:inline-flex;min-height:44px;align-items:center;padding:6px 10px;background:var(--orange);color:var(--ink);font:700 .72rem "JetBrains Mono",monospace;text-decoration:none}
+    footer{background:var(--ink);color:var(--paper);padding:44px 0}
+    footer .shell{display:flex;justify-content:space-between;gap:24px;align-items:center}
+    @media(max-width:820px){
+      :root{--shell:min(calc(100% - 28px),1180px)}
+      .nav-inner{display:block;padding-top:8px}.brand{display:inline-block;padding:8px 0}.nav-links{margin:0}
+      .hero{min-height:auto}.hero-grid,.section-head,.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+      .instrument{grid-template-columns:1fr}.instrument div{border-right:0;border-bottom:2px solid var(--paper)}
+      .section{padding:62px 0}.section-head{gap:12px;margin-bottom:30px}
+      .flow{grid-template-columns:1fr}.flow div{border-right:0;border-bottom:var(--line)}
+      .prompt-top{display:block}.copy-wrap{text-align:left;margin-top:18px}.copy-btn{width:100%}
+      .prompt-help{grid-template-columns:1fr}.prompt-help>div+div{border-left:0;border-top:var(--line)}
+      .glossary{grid-template-columns:1fr}.glossary article:nth-child(odd){border-right:0}.glossary article:nth-last-child(2){border-bottom:var(--line)}
+      .term-note{position:fixed;left:14px;right:14px;top:auto;bottom:14px;width:auto;max-height:50vh;overflow:auto}
+      footer .shell{display:block}
+    }
+    @media(max-width:420px){h1{font-size:2.65rem}.hero{padding:36px 0}.panel,.example,.blocked-card,.prompt-top,.prompt-help>div{padding:20px}.code-panel{padding:18px;font-size:.76rem}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+    @media print{
+      .site-nav,.skip,.copy-wrap,.term-note,.return{display:none!important}
+      body{background:#fff;font-size:10pt}body *{color:#000!important}.hero,.dark,.code-panel,.privacy,footer{background:#fff!important;color:#000!important}.hero{min-height:0}.criterion{color:#000;border-color:#000}
+      .section{padding:28px 0;break-inside:auto}.prompt-card,.panel,.example,.blocked-card,.glossary article{break-inside:avoid}.shell{width:100%}
+    }
+  </style>
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+<nav class="site-nav" aria-label="주요 탐색">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="DEXA AKM 2주차 처음으로">DEXA<span>/</span>AKM 02</a>
+    <div class="nav-links">
+      <a href="#prepare">준비</a><a href="#concepts">개념</a><a href="#lab">실습</a><a href="#judge">판정</a><a href="#blocked">막힐 때</a><a href="#glossary">용어사전</a>
+    </div>
+  </div>
+</nav>
+<main id="main">
+  <header class="hero" id="top">
+    <div class="shell hero-grid">
+      <div>
+        <span class="eyebrow">DEXA / AKM LAB / WEEK 02</span>
+        <h1>첫 작업의 판단을<br>두 번째 작업이<br>다시 쓰게 만들기</h1>
+        <p class="hero-lede"><span class="term-pop"><a class="term" id="first-ai-agent" href="#term-ai-agent" aria-describedby="desc-ai-agent">AI 에이전트</a><span class="term-note" id="desc-ai-agent" role="note">목표를 받아 자료를 읽고 작업하며 결과를 남기는 소프트웨어입니다. <a href="#term-ai-agent">용어사전에서 보기</a></span></span>와 잘 협업해도 판단이 채팅에만 남으면 다음 작업은 다시 처음부터 시작합니다. <span class="term-pop"><a class="term" id="first-akm" href="#term-akm" aria-describedby="desc-akm">AKM</a><span class="term-note" id="desc-akm" role="note">에이전트가 필요한 지식과 운영 규칙을 찾아 쓰고 검증하도록 돕는 구조입니다. <a href="#term-akm">용어사전에서 보기</a></span></span>은 이 단절을 줄입니다.</p>
+        <div class="instrument" aria-label="실습 세 단계"><div><b>01 / CAPTURE</b><span>판단을 남긴다</span></div><div><b>02 / REUSE</b><span>먼저 다시 읽는다</span></div><div><b>03 / PROVE</b><span>달라진 점을 증명한다</span></div></div>
+      </div>
+      <aside class="criterion"><small>FINAL SUCCESS CRITERION</small>첫 작업에서 남긴 지식 때문에 두 번째 작업이 달라졌다.</aside>
+    </div>
+  </header>
+  <aside class="privacy" aria-label="개인정보 및 비밀정보 경고">
+    <div class="shell"><strong>PRIVATE DATA STOP LINE</strong> 개인정보·실제 참여자 정보·비공개 자료·비밀번호·API key·token·cookie·인증 정보는 넣지 마세요. 확실하지 않으면 익명화한 복사본이나 공개 샘플로 바꾸고, 확인할 수 없는 내용은 추정하지 말고 HOLD로 남깁니다.</div>
+  </aside>
+
+  <section class="section" aria-labelledby="why-title">
+    <div class="shell">
+      <div class="section-head"><span class="step-tag">00 / WHY</span><div><h2 id="why-title">채팅에 묻힌 좋은 판단</h2><p>첫 작업에서 좋은 자료를 찾고, 충돌하는 정보를 구분하고, 언제 결론을 보류할지 판단해도 근거를 남기지 않으면 다음 작업에서 같은 조사와 판단을 반복합니다.</p></div></div>
+      <div class="grid-2">
+        <article class="panel"><h3>판단을 남기지 않으면</h3><ul><li>같은 자료를 다시 찾습니다.</li><li>이전에 확인한 조건을 다시 설명합니다.</li><li>무엇을 믿고 보류했는지 다시 판단합니다.</li><li>오래된 답변을 새 상황에 그대로 적용할 위험이 생깁니다.</li></ul></article>
+        <article class="panel dark"><h3>재사용할 판단을 남기면</h3><p>두 번째 작업은 처음부터 조사하지 않습니다. 기존 지식을 먼저 읽고, 새 조건과 부족한 부분만 확인합니다.</p></article>
+      </div>
+      <div class="flow" aria-label="지식 재사용 흐름"><div>기존 지식 검색</div><div>재사용 판단 확인</div><div>부족한 부분만 조사</div><div>두 번째 작업</div><div>차이만 갱신</div></div>
+    </div>
+  </section>
+
+  <section class="section alt" aria-labelledby="outcome-title">
+    <div class="shell">
+      <div class="section-head"><span class="step-tag">01 / OUTPUT</span><div><h2 id="outcome-title">오늘 남길 네 가지</h2><p>파일 수가 아니라 첫 판단이 두 번째 결과에 쓰였다는 연결이 중요합니다. 근거와 적용 범위를 갖춰 다음 사람이나 에이전트가 다시 찾고 적용할 수 있는 지식을 <span class="term-pop"><a class="term" id="first-asset" href="#term-asset" aria-describedby="desc-asset">지식 자산</a><span class="term-note" id="desc-asset" role="note">근거, scope, 상태, 연결을 갖춰 다시 찾고 적용할 수 있는 지식입니다. <a href="#term-asset">용어사전에서 보기</a></span></span>이라고 합니다.</p></div></div>
+      <div class="grid-4">
+        <article class="panel"><span class="step-tag">01</span><h3><span class="term-pop"><a class="term" id="first-knowledge-v" href="#term-knowledge-v" aria-describedby="desc-knowledge-v">Knowledge v1</a><span class="term-note" id="desc-knowledge-v" role="note">첫 작업 뒤 만든 첫 지식 버전입니다. <a href="#term-knowledge-v">용어사전에서 보기</a></span></span></h3><p>첫 결과와 재사용 판단을 담은 첫 지식 버전</p></article>
+        <article class="panel"><span class="step-tag">02</span><h3>두 번째 결과</h3><p>Knowledge v1을 먼저 읽고 새 조건을 반영한 결과</p></article>
+        <article class="panel"><span class="step-tag">03</span><h3>v2 또는 <span class="term-pop"><a class="term" id="first-delta" href="#term-delta" aria-describedby="desc-delta">delta</a><span class="term-note" id="desc-delta" role="note">두 버전 사이에서 추가·수정·보류된 차이입니다. <a href="#term-delta">용어사전에서 보기</a></span></span></h3><p>새 조건을 반영한 다음 지식 버전 또는 차이 기록</p></article>
+        <article class="panel"><span class="step-tag">04</span><h3>복리 근거</h3><p>어떤 판단이 실제로 재사용되었는지 보여 주는 증거</p></article>
+      </div>
+      <p class="success-quote"><span class="term-pop"><a class="term" id="first-compound" href="#term-compound" aria-describedby="desc-compound">지식 복리</a><span class="term-note" id="desc-compound" role="note">이전 작업의 판단이 다음 작업의 출발점이 되어 누적 이익을 만드는 현상입니다. <a href="#term-compound">용어사전에서 보기</a></span></span>의 기준은 “지식 파일을 만들었다”가 아니라 “첫 작업에서 남긴 지식 때문에 두 번째 작업이 달라졌다”입니다.</p>
+    </div>
+  </section>
+
+  <section class="section" id="prepare" aria-labelledby="prepare-title">
+    <div class="shell">
+      <div class="section-head"><span class="step-tag">02 / PREPARE</span><div><h2 id="prepare-title">시작 전 준비</h2><p>내 에이전트에서 실행하기 전에 질문·자료·새 조건·안전한 경로를 준비합니다. 이 페이지는 읽기와 복사만 하며 어떤 입력도 저장하거나 전송하지 않습니다.</p></div></div>
+      <div class="grid-2">
+        <article class="panel"><h3>준비 체크</h3><ul class="checklist"><li>반복해서 하는 업무 또는 프로젝트 질문 한 개를 골랐습니다.</li><li>첫 번째 작업에 사용할 자료를 준비했습니다.</li><li>두 번째 작업에서 새로 결합할 조건이나 자료 한 개를 준비했습니다.</li><li>원본 대신 실습에 쓸 privacy-safe 복사본을 만들었습니다.</li><li>내 에이전트가 읽을 수 있는 경로와 결과를 저장할 경로를 정했습니다.</li></ul></article>
+        <article class="panel dark"><h3>넣지 않을 것</h3><ul><li>개인정보와 실제 참여자 식별 정보</li><li>계약서, 비공개 인사 자료, 의료·법률 분쟁 자료</li><li>비밀번호, API key, token, cookie, 인증 정보</li><li>공개 권한을 확인하지 못한 고객·회사 자료</li></ul><p><strong>하나라도 확실하지 않으면 익명화한 복사본이나 공개 샘플로 바꿉니다.</strong></p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="concepts" aria-labelledby="concepts-title">
+    <div class="shell">
+      <div class="section-head"><span class="step-tag">03 / MODEL</span><div><h2 id="concepts-title">핵심 개념을 한 번에 잡기</h2><p><span class="term-pop"><a class="term" id="first-source" href="#term-source" aria-describedby="desc-source">Source</a><span class="term-note" id="desc-source" role="note">판단의 출발점이 되는 원문·공식 안내·기록입니다. <a href="#term-source">용어사전에서 보기</a></span></span>를 읽고 <span class="term-pop"><a class="term" id="first-knowledge" href="#term-knowledge" aria-describedby="desc-knowledge">Knowledge</a><span class="term-note" id="desc-knowledge" role="note">여러 작업에서 다시 쓸 수 있도록 정리한 사실과 판단입니다. <a href="#term-knowledge">용어사전에서 보기</a></span></span>로 정리하며, <span class="term-pop"><a class="term" id="first-context" href="#term-context" aria-describedby="desc-context">Context</a><span class="term-note" id="desc-context" role="note">사용자·프로젝트·시점처럼 판단이 언제 누구에게 맞는지 정하는 조건입니다. <a href="#term-context">용어사전에서 보기</a></span></span>로 적용 조건을 정합니다.</p></div></div>
+      <div class="grid-4">
+        <article class="panel"><h3><span class="term-pop"><a class="term" id="first-scope" href="#term-scope" aria-describedby="desc-scope">scope</a><span class="term-note" id="desc-scope" role="note">판단이 유효한 대상과 상황의 범위입니다. <a href="#term-scope">용어사전에서 보기</a></span></span></h3><p>대상과 상황의 범위</p></article>
+        <article class="panel"><h3><span class="term-pop"><a class="term" id="first-authority" href="#term-authority" aria-describedby="desc-authority">authority</a><span class="term-note" id="desc-authority" role="note">어떤 Source가 더 공식적이고 결정 권한이 있는지 나타냅니다. <a href="#term-authority">용어사전에서 보기</a></span></span></h3><p>공식성과 결정 권한</p></article>
+        <article class="panel"><h3><span class="term-pop"><a class="term" id="first-freshness" href="#term-freshness" aria-describedby="desc-freshness">freshness</a><span class="term-note" id="desc-freshness" role="note">자료가 현재 상황을 반영하는 최신성입니다. <a href="#term-freshness">용어사전에서 보기</a></span></span></h3><p>현재 상황 반영 여부</p></article>
+        <article class="panel"><h3><span class="term-pop"><a class="term" id="first-direct-read" href="#term-direct-read" aria-describedby="desc-direct-read">direct read</a><span class="term-note" id="desc-direct-read" role="note">검색 요약이 아니라 원문 파일을 직접 열어 확인하는 행위입니다. <a href="#term-direct-read">용어사전에서 보기</a></span></span></h3><p>원문 파일 직접 확인</p></article>
+        <article class="panel"><h3><span class="term-pop"><a class="term" id="first-verify" href="#term-verify" aria-describedby="desc-verify">Verify</a><span class="term-note" id="desc-verify" role="note">결과와 근거가 요구 조건을 충족하는지 다시 확인하는 단계입니다. <a href="#term-verify">용어사전에서 보기</a></span></span></h3><p>결과와 근거 재확인</p></article>
+        <article class="panel"><h3><span class="term-pop"><a class="term" id="first-hold" href="#term-hold" aria-describedby="desc-hold">HOLD</a><span class="term-note" id="desc-hold" role="note">근거나 권한이 부족해 결론을 확정하지 않고 보류하는 판정입니다. <a href="#term-hold">용어사전에서 보기</a></span></span></h3><p>근거 부족 시 안전한 보류</p></article>
+        <article class="panel"><h3><span class="term-pop"><a class="term" id="first-learn-back" href="#term-learn-back" aria-describedby="desc-learn-back">Learn Back</a><span class="term-note" id="desc-learn-back" role="note">성공·실패의 교훈을 다음 작업이 읽을 지식·절차·평가 규칙에 반영하는 과정입니다. <a href="#term-learn-back">용어사전에서 보기</a></span></span></h3><p>배운 내용을 운영 구조에 반영</p></article>
+        <article class="panel"><h3><span class="term-pop"><a class="term" id="first-pointer" href="#term-pointer" aria-describedby="desc-pointer">pointer / link</a><span class="term-note" id="desc-pointer" role="note">내용을 복제하지 않고 원문이나 관련 지식으로 돌아갈 연결입니다. <a href="#term-pointer">용어사전에서 보기</a></span></span></h3><p>정본으로 돌아가는 길</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="lab" aria-labelledby="lab-title">
+    <div class="shell">
+      <div class="section-head"><span class="step-tag">04 / LAB</span><div><h2 id="lab-title">CAPTURE → REUSE → PROVE</h2><p>각 프롬프트는 코드 블록만 독립적으로 복사됩니다. 대괄호 안의 값만 내 상황에 맞게 바꾼 뒤, 내 AI 에이전트에서 실행하세요.</p></div></div>
+      <article class="example" aria-labelledby="example-title">
+        <span class="step-tag">ONE FICTIONAL EXAMPLE</span><h3 id="example-title">작은 지역 워크숍 참가 안내문</h3>
+        <p>실제 조직이나 행사를 가리키지 않는 완전한 가상 사례입니다.</p>
+        <ul><li><strong>반복 업무:</strong> 작은 지역 워크숍 참가 안내문 작성</li><li><strong>첫 자료:</strong> 승인된 프로그램 개요와 장소 안내</li><li><strong>첫 판단:</strong> 초보 성인 대상, 준비물 제공, 주차 여부는 미확인이라 단정 금지</li><li><strong>새 조건:</strong> 장소 수용 인원이 줄고, 계단만 있는 출입구 정보가 추가됨</li><li><strong>두 번째 결과:</strong> 기존 대상과 준비물 정보는 재사용하고, 정원과 접근성 안내만 수정</li><li><strong>delta:</strong> 정원 변경, 접근성 조건 추가, 주차 HOLD 유지</li></ul>
+        <p>복리의 근거는 안내문이 길어진 것이 아닙니다. “확인된 정보만 쓰기”와 “주차는 HOLD”가 유지되고, 새 자료 때문에 정원과 접근성만 바뀐 점입니다.</p>
+      </article>
+
+      <article class="prompt-card" aria-labelledby="prompt-a-title">
+        <div class="prompt-top"><div><span class="step-tag">01 / CAPTURE / PROMPT A</span><h3 id="prompt-a-title">첫 작업과 Knowledge v1 만들기</h3><p>첫 작업 결과와 다음 작업이 다시 쓸 판단을 분리해 남깁니다.</p></div><div class="copy-wrap"><button class="copy-btn" type="button" data-copy="prompt-a" aria-describedby="status-a">프롬프트 A 복사</button><span class="copy-status" id="status-a" role="status" aria-live="polite">복사 대기</span></div></div>
+        <pre class="code-panel" id="prompt-a"><code>당신은 첫 번째 작업을 수행하고, 다음 작업에서 다시 쓸 판단을 Knowledge v1로 남기는 AI 에이전트입니다.
+
+[내가 제공할 값]
+AKM_ROOT: [내 AKM 또는 지식 폴더의 루트 경로]
+TASK_QUESTION: [이번에 해결할 반복 업무 또는 프로젝트 질문]
+SOURCE_PATHS:
+- [첫 번째 입력 자료 경로 1]
+- [첫 번째 입력 자료 경로 2]
+FIRST_OUTPUT_PATH: [첫 번째 작업 결과를 저장할 경로]
+KNOWLEDGE_V1_PATH: [Knowledge v1을 저장할 경로]
+CONTEXT: [이 작업의 사용자·프로젝트·시점 조건]
+
+[안전 규칙]
+- 개인정보, 계약상 비공개 정보, 비밀번호, API key, token, cookie를 읽거나 결과에 노출하지 마세요.
+- 민감할 가능성이 있으면 작업을 중단하고 어떤 입력을 privacy-safe 복사본으로 바꿔야 하는지 HOLD로 적으세요.
+- 제공된 경로 밖의 개인 폴더를 임의로 탐색하지 마세요.
+
+[근거 규칙]
+1. SOURCE_PATHS의 파일을 직접 읽으세요.
+2. 실제로 읽은 경로를 목록으로 밝히고, 읽지 못한 경로는 성공한 것처럼 쓰지 마세요.
+3. 검색 결과나 이전 AI 요약을 원문 대신 쓰지 마세요.
+4. 확인할 수 없는 주장, 서로 충돌하는 내용, 권한이 불분명한 결정은 HOLD로 남기세요.
+5. 사실, 해석, 재사용 판단을 구분하세요.
+
+[작업]
+1. TASK_QUESTION에 대한 첫 번째 작업 결과를 완성하세요.
+2. 다음 작업에서도 다시 쓸 가치가 있는 판단만 추출하세요.
+3. Knowledge v1을 아래 구조로 작성하세요.
+   - 이 지식이 답할 질문
+   - 직접 읽은 Source와 경로
+   - Source에서 확인한 사실
+   - 재사용할 판단
+   - scope와 Context
+   - authority와 freshness 메모
+   - 충돌·불확실성·HOLD
+   - 다음 작업에서 먼저 읽을 이유
+   - 관련 원문으로 돌아가는 pointer/link
+4. 파일 쓰기가 가능하면 FIRST_OUTPUT_PATH와 KNOWLEDGE_V1_PATH에 각각 저장하세요. 파일 쓰기가 불가능하면 저장 가능한 완전한 Markdown 두 개를 출력하세요.
+5. 저장했다면 두 파일을 다시 읽고 제목, 핵심 판단, Source 경로가 실제로 들어갔는지 Verify하세요.
+
+[최종 보고]
+- 첫 번째 작업 결과 경로 또는 완전한 본문
+- Knowledge v1 경로 또는 완전한 본문
+- 직접 읽은 Source 경로
+- 재사용할 판단 1~3개
+- HOLD 항목
+- Verify 결과: PASS / PASS_WITH_NOTE / HOLD / FAIL</code></pre>
+        <div class="prompt-help"><div><h4>내가 바꿀 곳</h4><ul><li><code>AKM_ROOT</code>, <code>TASK_QUESTION</code>, <code>SOURCE_PATHS</code></li><li><code>FIRST_OUTPUT_PATH</code>, <code>KNOWLEDGE_V1_PATH</code></li><li>사용자·프로젝트·시점에 해당하는 <code>CONTEXT</code></li></ul></div><div><h4>실행 후 확인할 것</h4><ul class="checklist"><li>Source를 직접 읽은 경로가 적혀 있습니다.</li><li>첫 작업 결과와 Knowledge v1이 분리되어 있습니다.</li><li>재사용 판단에 scope와 HOLD가 붙어 있습니다.</li><li>저장했다면 실제 파일을 다시 읽은 Verify가 있습니다.</li></ul></div></div>
+      </article>
+
+      <article class="prompt-card" aria-labelledby="prompt-b-title">
+        <div class="prompt-top"><div><span class="step-tag">02 / REUSE / PROMPT B</span><h3 id="prompt-b-title">Knowledge v1을 먼저 읽고 두 번째 작업 하기</h3><p>첫 조사를 반복하지 않고 새 조건 때문에 부족해진 부분만 조사합니다.</p></div><div class="copy-wrap"><button class="copy-btn" type="button" data-copy="prompt-b" aria-describedby="status-b">프롬프트 B 복사</button><span class="copy-status" id="status-b" role="status" aria-live="polite">복사 대기</span></div></div>
+        <pre class="code-panel" id="prompt-b"><code>당신은 기존 Knowledge v1을 먼저 읽고, 새 조건만 결합해 두 번째 작업을 수행하는 AI 에이전트입니다.
+
+[내가 제공할 값]
+AKM_ROOT: [내 AKM 또는 지식 폴더의 루트 경로]
+TASK_QUESTION: [첫 작업과 이어지는 두 번째 질문]
+KNOWLEDGE_V1_PATH: [기존 Knowledge v1 경로]
+FIRST_OUTPUT_PATH: [첫 번째 작업 결과 경로]
+NEW_SOURCE_PATHS:
+- [새 조건 또는 새 자료 경로 1]
+NEW_CONTEXT: [두 번째 작업에서 달라진 사용자·프로젝트·시점 조건]
+SECOND_OUTPUT_PATH: [두 번째 작업 결과 저장 경로]
+DELTA_PATH: [Knowledge v1과 비교한 delta 기록 경로]
+
+[안전 규칙]
+- 개인정보, 계약상 비공개 정보, 비밀번호, API key, token, cookie를 읽거나 결과에 노출하지 마세요.
+- 민감하거나 권한이 불분명한 입력은 임의로 사용하지 말고 HOLD로 남기세요.
+- 제공된 경로 밖의 개인 폴더를 임의로 탐색하지 마세요.
+
+[선조회 규칙]
+1. 다른 조사를 시작하기 전에 KNOWLEDGE_V1_PATH를 직접 읽으세요.
+2. Knowledge v1에서 재사용 가능한 판단, scope, HOLD를 먼저 목록으로 만드세요.
+3. NEW_SOURCE_PATHS를 직접 읽고 실제 경로를 밝히세요.
+4. 기존 Source를 다시 조사해야 한다면 Knowledge v1에 근거가 부족하거나 freshness 확인이 필요한 이유를 먼저 설명하세요.
+5. 읽지 못한 파일과 확인할 수 없는 내용은 HOLD로 남기세요.
+
+[작업]
+1. Knowledge v1에서 그대로 재사용할 판단을 표시하세요.
+2. NEW_CONTEXT와 NEW_SOURCE_PATHS 때문에 수정할 판단을 표시하세요.
+3. 새로 추가할 판단과 계속 HOLD할 항목을 구분하세요.
+4. 위 구분을 근거로 두 번째 작업 결과를 완성하세요.
+5. delta 기록을 아래 구조로 작성하세요.
+   - reused: 그대로 재사용한 판단과 근거
+   - modified: 새 조건 때문에 바꾼 판단과 근거
+   - added: 새로 추가한 판단과 근거
+   - held: 아직 확정하지 않은 내용과 필요한 확인
+   - Knowledge v2 반영 제안
+6. 파일 쓰기가 가능하면 SECOND_OUTPUT_PATH와 DELTA_PATH에 저장하세요. 파일 쓰기가 불가능하면 저장 가능한 완전한 Markdown 두 개를 출력하세요.
+7. 저장했다면 두 파일을 다시 읽고 Knowledge v1의 판단이 실제 결과에 반영되었는지 Verify하세요.
+
+[최종 보고]
+- 먼저 읽은 Knowledge v1 경로
+- 직접 읽은 새 Source 경로
+- 두 번째 작업 결과 경로 또는 완전한 본문
+- delta 경로 또는 완전한 본문
+- reused / modified / added / held 요약
+- Verify 결과: PASS / PASS_WITH_NOTE / HOLD / FAIL</code></pre>
+        <div class="prompt-help"><div><h4>내가 바꿀 곳</h4><ul><li><code>TASK_QUESTION</code>, <code>KNOWLEDGE_V1_PATH</code>, <code>FIRST_OUTPUT_PATH</code></li><li><code>NEW_SOURCE_PATHS</code>, <code>NEW_CONTEXT</code></li><li><code>SECOND_OUTPUT_PATH</code>, <code>DELTA_PATH</code></li></ul></div><div><h4>실행 후 확인할 것</h4><ul class="checklist"><li>새 조사 전에 Knowledge v1을 직접 읽었습니다.</li><li>재사용한 판단과 새로 바꾼 판단이 구분되어 있습니다.</li><li>두 번째 결과에 Knowledge v1의 구체적인 판단이 보입니다.</li><li>delta가 reused / modified / added / held로 나뉘어 있습니다.</li></ul></div></div>
+      </article>
+
+      <article class="prompt-card" aria-labelledby="prompt-c-title">
+        <div class="prompt-top"><div><span class="step-tag">03 / PROVE / PROMPT C</span><h3 id="prompt-c-title">두 결과를 비교하고 복리 근거 남기기</h3><p>인상평 대신 판단이 다시 쓰인 위치와 새 조건 때문에 달라진 부분을 파일 근거로 확인합니다.</p></div><div class="copy-wrap"><button class="copy-btn" type="button" data-copy="prompt-c" aria-describedby="status-c">프롬프트 C 복사</button><span class="copy-status" id="status-c" role="status" aria-live="polite">복사 대기</span></div></div>
+        <pre class="code-panel" id="prompt-c"><code>당신은 첫 번째 작업과 두 번째 작업을 비교해 지식 복리의 근거를 확인하고, Knowledge v2 갱신 방식을 결정하는 AI 에이전트입니다.
+
+[내가 제공할 값]
+FIRST_OUTPUT_PATH: [첫 번째 작업 결과 경로]
+SECOND_OUTPUT_PATH: [두 번째 작업 결과 경로]
+KNOWLEDGE_V1_PATH: [Knowledge v1 경로]
+DELTA_PATH: [delta 기록 경로]
+KNOWLEDGE_V2_PATH: [갱신한 Knowledge v2를 저장할 경로]
+RELATED_NOTE_PATHS:
+- [연결 여부를 확인할 관련 노트 경로]
+
+[안전 및 근거 규칙]
+- 제공된 파일을 직접 읽고 실제로 읽은 경로를 밝히세요.
+- 파일에 없는 효과, 시간 절감, 정확도 향상을 추정하지 마세요.
+- 성능 향상을 주장하려면 비교 가능한 기록이 있어야 합니다. 기록이 없으면 “측정하지 않음”이라고 쓰세요.
+- 충돌하거나 확인할 수 없는 내용은 HOLD로 남기세요.
+- 개인정보, 계약상 비공개 정보, 비밀번호, API key, token, cookie를 결과에 포함하지 마세요.
+
+[비교 작업]
+1. 네 파일을 직접 읽고 첫 결과와 두 번째 결과의 차이를 찾으세요.
+2. 두 번째 결과에서 Knowledge v1의 어떤 판단이 실제로 재사용되었는지 인용 가능한 구절이나 항목으로 연결하세요.
+3. 새 Source와 Context 때문에 수정·추가된 내용을 delta와 대조하세요.
+4. 다음 중 하나를 결정하고 이유를 쓰세요.
+   - 새 Knowledge 노트 작성: 주제나 scope가 달라 기존 노트에 합치면 혼동되는 경우
+   - 기존 Knowledge를 v2로 갱신: 같은 질문과 scope에서 판단이 발전한 경우
+   - pointer/link만 추가: 기존 판단은 그대로이고 새 자료로 돌아갈 연결만 필요한 경우
+5. Knowledge v2를 만든다면 기존의 유효한 판단, 새 delta, 남아 있는 HOLD를 함께 보존하세요.
+6. 저장했다면 KNOWLEDGE_V2_PATH를 다시 읽고 Source, scope, authority, freshness, HOLD, pointer/link가 남아 있는지 Verify하세요.
+
+[복리 근거 표]
+- 재사용한 판단
+- 첫 번째 근거 위치
+- 두 번째 결과에서 쓰인 위치
+- 새 조건으로 수정된 부분
+- 새로 조사한 부분
+- 측정된 효과 또는 측정하지 않음
+
+[최종 보고]
+- 직접 읽은 파일 경로
+- 복리 근거 표
+- 새 노트 / 기존 노트 갱신 / pointer-link 추가 중 선택
+- Knowledge v2 경로 또는 갱신 제안
+- 남은 HOLD
+- Verify 결과: PASS / PASS_WITH_NOTE / HOLD / FAIL</code></pre>
+        <div class="prompt-help"><div><h4>내가 바꿀 곳</h4><ul><li>네 비교 파일 경로</li><li><code>KNOWLEDGE_V2_PATH</code></li><li>연결 후보인 <code>RELATED_NOTE_PATHS</code></li></ul></div><div><h4>실행 후 확인할 것</h4><ul class="checklist"><li>복리 효과를 파일의 판단과 결과로 연결했습니다.</li><li>시간·정확도 개선을 측정하지 않았다면 과장하지 않았습니다.</li><li>새 노트, 기존 노트 갱신, pointer/link 추가 중 하나를 골랐습니다.</li><li>Knowledge v2에 기존 판단과 delta, HOLD가 함께 남았습니다.</li></ul></div></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section alt" id="judge" aria-labelledby="judge-title">
+    <div class="shell">
+      <div class="section-head"><span class="step-tag">05 / JUDGE</span><div><h2 id="judge-title">복리 성공 체크</h2><p>아래 질문에서 세 개 이상 “예”라면 복리의 흔적이 있습니다.</p></div></div>
+      <ul class="checklist grid-2 panel"><li>두 번째 작업이 시작되기 전에 Knowledge v1을 읽었습니다.</li><li>첫 작업에서 확인한 Source를 이유 없이 다시 조사하지 않았습니다.</li><li>두 번째 결과에서 재사용된 판단을 정확히 가리킬 수 있습니다.</li><li>새 조건 때문에 바뀐 부분과 그대로인 부분을 구분할 수 있습니다.</li><li>확인하지 못한 내용은 여전히 HOLD로 남았습니다.</li><li>Knowledge v2 또는 delta가 다음 작업에서 읽을 수 있는 형태로 남았습니다.</li></ul>
+      <blockquote class="success-quote">첫 작업에서 남긴 <code>[재사용 판단]</code>을 두 번째 작업이 먼저 읽었고, <code>[새 조건]</code> 때문에 <code>[바뀐 부분]</code>만 수정했습니다. <code>[HOLD 또는 유지된 경계]</code>는 그대로 보존했으므로, 첫 작업의 지식이 두 번째 작업의 판단에 실제로 쓰였습니다.</blockquote>
+      <div class="criterion" style="margin-top:28px;background:var(--ink)"><small>FINAL JUDGMENT</small>첫 작업에서 남긴 지식 때문에 두 번째 작업이 달라졌다.</div>
+    </div>
+  </section>
+
+  <section class="section" id="blocked" aria-labelledby="blocked-title">
+    <div class="shell">
+      <div class="section-head"><span class="step-tag">06 / BLOCKED</span><div><h2 id="blocked-title">막힐 때 대체 선택</h2><p>실행 환경이 달라도 성공한 척하지 않고 정직한 HOLD와 다음 행동을 남깁니다.</p></div></div>
+      <div class="grid-2">
+        <article class="blocked-card"><h3>에이전트가 로컬 파일을 읽지 못합니다</h3><p>privacy-safe 복사본의 필요한 부분만 제공하고 “직접 파일을 읽었다”는 주장은 하지 않게 합니다. 결과에는 <code>direct read: NOT TESTED</code> 또는 <code>HOLD</code>라고 적습니다.</p></article>
+        <article class="blocked-card"><h3>반복 업무를 고르기 어렵습니다</h3><p>최근 한 달 안에 두 번 이상 비슷하게 물었던 질문을 찾습니다. 그래도 없으면 앞의 가상 워크숍 안내문 사례로 흐름만 연습합니다.</p></article>
+        <article class="blocked-card"><h3>Knowledge v1이 너무 일반적입니다</h3><p>“다음에도 잘하자”는 재사용 판단이 아닙니다. 어떤 Source를 믿었는지, 어느 scope에서 유효한지, 무엇을 HOLD했는지 다시 적습니다.</p></article>
+        <article class="blocked-card"><h3>두 번째 결과가 첫 번째와 거의 같습니다</h3><p>새 조건이 판단을 바꿀 만큼 구체적인지 확인합니다. 날짜만 바뀌어도 freshness 검토가 필요할 수 있지만 재사용 차이를 보여 주기에는 약할 수 있습니다.</p></article>
+        <article class="blocked-card"><h3>Source가 서로 충돌합니다</h3><p>하나를 임의로 고르지 않습니다. authority, freshness, scope를 비교하고도 결정할 수 없으면 충돌을 HOLD로 남기고 필요한 승인자나 정본을 적습니다.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" aria-labelledby="share-title">
+    <div class="shell">
+      <div class="section-head"><span class="step-tag">07 / SHARE</span><div><h2 id="share-title">제출·공유용 네 문장</h2><p>아래 네 문장만 채우면 오늘 결과를 짧게 공유할 수 있습니다.</p></div></div>
+      <ol class="share-list">
+        <li>첫 번째 작업에서 <code>[Source]</code>를 직접 읽고 <code>[재사용 판단]</code>을 Knowledge v1로 남겼습니다.</li>
+        <li>두 번째 작업에서는 Knowledge v1을 먼저 읽고 <code>[새 Source 또는 Context]</code>만 추가했습니다.</li>
+        <li>그 결과 <code>[재사용된 부분]</code>은 유지하고 <code>[수정·추가된 부분]</code>만 delta로 기록했습니다.</li>
+        <li>복리 근거는 <code>[두 번째 결과에서 실제로 다시 쓰인 판단]</code>이며, <code>[미확인 내용]</code>은 HOLD로 남겼습니다.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="next-title">
+    <div class="shell"><div class="section-head"><span class="step-tag">08 / NEXT</span><div><h2 id="next-title">다음 주 연결</h2><p>이번 주에는 사람이 프롬프트로 Knowledge v1을 먼저 읽게 하고 결과를 비교해 delta를 남겼습니다. 다음 주에는 이 동작을 기억에 의존하지 않도록 읽기·쓰기 규칙과 Verify 주기, Learn Back 위치를 운영 규칙으로 정착시킵니다. 이번 주에 만든 Knowledge v1, v2, delta가 다음 주 규칙의 실제 입력이 됩니다.</p></div></div></div>
+  </section>
+
+  <section class="section alt" id="glossary" aria-labelledby="glossary-title">
+    <div class="shell">
+      <div class="section-head"><span class="step-tag">09 / GLOSSARY</span><div><h2 id="glossary-title">용어사전</h2><p>본문의 첫 용어 주석에서 이 정의로 이동할 수 있고, 각 정의의 링크로 첫 등장에 돌아갈 수 있습니다.</p></div></div>
+      <div class="glossary">
+        <article id="term-ai-agent"><h3>AI 에이전트</h3><p>목표를 받아 자료를 읽고, 도구를 사용하며, 작업 결과를 만드는 소프트웨어입니다. 이 문서에서는 Codex, Claude Code, Hermes, OpenClaw처럼 파일 기반 작업을 수행할 수 있는 환경을 폭넓게 가리킵니다.</p><a class="return" href="#first-ai-agent">↑ 첫 등장으로</a></article>
+        <article id="term-akm"><h3>AKM</h3><p>Agent Knowledge Management의 약자입니다. 에이전트가 필요한 지식과 맥락, 절차, 검증 규칙을 찾아 쓰고 결과에서 배운 내용을 다시 반영하도록 구성하는 지식 운영 구조입니다.</p><a class="return" href="#first-akm">↑ 첫 등장으로</a></article>
+        <article id="term-authority"><h3>authority</h3><p>여러 자료가 충돌할 때 어느 자료가 결정을 확정할 권한과 신뢰도를 가지는지 나타냅니다. 공식 승인본과 개인 메모는 같은 authority로 취급하지 않습니다.</p><a class="return" href="#first-authority">↑ 첫 등장으로</a></article>
+        <article id="term-context"><h3>Context</h3><p>사용자, 조직, 프로젝트, 시점, 제약처럼 판단의 적용 조건을 설명합니다. 같은 Knowledge라도 Context가 달라지면 결과의 범위와 표현이 달라질 수 있습니다.</p><a class="return" href="#first-context">↑ 첫 등장으로</a></article>
+        <article id="term-delta"><h3>delta</h3><p>두 버전 사이에서 추가·수정·보류된 차이입니다. 전체 노트를 다시 쓰기보다 이번 작업에서 생긴 변화만 명확히 남길 때 씁니다.</p><a class="return" href="#first-delta">↑ 첫 등장으로</a></article>
+        <article id="term-direct-read"><h3>direct read</h3><p>검색 결과나 AI 요약에 의존하지 않고 원문 파일을 직접 열어 확인하는 것입니다. 실제로 읽지 못했다면 direct read를 했다고 쓰지 않습니다.</p><a class="return" href="#first-direct-read">↑ 첫 등장으로</a></article>
+        <article id="term-freshness"><h3>freshness</h3><p>자료가 현재 상황을 얼마나 반영하는지 나타내는 최신성입니다. 최신 파일이라는 이유만으로 authority가 가장 높다고 단정할 수는 없습니다.</p><a class="return" href="#first-freshness">↑ 첫 등장으로</a></article>
+        <article id="term-hold"><h3>HOLD</h3><p>근거, 권한, 접근, 최신성 등이 부족해 결론을 확정하지 않는 판정입니다. 실패를 숨기는 말이 아니라 다음에 무엇을 확인해야 하는지 남기는 안전 장치입니다.</p><a class="return" href="#first-hold">↑ 첫 등장으로</a></article>
+        <article id="term-knowledge"><h3>Knowledge</h3><p>Source를 읽고 여러 작업에서 다시 쓸 수 있도록 정리한 사실과 판단입니다. 원문 보존본과 구분하며 근거, scope, 불확실성을 함께 둡니다.</p><a class="return" href="#first-knowledge">↑ 첫 등장으로</a></article>
+        <article id="term-knowledge-v"><h3>Knowledge v1 / Knowledge v2</h3><p>Knowledge v1은 첫 작업 뒤 만든 첫 지식 버전입니다. Knowledge v2는 두 번째 작업의 새 Source와 Context, delta를 반영한 다음 버전입니다.</p><a class="return" href="#first-knowledge-v">↑ 첫 등장으로</a></article>
+        <article id="term-learn-back"><h3>Learn Back</h3><p>실행과 Verify에서 발견한 성공·실패를 지식, 맥락, 절차, 평가 규칙의 수정으로 돌려보내는 과정입니다. 다음 작업의 입력 품질을 높이는 데 목적이 있습니다.</p><a class="return" href="#first-learn-back">↑ 첫 등장으로</a></article>
+        <article id="term-pointer"><h3>pointer / link</h3><p>원문이나 관련 노트의 위치를 가리키는 연결입니다. 같은 내용을 여러 곳에 복제하지 않고 정본으로 돌아갈 경로를 남깁니다.</p><a class="return" href="#first-pointer">↑ 첫 등장으로</a></article>
+        <article id="term-scope"><h3>scope</h3><p>판단이 유효한 대상, 기간, 프로젝트, 조건의 범위입니다. scope가 다른 결론을 하나의 보편 규칙처럼 합치지 않습니다.</p><a class="return" href="#first-scope">↑ 첫 등장으로</a></article>
+        <article id="term-source"><h3>Source</h3><p>판단의 출발점이 되는 원문, 공식 문서, 회의 기록, 데이터, 안내문입니다. 원본은 해석과 섞지 않고 보존하는 것이 기본입니다.</p><a class="return" href="#first-source">↑ 첫 등장으로</a></article>
+        <article id="term-verify"><h3>Verify</h3><p>결과가 요구 조건과 근거를 충족하는지 다시 확인하는 단계입니다. 파일을 저장했다는 보고보다 실제 readback과 Source 연결이 더 강한 증거입니다.</p><a class="return" href="#first-verify">↑ 첫 등장으로</a></article>
+        <article id="term-compound"><h3>지식 복리</h3><p>이전 작업에서 얻은 판단이 다음 작업의 출발점이 되어 조사와 판단의 중복을 줄이고 품질 경계를 누적하는 효과입니다. 두 번째 결과에서 첫 판단이 실제로 쓰였다는 근거가 있어야 합니다.</p><a class="return" href="#first-compound">↑ 첫 등장으로</a></article>
+        <article id="term-asset"><h3>지식 자산</h3><p>다음 사람이나 에이전트가 다시 찾고 적용할 수 있도록 근거, scope, 상태, 연결을 갖춘 지식입니다. 단순한 대화 기록이나 출처 없는 요약과 구분합니다.</p><a class="return" href="#first-asset">↑ 첫 등장으로</a></article>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><div class="shell"><p><strong>DEXA / AKM WEEK 02</strong><br>읽고, 복사하고, 내 에이전트에서 실행하세요.</p><p class="mono">CAPTURE → REUSE → PROVE</p></div></footer>
+<script>
+(() => {
+  "use strict";
+
+  const fallbackCopy = text => {
+    const active = document.activeElement;
+    const area = document.createElement("textarea");
+    area.value = text;
+    area.setAttribute("readonly", "");
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    document.body.appendChild(area);
+    area.select();
+    area.setSelectionRange(0, area.value.length);
+    let copied = false;
+    try {
+      copied = document.execCommand("copy");
+    } finally {
+      area.remove();
+      if (active && typeof active.focus === "function") active.focus({preventScroll: true});
+    }
+    if (!copied) throw new Error("fallback copy failed");
+  };
+
+  const copyText = async text => {
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return;
+      } catch (_) {
+        fallbackCopy(text);
+        return;
+      }
+    }
+    fallbackCopy(text);
+  };
+
+  document.querySelectorAll("[data-copy]").forEach(button => {
+    button.addEventListener("click", async () => {
+      const target = document.getElementById(button.dataset.copy);
+      const status = document.getElementById(button.getAttribute("aria-describedby"));
+      if (!target || !status) return;
+      try {
+        await copyText(target.textContent);
+        status.textContent = "복사했습니다.";
+      } catch (_) {
+        status.textContent = "복사하지 못했습니다. 코드 블록을 직접 선택해 주세요.";
+      }
+    });
+  });
+
+  const setTermState = (wrapper, expanded) => {
+    wrapper.classList.toggle("open", expanded);
+    const trigger = wrapper.querySelector(".term");
+    if (trigger) trigger.setAttribute("aria-expanded", String(expanded));
+  };
+
+  const closeOtherTerms = current => {
+    document.querySelectorAll(".term-pop.open").forEach(item => {
+      if (item !== current) setTermState(item, false);
+    });
+  };
+
+  document.querySelectorAll(".term").forEach(term => {
+    term.setAttribute("aria-expanded", "false");
+    term.addEventListener("focus", () => {
+      const wrapper = term.closest(".term-pop");
+      if (!wrapper) return;
+      closeOtherTerms(wrapper);
+      setTermState(wrapper, true);
+    });
+    term.addEventListener("click", event => {
+      const wrapper = term.closest(".term-pop");
+      if (!wrapper) return;
+      if (event.detail > 0 || !wrapper.classList.contains("open")) {
+        event.preventDefault();
+        closeOtherTerms(wrapper);
+        setTermState(wrapper, true);
+      }
+    });
+  });
+
+  document.addEventListener("click", event => {
+    if (!event.target.closest(".term-pop")) {
+      document.querySelectorAll(".term-pop.open").forEach(item => setTermState(item, false));
+    }
+  });
+
+  document.addEventListener("focusin", event => {
+    if (!event.target.closest(".term-pop")) {
+      document.querySelectorAll(".term-pop.open").forEach(item => setTermState(item, false));
+    }
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") {
+      const active = document.activeElement;
+      document.querySelectorAll(".term-pop.open").forEach(item => {
+        const trigger = item.querySelector(".term");
+        if (trigger && item.contains(active) && active !== trigger) trigger.focus({preventScroll: true});
+        setTermState(item, false);
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>
