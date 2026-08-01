@@ -1,0 +1,69 @@
+const n=`import type { FxKernel } from '../../src/fx/types';
+
+const kernel = {
+  kind: 'react',
+  render: (ctx) => {
+    const spread = Number(ctx.params.spread ?? 0.3);
+    const spin = Number(ctx.params.spin ?? 125);
+    const depth = Number(ctx.params.depth ?? 95);
+    const signal = String(ctx.params.signal ?? '#5EE7F3');
+    const duration = Math.max(1, ctx.durationInFrames);
+    const phase = (ctx.frame % duration) / duration;
+    const blast = Math.pow(Math.sin(phase * Math.PI), 0.82);
+    const turn = phase * Math.PI * 2;
+    const phrase = (ctx.subject.label || 'DEXA').toUpperCase();
+
+    return (
+      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', display: 'grid', placeItems: 'center', background: '#0D0E10', perspective: ctx.width * 1.15 }}>
+        <div style={{ position: 'absolute', inset: 0, opacity: 0.07 + (1 - blast) * 0.1 }}>
+          {ctx.subjectNode}
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: signal,
+            fontFamily: 'JetBrains Mono, monospace',
+            fontSize: Math.max(24, Math.min(ctx.width * 0.105, ctx.height * 0.25)),
+            fontWeight: 800,
+            letterSpacing: '0.035em',
+            lineHeight: 1,
+            whiteSpace: 'pre',
+            transformStyle: 'preserve-3d',
+          }}
+        >
+          {phrase.split('').map((character, index) => {
+            const angle = ctx.random(\`angle:\${index}\`) * Math.PI * 2;
+            const force = 0.58 + ctx.random(\`force:\${index}\`) * 0.64;
+            const twist = (ctx.random(\`twist:\${index}\`) * 2 - 1) * spin;
+            const driftX = Math.cos(angle + turn * (index % 2 === 0 ? 0.16 : -0.16)) * ctx.width * spread * force * blast;
+            const driftY = Math.sin(angle - turn * 0.12) * ctx.height * spread * force * blast;
+            const driftZ = (ctx.random(\`depth:\${index}\`) * 2 - 1) * depth * blast;
+            const rotation = twist * blast + Math.sin(turn + index) * 10 * blast;
+
+            return (
+              <span
+                key={\`\${character}:\${index}\`}
+                style={{
+                  display: 'inline-block',
+                  minWidth: character === ' ' ? '0.55em' : undefined,
+                  opacity: 1 - blast * (0.18 + ctx.random(\`fade:\${index}\`) * 0.28),
+                  transform: \`translate3d(\${driftX}px, \${driftY}px, \${driftZ}px) rotateZ(\${rotation}deg) rotateY(\${rotation * 0.55}deg)\`,
+                  textShadow: \`0 0 \${8 + blast * 22}px \${signal}\`,
+                  filter: \`blur(\${blast * ctx.random(\`blur:\${index}\`) * 1.4}px)\`,
+                  transformStyle: 'preserve-3d',
+                }}
+              >
+                {character}
+              </span>
+            );
+          })}
+        </div>
+      </div>
+    );
+  },
+} satisfies FxKernel;
+
+export default kernel;
+`;export{n as default};
