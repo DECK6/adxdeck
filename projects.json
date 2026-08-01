@@ -179,6 +179,21 @@
     ]
   },
   {
+    "id": "dev-13",
+    "section": "dev",
+    "title": "DEXA VFX LAB",
+    "category": "Motion · Effect Catalog",
+    "year": "2026",
+    "description": "214종 모션 이펙트를 브라우저에서 실시간 미리보고 코드로 가져가는 카탈로그 — Remotion·HyperFrames 내보내기",
+    "tags": [
+      "Remotion",
+      "WebGL"
+    ],
+    "url": "/vfx/",
+    "size": "large",
+    "badge": "NEW"
+  },
+  {
     "id": "dev-01",
     "section": "dev",
     "title": "AKM",
