@@ -191,7 +191,8 @@
     ],
     "url": "/vfx/",
     "size": "large",
-    "badge": "NEW"
+    "badge": "NEW",
+    "repo": "https://github.com/DECK6/dexa-vfx-lab"
   },
   {
     "id": "dev-01",

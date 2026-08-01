@@ -595,6 +595,7 @@ function renderProjects(projects) {
                 </div>
                 <span class="spec"><span>${(project.category || '').toUpperCase()}</span><span>${project.year || ''}</span></span>
                 <p class="desc">${project.description}</p>
+                ${project.repo ? `<a href="${project.repo}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="font-family:var(--font-mono);font-size:10px;letter-spacing:0.06em;color:var(--cyan);text-decoration:none;margin-top:auto;">GITHUB ↗</a>` : ''}
             </div>`;
             devGrid.insertAdjacentHTML('beforeend', cardHTML);
         });
