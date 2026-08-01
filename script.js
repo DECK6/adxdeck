@@ -467,6 +467,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // Portfolio Data Fetching & Rendering
 // ==========================================
 const PORTFOLIO_DATA = [
+    {"id": "project-08", "section": "work", "title": "Ultraviolet", "englishTitle": "Rosalyn Song — Ultraviolet", "category": "Music Video Audiovisual", "description": "로잘린송 첫 정규앨범 ‘Psytechnography’ 타이틀곡 MV 오디오비주얼 참여 — Audio Visual: Deck (Yook Dae Geun).", "tags": ["Audiovisual", "Music Video", "Synesthesia", "Generative Visual"], "image": "rosalyn-ultraviolet-mv.jpg", "size": "large", "aspect": "cinematic", "links": [{"label": "Official Music Video", "url": "https://www.youtube.com/watch?v=ZTCMl5vlagk"}, {"label": "Visual-only · Psytechnographer", "url": "https://www.youtube.com/watch?v=AOcXbQCxDtM"}]},
     {"id": "project-01", "section": "work", "title": "상상유랑", "englishTitle": "le voyage dans l'imagenation", "category": "Immersive Exhibition", "description": "1채널 파일럿 전시, 458 갤러리 — 텍스트가 공간으로 확장되는 이머시브 전시", "tags": ["Media Art", "Interactive"], "icon": "view_in_ar", "color": "from-[#E50914]", "image": "sangsang.jpg", "size": "normal"},
     {"id": "project-02", "section": "work", "title": "PRECTXE", "englishTitle": "", "category": "Festival Production", "description": "Digital Media Art Festival General Production", "tags": ["Directing", "Production"], "icon": "festival", "color": "from-[#39FF14]", "image": "prectxe.png", "size": "large"},
     {"id": "project-04", "section": "work", "title": "손의 잔향", "englishTitle": "Afterimage of the Hand", "category": "Generative Data Visualization", "description": "회화적 선의 축적과 표면 — Rokkaku 작가의 핸드페인팅 감각을 전시 데이터 기반 520개 스트로크 시스템으로 복원. 토탈미술관 AI해커톤 선정작, 베를린 P61갤러리 전시", "tags": ["Data Visualization", "Canvas 2D", "Total Museum", "Berlin P61"], "icon": "gesture", "color": "from-[#BC13FE]", "image": "hand_afterimage.jpg", "size": "normal"},
@@ -527,6 +528,7 @@ function renderProjects(projects) {
     if (workGrid) {
         workProjects.forEach((project) => {
             const spanClass = project.size === 'large' ? ' wide' : '';
+            const aspectClass = project.aspect === 'cinematic' ? ' cinematic' : '';
 
             // Image handling
             const mediaContent = project.image
@@ -538,7 +540,7 @@ function renderProjects(projects) {
 
             const clickAction = project.url ? `window.location.href='${project.url}'` : `openVideoModal('${project.id}')`;
             const cardHTML = `
-            <div class="work-card${spanClass}" onclick="${clickAction}">
+            <div class="work-card${spanClass}${aspectClass}" onclick="${clickAction}">
                 <div class="frame">${mediaContent}</div>
                 <div class="caption">
                     <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
@@ -621,6 +623,8 @@ function openVideoModal(projectId) {
     const desc = document.getElementById('modal-description');
     const category = document.getElementById('modal-category');
     const tags = document.getElementById('modal-tags');
+    const linksWrap = document.getElementById('modal-links-wrap');
+    const links = document.getElementById('modal-links');
     const currentTimeEl = document.getElementById('video-current-time');
     const durationEl = document.getElementById('video-duration');
 
@@ -633,6 +637,14 @@ function openVideoModal(projectId) {
     if (tags) {
         tags.innerHTML = (project.tags || []).map(tag =>
             `<span class="dx-badge-dark">${tag}</span>`
+        ).join('');
+    }
+
+    if (linksWrap && links) {
+        const projectLinks = project.links || [];
+        linksWrap.hidden = projectLinks.length === 0;
+        links.innerHTML = projectLinks.map(link =>
+            `<a class="project-media-link" href="${link.url}" target="_blank" rel="noopener noreferrer">${link.label} ↗</a>`
         ).join('');
     }
 

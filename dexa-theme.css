@@ -121,12 +121,16 @@ img{max-width:100%;display:block;}
 .work-card.wide{grid-column:span 2;}
 @media (max-width:700px){.work-card.wide{grid-column:auto;}}
 .work-card .frame{aspect-ratio:4/3;flex:1;overflow:hidden;background:var(--ink-key);}
+.work-card.cinematic .frame{aspect-ratio:16/9;}
 .work-card .frame img{width:100%;height:100%;object-fit:cover;}
 .work-card .caption{padding:16px 18px;display:flex;flex-direction:column;gap:8px;margin-top:auto;}
 .work-card .title{font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:var(--cyan);text-transform:uppercase;}
 .work-card .spec{display:flex;justify-content:space-between;gap:10px;font-family:var(--font-mono);font-size:10px;letter-spacing:0.04em;color:var(--ink-text-dim);}
 .work-card .desc{font-size:13px;line-height:1.6;color:var(--ink-text);margin:0;}
 .dx-badge-dark{font-family:var(--font-mono);font-size:9px;letter-spacing:0.08em;padding:4px 8px;border-radius:20px;border:1px solid var(--cyan);color:var(--cyan);display:inline-block;}
+.project-media-links{display:flex;flex-direction:column;gap:8px;}
+.project-media-link{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 12px;border:1px solid var(--ink-key);border-radius:6px;color:var(--cyan);font-family:var(--font-mono);font-size:10px;letter-spacing:0.04em;transition:border-color 0.15s,background 0.15s;}
+.project-media-link:hover{border-color:var(--cyan);background:rgba(0,240,255,0.06);}
 
 /* Dev Lab — typographic cards (no screenshots, title-led) */
 .dev-card{background:var(--ink-display);border:1px solid var(--ink-key);border-radius:12px;padding:26px 24px 24px;display:flex;flex-direction:column;gap:12px;cursor:pointer;transition:border-color 0.15s;}
