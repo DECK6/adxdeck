@@ -179,6 +179,22 @@
     ]
   },
   {
+    "id": "dev-16",
+    "section": "dev",
+    "title": "DEXA INTERACTIVE LAB",
+    "category": "Webcam · Realtime CV",
+    "year": "2026",
+    "description": "웹캠 하나로 체험하는 인터랙티브 2종 — 머리 추적 오프액시스 투영으로 모니터가 창문이 되는 공간, 양손 손가락 사각형 안에만 GLSL 이펙트가 흐르고 비틀면 전환되는 핑거 프레임. 모든 추적은 브라우저 로컬 처리",
+    "tags": [
+      "MediaPipe",
+      "WebGL"
+    ],
+    "url": "/interactive/",
+    "size": "large",
+    "badge": "NEW",
+    "repo": "https://github.com/DECK6/dexa-interactive-lab"
+  },
+  {
     "id": "dev-15",
     "section": "dev",
     "title": "DEXA GLSL LAB",
