@@ -1,5 +1,23 @@
 [
   {
+    "slug": "media-art-is-not-the-name-of-a-technology",
+    "file": "_built/media-art-is-not-the-name-of-a-technology.md",
+    "title": "미디어아트는 기술의 이름이 아니다",
+    "description": "A first-person essay on why media art depends on artistic inquiry and the necessity of its medium, examined through Hideo Iwasaki's bioart and the choices facing artists in the AI era.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "ai-art",
+      "bioart",
+      "hideo-iwasaki"
+    ],
+    "date": "2026-08-02",
+    "thumbnail": "images/media-art-is-not-the-name-of-a-technology.png",
+    "author": "육대근"
+  },
+  {
     "slug": "why-seedance-prompts-need-explicit-reference-roles",
     "file": "_built/why-seedance-prompts-need-explicit-reference-roles.md",
     "title": "레퍼런스가 많을수록 프롬프트는 더 구조적이어야 한다 — Seedance 2.5 공식 가이드에서 배운 것",
