@@ -1,5 +1,25 @@
 [
   {
+    "slug": "why-seedance-prompts-need-explicit-reference-roles",
+    "file": "_built/why-seedance-prompts-need-explicit-reference-roles.md",
+    "title": "레퍼런스가 많을수록 프롬프트는 더 구조적이어야 한다 — Seedance 2.5 공식 가이드에서 배운 것",
+    "description": "A practical, source-backed guide to structuring Seedance 2.5 prompts with explicit reference roles, exclusions, staged end states, and preservation boundaries for multimodal video generation.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "seedance",
+      "ai-video",
+      "multimodal",
+      "prompting",
+      "video-editing",
+      "AI"
+    ],
+    "date": "2026-08-02",
+    "thumbnail": "images/seedance-2-5-reference-roles.png",
+    "author": "육대근"
+  },
+  {
     "slug": "when-hallucination-blurs-error-and-art",
     "file": "_built/when-hallucination-blurs-error-and-art.md",
     "title": "환각이라는 말이 오류와 예술을 뒤섞을 때",
