@@ -179,12 +179,28 @@
     ]
   },
   {
+    "id": "dev-15",
+    "section": "dev",
+    "title": "DEXA GLSL LAB",
+    "category": "GLSL · WebGL2 · Shader Catalog",
+    "year": "2026",
+    "description": "500종으로 확장 중인 순수 GLSL 프래그먼트 셰이더 카탈로그 — 실시간 프리뷰, 라이브 코드 편집, 결정적 시드와 전체 소스 제공",
+    "tags": [
+      "GLSL",
+      "WebGL2"
+    ],
+    "url": "/glsl/",
+    "size": "large",
+    "badge": "EXPANDING",
+    "repo": "https://github.com/DECK6/dexa-glsl-lab"
+  },
+  {
     "id": "dev-14",
     "section": "dev",
     "title": "DEXA GEN LAB",
     "category": "Generative Art · Creative Coding",
     "year": "2026",
-    "description": "200종 제너러티브 아트를 브라우저에서 감상하고 시드로 변주하며 소스 코드까지 가져가는 VFX형 크리에이티브 코딩 카탈로그",
+    "description": "500종 제너러티브 아트를 브라우저에서 감상하고 시드로 변주하며 소스 코드까지 가져가는 크리에이티브 코딩 카탈로그",
     "tags": [
       "p5.js",
       "Three.js"
@@ -200,7 +216,7 @@
     "title": "DEXA VFX LAB",
     "category": "Motion · Effect Catalog",
     "year": "2026",
-    "description": "214종 모션 이펙트를 브라우저에서 실시간 미리보고 코드로 가져가는 카탈로그 — Remotion·HyperFrames 내보내기",
+    "description": "500종 모션 이펙트를 브라우저에서 실시간 미리보고 코드로 가져가는 카탈로그 — Remotion·HyperFrames 내보내기",
     "tags": [
       "Remotion",
       "WebGL"
