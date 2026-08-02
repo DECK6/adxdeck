@@ -1,0 +1,55 @@
+const e=`var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+var V25_radial_bars_effect_exports = {};
+__export(V25_radial_bars_effect_exports, {
+  default: () => V25_radial_bars_effect_default
+});
+module.exports = __toCommonJS(V25_radial_bars_effect_exports);
+const kernel = {
+  kind: "react",
+  render: (ctx) => {
+    const bars = Math.max(12, Math.min(36, Math.round(Number(ctx.params.bars ?? 24))));
+    const length = Math.max(0.45, Math.min(1, Number(ctx.params.length ?? 0.78)));
+    const thickness = Math.max(4, Math.min(14, Number(ctx.params.thickness ?? 8)));
+    const signal = String(ctx.params.signal ?? "#5EE7F3");
+    const reveal = 0.5 - Math.cos(ctx.t * Math.PI * 2) * 0.5;
+    return /* @__PURE__ */ h("div", { style: { position: "absolute", inset: 0, overflow: "hidden", background: "#0D0E10", color: "#F4F7F8", fontFamily: "'JetBrains Mono', monospace" } }, /* @__PURE__ */ h("div", { style: { position: "absolute", inset: "25%", opacity: 0.1 } }, ctx.subjectNode), /* @__PURE__ */ h("svg", { viewBox: "0 0 1000 1000", style: { position: "absolute", inset: "7%", width: "86%", height: "86%", overflow: "visible" } }, /* @__PURE__ */ h("circle", { cx: "500", cy: "500", r: "205", fill: "none", stroke: signal, strokeWidth: "1", opacity: "0.2" }), Array.from({ length: bars }, (_, index) => {
+      const value = 0.24 + ctx.random(\`bar:\${index}\`) * 0.76;
+      const local = Math.max(0, Math.min(1, reveal * 1.4 - index / bars * 0.4));
+      const extent = value * 205 * length * local;
+      return /* @__PURE__ */ h(
+        "line",
+        {
+          key: index,
+          x1: "500",
+          y1: "280",
+          x2: "500",
+          y2: 280 - extent,
+          transform: \`rotate(\${index / bars * 360} 500 500)\`,
+          stroke: signal,
+          strokeWidth: thickness,
+          strokeLinecap: "round",
+          opacity: 0.25 + value * 0.75,
+          style: { filter: value > 0.78 ? \`drop-shadow(0 0 7px \${signal})\` : "none" }
+        }
+      );
+    }), /* @__PURE__ */ h("text", { x: "500", y: "485", textAnchor: "middle", fill: "#F4F7F8", fontSize: "24", fontFamily: "'JetBrains Mono', monospace", letterSpacing: "5" }, "DEXA VFX"), /* @__PURE__ */ h("text", { x: "500", y: "535", textAnchor: "middle", fill: signal, fontSize: "38", fontWeight: "700", fontFamily: "'JetBrains Mono', monospace" }, Math.round(reveal * 100))));
+  }
+};
+var V25_radial_bars_effect_default = kernel;
+`;export{e as default};
