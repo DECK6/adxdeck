@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Vibe Coding Check | 바이브 코더 필수 코딩 지식 주관식 테스트 — DEXA</title>
+    <meta name="description"
+        content="AI로 코드를 만드는 비개발자가 반드시 알아야 할 코딩 지식 37문항. 객관식이 아닌 주관식으로 직접 설명해 보고, 모범답안과 비교해 취약 영역을 확인합니다. 진행 상황과 결과는 브라우저에 저장됩니다." />
+    <link rel="canonical" href="https://dexa.art/vibecheck/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Vibe Coding Check | 바이브 코더 필수 코딩 지식 테스트" />
+    <meta property="og:description" content="AI로 코딩하는 비개발자를 위한 주관식 자가진단 37문항. 결과는 브라우저에 저장됩니다." />
+    <meta property="og:url" content="https://dexa.art/vibecheck/" />
+    <meta property="og:image" content="https://dexa.art/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="/dexa_logo.svg" type="image/svg+xml" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <header class="dx-nav" aria-label="DEXA navigation">
+        <a href="/" class="dx-nav-brand" aria-label="DEXA home">
+            <svg viewBox="4 4 112 98" width="30" height="26" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+        </a>
+        <span class="dx-nav-tag mono">VIBE CODING CHECK</span>
+        <nav class="dx-nav-links" aria-label="빠른 링크">
+            <a href="/">HOME</a>
+            <a href="/blog/">BLOG</a>
+        </nav>
+    </header>
+
+    <main id="app">
+
+        <!-- ================================================== START ==== -->
+        <section id="view-start" class="view">
+            <div class="vc-wrap">
+                <div class="vc-panel hero">
+                    <span class="screw tl"></span><span class="screw tr"></span>
+                    <span class="screw bl"></span><span class="screw br"></span>
+
+                    <div class="hero-status">
+                        <span class="path mono">/vibecheck</span>
+                        <span class="live mono"><span class="blink">●</span> SELF-DIAGNOSTIC</span>
+                    </div>
+
+                    <div class="hero-display mono">37 QUESTIONS · SHORT ANSWER · NO MULTIPLE CHOICE</div>
+                    <h1>AI가 코드를 써 줘도<br /><span class="cy">이건 알아야</span> 합니다</h1>
+                    <p class="hero-sub">
+                        바이브 코딩으로 만든 결과물이 어느 순간 무너지는 지점은 늘 비슷합니다.
+                        경로, 커밋, 환경변수, 비동기, API 키. 객관식으로 찍는 대신 직접 문장으로 설명해 보고,
+                        모범답안과 비교해 내 빈칸이 어디인지 확인하세요.
+                    </p>
+                    <div class="hero-facts">
+                        <div class="fact"><span class="k mono">문항</span><strong>37</strong></div>
+                        <div class="fact"><span class="k mono">영역</span><strong>10</strong></div>
+                        <div class="fact"><span class="k mono">소요</span><strong>25~40분</strong></div>
+                        <div class="fact"><span class="k mono">저장</span><strong>브라우저 로컬</strong></div>
+                    </div>
+                </div>
+
+                <!-- resume banner -->
+                <div id="resume-box" class="vc-resume hidden" role="status">
+                    <div class="resume-text">
+                        <span class="dx-kicker">SAVED SESSION</span>
+                        <p id="resume-desc">저장된 진행 기록이 있습니다.</p>
+                    </div>
+                    <div class="resume-actions">
+                        <button id="btn-resume" class="btn-primary btn-sm" type="button">이어서 풀기</button>
+                        <button id="btn-discard" class="btn-ghost" type="button">기록 지우고 새로 시작</button>
+                    </div>
+                </div>
+
+                <section class="vc-block" aria-labelledby="cat-h">
+                    <div class="vc-block-head">
+                        <span class="dx-section-num mono">01</span>
+                        <h2 id="cat-h">영역 선택</h2>
+                    </div>
+                    <p class="vc-block-desc">전체를 한 번에 풀어도 되고, 약하다고 느끼는 영역만 골라 풀어도 됩니다.</p>
+                    <div id="cat-list" class="cat-grid"></div>
+                    <div class="cat-tools">
+                        <button id="btn-all" class="btn-ghost" type="button">전체 선택</button>
+                        <button id="btn-none" class="btn-ghost" type="button">전체 해제</button>
+                        <span id="cat-count" class="mono cat-count">37문항 선택됨</span>
+                    </div>
+                    <div class="start-actions">
+                        <button id="btn-start" class="btn-primary" type="button">테스트 시작</button>
+                        <label class="chk">
+                            <input type="checkbox" id="opt-shuffle" />
+                            <span>문항 순서 섞기</span>
+                        </label>
+                    </div>
+                </section>
+
+                <section class="vc-block" aria-labelledby="hist-h">
+                    <div class="vc-block-head">
+                        <span class="dx-section-num mono">02</span>
+                        <h2 id="hist-h">지난 결과</h2>
+                    </div>
+                    <p class="vc-block-desc">완료한 테스트는 이 브라우저에 저장됩니다. 서버로 전송되지 않습니다.</p>
+                    <div id="history-list" class="hist-list"></div>
+                    <div class="hist-tools">
+                        <button id="btn-export" class="btn-ghost" type="button">JSON 내보내기</button>
+                        <button id="btn-import" class="btn-ghost" type="button">JSON 불러오기</button>
+                        <button id="btn-wipe" class="btn-ghost danger" type="button">모든 기록 삭제</button>
+                        <input type="file" id="file-import" accept="application/json" class="hidden" />
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <!-- =================================================== QUIZ ==== -->
+        <section id="view-quiz" class="view hidden">
+            <div class="vc-wrap narrow">
+                <div class="quiz-bar">
+                    <div class="quiz-meta">
+                        <span id="q-index" class="mono">01 / 37</span>
+                        <span id="q-cat" class="dx-badge-dark">GIT</span>
+                    </div>
+                    <button id="btn-exit" class="btn-ghost" type="button">중단하고 나가기</button>
+                </div>
+                <div class="progress-track" role="progressbar" aria-label="진행률" aria-valuemin="0" aria-valuemax="100"
+                    aria-valuenow="0" id="progress-bar">
+                    <div id="progress-fill" class="progress-fill"></div>
+                </div>
+
+                <article class="vc-panel quiz">
+                    <span class="screw tl"></span><span class="screw tr"></span>
+                    <span class="screw bl"></span><span class="screw br"></span>
+
+                    <h2 id="q-text" class="q-text"></h2>
+
+                    <button id="btn-hint" class="hint-toggle mono" type="button" aria-expanded="false">힌트 보기</button>
+                    <p id="q-hint" class="q-hint hidden"></p>
+
+                    <label class="field-label" for="answer">내 답변</label>
+                    <textarea id="answer" class="answer-field" rows="7" spellcheck="false"
+                        placeholder="아는 만큼 문장으로 적어보세요. 완벽한 용어보다 스스로 설명할 수 있는지가 중요합니다."></textarea>
+                    <div class="answer-foot">
+                        <span id="save-state" class="mono save-state">자동 저장됨</span>
+                        <span class="mono hintkey">Ctrl + Enter 로 채점</span>
+                    </div>
+
+                    <div class="quiz-actions">
+                        <button id="btn-prev" class="btn-ghost" type="button">← 이전</button>
+                        <button id="btn-skip" class="btn-ghost" type="button">모르겠어요</button>
+                        <button id="btn-grade" class="btn-primary" type="button">채점하기</button>
+                    </div>
+
+                    <!-- feedback -->
+                    <div id="feedback" class="feedback hidden">
+                        <div class="fb-head">
+                            <span class="dx-kicker">자동 채점</span>
+                            <span id="fb-score" class="fb-score mono">3 / 4 포인트</span>
+                        </div>
+                        <ul id="fb-keys" class="fb-keys"></ul>
+
+                        <div class="fb-model">
+                            <span class="dx-kicker">모범답안</span>
+                            <p id="fb-model-text"></p>
+                        </div>
+                        <div class="fb-why">
+                            <span class="dx-kicker">왜 중요한가</span>
+                            <p id="fb-why-text"></p>
+                        </div>
+
+                        <div class="fb-self">
+                            <span class="dx-kicker">스스로 채점 — 키워드 매칭은 참고용입니다</span>
+                            <div class="self-btns" role="group" aria-label="자기 채점">
+                                <button class="self-btn" data-self="2" type="button">정확히 알고 있었다</button>
+                                <button class="self-btn" data-self="1" type="button">일부만 알았다</button>
+                                <button class="self-btn" data-self="0" type="button">몰랐다</button>
+                            </div>
+                        </div>
+
+                        <button id="btn-next" class="btn-primary" type="button">다음 문제 →</button>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ================================================= RESULT ==== -->
+        <section id="view-result" class="view hidden">
+            <div class="vc-wrap">
+                <div class="vc-panel result">
+                    <span class="screw tl"></span><span class="screw tr"></span>
+                    <span class="screw bl"></span><span class="screw br"></span>
+
+                    <div class="hero-status">
+                        <span id="res-date" class="path mono"></span>
+                        <span class="live mono"><span class="blink">●</span> RESULT</span>
+                    </div>
+
+                    <div class="score-row">
+                        <div class="score-hero">
+                            <span class="dx-kicker">종합 점수</span>
+                            <div class="score-num"><span id="res-score">0</span><span class="unit">/100</span></div>
+                            <div id="res-grade" class="score-grade mono"></div>
+                        </div>
+                        <div class="score-tiles">
+                            <div class="tile">
+                                <span class="k mono">푼 문항</span><strong id="res-count">0</strong>
+                            </div>
+                            <div class="tile">
+                                <span class="k mono">정확히 앎</span><strong id="res-full">0</strong>
+                            </div>
+                            <div class="tile">
+                                <span class="k mono">일부만</span><strong id="res-part">0</strong>
+                            </div>
+                            <div class="tile">
+                                <span class="k mono">몰랐음</span><strong id="res-zero">0</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p id="res-verdict" class="res-verdict"></p>
+                </div>
+
+                <section class="vc-block" aria-labelledby="bych">
+                    <div class="vc-block-head">
+                        <span class="dx-section-num mono">01</span>
+                        <h2 id="bych">영역별 이해도</h2>
+                    </div>
+                    <p class="vc-block-desc">막대는 해당 영역에서 획득한 비율입니다. 값 위에 마우스를 올리면 상세가 보입니다.</p>
+                    <div id="cat-chart" class="chart"></div>
+                </section>
+
+                <section class="vc-block" aria-labelledby="weakh">
+                    <div class="vc-block-head">
+                        <span class="dx-section-num mono">02</span>
+                        <h2 id="weakh">먼저 보완할 것</h2>
+                    </div>
+                    <div id="weak-list" class="weak-list"></div>
+                </section>
+
+                <section class="vc-block" aria-labelledby="revh">
+                    <div class="vc-block-head">
+                        <span class="dx-section-num mono">03</span>
+                        <h2 id="revh">문항별 복습</h2>
+                    </div>
+                    <div id="review-list" class="review-list"></div>
+                </section>
+
+                <div class="result-actions">
+                    <button id="btn-retry-wrong" class="btn-primary" type="button">틀린 문항만 다시 풀기</button>
+                    <button id="btn-home" class="btn-secondary" type="button">처음 화면으로</button>
+                    <button id="btn-export-2" class="btn-ghost" type="button">결과 JSON 내보내기</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="dx-footer">
+        <p class="dx-footer-note">
+            © DEXA — 답변과 결과는 이 브라우저(localStorage)에만 저장되며 서버로 전송되지 않습니다.
+        </p>
+    </footer>
+
+    <script src="./questions.js"></script>
+    <script src="./app.js"></script>
+</body>
+
+</html>
