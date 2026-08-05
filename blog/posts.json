@@ -1,5 +1,25 @@
 [
   {
+    "slug": "speculative-decoding-draft-and-verify",
+    "file": "_built/speculative-decoding-draft-and-verify.md",
+    "title": "작은 모델이 먼저 쓰고, 큰 모델이 한 번에 확인한다",
+    "description": "추측 디코딩이 작은 초안 모델과 큰 목표 모델의 역할을 나눠 생성 지연을 줄이는 원리, 실제 성능의 조건, 그리고 이 구조를 AKM의 후보·직접 읽기·주장 지지 경계와 혼동하지 말아야 하는 이유를 살핀다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "speculative-decoding",
+      "llm-inference",
+      "model-serving",
+      "inference-optimization",
+      "akm",
+      "AI"
+    ],
+    "date": "2026-08-06",
+    "thumbnail": "images/speculative-decoding-proposal-verification-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "media-art-is-not-the-name-of-a-technology",
     "file": "_built/media-art-is-not-the-name-of-a-technology.md",
     "title": "미디어아트는 기술의 이름이 아니다",
