@@ -38,8 +38,15 @@ img{max-width:100%;display:block;}
 .dx-nav-links a:hover,.dx-nav-links a.active{color:var(--orange);}
 .dx-mobile-menu{background:rgba(245,241,230,0.98);border-top:1px solid var(--line);padding:16px 24px;display:flex;flex-direction:column;gap:16px;}
 .dx-mobile-menu a{font-family:var(--font-mono);font-size:12px;letter-spacing:0.05em;color:var(--ink);}
-.dx-menu-btn{background:none;border:none;cursor:pointer;color:var(--ink);padding:8px;}
+.dx-menu-btn{display:none;background:none;border:none;cursor:pointer;color:var(--ink);padding:8px;align-items:center;justify-content:center;}
 .dx-menu-btn:hover{color:var(--orange);}
+@media (max-width:768px){
+  .dx-nav-links{display:none;}
+  .dx-menu-btn{display:inline-flex;}
+}
+@media (min-width:769px){
+  #mobile-menu{display:none !important;}
+}
 
 /* --------------------------------------------------------------------------
    BUTTONS — text on orange is always Ink (5.7:1)

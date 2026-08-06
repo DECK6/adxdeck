@@ -30,7 +30,8 @@
     <link rel="stylesheet" href="/dexa-theme.css" />
 </head>
 <body>
-    <nav class="dx-nav">
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
         <a href="/" class="dx-nav-brand">
             <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
                 <g stroke-linejoin="round">
@@ -47,11 +48,27 @@
         <div class="dx-nav-links">
             <a href="/">HOME</a>
             <a href="/#studio">STUDIO</a>
-            <a href="/blog/" class="active">BLOG</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
             <a href="/about-deck.html">ABOUT</a>
             <a href="/#contact">CONTACT</a>
         </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
     </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
     <main style="padding:128px 24px 96px;">
         <article style="max-width:720px;margin:0 auto;">
             <div style="margin-bottom:40px;">
@@ -100,19 +117,36 @@ hermes hooks doctor</code></pre>
             </nav>
         </article>
     </main>
-    <footer class="dx-footer" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
-        <a href="/" style="display:flex;align-items:center;gap:10px;">
-            <svg viewBox="4 4 112 98" width="28" height="24" aria-hidden="true">
-                <g stroke-linejoin="round">
-                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
-                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
-                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
-                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
-                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
-                </g>
-            </svg>
-        </a>
-        <p class="dx-footer-note" style="margin:0;text-align:right;">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
     </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
 </body>
 </html>

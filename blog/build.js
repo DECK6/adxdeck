@@ -10,6 +10,12 @@
 
 const fs = require('fs');
 const path = require('path');
+const {
+    extractGeneratedBlock,
+    replaceGeneratedBlock,
+    normalizeShellRoutes,
+    markBlogNavigationActive
+} = require('./shared-shell');
 
 const REPO_ROOT = path.join(__dirname, '..');
 const POSTS_DIR = path.join(__dirname, 'posts');
@@ -459,6 +465,18 @@ function stripLeadingH1(md) {
 
 // ─── Static post page template ───
 
+let sharedShell;
+
+function loadSharedShell() {
+    const home = fs.readFileSync(path.join(REPO_ROOT, 'index.html'), 'utf8');
+    const nav = extractGeneratedBlock(home, 'SHARED_NAV_START', 'SHARED_NAV_END');
+    const footer = extractGeneratedBlock(home, 'SHARED_FOOTER_START', 'SHARED_FOOTER_END');
+    return {
+        nav: markBlogNavigationActive(normalizeShellRoutes(nav, '/', SITE_URL), '/', SITE_URL),
+        footer: normalizeShellRoutes(footer, '/', SITE_URL)
+    };
+}
+
 function formatDateHuman(dateStr) {
     const d = new Date(dateStr + 'T00:00:00');
     return d.toLocaleDateString('ko-KR', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -535,28 +553,9 @@ function postPageHtml(post, bodyHtml, prev, next) {
     <link rel="stylesheet" href="/dexa-theme.css" />
 </head>
 <body>
-    <nav class="dx-nav">
-        <a href="/" class="dx-nav-brand">
-            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
-                <g stroke-linejoin="round">
-                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
-                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
-                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
-                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
-                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
-                </g>
-            </svg>
-            <span class="wordmark">DEXA<span class="dot">.</span></span>
-            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
-        </a>
-        <div class="dx-nav-links">
-            <a href="/">HOME</a>
-            <a href="/#studio">STUDIO</a>
-            <a href="/blog/" class="active">BLOG</a>
-            <a href="/about-deck.html">ABOUT</a>
-            <a href="/#contact">CONTACT</a>
-        </div>
-    </nav>
+    <!-- SHARED_NAV_START -->
+${sharedShell.nav}
+    <!-- SHARED_NAV_END -->
     <main style="padding:128px 24px 96px;">
         <article style="max-width:720px;margin:0 auto;">
             <div style="margin-bottom:40px;">
@@ -578,20 +577,10 @@ ${bodyHtml}
             </nav>
         </article>
     </main>
-    <footer class="dx-footer" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;">
-        <a href="/" style="display:flex;align-items:center;gap:10px;">
-            <svg viewBox="4 4 112 98" width="28" height="24" aria-hidden="true">
-                <g stroke-linejoin="round">
-                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
-                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
-                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
-                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
-                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
-                </g>
-            </svg>
-        </a>
-        <p class="dx-footer-note" style="margin:0;text-align:right;">Where AI Meets Art.<br />&copy; 2025 DEXA. All rights reserved.</p>
-    </footer>
+    <!-- SHARED_FOOTER_START -->
+${sharedShell.footer}
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
 </body>
 </html>
 `;
@@ -622,10 +611,11 @@ function staticPostCardHtml(post) {
 </a>`;
 }
 
-function replaceGeneratedBlock(html, start, end, content) {
-    const re = new RegExp(`(<!-- ${start} -->)[\\s\\S]*?(<!-- ${end} -->)`, 'm');
-    if (!re.test(html)) throw new Error(`Missing generated block markers: ${start}/${end}`);
-    return html.replace(re, `$1\n${content}\n                $2`);
+function syncSharedShellTemplate(templatePath) {
+    let html = fs.readFileSync(templatePath, 'utf8');
+    html = replaceGeneratedBlock(html, 'SHARED_NAV_START', 'SHARED_NAV_END', sharedShell.nav);
+    html = replaceGeneratedBlock(html, 'SHARED_FOOTER_START', 'SHARED_FOOTER_END', sharedShell.footer);
+    fs.writeFileSync(templatePath, trimTrailingWhitespace(html), 'utf8');
 }
 
 function trimTrailingWhitespace(text) {
@@ -763,6 +753,13 @@ posts.sort((a, b) => {
     if (a.slug !== b.slug) return a.slug < b.slug ? -1 : 1;
     return 0;
 });
+
+// The root page is the only shared-shell source. Synchronize the two blog
+// templates before generating static post pages so all derived routes use the
+// same brand, desktop/mobile navigation, and footer markup.
+sharedShell = loadSharedShell();
+syncSharedShellTemplate(path.join(__dirname, 'index.html'));
+syncSharedShellTemplate(path.join(__dirname, 'post.html'));
 
 const BUILT_DIR = path.join(__dirname, 'posts', '_built');
 if (!fs.existsSync(BUILT_DIR)) fs.mkdirSync(BUILT_DIR, { recursive: true });

@@ -12,7 +12,7 @@
     });
     const VALID_TRACKS = new Set(Object.keys(TRACK_LABELS));
 
-    const isPostPage = window.location.pathname.includes('post.html');
+    const isLegacyPostPage = window.location.pathname.includes('post.html');
 
     // ─── Utilities ───
 
@@ -229,10 +229,25 @@
         });
     }
 
+    function initActiveNavigation() {
+        const path = window.location.pathname.replace(/\/+$/, '/') || '/';
+        const isBlogRoute = path === '/blog/' || path.startsWith('/blog/posts/') || isLegacyPostPage;
+        if (!isBlogRoute) return;
+        document.querySelectorAll('.dx-nav-links a, .dx-mobile-menu a').forEach((link) => {
+            const href = link.getAttribute('href');
+            const active = href === '/blog/' || href === 'blog/';
+            link.classList.toggle('active', active);
+            if (active) link.setAttribute('aria-current', 'page');
+            else link.removeAttribute('aria-current');
+        });
+    }
+
     // ─── Init ───
 
     document.addEventListener('DOMContentLoaded', () => {
+        initActiveNavigation();
         initMobileMenu();
-        isPostPage ? initPostView() : initBlogList();
+        if (isLegacyPostPage) initPostView();
+        else if (document.getElementById('post-grid')) initBlogList();
     });
 })();
