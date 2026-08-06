@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>강의 세션 타이머</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <h1>강의 세션 타이머</h1>
+        <p>휴식 · 점심 · 실습 세션을 선택하고 종료시간 또는 지속시간으로 실행하세요.</p>
+      </header>
+
+      <section class="session-picker" aria-label="세션 유형">
+        <button class="session-card active" data-session="break">
+          <span class="session-card__graphic">☕</span>
+          <strong>휴식시간</strong>
+          <small>짧은 충전</small>
+        </button>
+        <button class="session-card" data-session="lunch">
+          <span class="session-card__graphic">🍱</span>
+          <strong>점심시간</strong>
+          <small>여유로운 재정비</small>
+        </button>
+        <button class="session-card" data-session="practice">
+          <span class="session-card__graphic">💻</span>
+          <strong>실습 세션</strong>
+          <small>집중 실습</small>
+        </button>
+      </section>
+
+      <section class="controls">
+        <div class="mode-select">
+          <label><input type="radio" name="mode" value="duration" checked /> 지속시간</label>
+          <label><input type="radio" name="mode" value="endtime" /> 종료시간</label>
+        </div>
+
+        <div class="input-wrap" id="durationWrap">
+          <label for="durationMinutes">지속시간 (분)</label>
+          <input id="durationMinutes" type="number" min="1" max="300" value="15" />
+        </div>
+
+        <div class="input-wrap hidden" id="endtimeWrap">
+          <label for="endTime">종료시간</label>
+          <input id="endTime" type="time" />
+        </div>
+
+        <div class="button-row">
+          <button id="startBtn" class="primary">시작</button>
+          <button id="pauseBtn">일시정지</button>
+          <button id="resetBtn">초기화</button>
+        </div>
+      </section>
+
+      <section class="status-panel">
+        <div class="status-panel__visual" id="sessionVisual" aria-hidden="true"></div>
+        <div>
+          <p class="status-panel__label" id="statusText">휴식시간 준비됨</p>
+          <p class="status-panel__time" id="timeLeft">15:00</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
