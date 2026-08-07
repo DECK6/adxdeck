@@ -1,5 +1,24 @@
 [
   {
+    "slug": "prefix-caching-reuses-computation-not-memory",
+    "file": "_built/prefix-caching-reuses-computation-not-memory.md",
+    "title": "모델은 기억하지 않았다, 앞부분의 계산을 재사용했을 뿐이다",
+    "description": "prefix caching이 같은 입력 앞부분의 KV 계산을 어떻게 재사용하는지, 기억·검색·provider prompt caching과 무엇이 다른지 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "inference",
+      "prefix-caching",
+      "KV-cache",
+      "model-serving"
+    ],
+    "date": "2026-08-07",
+    "thumbnail": "images/prefix-caching-computation-reuse-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "speculative-decoding-draft-and-verify",
     "file": "_built/speculative-decoding-draft-and-verify.md",
     "title": "작은 모델이 먼저 쓰고, 큰 모델이 한 번에 확인한다",
