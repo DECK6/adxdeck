@@ -1,5 +1,27 @@
 [
   {
+    "slug": "sabrina-ratte-and-synthetic-ecologies",
+    "file": "_built/sabrina-ratte-and-synthetic-ecologies.md",
+    "title": "합성 풍경은 폐허를 정원으로 바꿀 수 있는가",
+    "description": "사브리나 라테의 합성 풍경은 버려진 사물과 전자 폐기물, 식물과 기계를 하나의 생태계로 엮는다. CGI가 도피적 배경을 넘어 세계를 다시 생각하는 모형이 되는 과정을 살펴본다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "international-artist",
+      "sabrina-ratte",
+      "synthetic-ecology",
+      "CGI",
+      "anthropocene",
+      "installation",
+      "AI-art"
+    ],
+    "date": "2026-08-08",
+    "thumbnail": "images/sabrina-ratte-synthetic-ecologies-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "prefix-caching-reuses-computation-not-memory",
     "file": "_built/prefix-caching-reuses-computation-not-memory.md",
     "title": "모델은 기억하지 않았다, 앞부분의 계산을 재사용했을 뿐이다",
