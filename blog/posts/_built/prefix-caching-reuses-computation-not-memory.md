@@ -5,7 +5,7 @@ title: "모델은 기억하지 않았다, 앞부분의 계산을 재사용했을
 aliases:
   - "Prefix Caching Reuses Computation Not Memory"
 author:
-  - "[[육대근]]"
+  - "육대근"
 date created: 2026-08-07
 date modified: 2026-08-07
 tags:
