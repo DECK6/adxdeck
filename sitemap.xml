@@ -9,6 +9,14 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://dexa.art/osmu/</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://dexa.art/osmu/fin.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://dexa.art/about-deck.html</loc>
     <priority>0.5</priority>
   </url>
