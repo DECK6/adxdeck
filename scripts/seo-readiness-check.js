@@ -9,11 +9,13 @@ const fail = (message) => {
 };
 const pass = (message) => console.log(`✓ ${message}`);
 const read = (rel) => fs.readFileSync(path.join(root, rel), 'utf8');
+const exists = (rel) => fs.existsSync(path.join(root, rel));
 const count = (text, re) => (text.match(re) || []).length;
 
 const index = read('index.html');
 const blog = read('blog/index.html');
 const posts = JSON.parse(read('blog/posts.json'));
+const sitemap = read('sitemap.xml');
 
 if (/<meta\s+name="description"\s+content="[^"]{80,}"/i.test(index)) pass('home has a substantial meta description');
 else fail('home is missing a substantial meta description');
@@ -33,6 +35,27 @@ else fail('blog index is missing CollectionPage/Blog JSON-LD');
 
 if (/aria-label="Open navigation menu"/.test(index) && /aria-expanded="false"/.test(index)) pass('home mobile menu button has accessible state labels');
 else fail('home mobile menu button lacks aria-label/aria-expanded');
+
+const osmuPages = [
+  { rel: 'osmu/index.html', url: 'https://dexa.art/osmu/' },
+  { rel: 'osmu/fin.html', url: 'https://dexa.art/osmu/fin.html' },
+];
+for (const page of osmuPages) {
+  if (!exists(page.rel)) {
+    fail(`${page.rel} is missing`);
+    continue;
+  }
+  const html = read(page.rel);
+  if (/<html\s+lang="ko"/i.test(html) && /<title>[^<]+<\/title>/i.test(html)) {
+    pass(`${page.rel} has Korean language metadata and a title`);
+  } else {
+    fail(`${page.rel} is missing Korean language metadata or a title`);
+  }
+  if (count(html, /<h1\b/g) === 1) pass(`${page.rel} has exactly one h1`);
+  else fail(`${page.rel} must have exactly one h1`);
+  if (sitemap.includes(`<loc>${page.url}</loc>`)) pass(`sitemap includes ${page.url}`);
+  else fail(`sitemap is missing ${page.url}`);
+}
 
 let badDates = [];
 for (const post of posts) {
