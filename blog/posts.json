@@ -1,5 +1,26 @@
 [
   {
+    "slug": "when-a-five-day-festival-becomes-a-year-round-ecosystem",
+    "file": "_built/when-a-five-day-festival-becomes-a-year-round-ecosystem.md",
+    "title": "축제는 닷새지만, 생태계는 일 년 내내 움직인다",
+    "description": "아르스 일렉트로니카가 닷새의 축제를 Prix, Center, Futurelab, Archive와 연결해 미디어아트의 선정·제작·교육·기억을 순환시키는 방식과 그 제도적 긴장을 살펴본다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "ars-electronica",
+      "media-art-institution",
+      "festival-ecosystem",
+      "curating",
+      "public-pedagogy"
+    ],
+    "date": "2026-08-09",
+    "thumbnail": "images/ars-electronica-institutional-ecosystem-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "sabrina-ratte-and-synthetic-ecologies",
     "file": "_built/sabrina-ratte-and-synthetic-ecologies.md",
     "title": "합성 풍경은 폐허를 정원으로 바꿀 수 있는가",
