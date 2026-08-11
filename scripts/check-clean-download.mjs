@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 
-const expectedSha256 = "462f84e67e941f2b16cbf86724b9a121ea219003d07baafeed0a491ac44a6a0d";
+const expectedSha256 = "3b625f2f4f56323afc154475c3b6494c52593b06eecaea02a953243424751618";
 
 const [html, css, batch, buildScript, sitemap] = await Promise.all([
   readFile("clean/index.html", "utf8"),
@@ -21,6 +21,8 @@ assert.match(
 );
 assert.match(html, /미리보기/, "page must explain preview mode");
 assert.match(html, /CLEANUP/, "page must explain the apply confirmation token");
+assert.match(html, /Chrome·Edge의 방문·다운로드 기록도 정리/, "page must disclose browser-history cleanup");
+assert.match(html, /쿠키·비밀번호·북마크는 보존/, "page must disclose preserved browser data");
 assert.match(html, new RegExp(expectedSha256), "page must show the artifact checksum");
 assert.match(css, /:focus-visible/, "download page must include a visible keyboard focus state");
 assert.match(css, /@media\s*\(max-width:\s*700px\)/, "download page must be responsive");
