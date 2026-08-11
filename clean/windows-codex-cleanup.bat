@@ -105,6 +105,93 @@ function Get-FullPathSafe {
     return [IO.Path]::GetFullPath($expanded).TrimEnd('\')
 }
 
+function Test-IsSameOrParentPath {
+    param(
+        [string]$Candidate,
+        [string]$ChildPath
+    )
+
+    $fullCandidate = Get-FullPathSafe $Candidate
+    $fullChild = Get-FullPathSafe $ChildPath
+    if ([string]::IsNullOrWhiteSpace($fullCandidate) -or
+        [string]::IsNullOrWhiteSpace($fullChild)) {
+        return $false
+    }
+
+    if ($fullCandidate.Equals($fullChild, [StringComparison]::OrdinalIgnoreCase)) {
+        return $true
+    }
+
+    return $fullChild.StartsWith(
+        $fullCandidate + '\',
+        [StringComparison]::OrdinalIgnoreCase
+    )
+}
+
+function Schedule-RecycleAfterParentExit {
+    param([Parameter(Mandatory = $true)][string]$LiteralPath)
+
+    try {
+        $currentProcess = Get-CimInstance Win32_Process -Filter "ProcessId = $PID"
+        $parentProcessId = [int]$currentProcess.ParentProcessId
+        if ($parentProcessId -le 0) {
+            throw 'The batch launcher process could not be identified.'
+        }
+
+        $targetBytes = [Text.Encoding]::UTF8.GetBytes((Get-FullPathSafe $LiteralPath))
+        $targetBase64 = [Convert]::ToBase64String($targetBytes)
+        $workerTemplate = @'
+$parentProcessId = __PARENT_ID__
+$deadline = (Get-Date).AddMinutes(30)
+while ((Get-Process -Id $parentProcessId -ErrorAction SilentlyContinue) -and
+       (Get-Date) -lt $deadline) {
+    Start-Sleep -Milliseconds 500
+}
+if (Get-Process -Id $parentProcessId -ErrorAction SilentlyContinue) { exit 0 }
+
+$target = [Text.Encoding]::UTF8.GetString(
+    [Convert]::FromBase64String('__TARGET_B64__')
+)
+if (-not (Test-Path -LiteralPath $target)) { exit 0 }
+
+Add-Type -AssemblyName Microsoft.VisualBasic
+$item = Get-Item -LiteralPath $target -Force
+if ($item.PSIsContainer) {
+    [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteDirectory(
+        $item.FullName,
+        [Microsoft.VisualBasic.FileIO.UIOption]::OnlyErrorDialogs,
+        [Microsoft.VisualBasic.FileIO.RecycleOption]::SendToRecycleBin
+    )
+}
+else {
+    [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile(
+        $item.FullName,
+        [Microsoft.VisualBasic.FileIO.UIOption]::OnlyErrorDialogs,
+        [Microsoft.VisualBasic.FileIO.RecycleOption]::SendToRecycleBin
+    )
+}
+'@
+        $workerScript = $workerTemplate.Replace('__PARENT_ID__', [string]$parentProcessId)
+        $workerScript = $workerScript.Replace('__TARGET_B64__', $targetBase64)
+        $encodedCommand = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($workerScript))
+
+        Start-Process -FilePath 'powershell.exe' -WindowStyle Hidden -ArgumentList @(
+            '-NoLogo',
+            '-NoProfile',
+            '-EncodedCommand',
+            $encodedCommand
+        ) -ErrorAction Stop
+
+        Write-Host "  [SCHEDULED AFTER EXIT] $LiteralPath" -ForegroundColor Green
+        return $true
+    }
+    catch {
+        Write-Host "  [NOT MOVED] Could not schedule cleanup after exit: $LiteralPath" -ForegroundColor Red
+        Write-Host "              $($_.Exception.Message)" -ForegroundColor Red
+        return $false
+    }
+}
+
 function Assert-SafeCodexHome {
     param([string]$Path)
 
@@ -292,6 +379,7 @@ Write-Section '1/5  Preflight'
 Write-Host "Codex home: $codexHome"
 Write-Host "Mode:       $(if ($apply) { 'APPLY' } else { 'PREVIEW' })"
 Write-Host 'Preserved:  plugins, auth.json'
+Write-Host 'Downloads:  every file and folder will be selected' -ForegroundColor Yellow
 
 $runningCodex = @(Get-CodexProcesses)
 
@@ -385,25 +473,58 @@ else {
     }
 }
 
-Write-Section '3/5  Training folders and screenshots'
-$practiceCandidates = New-Object System.Collections.Generic.List[string]
+Write-Section '3/5  Required folders, Downloads, and screenshots'
+$cleanupCandidates = New-Object System.Collections.Generic.List[string]
 foreach ($basePath in @($desktop, $downloads, $documents)) {
     if ([string]::IsNullOrWhiteSpace($basePath)) { continue }
     foreach ($name in $PracticeFolderNames) {
         $candidate = Join-Path $basePath $name
         if (Test-Path -LiteralPath $candidate) {
-            [void]$practiceCandidates.Add($candidate)
+            [void]$cleanupCandidates.Add($candidate)
         }
     }
 }
 
-$uniquePracticeCandidates = @(Get-UniqueExistingPaths $practiceCandidates)
-if ($uniquePracticeCandidates.Count -eq 0) {
-    Write-Host '  No exact-name training folders were found.' -ForegroundColor DarkGray
+$requiredPaths = @(
+    (Join-Path $desktop '에이전트 클래스'),
+    (Join-Path $documents 'ChatGPT'),
+    (Join-Path $documents 'Codex')
+)
+foreach ($requiredPath in $requiredPaths) {
+    if (Test-Path -LiteralPath $requiredPath) {
+        [void]$cleanupCandidates.Add($requiredPath)
+    }
+}
+
+if (Test-Path -LiteralPath $downloads -PathType Container) {
+    foreach ($item in @(Get-ChildItem -LiteralPath $downloads -Force)) {
+        [void]$cleanupCandidates.Add($item.FullName)
+    }
 }
 else {
-    Write-Host '  Exact-name training folders:'
-    foreach ($candidate in $uniquePracticeCandidates) {
+    Write-Host "  [SKIP] Downloads was not found: $downloads" -ForegroundColor DarkGray
+}
+
+$deferredRecyclePath = $null
+$selfPath = Get-FullPathSafe $env:CODEX_CLEANUP_SELF
+$uniqueCleanupCandidates = @(Get-UniqueExistingPaths $cleanupCandidates)
+if ($uniqueCleanupCandidates.Count -eq 0) {
+    Write-Host '  No required folders or Downloads items were found.' -ForegroundColor DarkGray
+}
+else {
+    Write-Host '  Required folders and every Downloads item:'
+    foreach ($candidate in $uniqueCleanupCandidates) {
+        if (Test-IsSameOrParentPath -Candidate $candidate -ChildPath $selfPath) {
+            $deferredRecyclePath = $candidate
+            if ($apply) {
+                Write-Host "  [DEFER UNTIL EXIT] $candidate" -ForegroundColor Yellow
+            }
+            else {
+                Write-Host "  [PREVIEW AFTER EXIT] $candidate" -ForegroundColor Yellow
+            }
+            continue
+        }
+
         Move-ToRecycleBin -LiteralPath $candidate -Apply $apply
     }
 }
@@ -450,6 +571,21 @@ while ($true) {
     }
     if (-not (Test-IsChildOfAllowedRoot -Candidate $fullExtraPath -AllowedRoots $allowedUserRoots)) {
         Write-Host '  [REJECTED] The path is outside the allowed user folders.' -ForegroundColor Red
+        continue
+    }
+
+    if (Test-IsSameOrParentPath -Candidate $fullExtraPath -ChildPath $selfPath) {
+        if ([string]::IsNullOrWhiteSpace($deferredRecyclePath) -or
+            (Test-IsSameOrParentPath -Candidate $fullExtraPath -ChildPath $deferredRecyclePath)) {
+            $deferredRecyclePath = $fullExtraPath
+        }
+
+        if ($apply) {
+            Write-Host "  [DEFER UNTIL EXIT] $deferredRecyclePath" -ForegroundColor Yellow
+        }
+        else {
+            Write-Host "  [PREVIEW AFTER EXIT] $deferredRecyclePath" -ForegroundColor Yellow
+        }
         continue
     }
 
@@ -500,9 +636,19 @@ if (Read-YesNo 'Open ChatGPT now to review Scheduled, projects, and chats?') {
     }
 }
 
+$deferredRecycleScheduled = $true
+if ($apply -and -not [string]::IsNullOrWhiteSpace($deferredRecyclePath)) {
+    $deferredRecycleScheduled = Schedule-RecycleAfterParentExit -LiteralPath $deferredRecyclePath
+}
+
 if ($apply) {
     Write-Host ''
-    Write-Host 'Safe cleanup completed. Items remain recoverable in the Recycle Bin.' -ForegroundColor Green
+    if ($deferredRecycleScheduled) {
+        Write-Host 'Safe cleanup completed. Items remain recoverable in the Recycle Bin.' -ForegroundColor Green
+    }
+    else {
+        Write-Host 'Cleanup completed, but the active batch item was left in place.' -ForegroundColor Yellow
+    }
 }
 else {
     Write-Host ''
