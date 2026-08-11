@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 
-const expectedSha256 = "2d1787da9d6579ad39102e809970c7699ba8938be7910d01f5ce41b825a13e69";
+const expectedSha256 = "c4e8d3c8f6bf7b008d08137d32dbca2fab345b770ccc51ceb4ac5ac5e0c9f363";
 
 const [html, css, batch, buildScript, sitemap] = await Promise.all([
   readFile("clean/index.html", "utf8"),
@@ -25,6 +25,8 @@ assert.match(html, /유령 프로세스는 PID 확인 후 강제 종료/, "page 
 assert.match(html, /Chrome·Edge 기록도 정리/, "page must disclose browser-history cleanup");
 assert.match(html, /쿠키·비밀번호·북마크는 보존/, "page must disclose preserved browser data");
 assert.match(html, /사용자가 별도 승인한 Codex·ChatGPT 유령 프로세스 강제 종료/, "page must disclose the separate approval boundary");
+assert.match(html, /별도 승인한 Chrome·Edge 프로세스 강제 종료/, "page must disclose approved browser termination");
+assert.match(html, /작성 중인 폼·탭·다운로드/, "page must warn about browser force-stop impact");
 assert.match(html, /바탕화면의 <code>에이전트 클래스<\/code>/, "page must list the fixed Desktop target");
 assert.match(html, /문서의 <code>ChatGPT<\/code>·<code>Codex<\/code>/, "page must list the fixed Documents targets");
 assert.match(html, /다운로드 폴더 안의 모든 파일과 폴더/, "page must disclose the full Downloads scope");
