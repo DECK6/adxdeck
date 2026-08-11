@@ -20,6 +20,26 @@
     "author": "육대근"
   },
   {
+    "slug": "self-verification-needs-an-evidence-gate",
+    "file": "_built/self-verification-needs-an-evidence-gate.md",
+    "title": "두 번째 답변은 검증이 아니다: LLM 자기검증에 필요한 증거 게이트",
+    "description": "LLM이 자기 답을 다시 읽는 것과 실제로 검증하는 것은 다르다. 초안 보존, 독립 질문, 외부 증거, 수정 게이트, 퇴행 검사를 결합한 자기검증 구조를 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-agent",
+      "self-verification",
+      "evaluation",
+      "evidence",
+      "governance",
+      "AI"
+    ],
+    "date": "2026-08-11",
+    "thumbnail": "images/self-verification-needs-an-evidence-gate-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "designing-reliable-multi-agent-fan-in",
     "file": "_built/designing-reliable-multi-agent-fan-in.md",
     "title": "병렬 에이전트가 합류하는 순간, 무엇을 보존해야 하나",
