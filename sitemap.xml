@@ -21,6 +21,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>https://dexa.art/clean/</loc>
+    <lastmod>2026-08-11</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://dexa.art/mice-safety/</loc>
     <lastmod>2026-05-24</lastmod>
     <priority>0.8</priority>

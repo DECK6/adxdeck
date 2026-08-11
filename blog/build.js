@@ -806,6 +806,7 @@ const staticUrls = [
     { loc: `${SITE_URL}/osmu/`, priority: '0.7' },
     { loc: `${SITE_URL}/osmu/fin.html`, priority: '0.6' },
     { loc: `${SITE_URL}/about-deck.html`, priority: '0.5' },
+    { loc: `${SITE_URL}/clean/`, lastmod: '2026-08-11', priority: '0.6' },
     { loc: `${SITE_URL}/mice-safety/`, lastmod: '2026-05-24', priority: '0.8' }
 ];
 const postUrls = posts.map(p => ({
