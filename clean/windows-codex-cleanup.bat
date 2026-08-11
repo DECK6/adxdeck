@@ -50,6 +50,16 @@ $PracticeFolderNames = @(
 
 $PreserveCodexNames = @('plugins', 'auth.json')
 
+# Chromium stores visit/download history in these exact per-profile files.
+# Cookies, passwords, autofill data, bookmarks, and extensions are not targeted.
+$BrowserHistoryNames = @(
+    'History',
+    'History-journal',
+    'Archived History',
+    'Archived History-journal',
+    'Visited Links'
+)
+
 function Write-Section {
     param([string]$Title)
     Write-Host ''
@@ -188,6 +198,35 @@ function Get-UniqueExistingPaths {
     }
 }
 
+function Get-BrowserHistoryCandidates {
+    param([string]$UserDataRoot)
+
+    if ([string]::IsNullOrWhiteSpace($UserDataRoot)) { return }
+    if (-not (Test-Path -LiteralPath $UserDataRoot -PathType Container)) { return }
+
+    $candidates = New-Object System.Collections.Generic.List[string]
+    $profiles = @(Get-ChildItem -LiteralPath $UserDataRoot -Directory -Force | Where-Object {
+        $_.Name -match '^(?i:Default|Profile [0-9]+|Guest Profile)$'
+    })
+
+    foreach ($profile in $profiles) {
+        foreach ($name in $BrowserHistoryNames) {
+            $candidate = Join-Path $profile.FullName $name
+            if (Test-Path -LiteralPath $candidate -PathType Leaf) {
+                [void]$candidates.Add($candidate)
+            }
+        }
+    }
+
+    # Older Chromium versions may keep this file at the user-data root.
+    $rootVisitedLinks = Join-Path $UserDataRoot 'Visited Links'
+    if (Test-Path -LiteralPath $rootVisitedLinks -PathType Leaf) {
+        [void]$candidates.Add($rootVisitedLinks)
+    }
+
+    Get-UniqueExistingPaths -Items @($candidates)
+}
+
 Write-Host ''
 Write-Host 'Windows Codex Cleanup' -ForegroundColor Cyan
 Write-Host 'All automated removals go to the Windows Recycle Bin.' -ForegroundColor Gray
@@ -221,11 +260,21 @@ $desktop = [Environment]::GetFolderPath('Desktop')
 $downloads = Get-DownloadsPath
 $documents = [Environment]::GetFolderPath('MyDocuments')
 $pictures = [Environment]::GetFolderPath('MyPictures')
+$browserDataRoots = @(
+    [PSCustomObject]@{
+        Name = 'Chrome'
+        Path = Join-Path $env:LOCALAPPDATA 'Google\Chrome\User Data'
+    },
+    [PSCustomObject]@{
+        Name = 'Edge'
+        Path = Join-Path $env:LOCALAPPDATA 'Microsoft\Edge\User Data'
+    }
+)
 $allowedUserRoots = @($desktop, $downloads, $documents, $pictures) | Where-Object {
     -not [string]::IsNullOrWhiteSpace($_)
 }
 
-Write-Section '1/4  Preflight'
+Write-Section '1/5  Preflight'
 Write-Host "Codex home: $codexHome"
 Write-Host "Mode:       $(if ($apply) { 'APPLY' } else { 'PREVIEW' })"
 Write-Host 'Preserved:  plugins, auth.json'
@@ -245,6 +294,21 @@ if ($runningCodex.Count -gt 0) {
     Write-Host 'Preview will continue without changing anything.' -ForegroundColor Yellow
 }
 
+$runningBrowsers = @(Get-Process -ErrorAction SilentlyContinue | Where-Object {
+    $_.ProcessName -match '(?i)^(chrome|msedge)$'
+})
+
+if ($runningBrowsers.Count -gt 0) {
+    Write-Host ''
+    Write-Host '[STOP] Chrome or Edge is still running:' -ForegroundColor Red
+    $runningBrowsers | Sort-Object ProcessName, Id | ForEach-Object {
+        Write-Host ("  {0} (PID {1})" -f $_.ProcessName, $_.Id)
+    }
+    Write-Host 'Close every Chrome and Edge window, including background apps, then run this file again.' -ForegroundColor Yellow
+    if ($apply) { exit 4 }
+    Write-Host 'Preview will continue without changing anything.' -ForegroundColor Yellow
+}
+
 if ($apply) {
     Write-Host ''
     Write-Host 'Review the Codex-home path above before continuing.' -ForegroundColor Yellow
@@ -255,7 +319,7 @@ if ($apply) {
     }
 }
 
-Write-Section '2/4  Codex local-state cleanup'
+Write-Section '2/5  Codex local-state cleanup'
 $codexCandidates = @()
 if (Test-Path -LiteralPath $codexHome -PathType Container) {
     $codexCandidates = @(Get-ChildItem -LiteralPath $codexHome -Force | Where-Object {
@@ -275,7 +339,7 @@ else {
     }
 }
 
-Write-Section '3/4  Training folders and screenshots'
+Write-Section '3/5  Training folders and screenshots'
 $practiceCandidates = New-Object System.Collections.Generic.List[string]
 foreach ($basePath in @($desktop, $downloads, $documents)) {
     if ([string]::IsNullOrWhiteSpace($basePath)) { continue }
@@ -346,29 +410,47 @@ while ($true) {
     Move-ToRecycleBin -LiteralPath $fullExtraPath -Apply $apply
 }
 
-Write-Section '4/4  Manual verification'
+Write-Section '4/5  Chrome and Edge browsing history'
+$browserHistoryCandidates = New-Object System.Collections.Generic.List[string]
+foreach ($browser in $browserDataRoots) {
+    $candidates = @(Get-BrowserHistoryCandidates -UserDataRoot $browser.Path)
+    if ($candidates.Count -eq 0) {
+        Write-Host "  [SKIP] No history database found for $($browser.Name)." -ForegroundColor DarkGray
+        continue
+    }
+
+    Write-Host "  $($browser.Name): $($candidates.Count) history file(s)"
+    foreach ($candidate in $candidates) {
+        [void]$browserHistoryCandidates.Add($candidate)
+    }
+}
+
+if ($browserHistoryCandidates.Count -eq 0) {
+    Write-Host '  Nothing to clean.' -ForegroundColor DarkGray
+}
+else {
+    Write-Host '  Saved passwords, cookies, autofill data, bookmarks, and extensions are preserved.' -ForegroundColor Gray
+    foreach ($candidate in @(Get-UniqueExistingPaths -Items @($browserHistoryCandidates))) {
+        Move-ToRecycleBin -LiteralPath $candidate -Apply $apply
+    }
+}
+
+Write-Section '5/5  Account and app verification'
 Write-Host 'The following steps are intentionally not automated:' -ForegroundColor White
 Write-Host '  [ ] Codex: Settings > Configuration > reset/reinstall the workspace'
 Write-Host '  [ ] Confirm that the Presentation plugin is visible'
-Write-Host '  [ ] Confirm there are no scheduled tasks, projects, or chats'
-Write-Host '  [ ] Chrome: chrome://settings/clearBrowserData'
-Write-Host '  [ ] Edge:   edge://settings/clearBrowserData'
+Write-Host '  [ ] ChatGPT: confirm Scheduled, projects, and chats are empty'
 Write-Host '  [ ] Review the Recycle Bin'
 Write-Host ''
 Write-Host 'The Recycle Bin was NOT emptied because that would permanently delete files.' -ForegroundColor Yellow
 
-if (Read-YesNo 'Open Chrome and Edge history-clear settings now?') {
-    foreach ($browser in @(
-        @{ Command = 'chrome.exe'; Url = 'chrome://settings/clearBrowserData' },
-        @{ Command = 'msedge.exe'; Url = 'edge://settings/clearBrowserData' }
-    )) {
-        try {
-            Start-Process -FilePath $browser.Command -ArgumentList $browser.Url -ErrorAction Stop
-            Write-Host "  [OPENED] $($browser.Command)"
-        }
-        catch {
-            Write-Host "  [SKIP] Could not open $($browser.Command). Open $($browser.Url) manually." -ForegroundColor Yellow
-        }
+if (Read-YesNo 'Open ChatGPT now to review Scheduled, projects, and chats?') {
+    try {
+        Start-Process -FilePath 'https://chatgpt.com/' -ErrorAction Stop
+        Write-Host '  [OPENED] https://chatgpt.com/'
+    }
+    catch {
+        Write-Host '  [SKIP] Could not open ChatGPT. Open https://chatgpt.com/ manually.' -ForegroundColor Yellow
     }
 }
 
