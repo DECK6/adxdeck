@@ -50,6 +50,12 @@ $PracticeFolderNames = @(
 
 $PreserveCodexNames = @('plugins', 'auth.json')
 
+$AgentClassNames = @(
+    '에이전트 클래스',
+    'Agent Class',
+    'AgentClass'
+)
+
 # Chromium stores visit/download history in these exact per-profile files.
 # Cookies, passwords, autofill data, bookmarks, and extensions are not targeted.
 $BrowserHistoryNames = @(
@@ -95,6 +101,24 @@ function Get-DownloadsPath {
     }
 
     return (Join-Path $env:USERPROFILE 'Downloads')
+}
+
+function Get-UserShellFolderPath {
+    param([Parameter(Mandatory = $true)][string]$ValueName)
+
+    $registryPath = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders'
+    try {
+        $properties = Get-ItemProperty -LiteralPath $registryPath -ErrorAction Stop
+        $property = $properties.PSObject.Properties[$ValueName]
+        if ($null -ne $property -and -not [string]::IsNullOrWhiteSpace([string]$property.Value)) {
+            return [Environment]::ExpandEnvironmentVariables([string]$property.Value)
+        }
+    }
+    catch {
+        # The Environment and conventional-path fallbacks are checked separately.
+    }
+
+    return $null
 }
 
 function Get-FullPathSafe {
@@ -251,23 +275,50 @@ function Move-ToRecycleBin {
         return
     }
 
-    $item = Get-Item -LiteralPath $LiteralPath -Force
-    if ($item.PSIsContainer) {
-        [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteDirectory(
-            $item.FullName,
-            [Microsoft.VisualBasic.FileIO.UIOption]::OnlyErrorDialogs,
-            [Microsoft.VisualBasic.FileIO.RecycleOption]::SendToRecycleBin
-        )
-    }
-    else {
-        [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile(
-            $item.FullName,
-            [Microsoft.VisualBasic.FileIO.UIOption]::OnlyErrorDialogs,
-            [Microsoft.VisualBasic.FileIO.RecycleOption]::SendToRecycleBin
-        )
+    $lastRecycleError = $null
+    for ($recycleAttempt = 1; $recycleAttempt -le 3; $recycleAttempt++) {
+        try {
+            if (-not (Test-Path -LiteralPath $LiteralPath)) {
+                Write-Host "  [RECYCLE BIN] $LiteralPath" -ForegroundColor Green
+                return
+            }
+
+            $item = Get-Item -LiteralPath $LiteralPath -Force
+            if ($item.PSIsContainer) {
+                [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteDirectory(
+                    $item.FullName,
+                    [Microsoft.VisualBasic.FileIO.UIOption]::OnlyErrorDialogs,
+                    [Microsoft.VisualBasic.FileIO.RecycleOption]::SendToRecycleBin
+                )
+            }
+            else {
+                [Microsoft.VisualBasic.FileIO.FileSystem]::DeleteFile(
+                    $item.FullName,
+                    [Microsoft.VisualBasic.FileIO.UIOption]::OnlyErrorDialogs,
+                    [Microsoft.VisualBasic.FileIO.RecycleOption]::SendToRecycleBin
+                )
+            }
+
+            Start-Sleep -Milliseconds 250
+            if (-not (Test-Path -LiteralPath $LiteralPath)) {
+                Write-Host "  [RECYCLE BIN] $LiteralPath" -ForegroundColor Green
+                return
+            }
+
+            $lastRecycleError = 'The path still exists after the Recycle Bin request.'
+        }
+        catch {
+            $lastRecycleError = $_.Exception.Message
+        }
+
+        if ($recycleAttempt -lt 3) { Start-Sleep -Milliseconds 500 }
     }
 
-    Write-Host "  [RECYCLE BIN] $LiteralPath" -ForegroundColor Green
+    $script:CleanupFailureCount++
+    Write-Host "  [FAILED AFTER 3 ATTEMPTS] $LiteralPath" -ForegroundColor Red
+    if (-not [string]::IsNullOrWhiteSpace([string]$lastRecycleError)) {
+        Write-Host "    $lastRecycleError" -ForegroundColor Red
+    }
 }
 
 function Get-UniqueExistingPaths {
@@ -352,6 +403,7 @@ if ($mode -notin @('1', '2')) {
     exit 2
 }
 $apply = $mode -eq '2'
+$script:CleanupFailureCount = 0
 
 Add-Type -AssemblyName Microsoft.VisualBasic
 
@@ -367,6 +419,68 @@ $desktop = [Environment]::GetFolderPath('Desktop')
 $downloads = Get-DownloadsPath
 $documents = [Environment]::GetFolderPath('MyDocuments')
 $pictures = [Environment]::GetFolderPath('MyPictures')
+
+$oneDriveRootCandidates = New-Object System.Collections.Generic.List[string]
+foreach ($variableName in @('OneDrive', 'OneDriveConsumer', 'OneDriveCommercial')) {
+    $value = [Environment]::GetEnvironmentVariable($variableName)
+    if (-not [string]::IsNullOrWhiteSpace($value)) {
+        [void]$oneDriveRootCandidates.Add($value)
+    }
+}
+if (-not [string]::IsNullOrWhiteSpace($env:USERPROFILE)) {
+    $conventionalOneDrive = Join-Path $env:USERPROFILE 'OneDrive'
+    if (Test-Path -LiteralPath $conventionalOneDrive -PathType Container) {
+        [void]$oneDriveRootCandidates.Add($conventionalOneDrive)
+    }
+
+    foreach ($oneDriveFolder in @(Get-ChildItem -LiteralPath $env:USERPROFILE -Directory -Force -ErrorAction SilentlyContinue | Where-Object {
+        $_.Name -like 'OneDrive*'
+    })) {
+        [void]$oneDriveRootCandidates.Add($oneDriveFolder.FullName)
+    }
+}
+$oneDriveRoots = @(Get-UniqueExistingPaths -Items @($oneDriveRootCandidates) | Where-Object {
+    Test-Path -LiteralPath $_ -PathType Container
+})
+
+$desktopRootCandidates = New-Object System.Collections.Generic.List[string]
+foreach ($candidate in @(
+    $desktop,
+    (Get-UserShellFolderPath -ValueName 'Desktop'),
+    (Join-Path $env:USERPROFILE 'Desktop'),
+    (Join-Path $env:USERPROFILE '바탕 화면')
+)) {
+    if (-not [string]::IsNullOrWhiteSpace($candidate)) {
+        [void]$desktopRootCandidates.Add($candidate)
+    }
+}
+foreach ($oneDriveRoot in $oneDriveRoots) {
+    [void]$desktopRootCandidates.Add((Join-Path $oneDriveRoot 'Desktop'))
+    [void]$desktopRootCandidates.Add((Join-Path $oneDriveRoot '바탕 화면'))
+}
+$desktopRoots = @(Get-UniqueExistingPaths -Items @($desktopRootCandidates) | Where-Object {
+    Test-Path -LiteralPath $_ -PathType Container
+})
+
+$documentsRootCandidates = New-Object System.Collections.Generic.List[string]
+foreach ($candidate in @(
+    $documents,
+    (Get-UserShellFolderPath -ValueName 'Personal'),
+    (Join-Path $env:USERPROFILE 'Documents'),
+    (Join-Path $env:USERPROFILE '문서')
+)) {
+    if (-not [string]::IsNullOrWhiteSpace($candidate)) {
+        [void]$documentsRootCandidates.Add($candidate)
+    }
+}
+foreach ($oneDriveRoot in $oneDriveRoots) {
+    [void]$documentsRootCandidates.Add((Join-Path $oneDriveRoot 'Documents'))
+    [void]$documentsRootCandidates.Add((Join-Path $oneDriveRoot '문서'))
+}
+$documentsRoots = @(Get-UniqueExistingPaths -Items @($documentsRootCandidates) | Where-Object {
+    Test-Path -LiteralPath $_ -PathType Container
+})
+
 $browserDataRoots = @(
     [PSCustomObject]@{
         Name = 'Chrome'
@@ -377,7 +491,7 @@ $browserDataRoots = @(
         Path = Join-Path $env:LOCALAPPDATA 'Microsoft\Edge\User Data'
     }
 )
-$allowedUserRoots = @($desktop, $downloads, $documents, $pictures) | Where-Object {
+$allowedUserRoots = @($desktopRoots) + @($downloads) + @($documentsRoots) + @($pictures) | Where-Object {
     -not [string]::IsNullOrWhiteSpace($_)
 }
 
@@ -386,6 +500,10 @@ Write-Host "Codex home: $codexHome"
 Write-Host "Mode:       $(if ($apply) { 'APPLY' } else { 'PREVIEW' })"
 Write-Host 'Preserved:  plugins, auth.json'
 Write-Host 'Downloads:  every file and folder will be selected' -ForegroundColor Yellow
+Write-Host 'Desktop roots:'
+foreach ($rootPath in $desktopRoots) { Write-Host "  $rootPath" }
+Write-Host 'Documents roots:'
+foreach ($rootPath in $documentsRoots) { Write-Host "  $rootPath" }
 
 $runningCodex = @(Get-CodexProcesses)
 
@@ -513,7 +631,7 @@ else {
 
 Write-Section '3/5  Required folders, Downloads, and screenshots'
 $cleanupCandidates = New-Object System.Collections.Generic.List[string]
-foreach ($basePath in @($desktop, $downloads, $documents)) {
+foreach ($basePath in @($desktopRoots) + @($downloads) + @($documentsRoots)) {
     if ([string]::IsNullOrWhiteSpace($basePath)) { continue }
     foreach ($name in $PracticeFolderNames) {
         $candidate = Join-Path $basePath $name
@@ -523,11 +641,17 @@ foreach ($basePath in @($desktop, $downloads, $documents)) {
     }
 }
 
-$requiredPaths = @(
-    (Join-Path $desktop '에이전트 클래스'),
-    (Join-Path $documents 'ChatGPT'),
-    (Join-Path $documents 'Codex')
-)
+$requiredPaths = New-Object System.Collections.Generic.List[string]
+foreach ($desktopRoot in $desktopRoots) {
+    foreach ($name in $AgentClassNames) {
+        [void]$requiredPaths.Add((Join-Path $desktopRoot $name))
+    }
+}
+foreach ($documentsRoot in $documentsRoots) {
+    foreach ($name in @('ChatGPT', 'Codex')) {
+        [void]$requiredPaths.Add((Join-Path $documentsRoot $name))
+    }
+}
 foreach ($requiredPath in $requiredPaths) {
     if (Test-Path -LiteralPath $requiredPath) {
         [void]$cleanupCandidates.Add($requiredPath)
@@ -571,8 +695,8 @@ $screenshotFolders = New-Object System.Collections.Generic.List[string]
 if (-not [string]::IsNullOrWhiteSpace($pictures)) {
     [void]$screenshotFolders.Add((Join-Path $pictures 'Screenshots'))
 }
-if (-not [string]::IsNullOrWhiteSpace($env:OneDrive)) {
-    [void]$screenshotFolders.Add((Join-Path $env:OneDrive 'Pictures\Screenshots'))
+foreach ($oneDriveRoot in $oneDriveRoots) {
+    [void]$screenshotFolders.Add((Join-Path $oneDriveRoot 'Pictures\Screenshots'))
 }
 $screenshotFolders = @(Get-UniqueExistingPaths $screenshotFolders)
 
@@ -681,7 +805,11 @@ if ($apply -and -not [string]::IsNullOrWhiteSpace($deferredRecyclePath)) {
 
 if ($apply) {
     Write-Host ''
-    if ($deferredRecycleScheduled) {
+    if ($script:CleanupFailureCount -gt 0) {
+        Write-Host ("Cleanup finished with {0} item(s) still in place. Review the [FAILED] lines above." -f $script:CleanupFailureCount) -ForegroundColor Red
+        exit 5
+    }
+    elseif ($deferredRecycleScheduled) {
         Write-Host 'Safe cleanup completed. Items remain recoverable in the Recycle Bin.' -ForegroundColor Green
     }
     else {
