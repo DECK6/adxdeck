@@ -1,5 +1,25 @@
 [
   {
+    "slug": "critical-making-changes-the-question",
+    "file": "_built/critical-making-changes-the-question.md",
+    "title": "만드는 동안 질문은 바뀐다",
+    "description": "Critical Making을 완성품의 비판적 메시지가 아니라 재료와 도구가 초기 가정을 흔들고 다음 결정을 바꾸는 제작 과정으로 읽는다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "critical-making",
+      "maker-culture",
+      "art-and-technology",
+      "workshop-method"
+    ],
+    "date": "2026-08-12",
+    "thumbnail": "images/critical-making-changes-the-question.png",
+    "author": "육대근"
+  },
+  {
     "slug": "nam-june-paik-and-the-uneven-satellite-stage",
     "file": "_built/nam-june-paik-and-the-uneven-satellite-stage.md",
     "title": "백남준의 위성은 세계를 하나로 묶지 않았다",
