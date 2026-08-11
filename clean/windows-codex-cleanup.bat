@@ -320,6 +320,12 @@ function Get-CodexProcesses {
     })
 }
 
+function Get-BrowserProcesses {
+    @(Get-Process -ErrorAction SilentlyContinue | Where-Object {
+        $_.ProcessName -match '(?i)^(chrome|msedge)$'
+    })
+}
+
 function Write-ProcessList {
     param([object[]]$Processes)
 
@@ -428,19 +434,51 @@ if ($runningCodex.Count -gt 0) {
     }
 }
 
-$runningBrowsers = @(Get-Process -ErrorAction SilentlyContinue | Where-Object {
-    $_.ProcessName -match '(?i)^(chrome|msedge)$'
-})
+$runningBrowsers = @(Get-BrowserProcesses)
 
 if ($runningBrowsers.Count -gt 0) {
     Write-Host ''
     Write-Host '[STOP] Chrome or Edge is still running:' -ForegroundColor Red
-    $runningBrowsers | Sort-Object ProcessName, Id | ForEach-Object {
-        Write-Host ("  {0} (PID {1})" -f $_.ProcessName, $_.Id)
+    Write-ProcessList -Processes $runningBrowsers
+
+    if (-not $apply) {
+        Write-Host 'Preview mode never stops browser processes.' -ForegroundColor Yellow
+        Write-Host 'Apply mode can offer to force-stop only the Chrome/Edge processes listed above.' -ForegroundColor Yellow
     }
-    Write-Host 'Close every Chrome and Edge window, including background apps, then run this file again.' -ForegroundColor Yellow
-    if ($apply) { exit 4 }
-    Write-Host 'Preview will continue without changing anything.' -ForegroundColor Yellow
+    else {
+        Write-Host 'Force-stopping can discard unsaved forms, tabs, and active downloads.' -ForegroundColor Yellow
+        if (-not (Read-YesNo 'Force-stop only the Chrome/Edge processes listed above now?')) {
+            Write-Host '[CANCELLED] Close Chrome and Edge manually and run this file again.' -ForegroundColor Yellow
+            exit 4
+        }
+
+        for ($attempt = 1; $attempt -le 3; $attempt++) {
+            $browserTargets = @(Get-BrowserProcesses)
+            if ($browserTargets.Count -eq 0) { break }
+
+            foreach ($browserProcess in $browserTargets) {
+                try {
+                    Stop-Process -Id $browserProcess.Id -Force -ErrorAction Stop
+                    Write-Host ("  [FORCE-STOPPED] {0} (PID {1})" -f $browserProcess.ProcessName, $browserProcess.Id) -ForegroundColor Green
+                }
+                catch {
+                    Write-Host ("  [FAILED] {0} (PID {1}): {2}" -f $browserProcess.ProcessName, $browserProcess.Id, $_.Exception.Message) -ForegroundColor Red
+                }
+            }
+
+            Start-Sleep -Milliseconds 1000
+        }
+
+        $remainingBrowsers = @(Get-BrowserProcesses)
+        if ($remainingBrowsers.Count -gt 0) {
+            Write-Host '[STOP] Some Chrome/Edge processes remain after three attempts:' -ForegroundColor Red
+            Write-ProcessList -Processes $remainingBrowsers
+            Write-Host 'Use Task Manager as an administrator to end those PIDs, then run this batch normally.' -ForegroundColor Yellow
+            exit 4
+        }
+
+        Write-Host 'All detected Chrome/Edge processes are stopped.' -ForegroundColor Green
+    }
 }
 
 if ($apply) {
