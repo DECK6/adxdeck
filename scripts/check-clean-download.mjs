@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 
-const expectedSha256 = "3b625f2f4f56323afc154475c3b6494c52593b06eecaea02a953243424751618";
+const expectedSha256 = "8fae54b13b6d51f323e0f6f2b40e9228bf5da1007283fe5876d5fbf7417d84c5";
 
 const [html, css, batch, buildScript, sitemap] = await Promise.all([
   readFile("clean/index.html", "utf8"),
@@ -21,8 +21,10 @@ assert.match(
 );
 assert.match(html, /미리보기/, "page must explain preview mode");
 assert.match(html, /CLEANUP/, "page must explain the apply confirmation token");
-assert.match(html, /Chrome·Edge의 방문·다운로드 기록도 정리/, "page must disclose browser-history cleanup");
+assert.match(html, /유령 프로세스는 PID 확인 후 강제 종료/, "page must disclose approved ghost-process termination");
+assert.match(html, /Chrome·Edge 기록도 정리/, "page must disclose browser-history cleanup");
 assert.match(html, /쿠키·비밀번호·북마크는 보존/, "page must disclose preserved browser data");
+assert.match(html, /사용자가 별도 승인한 Codex·ChatGPT 유령 프로세스 강제 종료/, "page must disclose the separate approval boundary");
 assert.match(html, new RegExp(expectedSha256), "page must show the artifact checksum");
 assert.match(css, /:focus-visible/, "download page must include a visible keyboard focus state");
 assert.match(css, /@media\s*\(max-width:\s*700px\)/, "download page must be responsive");

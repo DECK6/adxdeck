@@ -227,6 +227,20 @@ function Get-BrowserHistoryCandidates {
     Get-UniqueExistingPaths -Items @($candidates)
 }
 
+function Get-CodexProcesses {
+    @(Get-Process -ErrorAction SilentlyContinue | Where-Object {
+        $_.ProcessName -match '(?i)(codex|chatgpt)'
+    })
+}
+
+function Write-ProcessList {
+    param([object[]]$Processes)
+
+    $Processes | Sort-Object ProcessName, Id | ForEach-Object {
+        Write-Host ("  {0} (PID {1})" -f $_.ProcessName, $_.Id)
+    }
+}
+
 Write-Host ''
 Write-Host 'Windows Codex Cleanup' -ForegroundColor Cyan
 Write-Host 'All automated removals go to the Windows Recycle Bin.' -ForegroundColor Gray
@@ -279,19 +293,51 @@ Write-Host "Codex home: $codexHome"
 Write-Host "Mode:       $(if ($apply) { 'APPLY' } else { 'PREVIEW' })"
 Write-Host 'Preserved:  plugins, auth.json'
 
-$runningCodex = @(Get-Process -ErrorAction SilentlyContinue | Where-Object {
-    $_.ProcessName -match '(?i)(codex|chatgpt)'
-})
+$runningCodex = @(Get-CodexProcesses)
 
 if ($runningCodex.Count -gt 0) {
     Write-Host ''
     Write-Host '[STOP] Codex/ChatGPT-related processes are still running:' -ForegroundColor Red
-    $runningCodex | Sort-Object ProcessName, Id | ForEach-Object {
-        Write-Host ("  {0} (PID {1})" -f $_.ProcessName, $_.Id)
+    Write-ProcessList -Processes $runningCodex
+
+    if (-not $apply) {
+        Write-Host 'Preview mode never stops processes.' -ForegroundColor Yellow
+        Write-Host 'Apply mode can offer to force-stop only the processes listed above.' -ForegroundColor Yellow
     }
-    Write-Host 'Exit Codex completely from the system tray, then run this file again.' -ForegroundColor Yellow
-    if ($apply) { exit 3 }
-    Write-Host 'Preview will continue without changing anything.' -ForegroundColor Yellow
+    else {
+        Write-Host 'Force-stopping can discard unsaved work in those apps.' -ForegroundColor Yellow
+        if (-not (Read-YesNo 'Force-stop only the Codex/ChatGPT processes listed above now?')) {
+            Write-Host '[CANCELLED] Close the processes manually and run this file again.' -ForegroundColor Yellow
+            exit 3
+        }
+
+        for ($attempt = 1; $attempt -le 3; $attempt++) {
+            $targets = @(Get-CodexProcesses)
+            if ($targets.Count -eq 0) { break }
+
+            foreach ($process in $targets) {
+                try {
+                    Stop-Process -Id $process.Id -Force -ErrorAction Stop
+                    Write-Host ("  [FORCE-STOPPED] {0} (PID {1})" -f $process.ProcessName, $process.Id) -ForegroundColor Green
+                }
+                catch {
+                    Write-Host ("  [FAILED] {0} (PID {1}): {2}" -f $process.ProcessName, $process.Id, $_.Exception.Message) -ForegroundColor Red
+                }
+            }
+
+            Start-Sleep -Milliseconds 1000
+        }
+
+        $remainingCodex = @(Get-CodexProcesses)
+        if ($remainingCodex.Count -gt 0) {
+            Write-Host '[STOP] Some Codex/ChatGPT processes remain after three attempts:' -ForegroundColor Red
+            Write-ProcessList -Processes $remainingCodex
+            Write-Host 'Use Task Manager as an administrator to end those PIDs, then run this batch normally.' -ForegroundColor Yellow
+            exit 3
+        }
+
+        Write-Host 'All detected Codex/ChatGPT processes are stopped.' -ForegroundColor Green
+    }
 }
 
 $runningBrowsers = @(Get-Process -ErrorAction SilentlyContinue | Where-Object {

@@ -53,7 +53,8 @@
       <h1 id="page-title">Codex 실습 환경을<br /><span>안전하게 정리하세요.</span></h1>
       <p class="lead">
         실행 전에 정리 대상을 먼저 보여 주고, 승인한 파일만 Windows 휴지통으로 이동합니다.
-        Chrome·Edge의 방문·다운로드 기록도 정리하며 쿠키·비밀번호·북마크는 보존합니다.
+        남은 Codex 유령 프로세스는 PID 확인 후 강제 종료할 수 있습니다.
+        Chrome·Edge 기록도 정리하되 쿠키·비밀번호·북마크는 보존합니다.
       </p>
 
       <div class="download-actions">
@@ -62,7 +63,7 @@
           <span class="download-icon" aria-hidden="true">↓</span>
           <span>
             <strong>Windows 배치파일 다운로드</strong>
-            <small>windows-codex-cleanup.bat · 16.1 KB</small>
+            <small>windows-codex-cleanup.bat · 17.9 KB</small>
           </span>
         </a>
         <p class="download-note">다운로드 후 파일을 더블클릭하면 됩니다.</p>
@@ -82,7 +83,7 @@
         <li>
           <span class="step-number mono">01</span>
           <h3>앱 완전 종료</h3>
-          <p>Codex·ChatGPT를 완전히 종료하고 Chrome·Edge 창과 백그라운드 앱도 닫습니다.</p>
+          <p>Codex·ChatGPT를 정상 종료합니다. 유령 프로세스가 남으면 표시된 PID를 확인해 강제 종료할 수 있습니다.</p>
         </li>
         <li>
           <span class="step-number mono">02</span>
@@ -103,6 +104,7 @@
         <h2>자동으로 정리하는 항목</h2>
         <ul>
           <li><code>plugins</code>와 <code>auth.json</code>을 제외한 Codex 로컬 상태</li>
+          <li>사용자가 별도 승인한 Codex·ChatGPT 유령 프로세스 강제 종료</li>
           <li>바탕화면·다운로드·문서의 이름이 정확히 일치하는 실습 폴더</li>
           <li>사용자가 승인한 스크린샷 및 추가 파일</li>
           <li>모든 Chrome·Edge 프로필의 방문·다운로드 기록</li>
@@ -124,7 +126,7 @@
         <span class="dx-kicker">FILE INTEGRITY</span>
         <strong>SHA-256</strong>
       </div>
-      <code>3b625f2f4f56323afc154475c3b6494c52593b06eecaea02a953243424751618</code>
+      <code>8fae54b13b6d51f323e0f6f2b40e9228bf5da1007283fe5876d5fbf7417d84c5</code>
     </aside>
   </main>
 
