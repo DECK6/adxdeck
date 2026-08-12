@@ -1,5 +1,26 @@
 [
   {
+    "slug": "laura-u-marks-and-haptic-visuality",
+    "file": "_built/laura-u-marks-and-haptic-visuality.md",
+    "title": "눈은 언제 이미지를 만지는가",
+    "description": "로라 U. 마크스의 촉각적 시각 개념을 따라 이미지가 재현을 넘어 몸의 기억과 감각을 불러내는 순간을 살피고, 미디어아트의 화면을 읽는 기준을 다시 묻는다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "media-theorist",
+      "laura-u-marks",
+      "haptic-visuality",
+      "intercultural-cinema",
+      "embodied-media"
+    ],
+    "date": "2026-08-13",
+    "thumbnail": "images/laura-marks-haptic-visuality-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "critical-making-changes-the-question",
     "file": "_built/critical-making-changes-the-question.md",
     "title": "만드는 동안 질문은 바뀐다",
