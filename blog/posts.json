@@ -1,5 +1,26 @@
 [
   {
+    "slug": "joan-jonas-and-the-fractured-video-mirror",
+    "file": "_built/joan-jonas-and-the-fractured-video-mirror.md",
+    "title": "몸은 왜 화면 안에서 한 번 더 깨지는가",
+    "description": "조앤 조너스의 초기 비디오 퍼포먼스에서 거울, 가면, 화면 오류가 몸과 정체성을 어떻게 분할하는지 살펴보고, 오늘의 실시간 이미지 환경을 읽는 기준을 찾는다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "international-artist",
+      "joan-jonas",
+      "video-art",
+      "performance-art",
+      "video-mirror",
+      "vertical-roll"
+    ],
+    "date": "2026-08-14",
+    "thumbnail": "images/joan-jonas-video-mirror-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "laura-u-marks-and-haptic-visuality",
     "file": "_built/laura-u-marks-and-haptic-visuality.md",
     "title": "눈은 언제 이미지를 만지는가",
