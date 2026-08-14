@@ -1,0 +1,96 @@
+---
+type: article
+track: ai-ax
+title: "타임아웃은 실패가 아니다: 에이전트 재시도에 필요한 멱등성과 영수증"
+slug: agent-retries-need-idempotency-and-receipts
+aliases:
+  - "Agent Retries Need Idempotency and Receipts"
+author:
+  - "육대근"
+date created: 2026-08-14
+date modified: 2026-08-14
+tags:
+  - article
+  - AI
+  - ai-agent
+  - agent-runtime
+  - idempotency
+  - retries
+  - observability
+description: "네트워크 타임아웃 뒤 에이전트가 같은 외부 작업을 중복 실행하지 않도록 의도 ID, 멱등 키, provider 영수증, 상태 대조를 결합하는 재시도 계약을 살펴본다."
+thumbnail: images/agent-retry-idempotency-receipt-cover.png
+status: completed
+---
+
+# 타임아웃은 실패가 아니다: 에이전트 재시도에 필요한 멱등성과 영수증
+
+![끊긴 응답 경로 아래에서 멱등 키와 영수증 대조 경로가 중복 실행을 막는 추상 시스템](images/agent-retry-idempotency-receipt-cover.png)
+
+에이전트가 고객 알림 한 건을 외부 서비스에 보냈다. 30초가 지나도 응답이 오지 않자 도구는 `timeout`을 반환했고, 실행 화면에는 빨간 실패 표시가 떴다. 같은 요청을 곧바로 다시 보내면 끊긴 흐름이 이어질 수도 있지만, 첫 요청이 이미 처리됐다면 알림이 두 번 발송될 수 있다.
+
+타임아웃이 확인해 주는 사실은 호출자가 정해 둔 시간 안에 응답을 받지 못했다는 것뿐이다. 수신 서비스가 요청을 받지 않았는지, 처리 중인지, 처리를 마쳤지만 응답만 잃어버렸는지는 알 수 없다. AWS Builders’ Library의 네트워크 타임아웃 사례도 이 딜레마를 짚는다. 응답이 없지만 외부 자원이 이미 만들어졌을 수 있으므로, 단순 재시도는 중복 부작용을 낳을 수 있다.[5]
+
+도구를 쓰는 에이전트에게 이 구간은 **실행 여부를 모르는 상태**로 남는다. 여기서는 이를 `불확실성 구간`이라고 부르겠다. 신뢰할 수 있는 런타임은 이 상태를 실패와 같은 칸에 넣지 않는다. 다시 실행하기 전에 같은 의도가 이미 받아들여졌는지 확인할 멱등 키, 외부 서비스가 돌려준 영수증, 권위 있는 상태 조회 경로가 필요하다.
+
+## 응답이 없다는 사실과 실행되지 않았다는 사실은 다르다
+
+일반적인 재시도 정책은 네트워크 오류나 일시적 서버 오류를 회복하는 데 효과가 있다. 하지만 이 방식은 같은 호출을 여러 번 보내도 결과가 한 번만 일어난다는 전제 위에서만 안전하다. AWS의 설명처럼 요청 인자가 같다는 이유만으로 같은 의도라고 추정할 수도 없다. 똑같은 사양의 자원 두 개를 만들려는 요청과, 응답을 잃어버려 같은 요청을 반복한 경우는 바이트 수준에서 닮아 있어도 의미가 다르다.[5]
+
+멱등성은 결과를 추정하기보다 **호출자의 의도를 식별하는 계약**에 가깝다. 같은 작업을 다시 시도할 때는 같은 고유 키를 보내고, 새로운 작업을 시작할 때는 새 키를 쓴다. Stripe의 현재 API 문서는 연결 오류 뒤 같은 요청을 안전하게 반복하려면 idempotency key를 사용하고, 같은 키로 들어온 후속 요청에는 첫 요청의 상태 코드와 본문을 다시 돌려준다고 설명한다. 또 원래 요청과 다른 매개변수로 키를 재사용하면 오류를 내고, 보존 기간이 지난 키는 새 요청으로 처리될 수 있다고 명시한다.[2]
+
+이 계약은 “재시도해도 두 번 실행되지 않음”을 다루지만 작업 완료를 증명하는 장치는 아니다. 첫 응답이 `202 Accepted`라면 서버가 작업을 접수했다는 뜻일 수 있고, 실제 발송·렌더링·게시가 끝났다는 뜻은 아닐 수 있다. OpenAI의 Background mode도 장시간 응답을 비동기로 시작한 뒤 response object를 조회해 상태를 확인하는 구조를 제공한다.[1] 이때 response ID는 다시 찾기 위한 영수증이지, 생성 결과가 이미 완성됐다는 선언이 아니다.
+
+에이전트 런타임은 오류를 최소한 세 갈래로 나눌 필요가 있다. 요청이 전송되기 전에 검증에서 막혔다면 같은 의도를 수정해 새로 보낼 수 있다. 외부 서비스가 접수했음을 확인했다면 영수증으로 상태를 조회해야 한다. 전송 여부 자체가 불명확하다면 즉시 재발송하지 말고, 같은 멱등 키로 조회하거나 대상 시스템의 현재 상태를 대조해야 한다. `failed` 하나로 합치면 세 경우가 모두 같은 재시도 버튼으로 흘러간다.
+
+## 멱등 키 다음에는 영수증과 상태 대조가 필요하다
+
+장기 실행 시스템은 프로세스가 끊겨도 진행 상태를 복원해야 한다. Temporal이 2025년 5월 설명한 Durable Execution은 실행 상태를 새 프로세스에서 재구성하고, 이미 끝낸 단계의 결과를 유지한 채 다음 단계로 이어 가는 추상화다.[4] 에이전트가 세션이나 워커 장애 뒤 어디서 계속할지를 설계할 때 참고할 만하다.
+
+로컬 실행 위치를 복구하는 일과 외부 부작용을 한 번만 일으키는 일은 서로 다르다. 워크플로가 “발송 단계 직전”을 복원해도, 장애가 발송 요청 직후에 일어났다면 외부 서비스가 이미 요청을 처리했을 수 있다. 반대로 checkpoint에 “발송 완료”를 기록하기 전에 프로세스가 죽었다고 해서 발송이 없었던 것은 아니다. 이 간극은 provider 영수증과 readback으로 메워야 한다.
+
+Anthropic이 2025년 11월 공개한 장기 에이전트 하네스 사례에서는 새 세션이 이전 맥락을 기억하지 못하는 문제를 progress file과 Git history 같은 외부 산출물로 보완하고, 에이전트가 실제로 끝내지 않은 기능을 완료로 선언하는 문제에는 end-to-end 검증을 붙였다.[3] 외부 도구를 실행할 때도 대화 속 “보냈다”는 문장보다 다음 세션이 읽을 수 있는 실행 레코드가 우선한다.
+
+한 번의 외부 작업에는 다음 정보가 함께 남아야 한다.
+
+- `intent_id`: 사용자가 원한 한 번의 의미 있는 작업과 대상, 고정된 매개변수
+- `attempt_id`: 같은 의도를 전달하려고 실제로 시도한 각 호출
+- `idempotency_key`와 `provider_receipt`: 중복 방지 범위와 외부 서비스의 조회 핸들
+- `observed_state`: 권위 있는 조회에서 확인한 완료 상태, revision, hash 또는 대상 ID
+
+한 작업을 안전하게 복구하려면 `intent_id`와 `attempt_id`가 분리돼야 한다. 네트워크가 두 번 끊겨 호출은 세 번 일어났더라도 사용자의 의도는 한 번일 수 있다. 세 번의 attempt가 같은 idempotency key를 공유하고 하나의 provider receipt 또는 하나의 최종 자원으로 수렴해야 한다. 반대로 사용자가 같은 내용의 알림을 다음 주에 다시 보내라고 했다면 매개변수가 같아도 새로운 intent다.
+
+영수증 상태를 그대로 완료 판정에 복사해서도 안 된다. 가능하다면 외부 서비스의 목록·상세 조회에서 대상 ID를 다시 읽고, 게시라면 live URL, 파일이라면 hash, 데이터베이스라면 revision을 대조한다. 비동기 처리나 eventual consistency로 조회가 늦을 수 있으므로 `accepted`, `processing`, `completed-observed`, `unknown`, `hold`를 구분하고 각 상태의 확인 기한을 정해야 한다.
+
+## AKM에 적용하면 실행 기록은 대조 가능한 계약이 된다
+
+AKM은 외부 API의 멱등성을 대신 구현하는 런타임이 아니다. 다만 공개 AKM의 Evidence Schema는 상태를 한 단어로 뭉개지 않는 방법을 보여 준다. 2026년 8월 14일 확인한 공개 `main`의 고정 커밋 `f26ace2a16caba724b24db12cbee238ebb52498f`는 근거 상태를 `candidate → direct-read → claim-supported`로 나누고, EvidencePacket이 `PASS`여도 downstream answer나 artifact가 아직 작성되지 않았거나 승인되지 않았을 수 있다고 명시한다.[6]
+
+에이전트 실행도 `evidence-ready`, `request-accepted`, `effect-observed`, `policy-passed`를 별도 상태로 다룰 수 있다. 조사 근거가 준비됐다고 게시가 끝난 것은 아니며, 게시 API가 요청을 받았다고 live 페이지가 바뀐 것도 아니다. 각 단계는 다음 단계의 입력이 되지만, 앞 단계의 성공을 뒤 단계의 완료로 확대해서는 안 된다.
+
+예를 들어 글 게시 자동화가 timeout을 만났다면 새 글을 만들거나 같은 commit을 다시 push하기 전에 원격 branch, 대상 SHA, 배포 workflow, live route를 순서대로 읽는다. 이미 의도한 SHA가 원격과 live에 반영됐다면 재시도는 필요 없다. 원격에는 반영됐지만 live가 이전 상태라면 게시 요청을 반복하기보다 배포 상태를 관찰해야 한다. 어느 쪽도 확인할 수 없다면 현재 영수증과 시도 이력을 남긴 채 `HOLD`로 멈추는 편이 중복 게시보다 안전하다.
+
+AKM에는 대화 전문 대신 재현과 복구에 필요한 의도 ID, 대상, 시도 이력, 영수증, 마지막 관찰, 다음 확인 시각, 사람이 판단해야 할 경계만 남기면 된다. 비밀값이나 개인정보를 idempotency key에 넣지 않고, provider의 보존 기간과 삭제 정책을 함께 기록해야 한다. Stripe 역시 idempotency key에 이메일 주소나 개인 식별자 같은 민감 데이터를 넣지 말라고 안내한다.[2]
+
+## 안전한 재시도는 자동 재시도를 늘리는 설계가 아니다
+
+멱등 키가 모든 외부 작업을 안전하게 만드는 것은 아니다. 공급자가 멱등성을 지원하지 않을 수 있고, 키 보존 기간이 짧을 수 있으며, 동일한 응답을 돌려주더라도 그 뒤의 비동기 작업이 실패할 수 있다. 외부 상태 조회가 지연되거나 일부만 보이면 readback도 잠시 잘못된 결론을 낼 수 있다. 키 저장소와 영수증 로그는 운영 비용과 개인정보 보호 책임을 추가한다.
+
+재시도가 쉬워질수록 장애 난 서비스를 더 세게 두드릴 위험도 커진다. rate limit, backoff, 최대 시도 횟수, 전체 기한이 없는 멱등 재시도는 중복 부작용 대신 부하 증폭을 만들 수 있다. 작은 읽기 작업이나 다시 계산해도 부작용이 없는 변환에는 전체 계약이 과할 수 있다. 되돌리기 어렵고 외부 세계를 바꾸는 쓰기부터 적용하는 편이 현실적이다.
+
+설계의 출발점은 재시도 횟수가 아니라 **모르는 상태를 어떻게 표현할지** 정하는 일이다. 같은 의도에는 같은 키를 쓰고, 각 호출은 별도 attempt로 남긴다. 외부 서비스가 준 영수증을 저장하되 완료 증거로 오해하지 않는다. 재시도 전에 현재 상태를 대조하고, 정해 둔 기한 안에 판정할 수 없으면 실패로 꾸미지 말고 `unknown` 또는 `HOLD`로 넘긴다.
+
+안정적으로 오래 일하는 에이전트는 오류를 무조건 끝까지 밀어붙이지 않는다. 응답이 사라진 순간에도 이미 일어난 일을 지우지 않고, 다음 행동이 중복을 만들지 않도록 기다리고 확인할 수 있어야 한다. 타임아웃 뒤에 필요한 첫 질문은 “몇 번 더 시도할까”가 아니라 “같은 의도가 외부 세계에 이미 남아 있는지 무엇으로 확인할까”다.
+
+## Sources
+
+[1] [OpenAI API — Background mode](https://developers.openai.com/api/docs/guides/background)
+
+[2] [Stripe API Reference — Idempotent requests](https://docs.stripe.com/api/idempotent_requests)
+
+[3] [Anthropic — Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents)
+
+[4] [Temporal — The definitive guide to Durable Execution](https://temporal.io/blog/what-is-durable-execution)
+
+[5] [Amazon Builders’ Library — Making retries safe with idempotent APIs](https://aws.amazon.com/builders-library/making-retries-safe-with-idempotent-APIs)
+
+[6] [DECK6/akm — EVIDENCE-SCHEMA.md at f26ace2](https://github.com/DECK6/akm/blob/f26ace2a16caba724b24db12cbee238ebb52498f/99-system/EVIDENCE-SCHEMA.md)

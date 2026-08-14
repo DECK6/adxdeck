@@ -1,5 +1,25 @@
 [
   {
+    "slug": "agent-retries-need-idempotency-and-receipts",
+    "file": "_built/agent-retries-need-idempotency-and-receipts.md",
+    "title": "타임아웃은 실패가 아니다: 에이전트 재시도에 필요한 멱등성과 영수증",
+    "description": "네트워크 타임아웃 뒤 에이전트가 같은 외부 작업을 중복 실행하지 않도록 의도 ID, 멱등 키, provider 영수증, 상태 대조를 결합하는 재시도 계약을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "ai-agent",
+      "agent-runtime",
+      "idempotency",
+      "retries",
+      "observability"
+    ],
+    "date": "2026-08-14",
+    "thumbnail": "images/agent-retry-idempotency-receipt-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "joan-jonas-and-the-fractured-video-mirror",
     "file": "_built/joan-jonas-and-the-fractured-video-mirror.md",
     "title": "몸은 왜 화면 안에서 한 번 더 깨지는가",
