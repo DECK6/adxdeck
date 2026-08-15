@@ -1,5 +1,25 @@
 [
   {
+    "slug": "retrieval-chunks-should-keep-document-context",
+    "file": "_built/retrieval-chunks-should-keep-document-context.md",
+    "title": "검색용 청크는 문서의 맥락을 잃지 말아야 한다",
+    "description": "RAG가 문서를 잘게 나눈 뒤 잃기 쉬운 참조 관계를 late chunking, Contextual Retrieval, Contextual Document Embeddings가 어떻게 보완하는지 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "RAG",
+      "retrieval",
+      "embeddings",
+      "late-chunking",
+      "knowledge-systems"
+    ],
+    "date": "2026-08-15",
+    "thumbnail": "images/retrieval-chunks-keep-document-context-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "agent-retries-need-idempotency-and-receipts",
     "file": "_built/agent-retries-need-idempotency-and-receipts.md",
     "title": "타임아웃은 실패가 아니다: 에이전트 재시도에 필요한 멱등성과 영수증",
