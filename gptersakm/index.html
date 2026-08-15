@@ -1,0 +1,573 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>GPTERS AI지식관리 2·3·4주차 종합 인사이트 | DEXA</title>
+  <meta name="description" content="GPTERS 23기 AI지식관리 2·3·4주차 원문 기반 사례 95편을 횡단 분석한 DEXA AKM 종합 리포트. 회수, 근거, 검증, 성숙도와 적용 우선순위를 정리합니다.">
+  <link rel="canonical" href="https://dexa.art/gptersakm/">
+  <meta name="theme-color" content="#F5F1E6">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="DEXA">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="GPTERS AI지식관리 2·3·4주차 종합 인사이트">
+  <meta property="og:description" content="95개 사례에서 읽어낸 AKM의 회수, 근거, 검증과 실행 변화">
+  <meta property="og:url" content="https://dexa.art/gptersakm/">
+  <meta property="og:image" content="https://dexa.art/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="GPTERS AI지식관리 2·3·4주차 종합 인사이트">
+  <meta name="twitter:description" content="95개 사례에서 읽어낸 AKM의 회수, 근거, 검증과 실행 변화">
+  <meta name="twitter:image" content="https://dexa.art/og-image.jpg">
+  <link rel="icon" href="../dexa-mark.svg">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"GPTERS AI지식관리 2·3·4주차 종합 인사이트","description":"GPTERS 23기 AI지식관리 원문 기반 사례 95편의 횡단 분석 리포트","url":"https://dexa.art/gptersakm/","inLanguage":"ko-KR","publisher":{"@type":"Organization","name":"DEXA","url":"https://dexa.art/"}}</script>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --paper: #F5F1E6;
+  --panel: #EBE4D3;
+  --panel-2: #E3DBC6;
+  --ink: #17181B;
+  --near-black: #0D0E10;
+  --line: #D9D0BB;
+  --muted: #6A644F;
+  --orange: #FF5A1F;
+  --orange-hover: #E64D14;
+  --cyan: #5EE7F3;
+  --red: #E0402A;
+  --red-text: #B33320;
+  --white: #F7FAFC;
+  --shell: min(1240px, calc(100% - 48px));
+  --side: 248px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.68;
+  letter-spacing: 0;
+  word-break: keep-all;
+}
+a { color: inherit; }
+button { font: inherit; }
+::selection { color: var(--ink); background: var(--orange); }
+
+.layout { display: grid; grid-template-columns: var(--side) minmax(0, 1fr); min-height: 100vh; }
+.side {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: 100vh;
+  padding: 28px 20px 20px;
+  border-right: 1px solid var(--line);
+  background: var(--panel);
+  overflow: auto;
+}
+.brand { display: flex; align-items: center; gap: 14px; margin: 0 8px 32px; }
+.brand-logo { width: 98px; height: auto; display: block; }
+.brand-meta { padding-left: 12px; border-left: 1px solid var(--muted); }
+.brand-meta strong,
+.brand-meta small { display: block; font-family: 'JetBrains Mono', monospace; text-transform: uppercase; }
+.brand-meta strong { font-size: 9px; letter-spacing: .08em; }
+.brand-meta small { color: var(--muted); font-size: 8px; letter-spacing: .08em; }
+.nav-label, .kicker, .eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.nav-label { margin: 0 8px 10px; color: var(--muted); }
+.nav { display: grid; border-top: 1px solid var(--line); }
+.nav a {
+  position: relative;
+  padding: 11px 30px 11px 8px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  transition: background .15s ease, padding .15s ease;
+}
+.nav a::after { content: '↗'; position: absolute; right: 8px; color: var(--muted); }
+.nav a:hover, .nav a.active { padding-left: 14px; background: var(--paper); }
+.nav a.active::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--orange); }
+.side-actions { margin: 24px 8px 0; }
+.action {
+  width: 100%;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--orange);
+  box-shadow: 0 3px 0 var(--ink);
+  cursor: pointer;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-align: left;
+  text-transform: uppercase;
+}
+.action:hover { background: var(--orange-hover); }
+.action:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--ink); }
+.action:focus-visible, .nav a:focus-visible, summary:focus-visible, .top:focus-visible { outline: 2px solid var(--orange); outline-offset: 3px; }
+
+main { min-width: 0; padding: 0 0 96px; }
+.shell { width: var(--shell); margin: 0 auto; }
+.hero {
+  position: relative;
+  min-height: 690px;
+  margin: 0 calc((100vw - var(--side) - min(1240px, calc(100vw - var(--side) - 48px))) / -2);
+  padding: 112px max(24px, calc((100vw - var(--side) - min(1240px, calc(100vw - var(--side) - 48px))) / 2));
+  border-bottom: 2px solid var(--ink);
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgba(23,24,27,.055) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23,24,27,.055) 1px, transparent 1px);
+  background-size: 48px 48px;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  right: -110px;
+  top: 72px;
+  width: 440px;
+  height: 440px;
+  border: 44px solid var(--orange);
+  border-radius: 50%;
+  opacity: .96;
+}
+.hero::after {
+  content: 'SYSTEM / SYNTHESIS / 023';
+  position: absolute;
+  right: 22px;
+  bottom: 20px;
+  color: var(--muted);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+.eyebrow {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  padding: 7px 10px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  background: var(--panel);
+}
+h1 {
+  position: relative;
+  z-index: 2;
+  max-width: 920px;
+  margin: 34px 0 24px;
+  font-size: clamp(52px, 7.4vw, 104px);
+  font-weight: 700;
+  line-height: .98;
+  letter-spacing: -.03em;
+}
+h1::after, h2::after { content: '.'; color: var(--orange); }
+.hero > p {
+  position: relative;
+  z-index: 2;
+  max-width: 760px;
+  margin: 0;
+  color: var(--muted);
+  font-size: clamp(17px, 1.6vw, 22px);
+  line-height: 1.62;
+}
+.stats {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(118px, 1fr));
+  max-width: 760px;
+  margin-top: 48px;
+  padding: 10px;
+  border: 8px solid var(--ink);
+  border-radius: 12px;
+  background: var(--near-black);
+  box-shadow: inset 0 0 0 1px #2A2B2E;
+}
+.stat { padding: 14px 16px; border-right: 1px solid #3A3B3F; }
+.stat:last-child { border-right: 0; }
+.stat b { display: block; color: var(--cyan); font-family: 'JetBrains Mono', monospace; font-size: 29px; line-height: 1; }
+.stat span { display: block; margin-top: 8px; color: #8A8D93; font-family: 'JetBrains Mono', monospace; font-size: 8px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+
+section { scroll-margin-top: 24px; margin-top: 96px; }
+.section-head { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 24px; margin-bottom: 32px; padding-bottom: 16px; border-bottom: 2px solid var(--ink); }
+.kicker { color: var(--orange); }
+h2 { margin: 8px 0 0; font-size: clamp(34px, 4.2vw, 56px); font-weight: 700; line-height: 1.08; letter-spacing: -.03em; }
+.section-desc { max-width: 760px; margin: 13px 0 0; color: var(--muted); }
+
+.key-message {
+  position: relative;
+  padding: 40px 40px 36px 48px;
+  border: 2px solid var(--ink);
+  background: var(--panel);
+  box-shadow: 8px 8px 0 var(--ink);
+}
+.key-message::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 9px; background: var(--orange); }
+.key-message strong { display: block; max-width: 930px; font-size: clamp(26px, 3.2vw, 43px); font-weight: 700; line-height: 1.28; letter-spacing: -.02em; }
+.key-message p { max-width: 850px; margin: 18px 0 0; color: var(--muted); }
+.confidence { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 32px; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink); }
+.confidence article { padding: 24px; border-right: 1px solid var(--ink); background: transparent; }
+.confidence article:last-child { border-right: 0; }
+.confidence b { display: block; margin: 12px 0 5px; font-size: 18px; }
+.confidence small { color: var(--muted); }
+.pill { display: inline-flex; padding: 4px 8px; border: 1px solid var(--ink); border-radius: 999px; color: var(--ink); background: var(--paper); font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.pill.high, .pill.mid { background: var(--orange); }
+.pill.low { color: var(--red-text); border-color: var(--red); }
+
+.timeline { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.week { position: relative; min-height: 324px; padding: 28px 26px; border: 1px solid var(--ink); border-top: 8px solid var(--ink); border-radius: 6px; background: var(--panel); transition: transform .15s ease, background .15s ease; }
+.week:hover { transform: translateY(-4px); background: var(--panel-2); }
+.week-num { display: inline-flex; padding: 7px 9px; border: 1px solid var(--ink); color: var(--ink); background: var(--orange); font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: .06em; }
+.week h3 { margin: 28px 0 5px; font-size: 28px; line-height: 1.1; }
+.week .question { color: var(--muted); font-weight: 700; }
+.week ul { margin: 22px 0 0; padding: 0; list-style: none; }
+.week li { position: relative; padding: 8px 0 8px 18px; border-top: 1px solid var(--line); color: var(--ink); font-size: 14px; }
+.week li::before { content: ''; position: absolute; left: 0; top: 16px; width: 6px; height: 6px; background: var(--orange); }
+
+.insights { counter-reset: insight; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 2px solid var(--ink); }
+.insight { counter-increment: insight; position: relative; padding: 32px; border-bottom: 1px solid var(--ink); background: transparent; }
+.insight:nth-child(odd) { border-right: 1px solid var(--ink); }
+.insight::before { content: counter(insight, decimal-leading-zero); display: block; color: var(--orange); font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 700; letter-spacing: .08em; }
+.insight h3 { margin: 12px 0 12px; font-size: 25px; line-height: 1.25; }
+.insight p { margin: 0; color: var(--muted); font-size: 15px; }
+.principle { display: inline-block; margin-top: 18px; padding: 6px 8px; border: 1px solid var(--ink); color: var(--ink); background: var(--panel); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: .02em; }
+details { margin-top: 16px; border-top: 1px solid var(--line); }
+summary { padding-top: 12px; color: var(--ink); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+summary::marker { color: var(--orange); }
+details div { margin-top: 10px; padding-left: 13px; border-left: 4px solid var(--orange); color: var(--muted); font-size: 12px; }
+
+.table-wrap { overflow-x: auto; border-top: 3px solid var(--ink); border-bottom: 2px solid var(--ink); }
+table { width: 100%; min-width: 900px; border-collapse: collapse; font-size: 13px; }
+th { padding: 14px 14px 12px; border-bottom: 1px solid var(--ink); color: var(--muted); background: transparent; text-align: left; white-space: nowrap; font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+td { padding: 17px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+tr:last-child td { border-bottom: 0; }
+td:first-child { width: 150px; color: var(--ink); font-weight: 700; }
+
+.maturity { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; padding: 28px; border: 10px solid var(--ink); border-radius: 16px; background: var(--near-black); box-shadow: inset 0 0 0 1px #3A3B3F; }
+.level { min-height: 214px; padding: 20px 16px; border: 1px solid #3A3B3F; border-radius: 5px; color: var(--white); background: #202226; }
+.level b { display: block; color: var(--cyan); font-family: 'JetBrains Mono', monospace; font-size: 28px; }
+.level h3 { margin: 26px 0 8px; font-size: 17px; }
+.level p { margin: 0; color: #8A8D93; font-size: 12px; }
+
+.strength-grid { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 2px solid var(--ink); }
+.strength { display: flex; gap: 16px; min-height: 124px; padding: 24px; border-bottom: 1px solid var(--ink); }
+.strength:nth-child(odd) { border-right: 1px solid var(--ink); }
+.check { flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; color: var(--ink); background: var(--orange); font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+.strength b { display: block; font-size: 18px; }
+.strength span { display: block; margin-top: 5px; color: var(--muted); font-size: 13px; }
+
+.priority-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.priority { min-height: 280px; padding: 25px; border: 1px solid var(--ink); border-radius: 6px; background: var(--panel); }
+.priority .tag { display: inline-flex; padding: 5px 8px; border: 1px solid var(--ink); border-radius: 999px; color: var(--ink); background: var(--orange); font-family: 'JetBrains Mono', monospace; font-size: 9px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
+.priority:nth-child(n+4) .tag { background: transparent; }
+.priority h3 { margin: 20px 0 15px; font-size: 22px; }
+.priority ul { margin: 0; padding: 0; list-style: none; }
+.priority li { position: relative; padding: 7px 0 7px 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+.priority li::before { content: ''; position: absolute; left: 0; top: 15px; width: 5px; height: 5px; background: var(--orange); }
+.metric-box { position: relative; margin-top: 24px; padding: 34px 28px 28px; border: 10px solid var(--ink); border-radius: 14px; color: var(--cyan); background: var(--near-black); font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 2; overflow-x: auto; box-shadow: inset 0 0 0 1px #3A3B3F; }
+.metric-box::before { content: 'LIVE METRICS / AKM READ PATH'; position: absolute; top: 9px; left: 18px; color: #8A8D93; font-size: 9px; letter-spacing: .08em; }
+
+.plan { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 2px solid var(--ink); border-bottom: 2px solid var(--ink); }
+.plan article { position: relative; min-height: 230px; padding: 26px 22px; border-right: 1px solid var(--ink); }
+.plan article:last-child { border-right: 0; }
+.plan article::after { content: '→'; position: absolute; right: -11px; top: 25px; z-index: 2; display: grid; place-items: center; width: 22px; height: 22px; border: 1px solid var(--ink); border-radius: 50%; background: var(--paper); font-family: 'JetBrains Mono', monospace; font-size: 11px; }
+.plan article:last-child::after { display: none; }
+.plan .day { display: inline-block; color: var(--orange); font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; }
+.plan h3 { margin: 42px 0 10px; font-size: 20px; }
+.plan p { margin: 0; color: var(--muted); font-size: 13px; }
+
+.decision-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.decision { padding: 25px; border: 1px solid var(--ink); border-top: 8px solid var(--ink); border-radius: 6px; background: var(--panel); }
+.decision:first-child { border-top-color: var(--orange); }
+.decision:last-child { border-top-color: var(--red); }
+.decision h3 { margin: 0 0 18px; color: var(--ink); font-size: 22px; }
+.decision:last-child h3 { color: var(--red-text); }
+.decision ul { margin: 0; padding: 0; list-style: none; }
+.decision li { padding: 8px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+
+.anti { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; padding: 26px; border: 10px solid var(--ink); border-radius: 16px; color: var(--white); background: var(--near-black); box-shadow: inset 0 0 0 1px #3A3B3F; }
+.anti div { display: flex; gap: 13px; align-items: flex-start; min-height: 68px; padding: 16px; border-bottom: 1px solid #3A3B3F; color: #D6D8DB; font-size: 13px; }
+.anti div:nth-child(odd) { border-right: 1px solid #3A3B3F; }
+.anti i { flex: none; color: var(--cyan); font-family: 'JetBrains Mono', monospace; font-size: 11px; font-style: normal; font-weight: 700; }
+
+.final { position: relative; padding: 56px; border: 10px solid var(--ink); border-radius: 16px; color: var(--white); background: var(--near-black); box-shadow: inset 0 0 0 1px #3A3B3F; }
+.final::before, .final::after { content: ''; position: absolute; width: 7px; height: 7px; border: 1px solid #5A5D63; border-radius: 50%; background: #2A2B2E; }
+.final::before { left: 14px; top: 14px; }
+.final::after { right: 14px; bottom: 14px; }
+.final .kicker { color: var(--cyan) !important; }
+.final h2 { max-width: 820px; color: var(--white); }
+.final h2::after { color: var(--cyan); }
+.final p { max-width: 850px; color: #A6A9AE; }
+.formula { margin-top: 30px; padding: 22px; border: 1px solid #3A3B3F; border-left: 5px solid var(--cyan); color: var(--cyan); background: #17181B; font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; text-align: left; }
+.method { padding: 24px; border-top: 2px solid var(--ink); border-bottom: 1px solid var(--ink); color: var(--muted); }
+.method strong { color: var(--ink); }
+footer { margin-top: 64px; padding: 24px 0 0; border-top: 2px solid var(--ink); color: var(--muted); font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .04em; text-transform: uppercase; }
+footer code { color: var(--ink); word-break: break-all; text-transform: none; }
+.top { position: fixed; right: 22px; bottom: 22px; z-index: 30; width: 48px; height: 48px; border: 1px solid var(--ink); border-radius: 8px; color: var(--ink); background: var(--orange); box-shadow: 0 3px 0 var(--ink); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-weight: 700; }
+.top:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--ink); }
+
+@media (max-width: 1100px) {
+  :root { --shell: min(100% - 32px, 1240px); }
+  .layout { display: block; }
+  .side { position: sticky; height: auto; padding: 10px 16px; border-right: 0; border-bottom: 1px solid var(--ink); overflow: hidden; }
+  .brand, .nav-label, .side-actions { display: none; }
+  .nav { display: flex; overflow-x: auto; border-top: 0; white-space: nowrap; }
+  .nav a { flex: none; border-bottom: 0; border-right: 1px solid var(--line); }
+  .nav a::after { display: none; }
+  main { padding-top: 0; }
+  .hero { margin: 0 calc((100vw - min(1240px, calc(100vw - 32px))) / -2); padding-left: max(16px, calc((100vw - min(1240px, calc(100vw - 32px))) / 2)); padding-right: max(16px, calc((100vw - min(1240px, calc(100vw - 32px))) / 2)); }
+  .maturity { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 760px) {
+  :root { --shell: min(100% - 24px, 1240px); }
+  body { font-size: 15px; }
+  .hero { min-height: 660px; margin: 0 calc((100vw - min(1240px, calc(100vw - 24px))) / -2); padding: 84px 12px 72px; }
+  .hero::before { right: -170px; top: 150px; width: 340px; height: 340px; border-width: 32px; }
+  h1 { font-size: clamp(50px, 15vw, 74px); }
+  .stats { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
+  .stat:nth-child(2) { border-right: 0; }
+  .stat:nth-child(-n+2) { border-bottom: 1px solid #3A3B3F; }
+  section { margin-top: 72px; }
+  .section-head, .confidence, .timeline, .insights, .strength-grid, .priority-grid, .plan, .decision-grid, .anti { grid-template-columns: 1fr; }
+  .section-head { gap: 12px; }
+  .confidence article, .confidence article:last-child { border-right: 0; border-bottom: 1px solid var(--ink); }
+  .timeline { gap: 12px; }
+  .insight:nth-child(odd), .strength:nth-child(odd), .anti div:nth-child(odd) { border-right: 0; }
+  .maturity { grid-template-columns: repeat(2, 1fr); padding: 14px; }
+  .priority { min-height: 0; }
+  .plan article { min-height: 0; border-right: 0; border-bottom: 1px solid var(--ink); }
+  .plan article::after { display: none; }
+  .plan h3 { margin-top: 22px; }
+  .key-message, .final { padding: 32px 24px; }
+  .anti { padding: 14px; }
+  .top { right: 14px; bottom: 14px; }
+}
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; transition: none !important; } }
+@media print {
+  @page { size: A4; margin: 14mm; }
+  body { background: #fff; }
+  .layout { display: block; }
+  .side, .top { display: none; }
+  main { padding: 0; }
+  .shell { width: 100%; }
+  .hero { min-height: 0; margin: 0; padding: 28px 0; background-image: none; }
+  section { margin-top: 34px; break-inside: avoid; }
+  .insight, .week, .priority, .decision, .level { break-inside: avoid; }
+  .table-wrap { overflow: visible; }
+  table { min-width: 0; font-size: 8px; }
+}
+
+  </style>
+</head>
+<body>
+<div class="layout">
+  <aside class="side">
+    <div class="brand">
+      <svg class="brand-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 390 120" role="img" aria-label="DEXA"><g stroke-linejoin="round"><path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"/><path d="M60 20 79 53H41Z" fill="#17181B"/><path d="M36 57 55 90H17Z" fill="#17181B"/><path d="M84 57 103 90H65Z" fill="#FF5A1F"/><path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"/></g><text x="140" y="82" fill="#17181B" font-family="'Space Grotesk',sans-serif" font-size="66" font-weight="800" textLength="200" lengthAdjust="spacingAndGlyphs">DEXA</text><circle cx="360" cy="78" r="6" fill="#FF5A1F"/></svg>
+      <div class="brand-meta"><strong>AKM / 023</strong><small>Cross-case</small></div>
+    </div>
+    <div class="nav-label">Contents</div>
+    <nav class="nav" id="toc">
+      <a href="#message">핵심 메시지</a>
+      <a href="#weeks">주차별 변화</a>
+      <a href="#insights">10대 인사이트</a>
+      <a href="#failures">실패 패턴</a>
+      <a href="#maturity">성숙도 모델</a>
+      <a href="#current">현재 AKM 대조</a>
+      <a href="#priorities">적용 우선순위</a>
+      <a href="#plan">30일 실험</a>
+      <a href="#rules">판정 기준</a>
+      <a href="#summary">종합 결론</a>
+    </nav>
+    <div class="side-actions"><button class="action" onclick="window.print()">인쇄 또는 PDF 저장</button></div>
+  </aside>
+
+  <main>
+    <div class="shell">
+      <header class="hero">
+        <span class="eyebrow">DEXA.AKM / GPTERS 23 / WEEK 02—04</span>
+        <h1>저장에서 회수로,<br>회수에서 검증으로</h1>
+        <p>2·3·4주차의 원문 기반 사례 95편을 횡단 분석해 AKM의 공통 메시지, 실패 패턴, 성숙도와 현재 시스템 적용 우선순위를 정리했습니다.</p>
+        <div class="stats">
+          <div class="stat"><b>95</b><span>원문 기반 사례노트</span></div>
+          <div class="stat"><b>33</b><span>참여 저자</span></div>
+          <div class="stat"><b>3</b><span>분석 주차</span></div>
+          <div class="stat"><b>10</b><span>핵심 인사이트</span></div>
+        </div>
+      </header>
+
+      <section id="message">
+        <div class="section-head"><div><div class="kicker">Core message</div><h2>핵심 메시지</h2></div></div>
+        <div class="key-message">
+          <strong>저장된 지식이 아니라, 회수되고 검증되고 다음 실행을 바꾸는 지식이 자산이다.</strong>
+          <p>AKM의 가치는 지식을 많이 모으는 데 있지 않습니다. 필요한 순간에 올바른 지식을 찾고, 출처·범위·신선도를 확인하고, 위험한 행동은 멈추며, 실행 결과와 실패를 다음 작업 규칙으로 되돌리는 운영 루프에 있습니다.</p>
+        </div>
+        <div class="confidence">
+          <article><span class="pill high">높은 신뢰</span><b>구조만으로는 작동하지 않는다</b><small>입력·회수·승격·검증 경로가 없는 구조의 실패가 반복됐습니다.</small></article>
+          <article><span class="pill mid">중상 신뢰</span><b>최소 코퍼스 뒤에는 회수가 병목이다</b><small>정답률·도달률 분리와 검색 진입점 결손이 이를 지지합니다.</small></article>
+          <article><span class="pill low">주의할 주장</span><b>주차가 직선 단계로 성장했다</b><small>중심 이동은 보이지만 모든 사례가 같은 순서를 따르지는 않았습니다.</small></article>
+        </div>
+      </section>
+
+      <section id="weeks">
+        <div class="section-head"><div><div class="kicker">Shift of gravity</div><h2>주차별 관심의 중심 이동</h2><p class="section-desc">구조→운영→평가의 인과적 계단이 아니라, 사례에서 반복적으로 나타난 중심 질문의 변화입니다.</p></div></div>
+        <div class="timeline">
+          <article class="week"><div class="week-num">2W</div><h3>구조와 경계</h3><div class="question">무엇을 어디에 둘 것인가?</div><ul><li>Source·Knowledge·Context·Memory·Procedure 구분</li><li>기존 시스템을 AKM에 매핑하고 최소 침습 이식</li><li>메모리 과적재와 낡은 정본 발견</li><li>폴더보다 층위와 책임을 재정의</li></ul></article>
+          <article class="week"><div class="week-num">3W</div><h3>작동과 게이트</h3><div class="question">구조가 실제 작업에서 작동하는가?</div><ul><li>inbox, reuse-first, 승격 게이트</li><li>dry-run과 사람 승인 경계</li><li>입력 경로가 없는 빈 레인 발견</li><li>자동 PASS와 의미 검증의 분리</li></ul></article>
+          <article class="week"><div class="week-num">4W</div><h3>측정과 안전</h3><div class="question">지식이 읽히고 안전하게 쓰였는가?</div><ul><li>정확도와 도달률을 별도 측정</li><li>CURRENT·HISTORICAL·HOLD 상태</li><li>맞는 답과 틀린 근거 발견</li><li>silent fallback과 검색 진입점 검사</li></ul></article>
+        </div>
+      </section>
+
+      <section id="insights">
+        <div class="section-head"><div><div class="kicker">Cross-case synthesis</div><h2>10가지 종합 인사이트</h2><p class="section-desc">95개 사례에서 반복된 신호를 AKM의 재사용 가능한 운영 원칙으로 바꿨습니다.</p></div></div>
+        <div class="insights">
+          <article class="insight"><h3>저장과 작동은 다르다</h3><p>파일이 존재해도 에이전트가 찾지 못하면 운영상 없는 지식입니다. 정확도 88%와 도달률 49%의 격차, 99.25점 구조에서 발생한 검색 누락이 이를 보여줍니다.</p><span class="principle">저장 성공과 회수 성공을 별도 판정</span><details><summary>대표 근거</summary><div>4w/04 정확도와 도달률 · 4w/27 검색 진입점 결손 · 4w/03 읽히지 않은 볼트</div></details></article>
+          <article class="insight"><h3>정답과 근거는 별개다</h3><p>정답 문서를 읽지 않아도 맞는 문장을 만들 수 있습니다. 답변 내용, 실제 회수, 주장 지지를 세 지표로 분리해야 합니다.</p><span class="principle">answer correctness ≠ source support</span><details><summary>대표 근거</summary><div>4w/21 맞았는데 틀린 챗봇 · 4w/20 근거 없는 수정 거부 · 3w/30 17개 주장 중 확인된 2개</div></details></article>
+          <article class="insight"><h3>폴더보다 경로를 설계한다</h3><p>레이어가 있어도 자료가 들어오지 않거나, 기존 지식을 검색하지 않거나, 승격 기준이 없으면 운영은 시작되지 않습니다.</p><span class="principle">source → promote/HOLD → retrieve → verify</span><details><summary>대표 근거</summary><div>3w/17 레인 4개와 노트 0개 · 3w/07 reuse-first · 3w/02 승격 게이트</div></details></article>
+          <article class="insight"><h3>Memory는 포인터다</h3><p>긴 본문과 빨리 낡는 진행 상태는 세션 메모리를 오염시킵니다. 짧은 회수 낚싯바늘과 정본의 분리가 필요합니다.</p><span class="principle">thin memory, thick knowledge</span><details><summary>대표 근거</summary><div>2w/10 포인터 인덱스 · 3w/31 조건부 AKM 로딩 · 4w/11 실행공간과 지식저장소</div></details></article>
+          <article class="insight"><h3>신선도·범위·권위도 지식이다</h3><p>과거에는 맞았던 문서를 지금도 맞는 것처럼 읽으면 사고가 납니다. 존재 여부와 현재 사용 허가를 분리해야 합니다.</p><span class="principle">CURRENT · HISTORICAL · HOLD</span><details><summary>대표 근거</summary><div>4w/13 구판과 신판 · 3w/14 변경 가능한 판단 · 2w/07 낡은 명세</div></details></article>
+          <article class="insight"><h3>게이트도 검증 대상이다</h3><p>실행 게이트는 수동 규칙보다 강하지만, 잘못된 범위를 재거나 fallback을 숨기면 거짓 PASS를 만듭니다.</p><span class="principle">test the tester</span><details><summary>대표 근거</summary><div>4w/16 커밋 관문 · 3w/04 dry-run/apply · 4w/20 검사기 검증 · 4w/21 silent fallback</div></details></article>
+          <article class="insight"><h3>판단보다 검사와 기록을 자동화한다</h3><p>수집·중복 탐지·회귀검사·후보 생성은 자동화하고, 공개·삭제·정본 승격·법적 판단은 사람 승인과 롤백 경계를 둡니다.</p><span class="principle">automation checks, humans approve</span><details><summary>대표 근거</summary><div>3w/16 사람 승인 파이프라인 · 4w/14 클라우드와 로컬 쓰기 분리 · 3w/01 조건부 승인</div></details></article>
+          <article class="insight"><h3>Learn Back은 실행 자산을 바꾼다</h3><p>회고문이 아니라 procedure, gate, schema, checklist, evaluation이 실제로 바뀌어야 다음 실행이 달라집니다.</p><span class="principle">기록보다 미래 실행의 변화</span><details><summary>대표 근거</summary><div>2w/22 리서치 흡수 루프 · 3w/27 실패의 복리 · 4w/16 커밋 기반 기록 후보</div></details></article>
+          <article class="insight"><h3>실행 공간과 지식 정본을 분리한다</h3><p>분리만 하면 지식이 쓰이지 않습니다. adapter, pointer, command, task contract라는 명시적 다리가 필요합니다.</p><span class="principle">separate custody, explicit bridge</span><details><summary>대표 근거</summary><div>4w/11 이중 구조 · 3w/05 가벼운 볼트 · 3w/28 upstream과 local 분리</div></details></article>
+          <article class="insight"><h3>성과는 재사용과 실행 변화다</h3><p>파일 수는 성과가 아닙니다. 실제 회수율, 재사용률, 실패 재발 감소, 새 조사 없이 만든 결과를 측정해야 합니다.</p><span class="principle">count outcomes, not files</span><details><summary>대표 근거</summary><div>4w/18 한 레인에 몰린 58개 · 3w/25 새 조사 0건 · 4w/19 지식관리로 전환한 하네스</div></details></article>
+        </div>
+      </section>
+
+      <section id="failures">
+        <div class="section-head"><div><div class="kicker">Failure matrix</div><h2>반복 실패 패턴과 대응</h2></div></div>
+        <div class="table-wrap"><table><thead><tr><th>실패 패턴</th><th>증상</th><th>구조적 원인</th><th>탐지 신호</th><th>대응</th></tr></thead><tbody>
+          <tr><td>저장됐지만 미회수</td><td>노트는 많은데 답변에서 사용되지 않음</td><td>read path·index·ingest·파일명 경계 부재</td><td>읽은 파일 목록, 도달률, 자기회수</td><td>read-before-answer, reuse-first, 진입점 회귀시험</td></tr>
+          <tr><td>맞는 답·틀린 근거</td><td>정답률은 높지만 엉뚱한 문서를 사용</td><td>내용 점수만 있고 출처 지지 점수 없음</td><td>intended source mismatch</td><td>claim-level source support, direct read</td></tr>
+          <tr><td>silent fallback</td><td>오류 없이 정상처럼 완료</td><td>timeout·fallback이 상태로 노출되지 않음</td><td>fallback_used, reviewer trace 누락</td><td>fail closed, PASS_WITH_NOTE, NOT_TESTED</td></tr>
+          <tr><td>오래된 지식 사용</td><td>구판과 신판이 함께 현재 근거로 검색</td><td>validity·authority·supersession 부재</td><td>stale list, version diff</td><td>CURRENT/HISTORICAL/HOLD와 연결 보존</td></tr>
+          <tr><td>맥락 오염</td><td>다른 프로젝트·고객·계통 정보가 섞임</td><td>scope·lineage·workspace 경계가 암묵적</td><td>무관 질문, contamination flag</td><td>task contract, scope manifest, hard gate</td></tr>
+          <tr><td>자동화 과잉</td><td>AI가 사용자 이해와 승인보다 앞서감</td><td>쓰기 권한이 계약보다 먼저 열림</td><td>dry-run과 실제 변경 차이</td><td>dry-run 기본, batch limit, 명시 승인</td></tr>
+          <tr><td>오해를 부르는 지표</td><td>99점·PASS·파일 수가 성공처럼 보임</td><td>단일 총점이 회수·근거·효과를 숨김</td><td>accuracy/reach 분리, baseline</td><td>과정·결과 쌍 측정, metric dictionary</td></tr>
+          <tr><td>고장 난 검사기</td><td>lint 0인데 의미는 틀림</td><td>negative fixture와 의미 검사가 없음</td><td>틀린 입력도 PASS</td><td>seeded failure, evaluator self-test</td></tr>
+          <tr><td>운영 기록 누락</td><td>사고는 커밋·채팅에만 남음</td><td>기록이 작업 후 별도 의무</td><td>fix/revert와 ERRORS 대조</td><td>기존 흐름에서 기록 후보 자동 생성</td></tr>
+        </tbody></table></div>
+      </section>
+
+      <section id="maturity">
+        <div class="section-head"><div><div class="kicker">Maturity model</div><h2>AKM 성숙도 L0부터 L5</h2><p class="section-desc">폴더 수가 아니라 가장 약한 통과 질문으로 성숙도를 판정합니다.</p></div></div>
+        <div class="maturity">
+          <article class="level"><b>L0</b><h3>보관</h3><p>원본과 정본을 식별할 수 있는가?</p></article>
+          <article class="level"><b>L1</b><h3>구조화</h3><p>Source·Knowledge·Context·Procedure를 구분하는가?</p></article>
+          <article class="level"><b>L2</b><h3>회수 가능</h3><p>새 세션이 의도한 지식을 실제로 찾고 읽는가?</p></article>
+          <article class="level"><b>L3</b><h3>검증 가능</h3><p>어떤 근거로 어디까지 행동했는지 설명 가능한가?</p></article>
+          <article class="level"><b>L4</b><h3>학습 가능</h3><p>실패가 다음 실행 규칙을 바꾸는가?</p></article>
+          <article class="level"><b>L5</b><h3>회복 가능</h3><p>변경 후 회수·근거·범위·성능이 유지되는가?</p></article>
+        </div>
+      </section>
+
+      <section id="current">
+        <div class="section-head"><div><div class="kicker">Current AKM</div><h2>현재 마스터 AKM과의 대조</h2><p class="section-desc">사례들이 요구한 안전 원칙의 상당수는 이미 구현되어 있습니다. 다음 단계는 구조 추가보다 실사용 계측입니다.</p></div></div>
+        <div class="strength-grid">
+          <div class="strength"><div class="check">✓</div><div><b>레이어와 ROUTER</b><span>Source·Knowledge·Context·Memory·Procedure·Action·Evaluation 경계</span></div></div>
+          <div class="strength"><div class="check">✓</div><div><b>고정된 얇은 운영 메모리</b><span>40-memory 네 포인터와 본문의 분리</span></div></div>
+          <div class="strength"><div class="check">✓</div><div><b>Evidence Schema</b><span>candidate → direct-read → claim-supported, stale·conflicted·rejected</span></div></div>
+          <div class="strength"><div class="check">✓</div><div><b>bounded retrieval</b><span>exact·qmd·Graphify·direct read와 scope·authority·freshness</span></div></div>
+          <div class="strength"><div class="check">✓</div><div><b>자동 승격 금지와 HOLD</b><span>candidate 자동 활성화, 전역 주입, 정본 자동 승격 금지</span></div></div>
+          <div class="strength"><div class="check">✓</div><div><b>devlog 자동 포착</b><span>개발 세션의 실행 흔적과 검증 결과 기록</span></div></div>
+          <div class="strength"><div class="check">✓</div><div><b>정본과 파생 인덱스 분리</b><span>Markdown 정본, qmd·Graphify·DB는 재생성 가능</span></div></div>
+          <div class="strength"><div class="check">→</div><div><b>다음 강화 지점</b><span>읽혔는가, 올바른 근거인가, 결과가 시스템을 바꿨는가</span></div></div>
+        </div>
+      </section>
+
+      <section id="priorities">
+        <div class="section-head"><div><div class="kicker">Priorities</div><h2>현재 AKM 적용 우선순위</h2></div></div>
+        <div class="priority-grid">
+          <article class="priority"><span class="tag">P0 · 즉시 파일럿</span><h3>Read-Path 평가팩</h3><ul><li>실제 작업 질문 15개</li><li>AKM root와 프로젝트 세션 비교</li><li>읽은 파일·direct read·source ID 기록</li><li>정확도·도달률·근거지지 분리</li><li>무관 질문으로 오염 측정</li></ul></article>
+          <article class="priority"><span class="tag">P0 · 즉시 파일럿</span><h3>Knowledge Return</h3><ul><li>Reused: 실제 사용한 기존 지식</li><li>Modified: 바뀐 판단</li><li>Added: 새 검증 지식</li><li>Held: 미확정·충돌</li><li>Targets: 갱신할 실제 경로</li></ul></article>
+          <article class="priority"><span class="tag">P0 · 즉시 파일럿</span><h3>fallback 가시화</h3><ul><li>timeout·reviewer skip 상태화</li><li>stale index·partial read 노출</li><li>negative fixture 없는 검사기는 NOT_TESTED</li><li>같은 세션의 작성·검증 표시</li></ul></article>
+          <article class="priority"><span class="tag">P1 · 한정 적용</span><h3>지식 사용 상태</h3><ul><li>CURRENT·HISTORICAL·HOLD</li><li>LEARN·REJECT</li><li>as_of·last_verified·authority</li><li>전역 스키마 전 한 도메인 파일럿</li></ul></article>
+          <article class="priority"><span class="tag">P1 · 운영 관문</span><h3>reuse / extend / new</h3><ul><li>조사 전 기존 자산 검색</li><li>선택과 이유 기록</li><li>exact·qmd·direct read 결합</li><li>예상 target note 명시</li></ul></article>
+          <article class="priority"><span class="tag">P2 · 조건부 확장</span><h3>그래프와 대규모 자동화</h3><ul><li>cutoff에서 근거가 반복 탈락할 때</li><li>관계 탐색이 필수일 때</li><li>파일 병합 충돌이 비용을 넘을 때</li><li>read-path 실패가 재현될 때만</li></ul></article>
+        </div>
+        <div class="metric-box">retrievalReach = 의도한 AKM 근거를 읽은 응답 / 평가 응답<br>claimSupportedAccuracy = 근거가 주장을 지지하며 정답인 응답 / 평가 응답<br>sourceLineageRecovery = 올바른 원본·정본까지 추적 가능한 응답 / 근거 사용 응답<br>silentFallbackRate = fallback이 발생했지만 정상처럼 처리된 응답 / 평가 응답<br>contaminationRate = 범위 밖 지식이 섞인 응답 / 평가 응답</div>
+      </section>
+
+      <section id="plan">
+        <div class="section-head"><div><div class="kicker">30-day experiment</div><h2>30일 강화 실험</h2></div></div>
+        <div class="plan">
+          <article><span class="day">1주차</span><h3>질문과 근거 동결</h3><p>세 개 실제 도메인에서 질문 15개와 의도 근거를 정하고, gold 노출 없이 checksum을 고정합니다.</p></article>
+          <article><span class="day">2주차</span><h3>baseline 측정</h3><p>AKM 세션과 프로젝트 세션에서 정확도·도달률·근거지지·오염·fallback을 분리합니다.</p></article>
+          <article><span class="day">3주차</span><h3>상태와 환류 파일럿</h3><p>한 도메인에서 freshness 상태와 Knowledge Return을 실제 작업 종료에 연결합니다.</p></article>
+          <article><span class="day">4주차</span><h3>회귀와 판정</h3><p>같은 질문으로 reach·lineage 개선, 정답률 no-degradation, token·latency 예산을 비교합니다.</p></article>
+        </div>
+      </section>
+
+      <section id="rules">
+        <div class="section-head"><div><div class="kicker">Decision rules</div><h2>승격·HOLD·롤백 기준</h2></div></div>
+        <div class="decision-grid">
+          <article class="decision"><h3>승격</h3><ul><li>의도 근거가 반복 회수됨</li><li>주장과 직접 읽은 근거가 연결됨</li><li>scope·freshness·authority 설명 가능</li><li>사람 승인과 자동 PASS가 분리됨</li><li>회귀시험에서 no-degradation</li></ul></article>
+          <article class="decision"><h3>HOLD</h3><ul><li>출처 또는 직접 읽기 없음</li><li>맞는 답이지만 의도 근거 미회수</li><li>충돌·신선도·범위 미해결</li><li>같은 AI가 작성과 검증을 모두 수행</li><li>검사기가 실패 입력을 잡는지 미확인</li></ul></article>
+          <article class="decision"><h3>중단·롤백</h3><ul><li>정답률 상승과 source support 하락</li><li>회수율과 무관 지식 오염이 함께 증가</li><li>token·latency 예산 초과</li><li>fallback이 실패를 성공으로 숨김</li><li>정본·파생 인덱스 불일치 미복구</li></ul></article>
+        </div>
+      </section>
+
+      <section id="anti-patterns">
+        <div class="section-head"><div><div class="kicker">Avoid</div><h2>피해야 할 안티패턴</h2></div></div>
+        <div class="anti">
+          <div><i>1</i><span>전체 볼트를 먼저 옮기고 나중에 분류하기</span></div><div><i>2</i><span>파일 수와 임베딩 수를 지식 성과로 보고하기</span></div>
+          <div><i>3</i><span>정확한 답을 AKM 사용의 증거로 간주하기</span></div><div><i>4</i><span>AI PASS를 사람의 업무·법적 승인으로 간주하기</span></div>
+          <div><i>5</i><span>검사기를 틀린 입력으로 시험하지 않기</span></div><div><i>6</i><span>새 규칙을 기존 작업 흐름과 분리된 문서로만 추가하기</span></div>
+          <div><i>7</i><span>Memory에 긴 본문과 빨리 낡는 진행 상태를 넣기</span></div><div><i>8</i><span>Source·Knowledge·Context를 같은 복사본으로 중복 저장하기</span></div>
+          <div><i>9</i><span>기존 지식 검색 없이 새 자료를 바로 카드로 승격하기</span></div><div><i>10</i><span>회수 실패의 원인을 확인하기 전에 그래프·대규모 자동화 도입하기</span></div>
+        </div>
+      </section>
+
+      <section id="summary">
+        <div class="final">
+          <div class="kicker">Final synthesis</div>
+          <h2>AKM은 지식 창고가 아니라 지식 운영 제어계다</h2>
+          <p>이미 가진 시스템을 측정하고, 원본·해석·맥락·절차·평가의 책임을 나누고, 저장보다 입력과 회수 경로를 설계해야 합니다. 판단을 자동화하기 전에 검사와 기록을 자동화하고, PASS가 증명하지 않는 것까지 명시해야 합니다.</p>
+          <div class="formula">회수 가능한 지식 + 주장 단위 근거 + 승인·중단 게이트 + Learn Back = 운영되는 AKM</div>
+        </div>
+      </section>
+
+      <section id="method">
+        <div class="method"><strong>분석 경계.</strong> 이 리포트는 2주차 35편, 3주차 33편, 4주차 27편의 원문 기반 2차 분석노트 95편을 종합했습니다. 현재 live 목록에서 빠진 과거 사례 2편도 아카이브에 포함됩니다. 다수 사례가 단기 파일럿과 자기보고이므로 인과 법칙이 아니라 반복 운영 패턴으로 해석해야 합니다.</div>
+      </section>
+
+      <footer>
+        <div>Source note</div>
+        <code>GPTERS 23 / AKM WEEK 02—04 / CROSS-CASE SYNTHESIS</code>
+        <div style="margin-top:8px">DEXA.AKM / REPORT 023 · 2026-08-14 · QMD DIRECT RETRIEVAL VERIFIED</div>
+      </footer>
+    </div>
+  </main>
+</div>
+<button class="top" title="맨 위로" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+  const links = [...document.querySelectorAll('#toc a')];
+  const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + entry.target.id));
+      }
+    });
+  }, {rootMargin: '-18% 0px -72% 0px'});
+  sections.forEach(section => observer.observe(section));
+</script>
+</body>
+</html>
