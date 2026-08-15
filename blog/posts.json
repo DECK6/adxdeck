@@ -1,5 +1,26 @@
 [
   {
+    "slug": "variable-media-and-the-identity-of-artworks",
+    "file": "_built/variable-media-and-the-identity-of-artworks.md",
+    "title": "같은 작품은 얼마나 달라져도 같은가",
+    "description": "가변 매체 보존이 작품을 낡은 장비에 고정하는 대신 행동과 허용 가능한 변화의 범위로 기록하는 이유를 살피고, 기술 기반 작품의 정체성을 판단하는 기준을 묻는다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "variable-media",
+      "preservation",
+      "conservation",
+      "technology-based-art",
+      "museum-practice"
+    ],
+    "date": "2026-08-16",
+    "thumbnail": "images/variable-media-artwork-identity-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "retrieval-chunks-should-keep-document-context",
     "file": "_built/retrieval-chunks-should-keep-document-context.md",
     "title": "검색용 청크는 문서의 맥락을 잃지 말아야 한다",
