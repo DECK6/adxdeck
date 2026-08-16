@@ -1,5 +1,25 @@
 [
   {
+    "slug": "experiments-in-art-and-technology-as-collaboration-infrastructure",
+    "file": "_built/experiments-in-art-and-technology-as-collaboration-infrastructure.md",
+    "title": "예술과 엔지니어는 어디에서 함께 일하게 되었나",
+    "description": "E.A.T.가 《9 Evenings》 이후 예술가와 엔지니어를 연결하는 Technical Services Program과 대규모 프로젝트를 통해 협업의 물리적·사회적 조건을 어떻게 만들었는지 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-art-history",
+      "experiments-in-art-and-technology",
+      "art-and-technology",
+      "artist-engineer-collaboration",
+      "institution"
+    ],
+    "date": "2026-08-17",
+    "thumbnail": "images/experiments-in-art-and-technology-collaboration-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "variable-media-and-the-identity-of-artworks",
     "file": "_built/variable-media-and-the-identity-of-artworks.md",
     "title": "같은 작품은 얼마나 달라져도 같은가",
