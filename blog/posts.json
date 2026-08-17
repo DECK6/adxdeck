@@ -1,5 +1,25 @@
 [
   {
+    "slug": "yunchul-kim-and-the-nervous-system-of-matter",
+    "file": "_built/yunchul-kim-and-the-nervous-system-of-matter.md",
+    "title": "보이지 않는 입자가 전시장을 움직일 때",
+    "description": "김윤철의 《GYRE》를 따라 뮤온 감지 신호가 유체와 조각, 전시장 전체의 리듬으로 번지는 과정을 살피고, 과학이 미디어아트의 설명 소재가 아니라 조형 조건이 되는 순간을 읽는다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "korean-media-art",
+      "yunchul-kim",
+      "art-science",
+      "kinetic-installation",
+      "material-systems"
+    ],
+    "date": "2026-08-18",
+    "thumbnail": "images/yunchul-kim-nervous-system-of-matter-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "ai-productivity-is-time-to-validated-outcome",
     "file": "_built/ai-productivity-is-time-to-validated-outcome.md",
     "title": "AI는 빨라졌는데 왜 일은 늦어졌나: 검증된 산출물까지의 시간을 재는 법",
