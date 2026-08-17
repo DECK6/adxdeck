@@ -1,5 +1,24 @@
 [
   {
+    "slug": "ai-productivity-is-time-to-validated-outcome",
+    "file": "_built/ai-productivity-is-time-to-validated-outcome.md",
+    "title": "AI는 빨라졌는데 왜 일은 늦어졌나: 검증된 산출물까지의 시간을 재는 법",
+    "description": "상반된 AI 생산성 연구를 작업·사용자·결과 정의의 차이로 읽고, 도입 성과를 초안 속도가 아니라 검증된 산출물까지의 시간으로 측정하는 방법을 제안한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "human-ai-collaboration",
+      "productivity",
+      "evaluation",
+      "workflow-design"
+    ],
+    "date": "2026-08-17",
+    "thumbnail": "images/ai-productivity-validated-outcome-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "experiments-in-art-and-technology-as-collaboration-infrastructure",
     "file": "_built/experiments-in-art-and-technology-as-collaboration-infrastructure.md",
     "title": "예술과 엔지니어는 어디에서 함께 일하게 되었나",
