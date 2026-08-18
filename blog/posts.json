@@ -1,5 +1,26 @@
 [
   {
+    "slug": "can-destroyed-artifacts-return-as-data",
+    "file": "_built/can-destroyed-artifacts-return-as-data.md",
+    "title": "파괴된 유물은 데이터로 돌아올 수 있는가",
+    "description": "Morehshin Allahyari의 《Material Speculation: ISIS》를 따라 파괴된 유물을 3D 프린트와 데이터로 다시 만드는 일이 복원, 기록, 저항, 물질적 모순 사이에서 어떤 질문을 남기는지 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "international-artist",
+      "morehshin-allahyari",
+      "3d-printing",
+      "digital-archive",
+      "cultural-heritage",
+      "counter-archive"
+    ],
+    "date": "2026-08-19",
+    "thumbnail": "images/morehshin-allahyari-material-speculation-isis-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "yunchul-kim-and-the-nervous-system-of-matter",
     "file": "_built/yunchul-kim-and-the-nervous-system-of-matter.md",
     "title": "보이지 않는 입자가 전시장을 움직일 때",
