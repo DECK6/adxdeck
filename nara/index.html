@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DEXA NARA — 입찰 보관함</title>
+    <meta name="description" content="나라장터 입찰 즐겨찾기와 제안서 초안 공유 보관함" />
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="lock-screen" id="lockScreen">
+      <div class="lock-panel">
+        <div class="panel-strip">
+          <span class="led" id="lockLed"></span>
+          <span class="mono strip-label">DEXA · NARA VAULT</span>
+        </div>
+        <h1>입찰 보관함<span class="dot">.</span></h1>
+        <p class="lock-sub mono">PASSWORD REQUIRED — 암호화된 보관함입니다</p>
+        <form id="lockForm">
+          <input type="password" id="password" placeholder="비밀번호" autocomplete="current-password" autofocus />
+          <button type="submit" id="unlockButton">열기</button>
+        </form>
+        <p class="lock-error mono" id="lockError" hidden>비밀번호가 맞지 않습니다</p>
+      </div>
+    </section>
+
+    <div class="app" id="app" hidden>
+      <header class="app-header">
+        <div class="brand">
+          <span class="brand-name">DEXA<span class="dot">.</span></span>
+          <span class="mono brand-sub">NARA — 나라장터 입찰 보관함</span>
+        </div>
+        <div class="header-meta mono">
+          <span id="metaCount"></span>
+          <span id="metaUpdated"></span>
+          <button class="ghost-button mono" id="lockButton" type="button">잠금</button>
+        </div>
+      </header>
+      <main class="cards" id="cards"></main>
+      <footer class="app-footer mono">DEXA · shared bid vault · 자료는 내부 검토용입니다</footer>
+    </div>
+
+    <div class="viewer-overlay" id="viewerOverlay" hidden>
+      <section class="viewer-panel">
+        <header class="viewer-header">
+          <div class="viewer-title-group">
+            <h2 id="viewerTitle"></h2>
+            <div class="viewer-meta mono" id="viewerMeta"></div>
+          </div>
+          <div class="viewer-actions">
+            <button class="ghost-button mono" id="copyButton" type="button">MD 복사</button>
+            <button class="ghost-button mono" id="closeViewer" type="button">닫기</button>
+          </div>
+        </header>
+        <nav class="version-tabs mono" id="versionTabs"></nav>
+        <article class="markdown" id="draftBody"></article>
+      </section>
+    </div>
+
+    <script src="marked.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
