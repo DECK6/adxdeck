@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>생성 캔버스는 누가 설명하는가 | DEXA Blog</title>
+    <meta name="description" content="p5.js의 describe()와 textOutput(), W3C의 텍스트 대체 원칙을 바탕으로 생성·인터랙티브 캔버스의 설명을 부가 기능이 아니라 작품 리비전과 함께 움직이는 창작 책임으로 살핀다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/who-describes-the-generative-canvas/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="생성 캔버스는 누가 설명하는가" />
+    <meta property="og:description" content="p5.js의 describe()와 textOutput(), W3C의 텍스트 대체 원칙을 바탕으로 생성·인터랙티브 캔버스의 설명을 부가 기능이 아니라 작품 리비전과 함께 움직이는 창작 책임으로 살핀다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/who-describes-the-generative-canvas/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/who-describes-the-generative-canvas-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-08-21" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="accessibility" />
+    <meta property="article:tag" content="creative-coding" />
+    <meta property="article:tag" content="generative-art" />
+    <meta property="article:tag" content="p5js" />
+    <meta property="article:tag" content="canvas-description" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="생성 캔버스는 누가 설명하는가" />
+    <meta name="twitter:description" content="p5.js의 describe()와 textOutput(), W3C의 텍스트 대체 원칙을 바탕으로 생성·인터랙티브 캔버스의 설명을 부가 기능이 아니라 작품 리비전과 함께 움직이는 창작 책임으로 살핀다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/who-describes-the-generative-canvas-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"생성 캔버스는 누가 설명하는가","description":"p5.js의 describe()와 textOutput(), W3C의 텍스트 대체 원칙을 바탕으로 생성·인터랙티브 캔버스의 설명을 부가 기능이 아니라 작품 리비전과 함께 움직이는 창작 책임으로 살핀다.","image":"https://dexa.art/blog/images/who-describes-the-generative-canvas-cover.png","datePublished":"2026-08-21","dateModified":"2026-08-21","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/who-describes-the-generative-canvas/"},"articleSection":"Media Art","keywords":"media-art, accessibility, creative-coding, generative-art, p5js, canvas-description"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">Media Art</span>
+                    <span class="dx-date">Article · 2026.08.21</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>생성 캔버스는 누가 설명하는가</h1>
+                <p style="color:var(--muted);font-size:17px;">p5.js의 describe()와 textOutput(), W3C의 텍스트 대체 원칙을 바탕으로 생성·인터랙티브 캔버스의 설명을 부가 기능이 아니라 작품 리비전과 함께 움직이는 창작 책임으로 살핀다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">media-art</span><span class="dx-tag-chip">accessibility</span><span class="dx-tag-chip">creative-coding</span><span class="dx-tag-chip">generative-art</span><span class="dx-tag-chip">p5js</span><span class="dx-tag-chip">canvas-description</span></div>
+<p><img src="/blog/images/who-describes-the-generative-canvas-cover.png" alt="어두운 전시장 속 생성 캔버스에서 선과 입자, 기하학적 형태가 다른 감각의 층으로 흘러가는 추상 장면" loading="lazy"></p>
+<p>브라우저 안에서 수천 개의 점이 흐르고, 관객의 움직임에 따라 색과 밀도가 달라진다. 화면을 보는 사람은 변화의 방향과 속도, 선택 이후의 결과를 한꺼번에 읽는다. 그런데 다른 감각 경로에서 이 작품은 그저 하나의 <code>canvas</code>로 남을 수 있다. 이미지는 계속 움직이는데 작품의 상태와 의미를 전할 문장은 멈춰 있는 셈이다.</p>
+<p>이 장면만 봐도 접근성을 전시 막바지에 설명문 하나 덧붙이는 일로 다룰 수 없는 이유가 드러난다. 생성·인터랙티브 작품은 완성된 이미지 한 장이 아니라 규칙과 데이터, 입력에 따라 달라지는 관계로 존재한다. 설명도 고정된 캡션 한 줄이 아니라 작품의 현재 상태와 함께 바뀌어야 한다. 무엇이 보이는지만큼이나 무엇이 달라졌는지, 그 변화가 관객에게 어떤 행동이나 해석을 요구하는지까지 누군가 결정해야 한다.</p>
+<h2>화면을 그리는 코드와 설명하는 코드</h2>
+<p>p5.js는 캔버스를 설명하기 위한 두 함수를 제공한다. 공식 문서에 따르면 <a href="https://p5js.org/reference/p5/describe/"><code>describe()</code></a>는 작성자가 넣은 문장으로 캔버스의 screen reader-accessible description을 만든다. <code>LABEL</code>을 쓰면 설명이 캔버스 옆에 보이고, <code>FALLBACK</code>을 쓰거나 표시 방식을 생략하면 screen reader에만 보이는 기본 모드가 적용된다.</p>
+<p><a href="https://p5js.org/reference/p5/textOutput/"><code>textOutput()</code></a>은 조금 다른 일을 한다. 캔버스의 도형을 바탕으로 일반 설명, 도형 목록, 도형 표를 웹페이지에 추가한다. 일반 설명에는 캔버스 크기와 색, 도형 수가 들어가고, 목록은 도형의 색·위치·면적을, 표는 좌표까지 포함한다. 공식 문서는 <code>textOutput(LABEL)</code>이 screen reader에 불필요한 중복을 만들 수 있으므로 개발 중에만 사용하라고 안내한다. <code>FALLBACK</code>은 여기에서도 기본 모드다.</p>
+<p>두 함수는 출발점을 마련하지만, 호출했다는 사실만으로 작품을 충분히 설명했다고 볼 수는 없다. 자동으로 생성된 목록은 파란 원이 오른쪽 위에 있고 화면의 일정 면적을 차지한다는 사실을 말할 수 있다. 하지만 그 원이 관객의 선택인지, 센서 오류인지, 데이터 범주의 이동인지까지 결정하지는 않는다. 기하학적 사실과 작품의 의미 사이에는 작가와 설명 작성자, 접근성 검토자의 판단이 필요하다.</p>
+<p>사람이 직접 쓰는 설명도 안심할 수는 없다. 작성자가 <code>describe()</code>에 해석을 많이 넣으면 작품의 불확정성을 하나의 정답으로 고정할 수 있다. 설명은 이미지를 말로 복제하는 작업이 아니라, 현재 장면을 이해하는 데 빠지면 안 되는 관계와 아직 열어 두어야 할 해석의 경계를 정하는 작업에 가깝다.</p>
+<h2>프레임이 아니라 상태를 설명한다</h2>
+<p>생성 작품의 모든 프레임을 문장으로 옮길 수는 없고, 그렇게 할 필요도 없다. 계속 바뀌는 수치와 좌표를 그대로 읽어 주면 작품의 리듬보다 알림의 양이 앞설 수 있다. 설명이 갱신되어야 할 순간은 화면의 모든 변화가 아니라 관객의 이해나 다음 행동이 달라지는 <strong>의미 있는 상태 전환</strong>이다.</p>
+<p>관객이 선택하기 전과 후, 데이터가 새로운 범주로 넘어간 순간, 작품이 일시 정지하거나 오류 상태에 들어간 장면, 주 경로가 작동하지 않아 축소된 화면으로 전환된 경우가 그런 경계가 될 수 있다. 각 상태에는 현재 보이는 핵심 관계, 그 상태를 여닫는 사건, 연결된 설명 문장, 이전 문장을 회수하는 규칙이 함께 있어야 한다. 화면은 새 장면으로 넘어갔는데 설명은 이전 선택 결과를 말한다면, 설명이 존재해도 현재 작품을 전달하지 못한다.</p>
+<p>여기서 중요한 것은 설명의 길이보다 리비전의 관계다. 작품의 코드와 데이터, 상호작용 규칙이 바뀌면 설명도 다시 검토해야 한다. 브라우저나 p5.js 버전, 표시 방식, 언어, 전시장 환경이 달라졌을 때 이전 관찰을 그대로 현재 증거로 사용할 수도 없다. 설명문 파일만 보존하고 어느 작품 상태와 연결되었는지 남기지 않으면 재설치 때 같은 접근 경로를 복원하기 어렵다.</p>
+<p>동적 작품의 설명 기록에는 최소한 현재 작품 리비전, 설명이 달라지는 시각 상태, 정확한 문장 리비전, 노출 방식, 확인한 환경과 확인하지 못한 범위가 함께 남아야 한다. 이것은 복잡한 행정 양식이 아니라 오래된 문장이 현재 화면을 대신하는 일을 막는 제작 기록이다.</p>
+<h2>접근성은 미학을 평평하게 만드는 일이 아니다</h2>
+<p><a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html">W3C의 WCAG 2.2 비텍스트 콘텐츠 해설</a>은 시각·청각 콘텐츠에 텍스트 대안을 제공한다는 기본 방향을 제시한다. 동시에 특정 감각 경험 자체가 목적이라면 그 비텍스트 콘텐츠를 식별할 수 있는 설명을 제공하는 경계를 둔다. 이 문서는 WCAG 이해를 돕는 해설이며, 그 자체가 개별 작품의 적합성 판정서는 아니다.</p>
+<p>미디어아트에서 이 구분은 중요하다. 화면의 모든 입자와 색을 빠짐없이 나열한다고 작품의 감각이 보존되는 것은 아니다. 반대로 “말로 옮길 수 없는 경험”이라는 이유로 아무 설명도 제공하지 않으면, 어떤 작품이 있고 무엇이 변하는지 확인할 출발점까지 사라진다. 설명은 감각을 평평하게 번역하는 자막이 아니라, 작품에 들어갈 수 있는 다른 문을 만드는 일이어야 한다.</p>
+<p>색으로 상태를 구분하는 작품도 같은 질문을 만난다. <a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html">W3C의 색 사용 해설</a>은 색을 정보 전달, 행동 표시, 반응 유도, 시각 요소 구분의 유일한 시각 수단으로 쓰지 말라고 설명한다. 생성 캔버스에서 선택 상태를 색만으로 바꾼다면 형태, 경계, 위치, 짧은 문구처럼 같은 의미를 전달하는 추가 단서를 함께 설계할 수 있다. 다만 이 원칙을 적용했다는 사실만으로 screen reader 경로나 전시 전체의 접근성이 자동으로 완성되지는 않는다.</p>
+<p>접근 가능한 설명의 목적은 작품의 모호함을 없애거나 감상법을 하나로 고정하는 데 있지 않다. 오히려 관찰 가능한 사실, 작가가 승인한 해석, 아직 확인하지 못한 부분을 구분함으로써 작품이 가진 여백을 더 정직하게 보존한다. 설명이 너무 확정적이면 관객의 해석을 닫고, 너무 추상적이면 현재 장면을 찾는 데 도움이 되지 않는다. 이 사이의 긴장을 조절하는 일도 창작의 일부다.</p>
+<h2>설명의 저자는 누구인가</h2>
+<p>자동 도형 목록은 개발자가 현재 캔버스 구조를 점검하는 데 유용할 수 있다. 작가는 어떤 관계가 작품의 핵심인지 결정하고, 설명 작성자는 그 관계를 다른 감각 경로에서 읽히는 문장으로 다듬는다. 접근성 검토자는 문장이 실제 노출되는지와 최신 상태를 가리키는지 확인하며, 전시 운영자는 재시작이나 오류 뒤에도 현재 설명을 회수할 경로를 유지한다. 이 역할들이 한 사람에게 모일 수도 있지만 책임의 층까지 합쳐지는 것은 아니다.</p>
+<p>화면 옆에 설명이 보인다는 사실과 특정 screen reader에서 읽힌다는 사실은 별개의 관찰이다. <code>FALLBACK</code>을 요청했다는 코드 기록도 실제 노출과 이해를 대신하지 않는다. 개발 화면과 접근성 트리, assistive technology, 관객 경험에서 확인되는 사실은 서로 다르다. 한 층의 성공을 다른 층의 성공으로 넓혀 말하지 않아야 한다.</p>
+<p>생성 캔버스의 설명은 완성 뒤에 붙는 부록이 아니다. 어떤 상태를 작품의 의미 있는 단위로 볼지, 무엇을 자동으로 추출하고 무엇을 사람이 써야 할지, 변화한 화면과 오래된 문장이 어긋났을 때 어디서 다시 연결할지를 정하는 두 번째 저작 과정이다. 화면을 만드는 알고리즘이 작품의 형식을 쓴다면, 설명의 리비전과 갱신 규칙은 그 작품이 다른 감각 경로에서도 현재형으로 존재하게 만든다.</p>
+<p>결국 물어야 할 것은 “설명이 있는가”보다 “그 설명은 지금 어떤 작품 상태를 가리키는가”이다. 어느 상태를 가리키는지 답할 수 있어야 캔버스가 보는 사람에게만 열린 표면에 머물지 않는다. 설명은 이미지를 대신하지 않지만, 작품이 사라지지 않고 다른 방식으로 만날 수 있게 하는 또 하나의 매체가 된다.</p>
+<hr>
+<h2>직접 출처</h2>
+<ul><li><a href="https://p5js.org/reference/p5/describe/">p5.js Reference — <code>describe()</code></a></li><li><a href="https://p5js.org/reference/p5/textOutput/">p5.js Reference — <code>textOutput()</code></a></li><li><a href="https://www.w3.org/WAI/WCAG22/Understanding/non-text-content.html">W3C WAI — Understanding SC 1.1.1: Non-text Content</a></li><li><a href="https://www.w3.org/WAI/WCAG22/Understanding/use-of-color.html">W3C WAI — Understanding SC 1.4.1: Use of Color</a></li></ul>
+            </div>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/can-destroyed-artifacts-return-as-data/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>파괴된 유물은 데이터로 돌아올 수 있는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>

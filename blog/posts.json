@@ -1,5 +1,25 @@
 [
   {
+    "slug": "who-describes-the-generative-canvas",
+    "file": "_built/who-describes-the-generative-canvas.md",
+    "title": "생성 캔버스는 누가 설명하는가",
+    "description": "p5.js의 describe()와 textOutput(), W3C의 텍스트 대체 원칙을 바탕으로 생성·인터랙티브 캔버스의 설명을 부가 기능이 아니라 작품 리비전과 함께 움직이는 창작 책임으로 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "accessibility",
+      "creative-coding",
+      "generative-art",
+      "p5js",
+      "canvas-description"
+    ],
+    "date": "2026-08-21",
+    "thumbnail": "images/who-describes-the-generative-canvas-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "can-destroyed-artifacts-return-as-data",
     "file": "_built/can-destroyed-artifacts-return-as-data.md",
     "title": "파괴된 유물은 데이터로 돌아올 수 있는가",
