@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>팔리는 결을 아는 AI 콘텐츠 마케터 — 강의 슬라이드</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DEXA design tokens — synced with dexa_design_system/DESIGN.md
+   Do not hardcode hex values outside this block.
+   ============================================================ */
+:root{
+  --paper:#F5F1E6; --panel:#EBE4D3; --panel2:#E3DBC6;
+  --ink:#17181B; --line:#D9D0BB; --muted:#6A644F;
+  --orange:#FF5A1F; --orange-hover:#E64D14;
+  --cyan:#5EE7F3; --red:#E0402A;
+  --sk-red:#EA002C; /* SK CI red — light-touch client branding (eyebrows, program labels) */
+  --display:#0D0E10; --dark-line:#2A2B2E; --dark-key:#3A3B3F;
+  --dark-muted:#8A8D93; --near-white:#F7FAFC;
+  --sans:'Noto Sans KR','Space Grotesk',-apple-system,sans-serif;
+  --grotesk:'Space Grotesk','Noto Sans KR',sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--ink);overflow:hidden;font-family:var(--sans)}
+
+/* ---- stage & scaling ---- */
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#frame{width:1280px;height:720px;position:relative;transform-origin:center center;
+  box-shadow:0 24px 80px rgba(0,0,0,.55)}
+.slide{position:absolute;inset:0;width:1280px;height:720px;background:var(--paper);
+  color:var(--ink);padding:60px 72px 84px;display:none;flex-direction:column}
+.slide.active{display:flex}
+
+/* ---- chrome ---- */
+.eyebrow{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--sk-red);margin-bottom:14px}
+.eyebrow .idx{color:var(--muted);margin-right:10px}
+h1{font-family:var(--grotesk);font-size:40px;font-weight:700;letter-spacing:-.02em;
+  line-height:1.25;margin-bottom:22px;word-break:keep-all}
+h1 .dot{color:var(--orange)}
+.lead{font-size:19px;line-height:1.65;color:var(--muted);word-break:keep-all;max-width:1040px}
+.slide-footer{position:absolute;left:72px;right:72px;bottom:28px;display:flex;
+  justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:12px}
+.slide-footer .brand{font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.slide-footer .brand b{color:var(--ink)}
+.slide-footer .brand b i{color:var(--orange);font-style:normal}
+.slide-footer .pageno{font-family:var(--mono);font-size:10px;font-weight:600;
+  letter-spacing:.08em;color:var(--muted)}
+.body{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:center;padding-bottom:14px}
+
+/* ---- generic components ---- */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:start}
+.cols3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;align-items:start}
+.card{background:var(--panel);border:1px solid var(--line);padding:22px 24px}
+.card h3{font-size:17px;font-weight:700;margin-bottom:10px;word-break:keep-all}
+.card .overline{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--orange);margin-bottom:8px}
+.card ul{list-style:none}
+.card li,.plain li{font-size:15.5px;line-height:1.6;padding-left:16px;position:relative;
+  margin-bottom:7px;word-break:keep-all}
+.card li::before,.plain li::before{content:'';position:absolute;left:0;top:.62em;width:6px;height:6px;
+  background:var(--orange)}
+ul.plain{list-style:none}
+.quote{border-left:4px solid var(--orange);padding:6px 0 6px 20px;font-size:20px;
+  line-height:1.6;word-break:keep-all}
+.quote.small{font-size:16.5px}
+table.editorial{width:100%;border-collapse:collapse;border-top:3px solid var(--ink)}
+table.editorial th{font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);text-align:left;padding:10px 14px 8px;
+  border-bottom:1px solid var(--line)}
+table.editorial td{font-size:15px;line-height:1.5;padding:11px 14px;border-bottom:1px solid var(--line);
+  word-break:keep-all;vertical-align:top}
+table.editorial tr td:first-child{font-weight:700}
+table.editorial tr:last-child td{border-bottom:2px solid var(--ink)}
+.chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:11px;
+  font-weight:600;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--ink);
+  padding:7px 14px;margin-top:16px}
+.chip::before{content:'';width:8px;height:8px;background:var(--orange);border-radius:50%}
+.badge{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;background:var(--orange);color:var(--ink);
+  padding:6px 12px;margin-left:14px;vertical-align:6px}
+.timer{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12px;
+  font-weight:700;letter-spacing:.06em;background:var(--ink);color:var(--cyan);padding:7px 14px;
+  margin-left:12px;vertical-align:6px}
+.prompt{background:var(--ink);border-left:4px solid var(--cyan);padding:18px 22px;
+  border-radius:3px;overflow:hidden}
+.prompt .plabel{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--cyan);margin-bottom:10px}
+.prompt pre{font-family:var(--mono);font-size:12.5px;line-height:1.62;color:var(--near-white);
+  white-space:pre-wrap;word-break:keep-all}
+.checklist{border-top:3px solid var(--ink)}
+.checklist li{list-style:none;font-size:15px;line-height:1.5;padding:9px 4px 9px 30px;
+  border-bottom:1px solid var(--line);position:relative;word-break:keep-all}
+.checklist li::before{content:'';position:absolute;left:4px;top:.85em;width:12px;height:12px;
+  border:2px solid var(--orange)}
+.kv{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--muted)}
+.figure{background:var(--panel);border:1px solid var(--line);padding:12px}
+.figure img{display:block;width:100%;height:auto}
+.figure figcaption{font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);padding-top:10px}
+.figure figcaption b{color:var(--orange)}
+.arrowflow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.arrowflow .step{background:var(--panel);border:1px solid var(--ink);
+  box-shadow:4px 4px 0 var(--ink);padding:14px 20px;font-weight:700;font-size:17px}
+.arrowflow .step.hot{background:var(--orange);border-color:var(--ink)}
+.arrowflow .arr{font-family:var(--mono);font-size:16px;color:var(--muted)}
+.bignum{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--orange);margin-right:10px}
+
+/* ---- dark divider slides ---- */
+.slide.dark{background:var(--ink);color:var(--near-white)}
+.slide.dark::before,.slide.dark::after,
+.slide.dark .screw-b::before,.slide.dark .screw-b::after{content:'';position:absolute;
+  width:7px;height:7px;border-radius:50%;background:var(--dark-key);
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.8)}
+.slide.dark::before{top:20px;left:22px}
+.slide.dark::after{top:20px;right:22px}
+.slide.dark .screw-b::before{bottom:20px;left:22px}
+.slide.dark .screw-b::after{bottom:20px;right:22px}
+.slide.dark .toprule{position:absolute;top:0;left:0;right:0;height:4px;background:var(--cyan)}
+.slide.dark .eyebrow{color:var(--cyan)}
+.slide.dark h1{font-size:54px;color:var(--near-white)}
+.slide.dark h1 .dot{color:var(--cyan)}
+.slide.dark .lead{color:var(--dark-muted)}
+.slide.dark .slide-footer{border-top-color:var(--dark-line)}
+.slide.dark .slide-footer .brand,.slide.dark .slide-footer .pageno{color:var(--dark-muted)}
+.slide.dark .slide-footer .brand b{color:var(--near-white)}
+.slide.dark .slide-footer .brand b i{color:var(--cyan)}
+.slide.dark .figure{background:var(--paper);border:1px solid var(--dark-line)}
+.divider-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;flex:1}
+
+/* ---- cover ---- */
+.slide.cover{background:var(--paper) url('assets/cover-deck.png') center bottom/cover no-repeat;
+  padding:0}
+.slide.cover .bezel{position:absolute;inset:16px;border:3px solid var(--ink);pointer-events:none}
+.slide.cover .cal{position:absolute;font-family:var(--mono);font-size:9px;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.slide.cover .cal.tl{top:26px;left:30px}
+.slide.cover .cal.tr{top:26px;right:30px;color:var(--sk-red)}
+.slide.cover .cal.bl{bottom:26px;left:30px}.slide.cover .cal.br{bottom:26px;right:30px}
+.slide.cover .titlezone{position:absolute;top:96px;left:88px;max-width:760px}
+.slide.cover .eyebrow{margin-bottom:20px}
+.slide.cover h1{font-size:64px;font-weight:900;line-height:1.2;letter-spacing:-.02em;margin-bottom:18px}
+.slide.cover .sub{font-size:20px;color:var(--muted);word-break:keep-all;margin-bottom:26px}
+.slide.cover .meta{font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.05em;
+  color:var(--ink);display:flex;gap:22px;flex-wrap:wrap}
+.slide.cover .meta span::before{content:'';display:inline-block;width:7px;height:7px;
+  background:var(--orange);margin-right:9px}
+
+.slide.cover .ebook-btn{display:inline-block;margin-top:30px;background:var(--orange);color:var(--ink);
+  font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  text-decoration:none;padding:13px 24px;border:1px solid var(--ink);box-shadow:4px 4px 0 var(--ink)}
+.slide.cover .ebook-btn:hover{background:var(--orange-hover)}
+
+/* ---- ui: nav / progress / notes ---- */
+#progress{position:fixed;left:0;top:0;height:4px;background:var(--orange);width:0;z-index:50;
+  transition:width .2s}
+#hud{position:fixed;right:18px;bottom:14px;z-index:60;display:flex;gap:8px;align-items:center;
+  font-family:var(--mono);opacity:0;transition:opacity .35s}
+#hud.awake,#hud:hover{opacity:1}
+#hud button{background:var(--dark-key);color:var(--near-white);border:1px solid var(--dark-line);
+  font-family:var(--mono);font-size:12px;font-weight:600;padding:7px 13px;cursor:pointer}
+#hud button:hover{border-color:var(--cyan);color:var(--cyan)}
+#counter{color:var(--dark-muted);font-size:11px;letter-spacing:.06em;padding:0 6px}
+#notes{position:fixed;left:0;right:0;bottom:0;background:var(--display);color:var(--near-white);
+  border-top:2px solid var(--cyan);padding:16px 28px 20px;max-height:34vh;overflow:auto;
+  z-index:55;display:none}
+#notes.open{display:block}
+#notes .nlabel{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--cyan);margin-bottom:8px}
+#notes .ntext{font-size:14.5px;line-height:1.7;word-break:keep-all;max-width:1100px;white-space:pre-line}
+.notes{display:none}
+@media print{
+  html,body{overflow:visible;background:#fff}
+  #stage{position:static}
+  #frame{width:auto;height:auto;transform:none!important;box-shadow:none}
+  .slide{display:flex!important;position:relative;page-break-after:always;margin:0 auto}
+  #hud,#progress,#notes{display:none!important}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="stage"><div id="frame">
+
+<!-- ============ 01 COVER ============ -->
+<section class="slide cover">
+  <div class="bezel"></div>
+  <span class="cal tl">DEXA·LECTURE DECK</span>
+  <span class="cal tr">SK mySUNI · S2 EP.2</span>
+  <span class="cal bl">2026-09-09 · 12:00–14:00 KST</span>
+  <span class="cal br">REV 01 · LIVE</span>
+  <div class="titlezone">
+    <div class="eyebrow">SK mySUNI 「AI야 놀자 시즌2」 EP.2</div>
+    <h1>팔리는 결을 아는<br>AI 콘텐츠 마케터<span class="dot">.</span></h1>
+    <div class="sub">고객 신호를 발견하고, AI로 콘텐츠 대안을 만들고, 근거로 선택하는 120분</div>
+    <div class="meta"><span>2026.09.09 (수) 12:00–14:00</span><span>온라인 라이브</span><span>육대근 (DECK)</span></div>
+    <a class="ebook-btn" href="ebook.html">사전 학습자료 E-Book →</a>
+  </div>
+  <div class="notes">오프닝 전 대기 화면. 시작 시 "오늘은 광고 문구 쓰는 법을 배우지 않는다"로 진입. 참여 인원 약 150명 — 채팅·투표·Padlet 중심 운영 리마인드.</div>
+</section>
+
+<!-- ============ 02 오늘 수업의 정의 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">01</span>오프닝</div>
+  <h1>오늘 우리는 카피를 배우지 않습니다<span class="dot">.</span></h1>
+  <div class="body">
+    <p class="lead" style="margin-bottom:34px">이 수업은 AI에게 카피를 대신 쓰게 하는 수업이 아니라, <b style="color:var(--ink)">고객의 상황·언어·가치·증거를 찾아 ‘팔리는 결’로 압축하고 여러 콘텐츠 대안을 빠르게 검증하는 실습형 수업</b>입니다.</p>
+    <div class="quote">이 수업의 ‘팔리는’은 매출 예측이나 성과 보장을 뜻하지 않습니다.<br>고객 신호에 근거한 <b>콘텐츠 가설을 만들고 검토하는 방법</b>을 뜻합니다.</div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">02 / 46</span></div>
+  <div class="notes">멘트: "오늘은 AI에게 '광고 문구 써줘'라고 말하는 법을 배우지 않습니다. 고객이 실제로 반응할 가능성이 높은 결을 먼저 찾고, AI를 대안 생성과 비교에 쓰는 방법을 연습합니다."</div>
+</section>
+
+<!-- ============ 03 결과물 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">02</span>오프닝</div>
+  <h1>120분 뒤 가져갈 결과물<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols" style="grid-template-columns:1fr 1fr;gap:20px">
+      <div class="card"><div class="overline">Deliverable 01</div><h3>한 문장 콘텐츠 브리프 1개</h3></div>
+      <div class="card"><div class="overline">Deliverable 02</div><h3>서로 다른 훅 3개</h3></div>
+      <div class="card"><div class="overline">Deliverable 03</div><h3>선택한 콘텐츠 초안 1개</h3></div>
+      <div class="card"><div class="overline">Deliverable 04</div><h3>수정 근거가 적힌 검증표 1개</h3></div>
+    </div>
+    <div class="chip">채팅 참여 — 오늘 다뤄보고 싶은 대상을 한 단어로: 제품 / 서비스 / 사내 캠페인 / 개인 프로젝트 / 아직 없음</div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">03 / 46</span></div>
+  <div class="notes">채팅 답변은 한 단어로 제한. 답변 분포를 빠르게 읽고 "제품이 많네요 — TENMIND 예시가 그대로 적용됩니다"처럼 연결.</div>
+</section>
+
+<!-- ============ 04 도구와 안전선 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">03</span>오프닝 · 안전</div>
+  <h1>오늘의 도구 세 가지<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols3">
+      <div class="card"><div class="overline">개인 실습 권장</div><h3>ChatGPT</h3>
+        <ul><li>유료 기능 없이 참여 가능</li><li>접속 불가 시 강사 데모 관찰</li></ul></div>
+      <div class="card"><div class="overline">강사 데모 선택</div><h3>Google Trends</h3>
+        <ul><li>상대적 관심 변화 탐색</li><li>수강생 개별 접속 불필요</li></ul></div>
+      <div class="card"><div class="overline">운영사 제공</div><h3>Padlet + Zoom</h3>
+        <ul><li>일반화한 결과물 공유</li><li>회차별 링크 수신 후 사용</li></ul></div>
+    </div>
+    <p class="lead" style="margin-top:30px">다른 AI를 써도 됩니다 — 오늘의 프롬프트는 <b style="color:var(--ink)">특정 도구에 종속되지 않습니다.</b> 조직에서 승인된 생성형 AI가 있다면 동일하게 실습할 수 있습니다.</p>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">04 / 46</span></div>
+  <div class="notes">AI는 같은 프롬프트라도 실행마다 결과가 다름을 여기서 미리 예고 — "제 화면과 여러분 결과가 달라도 정상입니다."</div>
+</section>
+
+<!-- ============ 05 안전선 상세 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">03</span>오프닝 · 안전</div>
+  <h1>모든 외부 입력창에 넣지 않는 것<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols">
+      <div>
+        <ul class="checklist">
+          <li>고객·임직원 개인정보</li>
+          <li>미공개 사업계획, 매출, 원가, 계약 내용</li>
+          <li>사내 한정 문서 원문</li>
+          <li>외부 공개 권한이 불분명한 자료</li>
+          <li>실명·팀명·미공개 제품명 등 식별 가능 정보</li>
+        </ul>
+        <p class="kv" style="margin-top:16px">적용 범위: CHATGPT · GOOGLE TRENDS · PADLET · ZOOM 채팅 전부</p>
+      </div>
+      <div>
+        <div class="card"><div class="overline">사용해도 되는 것</div>
+          <ul><li>공개 정보</li><li>직접 만든 예시</li><li>익명화·일반화한 정보</li></ul></div>
+        <div class="card" style="margin-top:16px"><div class="overline">접속 불가 시</div>
+          <ul><li>강사 데모 + 제공된 가상 사례로 참여</li><li>공유가 불편하면 개인 메모에만 작성</li></ul></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">05 / 46</span></div>
+  <div class="notes">멘트: "실습에서는 공개 정보, 직접 만든 예시, 익명화·일반화한 정보만 사용합니다. 확신이 없으면 실제 데이터를 넣지 않고 구조만 연습합니다." 조직 보안 정책이 있으면 그 기준이 우선.</div>
+</section>
+
+<!-- ============ 06 AI가 못 쓰는 게 아니다 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">04</span>문제 정의</div>
+  <h1>AI가 콘텐츠를 못 쓰는 것이 아닙니다<span class="dot">.</span></h1>
+  <div class="body">
+    <p class="lead" style="margin-bottom:30px">AI는 문장을 잘 만듭니다. 문제는 <b style="color:var(--ink)">무엇을 근거로, 누구에게, 왜 말하는지 모른다</b>는 것입니다.</p>
+    <table class="editorial">
+      <tr><th>입력</th><th>예상 결과</th></tr>
+      <tr><td>“우리 앱 광고 문구 써줘”</td><td>무난하고 교체 가능한 문장</td></tr>
+      <tr><td>고객 상황 · 실제 표현 · 가치 · 증거 제공</td><td>대상과 맥락이 보이는 문장</td></tr>
+    </table>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">06 / 46</span></div>
+  <div class="notes">핵심 메시지: 좋은 입력 근거가 좋은 콘텐츠보다 먼저다. AI는 고객을 대신 알지 못한다.</div>
+</section>
+
+<!-- ============ 07 PART 1 DIVIDER ============ -->
+<section class="slide dark">
+  <div class="toprule"></div><div class="screw-b"></div>
+  <div class="divider-grid">
+    <div>
+      <div class="eyebrow">PART 1 · 12:08–12:25</div>
+      <h1>‘잘 쓴 콘텐츠’와<br>‘팔리는 결’은 다르다<span class="dot">.</span></h1>
+      <p class="lead">화려한 문장과 구체적인 문장을 구분하는 것에서 시작합니다.</p>
+    </div>
+    <figure class="figure"><img src="assets/contrast.png" alt="장식적인 카드와 단순한 카드의 대비를 표현한 페이퍼크래프트">
+      <figcaption><b>FIG.01</b> — 화려함과 구체성은 같지 않다</figcaption></figure>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">07 / 46</span></div>
+  <div class="notes">사례 비교 투표 구간 시작. Zoom 투표(사전 등록) 또는 채팅 A/B로 진행.</div>
+</section>
+
+<!-- ============ 08 A/B ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">05</span>Part 1</div>
+  <h1>어느 쪽이 ‘자기 이야기’로 들리는가<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols">
+      <div class="card"><div class="overline">A</div>
+        <p style="font-size:19px;line-height:1.6;word-break:keep-all">바쁜 일상에 새로운 활력을 더하는 스마트한 선택</p></div>
+      <div class="card" style="border:2px solid var(--orange)"><div class="overline">B</div>
+        <p style="font-size:19px;line-height:1.6;word-break:keep-all">하루 종일 앉아 있던 날, 잠들기 전 10분만 따라 하세요.</p></div>
+    </div>
+    <div style="margin-top:30px">
+      <ul class="plain">
+        <li>어떤 문장이 누구의 어떤 순간을 더 선명하게 보여주는가?</li>
+        <li>더 화려한 문장과 더 구체적인 문장은 같은가?</li>
+      </ul>
+      <div class="quote small" style="margin-top:22px">팔리는 결은 문장 기술이 아니라 <b>상황의 해상도</b>에서 시작합니다.</div>
+    </div>
+    <div class="chip">투표 — A vs B, 이유를 채팅에 한 줄로</div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">08 / 46</span></div>
+  <div class="notes">B의 오렌지 보더는 정답 공개 후 화면 전환 시점에 언급. 투표 전에는 "정답이 정해진 건 아니다"로 시작해 참여 부담을 낮춘다.</div>
+</section>
+
+<!-- ============ 09 결의 정의 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">06</span>Part 1</div>
+  <h1>‘팔리는 결’의 정의<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="quote" style="margin-bottom:34px">고객이 필요를 느끼는 <b>순간</b>과 고객이 사용하는 <b>말</b>, 기대하는 <b>변화</b>, 믿을 <b>이유</b>가<br>한 방향으로 맞물린 상태</div>
+    <div class="cols" style="grid-template-columns:1fr 1fr;gap:18px">
+      <div class="card"><div class="overline">① 상황결</div><h3>언제 필요해지는가</h3></div>
+      <div class="card"><div class="overline">② 언어결</div><h3>고객은 그것을 어떻게 말하는가</h3></div>
+      <div class="card"><div class="overline">③ 가치결</div><h3>무엇이 달라지는가</h3></div>
+      <div class="card"><div class="overline">④ 증거결</div><h3>왜 믿을 수 있는가</h3></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">09 / 46</span></div>
+  <div class="notes">4축 색·아이콘은 이후 슬라이드에서 고정 반복 — 상황결=시간·장면, 언어결=말풍선, 가치결=변화 화살표, 증거결=체크·문서.</div>
+</section>
+
+<!-- ============ 10 PART 2 DIVIDER ============ -->
+<section class="slide dark">
+  <div class="toprule"></div><div class="screw-b"></div>
+  <div class="divider-grid">
+    <div>
+      <div class="eyebrow">PART 2 · 12:25–12:42</div>
+      <h1>팔리는 결<br>네 개의 축<span class="dot">.</span></h1>
+      <p class="lead">상황 · 언어 · 가치 · 증거 — 네 층의 결이 한 방향으로 맞을 때 콘텐츠가 움직입니다.</p>
+    </div>
+    <figure class="figure"><img src="assets/axes.png" alt="같은 방향의 결을 가진 네 개의 종이 층위">
+      <figcaption><b>FIG.02</b> — 네 층의 결이 같은 방향을 향한다</figcaption></figure>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">10 / 46</span></div>
+  <div class="notes">미니 진단 구간. 각 축 슬라이드는 질문 → 나쁜 예/개선 예 → 원칙 순서.</div>
+</section>
+
+<!-- ============ 11 상황결 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">07</span>Part 2 · 4축</div>
+  <h1>① 상황결 — 언제 필요해지는가<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols">
+      <ul class="plain">
+        <li>고객은 언제 이 문제를 가장 크게 느끼는가?</li>
+        <li>구매 직전에는 어떤 사건이 있었는가?</li>
+        <li>시간, 장소, 역할, 감정 중 무엇이 방아쇠가 되는가?</li>
+      </ul>
+      <div>
+        <div class="card" style="border-left:4px solid var(--red)"><div class="overline" style="color:var(--red)">나쁜 예</div>
+          <p style="font-size:16px">운동이 필요한 직장인</p></div>
+        <div class="card" style="border-left:4px solid var(--orange);margin-top:14px"><div class="overline">개선 예</div>
+          <p style="font-size:16px;line-height:1.6;word-break:keep-all">하루 종일 회의와 이동으로 몸이 굳었지만 헬스장에 갈 에너지는 남지 않은 <b>평일 밤</b>의 직장인</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">11 / 46</span></div>
+  <div class="notes">대상이 넓으면 상황을 좁힌다 — 이후 피드백에서도 반복되는 1번 규칙.</div>
+</section>
+
+<!-- ============ 12 언어결 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">08</span>Part 2 · 4축</div>
+  <h1>② 언어결 — 고객은 어떻게 말하는가<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols">
+      <ul class="plain">
+        <li>고객은 실제로 어떤 단어와 문장으로 불편을 표현하는가?</li>
+        <li>업계 용어와 고객의 말은 어떻게 다른가?</li>
+        <li>반복되는 표현은 무엇인가?</li>
+      </ul>
+      <div class="card"><div class="overline">원칙</div>
+        <ul>
+          <li>고객의 말을 고급스럽게 번역하기 전에 <b>보존</b>한다</li>
+          <li>감탄사보다 <b>동사와 상황 표현</b>을 찾는다</li>
+          <li>한두 개의 강한 표현을 전체 고객의 의견으로 확대하지 않는다</li>
+        </ul></div>
+    </div>
+    <div class="cols" style="margin-top:24px">
+      <div class="quote small">브랜드의 말 — “저강도 데일리 웰니스 루틴”</div>
+      <div class="quote small" style="border-left-color:var(--ink)">고객의 말 — “30분짜리는 시작하기도 전에 포기해요.”</div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">12 / 46</span></div>
+  <div class="notes">브랜드 혼잣말 vs 고객의 말 대비를 소리 내서 읽어주면 효과가 큼.</div>
+</section>
+
+<!-- ============ 13 가치결 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">09</span>Part 2 · 4축</div>
+  <h1>③ 가치결 — 기능을 변화로 번역한다<span class="dot">.</span></h1>
+  <div class="body">
+    <table class="editorial">
+      <tr><th>기능</th><th>즉시 변화</th><th>생활·업무 변화</th></tr>
+      <tr><td>10분 루틴</td><td>짧게 실행 가능</td><td>포기하지 않고 반복 가능</td></tr>
+      <tr><td>자동 요약</td><td>읽는 시간 감소</td><td>회의 후 다음 행동이 빨라짐</td></tr>
+      <tr><td>템플릿 제공</td><td>처음부터 만들 필요 없음</td><td>시작 장벽이 낮아짐</td></tr>
+    </table>
+    <div class="arrowflow" style="margin-top:32px">
+      <span class="step">기능이 있다</span><span class="arr">→</span>
+      <span class="step">그래서 지금 무엇이 쉬워진다</span><span class="arr">→</span>
+      <span class="step hot">결국 어떤 상태에 가까워진다</span>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">13 / 46</span></div>
+  <div class="notes">"기능을 제거하고 나면 어떤 변화가 남는가?"를 질문으로 던져도 좋음.</div>
+</section>
+
+<!-- ============ 14 증거결 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">10</span>Part 2 · 4축</div>
+  <h1>④ 증거결 — 왜 믿을 수 있는가<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols">
+      <div class="card"><div class="overline">증거의 예</div>
+        <ul>
+          <li>실제 사용 장면</li><li>전후 비교</li><li>과정 공개</li>
+          <li>수치와 출처</li><li>사용자 후기</li><li>제한 조건의 솔직한 명시</li>
+        </ul></div>
+      <div class="card" style="background:var(--ink);border:none">
+        <div class="overline" style="color:var(--cyan)">주의</div>
+        <p style="color:var(--near-white);font-size:17px;line-height:1.7;word-break:keep-all">AI가 만든 수치, 후기, 인용문은 <b style="color:var(--cyan)">증거가 아닙니다.</b><br><br>확인되지 않은 내용은 반드시<br><span style="font-family:var(--mono);font-size:14px;color:var(--cyan)">'확인 필요'</span>로 남깁니다.</p></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">14 / 46</span></div>
+  <div class="notes">환각(할루시네이션) 개념을 여기서 실무 언어로 처리 — "AI는 빈칸을 그럴듯한 추측으로 채운다."</div>
+</section>
+
+<!-- ============ 15 네 축 진단 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">11</span>Part 2 · 미니 진단</div>
+  <h1>지금 내 콘텐츠, 어느 축이 비었는가<span class="dot">.</span></h1>
+  <div class="body">
+    <table class="editorial">
+      <tr><th>축</th><th>확인 질문</th><th>없을 때 생기는 문제</th></tr>
+      <tr><td>상황결</td><td>언제 필요한가?</td><td>타깃이 지나치게 넓어짐</td></tr>
+      <tr><td>언어결</td><td>고객은 뭐라고 말하는가?</td><td>브랜드 혼잣말이 됨</td></tr>
+      <tr><td>가치결</td><td>무엇이 달라지는가?</td><td>기능 나열로 끝남</td></tr>
+      <tr><td>증거결</td><td>왜 믿어야 하는가?</td><td>과장처럼 보임</td></tr>
+    </table>
+    <div class="chip">미니 진단 — 가장 비어 있는 축을 채팅에: 상황 / 언어 / 가치 / 증거</div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">15 / 46</span></div>
+  <div class="notes">Zoom 투표 사전 등록분 사용 가능. 분포를 읽고 "증거가 제일 많네요 — Demo에서 증거결 비워두는 법을 보여드리겠습니다"처럼 연결.</div>
+</section>
+
+<!-- ============ 16 DEMO 1 DIVIDER ============ -->
+<section class="slide dark">
+  <div class="toprule"></div><div class="screw-b"></div>
+  <div class="divider-grid">
+    <div>
+      <div class="eyebrow">DEMO 1 · 12:42–13:02</div>
+      <h1>고객 신호에서<br>브리프까지<span class="dot">.</span></h1>
+      <p class="lead">발견 → 압축 → 생성 → 검증 → 선택. 생성부터 시작하지 않습니다.</p>
+    </div>
+    <figure class="figure"><img src="assets/workflow.png" alt="다섯 개의 트레이를 통과하는 카드 — 워크플로 페이퍼크래프트">
+      <figcaption><b>FIG.03</b> — 다섯 단계를 통과해야 카드가 완성된다</figcaption></figure>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">16 / 46</span></div>
+  <div class="notes">라이브 데모 시작. 데모 순서: 입력 먼저 보여주기 → 실행 전 예상 말하기 → 결과-근거 대응 표시 → 추측·상투어 찾기 → 수정 과정 공개. AI 응답이 느리면 기다리지 말고 사전 캡처로 전환.</div>
+</section>
+
+<!-- ============ 17 워크플로 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">12</span>Demo 1</div>
+  <h1>AI 콘텐츠 워크플로<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="arrowflow" style="margin-bottom:34px">
+      <span class="step hot">발견</span><span class="arr">→</span>
+      <span class="step">압축</span><span class="arr">→</span>
+      <span class="step">생성</span><span class="arr">→</span>
+      <span class="step">검증</span><span class="arr">→</span>
+      <span class="step">선택</span>
+    </div>
+    <ul class="plain">
+      <li><span class="bignum">01</span>발견 — 공개 가능한 고객 신호를 모은다</li>
+      <li><span class="bignum">02</span>압축 — 반복되는 상황·언어·가치·증거를 구조화한다</li>
+      <li><span class="bignum">03</span>생성 — 서로 다른 가설을 가진 콘텐츠 대안을 만든다</li>
+      <li><span class="bignum">04</span>검증 — 기준표로 약점과 과장을 찾는다</li>
+      <li><span class="bignum">05</span>선택 — 사람이 맥락과 책임을 갖고 수정·채택한다</li>
+    </ul>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">17 / 46</span></div>
+  <div class="notes">멘트: "생성부터 시작하면 AI가 빈칸을 상투어와 추측으로 채웁니다. 오늘은 발견과 압축에 시간을 더 씁니다." 생성과 검증을 한 프롬프트에 섞지 않는다.</div>
+</section>
+
+<!-- ============ 18 신호 어디서 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">13</span>Demo 1 · 발견</div>
+  <h1>신호를 어디서 찾는가<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols">
+      <ul class="plain">
+        <li>공개 후기와 댓글</li>
+        <li>고객 문의에서 익명화한 반복 질문</li>
+        <li>검색어와 Google Trends의 상대적 관심 변화</li>
+        <li>영업·상담 담당자가 반복해서 듣는 표현</li>
+        <li>경쟁 콘텐츠의 제목, 형식, 댓글 반응</li>
+        <li>자신의 실제 사용·업무 관찰</li>
+      </ul>
+      <div class="card" style="background:var(--ink);border:none">
+        <div class="overline" style="color:var(--cyan)">신호 ≠ 사실</div>
+        <p style="color:var(--near-white);font-size:17px;line-height:1.7;word-break:keep-all">한 개의 댓글은 전체 시장의 사실이 아니라<br><b style="color:var(--cyan)">탐색할 가설</b>입니다.</p></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">18 / 46</span></div>
+  <div class="notes">"고객 데이터가 없으면요?" 질문이 여기서 자주 나옴 — 공개 신호 + 가설/검증 분리로 답변.</div>
+</section>
+
+<!-- ============ 19 Google Trends ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">14</span>Demo 1 · 강사 데모</div>
+  <h1>Google Trends는 정답지가 아닙니다<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols">
+      <div class="card" style="border-left:4px solid var(--orange)"><div class="overline">볼 것</div>
+        <ul><li>검색어 간 상대적 관심 비교</li><li>시기별 변화</li><li>지역별 차이</li><li>관련 검색어</li></ul></div>
+      <div class="card" style="border-left:4px solid var(--red)"><div class="overline" style="color:var(--red)">보지 말아야 할 것</div>
+        <ul><li>절대 검색량이라고 단정</li><li>관심 상승 = 구매 의도라는 해석</li><li>기간·지역·카테고리가 다른 비교</li></ul></div>
+    </div>
+    <p class="lead" style="margin-top:26px"><b style="color:var(--ink)">데모</b> — 서로 가까운 두 표현을 같은 기간·지역 조건에서 비교하고, 표현 선택의 가설만 만듭니다.</p>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">19 / 46</span></div>
+  <div class="notes">예시 검색어·기간·지역 조건은 사전 점검분 사용. 접속 불가 시 캡처 화면으로 전환.</div>
+</section>
+
+<!-- ============ 20 TENMIND ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">15</span>Demo 1 · 실습용 예시</div>
+  <h1>가상 서비스 — TENMIND<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols" style="grid-template-columns:1.15fr .85fr">
+      <div>
+        <table class="editorial" style="margin-bottom:16px">
+          <tr><th>항목</th><th>내용</th></tr>
+          <tr><td>제품</td><td>퇴근 후 10분 스트레칭 루틴 앱</td></tr>
+          <tr><td>대상</td><td>장시간 앉아 일하지만 운동 계획이 자주 무너지는 직장인</td></tr>
+          <tr><td>확인된 것</td><td>상황별 10분 영상 · 별도 기구 불필요 · 무료 체험 7일 · 주간 기록</td></tr>
+        </table>
+        <ul class="plain" style="font-size:14px">
+          <li>“퇴근하면 운동복으로 갈아입는 것부터 귀찮아요.”</li>
+          <li>“30분짜리는 시작하기도 전에 포기해요.”</li>
+          <li>“효과보다 매일 할 수 있는지가 더 중요해요.”</li>
+        </ul>
+      </div>
+      <figure class="figure"><img src="assets/tenmind.png" alt="스트레칭하는 종이 인형과 스마트폰, 오렌지 시계 — TENMIND 페이퍼크래프트">
+        <figcaption><b>FIG.04</b> — 수업용 가상 예시 · 실제 후기·성과 아님</figcaption></figure>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">20 / 46</span></div>
+  <div class="notes">가상 고객 표현 6종 전체는 사전 학습자료 6장에 있음 — "사전자료 받은 그 예시 그대로"라고 연결. 다룰 제품이 없는 수강생의 대체 과제.</div>
+</section>
+
+<!-- ============ 21 입력 정리 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">16</span>Demo 1 · 입력</div>
+  <h1>AI에 넣기 전, 입력부터 정리<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols" style="grid-template-columns:.8fr 1.2fr">
+      <div>
+        <ul class="plain">
+          <li>제품 — 확인된 사실만</li>
+          <li>대상 — 일반화한 표현</li>
+          <li>기능·조건 — 공개 가능한 것만</li>
+          <li>고객 표현 — 원문 보존</li>
+          <li><b>금지 조항을 입력에 포함</b></li>
+        </ul>
+      </div>
+      <div class="prompt"><div class="plabel">INPUT — 데모 화면에 먼저 보여줄 것</div>
+<pre>[제품] 퇴근 후 10분 스트레칭 루틴 앱 TENMIND
+[대상] 장시간 앉아서 일하지만 운동 계획이 자주 무너지는 직장인
+[확인된 기능/조건]
+- 상황별 10분 영상 / 별도 기구 불필요
+- 무료 체험 7일 / 주간 실천 기록
+[고객 표현]
+- 퇴근하면 운동복으로 갈아입는 것부터 귀찮다
+- 30분짜리는 시작하기도 전에 포기한다
+- 누워서 폰 보기 전에 짧게 하고 싶다
+- 효과보다 매일 할 수 있는지가 중요하다
+[금지] 제공하지 않은 수치, 후기, 의학적 효과를 만들지 않는다.</pre></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">21 / 46</span></div>
+  <div class="notes">데모 원칙: 입력 자료를 먼저 화면에 보여준다. 실행 전에 예상되는 좋은 출력과 위험을 말한다.</div>
+</section>
+
+<!-- ============ 22 Prompt 1 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">17</span>Demo 1 · Prompt 1</div>
+  <h1>Prompt 1 — 고객 신호 분류<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols" style="grid-template-columns:.72fr 1.28fr">
+      <div>
+        <div class="card"><div class="overline">데모 포인트</div>
+          <ul>
+            <li>유창함보다 <b>입력↔출력 대응</b>을 확인</li>
+            <li>근거 없는 증거결은 <b>빈칸으로</b> 남겨도 된다</li>
+          </ul></div>
+      </div>
+      <div class="prompt"><div class="plabel">PROMPT 01 — SIGNAL ANALYSIS</div>
+<pre>당신은 콘텐츠 전략가다. 아래 입력만 근거로 고객 신호를 분석하라.
+1. 신호를 상황결·언어결·가치결·증거결로 분류한다.
+2. 반복되는 패턴과 서로 충돌하는 신호를 구분한다.
+3. 입력에 없는 사실은 추측하지 말고 '근거 부족'이라고 표시한다.
+4. 각 분류에서 콘텐츠로 발전시킬 가설을 1개씩 제안한다.
+
+출력 형식: 4축 분석 표 / 핵심 패턴 3개 / 근거 부족 항목 /
+탐색할 다음 질문 3개
+
+[입력] 여기에 정리한 제품·대상·기능·고객 표현을 붙여 넣는다.</pre></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">22 / 46</span></div>
+  <div class="notes">결과에서 입력 근거와 연결되는 부분을 마우스로 짚어가며 표시. 추측·상투어·과장을 같이 찾는다.</div>
+</section>
+
+<!-- ============ 23 Prompt 2 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">18</span>Demo 1 · Prompt 2</div>
+  <h1>Prompt 2 — 한 문장 콘텐츠 브리프<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols" style="grid-template-columns:.72fr 1.28fr">
+      <div>
+        <div class="card"><div class="overline">브리프 구조</div>
+          <p style="font-size:14.5px;line-height:1.75;word-break:keep-all">[구체적 상황]의 [대상]에게,<br>[고객의 언어]로 말을 걸어,<br>[기대하는 변화]를 제안하고,<br>[확인된 증거]로 신뢰를 만든다</p></div>
+      </div>
+      <div class="prompt"><div class="plabel">PROMPT 02 — ONE-LINE BRIEF</div>
+<pre>앞의 분석을 바탕으로 콘텐츠 브리프를 작성하라.
+
+문장 구조:
+'[구체적 상황]에 있는 [대상]에게, [고객의 언어]로 말을 걸어,
+[기능이 아니라 기대하는 변화]를 제안하고, [확인된 증거]로
+신뢰를 만든다.'
+
+조건:
+- 추상어보다 시간·행동·상황을 쓴다.
+- '혁신적, 스마트한, 특별한, 최고의' 같은 상투어 금지.
+- 증거가 없으면 임의로 만들지 말고 '[증거 보완 필요]'로 남긴다.
+- 서로 다른 관점의 브리프 3개를 제시한다.</pre></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">23 / 46</span></div>
+  <div class="notes">브리프 3개가 나오면 — "3개를 만든 이유는 비교 비용을 낮추기 위해서"를 명시. AI의 강점은 대안 넓히기.</div>
+</section>
+
+<!-- ============ 24 좋은 브리프 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">19</span>Demo 1</div>
+  <h1>좋은 브리프의 조건<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="quote small" style="margin-bottom:30px">퇴근 후 운동을 시작할 에너지가 남지 않은 직장인에게 “30분은 시작하기도 전에 포기한다”는 언어로 말을 걸어, 운동 계획을 세우는 대신 잠들기 전 10분을 반복하는 변화를 제안하고, 별도 기구 없이 상황별 영상을 따라 할 수 있다는 사실로 신뢰를 만든다.</div>
+    <div class="cols" style="grid-template-columns:1fr 1fr;gap:16px">
+      <div class="card"><h3>장면이 보이는가?</h3></div>
+      <div class="card"><h3>고객이 자기 이야기라고 느낄 표현이 있는가?</h3></div>
+      <div class="card"><h3>기능이 변화로 번역됐는가?</h3></div>
+      <div class="card"><h3>증거가 실제 입력에 존재하는가?</h3></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">24 / 46</span></div>
+  <div class="notes">4개 질문에 예시 브리프를 하나씩 통과시키며 검증하는 시범을 보여줄 것.</div>
+</section>
+
+<!-- ============ 25 실습 1 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">20</span>13:02–13:17</div>
+  <h1>실습 1 — 나의 브리프 만들기<span class="badge">개인 실습</span><span class="timer">⏱ 15:00</span></h1>
+  <div class="body">
+    <div class="cols" style="grid-template-columns:1.1fr .9fr">
+      <ul class="plain">
+        <li><span class="bignum">3분</span>대상과 필요 순간을 한 문장으로 적는다</li>
+        <li><span class="bignum">3분</span>실제 또는 가상 고객 표현 3개를 적는다</li>
+        <li><span class="bignum">2분</span>확인된 기능·조건·증거만 적는다</li>
+        <li><span class="bignum">5분</span>Prompt 1 → Prompt 2 실행</li>
+        <li><span class="bignum">2분</span>가장 나은 브리프를 <b>직접 한 번 수정</b>한다</li>
+      </ul>
+      <div class="card"><div class="overline">Padlet 공유 형식</div>
+        <ul style="font-size:14px">
+          <li>대상(일반화) / 상황</li>
+          <li>선택한 브리프</li>
+          <li>아직 부족한 축</li>
+          <li>공개 가능 여부 확인: 예</li>
+          <li>민감정보 제거 확인: 예</li>
+        </ul>
+        <p class="kv" style="margin-top:10px">실명·팀명·미공개 제품명 금지 · 제품이 없으면 TENMIND 사용</p></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">25 / 46</span></div>
+  <div class="notes">타이머와 제출 형식을 화면에 고정. 개인 업무 정보 노출 발견 시 즉시 일반화 예시로 바꾸도록 안내. 공유가 불편하면 개인 메모만으로 OK.</div>
+</section>
+
+<!-- ============ 26 중간 공유 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">21</span>13:17–13:20 · 공유</div>
+  <h1>무엇이 달라졌는가<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols">
+      <ul class="plain">
+        <li>제품 설명에서 <b>고객 상황</b>으로 이동했는가?</li>
+        <li>AI가 새 사실을 만들었는가?</li>
+        <li>브리프를 3개 만든 것이 선택에 도움이 됐는가?</li>
+      </ul>
+      <div class="card"><div class="overline">강사 피드백 규칙</div>
+        <ul>
+          <li>문장 표현보다 먼저 <b>비어 있는 축</b>을 찾는다</li>
+          <li>대상이 넓으면 상황을 좁힌다</li>
+          <li>가치가 기능 반복이면 “그래서 무엇이 달라지는가?”를 다시 묻는다</li>
+        </ul></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">26 / 46</span></div>
+  <div class="notes">전체 게시물 중 구조가 다른 2~3개만 선택해 피드백. 시간 압박 시 이 구간을 실습 2 이후로 통합(부록: 조정 우선순위 참조).</div>
+</section>
+
+<!-- ============ 27 DEMO 2 DIVIDER ============ -->
+<section class="slide dark">
+  <div class="toprule"></div><div class="screw-b"></div>
+  <div class="divider-grid">
+    <div>
+      <div class="eyebrow">DEMO 2 · 13:25–13:42</div>
+      <h1>훅 변주와<br>본문 생성<span class="dot">.</span></h1>
+      <p class="lead">같은 말을 다섯 번 바꾸는 것이 아니라, 서로 다른 진입 가설을 만듭니다.</p>
+    </div>
+    <figure class="figure"><img src="assets/hooks.png" alt="하나의 카드를 향하는 서로 다른 모양의 화살표들 — 페이퍼크래프트">
+      <figcaption><b>FIG.05</b> — 서로 다른 각도의 진입 가설</figcaption></figure>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">27 / 46</span></div>
+  <div class="notes">리셋 Q&A(13:20–13:25) 후 진입. 시간 압박 시 훅 3유형 중 장면형 1개만 라이브 시연, 나머지는 결과 화면.</div>
+</section>
+
+<!-- ============ 28 훅 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">22</span>Demo 2</div>
+  <h1>훅은 제목이 아니라 진입 가설이다<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols3" style="grid-template-columns:repeat(3,1fr)">
+      <div class="card"><div class="overline">01 장면형</div><p style="font-size:14.5px;word-break:keep-all">특정 순간을 보여준다</p></div>
+      <div class="card"><div class="overline">02 문제 재정의형</div><p style="font-size:14.5px;word-break:keep-all">익숙한 문제를 다르게 해석한다</p></div>
+      <div class="card"><div class="overline">03 대비형</div><p style="font-size:14.5px;word-break:keep-all">기존 행동과 새 행동을 비교한다</p></div>
+    </div>
+    <div class="cols" style="grid-template-columns:1fr 1fr;margin-top:20px">
+      <div class="card"><div class="overline">04 증거형</div><p style="font-size:14.5px;word-break:keep-all">확인된 과정·수치·사례로 시작한다</p></div>
+      <div class="card"><div class="overline">05 질문형</div><p style="font-size:14.5px;word-break:keep-all">대상이 이미 하고 있는 고민을 묻는다</p></div>
+    </div>
+    <div class="quote small" style="margin-top:26px">같은 말을 다섯 문장으로 바꾸지 말고, <b>서로 다른 가설</b>을 만든다.</div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">28 / 46</span></div>
+  <div class="notes">각 유형이 겨냥하는 고객 신호가 다르다는 점을 TENMIND로 즉석 예시.</div>
+</section>
+
+<!-- ============ 29 Prompt 3 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">23</span>Demo 2 · Prompt 3</div>
+  <h1>Prompt 3 — 훅 3개 변주<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols" style="grid-template-columns:.72fr 1.28fr">
+      <div class="card"><div class="overline">조건 요약</div>
+        <ul>
+          <li>장면형 · 문제 재정의형 · 질문형 각 1개</li>
+          <li>훅마다 겨냥한 신호 + 기대 반응 명시</li>
+          <li>근거 밖 수치·후기·성과 금지</li>
+          <li>공포·과장·낚시 금지, 70자 이내</li>
+        </ul></div>
+      <div class="prompt"><div class="plabel">PROMPT 03 — HOOK VARIATIONS</div>
+<pre>아래 콘텐츠 브리프를 바탕으로 서로 다른 진입 가설을 가진
+훅 3개를 만든다.
+
+훅 유형: 1. 장면형  2. 문제 재정의형  3. 질문형
+각 유형별로 1개씩 작성하고, 각 훅 아래에 한 줄로 설명하라.
+- 겨냥한 고객 신호 / 기대하는 반응
+
+조건:
+- 제공된 근거 밖의 수치·후기·성과를 만들지 않는다.
+- 공포, 과장, 낚시성 표현을 쓰지 않는다.
+- 각 훅은 70자 이내로 쓴다.
+
+[콘텐츠 브리프] 여기에 선택한 브리프를 붙여 넣는다.</pre></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">29 / 46</span></div>
+  <div class="notes">훅 아래 "겨냥한 신호" 설명이 비어 있거나 동어반복이면 그 훅은 가설이 아니라 장식 — 라이브에서 짚기.</div>
+</section>
+
+<!-- ============ 30 Prompt 4 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">24</span>Demo 2 · Prompt 4</div>
+  <h1>Prompt 4 — 채널별 본문 생성<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols" style="grid-template-columns:.72fr 1.28fr">
+      <div class="card"><div class="overline">본문 구조</div>
+        <p style="font-size:14.5px;line-height:1.9;word-break:keep-all">훅 → 고객 상황 → 문제 재정의 →<br>제안하는 변화 → 확인된 근거 →<br>하나의 CTA</p>
+        <p class="kv" style="margin-top:12px">채널·목표 행동을 반드시 지정</p></div>
+      <div class="prompt"><div class="plabel">PROMPT 04 — CHANNEL DRAFT</div>
+<pre>선택한 훅과 콘텐츠 브리프를 바탕으로 초안을 작성하라.
+
+채널: [사내 게시글 / 링크드인 / 블로그 / 이메일 / 숏폼 대본]
+목표 행동: [읽기 / 댓글 / 신청 / 체험 / 문의 중 선택]
+톤: 명확하고 구체적이며 과장하지 않는다.
+
+구조: 1.훅 2.고객 상황 3.문제의 재정의 4.제안하는 변화
+5.확인된 근거 6.하나의 CTA
+
+추가 조건:
+- 문단마다 한 가지 역할만 갖는다.
+- 입력에 없는 주장은 '[확인 필요]'로 표시한다.
+- 300자 이내의 짧은 초안 1개만 제시한다.</pre></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">30 / 46</span></div>
+  <div class="notes">300자 제한은 검증 시간을 지키기 위한 장치 — "짧게 만들어야 빨리 비교한다."</div>
+</section>
+
+<!-- ============ 31 생성/검증 분리 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">25</span>검증</div>
+  <h1>생성과 검증을 분리한다<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols">
+      <div class="card"><div class="overline">생성 모드</div>
+        <ul><li>대안을 넓힌다</li><li>관점과 형식을 바꾼다</li><li>판단을 유보한다</li></ul></div>
+      <div class="card" style="border:2px solid var(--ink)"><div class="overline">검증 모드</div>
+        <ul><li>근거를 추적한다</li><li>과장과 상투어를 제거한다</li><li>대상·상황·행동을 선명하게 만든다</li></ul></div>
+    </div>
+    <div class="quote small" style="margin-top:30px">같은 대화창에서 검증하더라도 “좋게 고쳐줘”가 아니라 <b>기준과 감점 사유를 명시</b>해야 합니다.</div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">31 / 46</span></div>
+  <div class="notes">핵심 메시지 반복: 생성과 검증을 한 프롬프트에 섞지 않는다.</div>
+</section>
+
+<!-- ============ 32 루브릭 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">26</span>검증</div>
+  <h1>25점 검증 루브릭<span class="dot">.</span></h1>
+  <div class="body">
+    <table class="editorial" style="font-size:14px">
+      <tr><th>기준</th><th>1점</th><th>3점</th><th>5점</th></tr>
+      <tr><td>고객 언어 적합성</td><td>브랜드 중심 표현</td><td>일부 고객 표현 반영</td><td>고객의 실제 말과 맥락이 핵심</td></tr>
+      <tr><td>상황 구체성</td><td>대상만 있음</td><td>문제 상황이 있음</td><td>시간·행동·방아쇠가 보임</td></tr>
+      <tr><td>가치 명료성</td><td>기능 나열</td><td>이점이 설명됨</td><td>기대 변화가 구체적임</td></tr>
+      <tr><td>증거 정직성</td><td>근거 없는 주장</td><td>일부 확인 가능</td><td>주장과 근거가 정확히 연결됨</td></tr>
+      <tr><td>행동 유도성</td><td>CTA 없음·다수</td><td>행동은 있으나 모호</td><td>하나의 자연스러운 다음 행동</td></tr>
+    </table>
+    <p class="kv" style="margin-top:16px">점수는 성과 예측·매출 보장 모델이 아니라, 여러 초안을 같은 기준으로 비교하기 위한 내부 도구</p>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">32 / 46</span></div>
+  <div class="notes">"AI 점수를 믿어도 되나요?" — 점수는 예측값이 아니라 수정 이유를 언어화하는 보조 장치.</div>
+</section>
+
+<!-- ============ 33 Prompt 5 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">27</span>검증 · Prompt 5</div>
+  <h1>Prompt 5 — 비판적 검토<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols" style="grid-template-columns:.72fr 1.28fr">
+      <div class="card"><div class="overline">역할 전환</div>
+        <p style="font-size:15px;line-height:1.7;word-break:keep-all">AI를 카피라이터가 아니라 <b>검토자</b>로 다시 세운다.<br><br>총점만으로 좋고 나쁨을 단정하지 않고, 입력 근거와 초안을 대조한다.</p></div>
+      <div class="prompt"><div class="plabel">PROMPT 05 — CRITICAL REVIEW</div>
+<pre>당신은 카피라이터가 아니라 검토자다.
+아래 초안을 5개 기준으로 각각 1~5점 평가하라.
+기준: 고객 언어 적합성 / 상황 구체성 / 가치 명료성 /
+증거 정직성 / 행동 유도성
+
+출력:
+1. 점수표          2. 각 점수의 근거가 되는 원문 구절
+3. 근거 없이 추가된 주장  4. 상투어 또는 삭제 가능한 문장
+5. 가장 영향이 큰 수정 3개  6. 수정본
+
+주의: 총점만으로 단정하지 않는다. 입력 근거와 초안을
+대조한다. 사실 확인이 안 되면 '확인 필요'로 표시한다.
+
+[입력 근거] 제품·대상·기능·고객 표현
+[초안] 검토할 콘텐츠</pre></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">33 / 46</span></div>
+  <div class="notes">수정본을 그대로 쓰지 않고 사람이 한 문장을 직접 고치는 것까지가 검증 단계의 완성.</div>
+</section>
+
+<!-- ============ 34 사람이 결정 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">28</span>선택</div>
+  <h1>사람이 마지막에 결정할 것<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols" style="grid-template-columns:1.1fr .9fr">
+      <div>
+        <ul class="plain">
+          <li>이 콘텐츠를 지금 말해도 되는가?</li>
+          <li>이 표현은 실제 고객과 브랜드 관계에 맞는가?</li>
+          <li>공개 근거로 뒷받침할 수 있는가?</li>
+          <li>오해·차별·불필요한 불안을 만들지 않는가?</li>
+          <li>CTA 이후의 경험까지 약속과 일치하는가?</li>
+        </ul>
+        <div class="quote" style="margin-top:24px">AI는 선택지를 만들지만,<br><b>맥락과 책임은 사람이 가진다.</b></div>
+      </div>
+      <figure class="figure"><img src="assets/verify.png" alt="문서를 살피는 돋보기와 평가 타일 — 페이퍼크래프트">
+        <figcaption><b>FIG.06</b> — 마지막 검토는 사람의 몫</figcaption></figure>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">34 / 46</span></div>
+  <div class="notes">"AI 콘텐츠 그대로 게시해도 되나요?" 질문 대비 — 조직 AI 고지 정책 확인 + 게시 책임은 사람.</div>
+</section>
+
+<!-- ============ 35 실습 2 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">29</span>13:42–13:55</div>
+  <h1>실습 2 — 훅 3개에서 검증된 초안 1개까지<span class="badge">개인 실습</span><span class="timer">⏱ 13:00</span></h1>
+  <div class="body">
+    <div class="cols" style="grid-template-columns:1.1fr .9fr">
+      <ul class="plain">
+        <li><span class="bignum">2분</span>Prompt 3으로 훅 3개 생성</li>
+        <li><span class="bignum">1분</span>가장 가능성 있는 훅 1개 선택</li>
+        <li><span class="bignum">3분</span>Prompt 4로 300자 이내 초안 1개</li>
+        <li><span class="bignum">4분</span>Prompt 5로 한 번 검증</li>
+        <li><span class="bignum">2분</span>AI 수정본을 그대로 쓰지 않고 <b>직접 한 문장 수정</b></li>
+        <li><span class="bignum">1분</span>공개 가능한 경우에만 Padlet 공유</li>
+      </ul>
+      <div class="card"><div class="overline">Padlet 공유 형식</div>
+        <ul style="font-size:14px">
+          <li>선택한 훅</li>
+          <li>가장 낮은 점수 항목</li>
+          <li>사람이 직접 고친 문장</li>
+          <li>공개 가능 여부 확인: 예</li>
+          <li>민감정보 제거 확인: 예</li>
+        </ul></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">35 / 46</span></div>
+  <div class="notes">타이머 13분 화면 고정. 사용량 제한에 걸린 수강생은 강사 데모 결과로 검증 단계만 따라가도 됨.</div>
+</section>
+
+<!-- ============ 36 피드백 예시 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">30</span>공유 · 피드백</div>
+  <h1>결과물 피드백의 순서<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols">
+      <div>
+        <ul class="plain">
+          <li><span class="bignum">01</span>어떤 고객 신호를 겨냥했는지 확인</li>
+          <li><span class="bignum">02</span>네 축 중 강한 축과 약한 축을 말한다</li>
+          <li><span class="bignum">03</span>근거 없는 주장을 표시한다</li>
+          <li><span class="bignum">04</span>한 번에 가장 중요한 수정 하나만 제안</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:4px solid var(--red)"><div class="overline" style="color:var(--red)">피해야 할 피드백</div>
+        <ul>
+          <li>“좋아요”, “더 감성적으로”처럼 기준 없는 평가</li>
+          <li>취향만으로 톤을 바꾸는 제안</li>
+          <li>고객 신호보다 문장 장식을 먼저 고치는 것</li>
+        </ul></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">36 / 46</span></div>
+  <div class="notes">시간 압박 시 이 슬라이드는 구두 설명으로 대체 가능(부록: 조정 우선순위).</div>
+</section>
+
+<!-- ============ 37 체크리스트 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">31</span>정리</div>
+  <h1>실무용 한 장 체크리스트<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols3" style="gap:16px">
+      <div class="card"><div class="overline">발견</div>
+        <ul style="font-size:13.5px">
+          <li>모든 입력창에 넣어도 되는 공개 정보인가?</li>
+          <li>실명·팀명·내부 수치를 제거했는가?</li>
+          <li>한두 사례를 시장 전체로 확대하지 않았는가?</li>
+        </ul></div>
+      <div class="card"><div class="overline">압축</div>
+        <ul style="font-size:13.5px">
+          <li>상황·언어·가치·증거를 구분했는가?</li>
+          <li>근거 부족 항목을 비워 두었는가?</li>
+        </ul></div>
+      <div class="card"><div class="overline">생성</div>
+        <ul style="font-size:13.5px">
+          <li>서로 다른 가설의 대안을 만들었는가?</li>
+          <li>채널과 목표 행동을 지정했는가?</li>
+        </ul></div>
+    </div>
+    <div class="cols" style="margin-top:16px;gap:16px">
+      <div class="card"><div class="overline">검증</div>
+        <ul style="font-size:13.5px">
+          <li>입력 근거와 결과를 대조했는가?</li>
+          <li>과장·상투어·가짜 수치를 제거했는가?</li>
+        </ul></div>
+      <div class="card" style="border:2px solid var(--orange)"><div class="overline">선택</div>
+        <ul style="font-size:13.5px">
+          <li>사람이 최종 문장과 공개 책임을 검토했는가?</li>
+          <li>하나의 다음 행동이 선명한가?</li>
+        </ul></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">37 / 46</span></div>
+  <div class="notes">전체 체크리스트는 사전 학습자료·강사 교안 md에 수록 — "자료로 다시 드립니다"라고 안내.</div>
+</section>
+
+<!-- ============ 38 15분 루틴 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">32</span>정리</div>
+  <h1>내일부터 반복할 15분 루틴<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="arrowflow" style="margin-bottom:36px">
+      <span class="step">신호 5개 수집<br><span class="kv">3분</span></span><span class="arr">→</span>
+      <span class="step">네 축 분류<br><span class="kv">3분</span></span><span class="arr">→</span>
+      <span class="step">브리프 3개<br><span class="kv">3분</span></span><span class="arr">→</span>
+      <span class="step">훅 5개<br><span class="kv">3분</span></span><span class="arr">→</span>
+      <span class="step hot">선택·직접 수정<br><span class="kv">3분</span></span>
+    </div>
+    <div class="quote">AI를 잘 쓰는 사람은 긴 프롬프트를 외우는 사람이 아니라,<br><b>발견과 판단의 순서를 반복할 수 있는 사람</b>입니다.</div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">38 / 46</span></div>
+  <div class="notes">루틴은 사전자료 양식과 연결 — 확장 입력 양식을 메모장에 두고 매일 15분.</div>
+</section>
+
+<!-- ============ 39 클로징 ============ -->
+<section class="slide dark">
+  <div class="toprule"></div><div class="screw-b"></div>
+  <div class="eyebrow">클로징 · 13:55–14:00</div>
+  <h1 style="font-size:44px">좋은 콘텐츠 가설 =<br>고객 신호 × 명확한 브리프 × 다양한 대안 × 사람의 검증<span class="dot">.</span></h1>
+  <div class="body" style="justify-content:flex-end">
+    <div class="cols">
+      <div>
+        <p class="kv" style="color:var(--cyan);margin-bottom:10px">24시간 액션</p>
+        <p style="font-size:17px;line-height:1.7;color:var(--near-white);word-break:keep-all">오늘 만든 브리프를 실제 콘텐츠 하나에 적용하고,<br>게시 전 네 축과 검증표를 다시 확인한다.</p>
+      </div>
+      <div>
+        <p class="kv" style="color:var(--cyan);margin-bottom:10px">마지막 질문</p>
+        <p style="font-size:17px;line-height:1.7;color:var(--near-white);word-break:keep-all">지금 만든 콘텐츠에서<br>가장 먼저 보강할 한 가지는 무엇인가요?</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">39 / 46</span></div>
+  <div class="notes">채팅에 24시간 액션 선언 받기. 여기서 수업 종료 — 이후 슬라이드는 강사용 부록.</div>
+</section>
+
+<!-- ============ 40 부록 DIVIDER ============ -->
+<section class="slide dark">
+  <div class="toprule"></div><div class="screw-b"></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
+    <div class="eyebrow">APPENDIX — 화면 공유 중단</div>
+    <h1>강사용 부록<span class="dot">.</span></h1>
+    <p class="lead">진행표 · 시간 조정 · 데모 순서 · 예상 질문 · 준비 체크리스트</p>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 팔리는 결을 아는 AI 콘텐츠 마케터</span><span class="pageno">40 / 46</span></div>
+  <div class="notes">이 슬라이드부터는 수강생에게 공유하지 않는다.</div>
+</section>
+
+<!-- ============ 41 진행표 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">A1</span>부록 · 운영</div>
+  <h1>120분 진행표<span class="dot">.</span></h1>
+  <div class="body">
+    <table class="editorial" style="font-size:13.5px">
+      <tr><th>시간</th><th>구간</th><th>핵심 활동</th><th>참여 방식</th></tr>
+      <tr><td>12:00–12:08</td><td>오프닝</td><td>결과물·안전 원칙 안내</td><td>채팅 한 줄</td></tr>
+      <tr><td>12:08–12:25</td><td>Part 1</td><td>‘잘 쓴’과 ‘팔리는 결’ 구분</td><td>사례 비교 투표</td></tr>
+      <tr><td>12:25–12:42</td><td>Part 2</td><td>팔리는 결 4축 프레임</td><td>미니 진단</td></tr>
+      <tr><td>12:42–13:02</td><td>Demo 1</td><td>고객 신호를 AI로 분류·압축</td><td>강사 라이브 데모</td></tr>
+      <tr><td>13:02–13:17</td><td>실습 1</td><td>나의 콘텐츠 브리프 만들기</td><td>개인 실습</td></tr>
+      <tr><td>13:17–13:20</td><td>공유 1</td><td>공개 가능한 브리프 공유</td><td>Padlet</td></tr>
+      <tr><td>13:20–13:25</td><td>리셋</td><td>질문 정리, 화면 전환</td><td>Q&amp;A</td></tr>
+      <tr><td>13:25–13:42</td><td>Demo 2</td><td>훅 변주와 본문 생성</td><td>강사 라이브 데모</td></tr>
+      <tr><td>13:42–13:55</td><td>실습 2</td><td>3개 대안 생성·루브릭 검증</td><td>개인 실습 + 공유</td></tr>
+      <tr><td>13:55–14:00</td><td>클로징</td><td>체크리스트·다음 행동</td><td>24시간 액션 선언</td></tr>
+    </table>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 강사용 부록</span><span class="pageno">41 / 46</span></div>
+  <div class="notes">150명 규모 — 소그룹 대신 채팅·투표·Padlet 중심.</div>
+</section>
+
+<!-- ============ 42 시간 조정 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">A2</span>부록 · 운영</div>
+  <h1>시간 압박 시 조정 우선순위<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols3">
+      <div class="card" style="border:2px solid var(--ink)"><div class="overline">지킨다 — 축소 불가</div>
+        <ul style="font-size:13.5px">
+          <li>안전 원칙 안내</li>
+          <li>실습 1 — 최소 10분 확보</li>
+          <li>실습 2의 검증 단계 (Prompt 5)</li>
+        </ul></div>
+      <div class="card"><div class="overline">줄인다 — 순서대로</div>
+        <ul style="font-size:13.5px">
+          <li>공유 1 → 실습 2 이후로 통합</li>
+          <li>피드백 예시 → 구두 대체</li>
+          <li>훅 변주 → 장면형 1개만 시연</li>
+          <li>리셋 Q&amp;A → 클로징 후 이월</li>
+        </ul></div>
+      <div class="card"><div class="overline">시간이 남으면</div>
+        <ul style="font-size:13.5px">
+          <li>중간 공유 사례 1~2개 추가 피드백</li>
+          <li>Trends 관련 검색어 탐색 추가</li>
+        </ul></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 강사용 부록</span><span class="pageno">42 / 46</span></div>
+  <div class="notes">라이브 중 즉석 고민 금지 — 이 우선순위대로 기계적으로 조정.</div>
+</section>
+
+<!-- ============ 43 데모 순서 + 150명 운영 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">A3</span>부록 · 운영</div>
+  <h1>데모 시연 순서 · 150명 운영<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols">
+      <div class="card"><div class="overline">데모 7원칙</div>
+        <ul style="font-size:13.5px">
+          <li>입력 자료를 먼저 화면에</li>
+          <li>실행 전 예상 출력·위험 언급</li>
+          <li>결과↔입력 근거 대응 표시</li>
+          <li>추측·상투어·과장 함께 찾기</li>
+          <li>첫 결과를 정답처럼 보이지 않기</li>
+          <li>실행마다 결과 다름을 사전 고지</li>
+          <li>응답 지연 시 사전 캡처로 즉시 전환</li>
+        </ul></div>
+      <div class="card"><div class="overline">150명 라이브</div>
+        <ul style="font-size:13.5px">
+          <li>채팅 답변은 한 단어·한 문장 제한</li>
+          <li>실습 전 타이머·제출 형식 화면 고정</li>
+          <li>Padlet은 임의 닉네임 + 일반화 사례만</li>
+          <li>피드백은 구조가 다른 2~3개 선택</li>
+          <li>업무 정보 노출 시 즉시 일반화 안내</li>
+          <li>접속 문제 시 관찰 실습으로 전환</li>
+        </ul></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 강사용 부록</span><span class="pageno">43 / 46</span></div>
+  <div class="notes"></div>
+</section>
+
+<!-- ============ 44 예상 질문 1 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">A4</span>부록 · Q&amp;A</div>
+  <h1>예상 질문 — 데이터·도구<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols" style="gap:18px">
+      <div class="card"><h3>“고객 데이터가 없으면 어떻게 하나요?”</h3>
+        <p style="font-size:14px;line-height:1.65;word-break:keep-all">공개 후기·댓글·검색어·영업 담당자가 반복해 듣는 질문에서 가설을 시작한다. 데이터가 없다는 사실을 숨기지 말고 가설과 검증 필요 항목을 분리한다.</p></div>
+      <div class="card"><h3>“무료 플랜으로 가능한가요?”</h3>
+        <p style="font-size:14px;line-height:1.65;word-break:keep-all">텍스트 중심 실습은 무료 플랜으로 가능하게 설계. 사용량 제한 시 강사 데모와 제공 예시 중심으로 참여.</p></div>
+      <div class="card"><h3>“ChatGPT 말고 다른 AI를 써도 되나요?”</h3>
+        <p style="font-size:14px;line-height:1.65;word-break:keep-all">프롬프트는 도구 중립적. 조직 승인 생성형 AI면 동일 실습 가능. 안전 원칙은 어떤 도구든 동일 적용.</p></div>
+      <div class="card"><h3>“제 결과가 강사님과 달라요.”</h3>
+        <p style="font-size:14px;line-height:1.65;word-break:keep-all">정상. 같은 프롬프트도 실행마다 다르다. 목표는 결과 재현이 아니라 같은 기준의 비교·검증 과정.</p></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 강사용 부록</span><span class="pageno">44 / 46</span></div>
+  <div class="notes"></div>
+</section>
+
+<!-- ============ 45 예상 질문 2 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">A5</span>부록 · Q&amp;A</div>
+  <h1>예상 질문 — 신뢰·책임<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols" style="gap:18px">
+      <div class="card"><h3>“AI가 만든 점수를 믿어도 되나요?”</h3>
+        <p style="font-size:14px;line-height:1.65;word-break:keep-all">점수는 성과 예측값이 아니다. 동일 입력·기준으로 초안을 비교하고 수정 이유를 언어화하는 보조 장치.</p></div>
+      <div class="card"><h3>“프롬프트는 한 번에 길게 써야 하나요?”</h3>
+        <p style="font-size:14px;line-height:1.65;word-break:keep-all">발견·압축·생성·검증을 나눠 실행하는 편이 오류 위치를 찾고 수정하기 쉽다.</p></div>
+      <div class="card"><h3>“회사 자료를 넣어도 되나요?”</h3>
+        <p style="font-size:14px;line-height:1.65;word-break:keep-all">조직 보안 정책·사용 승인이 우선. 이 수업은 공개 정보·가상 예시·익명화 정보만 사용.</p></div>
+      <div class="card"><h3>“AI 콘텐츠를 그대로 게시해도 되나요?”</h3>
+        <p style="font-size:14px;line-height:1.65;word-break:keep-all">조직의 AI 활용·고지 정책 먼저 확인. 사실 확인과 게시 책임은 항상 사람. 검증 단계가 게시 전 최소 절차.</p></div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 강사용 부록</span><span class="pageno">45 / 46</span></div>
+  <div class="notes"></div>
+</section>
+
+<!-- ============ 46 준비 체크리스트 ============ -->
+<section class="slide">
+  <div class="eyebrow"><span class="idx">A6</span>부록 · 준비</div>
+  <h1>강의 준비 체크리스트<span class="dot">.</span></h1>
+  <div class="body">
+    <div class="cols">
+      <div>
+        <p class="kv" style="margin-bottom:8px">강사 준비</p>
+        <ul class="checklist" style="font-size:13px">
+          <li>TENMIND 사례 데모용 텍스트 별도 복사</li>
+          <li>Prompt 1–5 붙여넣기 형태 준비</li>
+          <li>ChatGPT 로그아웃·새 대화 상태 확인</li>
+          <li>Trends 예시 검색어·기간·지역 사전 점검</li>
+          <li>접속 실패 대비 Prompt 1–5 사전 실행 캡처</li>
+          <li>Zoom 투표 사전 등록 (A/B · 미니 진단)</li>
+          <li>타이머 2개: 실습1 15분 / 실습2 13분</li>
+        </ul>
+      </div>
+      <div>
+        <p class="kv" style="margin-bottom:8px">운영사 확인 요청</p>
+        <ul class="checklist" style="font-size:13px">
+          <li>ChatGPT·Trends 도메인 보안 해제 여부</li>
+          <li>Padlet 회차 링크·게시 권한</li>
+          <li>Zoom 화면 공유·채팅·설문 권한</li>
+          <li>녹화 여부와 수강생 고지</li>
+          <li>시작 20분 전 접속 테스트</li>
+        </ul>
+        <p class="kv" style="margin-top:14px">URL — chatgpt.com · trends.google.com/trends · Padlet/Zoom은 운영사 제공</p>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer"><span class="brand"><b>DEXA<i>.</i></b> — 강사용 부록</span><span class="pageno">46 / 46</span></div>
+  <div class="notes">끝. ← / → 이동, N 발표자 노트, Home/End 처음·끝.</div>
+</section>
+
+</div></div>
+
+<div id="hud">
+  <button id="btnPrev" aria-label="이전">◀</button>
+  <span id="counter">1 / 46</span>
+  <button id="btnNext" aria-label="다음">▶</button>
+  <button id="btnNotes" aria-label="노트">N</button>
+</div>
+<div id="notes"><div class="nlabel">Presenter Notes</div><div class="ntext" id="ntext"></div></div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var cur=0, notesOpen=false;
+  var counter=document.getElementById('counter');
+  var progress=document.getElementById('progress');
+  var notesEl=document.getElementById('notes');
+  var ntext=document.getElementById('ntext');
+
+  function fit(){
+    var s=Math.min(window.innerWidth/1280, window.innerHeight/720);
+    document.getElementById('frame').style.transform='scale('+s+')';
+  }
+  function show(i){
+    cur=Math.max(0,Math.min(slides.length-1,i));
+    slides.forEach(function(sl,j){sl.classList.toggle('active',j===cur);});
+    counter.textContent=(cur+1)+' / '+slides.length;
+    progress.style.width=((cur+1)/slides.length*100)+'%';
+    var n=slides[cur].querySelector('.notes');
+    ntext.textContent=n?n.textContent.trim():'(노트 없음)';
+    if(location.hash!=='#'+(cur+1)) history.replaceState(null,'','#'+(cur+1));
+  }
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){e.preventDefault();show(cur+1);}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();show(cur-1);}
+    else if(e.key==='Home'){show(0);}
+    else if(e.key==='End'){show(slides.length-1);}
+    else if(e.key==='n'||e.key==='N'){notesOpen=!notesOpen;notesEl.classList.toggle('open',notesOpen);}
+  });
+  document.getElementById('btnPrev').onclick=function(){show(cur-1);};
+  document.getElementById('btnNext').onclick=function(){show(cur+1);};
+  document.getElementById('btnNotes').onclick=function(){notesOpen=!notesOpen;notesEl.classList.toggle('open',notesOpen);};
+  var hud=document.getElementById('hud'), hudT;
+  function wake(){hud.classList.add('awake');clearTimeout(hudT);
+    hudT=setTimeout(function(){hud.classList.remove('awake');},2500);}
+  document.addEventListener('mousemove',wake);
+  wake();
+  window.addEventListener('resize',fit);
+  fit();
+  var h=parseInt((location.hash||'').slice(1),10);
+  show(isNaN(h)?0:h-1);
+})();
+</script>
+</body>
+</html>

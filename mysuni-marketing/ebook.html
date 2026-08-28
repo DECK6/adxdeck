@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>팔리는 결을 아는 AI 콘텐츠 마케터 — 사전 학습자료</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   DEXA design tokens — synced with dexa_design_system/DESIGN.md
+   E-book layer grammar: dexa_design_system/ebook/dexa-book.css
+   Do not hardcode hex values outside this block.
+   ============================================================ */
+:root{
+  --paper:#F5F1E6; --panel:#EBE4D3; --panel2:#E3DBC6;
+  --ink:#17181B; --line:#D9D0BB; --muted:#6A644F;
+  --orange:#FF5A1F; --orange-hover:#E64D14; --cyan:#5EE7F3; --red:#E0402A;
+  --sk-red:#EA002C; /* SK CI red — light-touch client branding (eyebrows, program labels) */
+  --display:#0D0E10; --dark-line:#2A2B2E; --dark-muted:#8A8D93;
+  --near-white:#F7FAFC;
+  --sans:'Noto Sans KR','Space Grotesk',-apple-system,sans-serif;
+  --grotesk:'Space Grotesk','Noto Sans KR',sans-serif;
+  --mono:'JetBrains Mono','SF Mono',Menlo,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+html{background:#101114}
+body{font-family:var(--sans);display:flex;flex-direction:column;align-items:center;
+  gap:28px;padding:40px 16px}
+
+/* ---- A5 sheet ---- */
+.sheet{width:148mm;height:210mm;background:var(--paper);color:var(--ink);
+  position:relative;overflow:hidden;box-shadow:0 10px 40px rgba(0,0,0,.5);
+  padding:20mm 15mm 20mm}
+.sheet.dark{background:var(--ink);color:var(--near-white)}
+.rh{position:absolute;top:8mm;left:15mm;right:15mm;display:flex;justify-content:space-between;
+  font-family:var(--mono);font-size:6.6pt;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--muted)}
+.rh b{color:var(--ink);font-weight:700}.rh b i{color:var(--orange);font-style:normal}
+.folio{position:absolute;bottom:8mm;left:0;right:0;text-align:center;
+  font-family:var(--mono);font-size:7pt;font-weight:600;letter-spacing:.1em;color:var(--muted)}
+
+/* ---- typography ---- */
+p,li{font-size:9.8pt;line-height:1.7;word-break:keep-all}
+.eyebrow{font-family:var(--mono);font-size:7pt;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--sk-red);margin-bottom:4mm}
+h2.sec{font-family:var(--grotesk);font-size:17pt;font-weight:700;letter-spacing:-.01em;
+  line-height:1.3;margin-bottom:5mm;word-break:keep-all;overflow-wrap:normal}
+h2.sec .dot{color:var(--orange)}
+h3{font-size:11pt;font-weight:700;margin:5mm 0 2.4mm;word-break:keep-all}
+.leadp{color:var(--muted);margin-bottom:4mm}
+ul.b{list-style:none;margin:2mm 0}
+ul.b li{padding-left:5mm;position:relative;margin-bottom:1.6mm}
+ul.b li::before{content:'';position:absolute;left:0;top:.6em;width:2mm;height:2mm;background:var(--orange)}
+.quote{border-left:1mm solid var(--orange);padding:.5mm 0 .5mm 4mm;margin:4mm 0;font-size:10pt;line-height:1.65;word-break:keep-all}
+.callout{background:var(--panel);border-left:1mm solid var(--orange);padding:3.5mm 4mm;margin:4mm 0}
+.callout .ol{font-family:var(--mono);font-size:6.4pt;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--orange);margin-bottom:1.6mm}
+.callout p,.callout li{font-size:9pt}
+.callout.risk{border-left-color:var(--red)}
+.callout.risk .ol{color:var(--red)}
+table.editorial{width:100%;border-collapse:collapse;border-top:.6mm solid var(--ink);margin:3mm 0}
+table.editorial th{font-family:var(--mono);font-size:6.6pt;font-weight:600;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);text-align:left;padding:2mm 2.4mm 1.6mm;
+  border-bottom:.2mm solid var(--line)}
+table.editorial td{font-size:8.8pt;line-height:1.55;padding:2mm 2.4mm;border-bottom:.2mm solid var(--line);
+  word-break:keep-all;vertical-align:top}
+table.editorial tr td:first-child{font-weight:700}
+table.editorial tr:last-child td{border-bottom:.5mm solid var(--ink)}
+ul.check{list-style:none;border-top:.6mm solid var(--ink);margin:3mm 0}
+ul.check li{font-size:9.2pt;line-height:1.55;padding:2mm 1mm 2mm 7mm;border-bottom:.2mm solid var(--line);
+  position:relative;word-break:keep-all}
+ul.check li::before{content:'';position:absolute;left:1mm;top:2.6mm;width:2.8mm;height:2.8mm;
+  border:.5mm solid var(--orange)}
+.inset{background:var(--ink);border-left:1mm solid var(--cyan);border-radius:1.4mm;
+  padding:4mm 4.5mm;margin:4mm 0}
+.inset .plabel{font-family:var(--mono);font-size:6.4pt;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--cyan);margin-bottom:2mm}
+.inset pre{font-family:var(--mono);font-size:7.6pt;line-height:1.65;color:var(--near-white);
+  white-space:pre-wrap;word-break:keep-all}
+.kv{font-family:var(--mono);font-size:7pt;font-weight:600;letter-spacing:.05em;color:var(--muted)}
+.axcard{background:var(--panel);border:.2mm solid var(--line);padding:3.5mm 4mm;margin-bottom:3mm}
+.axcard .ol{font-family:var(--mono);font-size:6.4pt;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--orange);margin-bottom:1.4mm}
+.axcard h4{font-size:10.5pt;font-weight:700;margin-bottom:1.6mm;word-break:keep-all}
+.axcard p,.axcard li{font-size:8.8pt;line-height:1.6}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:2.5mm;margin-top:2mm}
+.vs .cell{padding:2.5mm 3mm;font-size:8.4pt;line-height:1.55;word-break:keep-all}
+.vs .cell .tag{font-family:var(--mono);font-size:6pt;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;display:block;margin-bottom:1mm}
+.vs .no{background:var(--panel2);color:var(--muted)}
+.vs .no .tag{color:var(--red)}
+.vs .yes{background:var(--panel);border-left:.8mm solid var(--orange)}
+.vs .yes .tag{color:var(--orange)}
+
+/* ---- cover ---- */
+.sheet.cover{padding:0;background:var(--paper) url('assets/cover-ebook.png') center/cover no-repeat}
+.sheet.cover .bezel{position:absolute;inset:5mm;border:.8mm solid var(--ink);pointer-events:none}
+.sheet.cover .cal{position:absolute;font-family:var(--mono);font-size:5.6pt;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sheet.cover .cal.tl{top:7.5mm;left:8mm}
+.sheet.cover .cal.tr{top:7.5mm;right:8mm;color:var(--sk-red)}
+.sheet.cover .cal.bl{bottom:7.5mm;left:8mm}.sheet.cover .cal.br{bottom:7.5mm;right:8mm}
+.sheet.cover .tz{position:absolute;top:24mm;left:14mm;right:14mm}
+.sheet.cover .eyebrow{margin-bottom:5mm}
+.sheet.cover h1{font-family:var(--grotesk);font-size:26pt;font-weight:900;line-height:1.22;
+  letter-spacing:-.02em;word-break:keep-all;overflow-wrap:normal;margin-bottom:4mm}
+.sheet.cover h1 .dot{color:var(--orange)}
+.sheet.cover .sub{font-size:10pt;color:var(--muted);word-break:keep-all;max-width:100mm;margin-bottom:6mm}
+.sheet.cover .meta{font-family:var(--mono);font-size:7pt;font-weight:600;letter-spacing:.05em}
+.sheet.cover .meta span{display:block;margin-bottom:1.6mm}
+.sheet.cover .meta span::before{content:'';display:inline-block;width:1.8mm;height:1.8mm;
+  background:var(--orange);margin-right:2.5mm}
+
+/* ---- dark hero ---- */
+.sheet.dark .toprule{position:absolute;top:0;left:0;right:0;height:1.6mm;background:var(--cyan)}
+.sheet.dark .eyebrow{color:var(--cyan)}
+.sheet.dark h2.hero{font-family:var(--grotesk);font-size:23pt;font-weight:700;line-height:1.3;
+  letter-spacing:-.01em;color:var(--near-white);word-break:keep-all;overflow-wrap:normal;margin-bottom:6mm}
+.sheet.dark p{color:var(--dark-muted)}
+.sheet.dark .figpanel{background:var(--paper);padding:3mm;margin-top:8mm}
+.sheet.dark .figpanel img{display:block;width:100%;height:auto}
+.sheet.dark .figpanel figcaption{font-family:var(--mono);font-size:6pt;font-weight:600;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:2mm}
+.sheet.dark .figpanel figcaption b{color:var(--orange)}
+.sheet.dark .folio{color:var(--dark-muted)}
+
+/* ---- TOC ---- */
+.toc{margin-top:5mm;border-top:.6mm solid var(--ink)}
+.toc .row{display:flex;justify-content:space-between;align-items:baseline;
+  padding:2.2mm 1mm;border-bottom:.2mm solid var(--line)}
+.toc .row .t{font-size:9.4pt;font-weight:500;word-break:keep-all}
+.toc .row .t .n{font-family:var(--mono);font-size:7pt;font-weight:700;color:var(--sk-red);margin-right:2.5mm}
+.toc .row .pg{font-family:var(--mono);font-size:7.6pt;color:var(--muted)}
+
+/* ---- colophon ---- */
+.sheet.colophon{display:flex;flex-direction:column;justify-content:flex-end}
+.sheet.colophon .mark{font-family:var(--grotesk);font-size:16pt;font-weight:700;margin-bottom:2mm}
+.sheet.colophon .mark i{color:var(--orange);font-style:normal}
+.sheet.colophon p{font-size:8pt;color:var(--muted)}
+
+/* ---- action bar (screen only) ---- */
+#actions{position:fixed;top:18px;right:18px;z-index:80}
+#actions a{display:inline-block;background:var(--orange);color:var(--ink);font-family:var(--mono);
+  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  padding:11px 20px;border:1px solid var(--ink);box-shadow:3px 3px 0 var(--ink)}
+#actions a:hover{background:var(--orange-hover)}
+
+/* ---- print ---- */
+@page{size:148mm 210mm;margin:0}
+@media print{
+  html{background:#fff}
+  body{padding:0;gap:0;display:block}
+  .sheet{box-shadow:none;page-break-after:always;margin:0}
+  .sheet:last-child{page-break-after:auto}
+  #actions{display:none}
+}
+</style>
+</head>
+<body>
+
+<div id="actions"><a href="ebook.pdf" download="mysuni-marketing-prelearning.pdf">PDF 저장 ↓</a></div>
+
+<!-- ========== P01 COVER ========== -->
+<section class="sheet cover">
+  <div class="bezel"></div>
+  <span class="cal tl">DEXA·PRE-LEARNING</span>
+  <span class="cal tr">SK mySUNI · S2 EP.2</span>
+  <span class="cal bl">2026-09-09 · 12:00 KST</span>
+  <span class="cal br">REV 01</span>
+  <div class="tz">
+    <div class="eyebrow">SK mySUNI 「AI야 놀자 시즌2」 EP.2 — 사전 학습자료</div>
+    <h1>팔리는 결을 아는<br>AI 콘텐츠 마케터<span class="dot">.</span></h1>
+    <div class="sub">고객 신호를 발견하고, AI로 콘텐츠 대안을 만들고, 근거로 선택하는 120분을 위한 준비</div>
+    <div class="meta">
+      <span>2026.09.09 (수) 12:00–14:00 · 온라인 라이브</span>
+      <span>필수 준비 5분 · 선택 포함 10–15분</span>
+      <span>강사 육대근 (DECK)</span>
+    </div>
+  </div>
+</section>
+
+<!-- ========== P02 속표지 + 차례 ========== -->
+<section class="sheet">
+  <div class="rh"><span><b>DEXA<i>.</i></b> — 사전 학습자료</span><span>팔리는 결을 아는 AI 콘텐츠 마케터</span></div>
+  <div class="eyebrow">Contents</div>
+  <h2 class="sec">수업 전에 이것만<br>준비하면 됩니다<span class="dot">.</span></h2>
+  <p class="leadp">필수 준비는 5분이면 충분합니다. 다룰 사례가 없어도 가상 사례가 준비되어 있으니 걱정하지 않아도 됩니다.</p>
+  <div class="toc">
+    <div class="row"><span class="t"><span class="n">01</span>이 수업에서 무엇을 하나요?</span><span class="pg">03</span></div>
+    <div class="row"><span class="t"><span class="n">02</span>수업 전 꼭 확인할 안전 원칙</span><span class="pg">04</span></div>
+    <div class="row"><span class="t"><span class="n">03</span>수업 전 도구 준비</span><span class="pg">05</span></div>
+    <div class="row"><span class="t"><span class="n">04</span>핵심 개념: ‘팔리는 결’의 네 축</span><span class="pg">06</span></div>
+    <div class="row"><span class="t"><span class="n">05</span>수업 전 준비 과제 (필수 5분)</span><span class="pg">09</span></div>
+    <div class="row"><span class="t"><span class="n">06</span>준비할 사례가 없다면: TENMIND</span><span class="pg">10</span></div>
+    <div class="row"><span class="t"><span class="n">07</span>수업에서 사용할 확장 입력 양식</span><span class="pg">11</span></div>
+    <div class="row"><span class="t"><span class="n">08</span>미리 생각해 볼 질문</span><span class="pg">12</span></div>
+    <div class="row"><span class="t"><span class="n">09</span>수업 당일 체크리스트</span><span class="pg">13</span></div>
+  </div>
+  <div class="callout" style="margin-top:6mm"><div class="ol">Checkpoint</div>
+    <p>준비물 — 노트북, Chrome 브라우저. ChatGPT 계정은 개인 실습 시 권장(필수 아님).</p></div>
+  <div class="folio">02</div>
+</section>
+
+<!-- ========== P03 §1 ========== -->
+<section class="sheet">
+  <div class="rh"><span><b>DEXA<i>.</i></b> — 사전 학습자료</span><span>01 · 이 수업에서 무엇을 하나요</span></div>
+  <div class="eyebrow">Section 01</div>
+  <h2 class="sec">이 수업에서<br>무엇을 하나요<span class="dot">?</span></h2>
+  <p class="leadp">이번 수업에서는 AI에게 단순히 “광고 문구를 써 달라”고 요청하지 않습니다.</p>
+  <p>먼저 고객이 필요를 느끼는 순간과 실제로 사용하는 언어를 찾고, 그 근거를 AI에 제공해 콘텐츠 브리프와 여러 초안을 만듭니다. 이후 결과를 기준표로 비교하고 사람이 직접 수정합니다.</p>
+  <div class="quote">이 수업의 ‘팔리는’은 매출 예측이나 성과 보장을 뜻하지 않습니다. 고객 신호에 근거한 <b>콘텐츠 가설을 만들고 검토하는 방법</b>을 뜻합니다.</div>
+  <h3>수업이 끝나면 갖게 되는 것</h3>
+  <table class="editorial">
+    <tr><th>No</th><th>결과물</th></tr>
+    <tr><td>01</td><td>한 문장 콘텐츠 브리프 1개</td></tr>
+    <tr><td>02</td><td>서로 다른 훅 3개</td></tr>
+    <tr><td>03</td><td>선택한 콘텐츠 초안 1개</td></tr>
+    <tr><td>04</td><td>수정 근거가 적힌 검증표 1개</td></tr>
+  </table>
+  <div class="folio">03</div>
+</section>
+
+<!-- ========== P04 §2 ========== -->
+<section class="sheet">
+  <div class="rh"><span><b>DEXA<i>.</i></b> — 사전 학습자료</span><span>02 · 안전 원칙</span></div>
+  <div class="eyebrow">Section 02</div>
+  <h2 class="sec">수업 전 꼭 확인할<br>안전 원칙<span class="dot">.</span></h2>
+  <p class="leadp">실습에는 <b style="color:var(--ink)">공개 정보, 직접 만든 예시, 익명화·일반화한 정보만</b> 사용합니다. 이 기준은 ChatGPT뿐 아니라 Google Trends 검색창, Padlet, Zoom 채팅 등 모든 외부 입력창에 적용됩니다.</p>
+  <div class="callout risk"><div class="ol">Risk — 생성형 AI에 입력하지 않는 것</div>
+    <ul class="b">
+      <li>고객·임직원의 이름, 연락처, 계정 등 개인정보</li>
+      <li>미공개 사업계획, 매출, 원가, 계약, 성과 수치</li>
+      <li>사내 한정 문서나 회의록의 원문</li>
+      <li>외부 공개 권한이 불분명한 이미지·후기·자료</li>
+      <li>실명·팀명·미공개 제품명 등 식별 가능 정보</li>
+      <li>비밀번호, API 키, 인증번호 등 비밀정보</li>
+    </ul></div>
+  <h3>실제 사례를 다루고 싶다면 이렇게 바꿉니다</h3>
+  <div class="vs">
+    <div class="cell no"><span class="tag">변경 전</span>특정 고객사·프로젝트명과 실제 매출 목표</div>
+    <div class="cell yes"><span class="tag">변경 후</span>“B2B 업무 자동화 서비스의 체험 신청을 늘리는 콘텐츠”</div>
+  </div>
+  <p style="margin-top:3.5mm" class="kv">조직의 보안 정책과 승인된 AI 사용 기준이 있다면 그 기준을 우선합니다.</p>
+  <div class="folio">04</div>
+</section>
+
+<!-- ========== P05 §3 ========== -->
+<section class="sheet">
+  <div class="rh"><span><b>DEXA<i>.</i></b> — 사전 학습자료</span><span>03 · 도구 준비</span></div>
+  <div class="eyebrow">Section 03</div>
+  <h2 class="sec">수업 전 도구 준비<span class="dot">.</span></h2>
+  <div class="axcard"><div class="ol">개인 실습 권장 — ChatGPT</div>
+    <ul class="b">
+      <li>URL: chatgpt.com — 유료 기능 없이 참여할 수 있게 설계</li>
+      <li>개인 실습 시 수업 전 로그인·새 대화 생성 확인</li>
+      <li>접속 차단·로그인 문제·사용량 제한 시 강사 데모와 가상 사례로 참여</li>
+      <li>조직 승인 다른 생성형 AI로도 참여 가능 — 프롬프트는 도구에 종속되지 않음</li>
+    </ul></div>
+  <div class="axcard"><div class="ol">강사 데모용 선택 — Google Trends</div>
+    <ul class="b">
+      <li>검색어의 시기별·지역별 <b>상대적 관심 변화</b> 탐색용</li>
+      <li>수강생 개별 접속은 필수 아님</li>
+      <li>표시 값은 절대 검색량·구매 의도를 직접 의미하지 않음</li>
+    </ul></div>
+  <div class="axcard"><div class="ol">운영 중 제공</div>
+    <p>Zoom 접속 링크 · 결과물 공유용 Padlet 링크 — 운영진이 회차별로 제공합니다.</p></div>
+  <div class="callout"><div class="ol">Checkpoint — 결과가 달라도 정상</div>
+    <p>AI는 같은 요청에도 실행마다 다른 결과를 냅니다. 강사 데모와 결과가 달라도 정상이며, 수업의 목표는 특정 결과의 재현이 아니라 어떤 결과든 같은 기준으로 비교·검증하는 과정입니다.</p></div>
+  <div class="folio">05</div>
+</section>
+
+<!-- ========== P06 DARK HERO §4 ========== -->
+<section class="sheet dark">
+  <div class="toprule"></div>
+  <div style="padding-top:14mm">
+    <div class="eyebrow">Section 04 — Core Concept</div>
+    <h2 class="hero">핵심 개념<br>‘팔리는 결’의 네 축<span style="color:var(--cyan)">.</span></h2>
+    <p style="font-size:9.6pt;max-width:100mm">팔리는 콘텐츠는 화려한 문장만으로 만들어지지 않습니다. 상황·언어·가치·증거 — 네 가지가 한 방향으로 맞아야 합니다.</p>
+  </div>
+  <figure class="figpanel"><img src="assets/axes.png" alt="같은 방향의 결을 가진 네 개의 종이 층위 — 페이퍼크래프트">
+    <figcaption><b>FIG.01</b> — 네 층의 결이 같은 방향을 향할 때</figcaption></figure>
+  <div class="folio">06</div>
+</section>
+
+<!-- ========== P07 §4 상황결·언어결 ========== -->
+<section class="sheet">
+  <div class="rh"><span><b>DEXA<i>.</i></b> — 사전 학습자료</span><span>04 · 팔리는 결의 네 축</span></div>
+  <div class="eyebrow">Section 04 · 1/2</div>
+  <h2 class="sec">① 상황결 · ② 언어결<span class="dot">.</span></h2>
+  <div class="axcard"><div class="ol">① 상황결</div>
+    <h4>언제 필요해지는가</h4>
+    <p>대상이 누구인지보다 <b>어떤 순간에 필요를 크게 느끼는지</b>를 구체적으로 봅니다.</p>
+    <div class="vs">
+      <div class="cell no"><span class="tag">넓은 표현</span>운동이 필요한 직장인</div>
+      <div class="cell yes"><span class="tag">구체적 표현</span>하루 종일 앉아서 일한 뒤 몸이 굳었지만 헬스장에 갈 에너지는 남지 않은 평일 밤의 직장인</div>
+    </div></div>
+  <div class="axcard"><div class="ol">② 언어결</div>
+    <h4>고객은 어떻게 말하는가</h4>
+    <p>브랜드의 전문 용어가 아니라 고객이 불편과 기대를 표현할 때 실제로 사용하는 말에 주목합니다.</p>
+    <div class="vs">
+      <div class="cell no"><span class="tag">브랜드의 말</span>저강도 데일리 웰니스 루틴</div>
+      <div class="cell yes"><span class="tag">고객의 말</span>“30분짜리는 시작하기도 전에 포기해요.”</div>
+    </div></div>
+  <div class="folio">07</div>
+</section>
+
+<!-- ========== P08 §4 가치결·증거결 ========== -->
+<section class="sheet">
+  <div class="rh"><span><b>DEXA<i>.</i></b> — 사전 학습자료</span><span>04 · 팔리는 결의 네 축</span></div>
+  <div class="eyebrow">Section 04 · 2/2</div>
+  <h2 class="sec">③ 가치결 · ④ 증거결<span class="dot">.</span></h2>
+  <div class="axcard"><div class="ol">③ 가치결</div>
+    <h4>무엇이 달라지는가</h4>
+    <p>기능을 나열하지 않고 그 기능 때문에 고객의 행동이나 상태가 어떻게 달라지는지 설명합니다.</p>
+    <table class="editorial" style="margin-bottom:0">
+      <tr><th>기능</th><th>즉시 변화</th><th>생활 변화</th></tr>
+      <tr><td>10분 영상 제공</td><td>짧아서 바로 시작</td><td>반복 가능한 루틴</td></tr>
+    </table></div>
+  <div class="axcard"><div class="ol">④ 증거결</div>
+    <h4>왜 믿을 수 있는가</h4>
+    <ul class="b">
+      <li>실제 사용 장면 · 전후 비교 · 과정 공개</li>
+      <li>출처가 확인되는 수치 · 실제 사용자 후기</li>
+      <li>제한 조건의 솔직한 설명</li>
+    </ul></div>
+  <div class="callout risk"><div class="ol">Risk</div>
+    <p>AI가 임의로 만든 수치·후기·인용문은 증거로 사용할 수 없습니다.</p></div>
+  <div class="folio">08</div>
+</section>
+
+<!-- ========== P09 §5 준비 과제 ========== -->
+<section class="sheet">
+  <div class="rh"><span><b>DEXA<i>.</i></b> — 사전 학습자료</span><span>05 · 준비 과제</span></div>
+  <div class="eyebrow">Section 05</div>
+  <h2 class="sec">수업 전 준비 과제<span class="dot">.</span></h2>
+  <p class="leadp">수업에서 다룰 제품·서비스·캠페인·개인 프로젝트 하나를 정합니다. 공개하기 어렵거나 아직 대상이 없다면 다음 장의 가상 사례를 사용하면 됩니다.</p>
+  <h3>필수 5분 준비 — 다섯 가지만 적어 주세요</h3>
+  <ul class="check">
+    <li>다룰 대상 (일반화한 표현)</li>
+    <li>필요가 커지는 구체적인 순간</li>
+    <li>고객이 사용할 법한 표현 1개 <span class="kv">— 가설이라면 (가설) 표시</span></li>
+    <li>공개 가능한 기능·조건 1개</li>
+    <li>AI가 만들면 안 되는 주장 1개</li>
+  </ul>
+  <h3>선택 준비 — 시간이 되면 추가</h3>
+  <ul class="b">
+    <li>콘텐츠가 필요한 이유</li>
+    <li>원하는 다음 행동: 읽기 / 댓글 / 신청 / 체험 / 문의 / 기타</li>
+    <li>고객 표현 2개 추가 · 확인 가능한 증거 · 아직 확인되지 않은 주장</li>
+  </ul>
+  <div class="callout"><div class="ol">Checkpoint</div>
+    <p>모든 항목은 ChatGPT·Padlet·Zoom 채팅에 공유해도 되는 수준으로 일반화하고 민감정보를 제거합니다.</p></div>
+  <div class="folio">09</div>
+</section>
+
+<!-- ========== P10 §6 TENMIND ========== -->
+<section class="sheet">
+  <div class="rh"><span><b>DEXA<i>.</i></b> — 사전 학습자료</span><span>06 · 가상 사례 TENMIND</span></div>
+  <div class="eyebrow">Section 06</div>
+  <h2 class="sec">준비할 사례가 없다면<br>TENMIND를 쓰세요<span class="dot">.</span></h2>
+  <p class="kv" style="margin-bottom:3mm">아래 제품과 고객 표현은 수업용 가상 예시입니다 — 실제 후기나 성과가 아닙니다.</p>
+  <table class="editorial">
+    <tr><th>항목</th><th>내용</th></tr>
+    <tr><td>제품</td><td>퇴근 후 10분 스트레칭 루틴 앱</td></tr>
+    <tr><td>대상</td><td>장시간 앉아서 일하지만 운동 계획이 자주 무너지는 직장인</td></tr>
+    <tr><td>확인된 것</td><td>상황별 10분 영상 · 별도 기구 불필요 · 무료 체험 7일 · 주간 실천 기록</td></tr>
+  </table>
+  <h3>가상 고객 표현</h3>
+  <ul class="b" style="font-size:9pt">
+    <li>“퇴근하면 운동복으로 갈아입는 것부터 귀찮아요.”</li>
+    <li>“허리보다 목이랑 어깨가 먼저 굳는 느낌이에요.”</li>
+    <li>“30분짜리는 시작하기도 전에 포기해요.”</li>
+    <li>“누워서 폰 보기 전에 짧게 할 수 있으면 좋겠어요.”</li>
+    <li>“효과보다 매일 할 수 있는지가 더 중요해요.”</li>
+    <li>“동작이 어려우면 다음 날부터 안 하게 돼요.”</li>
+  </ul>
+  <div class="callout risk"><div class="ol">Risk — 금지할 주장</div>
+    <p>제공되지 않은 사용자 수·만족도·매출 / 확인되지 않은 의학적 효과 / 존재하지 않는 전문가 추천이나 후기</p></div>
+  <div class="folio">10</div>
+</section>
+
+<!-- ========== P11 §7 확장 입력 양식 ========== -->
+<section class="sheet">
+  <div class="rh"><span><b>DEXA<i>.</i></b> — 사전 학습자료</span><span>07 · 확장 입력 양식</span></div>
+  <div class="eyebrow">Section 07</div>
+  <h2 class="sec">수업에서 사용할<br>확장 입력 양식<span class="dot">.</span></h2>
+  <p class="leadp">선택 준비용입니다. 메모장에 복사한 뒤 공개 가능한 범위에서 채워 두면 실습 시간을 절약할 수 있습니다.</p>
+  <div class="inset"><div class="plabel">Input Template — 복사해서 사용</div>
+<pre>[제품·서비스·캠페인]
+
+[대상]
+
+[필요가 커지는 구체적인 상황]
+
+[확인된 기능·조건]
+-
+-
+
+[고객 표현]
+-
+-
+
+[확인 가능한 증거]
+-
+
+[원하는 다음 행동]
+
+[금지]
+제공하지 않은 수치, 후기, 성과, 인용문을 만들지 않는다.
+근거가 부족하면 '확인 필요'라고 표시한다.</pre></div>
+  <div class="folio">11</div>
+</section>
+
+<!-- ========== P12 §8 질문 ========== -->
+<section class="sheet">
+  <div class="rh"><span><b>DEXA<i>.</i></b> — 사전 학습자료</span><span>08 · 미리 생각해 볼 질문</span></div>
+  <div class="eyebrow">Section 08</div>
+  <h2 class="sec">미리 생각해 볼 질문<span class="dot">.</span></h2>
+  <p class="leadp">수업 전 답을 완성할 필요는 없습니다. 사례를 떠올리는 데 사용해 주세요.</p>
+  <ul class="check">
+    <li>우리 콘텐츠는 고객이 아니라 제품을 주인공으로 만들고 있지 않은가?</li>
+    <li>고객이 필요를 가장 크게 느끼는 구체적인 순간은 언제인가?</li>
+    <li>고객의 실제 말과 우리 조직의 표현은 어떻게 다른가?</li>
+    <li>기능을 제거하고 나면 어떤 변화가 남는가?</li>
+    <li>우리가 공개적으로 증명할 수 있는 것은 무엇인가?</li>
+    <li>AI가 추측할 가능성이 가장 높은 빈칸은 어디인가?</li>
+    <li>콘텐츠를 본 사람이 취해야 할 다음 행동은 하나로 정리되는가?</li>
+  </ul>
+  <div class="folio">12</div>
+</section>
+
+<!-- ========== P13 §9 + §10 ========== -->
+<section class="sheet">
+  <div class="rh"><span><b>DEXA<i>.</i></b> — 사전 학습자료</span><span>09 · 당일 체크리스트</span></div>
+  <div class="eyebrow">Section 09</div>
+  <h2 class="sec">수업 당일 체크리스트<span class="dot">.</span></h2>
+  <ul class="check">
+    <li>노트북과 전원 준비</li>
+    <li>Chrome 브라우저 업데이트 및 실행 확인</li>
+    <li>개인 실습 시 ChatGPT 로그인 확인</li>
+    <li>필수 5분 준비 과제 작성 또는 가상 사례 선택</li>
+    <li>공개 가능한 정보만 준비</li>
+    <li>실명·팀명·미공개 제품명·내부 수치 제거</li>
+    <li>Zoom 채팅·Padlet에는 일반화한 사례만 공유</li>
+  </ul>
+  <p style="margin-top:3.5mm;font-size:9pt;color:var(--muted)">ChatGPT나 Google Trends에 접속하지 못해도 수업 참여는 가능합니다. 강사의 라이브 데모를 보며 가상 사례로 분석·선택 과정을 따라갈 수 있습니다. 공유가 불편한 결과물은 Padlet에 올리지 않고 개인 메모에만 남겨도 됩니다.</p>
+  <div class="quote" style="margin-top:6mm">AI는 고객을 대신 알지 못합니다.<br>성과를 보장하는 문장보다 먼저, 고객의 상황·언어·가치·증거에 근거한 <b>가설</b>을 준비하세요.</div>
+  <div class="folio">13</div>
+</section>
+
+<!-- ========== P14 COLOPHON ========== -->
+<section class="sheet colophon">
+  <div>
+    <div class="mark">DEXA<i>.</i></div>
+    <p>팔리는 결을 아는 AI 콘텐츠 마케터 — 사전 학습자료<br>
+    SK mySUNI 「AI야 놀자 시즌2」 Ep.2 · 2026년 9월 9일<br>
+    강사 육대근 (DECK) · REV 01 (2026-08-28)</p>
+    <p style="margin-top:3mm">본 자료의 제품·고객 표현 예시(TENMIND)는 수업을 위해 만든 가상 예시이며 실제 서비스·후기·성과가 아닙니다.</p>
+  </div>
+</section>
+
+</body>
+</html>
