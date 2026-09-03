@@ -1,0 +1,1 @@
+function w(s,u,c,t){const o=s>0&&u>0?s/u:1.3333333333333333,e=t>0?c/t:o,x=e>o,y=x?c:t*o,n=x?c/o:t,f=(c-y)/2,m=(t-n)/2;return{coverX:x?1:e/o,coverY:x?o/e:1,toScreen:r=>({x:f+r.x*y,y:m+r.y*n}),toNorm:r=>({x:(r.x-f)/y,y:(r.y-m)/n})}}export{w as c};
