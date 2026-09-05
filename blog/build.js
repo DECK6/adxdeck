@@ -811,6 +811,35 @@ const staticUrls = [
     { loc: `${SITE_URL}/mice-safety/`, lastmod: '2026-05-24', priority: '0.8' },
     { loc: `${SITE_URL}/virme/`, lastmod: '2026-08-22', priority: '0.8' }
 ];
+// Guard: build.js is the ONLY author of sitemap.xml. If a new top-level page
+// directory is committed without registering it in staticUrls above, the next
+// baseline build silently drops it from the sitemap and every daily publisher
+// run halts with HOLD_BASELINE (observed 2026-09-01..09-05 for /virme/).
+// Warn loudly here so the omission is caught in the same PR, not days later.
+const SITEMAP_INTENTIONALLY_UNLISTED = new Set([
+    'blog',            // emitted as post URLs below
+    'docs', 'scripts', 'graphify-out', 'node_modules',
+    'akm1w', 'akm2w', 'akm3w', 'akm4w',   // course/student pages, not for search
+    'learning-coach-gem', 'mysuni-marketing',
+    'ai-school', 'gapmap', 'gen', 'glsl', 'interactive', 'learnmap',
+    'luckydrop', 'nara', 'pitch-lab-v2', 'pitchlab', 'vfx', 'vibecheck'
+]);
+try {
+    const listed = new Set(staticUrls.map(u => u.loc.replace(SITE_URL, '').replace(/^\/|\/$/g, '')));
+    const unregistered = fs.readdirSync(REPO_ROOT, { withFileTypes: true })
+        .filter(d => d.isDirectory() && !d.name.startsWith('.'))
+        .map(d => d.name)
+        .filter(name => fs.existsSync(path.join(REPO_ROOT, name, 'index.html')))
+        .filter(name => !listed.has(name) && !SITEMAP_INTENTIONALLY_UNLISTED.has(name));
+    if (unregistered.length) {
+        console.warn(`⚠ sitemap: top-level page(s) not registered in staticUrls -> ${unregistered.join(', ')}`);
+        console.warn('  Add them to staticUrls in blog/build.js, or to SITEMAP_INTENTIONALLY_UNLISTED if they must stay out of the sitemap.');
+        console.warn('  Leaving this unresolved causes sitemap drift and blocks the daily publishers.');
+    }
+} catch (err) {
+    console.warn(`⚠ sitemap registration check skipped: ${err.message}`);
+}
+
 const postUrls = posts.map(p => ({
     loc: `${SITE_URL}/blog/posts/${p.slug}/`,
     lastmod: p.date,
