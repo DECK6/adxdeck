@@ -1,0 +1,1 @@
+function o(e,t){const n=e.querySelector(".hud-br")??t.querySelector(".hud-br");if(!n)return;const r=innerWidth<=600?t:e;n.parentElement!==r&&r.append(n)}function a(){window.addEventListener("pageshow",e=>{e.persisted&&location.reload()})}export{o as d,a as r};
