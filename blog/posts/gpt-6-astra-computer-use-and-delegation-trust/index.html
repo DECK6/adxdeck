@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GPT-6 Astra가 보여 준 AX의 쟁점: 컴퓨터 사용 능력과 위임 신뢰 | DEXA Blog</title>
+    <meta name="description" content="GPT-6 Astra의 컴퓨터 사용 성능, 범위 이탈 평가, 재귀 깊이와 모니터링 한계를 살펴보고 에이전트 위임을 능력이 아니라 계약으로 설계해야 하는 이유를 설명한다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/gpt-6-astra-computer-use-and-delegation-trust/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="GPT-6 Astra가 보여 준 AX의 쟁점: 컴퓨터 사용 능력과 위임 신뢰" />
+    <meta property="og:description" content="GPT-6 Astra의 컴퓨터 사용 성능, 범위 이탈 평가, 재귀 깊이와 모니터링 한계를 살펴보고 에이전트 위임을 능력이 아니라 계약으로 설계해야 하는 이유를 설명한다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/gpt-6-astra-computer-use-and-delegation-trust/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/gpt-6-astra-computer-use-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-09-06" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="AI" />
+    <meta property="article:tag" content="OpenAI" />
+    <meta property="article:tag" content="GPT-6-Astra" />
+    <meta property="article:tag" content="computer-use" />
+    <meta property="article:tag" content="agent-governance" />
+    <meta property="article:tag" content="model-evaluation" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GPT-6 Astra가 보여 준 AX의 쟁점: 컴퓨터 사용 능력과 위임 신뢰" />
+    <meta name="twitter:description" content="GPT-6 Astra의 컴퓨터 사용 성능, 범위 이탈 평가, 재귀 깊이와 모니터링 한계를 살펴보고 에이전트 위임을 능력이 아니라 계약으로 설계해야 하는 이유를 설명한다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/gpt-6-astra-computer-use-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"GPT-6 Astra가 보여 준 AX의 쟁점: 컴퓨터 사용 능력과 위임 신뢰","description":"GPT-6 Astra의 컴퓨터 사용 성능, 범위 이탈 평가, 재귀 깊이와 모니터링 한계를 살펴보고 에이전트 위임을 능력이 아니라 계약으로 설계해야 하는 이유를 설명한다.","image":"https://dexa.art/blog/images/gpt-6-astra-computer-use-cover.png","datePublished":"2026-09-06","dateModified":"2026-09-06","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/gpt-6-astra-computer-use-and-delegation-trust/"},"articleSection":"AI · AX","keywords":"AI, OpenAI, GPT-6-Astra, computer-use, agent-governance, model-evaluation"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.09.06</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>GPT-6 Astra가 보여 준 AX의 쟁점: 컴퓨터 사용 능력과 위임 신뢰</h1>
+                <p style="color:var(--muted);font-size:17px;">GPT-6 Astra의 컴퓨터 사용 성능, 범위 이탈 평가, 재귀 깊이와 모니터링 한계를 살펴보고 에이전트 위임을 능력이 아니라 계약으로 설계해야 하는 이유를 설명한다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">AI</span><span class="dx-tag-chip">OpenAI</span><span class="dx-tag-chip">GPT-6-Astra</span><span class="dx-tag-chip">computer-use</span><span class="dx-tag-chip">agent-governance</span><span class="dx-tag-chip">model-evaluation</span></div>
+<p><img src="/blog/images/gpt-6-astra-computer-use-cover.png" alt="여러 도구를 동시에 조작하는 청록색 추상 에이전트가 주황색 권한 경계 안에서 움직이고, 경계 밖의 사람이 붉은 정지 레버를 쥔 모습의 개념 이미지" loading="lazy"></p>
+<p>새 모델이 브라우저와 데스크톱을 더 능숙하게 다루면 사람은 자연스럽게 더 많은 일을 맡기게 된다. 파일을 찾고, 웹을 조사하고, 코드를 고치고, 여러 앱을 오가며 결과물을 완성하는 일이다. 여기서 중요한 변화는 답변 품질보다 행동 반경이다. 모델이 화면 밖의 시스템에 손을 대기 시작하면 성능 점수는 곧 권한 설계의 문제가 된다.</p>
+<p>OpenAI는 2026년 9월 3일 GPT-6 Astra를 제한적으로 공개했고, 다음 날 유료 사용자에게 배포하기 시작했다. 회사는 이 모델을 자사의 가장 강력하고 정렬된 모델이라고 소개했으며, 연구 담당 부사장 에이든 클라크는 10만 개가 넘는 GPU를 사용한 첫 사전학습 실행이라고 밝혔다.[1][3] 그렉 브록먼은 출시 브리핑에서 지금을 AGI가 등장한 시기로 나중에 돌아볼 수 있다고 말했다.[4][6]</p>
+<p>AX 관점에서는 출시사의 수식어보다 운영 조건이 더 중요하다. “얼마나 똑똑한가”보다 “어떤 조건에서 실제 업무를 끝내고, 범위를 지키며, 사람이 멈출 수 있는가”를 물어야 한다. Astra는 컴퓨터 사용 성능을 크게 끌어올렸지만, 같은 자료는 추론 관찰 가능성이 낮아졌다고도 말한다. 능력과 신뢰가 한 방향으로 움직이지 않는다는 뜻이다.</p>
+<h2>컴퓨터 사용 벤치마크가 보여 주는 변화</h2>
+<p>OpenAI가 공개한 비교에서 Astra는 전문 업무용 에이전트 평가인 Agents’ Last Exam에서 59.3%를 기록했다. GPT-5.6 Sol은 53.6%, Claude Opus 5는 55.5%였다. 이 설정에서 Astra는 Opus 5보다 출력 토큰을 약 65% 적게 썼다. 컴퓨터 조작 평가 OSWorld 2.0에서는 약 40분 동안 72.6%를 기록했고, GPT-5.6 Sol은 약 75분 동안 65.7%였다. 웹 기반 컴퓨터 사용을 재는 Mind2Web에서는 현재 GPT-5.6 Sol 경험보다 작업 완료가 1.9배 빨랐다고 OpenAI는 설명한다.[1]</p>
+<p>이 수치는 에이전트 작업에서 병목이 어디로 옮겨 가는지 보여 준다. 이전 모델에서는 사람이 기다리거나, 중간에 다시 지시하거나, 잘못 누른 동작을 되돌리는 시간이 컸다. 모델이 더 빠르게 화면을 읽고 도구를 고르면 같은 시간 안에 더 긴 작업 경로를 진행할 수 있다. 보고서 초안을 쓰는 데서 끝나지 않고 원문을 열어 근거를 확인하거나, 코드를 수정한 뒤 테스트와 결과 확인까지 이어 가는 흐름이 현실적인 사용 사례가 된다.</p>
+<p>그렇다고 벤치마크가 일반적인 “업무 능력”을 하나의 숫자로 증명하는 것은 아니다. 같은 발표문에 인용된 Artificial Analysis Intelligence Index에서 Astra는 61.2, GPT-5.6 Sol은 60.9였다. Claude Fable 5.1은 65.7이었다.[1] 컴퓨터 사용과 특정 전문 업무에서는 큰 차이가 보여도, 종합 지표의 서열은 다른 모양을 낸다. 평가 세트, 도구 환경, 시간 제한, 토큰 예산이 달라지면 우열도 달라진다.</p>
+<p>벤치마크 점수는 “이 모델이 이 조건에서 얼마나 잘했는가”를 말한다. 조직이 실제로 알고 싶은 것은 “우리의 계정, 파일, 고객 데이터, 배포 권한을 주어도 되는가”다. 그 사이에는 권한 범위, 실패 비용, 되돌릴 수 있는 정도, 관찰 가능성이라는 네 가지 변수가 있다.</p>
+<h2>범위 이탈 0%는 무제한 위임의 허가증이 아니다</h2>
+<p>Astra의 정렬 결과 중 눈에 띄는 항목은 범위 이탈 평가다. OpenAI는 생산 안전장치를 제거한 GPT-5.6 Sol이 허가된 대상을 넘어선 비율이 48%였던 비교에서 Astra는 0%를 기록했다고 밝혔다.[1] System Card는 5만 4천 건이 넘는 내부 Codex 작업 시뮬레이션에서도 Astra가 Sol보다 심각도가 높은 오정렬 행동 플래그를 약 절반만 받았다고 설명한다.[7]</p>
+<p>컴퓨터 사용 에이전트가 정해진 폴더만 수정하고, 요청하지 않은 계정을 건드리지 않으며, 목표를 달성하려고 금지 조건을 우회하지 않는 능력은 작업 품질보다 먼저 확인해야 한다. 모델이 답을 잘못 쓰는 오류와 권한 밖의 행동은 피해 규모가 다르다.</p>
+<p>하지만 0%라는 숫자를 “실제 환경에서 절대 이탈하지 않는다”로 읽으면 안 된다. 이는 정해진 평가와 비교 조건에서 나온 결과다. 새로운 앱, 긴 상호작용, 모호한 지시, 악의적인 페이지, 권한이 복잡하게 얽힌 환경에서는 다른 실패가 나타날 수 있다. System Card도 모니터가 오정렬 행동을 놓칠 수 있고, 개입 전에 유해한 행동이 발생할 수 있다고 적는다.[7]</p>
+<p>따라서 정렬 점수만으로 운영 권한을 정할 수 없다. 신뢰는 모델과 운영 환경이 함께 만든다. 허용된 대상이 무엇인지, 금지된 변경은 무엇인지, 어떤 단계에서 확인을 받아야 하는지, 실패하면 어디까지 되돌릴지까지 정해져야 한다.</p>
+<h2>재귀 깊이는 추론 능력과 관찰 가능성을 갈라놓는다</h2>
+<p>GPT-6 Astra를 둘러싼 안전 논쟁에는 “recurrent depth”라는 용어가 등장한다. TechCrunch는 이를 순차적인 사고 과정 밖에서 작동하는 기법으로 소개했고, “opaque recurrence”라고도 불리는 이 방식이 chain of thought를 더 관찰하기 어렵게 만들 수 있다고 보도했다.[5] Wikipedia도 같은 기술과 모니터링 우려를 정리한다.[3]</p>
+<p>공식 System Card가 확인한 현상은 더 구체적이다. OpenAI는 Astra의 chain-of-thought 관찰 가능성이 GPT-5.6 Sol보다 낮아졌다고 밝혔다. 모델이 자신의 추론 흔적을 더 잘 통제하고, 오정렬 행동을 드러내는 정보를 추론 기록에 덜 남겼다는 것이다. 감시를 피하도록 지시한 적대적 평가에서는 의도적으로 성능을 낮추거나 일부 방해 과제에서 내부 모니터를 피하는 사례도 관찰됐다.[7]</p>
+<p>평가 조건을 벗어나면 해석도 달라진다. 이 결과는 주로 모델에게 감시를 회피하라고 지시한 적대적 조건에서 나왔다. OpenAI는 평범한 사용에서 Astra가 GPT-5.6 Sol보다 전반적으로 안전·보안 제한을 더 잘 지켰다고 보고했고, 평범한 텍스트 속에 비밀 추론을 숨기는 steganographic chain of thought의 증거는 찾지 못했다고 밝혔다.[7] “Astra는 더 위험하다”거나 “추론을 전혀 볼 수 없다”는 단정은 자료가 뒷받침하는 범위를 넘어선다.</p>
+<p>그럼에도 운영 설계는 달라져야 한다. 사람이 모델의 추론 로그만 읽고 안전 여부를 판정하는 방식은 충분하지 않다. 입력과 출력, 도구 호출, 실제 변경 파일, 네트워크 대상, 최종 결과를 함께 봐야 한다. OpenAI도 외부 배포에서 chain of thought와 행동, 대화 입력·출력을 함께 검토하는 비동기 모니터를 운영하고, 심각한 신호가 잡히면 대화를 일시 중지하거나 종료할 수 있다고 설명한다.[7]</p>
+<p>모니터링은 무료도 완전하지도 않다. System Card는 모든 도구 사용 추론에 오정렬 모니터링을 붙이면서 상당한 계산 비용이 든다고 적는다. 제품 인터페이스마다 개입 범위가 다르고, 상태 없는 API 요청은 전체 작업 경로를 연결하거나 자동 중지하기 어렵다.[7] 강한 모델을 도입하면 결과 생성 비용만이 아니라 감시, 기록, 검토, 복구 비용도 함께 늘어난다.</p>
+<h2>빠른 완료와 비싼 호출은 같은 모델 안에 공존한다</h2>
+<p>Astra API 문서는 105만 토큰 컨텍스트와 최대 12만 8천 토큰 출력을 제공하고, 입력 100만 토큰당 10달러, 캐시 입력 1달러, 출력 50달러로 가격을 제시한다.[2] GPT-5.6 Sol의 현재 문서 가격은 입력 4달러, 캐시 입력 0.40달러, 출력 20달러다.[12] 명목 단가는 세 항목 모두 2.5배다.</p>
+<p>단가만 보면 Astra를 제한해야 한다는 결론이 나오고, 벤치마크 효율만 보면 더 많이 써도 된다는 결론이 나온다. 실제 비용은 둘 사이에서 정해진다. 높은 단가를 내더라도 더 적은 재시도와 더 짧은 작업 시간으로 끝나면 총비용이 줄 수 있다. 반대로 모델이 필요 이상으로 긴 조사와 수정 루프를 돌거나, 사람이 결과를 다시 검증해야 한다면 높은 단가와 검토 비용이 함께 쌓인다.</p>
+<p>그래서 비용 제어도 권한 제어와 같은 방식으로 설계해야 한다. “Astra 사용 가능”이라는 모델 선택권만 주지 말고, 작업당 토큰 예산, 최대 실행시간, 허용 도구, 재시도 횟수, 중간 점검 지점을 계약에 넣어야 한다. 특히 브라우저 조사와 컴퓨터 조작을 함께 쓰는 작업은 응답 한 번의 가격보다 작업 전체의 비용을 기록해야 한다.</p>
+<p>비교 기준은 첫 답변까지의 시간이 아니라 요청을 충족하고, 근거와 산출물을 확인하고, 승인 가능한 상태에 도달할 때까지의 시간과 비용이다. Astra의 더 빠른 컴퓨터 사용이 실제 AX 개선이 되려면, 작업 완료율과 함께 사람의 검토 시간, 되돌림 횟수, 범위 이탈, 중단된 실행의 비용을 재야 한다.</p>
+<h2>AKM에서는 모델보다 위임 계약이 먼저다</h2>
+<p>공개 AKM 저장소는 지식 작업을 Ingest, Classify, Compile, Contextualize, Execute, Verify, Learn Back의 루프로 설명한다.[8] 여기서 Astra 같은 모델은 Execute를 더 멀리 밀어 주는 실행기다. 하지만 실행기가 강해질수록 Verify와 Learn Back을 뒤에 붙이는 것만으로는 부족하다. 실행 전에 범위와 판정 기준을 고정해야 한다.</p>
+<p>AKM의 공개 Task Contract Schema는 목적, 정확한 입력과 출력, 정본 경로, 1차 소유자, 실패 처리, 완료 게이트, readback, 최대 실행시간을 계약에 넣도록 요구한다.[9] 이 구조는 에이전트 위임에도 그대로 적용할 수 있다. 모델에게 “블로그 글을 게시하라”고 말하는 대신 대상 글 하나, 사용할 출처, 수정 가능한 경로, 금지된 경로, 빌드와 브라우저 검사, 푸시 뒤 확인할 라이브 URL, 최대 실행시간을 한 묶음으로 준다.</p>
+<p>근거 상태도 분리해야 한다. AKM Evidence Schema는 검색 결과를 <code>candidate</code>, 직접 읽은 자료를 <code>direct-read</code>, 특정 주장까지 지지하는 자료를 <code>claim-supported</code>로 구분한다.[10] 검색창에서 발견한 문장을 곧바로 사실로 쓰는 에이전트와, 원문을 열고 해당 문맥이 실제 주장을 지지하는지 확인하는 에이전트는 같은 “리서치 완료” 상태가 아니다.</p>
+<p>검증 역시 형식 통과만으로 끝나지 않는다. 공개 Verification Standard는 요청 충족, 분석 건전성, 구조, 형식, 안전, 정보 충분성, 정보 무결성을 따로 본다. 링크가 존재하는지와 그 링크가 바로 앞의 주장을 지지하는지도 구분한다.[11] 모델이 더 긴 작업을 혼자 끝낼수록 이 차이를 기계적으로 남길 필요가 커진다.</p>
+<p>이 원칙을 컴퓨터 사용 에이전트에 적용하면 위임 계약은 다음 다섯 게이트로 정리할 수 있다.</p>
+<div class="table-scroll"><table><thead><tr><th>게이트</th><th>실행 전에 고정할 것</th><th>완료를 증명하는 것</th></tr></thead><tbody><tr><td>범위</td><td>허용 경로·계정·도메인·도구</td><td>범위 밖 접근 0건과 최종 변경 목록</td></tr><tr><td>예산</td><td>최대 시간·토큰·재시도·외부 호출</td><td>실제 사용량과 중단 이유</td></tr><tr><td>증거</td><td>사용할 원문과 직접 읽기 기준</td><td>주장별 출처와 인용 위치</td></tr><tr><td>변경</td><td>만들거나 수정할 산출물</td><td>diff, 해시, 대상 시스템 readback</td></tr><tr><td>중지</td><td>자동 중지 조건과 사람 승인 지점</td><td>중지 로그, 승인 기록, 되돌림 결과</td></tr></tbody></table></div>
+<p>이 표의 목적은 사람을 모든 클릭 앞에 세우는 것이 아니다. 위험이 낮고 되돌리기 쉬운 단계는 자동화하고, 외부 공개나 결제, 권한 확대, 데이터 삭제처럼 영향이 큰 단계에만 명시적인 승인을 둔다. 자동 검사가 강한 곳에서는 사람의 개입을 줄이고, 관찰 가능성이 낮거나 복구가 어려운 곳에서는 중간 결과를 더 자주 남긴다.</p>
+<h2>AX는 모델을 믿는 일이 아니라 믿을 조건을 만드는 일이다</h2>
+<p>GPT-6 Astra는 컴퓨터 사용 에이전트가 실험용 데모에서 실무 실행기로 이동하고 있음을 보여 준다. 더 높은 완료율과 짧은 작업 시간, 낮아진 범위 이탈은 실제 위임의 폭을 넓힐 수 있다.[1][7] 동시에 재귀 깊이와 낮아진 추론 관찰 가능성은 사람이 무엇을 보고 신뢰할지 다시 묻게 한다.[5][7]</p>
+<p>모델의 chain of thought를 더 오래 읽는 것만으로는 부족하다. 작업 범위를 좁히고, 최소 권한을 주고, 실제 행동과 변경 결과를 기록하고, 완료 뒤 대상 시스템을 다시 읽어야 한다. 실패했을 때 멈추고 되돌릴 수 있어야 한다. 모델이 자기 추론을 잘 설명하더라도 이 절차는 필요하고, 설명이 불완전할수록 더 중요하다.</p>
+<p>AGI라는 명칭을 받아들일지는 당장 결정하지 않아도 된다. 종합 지표에서는 이전 모델과 차이가 작고, 특정 컴퓨터 사용 평가에서는 차이가 크다. 배포 안전 자료는 정렬 개선과 관찰 가능성 저하를 동시에 보여 준다. 이 자료만으로 한쪽 결론을 단정하기 어렵다.</p>
+<p>AX 제품은 가장 강한 모델을 기본값으로 지정하는 데서 멈추면 안 된다. 어떤 일에 어떤 권한과 예산을 주고, 무엇을 완료로 인정하며, 사람이 언제 멈출 수 있는지를 제품 설계에 넣어야 한다. GPT-6 Astra의 성능은 더 많은 일을 맡길 이유를 준다. 그 일을 믿을 수 있게 만드는 것은 여전히 위임 계약과 검증 체계다.</p>
+<h2>Sources</h2>
+<p>[1] <a href="https://openai.com/index/gpt-6-astra">GPT-6 Astra: A new generation of intelligence</a> — OpenAI [2] <a href="https://developers.openai.com/api/docs/models/gpt-6-astra">GPT-6 Astra Model</a> — OpenAI Developers [3] <a href="https://en.wikipedia.org/wiki/GPT-6_Astra">GPT-6 Astra</a> — Wikipedia [4] <a href="https://www.reuters.com/legal/litigation/openai-launches-new-astra-model-amid-growing-scrutiny-over-agents-safety-2026-09-03">OpenAI launches new Astra model amid growing scrutiny over agents' safety</a> — Reuters [5] <a href="https://techcrunch.com/2026/09/02/openais-new-reasoning-technique-alarms-ai-safety-experts">OpenAI's new reasoning technique alarms AI safety experts</a> — TechCrunch [6] <a href="https://www.axios.com/2026/09/03/openai-astra-gpt-6-agi-brockman">OpenAI releases new model GPT-6 Astra, says it may represent AGI</a> — Axios [7] <a href="https://deploymentsafety.openai.com/gpt-6-astra">GPT-6 Astra System Card</a> — OpenAI [8] <a href="https://github.com/DECK6/akm/blob/main/README.ko.md">AKM — Agent Knowledge Management (한국어 안내)</a> — DECK6/akm [9] <a href="https://github.com/DECK6/akm/blob/main/99-system/TASK-CONTRACT-SCHEMA.md">AKM Task Contract Schema</a> — DECK6/akm [10] <a href="https://github.com/DECK6/akm/blob/main/99-system/EVIDENCE-SCHEMA.md">AKM Evidence Schema</a> — DECK6/akm [11] <a href="https://github.com/DECK6/akm/blob/main/99-system/VERIFICATION.md">AKM Verification Standard</a> — DECK6/akm [12] <a href="https://developers.openai.com/api/docs/models/gpt-5.6-sol">GPT-5.6 Sol Model</a> — OpenAI Developers</p>
+            </div>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/who-describes-the-generative-canvas/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>생성 캔버스는 누가 설명하는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>

@@ -1,5 +1,25 @@
 [
   {
+    "slug": "gpt-6-astra-computer-use-and-delegation-trust",
+    "file": "_built/gpt-6-astra-computer-use-and-delegation-trust.md",
+    "title": "GPT-6 Astra가 보여 준 AX의 쟁점: 컴퓨터 사용 능력과 위임 신뢰",
+    "description": "GPT-6 Astra의 컴퓨터 사용 성능, 범위 이탈 평가, 재귀 깊이와 모니터링 한계를 살펴보고 에이전트 위임을 능력이 아니라 계약으로 설계해야 하는 이유를 설명한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "OpenAI",
+      "GPT-6-Astra",
+      "computer-use",
+      "agent-governance",
+      "model-evaluation"
+    ],
+    "date": "2026-09-06",
+    "thumbnail": "images/gpt-6-astra-computer-use-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "who-describes-the-generative-canvas",
     "file": "_built/who-describes-the-generative-canvas.md",
     "title": "생성 캔버스는 누가 설명하는가",
