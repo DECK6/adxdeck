@@ -20,6 +20,26 @@
     "author": "육대근"
   },
   {
+    "slug": "why-agent-jobs-need-leases-heartbeats-and-fencing-tokens",
+    "file": "_built/why-agent-jobs-need-leases-heartbeats-and-fencing-tokens.md",
+    "title": "한 작업을 두 에이전트가 잡았을 때 무엇이 무너지는가",
+    "description": "장기 실행 queue에서 stale worker와 중복 처리를 막기 위해 lease, heartbeat, fencing token이 각각 어떤 소유권 경계를 만드는지 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "ai-agent",
+      "agent-runtime",
+      "distributed-systems",
+      "leases",
+      "concurrency-control"
+    ],
+    "date": "2026-09-06",
+    "thumbnail": "images/agent-work-lease-heartbeat-fencing-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "who-describes-the-generative-canvas",
     "file": "_built/who-describes-the-generative-canvas.md",
     "title": "생성 캔버스는 누가 설명하는가",
