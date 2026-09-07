@@ -1,0 +1,1354 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Korean Elementary Curriculum Learning Ontology controlled vocabulary",
+  "version": "0.4.0",
+  "priorVersion": "0.3.0-p3",
+  "status": "formal-release",
+  "namespaces": {
+    "ontology": "https://dexa.art/learnmap/ontology#",
+    "instance": "https://dexa.art/learnmap/#/",
+    "vocabulary": "https://dexa.art/learnmap/vocab/",
+    "reservedInstancePath": "https://dexa.art/learnmap/id/",
+    "core": "https://dexa.art/learnmap/ontology/k12-core#"
+  },
+  "releaseMetadata": {
+    "formalOntologyAvailable": true,
+    "rdfConversionStatus": "complete",
+    "coverageGapCount": 43,
+    "coverageGapCategory": "source-data-coverage",
+    "ontologyFormatStatus": "p3-formal-release",
+    "ontologyReviewStatus": "seven-automated-gates-passed",
+    "externalDomainReviewStatus": "ongoing",
+    "sourceRightsStatus": "CLEARED",
+    "sourceRightsCategory": "rights-and-redistribution",
+    "sourceRightsBasis": "public-government-document",
+    "officialTextIncluded": false,
+    "officialStatus": "independent-non-official",
+    "learnerDiagnosisSupported": false,
+    "relationLayerContract": "k12-relation-vocabulary-spec-v1",
+    "officialRelationLayerFile": "data/kr/dependencies.json",
+    "candidateRelationLayerFile": "data/kr/dependencies.candidate.json",
+    "derivedPrerequisiteViewsLayer": "official"
+  },
+  "classes": [
+    {
+      "term": "DatasetRelease",
+      "definition": "A versioned publication boundary that groups learning-map resources, release status, coverage gaps, and rights metadata.",
+      "nonExamples": ["A Git commit by itself", "A single curriculum PDF"]
+    },
+    {
+      "term": "Curriculum",
+      "definition": "A named and versioned educational programme whose standards and organizing structure apply to a stated jurisdiction and school level.",
+      "nonExamples": ["One achievement standard", "A classroom lesson plan"]
+    },
+    {
+      "term": "GradeBand",
+      "definition": "A controlled grouping of school grades used as the intended learning span for curriculum resources.",
+      "nonExamples": ["A learner's exact age", "A difficulty rating"]
+    },
+    {
+      "term": "Subject",
+      "definition": "A curriculum-recognized field of study such as Korean Language, Mathematics, or Science.",
+      "nonExamples": ["A learning topic", "A source-document section"]
+    },
+    {
+      "term": "LearningDomain",
+      "definition": "An organizing area within a subject or curriculum, such as Reading or Number and Operations.",
+      "nonExamples": ["A subject label", "An individual assessment prompt"]
+    },
+    {
+      "term": "AchievementStandard",
+      "definition": "A source-anchored curriculum expectation identified by an official or repository-maintained standard code.",
+      "nonExamples": ["A verbatim official passage without an identifier", "A generated micro-topic"]
+    },
+    {
+      "term": "LearningTopic",
+      "definition": "A repository-authored, teachable unit of learning aligned to one or more achievement standards.",
+      "nonExamples": ["An official achievement-standard text", "A topic-type concept"]
+    },
+    {
+      "term": "LearningCluster",
+      "definition": "A navigational grouping that contains one or more learning topics under a documented coverage policy.",
+      "nonExamples": ["An inferred prerequisite chain", "A formal OWL class hierarchy"]
+    },
+    {
+      "term": "EvidenceCriterion",
+      "definition": "A learner-observable condition used to judge whether a learning topic has been demonstrated.",
+      "nonExamples": ["Source provenance", "A teacher activity with no learner evidence"]
+    },
+    {
+      "term": "AssessmentPrompt",
+      "definition": "A prompt or task that elicits evidence relevant to a learning topic.",
+      "nonExamples": ["A scoring result", "A source locator"]
+    },
+    {
+      "term": "SourceDocument",
+      "definition": "A document or repository artifact cited as evidence for curriculum identity, codes, mappings, or provenance.",
+      "nonExamples": ["An unsupported web-search result", "A rights permission not recorded for the document"]
+    },
+    {
+      "term": "SourceLocator",
+      "definition": "A structured location inside or alongside a source document, including page, section, attachment, hash, or code anchors.",
+      "nonExamples": ["A source URL with no item-level location", "An achievement standard"]
+    },
+    {
+      "term": "VerificationRecord",
+      "definition": "A dated or status-bearing record of what was checked, by which method, and with what limitations.",
+      "nonExamples": ["An unqualified claim of official approval", "A curriculum standard"]
+    },
+    {
+      "term": "CoverageGap",
+      "definition": "An explicit source-data completeness, calibration, reconciliation, or review gap retained for release evaluation.",
+      "nonExamples": ["The absence of an RDF serialization in P0", "A source-document rights clearance"]
+    },
+    {
+      "term": "PrerequisiteAssertion",
+      "definition": "An n-ary record that qualifies a model-relative direct prerequisite suggestion with strength, reason, basis, source, and review state.",
+      "nonExamples": ["An absolute universal law about learning order", "A derived multi-hop prerequisite"]
+    },
+    {
+      "term": "StandardTopicAlignment",
+      "definition": "An n-ary record that qualifies how a learning topic relates to an achievement standard, preserving alignment kind, confidence, note, basis, and source.",
+      "nonExamples": ["An unqualified identifier join", "A statement that the topic reproduces official standard text"]
+    }
+  ],
+  "objectProperties": [
+    {
+      "term": "hasCurriculum",
+      "definition": "Associates a dataset release with a curriculum included in that release.",
+      "direction": "DatasetRelease -> Curriculum",
+      "domain": ["DatasetRelease"],
+      "range": ["Curriculum"],
+      "cardinality": "DatasetRelease 1..*; Curriculum 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "hasSubject",
+      "definition": "Associates a curriculum or learning resource with its subject.",
+      "direction": "Curriculum|LearningDomain|AchievementStandard|LearningTopic|LearningCluster|CoverageGap -> Subject",
+      "domain": ["Curriculum", "LearningDomain", "AchievementStandard", "LearningTopic", "LearningCluster", "CoverageGap"],
+      "range": ["Subject"],
+      "cardinality": "resource 1; inverse 0..*",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "hasGradeBand",
+      "definition": "Associates a curriculum resource with its intended grade band.",
+      "direction": "Curriculum|AchievementStandard|LearningTopic|LearningCluster -> GradeBand",
+      "domain": ["Curriculum", "AchievementStandard", "LearningTopic", "LearningCluster"],
+      "range": ["GradeBand"],
+      "cardinality": "resource 1; inverse 0..*",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "hasLearningDomain",
+      "definition": "Associates a subject-scoped learning resource with its organizing learning domain.",
+      "direction": "AchievementStandard|LearningTopic|LearningCluster -> LearningDomain",
+      "domain": ["AchievementStandard", "LearningTopic", "LearningCluster"],
+      "range": ["LearningDomain"],
+      "cardinality": "resource 1; inverse 0..*",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "hasAchievementStandard",
+      "definition": "Lists an achievement standard governed by a curriculum.",
+      "direction": "Curriculum -> AchievementStandard",
+      "domain": ["Curriculum"],
+      "range": ["AchievementStandard"],
+      "cardinality": "Curriculum 1..*; AchievementStandard 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "containsTopic",
+      "definition": "Lists a learning topic published in a dataset release.",
+      "direction": "DatasetRelease -> LearningTopic",
+      "domain": ["DatasetRelease"],
+      "range": ["LearningTopic"],
+      "cardinality": "DatasetRelease 1..*; LearningTopic 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "hasCluster",
+      "definition": "Lists a learning cluster published in a dataset release.",
+      "direction": "DatasetRelease -> LearningCluster",
+      "domain": ["DatasetRelease"],
+      "range": ["LearningCluster"],
+      "cardinality": "DatasetRelease 1..*; LearningCluster 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "hasClusterMember",
+      "definition": "Places a learning topic in a navigational learning cluster.",
+      "direction": "LearningCluster -> LearningTopic",
+      "domain": ["LearningCluster"],
+      "range": ["LearningTopic"],
+      "cardinality": "LearningCluster 1..*; LearningTopic 1..*",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "alignedToStandard",
+      "definition": "Provides a convenient navigation edge from a topic to a standard when a StandardTopicAlignment record retains the qualifiers.",
+      "direction": "LearningTopic -> AchievementStandard",
+      "domain": ["LearningTopic"],
+      "range": ["AchievementStandard"],
+      "cardinality": "LearningTopic 1..*; AchievementStandard 0..*",
+      "assertionPolicy": "materialized-from-qualified-assertion"
+    },
+    {
+      "term": "hasStandardTopicAlignment",
+      "definition": "Links a learning topic to its qualifier-preserving standard alignment record.",
+      "direction": "LearningTopic -> StandardTopicAlignment",
+      "domain": ["LearningTopic"],
+      "range": ["StandardTopicAlignment"],
+      "cardinality": "LearningTopic 1..*; StandardTopicAlignment 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "alignmentTopic",
+      "definition": "Identifies the learning topic qualified by a standard-topic alignment record.",
+      "direction": "StandardTopicAlignment -> LearningTopic",
+      "domain": ["StandardTopicAlignment"],
+      "range": ["LearningTopic"],
+      "cardinality": "StandardTopicAlignment exactly 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "alignmentStandard",
+      "definition": "Identifies the achievement standard qualified by a standard-topic alignment record.",
+      "direction": "StandardTopicAlignment -> AchievementStandard",
+      "domain": ["StandardTopicAlignment"],
+      "range": ["AchievementStandard"],
+      "cardinality": "StandardTopicAlignment exactly 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "hasEvidenceCriterion",
+      "definition": "Associates a learning topic with learner-observable evidence criteria.",
+      "direction": "LearningTopic -> EvidenceCriterion",
+      "domain": ["LearningTopic"],
+      "range": ["EvidenceCriterion"],
+      "cardinality": "LearningTopic 1..*; EvidenceCriterion 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "hasAssessmentPrompt",
+      "definition": "Associates a learning topic with a prompt intended to elicit evidence.",
+      "direction": "LearningTopic -> AssessmentPrompt",
+      "domain": ["LearningTopic"],
+      "range": ["AssessmentPrompt"],
+      "cardinality": "LearningTopic 1..*; AssessmentPrompt 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "directRequires",
+      "definition": "States a reviewed, model-relative suggested direct prerequisite edge; it is never an absolute universal fact about learning order.",
+      "direction": "dependent LearningTopic -> prerequisite LearningTopic",
+      "domain": ["LearningTopic"],
+      "range": ["LearningTopic"],
+      "cardinality": "LearningTopic 0..* in each direction",
+      "assertionPolicy": "asserted",
+      "inverseOf": "unlocks",
+      "qualifiedBy": "PrerequisiteAssertion",
+      "transitive": false
+    },
+    {
+      "term": "indirectRequires",
+      "definition": "Indicates that a prerequisite is reachable through two or more directRequires edges and is therefore a derived navigation relation.",
+      "direction": "dependent LearningTopic -> upstream LearningTopic",
+      "domain": ["LearningTopic"],
+      "range": ["LearningTopic"],
+      "cardinality": "LearningTopic 0..* in each direction",
+      "assertionPolicy": "derived-only",
+      "minimumDirectPathLength": 2,
+      "transitive": false
+    },
+    {
+      "term": "unlocks",
+      "definition": "Provides the derived inverse navigation direction of directRequires.",
+      "direction": "prerequisite LearningTopic -> dependent LearningTopic",
+      "domain": ["LearningTopic"],
+      "range": ["LearningTopic"],
+      "cardinality": "LearningTopic 0..* in each direction",
+      "assertionPolicy": "derived-only",
+      "inverseOf": "directRequires",
+      "transitive": false
+    },
+    {
+      "term": "hasPrerequisiteAssertion",
+      "definition": "Links a dependent learning topic to the qualifier-preserving record for one direct prerequisite suggestion.",
+      "direction": "LearningTopic -> PrerequisiteAssertion",
+      "domain": ["LearningTopic"],
+      "range": ["PrerequisiteAssertion"],
+      "cardinality": "LearningTopic 0..*; PrerequisiteAssertion 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "dependentTopic",
+      "definition": "Identifies the topic whose suggested prerequisite is qualified by a prerequisite assertion.",
+      "direction": "PrerequisiteAssertion -> dependent LearningTopic",
+      "domain": ["PrerequisiteAssertion"],
+      "range": ["LearningTopic"],
+      "cardinality": "PrerequisiteAssertion exactly 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "prerequisiteTopic",
+      "definition": "Identifies the suggested direct prerequisite qualified by a prerequisite assertion.",
+      "direction": "PrerequisiteAssertion -> prerequisite LearningTopic",
+      "domain": ["PrerequisiteAssertion"],
+      "range": ["LearningTopic"],
+      "cardinality": "PrerequisiteAssertion exactly 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "documentedBy",
+      "definition": "Associates a curriculum resource or assertion with a source document that supports its identity, provenance, or basis.",
+      "direction": "resource -> SourceDocument",
+      "domain": ["Curriculum", "AchievementStandard", "LearningTopic", "SourceLocator", "VerificationRecord", "CoverageGap", "PrerequisiteAssertion", "StandardTopicAlignment"],
+      "range": ["SourceDocument"],
+      "cardinality": "resource 1..*; SourceDocument 0..*",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "hasSourceLocator",
+      "definition": "Associates a source-backed resource with a structured source locator.",
+      "direction": "resource -> SourceLocator",
+      "domain": ["SourceDocument", "AchievementStandard", "LearningTopic", "CoverageGap"],
+      "range": ["SourceLocator"],
+      "cardinality": "resource 0..*; SourceLocator 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "hasVerificationRecord",
+      "definition": "Associates a resource or qualified assertion with a record of its verification status and limitations.",
+      "direction": "resource -> VerificationRecord",
+      "domain": ["DatasetRelease", "Curriculum", "SourceDocument", "AchievementStandard", "LearningTopic", "PrerequisiteAssertion", "StandardTopicAlignment"],
+      "range": ["VerificationRecord"],
+      "cardinality": "resource 0..*; VerificationRecord 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "reportsCoverageGap",
+      "definition": "Associates a dataset release with a retained source-data coverage or review gap.",
+      "direction": "DatasetRelease -> CoverageGap",
+      "domain": ["DatasetRelease"],
+      "range": ["CoverageGap"],
+      "cardinality": "DatasetRelease 0..*; CoverageGap 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "assertionLayer",
+      "definition": "Release layer of a prerequisite assertion; only the official layer materializes derived prerequisite views.",
+      "direction": "PrerequisiteAssertion -> RelationLayer concept",
+      "domain": ["PrerequisiteAssertion"],
+      "range": ["skos:Concept"],
+      "cardinality": "PrerequisiteAssertion exactly 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "relationKind",
+      "definition": "Normalized reading of the relation: a required prerequisite or a recommended order.",
+      "direction": "PrerequisiteAssertion -> RelationKind concept",
+      "domain": ["PrerequisiteAssertion"],
+      "range": ["skos:Concept"],
+      "cardinality": "PrerequisiteAssertion exactly 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "basisKind",
+      "definition": "Kind of evidence behind the relation; official-source is reserved for the official layer.",
+      "direction": "PrerequisiteAssertion -> BasisKind concept",
+      "domain": ["PrerequisiteAssertion"],
+      "range": ["skos:Concept"],
+      "cardinality": "PrerequisiteAssertion exactly 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "scope",
+      "definition": "Mechanically computed distance between the two endpoints of a relation.",
+      "direction": "PrerequisiteAssertion -> RelationScope concept",
+      "domain": ["PrerequisiteAssertion"],
+      "range": ["skos:Concept"],
+      "cardinality": "PrerequisiteAssertion exactly 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "reviewStatus",
+      "definition": "Human review reached for the relation record.",
+      "direction": "PrerequisiteAssertion -> ReviewStatus concept",
+      "domain": ["PrerequisiteAssertion"],
+      "range": ["skos:Concept"],
+      "cardinality": "PrerequisiteAssertion exactly 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "decompositionKind",
+      "definition": "Whether a topic represents a whole achievement standard or one subject facet of it.",
+      "direction": "LearningTopic -> DecompositionKind concept",
+      "domain": ["LearningTopic"],
+      "range": ["skos:Concept"],
+      "cardinality": "LearningTopic exactly 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "facetKey",
+      "definition": "Shared K-12 facet of the topic, drawn from the common eight-concept facet scheme.",
+      "direction": "LearningTopic -> Facet concept",
+      "domain": ["LearningTopic"],
+      "range": ["skos:Concept"],
+      "cardinality": "LearningTopic exactly 1",
+      "assertionPolicy": "asserted"
+    },
+    {
+      "term": "topicRole",
+      "namespace": "https://dexa.art/learnmap/ontology/k12-core#",
+      "definition": "Whether a topic anchors its achievement standard, carries one facet of it, or is an auxiliary facet a tutor may skip.",
+      "direction": "LearningTopic -> TopicRole concept",
+      "domain": ["LearningTopic"],
+      "range": ["skos:Concept"],
+      "cardinality": "LearningTopic exactly 1; exactly one anchor per achievement standard",
+      "assertionPolicy": "asserted",
+      "sharedAcross": ["korean-elementary-learning-map", "korean-secondary-learning-map"]
+    },
+    {
+      "term": "collapseInto",
+      "namespace": "https://dexa.art/learnmap/ontology/k12-core#",
+      "definition": "The sibling topic of the same achievement standard a tutor shows instead of this one; asserted only on auxiliary topics.",
+      "direction": "LearningTopic -> LearningTopic",
+      "domain": ["LearningTopic"],
+      "range": ["LearningTopic"],
+      "cardinality": "LearningTopic 0..1, exactly 1 for an auxiliary topic",
+      "assertionPolicy": "asserted",
+      "sharedAcross": ["korean-elementary-learning-map", "korean-secondary-learning-map"]
+    },
+    {
+      "term": "contentKind",
+      "namespace": "https://dexa.art/learnmap/ontology/k12-core#",
+      "definition": "Whether a topic's evidence, prompt, and misconceptions are a mechanical derivative of the standard record or an authored source-grounded draft.",
+      "direction": "LearningTopic -> ContentKind concept",
+      "domain": ["LearningTopic"],
+      "range": ["skos:Concept"],
+      "cardinality": "LearningTopic exactly 1",
+      "assertionPolicy": "asserted",
+      "sharedAcross": ["korean-elementary-learning-map", "korean-secondary-learning-map"]
+    },
+    {
+      "term": "contentSourceLocator",
+      "namespace": "https://dexa.art/learnmap/ontology/k12-core#",
+      "definition": "The source passage an authored source-grounded draft was written from; required whenever contentKind is source-grounded-draft.",
+      "direction": "LearningTopic -> SourceLocator",
+      "domain": ["LearningTopic"],
+      "range": ["SourceLocator"],
+      "cardinality": "LearningTopic 0..1, exactly 1 for a source-grounded draft",
+      "assertionPolicy": "asserted",
+      "sharedAcross": ["korean-elementary-learning-map", "korean-secondary-learning-map"]
+    },
+    {
+      "term": "locatorKind",
+      "namespace": "https://dexa.art/learnmap/ontology/k12-core#",
+      "definition": "Selects which locator fields apply: a printed page in a published document, or a record read from the STAS achievement-standard service.",
+      "direction": "SourceLocator -> SourceLocatorKind concept",
+      "domain": ["SourceLocator"],
+      "range": ["skos:Concept"],
+      "cardinality": "SourceLocator exactly 1 where asserted",
+      "assertionPolicy": "asserted",
+      "sharedAcross": ["korean-elementary-learning-map", "korean-secondary-learning-map"]
+    }
+  ],
+  "datatypeProperties": [
+    {
+      "term": "identifier",
+      "definition": "The stable source or repository identifier for a resource.",
+      "domain": ["DatasetRelease", "Curriculum", "GradeBand", "Subject", "LearningDomain", "AchievementStandard", "LearningTopic", "LearningCluster", "EvidenceCriterion", "AssessmentPrompt", "SourceDocument", "SourceLocator", "VerificationRecord", "CoverageGap", "PrerequisiteAssertion", "StandardTopicAlignment"],
+      "datatype": "xsd:string",
+      "cardinality": "resource exactly 1"
+    },
+    {
+      "term": "preferredLabel",
+      "definition": "The preferred human-readable label in a declared language.",
+      "domain": ["Curriculum", "GradeBand", "Subject", "LearningDomain", "AchievementStandard", "LearningTopic", "LearningCluster"],
+      "datatype": "rdf:langString",
+      "cardinality": "resource 1..* across languages"
+    },
+    {
+      "term": "summary",
+      "definition": "A repository-authored concise description that does not reproduce official text unless explicitly licensed and marked.",
+      "domain": ["DatasetRelease", "Curriculum", "AchievementStandard", "LearningTopic", "LearningCluster", "SourceDocument", "VerificationRecord"],
+      "datatype": "rdf:langString",
+      "cardinality": "resource 0..* across languages"
+    },
+    {
+      "term": "accessDate",
+      "definition": "The recorded date on which a source document was accessed.",
+      "domain": ["SourceDocument"],
+      "datatype": "xsd:string",
+      "cardinality": "SourceDocument 0..1"
+    },
+    {
+      "term": "attachmentNo",
+      "definition": "The repository attachment number retained for a source document.",
+      "domain": ["SourceDocument"],
+      "datatype": "xsd:string",
+      "cardinality": "SourceDocument 0..1"
+    },
+    {
+      "term": "country",
+      "definition": "The country code for the dataset release.",
+      "domain": ["DatasetRelease"],
+      "datatype": "xsd:string",
+      "cardinality": "DatasetRelease exactly 1"
+    },
+    {
+      "term": "description",
+      "definition": "A repository-authored description of a learning topic.",
+      "domain": ["LearningTopic"],
+      "datatype": "rdf:langString",
+      "cardinality": "LearningTopic exactly 1"
+    },
+    {
+      "term": "generatedAt",
+      "definition": "The canonical source generation timestamp retained as source metadata.",
+      "domain": ["DatasetRelease"],
+      "datatype": "xsd:string",
+      "cardinality": "DatasetRelease exactly 1"
+    },
+    {
+      "term": "generationBasis",
+      "definition": "The documented workstream basis used to generate a learning topic.",
+      "domain": ["LearningTopic"],
+      "datatype": "rdf:langString",
+      "cardinality": "LearningTopic 0..1"
+    },
+    {
+      "term": "labelEnglish",
+      "definition": "An English-language label retained alongside the preferred Korean label.",
+      "domain": ["Curriculum", "GradeBand", "Subject", "LearningDomain"],
+      "datatype": "rdf:langString",
+      "cardinality": "resource 0..1"
+    },
+    {
+      "term": "locale",
+      "definition": "The locale identifier for the dataset release.",
+      "domain": ["DatasetRelease"],
+      "datatype": "xsd:string",
+      "cardinality": "DatasetRelease exactly 1"
+    },
+    {
+      "term": "parentSummary",
+      "definition": "A parent-facing summary for a learning cluster.",
+      "domain": ["LearningCluster"],
+      "datatype": "rdf:langString",
+      "cardinality": "LearningCluster 0..1"
+    },
+    {
+      "term": "pdfPages",
+      "definition": "A source-document PDF page count or page value retained by the canonical source record.",
+      "domain": ["SourceDocument"],
+      "datatype": "xsd:integer",
+      "cardinality": "SourceDocument 0..*"
+    },
+    {
+      "term": "publisher",
+      "definition": "The publisher named by a source document record.",
+      "domain": ["SourceDocument"],
+      "datatype": "xsd:string",
+      "cardinality": "SourceDocument 0..1"
+    },
+    {
+      "term": "schoolLevel",
+      "definition": "The school level governed by a curriculum.",
+      "domain": ["Curriculum"],
+      "datatype": "xsd:string",
+      "cardinality": "Curriculum exactly 1"
+    },
+    {
+      "term": "sourceBasis",
+      "definition": "The bounded source basis recorded for an achievement standard.",
+      "domain": ["AchievementStandard"],
+      "datatype": "rdf:langString",
+      "cardinality": "AchievementStandard 0..1"
+    },
+    {
+      "term": "sourceSection",
+      "definition": "A human-readable section label retained for an achievement standard.",
+      "domain": ["AchievementStandard"],
+      "datatype": "rdf:langString",
+      "cardinality": "AchievementStandard 0..1"
+    },
+    {
+      "term": "sourceStandardCode",
+      "definition": "The source achievement-standard code retained by a learning topic.",
+      "domain": ["LearningTopic"],
+      "datatype": "xsd:string",
+      "cardinality": "LearningTopic 0..1"
+    },
+    {
+      "term": "sourceType",
+      "definition": "The canonical source-document type token.",
+      "domain": ["SourceDocument"],
+      "datatype": "xsd:string",
+      "cardinality": "SourceDocument exactly 1"
+    },
+    {
+      "term": "standardCode",
+      "definition": "The official or repository-maintained achievement-standard code.",
+      "domain": ["AchievementStandard"],
+      "datatype": "xsd:string",
+      "cardinality": "AchievementStandard exactly 1"
+    },
+    {
+      "term": "status",
+      "definition": "A source status token retained for a dataset release or coverage gap.",
+      "domain": ["DatasetRelease", "CoverageGap"],
+      "datatype": "xsd:string",
+      "cardinality": "resource 0..1"
+    },
+    {
+      "term": "subjectCode",
+      "definition": "The external subject code retained by a source document.",
+      "domain": ["SourceDocument"],
+      "datatype": "xsd:string",
+      "cardinality": "SourceDocument 0..1"
+    },
+    {
+      "term": "titleEnglish",
+      "definition": "An English-language title for a topic or cluster.",
+      "domain": ["LearningTopic", "LearningCluster"],
+      "datatype": "rdf:langString",
+      "cardinality": "resource 0..1"
+    },
+    {
+      "term": "verificationNotes",
+      "definition": "The bounded verification limitations retained for an achievement standard.",
+      "domain": ["AchievementStandard"],
+      "datatype": "rdf:langString",
+      "cardinality": "AchievementStandard 0..1"
+    },
+    {
+      "term": "version",
+      "definition": "The curriculum version label.",
+      "domain": ["Curriculum"],
+      "datatype": "xsd:string",
+      "cardinality": "Curriculum exactly 1"
+    },
+    {
+      "term": "workstream",
+      "definition": "The repository workstream file associated with a generated resource.",
+      "domain": ["AchievementStandard", "LearningTopic", "LearningCluster", "CoverageGap"],
+      "datatype": "xsd:string",
+      "cardinality": "resource 0..1"
+    },
+    {
+      "term": "topicType",
+      "definition": "A controlled LearningTopicType concept used for faceted navigation rather than an asserted disjoint class.",
+      "domain": ["LearningTopic"],
+      "datatype": "xsd:anyURI",
+      "cardinality": "LearningTopic exactly 1"
+    },
+    {
+      "term": "ageRangeStart",
+      "definition": "The inclusive lower age hint carried by a learning topic.",
+      "domain": ["LearningTopic"],
+      "datatype": "xsd:integer",
+      "cardinality": "LearningTopic 0..1"
+    },
+    {
+      "term": "ageRangeEnd",
+      "definition": "The inclusive upper age hint carried by a learning topic.",
+      "domain": ["LearningTopic"],
+      "datatype": "xsd:integer",
+      "cardinality": "LearningTopic 0..1"
+    },
+    {
+      "term": "criterionText",
+      "definition": "The learner-observable statement expressed by an evidence criterion.",
+      "domain": ["EvidenceCriterion"],
+      "datatype": "rdf:langString",
+      "cardinality": "EvidenceCriterion exactly 1 per language"
+    },
+    {
+      "term": "promptText",
+      "definition": "The task wording expressed by an assessment prompt.",
+      "domain": ["AssessmentPrompt"],
+      "datatype": "rdf:langString",
+      "cardinality": "AssessmentPrompt exactly 1 per language"
+    },
+    {
+      "term": "prerequisiteStrength",
+      "definition": "The required or recommended qualifier for a direct prerequisite assertion.",
+      "domain": ["PrerequisiteAssertion"],
+      "datatype": "xsd:anyURI",
+      "cardinality": "PrerequisiteAssertion exactly 1"
+    },
+    {
+      "term": "prerequisiteReason",
+      "definition": "A human-readable explanation for a suggested direct prerequisite.",
+      "domain": ["PrerequisiteAssertion"],
+      "datatype": "rdf:langString",
+      "cardinality": "PrerequisiteAssertion 1..* across languages"
+    },
+    {
+      "term": "legacyPrerequisiteStrength",
+      "definition": "The exact hard or soft source token retained alongside its normalized prerequisite strength.",
+      "domain": ["PrerequisiteAssertion"],
+      "datatype": "xsd:string",
+      "cardinality": "PrerequisiteAssertion exactly 1"
+    },
+    {
+      "term": "assertionBasis",
+      "definition": "The method, workstream, or evidence basis used to create a qualified assertion.",
+      "domain": ["PrerequisiteAssertion", "StandardTopicAlignment"],
+      "datatype": "xsd:string",
+      "cardinality": "assertion exactly 1"
+    },
+    {
+      "term": "assertionSource",
+      "definition": "A source identifier or repository path retained with a qualified assertion.",
+      "domain": ["PrerequisiteAssertion", "StandardTopicAlignment"],
+      "datatype": "xsd:string",
+      "cardinality": "assertion 1..*"
+    },
+    {
+      "term": "alignmentKind",
+      "definition": "The introduces, supports, extends, or assesses role expressed by a standard-topic alignment.",
+      "domain": ["StandardTopicAlignment"],
+      "datatype": "xsd:anyURI",
+      "cardinality": "StandardTopicAlignment exactly 1"
+    },
+    {
+      "term": "confidence",
+      "definition": "A bounded 0 to 1 confidence score for a qualified assertion, never a substitute for its basis or source.",
+      "domain": ["StandardTopicAlignment"],
+      "datatype": "xsd:decimal",
+      "cardinality": "StandardTopicAlignment exactly 1"
+    },
+    {
+      "term": "sourceAlignmentRelationship",
+      "definition": "The exact alignment relationship token retained from the canonical mapping record.",
+      "domain": ["StandardTopicAlignment"],
+      "datatype": "xsd:string",
+      "cardinality": "StandardTopicAlignment exactly 1"
+    },
+    {
+      "term": "sourceConfidenceValue",
+      "definition": "The exact source confidence token retained separately from the numeric working confidence.",
+      "domain": ["StandardTopicAlignment"],
+      "datatype": "xsd:string",
+      "cardinality": "StandardTopicAlignment exactly 1"
+    },
+    {
+      "term": "sourceAlignmentNote",
+      "definition": "The exact optional note retained from the canonical alignment record.",
+      "domain": ["StandardTopicAlignment"],
+      "datatype": "xsd:string",
+      "cardinality": "StandardTopicAlignment 0..1"
+    },
+    {
+      "term": "sourceAlignmentRationale",
+      "definition": "The exact optional legacy rationale retained separately from an alignment note.",
+      "domain": ["StandardTopicAlignment"],
+      "datatype": "xsd:string",
+      "cardinality": "StandardTopicAlignment 0..1"
+    },
+    {
+      "term": "confidenceDefaulted",
+      "definition": "Whether numeric confidence came from the release default rather than a numeric source token.",
+      "domain": ["StandardTopicAlignment"],
+      "datatype": "xsd:boolean",
+      "cardinality": "StandardTopicAlignment exactly 1"
+    },
+    {
+      "term": "defaultingPolicy",
+      "definition": "The named release policy used when a numeric working value is defaulted.",
+      "domain": ["StandardTopicAlignment"],
+      "datatype": "xsd:string",
+      "cardinality": "StandardTopicAlignment 0..1"
+    },
+    {
+      "term": "sourceVerificationStatus",
+      "definition": "The exact optional verification-status token retained from the canonical alignment record.",
+      "domain": ["StandardTopicAlignment"],
+      "datatype": "xsd:string",
+      "cardinality": "StandardTopicAlignment 0..1"
+    },
+    {
+      "term": "verificationStatusDefaulted",
+      "definition": "Whether the alignment verification record uses the release default because the source omitted a status.",
+      "domain": ["StandardTopicAlignment"],
+      "datatype": "xsd:boolean",
+      "cardinality": "StandardTopicAlignment exactly 1"
+    },
+    {
+      "term": "note",
+      "definition": "An optional human-readable qualification or limitation on an assertion or verification record.",
+      "domain": ["PrerequisiteAssertion", "StandardTopicAlignment", "VerificationRecord", "CoverageGap"],
+      "datatype": "rdf:langString",
+      "cardinality": "resource 0..* across languages"
+    },
+    {
+      "term": "sourceUrl",
+      "definition": "A retrieval URL recorded for a source document without implying dereference permanence or reuse permission.",
+      "domain": ["SourceDocument"],
+      "datatype": "xsd:anyURI",
+      "cardinality": "SourceDocument 0..*"
+    },
+    {
+      "term": "sourceHash",
+      "definition": "A content hash used to identify a checked source artifact.",
+      "domain": ["SourceDocument", "SourceLocator"],
+      "datatype": "xsd:string",
+      "cardinality": "resource 0..1 per hash algorithm"
+    },
+    {
+      "term": "locatorValue",
+      "definition": "A page, printed page, attachment number, section, or source code value inside a structured source locator.",
+      "domain": ["SourceLocator"],
+      "datatype": "xsd:string",
+      "cardinality": "SourceLocator 1..*"
+    },
+    {
+      "term": "verificationStatus",
+      "definition": "The controlled status of a verification record, including the limits of what was checked.",
+      "domain": ["VerificationRecord"],
+      "datatype": "xsd:anyURI",
+      "cardinality": "VerificationRecord exactly 1"
+    },
+    {
+      "term": "rightsStatus",
+      "definition": "The controlled reuse and redistribution posture recorded for a source document or dataset release.",
+      "domain": ["DatasetRelease", "SourceDocument"],
+      "datatype": "xsd:anyURI",
+      "cardinality": "resource exactly 1"
+    },
+    {
+      "term": "officialTextIncluded",
+      "definition": "Whether official source wording is included in the described resource.",
+      "domain": ["DatasetRelease", "Curriculum", "AchievementStandard", "LearningTopic", "SourceDocument"],
+      "datatype": "xsd:boolean",
+      "cardinality": "resource exactly 1"
+    },
+    {
+      "term": "sourceGapSeverityPresent",
+      "definition": "Whether the canonical coverage-gap record supplied an explicit severity before normalization.",
+      "domain": ["CoverageGap"],
+      "datatype": "xsd:boolean",
+      "cardinality": "CoverageGap exactly 1"
+    },
+    {
+      "term": "gapCategory",
+      "definition": "The controlled source-data completeness or review category assigned to a coverage gap.",
+      "domain": ["CoverageGap"],
+      "datatype": "xsd:anyURI",
+      "cardinality": "CoverageGap exactly 1"
+    },
+    {
+      "term": "gapSeverity",
+      "definition": "The controlled urgency or intentionality level assigned to a coverage gap.",
+      "domain": ["CoverageGap"],
+      "datatype": "xsd:anyURI",
+      "cardinality": "CoverageGap 0..1"
+    },
+    {
+      "term": "gapDescription",
+      "definition": "A human-readable account of what is missing, intentionally excluded, or awaiting review.",
+      "domain": ["CoverageGap"],
+      "datatype": "rdf:langString",
+      "cardinality": "CoverageGap 1..* across languages"
+    },
+    {
+      "term": "relationIdentifier",
+      "definition": "Deterministic kr.dep.* identifier of the source relation record.",
+      "domain": ["PrerequisiteAssertion"],
+      "datatype": "xsd:string",
+      "cardinality": "PrerequisiteAssertion exactly 1"
+    },
+    {
+      "term": "standardKey",
+      "definition": "Primary achievement-standard key of the topic (curriculumId:code). Derived: always equal to the first entry of the topic alignment list, which stays authoritative.",
+      "domain": ["LearningTopic"],
+      "datatype": "xsd:string",
+      "cardinality": "LearningTopic exactly 1",
+      "assertionPolicy": "derived"
+    },
+    {
+      "term": "gapStatus",
+      "definition": "Normalized coverage-gap status.",
+      "domain": ["CoverageGap"],
+      "datatype": "xsd:string",
+      "cardinality": "CoverageGap exactly 1"
+    },
+    {
+      "term": "sourceGapSeverity",
+      "definition": "Severity string exactly as written by the workstream artifact, before normalization.",
+      "domain": ["CoverageGap"],
+      "datatype": "xsd:string",
+      "cardinality": "CoverageGap 0..1"
+    },
+    {
+      "term": "sourceGapStatus",
+      "definition": "Status string exactly as written by the workstream artifact, before normalization.",
+      "domain": ["CoverageGap"],
+      "datatype": "xsd:string",
+      "cardinality": "CoverageGap 0..1"
+    },
+    {
+      "term": "misconception",
+      "namespace": "https://dexa.art/learnmap/ontology/k12-core#",
+      "definition": "A learner misconception an authored draft expects to encounter; never a copy of official source text.",
+      "domain": ["LearningTopic"],
+      "datatype": "rdf:langString",
+      "cardinality": "LearningTopic 0..n",
+      "assertionPolicy": "asserted",
+      "sharedAcross": ["korean-elementary-learning-map", "korean-secondary-learning-map"]
+    }
+  ],
+  "conceptSchemes": [
+    {
+      "term": "LearningTopicType",
+      "definition": "Facets describing the learning work emphasized by a topic; values may overlap and are not asserted as disjoint OWL classes.",
+      "modeling": "skos:Concept",
+      "disjointnessAsserted": false,
+      "concepts": [
+        {
+          "term": "conceptual",
+          "definition": "A topic emphasizing concepts, relationships, categories, or explanatory understanding."
+        },
+        {
+          "term": "language",
+          "definition": "A topic emphasizing comprehension or production through spoken, written, signed, or multimodal language."
+        },
+        {
+          "term": "meta",
+          "definition": "A topic emphasizing reflection, strategy selection, self-monitoring, or evaluation of one's learning process."
+        },
+        {
+          "term": "procedural",
+          "definition": "A topic emphasizing an ordered method, performance routine, or repeatable course of action."
+        },
+        {
+          "term": "representational",
+          "definition": "A topic emphasizing the interpretation or construction of diagrams, symbols, models, notation, or other representations."
+        }
+      ],
+      "sourceValueMap": {
+        "CONCEPTUAL": "conceptual",
+        "LANGUAGE": "language",
+        "META": "meta",
+        "PROCEDURAL": "procedural",
+        "REPRESENTATIONAL": "representational"
+      }
+    },
+    {
+      "term": "DependencyRequirementLevel",
+      "definition": "Strength of a reviewed prerequisite recommendation, normalized without changing legacy source values.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "required",
+          "definition": "The released model recommends treating the direct prerequisite as required for its current learning path; this is not a universal learner claim."
+        },
+        {
+          "term": "recommended",
+          "definition": "The released model recommends the direct prerequisite while allowing an alternate sequence; this is not a universal learner claim."
+        }
+      ],
+      "legacyValueMap": {
+        "hard": "required",
+        "soft": "recommended"
+      }
+    },
+    {
+      "term": "AlignmentKind",
+      "definition": "The pedagogical role a learning topic plays relative to an achievement standard.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "introduces",
+          "definition": "The topic establishes an initial entry point to the knowledge or performance expressed by the standard."
+        },
+        {
+          "term": "supports",
+          "definition": "The topic contributes practice or understanding that supports the standard without being its sole focus."
+        },
+        {
+          "term": "extends",
+          "definition": "The topic develops the standard beyond its initial scope or expected level."
+        },
+        {
+          "term": "assesses",
+          "definition": "The topic provides a context in which evidence relevant to the standard is elicited or evaluated."
+        }
+      ]
+    },
+    {
+      "term": "CoverageGapCategory",
+      "definition": "Categories for source-data completeness and review gaps; ontology-format phase status and rights posture are deliberately outside this scheme.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "source-text-policy",
+          "definition": "A gap concerning whether and how source wording may be stored or reproduced."
+        },
+        {
+          "term": "source-locator",
+          "definition": "A gap in item-level page, section, attachment, hash, code, or equivalent source location evidence."
+        },
+        {
+          "term": "content-coverage",
+          "definition": "A gap where an intended curriculum area, topic, or learning requirement is absent or incomplete."
+        },
+        {
+          "term": "expert-review",
+          "definition": "A gap requiring review by a qualified subject, curriculum, pedagogy, or classroom expert."
+        },
+        {
+          "term": "assessment-calibration",
+          "definition": "A gap requiring calibration of evidence criteria, prompts, difficulty, or scoring interpretation."
+        },
+        {
+          "term": "dependency-review",
+          "definition": "A gap requiring review of prerequisite direction, strength, explanation, or graph placement."
+        },
+        {
+          "term": "source-reconciliation",
+          "definition": "A gap requiring conflicting, amended, duplicated, or versioned source records to be reconciled."
+        }
+      ]
+    },
+    {
+      "term": "GapSeverity",
+      "definition": "Urgency or intentionality labels preserved for coverage gaps.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "high",
+          "definition": "The gap has high release or interpretation impact and should be prioritized."
+        },
+        {
+          "term": "medium",
+          "definition": "The gap has material but bounded impact and should be scheduled for review."
+        },
+        {
+          "term": "low",
+          "definition": "The gap has limited current impact but remains explicitly tracked."
+        },
+        {
+          "term": "review-needed",
+          "definition": "Severity has not been settled and requires a reviewer decision."
+        },
+        {
+          "term": "intentional",
+          "definition": "The recorded omission or limitation is deliberate under the current release policy."
+        },
+        {
+          "term": "unspecified",
+          "definition": "The source record supplies no severity; the absence is preserved rather than inferred."
+        }
+      ]
+    },
+    {
+      "term": "VerificationStatus",
+      "definition": "Review states that describe what evidence was checked without implying official approval.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "official-source-checked",
+          "definition": "A bounded source identity, code, or locator check was completed against the named official source; approval, verbatim inclusion, and rights clearance are not implied."
+        },
+        {
+          "term": "public-doc-derived",
+          "definition": "The record was derived from an identified public document under the stated text and rights limitations."
+        },
+        {
+          "term": "workstream-reviewed",
+          "definition": "The record passed the repository's documented workstream review but has no implied external endorsement."
+        },
+        {
+          "term": "verification-review-needed",
+          "definition": "The record still requires a specified source or model verification action."
+        },
+        {
+          "term": "not-checked",
+          "definition": "No bounded verification action is recorded for the resource."
+        }
+      ],
+      "sourceValueMap": {
+        "review-needed": "verification-review-needed"
+      }
+    },
+    {
+      "term": "RightsStatus",
+      "definition": "Reuse and redistribution posture kept separate from content coverage and ontology-format phase status.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "hold",
+          "definition": "Reuse or redistribution is blocked pending work-level terms or permission evidence."
+        },
+        {
+          "term": "cleared",
+          "definition": "Documented evidence supports the stated reuse or redistribution scope."
+        },
+        {
+          "term": "unknown",
+          "definition": "The rights posture has not been determined and must not be treated as permission."
+        }
+      ],
+      "sourceValueMap": {
+        "CLEARED": "cleared",
+        "public-government-document": "cleared"
+      }
+    },
+    {
+      "term": "RelationLayer",
+      "definition": "Release layer of a prerequisite assertion under the K-12 relation contract v1.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "official",
+          "definition": "Backed directly by an official curriculum document with a printed page locator."
+        },
+        {
+          "term": "pedagogical-candidate",
+          "definition": "Code order, decomposition order, or repository reasoning; a recommended order only."
+        }
+      ],
+      "derivesPrerequisiteViews": "official"
+    },
+    {
+      "term": "RelationKind",
+      "definition": "Normalized reading of a relation record.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "required-prerequisite",
+          "definition": "The learner is expected to have met the prerequisite topic first."
+        },
+        {
+          "term": "recommended-before",
+          "definition": "The released model recommends the order without claiming a prerequisite."
+        }
+      ]
+    },
+    {
+      "term": "BasisKind",
+      "definition": "Kind of evidence behind a relation record.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "official-source",
+          "definition": "An official document sentence or content-system progression states the order."
+        },
+        {
+          "term": "official-code-order",
+          "definition": "Derived from official code or unit ordering, which is document arrangement rather than a prerequisite claim."
+        },
+        {
+          "term": "decomposition-order",
+          "definition": "Derived from the repository facet decomposition inside one achievement standard."
+        },
+        {
+          "term": "repository-authored",
+          "definition": "Pedagogical reasoning authored in this repository without a document sentence."
+        },
+        {
+          "term": "expert-authored",
+          "definition": "Authored by an external subject expert whose review is recorded."
+        }
+      ],
+      "officialLayerOnly": ["official-source"],
+      "legacyValueMap": {
+        "within-standard decomposition order": "decomposition-order",
+        "within-standard evidence-to-inquiry bridge": "decomposition-order",
+        "within-standard representation-to-language bridge": "decomposition-order",
+        "within-standard inquiry-to-reflection bridge": "decomposition-order",
+        "within-standard language-to-reflection bridge": "decomposition-order",
+        "official-code sequence within grade-band/domain": "official-code-order",
+        "within-unit official sequence candidate": "official-code-order",
+        "grade-band progression by domain": "repository-authored",
+        "grade-band progression candidate": "repository-authored",
+        "same-grade domain sequence candidate": "repository-authored",
+        "cross-grade official linkage candidate from PDF 고려 사항 and content progression": "repository-authored",
+        "workstream-authored": "repository-authored"
+      }
+    },
+    {
+      "term": "RelationScope",
+      "definition": "Mechanically computed distance between the two endpoints of a relation.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "same-standard",
+          "definition": "Both topics decompose the same achievement standard."
+        },
+        {
+          "term": "same-domain",
+          "definition": "Both topics sit in the same subject and content domain."
+        },
+        {
+          "term": "same-subject",
+          "definition": "Both topics sit in the same subject but different domains."
+        },
+        {
+          "term": "cross-school-level",
+          "definition": "The endpoints span school levels; reserved for elementary-to-secondary bridges."
+        }
+      ]
+    },
+    {
+      "term": "ReviewStatus",
+      "definition": "Human review reached for a relation record.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "candidate",
+          "definition": "Machine-generated or repository-authored; no human review recorded."
+        },
+        {
+          "term": "internal-reviewed",
+          "definition": "Reviewed inside the repository against the cited official locator."
+        },
+        {
+          "term": "subject-expert-reviewed",
+          "definition": "Reviewed by an external subject expert."
+        },
+        {
+          "term": "classroom-reviewed",
+          "definition": "Checked against classroom practice."
+        }
+      ]
+    },
+    {
+      "term": "DecompositionKind",
+      "definition": "How a topic relates to its achievement standard.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "standard-core",
+          "definition": "The topic represents the achievement standard as a whole."
+        },
+        {
+          "term": "subject-facet",
+          "definition": "The topic represents one subject facet of the achievement standard."
+        }
+      ]
+    },
+    {
+      "term": "Facet",
+      "definition": "Eight facets shared by the Korean elementary and secondary learning maps; every topic carries exactly one.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "concept",
+          "definition": "Distinguishing concepts, conditions, and examples."
+        },
+        {
+          "term": "procedure",
+          "definition": "Carrying out a procedure, skill, or making task."
+        },
+        {
+          "term": "representation",
+          "definition": "Representing, modelling, or converting between forms."
+        },
+        {
+          "term": "application",
+          "definition": "Applying learning to problems and life situations."
+        },
+        {
+          "term": "inquiry",
+          "definition": "Investigating, gathering data, and reasoning from evidence."
+        },
+        {
+          "term": "communication",
+          "definition": "Expressing and interacting through language."
+        },
+        {
+          "term": "reflection",
+          "definition": "Reflecting on, valuing, and transferring learning."
+        },
+        {
+          "term": "core",
+          "definition": "The whole achievement standard rather than one facet of it."
+        }
+      ],
+      "namespace": "https://dexa.art/learnmap/vocab/facet/",
+      "sharedAcross": ["korean-elementary-learning-map", "korean-secondary-learning-map"],
+      "sourceValueMap": {
+        "concept": "concept",
+        "understand": "concept",
+        "procedure": "procedure",
+        "perform": "procedure",
+        "make": "procedure",
+        "representation": "representation",
+        "application": "application",
+        "practice": "application",
+        "inquiry": "inquiry",
+        "evidence": "inquiry",
+        "reflect": "reflection",
+        "CONCEPTUAL": "concept",
+        "PROCEDURAL": "procedure",
+        "REPRESENTATIONAL": "representation",
+        "LANGUAGE": "communication",
+        "META": "reflection"
+      }
+    },
+    {
+      "term": "TopicRole",
+      "definition": "How a topic stands in relation to the achievement standard it decomposes.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "anchor",
+          "definition": "Stands for the whole achievement standard; exactly one per standard, and the endpoint official relations expand to."
+        },
+        {
+          "term": "facet",
+          "definition": "Carries one facet of the achievement standard alongside the anchor."
+        },
+        {
+          "term": "auxiliary",
+          "definition": "A facet an authored collapse rule judged artificial; a tutor shows the sibling named by collapseInto instead."
+        }
+      ],
+      "namespace": "https://dexa.art/learnmap/ontology/k12-core#",
+      "sharedAcross": ["korean-elementary-learning-map", "korean-secondary-learning-map"],
+      "conceptPrefix": "topic-role-"
+    },
+    {
+      "term": "ContentKind",
+      "definition": "Provenance of a topic's evidence, assessment prompt, and misconceptions.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "mechanical-derivative",
+          "definition": "Generated from the standard record by a deterministic template; not authored against a source passage."
+        },
+        {
+          "term": "source-grounded-draft",
+          "definition": "Authored against a cited source passage and awaiting subject-expert review."
+        }
+      ],
+      "namespace": "https://dexa.art/learnmap/ontology/k12-core#",
+      "sharedAcross": ["korean-elementary-learning-map", "korean-secondary-learning-map"],
+      "conceptPrefix": "content-"
+    },
+    {
+      "term": "LocatorKind",
+      "definition": "Which locator fields apply to a source locator. The stas-record kind is reserved vocabulary; no instance data is emitted in this release.",
+      "modeling": "skos:Concept",
+      "concepts": [
+        {
+          "term": "printed-page",
+          "definition": "A page and section inside a published curriculum document."
+        },
+        {
+          "term": "stas-record",
+          "definition": "A record read from the STAS achievement-standard service, identified by endpoint, acvmtStdSeq, collection date, and response hash."
+        }
+      ],
+      "namespace": "https://dexa.art/learnmap/ontology/k12-core#",
+      "sharedAcross": ["korean-elementary-learning-map", "korean-secondary-learning-map"],
+      "conceptPrefix": "locator-"
+    }
+  ]
+}

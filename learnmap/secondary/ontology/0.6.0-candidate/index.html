@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>중등 온톨로지 0.6.0-candidate — DEXA Learnmap</title>
+<meta name="description" content="중등 학습지도 온톨로지 버전 0.6.0-candidate의 배포 파일.">
+<link rel="canonical" href="https://dexa.art/learnmap/secondary/ontology/0.6.0-candidate/">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--paper:#F5F1E6;--panel:#EBE4D3;--panel2:#E3DBC6;--ink:#17181B;--line:#D9D0BB;--muted:#6A644F;--orange:#FF5A1F;--orange-hover:#E64D14;--cyan:#5EE7F3;--ink-display:#0D0E10;--font-sans:'Space Grotesk','Pretendard Variable',Pretendard,'Noto Sans KR',sans-serif;--font-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:24px;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans);line-height:1.55;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+a:hover{color:var(--orange);}
+code,pre,.mono{font-family:var(--font-mono);font-size:0.86em;}
+.lh-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:12px 32px;min-height:60px;border-bottom:1px solid var(--line);background:rgba(245,241,230,0.92);position:sticky;top:0;z-index:5;backdrop-filter:blur(6px);}
+.lh-brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-0.02em;}
+.lh-brand .dot{color:var(--orange);}
+.lh-brand .tag{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.04em;padding-left:10px;border-left:1px solid var(--line);font-weight:500;}
+.lh-links{display:flex;gap:20px;flex-wrap:wrap;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;}
+.lh-shell{width:min(100% - 2rem,1040px);margin:0 auto;padding:36px 0 72px;}
+.lh-crumbs{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.03em;display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.lh-crumbs span{color:var(--line);}
+.lh-eyebrow{font-family:var(--font-mono);font-size:11px;color:var(--orange);letter-spacing:0.12em;text-transform:uppercase;margin:0 0 8px;}
+h1{font-size:clamp(26px,4vw,38px);line-height:1.15;letter-spacing:-0.02em;margin:0 0 12px;}
+h2{font-size:20px;letter-spacing:-0.01em;margin:44px 0 12px;padding-top:12px;border-top:1px solid var(--line);}
+h3{font-size:16px;margin:28px 0 8px;}
+.lh-lead{font-size:16px;color:var(--muted);max-width:72ch;margin:0 0 24px;}
+.lh-meta{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px;font-size:13px;margin:0 0 8px;}
+.lh-meta dt{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;padding-top:2px;}
+.lh-meta dd{margin:0;overflow-wrap:anywhere;}
+.lh-note{font-size:13px;color:var(--muted);border-left:3px solid var(--orange);padding:6px 12px;margin:16px 0;background:rgba(255,90,31,0.06);border-radius:0 8px 8px 0;}
+.lh-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#fff;}
+table{border-collapse:collapse;width:100%;font-size:13px;}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line);}
+th{font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);background:var(--panel);font-weight:600;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:target{background:rgba(94,231,243,0.22);}
+tbody tr:target td:first-child{box-shadow:inset 3px 0 0 var(--orange);}
+td.term{white-space:nowrap;}
+td.term code{font-weight:600;}
+.lh-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin:12px 0;}
+.lh-card{display:block;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:#fff;}
+.lh-card:hover{border-color:var(--orange);color:inherit;}
+.lh-card b{display:block;margin-bottom:4px;}
+.lh-card small{display:block;color:var(--muted);font-family:var(--font-mono);font-size:11px;overflow-wrap:anywhere;}
+.lh-card p{margin:6px 0 0;font-size:13px;color:var(--muted);}
+.lh-anchor{color:var(--muted);font-family:var(--font-mono);font-size:11px;margin-left:6px;}
+.lh-anchor:hover{color:var(--orange);}
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);}
+footer p{margin:4px 0;}
+@media (max-width:640px){.lh-nav{padding:10px 16px;}.lh-meta{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header class="lh-nav">
+  <a class="lh-brand" href="/"><span>DEXA<span class="dot">.</span></span><span class="tag">LEARNMAP / ONTOLOGY</span></a>
+  <nav class="lh-links" aria-label="학습지도 문서">
+    <a href="/learnmap/ontology/">초등 온톨로지</a>
+    <a href="/learnmap/secondary/ontology/">중등 온톨로지</a>
+    <a href="/learnmap/ontology/k12-core/">K-12 코어</a>
+    <a href="/learnmap/vocab/">통제 어휘</a>
+    <a href="/learnmap/">배움 지도</a>
+  </nav>
+</header>
+<main class="lh-shell">
+<nav class="lh-crumbs" aria-label="경로"><a href="/learnmap/">learnmap</a><span>/</span><a href="/learnmap/secondary/ontology/">secondary/ontology</a><span>/</span><b>0.6.0-candidate</b></nav>
+<p class="lh-eyebrow">Version IRI</p>
+<h1>중등 온톨로지 0.6.0-candidate</h1>
+<p class="lh-lead">버전 IRI <code>https://dexa.art/learnmap/secondary/ontology/0.6.0-candidate</code>의 해석 결과입니다. 시리즈 IRI는 <a href="../">https://dexa.art/learnmap/secondary/ontology</a>입니다.</p>
+<dl class="lh-meta"><dt>버전 IRI</dt><dd><a class="mono" href="https://dexa.art/learnmap/secondary/ontology/0.6.0-candidate">https://dexa.art/learnmap/secondary/ontology/0.6.0-candidate</a></dd><dt>이전 버전</dt><dd><a href="../0.5.0-candidate/">0.5.0-candidate</a> · <a class="mono" href="https://dexa.art/learnmap/secondary/ontology/0.5.0-candidate">https://dexa.art/learnmap/secondary/ontology/0.5.0-candidate</a></dd><dt>그래프 노드</dt><dd>25954</dd><dt>직업계 포함</dt><dd>false</dd></dl>
+
+<section id="artifacts"><h2>배포 파일</h2><div class="lh-table-wrap"><table><thead><tr><th>파일</th><th>미디어 타입</th><th>크기</th><th>SHA-256</th><th>비고</th></tr></thead><tbody><tr><td class="term"><a href="./learning-map.ttl"><code>learning-map.ttl</code></a></td><td>text/turtle</td><td class="mono">28.1 MB</td><td class="mono" style="font-size:11px;overflow-wrap:anywhere">c932a14694f73ba2bfb97b58ffb9535ecea012c50f00bd97fc91d5bdbc1f6cee</td><td>ABox (중학교·고등학교 일반)</td></tr><tr><td class="term"><a href="./learning-map.jsonld"><code>learning-map.jsonld</code></a></td><td>application/ld+json</td><td class="mono">33.5 MB</td><td class="mono" style="font-size:11px;overflow-wrap:anywhere">d6d4b45df5e0deb3809b552cc789adbaebf944fbeac68d1dc1ee0182003cb182</td><td>ABox (중학교·고등학교 일반)</td></tr><tr><td class="term"><a href="./manifest.json"><code>manifest.json</code></a></td><td>application/json</td><td class="mono">7.3 KB</td><td class="mono" style="font-size:11px;overflow-wrap:anywhere">2b9e538eef60fcb9b527001371a8e5c7e46b39c5332b581e3d67de635d72fe82</td><td>온톨로지 아티팩트 매니페스트</td></tr></tbody></table></div></section>
+<section id="status"><h2>상태</h2><p class="lh-note">후보(candidate) 릴리스입니다. 형식 게이트(SHACL·SPARQL·동형성) 통과는 내용 전문가 승인이나 권리 해제를 뜻하지 않습니다.</p></section>
+<footer>
+
+<p>이 온톨로지는 독립적으로 구축한 비공식 자료이며 교육부·국가교육위원회·NCIC의 공식 온톨로지가 아닙니다. 교육과정 원문의 권리는 원 출처의 고지를 따릅니다.</p>
+</footer>
+</main>
+</body>
+</html>

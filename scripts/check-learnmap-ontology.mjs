@@ -161,7 +161,9 @@ for (const node of payload.nodes) {
 assert.equal(indirectPrerequisites, ontologyManifest.relations.indirectRequires.count);
 assert.equal(indirectUnlocks, ontologyManifest.relations.indirectRequires.count);
 
-assert.deepEqual((await readdir(ONTOLOGY_DIR)).sort(), [...PUBLIC_ARTIFACTS].sort());
+// learnmap/ontology/ also hosts the IRI documents synced by sync-learnmap-ontology.mjs; the app only
+// pins its two projection artifacts.
+for (const filename of PUBLIC_ARTIFACTS) assert((await readdir(ONTOLOGY_DIR)).includes(filename), `learnmap/ontology/${filename} missing`);
 for (const filename of PUBLIC_ARTIFACTS) {
   const key = filename.endsWith('.ttl') ? 'turtle' : 'jsonLd';
   const artifact = payload.meta.ontology.artifacts[key];

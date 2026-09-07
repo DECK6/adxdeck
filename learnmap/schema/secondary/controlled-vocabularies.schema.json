@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dexa.art/learnmap/schema/secondary/controlled-vocabularies.schema.json",
+  "title": "Korean Secondary Learning Map — controlled vocabularies",
+  "type": "object",
+  "required": [
+    "$schema",
+    "version",
+    "schoolLevels",
+    "courseCategories",
+    "topicTypes",
+    "learningRelationKinds",
+    "courseRelationKinds",
+    "transitionKinds",
+    "reviewStatuses",
+    "relationLayers",
+    "basisKinds",
+    "facetKeys",
+    "facetKeyMappings"
+  ],
+  "properties": {
+    "$schema": { "type": "string", "format": "uri-reference" },
+    "version": { "type": "string", "minLength": 1 },
+    "schoolLevels": { "$ref": "#/$defs/uniqueTerms" },
+    "courseCategories": { "$ref": "#/$defs/uniqueTerms" },
+    "topicTypes": { "$ref": "#/$defs/uniqueTerms" },
+    "learningRelationKinds": { "$ref": "#/$defs/uniqueTerms" },
+    "courseRelationKinds": { "$ref": "#/$defs/uniqueTerms" },
+    "transitionKinds": { "$ref": "#/$defs/uniqueTerms" },
+    "reviewStatuses": { "$ref": "#/$defs/uniqueTerms" },
+    "relationLayers": { "$ref": "#/$defs/uniqueTerms" },
+    "basisKinds": { "$ref": "#/$defs/uniqueTerms" },
+    "facetKeys": { "$ref": "#/$defs/uniqueTerms" },
+    "facetKeyMappings": { "$ref": "#/$defs/facetKeyMappings" }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "facetKeyMappings": {
+      "description": "중학교 주제의 과목별 facetKeyDetail(24종)을 공통 facetKey(8종)로 사상한다.",
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": ["id", "labelKorean", "facetKey"],
+        "properties": {
+          "id": { "$ref": "core.schema.json#/$defs/stableId" },
+          "labelKorean": { "type": "string", "minLength": 1 },
+          "facetKey": { "$ref": "core.schema.json#/$defs/facetKey" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "uniqueTerms": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "required": ["id", "labelKorean", "status"],
+        "properties": {
+          "id": { "$ref": "core.schema.json#/$defs/stableId" },
+          "labelKorean": { "type": "string", "minLength": 1 },
+          "description": { "type": ["string", "null"] },
+          "status": { "enum": ["draft", "active", "deprecated"] }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

@@ -41,12 +41,26 @@ node scripts/check-learnmap-parent.mjs
 
 화면용 `learnmap/data/learnmap.json`은 P3 온톨로지의 슬림 투영입니다. 주제·성취기준·배움 묶음에는 GitHub Pages에서 안정적으로 쓸 수 있는 `https://dexa.art/learnmap/#/…` fragment URI가 들어갑니다. `directRequires`는 **의존 주제 → 선수 주제** 방향의 검토된 모델 상대적 제안이며, `hard`는 이 모델 안의 `required`, `soft`는 `recommended`를 뜻합니다. `unlocks`는 그 역방향 파생 관계이고, 간접 선수 요약은 직접 관계를 두 단계 이상 따라가 계산합니다. 주제별 간접 예시는 선수·다음 방향 각각 최대 3개만 담아 화면 설명에 사용합니다. 어느 관계도 모든 아이에게 고정된 보편 순서나 진단을 뜻하지 않습니다.
 
-전체 RDF 다운로드는 정식 릴리스의 공개 아티팩트 두 개만 제공합니다.
+화면용 투영은 온톨로지 `0.3.0-p3` 릴리스에 고정되어 있으며, 그 ABox 두 파일은 앱이 이름으로 참조하므로 기존 경로에 그대로 둡니다.
 
 - `learnmap/ontology/learning-map.ttl`
 - `learnmap/ontology/learning-map.jsonld`
 
-`node scripts/sync-learnmap-ontology.mjs`는 형제 저장소의 P3 release manifest 해시와 크기를 확인해 두 파일만 복사하고, `--check`는 커밋된 파일을 다시 검증합니다. 슬림 투영에는 공식 원문, 출처 로케이터, 출처 URL을 넣지 않습니다. 자동 게이트 통과, 진행 중인 외부 교육 검토, 독립·비공식 상태, 권리 `HOLD`는 서로 독립된 상태로 표시합니다.
+## IRI 호스팅
+
+두 학습지도 저장소의 온톨로지·어휘·버전·스키마 IRI(`https://dexa.art/learnmap/...`)는 이 사이트의 정적 문서로 해석됩니다. 각 저장소가 `build:hosting`으로 만든 `dist/hosting/` 트리(매니페스트 포함)를 `node scripts/sync-learnmap-ontology.mjs`가 복사하고, 소유 접두사 안의 낡은 파일을 정리합니다. `--check`는 복사 없이 누락·불일치·잔여 파일을 보고합니다.
+
+| IRI | 문서 | 소유 저장소 |
+| --- | --- | --- |
+| `/learnmap/ontology#Term`, `/learnmap/ontology` | `learnmap/ontology/index.html` (용어 표, fragment 앵커) | 초등 |
+| `/learnmap/ontology/<version>` | `learnmap/ontology/<version>/` (배포 파일·검증 요약) | 초등 |
+| `/learnmap/ontology/k12-core#Term`, `/k12-core/<version>` | `learnmap/ontology/k12-core/` | 초등 (`k12-core.ttl`은 두 저장소 사본이 동일해야 함) |
+| `/learnmap/vocab/#/<Scheme>/<term>`, `/learnmap/vocab/facet/<key>` | `learnmap/vocab/` | 초등 |
+| `/learnmap/secondary/ontology#Term`, `/secondary/ontology/<version>` | `learnmap/secondary/ontology/` | 중등 |
+| `/learnmap/secondary/resource/<id>` | `learnmap/secondary/resource/` (식별자 안내, 개별 문서 없음) | 중등 |
+| `/learnmap/schema/secondary/*.schema.json` | 같은 경로의 JSON Schema | 중등 |
+
+GitHub Pages는 콘텐츠 협상을 지원하지 않으므로 확장자 없는 IRI는 `<path>/index.html`, 파일 IRI는 그 파일로 해석됩니다. 현재 릴리스의 ABox는 `learnmap/ontology/<version>/`, `learnmap/secondary/ontology/<version>/` 아래에만 두고 이전 버전 파일은 호스팅하지 않습니다(버전 IRI 문서는 유지). 배포 후 `check:hosting:live`(각 저장소)가 dexa.art의 바이트와 IRI 해석을 다시 확인합니다.
 
 ## 배포 경로
 

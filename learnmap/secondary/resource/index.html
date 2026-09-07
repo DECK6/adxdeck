@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>중등 학습지도 자원 IRI — DEXA Learnmap</title>
+<meta name="description" content="중등 학습지도 온톨로지 인스턴스(자원) IRI의 형식과 조회 방법.">
+<link rel="canonical" href="https://dexa.art/learnmap/secondary/resource/">
+<meta name="robots" content="index,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{--paper:#F5F1E6;--panel:#EBE4D3;--panel2:#E3DBC6;--ink:#17181B;--line:#D9D0BB;--muted:#6A644F;--orange:#FF5A1F;--orange-hover:#E64D14;--cyan:#5EE7F3;--ink-display:#0D0E10;--font-sans:'Space Grotesk','Pretendard Variable',Pretendard,'Noto Sans KR',sans-serif;--font-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;scroll-padding-top:24px;}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--font-sans);line-height:1.55;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+a:hover{color:var(--orange);}
+code,pre,.mono{font-family:var(--font-mono);font-size:0.86em;}
+.lh-nav{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:12px 32px;min-height:60px;border-bottom:1px solid var(--line);background:rgba(245,241,230,0.92);position:sticky;top:0;z-index:5;backdrop-filter:blur(6px);}
+.lh-brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:-0.02em;}
+.lh-brand .dot{color:var(--orange);}
+.lh-brand .tag{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.04em;padding-left:10px;border-left:1px solid var(--line);font-weight:500;}
+.lh-links{display:flex;gap:20px;flex-wrap:wrap;font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;}
+.lh-shell{width:min(100% - 2rem,1040px);margin:0 auto;padding:36px 0 72px;}
+.lh-crumbs{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.03em;display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;}
+.lh-crumbs span{color:var(--line);}
+.lh-eyebrow{font-family:var(--font-mono);font-size:11px;color:var(--orange);letter-spacing:0.12em;text-transform:uppercase;margin:0 0 8px;}
+h1{font-size:clamp(26px,4vw,38px);line-height:1.15;letter-spacing:-0.02em;margin:0 0 12px;}
+h2{font-size:20px;letter-spacing:-0.01em;margin:44px 0 12px;padding-top:12px;border-top:1px solid var(--line);}
+h3{font-size:16px;margin:28px 0 8px;}
+.lh-lead{font-size:16px;color:var(--muted);max-width:72ch;margin:0 0 24px;}
+.lh-meta{display:grid;grid-template-columns:max-content 1fr;gap:6px 18px;padding:16px 18px;background:var(--panel);border:1px solid var(--line);border-radius:10px;font-size:13px;margin:0 0 8px;}
+.lh-meta dt{font-family:var(--font-mono);font-size:11px;color:var(--muted);letter-spacing:0.04em;text-transform:uppercase;padding-top:2px;}
+.lh-meta dd{margin:0;overflow-wrap:anywhere;}
+.lh-note{font-size:13px;color:var(--muted);border-left:3px solid var(--orange);padding:6px 12px;margin:16px 0;background:rgba(255,90,31,0.06);border-radius:0 8px 8px 0;}
+.lh-table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:#fff;}
+table{border-collapse:collapse;width:100%;font-size:13px;}
+th,td{text-align:left;vertical-align:top;padding:9px 12px;border-bottom:1px solid var(--line);}
+th{font-family:var(--font-mono);font-size:11px;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted);background:var(--panel);font-weight:600;}
+tbody tr:last-child td{border-bottom:none;}
+tbody tr:target{background:rgba(94,231,243,0.22);}
+tbody tr:target td:first-child{box-shadow:inset 3px 0 0 var(--orange);}
+td.term{white-space:nowrap;}
+td.term code{font-weight:600;}
+.lh-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin:12px 0;}
+.lh-card{display:block;padding:14px 16px;border:1px solid var(--line);border-radius:10px;background:#fff;}
+.lh-card:hover{border-color:var(--orange);color:inherit;}
+.lh-card b{display:block;margin-bottom:4px;}
+.lh-card small{display:block;color:var(--muted);font-family:var(--font-mono);font-size:11px;overflow-wrap:anywhere;}
+.lh-card p{margin:6px 0 0;font-size:13px;color:var(--muted);}
+.lh-anchor{color:var(--muted);font-family:var(--font-mono);font-size:11px;margin-left:6px;}
+.lh-anchor:hover{color:var(--orange);}
+footer{margin-top:64px;padding-top:20px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);}
+footer p{margin:4px 0;}
+@media (max-width:640px){.lh-nav{padding:10px 16px;}.lh-meta{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header class="lh-nav">
+  <a class="lh-brand" href="/"><span>DEXA<span class="dot">.</span></span><span class="tag">LEARNMAP / ONTOLOGY</span></a>
+  <nav class="lh-links" aria-label="학습지도 문서">
+    <a href="/learnmap/ontology/">초등 온톨로지</a>
+    <a href="/learnmap/secondary/ontology/">중등 온톨로지</a>
+    <a href="/learnmap/ontology/k12-core/">K-12 코어</a>
+    <a href="/learnmap/vocab/">통제 어휘</a>
+    <a href="/learnmap/">배움 지도</a>
+  </nav>
+</header>
+<main class="lh-shell">
+<nav class="lh-crumbs" aria-label="경로"><a href="/learnmap/">learnmap</a><span>/</span><a href="/learnmap/secondary/ontology/">secondary</a><span>/</span><b>resource</b></nav>
+<p class="lh-eyebrow">Resource IRIs</p>
+<h1>중등 학습지도 자원 IRI</h1>
+<p class="lh-lead">과목·성취기준·주제·관계 같은 인스턴스는 <code>https://dexa.art/learnmap/secondary/resource/&lt;percent-encoded id&gt;</code> IRI를 가집니다. 정적 호스팅이라 자원마다 문서를 두지 않으며, 이 이름공간의 IRI는 식별자로만 쓰고 정의는 <a href="../ontology/0.6.0-candidate/">배포 파일</a>의 <code>@id</code>로 찾습니다.</p>
+<dl class="lh-meta"><dt>이름공간</dt><dd><a class="mono" href="https://dexa.art/learnmap/secondary/resource/">https://dexa.art/learnmap/secondary/resource/</a></dd><dt>정의 위치</dt><dd><a href="../ontology/0.6.0-candidate/learning-map.jsonld"><code>learning-map.jsonld</code></a> · <a href="../ontology/0.6.0-candidate/learning-map.ttl"><code>learning-map.ttl</code></a></dd><dt>안정성</dt><dd>식별자는 원본 데이터 ID에서 결정적으로 만들며 레이블 변경으로 바뀌지 않습니다.</dd></dl>
+
+<section id="examples"><h2>예시</h2><div class="lh-table-wrap"><table><thead><tr><th>클래스</th><th>IRI (그래프의 첫 인스턴스)</th></tr></thead><tbody><tr><td class="term"><code>core:SourceLocator</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr.topic.2022.middle.00193e274468eab25ce1.content-locator</td></tr><tr><td class="term"><code>slm:AchievementStandard</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr.standard.2022.middle.c5886ee4dfd1081db672</td></tr><tr><td class="term"><code>slm:ChoiceSet</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr.choice-set.2022.high.da7fcea7ec301b57</td></tr><tr><td class="term"><code>slm:Course</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr.course.2022.middle.aaaae5ae7d8548a8</td></tr><tr><td class="term"><code>slm:CourseRelation</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr.cr.035be53c1c495217775a2bba</td></tr><tr><td class="term"><code>slm:CoverageGap</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/gap.middle.document-rights-review-pending</td></tr><tr><td class="term"><code>slm:CreditRule</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr.credit-rule.2026.high.graduation-total</td></tr><tr><td class="term"><code>slm:CurriculumRelease</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr-2022-middle-v0.6.0-candidate</td></tr><tr><td class="term"><code>slm:Domain</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr.domain.2022.middle.5816eed92dd980c7</td></tr><tr><td class="term"><code>slm:IllustrativePathway</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr.pathway.2022.high.da7fcea7ec301b57</td></tr><tr><td class="term"><code>slm:LearningCluster</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr.cluster.2022.middle.01c50adb02393449b4</td></tr><tr><td class="term"><code>slm:LearningRelation</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr.learning-relation.2022.middle.03d243672f7d19bc0acb</td></tr><tr><td class="term"><code>slm:LearningTopic</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr.topic.2022.middle.00193e274468eab25ce1</td></tr><tr><td class="term"><code>slm:PathwayStep</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr.pathway.2022.high.da7fcea7ec301b57.step.1</td></tr><tr><td class="term"><code>slm:SourceDocument</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr-nec-2026-1-annex1</td></tr><tr><td class="term"><code>slm:SourceLocator</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr.standard.2022.middle.c5886ee4dfd1081db672.locator</td></tr><tr><td class="term"><code>slm:SubjectGroup</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr.subject-group.2022.middle.b494fc31b290</td></tr><tr><td class="term"><code>slm:TransitionAlignment</code></td><td class="mono" style="font-size:12px;overflow-wrap:anywhere">https://dexa.art/learnmap/secondary/resource/kr.transition.038f26e7267f9041f6f4abbf</td></tr></tbody></table></div></section>
+<section id="lookup"><h2>조회 방법</h2><pre class="mono" style="background:var(--panel);padding:12px 14px;border-radius:8px;overflow-x:auto">curl -sL https://dexa.art/learnmap/secondary/ontology/0.6.0-candidate/learning-map.jsonld | jq '.["@graph"][] | select(.id == "https://dexa.art/learnmap/secondary/resource/kr.topic.2022.middle.00193e274468eab25ce1.content-locator")'</pre></section>
+<footer>
+
+<p>이 온톨로지는 독립적으로 구축한 비공식 자료이며 교육부·국가교육위원회·NCIC의 공식 온톨로지가 아닙니다. 교육과정 원문의 권리는 원 출처의 고지를 따릅니다.</p>
+</footer>
+</main>
+</body>
+</html>
