@@ -1,5 +1,24 @@
 [
   {
+    "slug": "agent-memory-fails-at-delivery",
+    "file": "_built/agent-memory-fails-at-delivery.md",
+    "title": "에이전트 기억은 저장보다 전달에서 실패한다",
+    "description": "에이전트의 장기 기억을 저장·검색 문제로만 보면 필요한 사실이 정작 행동 순간에 사라지는 이유를 놓친다. 전향적 기억 벤치마크와 cue-anchored working memory 연구를 바탕으로 전달 시점, 트리거, 예산, 수명주기 설계를 살핀다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "ai-agent",
+      "agent-memory",
+      "context-engineering",
+      "knowledge-management"
+    ],
+    "date": "2026-09-07",
+    "thumbnail": "images/agent-memory-fails-at-delivery-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "gpt-6-astra-computer-use-and-delegation-trust",
     "file": "_built/gpt-6-astra-computer-use-and-delegation-trust.md",
     "title": "GPT-6 Astra가 보여 준 AX의 쟁점: 컴퓨터 사용 능력과 위임 신뢰",

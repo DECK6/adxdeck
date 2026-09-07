@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>에이전트 기억은 저장보다 전달에서 실패한다 | DEXA Blog</title>
+    <meta name="description" content="에이전트의 장기 기억을 저장·검색 문제로만 보면 필요한 사실이 정작 행동 순간에 사라지는 이유를 놓친다. 전향적 기억 벤치마크와 cue-anchored working memory 연구를 바탕으로 전달 시점, 트리거, 예산, 수명주기 설계를 살핀다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/agent-memory-fails-at-delivery/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="에이전트 기억은 저장보다 전달에서 실패한다" />
+    <meta property="og:description" content="에이전트의 장기 기억을 저장·검색 문제로만 보면 필요한 사실이 정작 행동 순간에 사라지는 이유를 놓친다. 전향적 기억 벤치마크와 cue-anchored working memory 연구를 바탕으로 전달 시점, 트리거, 예산, 수명주기 설계를 살핀다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/agent-memory-fails-at-delivery/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/agent-memory-fails-at-delivery-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-09-07" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="AI" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="agent-memory" />
+    <meta property="article:tag" content="context-engineering" />
+    <meta property="article:tag" content="knowledge-management" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="에이전트 기억은 저장보다 전달에서 실패한다" />
+    <meta name="twitter:description" content="에이전트의 장기 기억을 저장·검색 문제로만 보면 필요한 사실이 정작 행동 순간에 사라지는 이유를 놓친다. 전향적 기억 벤치마크와 cue-anchored working memory 연구를 바탕으로 전달 시점, 트리거, 예산, 수명주기 설계를 살핀다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/agent-memory-fails-at-delivery-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"에이전트 기억은 저장보다 전달에서 실패한다","description":"에이전트의 장기 기억을 저장·검색 문제로만 보면 필요한 사실이 정작 행동 순간에 사라지는 이유를 놓친다. 전향적 기억 벤치마크와 cue-anchored working memory 연구를 바탕으로 전달 시점, 트리거, 예산, 수명주기 설계를 살핀다.","image":"https://dexa.art/blog/images/agent-memory-fails-at-delivery-cover.png","datePublished":"2026-09-07","dateModified":"2026-09-07","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/agent-memory-fails-at-delivery/"},"articleSection":"AI · AX","keywords":"AI, ai-agent, agent-memory, context-engineering, knowledge-management"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.09.07</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>에이전트 기억은 저장보다 전달에서 실패한다</h1>
+                <p style="color:var(--muted);font-size:17px;">에이전트의 장기 기억을 저장·검색 문제로만 보면 필요한 사실이 정작 행동 순간에 사라지는 이유를 놓친다. 전향적 기억 벤치마크와 cue-anchored working memory 연구를 바탕으로 전달 시점, 트리거, 예산, 수명주기 설계를 살핀다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">AI</span><span class="dx-tag-chip">ai-agent</span><span class="dx-tag-chip">agent-memory</span><span class="dx-tag-chip">context-engineering</span><span class="dx-tag-chip">knowledge-management</span></div>
+<p><img src="/blog/images/agent-memory-fails-at-delivery-cover.png" alt="수많은 어두운 기억 조각 가운데 일부만 붉은 신호를 따라 밝은 작업 영역으로 전달되는 추상 이미지" loading="lazy"></p>
+<p>에이전트에게 배포 규칙을 문서로 남겨 두었다고 하자. 필요한 파일도 검색할 수 있고, 이전 세션의 결정도 memory store에 보존되어 있다. 그런데 에이전트는 설정 파일을 수정하는 바로 그 순간 규칙을 떠올리지 못한 채 금지된 값을 쓴다. 작업이 끝난 뒤 “관련 규칙을 찾아보라”고 물으면 정확한 문서를 제시한다.</p>
+<p>이 실패는 저장이나 검색의 부재로 설명되지 않는다. 사실은 있었고, 나중에는 찾을 수도 있었다. 빠진 것은 <strong>행동해야 할 순간에 그 사실이 작업 맥락으로 들어오는 전달 경로</strong>다. 에이전트 기억을 데이터베이스의 크기와 검색 정확도만으로 평가하면 이 차이를 놓치기 쉽다.</p>
+<p>최근 memory architecture는 무엇을 저장하고 어떻게 검색할지를 빠르게 다듬어 왔다. 하지만 저장소가 좋아졌다고 필요한 기억이 제때 쓰이는 것은 아니다. 에이전트가 스스로 검색하지 않아도 필요한 기억이 제때 도착하는지 따로 물어야 한다. 이 질문은 기억의 범위를 콘텐츠 관리에서 런타임 제어까지 넓힌다.</p>
+<h2>찾을 수 있는 기억과 제때 작동하는 기억은 다르다</h2>
+<p>인지과학은 이미 회고적 기억과 전향적 기억을 구분한다. 회고적 기억(retrospective memory)은 과거의 사실을 묻는 질문에 답하는 능력이다. 전향적 기억(prospective memory)은 미리 알게 된 조건을 이후의 상황에서 자발적으로 떠올려 행동하는 능력이다. “지난 회의에서 정한 배포 규칙이 무엇인가”는 회고적 기억 문제다. “운영 브랜치를 배포할 때 그 규칙을 적용하라”는 전향적 기억 문제다.</p>
+<p>2026년 6월 공개된 <a href="https://arxiv.org/abs/2606.23459">TriggerBench</a>는 이 차이를 LLM 평가로 가져왔다. 연구진은 일상 보조와 전문 업무에 걸친 <code>1,265</code>개의 전향적 기억 과제를 만들고, 같은 대화를 명시적 질문으로 바꾼 회고적 기억 대조군과 비교했다. 잘못된 알림을 측정하는 negative variant와, 동시에 다른 요청을 주어 주의를 분산시키는 overloaded variant도 함께 구성했다.</p>
+<p>논문이 보고한 핵심은 단순한 정답률 순위가 아니다. 같은 맥락에서도 회고적 기억은 긴 context에서 높은 성능을 유지한 반면, 전향적 기억은 context가 길어질수록 뚜렷하게 약해졌다. 트리거가 암묵적이거나 다른 요청과 겹칠 때도 성능이 떨어졌다. reasoning을 강화하면 필요한 알림을 더 잘 떠올리기도 했지만, 반대로 매번 경고하는 방식으로 false alarm이 늘어나는 precision–recall trade-off가 나타났다.</p>
+<p>이 결과가 가리키는 실패는 “모델은 오래 기억하지 못한다”보다 더 좁고 선명하다. 과거 사실을 보유하고 회수하는 능력과, 미래의 적절한 순간을 감지해 그 사실을 행동으로 바꾸는 능력은 서로 다른 평가 항목이다. memory benchmark가 명시적 질의응답만 측정하면 후자의 실패를 잡아내기 어렵다.</p>
+<h2>저장·검색 시스템만으로는 전달 시점을 보장할 수 없다</h2>
+<p>2025년 공개된 <a href="https://arxiv.org/abs/2504.19413">Mem0 논문</a>은 ongoing conversation에서 중요한 정보를 동적으로 추출하고, 통합하고, 다시 검색하는 장기 기억 아키텍처를 제안한다. 이 접근은 전체 대화를 매번 context에 넣지 않고 필요한 정보만 골라낸다. 무엇을 기억하고 어떤 기록을 현재 질문에 불러올지를 다루는 retrieval-centric 설계다.</p>
+<p>검색기가 있어도 “언제 검색할 것인가”는 남는다. 에이전트가 “지금 memory tool을 호출해야 한다”고 판단해야 기록이 도착한다면, 그 판단 자체가 전향적 기억에 의존한다. 결국 모델은 기억이 필요한 순간에 memory를 확인해야 한다는 사실까지 기억해야 한다.</p>
+<p>2026년 7월 공개된 Swapnanil Saha의 <a href="https://arxiv.org/abs/2607.20972"><em>Delivery, Not Storage: Cue-Anchored Working Memory as a Harness Property for Coding Agents</em></a>는 이 순환을 끊기 위해 기억의 전달을 하네스 책임으로 옮긴다. 논문이 제안한 memory record는 콘텐츠뿐 아니라 <code>kind</code>, <code>triggers</code>, <code>scope</code>, <code>decay</code>를 함께 가진다. 트리거는 <code>path</code>, <code>symbol</code>, <code>semantic</code>, <code>event</code>, <code>temporal</code> 조건을 조합한다.</p>
+<p>에이전트가 특정 파일을 열거나, 심볼을 수정하거나, 세션이 재개되거나, 정해진 시간이 되면 하네스가 해당 cue를 평가한다. 조건을 통과한 기억만 중복, 범위, 수명, token budget 검사를 거쳐 현재 context에 들어간다. 모델은 기억이 있는지 먼저 떠올릴 필요가 없다. 대신 어떤 조건에서 무엇이 들어왔는지 전달 경로를 감사할 수 있어야 한다.</p>
+<pre><code class="language-text">cue observed
+→ scope · staleness · cooldown check
+→ budgeted and provenance-framed injection
+→ agent action</code></pre>
+<p>이 구조에서는 저장(storage)과 전달(delivery)이 서로 다른 계층을 이룬다. 문서, 대화 기록, vector index는 기억의 내용과 위치를 맡고, 하네스의 cue evaluator는 그중 무엇을 언제 작업 창에 올릴지 맡는다. 검색 자체를 버리는 설계는 아니다. 명시적 탐색과 넓은 조사에는 여전히 검색이 필요하다. 다만 놓쳐서는 안 될 소수의 운영 규칙은 전적으로 자발적 검색에 맡기지 않는다.</p>
+<h2>컴팩션은 ‘요약에 남기기’와 ‘다시 전달하기’를 갈라놓는다</h2>
+<p>Saha의 논문은 자연스러운 코딩 과제를 사용한 통제 실험에서, task-relevant facts를 memory store에 미리 넣고 tool과 안내를 제공해도 <code>114 turns</code> 동안 자발적 memory operation이 <code>0</code>회였다고 보고했다. 반면 결정론적 injection을 갖춘 seeded run <code>n=3</code>에서는 저장된 기억이 전달됐다. audit-logged trigger evaluation에서 false-alarm fire가 없었다는 결과도 제시한다.</p>
+<p>하지만 이 수치를 일반적인 성공률로 읽어서는 안 된다. 실험은 한 코딩 과제와 한 모델 계열에 집중되어 있고, 논문 저자와 구현·평가 하네스의 이해관계도 겹친다. <code>n=3</code>은 작으며, false alarm <code>0</code>도 해당 평가의 trigger log 범위에 한정된다. 이 실험이 주는 것은 cue delivery의 보편적 우위가 아니라, 자발적 조회와 하네스 전달을 나눠 측정해야 한다는 설계 신호다.</p>
+<p>반복 compaction probe에서는 summary와 재주입이 서로 다른 역할을 했다. 대화에만 둔 <code>10 facts</code>는 <code>108 summaries</code> 중 <code>106</code>개에서 <code>0/10</code>으로 사라졌다. 같은 사실을 하네스 소유 store에서 다시 주입한 arm에서는 <code>138/138 compact-resume</code>에 전달됐지만, final summary에는 여전히 <code>0/10</code>만 남았다.</p>
+<p>사실을 붙잡은 쪽은 요약이 아니었다. compaction 뒤 하네스가 새 context를 구성했다. 둘을 구분하지 않으면 “더 좋은 summary prompt”가 모든 책임을 떠안는다. 요약은 이전 대화를 압축하는 장치이고, 중요한 사실을 다시 사용할 수 있게 만드는 일은 별도 복원 계약의 몫일 수 있다.</p>
+<h2>AKM에는 거대한 새 기억 엔진보다 작은 전달 계약이 먼저다</h2>
+<p>AKM 같은 source-backed 지식 체계에 이 관점을 적용하면 source와 canonical note는 사실의 정본으로 남고, 검색 index와 graph는 다시 만들 수 있는 파생물로 유지된다. cue layer는 정본을 복제하는 또 하나의 지식 저장소가 아니라, 작업 순간에 보여 줄 짧은 운영 포인터를 관리한다.</p>
+<p>이는 현재 구현이나 성과에 대한 설명이 아니라, 범위를 좁힌 pilot 적용안이다. pilot용 cue card에는 적어도 다음 정보가 필요하다.</p>
+<ul><li><strong>anchor</strong>: 특정 path, command, event, task phase처럼 관찰 가능한 조건</li><li><strong>content</strong>: 그 순간 필요한 짧은 gotcha 또는 directive</li><li><strong>source</strong>: 원문과 검증 상태로 돌아가는 locator</li><li><strong>scope</strong>: 프로젝트, 브랜치, 세션, 역할의 적용 범위</li><li><strong>lifecycle</strong>: 유효 기간, cooldown, superseded 상태</li><li><strong>risk</strong>: 잘못 주입됐을 때의 영향과 필요한 사람 승인</li></ul>
+<p>모든 note를 처음부터 자동 주입하면 검색 부담은 줄지만 context가 부푼다. 그래서 실패 비용이 큰 소수의 규칙부터 다뤄야 한다. 외부 공개 직전의 privacy check, 특정 파일 수정 전의 순서 제약, 긴 작업 재개 시 확인해야 할 최신 checkpoint처럼 cue를 명확히 관찰할 수 있는 항목이 적합하다. semantic similarity만으로 발화하기보다는 path와 event 같은 결정론적 조건을 우선하고, semantic cue에는 높은 threshold와 작은 예산을 둔다.</p>
+<p>전달 단계는 read-only context construction에 한정하는 편이 안전하다. cue가 곧바로 canonical note를 수정하거나 외부 행동을 승인해서는 안 된다. 기록 표시, 기록 변경, 행동 허가를 분리해야 잘못된 memory가 자동으로 권한을 얻지 않는다.</p>
+<p>pilot의 성공 여부를 “몇 개를 주입했는가”로 판단해서는 안 된다. 필요한데 발화하지 않은 miss, 필요 없는데 발화한 false alarm, 오래된 규칙을 보여 준 stale injection, turn당 token cost, 중복 주입, 실제로 막은 재작업을 함께 기록해야 한다. 주입량이 늘수록 좋아 보이는 지표는 가장 위험한 over-triggering에 잘못된 보상을 줄 수 있다.</p>
+<h2>잘못된 기억을 제때 전달하면 실패도 더 빨라진다</h2>
+<p>Cue-anchored delivery가 기억의 정확성까지 보장하지는 않는다. Saha의 논문도 memory capture를 미해결된 “open half”로 남긴다. 사실을 잘못 추출하거나 낡은 규칙을 승인했다면, 더 안정적인 전달 경로는 오류를 더 자주 노출한다. capture quality, provenance, conflict resolution, expiry를 먼저 갖추지 않은 자동 주입은 stale poisoning이 될 수 있다.</p>
+<p>트리거 설계에도 상충 관계가 있다. path와 event는 감사하기 쉽지만, 파일 이름이 바뀌거나 같은 구조를 여러 프로젝트가 공유하면 놓칠 수 있다. semantic trigger는 표현이 달라도 관련 상황을 잡을 수 있지만 false alarm과 prompt injection의 표면을 넓힌다. event가 잦으면 같은 지침이 반복돼 모델의 주의가 오히려 약해진다. cooldown과 dedup은 편의를 위한 옵션이 아니라 전달 품질의 일부다.</p>
+<p>권한과 개인정보는 전달 계층에서도 별도 문제다. 어떤 memory가 존재한다는 사실 자체가 민감할 수 있으며, 다른 사용자나 프로젝트의 cue가 현재 세션에 섞여서는 안 된다. scope 검사는 검색 filter가 아니라 보안 경계로 다뤄야 한다. 삭제된 원문을 가리키는 파생 cue와 cache가 함께 폐기되는지도 확인해야 한다.</p>
+<p>전달됐다는 이유만으로 모델이 그 기억을 무조건 따라서는 안 된다. 과거의 directive가 현재 요청이나 최신 정책과 충돌할 수 있다. 주입 블록에는 source, freshness, confidence, 적용 범위를 함께 표시하고, 충돌 시 확인하거나 기권하는 경로를 남겨야 한다. 전달의 결정론성과 내용의 진실성은 같은 속성이 아니다.</p>
+<h2>설계 시사점</h2>
+<p>에이전트 기억은 하나의 recall score만으로 평가하기 어렵다. 최소한 capture, storage, retrieval, delivery, expiry를 분리해야 한다. 어느 단계가 실패했는지 알아야 저장하지 못한 사실, 찾지 못한 사실, 제때 전달하지 못한 사실, 폐기하지 못한 사실을 서로 다른 방식으로 고칠 수 있다.</p>
+<p>평가에는 trigger까지의 지연도 포함해야 한다. 규칙을 알려 준 직후가 아니라 여러 turn과 distractor 뒤에 trigger를 제시하고, trigger가 없는 negative control도 함께 둔다. compaction과 session resume 뒤에도 필요한 기억이 도착하는지 확인한다. 이때 summary에 남았는지, 외부 store에서 재구성됐는지를 구분해야 한다. 오래된 규칙과 새 규칙을 동시에 넣어 잘못된 현재화가 발생하는지도 시험해야 한다.</p>
+<p>AX에서 memory를 설계할 때는 “많이 쌓는 기능”보다 “일의 다음 순간을 바꾸는 제어 경로”라는 관점이 유용하다. 지식은 저장돼 있다는 이유만으로 사용되지 않는다. 반대로 모든 지식을 항상 보여 주면 작업 맥락이 무너진다. 필요한 것은 검증된 기억을 소수로 추려 관찰 가능한 cue와 명시적 예산 아래 전달하고, 출처와 수명주기까지 붙이는 계약이다.</p>
+<p>에이전트가 나중에 답을 찾아냈다는 사실은 그 기억이 제 역할을 했다는 증거가 아니다. 기억의 품질은 질문에 무엇을 답했는지뿐 아니라, 행동할 순간에 무엇이 도착하고 무엇이 억제됐는지로 판단해야 한다.</p>
+<h2>Sources</h2>
+<ul><li>Zhang et al., <a href="https://arxiv.org/abs/2606.23459"><em>TriggerBench: Investigating Prospective Memory for Large Language Models</em></a>, arXiv:2606.23459v1, 2026-06-22.</li><li>Saha, <a href="https://arxiv.org/abs/2607.20972"><em>Delivery, Not Storage: Cue-Anchored Working Memory as a Harness Property for Coding Agents</em></a>, arXiv:2607.20972v1, 2026-07-23.</li><li>Chhikara et al., <a href="https://arxiv.org/abs/2504.19413"><em>Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory</em></a>, arXiv:2504.19413v1, 2025-04-28.</li></ul>
+            </div>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/gpt-6-astra-computer-use-and-delegation-trust/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>GPT-6 Astra가 보여 준 AX의 쟁점: 컴퓨터 사용 능력과 위임 신뢰</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>
