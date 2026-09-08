@@ -1,22 +1,31 @@
 ---
 type: article
-title: "Honcho를 붙이면 Hermes 기억은 파일을 넘어 사용자 모델이 된다"
+track: ai-ax
+title: "Hermes Agent Honcho는 기억을 사용자 모델로 확장한다"
 aliases:
   - hermes-honcho-memory
 author:
   - "Deck"
 date created: 2026-07-07
-date modified: 2026-07-07
-tags: [hermes, ai-agent, workflow, memory, honcho]
-description: "A practical guide to Hermes Agent's Honcho memory provider: peer modeling, dialectic reasoning, setup boundaries, and when to use it instead of built-in memory alone."
+date modified: 2026-09-09
+tags:
+  - article
+  - hermes
+  - ai-agent
+  - workflow
+  - memory
+  - honcho
+description: "Hermes Agent Honcho를 파일형 기억 위에 붙는 사용자 모델링 계층으로 보고, peer·session·dialectic reasoning의 경계와 built-in memory와의 역할 분담을 정리한다."
 thumbnail: images/hermes-honcho-memory-cover.png
 status: completed
 series: hermes-notes
 ---
 
-# Honcho를 붙이면 Hermes 기억은 파일을 넘어 사용자 모델이 된다
+# Hermes Agent Honcho는 기억을 사용자 모델로 확장한다
 
 ![Abstract Honcho memory network cover](images/hermes-honcho-memory-cover.png)
+
+짧게 말하면, Hermes Agent Honcho는 기억을 더 많이 저장하는 기능이라기보다 사용자와 에이전트의 관계를 다음 판단에 전달하기 위한 모델링 계층이다. 그래서 이 글은 특정 설정을 늘리는 법보다 built-in memory, session search, 외부 memory provider의 역할을 나누는 쪽에 초점을 둔다.
 
 Hermes Agent의 기본 memory는 “반복해서 필요한 사실”을 짧게 보관하는 장치다. Honcho는 그 다음 단계다. 대화가 쌓일수록 사용자와 agent의 관계를 peer 단위로 모델링하고, 세션 맥락과 장기 결론을 다음 turn의 판단 재료로 돌려준다.
 
@@ -81,3 +90,7 @@ Honcho 세부 설정은 profile-local `$HERMES_HOME/honcho.json` 또는 전역 `
 ## 언제 Honcho를 쓰나
 
 단순 선호와 환경 사실만 필요하면 built-in memory면 충분하다. 과거 대화를 찾아야 하면 session search가 맞다. 여러 agent가 같은 사용자를 장기적으로 이해해야 하거나, 대화의 결론과 현재 세션 요약을 자동으로 다음 turn에 반영하고 싶다면 Honcho를 검토할 차례다. Hermes에서 기억은 저장소 하나가 아니라, 명시적 사실·검색 가능한 기록·추론된 사용자 모델을 나누는 설계다.
+
+## 관련 AX 글
+
+Honcho를 더 넓은 에이전트 기억 설계로 보려면 [에이전트 기억은 저장보다 전달에서 실패한다](/blog/posts/agent-memory-fails-at-delivery/), [에이전트의 장기 기억은 검색보다 시간 관리가 어렵다](/blog/posts/long-term-agent-memory-is-a-time-problem/), [에이전트의 맥락은 작업마다 다시 편성되어야 한다](/blog/posts/task-specific-context-budgets/)를 함께 읽는 편이 좋다.

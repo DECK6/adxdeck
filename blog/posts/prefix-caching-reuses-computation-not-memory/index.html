@@ -13,6 +13,7 @@
     <meta property="og:image" content="https://dexa.art/blog/images/prefix-caching-computation-reuse-cover.png" />
     <meta property="og:site_name" content="DEXA" />
     <meta property="article:published_time" content="2026-08-07" />
+    <meta property="article:modified_time" content="2026-08-07" />
     <meta property="article:author" content="육대근" />
     <meta property="article:tag" content="AI" />
     <meta property="article:tag" content="inference" />
@@ -116,6 +117,12 @@
 <h2>Sources consulted</h2>
 <ul><li><a href="https://docs.vllm.ai/en/latest/features/automatic_prefix_caching/">vLLM, Automatic Prefix Caching</a> — current developer documentation, accessed 2026-08-07; prefill reuse and decoding boundary.</li><li><a href="https://docs.vllm.ai/en/latest/design/prefix_caching/">vLLM, Prefix Caching design</a> — current developer documentation, accessed 2026-08-07; block hash inputs, cache salt, and v0.11 hash boundary.</li><li><a href="https://arxiv.org/abs/2312.07104">Zheng et al., SGLang: Efficient Execution of Structured Language Model Programs</a> — submitted 2023-12-12, revised 2024-06-06 (v2); RadixAttention and KV cache reuse.</li><li><a href="https://developers.openai.com/api/docs/guides/prompt-caching">OpenAI API, Prompt caching</a> — current documentation, accessed 2026-08-07; exact-prefix matching, 1,024-token default threshold, usage and retention semantics.</li><li><a href="https://platform.claude.com/docs/en/build-with-claude/prompt-caching">Anthropic, Prompt caching</a> — current documentation, accessed 2026-08-07; 5-minute/1-hour TTL and organization/workspace isolation.</li></ul>
             </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
             <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
                 <a id="prev-post" href="/blog/posts/speculative-decoding-draft-and-verify/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>작은 모델이 먼저 쓰고, 큰 모델이 한 번에 확인한다</span></a>
                 <a id="next-post" href="/blog/posts/sabrina-ratte-and-synthetic-ecologies/" class="spec-row" style="text-decoration:none;"><span>합성 풍경은 폐허를 정원으로 바꿀 수 있는가</span><span class="k">NEXT →</span></a>

@@ -15,6 +15,7 @@
       "knowledge-management"
     ],
     "date": "2026-09-07",
+    "modified": "2026-09-07",
     "thumbnail": "images/agent-memory-fails-at-delivery-cover.png",
     "author": "육대근"
   },
@@ -35,6 +36,7 @@
       "model-evaluation"
     ],
     "date": "2026-09-06",
+    "modified": "2026-09-06",
     "thumbnail": "images/gpt-6-astra-computer-use-cover.png",
     "author": "육대근"
   },
@@ -55,6 +57,7 @@
       "concurrency-control"
     ],
     "date": "2026-09-06",
+    "modified": "2026-09-06",
     "thumbnail": "images/agent-work-lease-heartbeat-fencing-cover.png",
     "author": "육대근"
   },
@@ -75,6 +78,7 @@
       "canvas-description"
     ],
     "date": "2026-08-21",
+    "modified": "2026-08-21",
     "thumbnail": "images/who-describes-the-generative-canvas-cover.png",
     "author": "육대근"
   },
@@ -96,6 +100,7 @@
       "counter-archive"
     ],
     "date": "2026-08-19",
+    "modified": "2026-08-19",
     "thumbnail": "images/morehshin-allahyari-material-speculation-isis-cover.png",
     "author": "육대근"
   },
@@ -116,6 +121,7 @@
       "material-systems"
     ],
     "date": "2026-08-18",
+    "modified": "2026-08-18",
     "thumbnail": "images/yunchul-kim-nervous-system-of-matter-cover.png",
     "author": "육대근"
   },
@@ -135,6 +141,7 @@
       "workflow-design"
     ],
     "date": "2026-08-17",
+    "modified": "2026-08-17",
     "thumbnail": "images/ai-productivity-validated-outcome-cover.png",
     "author": "육대근"
   },
@@ -155,6 +162,7 @@
       "institution"
     ],
     "date": "2026-08-17",
+    "modified": "2026-08-17",
     "thumbnail": "images/experiments-in-art-and-technology-collaboration-cover.png",
     "author": "육대근"
   },
@@ -176,6 +184,7 @@
       "museum-practice"
     ],
     "date": "2026-08-16",
+    "modified": "2026-08-16",
     "thumbnail": "images/variable-media-artwork-identity-cover.png",
     "author": "육대근"
   },
@@ -196,6 +205,7 @@
       "knowledge-systems"
     ],
     "date": "2026-08-15",
+    "modified": "2026-08-15",
     "thumbnail": "images/retrieval-chunks-keep-document-context-cover.png",
     "author": "육대근"
   },
@@ -216,6 +226,7 @@
       "observability"
     ],
     "date": "2026-08-14",
+    "modified": "2026-08-14",
     "thumbnail": "images/agent-retry-idempotency-receipt-cover.png",
     "author": "육대근"
   },
@@ -237,6 +248,7 @@
       "vertical-roll"
     ],
     "date": "2026-08-14",
+    "modified": "2026-08-14",
     "thumbnail": "images/joan-jonas-video-mirror-cover.png",
     "author": "육대근"
   },
@@ -258,6 +270,7 @@
       "embodied-media"
     ],
     "date": "2026-08-13",
+    "modified": "2026-08-13",
     "thumbnail": "images/laura-marks-haptic-visuality-cover.png",
     "author": "육대근"
   },
@@ -278,6 +291,7 @@
       "workshop-method"
     ],
     "date": "2026-08-12",
+    "modified": "2026-08-12",
     "thumbnail": "images/critical-making-changes-the-question.png",
     "author": "육대근"
   },
@@ -298,6 +312,7 @@
       "live-broadcast"
     ],
     "date": "2026-08-11",
+    "modified": "2026-08-11",
     "thumbnail": "images/nam-june-paik-uneven-satellite-stage-cover.png",
     "author": "육대근"
   },
@@ -318,6 +333,7 @@
       "AI"
     ],
     "date": "2026-08-11",
+    "modified": "2026-08-11",
     "thumbnail": "images/self-verification-needs-an-evidence-gate-cover.png",
     "author": "육대근"
   },
@@ -336,6 +352,7 @@
       "AI"
     ],
     "date": "2026-08-09",
+    "modified": "2026-08-09",
     "thumbnail": "images/designing-reliable-multi-agent-fan-in-cover.png",
     "author": "육대근"
   },
@@ -357,6 +374,7 @@
       "public-pedagogy"
     ],
     "date": "2026-08-09",
+    "modified": "2026-08-09",
     "thumbnail": "images/ars-electronica-institutional-ecosystem-cover.png",
     "author": "육대근"
   },
@@ -379,6 +397,7 @@
       "AI-art"
     ],
     "date": "2026-08-08",
+    "modified": "2026-08-08",
     "thumbnail": "images/sabrina-ratte-synthetic-ecologies-cover.png",
     "author": "육대근"
   },
@@ -398,6 +417,7 @@
       "model-serving"
     ],
     "date": "2026-08-07",
+    "modified": "2026-08-07",
     "thumbnail": "images/prefix-caching-computation-reuse-cover.png",
     "author": "육대근"
   },
@@ -418,6 +438,7 @@
       "AI"
     ],
     "date": "2026-08-06",
+    "modified": "2026-08-06",
     "thumbnail": "images/speculative-decoding-proposal-verification-cover.png",
     "author": "육대근"
   },
@@ -436,6 +457,7 @@
       "hideo-iwasaki"
     ],
     "date": "2026-08-02",
+    "modified": "2026-08-02",
     "thumbnail": "images/media-art-is-not-the-name-of-a-technology.png",
     "author": "육대근"
   },
@@ -456,6 +478,7 @@
       "AI"
     ],
     "date": "2026-08-02",
+    "modified": "2026-08-02",
     "thumbnail": "images/seedance-2-5-reference-roles.png",
     "author": "육대근"
   },
@@ -476,6 +499,7 @@
       "epistemology"
     ],
     "date": "2026-07-30",
+    "modified": "2026-07-30",
     "thumbnail": "images/hallucination-error-and-art-cover.png",
     "author": "육대근"
   },
@@ -496,6 +520,7 @@
       "AI"
     ],
     "date": "2026-07-29",
+    "modified": "2026-07-29",
     "thumbnail": "images/long-term-agent-memory-is-a-time-problem-cover.png",
     "author": "육대근"
   },
@@ -515,6 +540,7 @@
       "korean-media-art"
     ],
     "date": "2026-07-29",
+    "modified": "2026-07-29",
     "thumbnail": "images/choe-uram-machine-organisms-cover.png",
     "author": "육대근"
   },
@@ -535,6 +561,7 @@
       "preservation"
     ],
     "date": "2026-07-28",
+    "modified": "2026-07-28",
     "thumbnail": "images/how-digital-art-entered-the-museum-cover.png",
     "author": "육대근"
   },
@@ -555,6 +582,7 @@
       "AI"
     ],
     "date": "2026-07-28",
+    "modified": "2026-07-28",
     "thumbnail": "images/knowledge-graphs-need-an-evidence-contract-cover.png",
     "author": "육대근"
   },
@@ -575,6 +603,7 @@
       "intermedia"
     ],
     "date": "2026-07-27",
+    "modified": "2026-07-27",
     "thumbnail": "images/fluxus-object-to-event-cover.png",
     "author": "육대근"
   },
@@ -594,6 +623,7 @@
       "AI"
     ],
     "date": "2026-07-27",
+    "modified": "2026-07-27",
     "thumbnail": "images/format-compliance-is-not-verification-cover.png",
     "author": "육대근"
   },
@@ -613,6 +643,7 @@
       "generative-art"
     ],
     "date": "2026-07-26",
+    "modified": "2026-07-26",
     "thumbnail": "images/anna-ridler-handmade-dataset-cover.png",
     "author": "육대근"
   },
@@ -633,6 +664,7 @@
       "AI"
     ],
     "date": "2026-07-25",
+    "modified": "2026-07-25",
     "thumbnail": "images/evaluating-evidence-beyond-fluent-reports-cover.png",
     "author": "육대근"
   },
@@ -651,6 +683,7 @@
       "hooks"
     ],
     "date": "2026-07-25",
+    "modified": "2026-07-25",
     "thumbnail": "images/hermes-shell-hooks-consent-guardrails-cover.png",
     "author": "Deck"
   },
@@ -673,6 +706,7 @@
       "AI"
     ],
     "date": "2026-07-25",
+    "modified": "2026-07-25",
     "thumbnail": "images/machine-vision-does-not-see-everyone-equally-cover.png",
     "author": "육대근"
   },
@@ -692,6 +726,7 @@
       "AI"
     ],
     "date": "2026-07-25",
+    "modified": "2026-07-25",
     "thumbnail": "images/task-specific-context-budgets-cover.png",
     "author": "육대근"
   },
@@ -711,6 +746,7 @@
       "AI"
     ],
     "date": "2026-07-25",
+    "modified": "2026-07-25",
     "thumbnail": "images/when-agent-loops-need-control-graphs-cover.png",
     "author": "육대근"
   },
@@ -729,6 +765,7 @@
       "insights"
     ],
     "date": "2026-07-24",
+    "modified": "2026-07-24",
     "thumbnail": "images/hermes-insights-usage-analytics-cover.png",
     "author": "Deck"
   },
@@ -750,6 +787,7 @@
       "AI"
     ],
     "date": "2026-07-24",
+    "modified": "2026-07-24",
     "thumbnail": "images/the-observer-is-inside-the-system-cover.png",
     "author": "육대근"
   },
@@ -768,6 +806,7 @@
       "messaging"
     ],
     "date": "2026-07-23",
+    "modified": "2026-07-23",
     "thumbnail": "images/hermes-send-script-output-delivery-cover.png",
     "author": "Deck"
   },
@@ -790,6 +829,7 @@
       "AI"
     ],
     "date": "2026-07-23",
+    "modified": "2026-07-23",
     "thumbnail": "images/orgnets-collective-capacity-cover.png",
     "author": "육대근"
   },
@@ -808,6 +848,7 @@
       "python-library"
     ],
     "date": "2026-07-22",
+    "modified": "2026-07-22",
     "thumbnail": "images/hermes-python-library-in-process-agent-loop-cover.png",
     "author": "Deck"
   },
@@ -829,6 +870,7 @@
       "AI"
     ],
     "date": "2026-07-22",
+    "modified": "2026-07-22",
     "thumbnail": "images/helen-nissenbaum-contextual-integrity-cover.png",
     "author": "육대근"
   },
@@ -847,6 +889,7 @@
       "managed-scope"
     ],
     "date": "2026-07-20",
+    "modified": "2026-07-20",
     "thumbnail": "images/hermes-managed-scope-per-key-policy-cover.png",
     "author": "Deck"
   },
@@ -868,6 +911,7 @@
       "media-archaeology"
     ],
     "date": "2026-07-20",
+    "modified": "2026-07-20",
     "thumbnail": "images/steina-vasulka-machine-vision-cover.png",
     "author": "육대근"
   },
@@ -886,6 +930,7 @@
       "automation-blueprints"
     ],
     "date": "2026-07-19",
+    "modified": "2026-07-19",
     "thumbnail": "images/hermes-automation-blueprints-confirmed-forms-cover.png",
     "author": "Deck"
   },
@@ -908,6 +953,7 @@
       "creative-labor"
     ],
     "date": "2026-07-19",
+    "modified": "2026-07-19",
     "thumbnail": "images/free-labor-platform-value-cover.png",
     "author": "육대근"
   },
@@ -926,6 +972,7 @@
       "security-audit"
     ],
     "date": "2026-07-18",
+    "modified": "2026-07-18",
     "thumbnail": "images/hermes-security-audit-supply-chain-cover.png",
     "author": "Deck"
   },
@@ -948,6 +995,7 @@
       "immersion"
     ],
     "date": "2026-07-18",
+    "modified": "2026-07-18",
     "thumbnail": "images/mark-hansen-media-before-consciousness-cover.png",
     "author": "육대근"
   },
@@ -966,6 +1014,7 @@
       "session-export"
     ],
     "date": "2026-07-17",
+    "modified": "2026-07-17",
     "thumbnail": "images/hermes-session-export-portable-records-cover.png",
     "author": "Deck"
   },
@@ -987,6 +1036,7 @@
       "AI"
     ],
     "date": "2026-07-17",
+    "modified": "2026-07-17",
     "thumbnail": "images/cosmotechnics-multiple-technical-worlds-cover.png",
     "author": "육대근"
   },
@@ -1005,6 +1055,7 @@
       "projects"
     ],
     "date": "2026-07-16",
+    "modified": "2026-07-16",
     "thumbnail": "images/hermes-projects-multi-folder-workspaces-cover.png",
     "author": "Deck"
   },
@@ -1025,6 +1076,7 @@
       "critical-engineering"
     ],
     "date": "2026-07-16",
+    "modified": "2026-07-16",
     "thumbnail": "images/tactical-media-power-gap-cover.png",
     "author": "육대근"
   },
@@ -1043,6 +1095,7 @@
       "session-handoff"
     ],
     "date": "2026-07-15",
+    "modified": "2026-07-15",
     "thumbnail": "images/hermes-cross-platform-session-handoff-cover.png",
     "author": "Deck"
   },
@@ -1068,6 +1121,7 @@
       "theory"
     ],
     "date": "2026-07-15",
+    "modified": "2026-07-15",
     "thumbnail": "images/emancipated-spectator-media-art-cover.png",
     "author": "육대근"
   },
@@ -1086,6 +1140,7 @@
       "tui"
     ],
     "date": "2026-07-14",
+    "modified": "2026-07-14",
     "thumbnail": "images/hermes-modern-tui-cover.png",
     "author": "Deck"
   },
@@ -1107,6 +1162,7 @@
       "immersion"
     ],
     "date": "2026-07-14",
+    "modified": "2026-07-14",
     "thumbnail": "images/olafur-eliasson-public-perception-cover.png",
     "author": "육대근"
   },
@@ -1120,6 +1176,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-07-13",
+    "modified": "2026-07-13",
     "thumbnail": "images/hermes-dm-pairing-access-control-cover.png",
     "author": "Deck"
   },
@@ -1141,6 +1198,7 @@
       "AI"
     ],
     "date": "2026-07-13",
+    "modified": "2026-07-13",
     "thumbnail": "images/compression-artifact-circulation-cover.png",
     "author": "육대근"
   },
@@ -1159,6 +1217,7 @@
       "git-worktree"
     ],
     "date": "2026-07-12",
+    "modified": "2026-07-12",
     "thumbnail": "images/hermes-git-worktree-isolation-cover.png",
     "author": "Deck"
   },
@@ -1180,6 +1239,7 @@
       "surveillance"
     ],
     "date": "2026-07-12",
+    "modified": "2026-07-12",
     "thumbnail": "images/rafael-lozano-hemmer-public-pulse-cover.png",
     "author": "DEXA"
   },
@@ -1193,6 +1253,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-07-11",
+    "modified": "2026-07-11",
     "thumbnail": "images/hermes-1password-secret-source-cover.png",
     "author": "Deck"
   },
@@ -1213,6 +1274,7 @@
       "materiality"
     ],
     "date": "2026-07-11",
+    "modified": "2026-07-11",
     "thumbnail": "images/the-surface-is-the-first-medium-cover.png",
     "author": "육대근"
   },
@@ -1226,6 +1288,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-07-10",
+    "modified": "2026-07-10",
     "thumbnail": "images/hermes-openrouter-provider-routing-cover.png",
     "author": "Deck"
   },
@@ -1247,6 +1310,7 @@
       "installation"
     ],
     "date": "2026-07-10",
+    "modified": "2026-07-10",
     "thumbnail": "images/medium-specificity-after-tool-effects-cover.png",
     "author": "육대근"
   },
@@ -1260,6 +1324,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-07-09",
+    "modified": "2026-07-09",
     "thumbnail": "images/hermes-skill-bundles-cover.png",
     "author": "Deck"
   },
@@ -1280,6 +1345,7 @@
       "distributed-authorship"
     ],
     "date": "2026-07-09",
+    "modified": "2026-07-09",
     "thumbnail": "images/roy-ascott-telematic-embrace-cover.png",
     "author": "DEXA"
   },
@@ -1301,6 +1367,7 @@
       "platform-culture"
     ],
     "date": "2026-07-08",
+    "modified": "2026-07-08",
     "thumbnail": "images/database-aesthetics-searchable-artwork-cover.png",
     "author": "육대근"
   },
@@ -1314,6 +1381,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-07-08",
+    "modified": "2026-07-08",
     "thumbnail": "images/hermes-profile-distributions-cover.png",
     "author": "Deck"
   },
@@ -1334,19 +1402,27 @@
       "ai-critique"
     ],
     "date": "2026-07-07",
+    "modified": "2026-07-07",
     "thumbnail": "images/donna-haraway-situated-cyborg-media-cover.png",
     "author": "육대근"
   },
   {
     "slug": "hermes-honcho-memory",
     "file": "_built/hermes-honcho-memory.md",
-    "title": "Honcho를 붙이면 Hermes 기억은 파일을 넘어 사용자 모델이 된다",
-    "description": "A practical guide to Hermes Agent's Honcho memory provider: peer modeling, dialectic reasoning, setup boundaries, and when to use it instead of built-in memory alone.",
-    "category": "Post",
+    "title": "Hermes Agent Honcho는 기억을 사용자 모델로 확장한다",
+    "description": "Hermes Agent Honcho를 파일형 기억 위에 붙는 사용자 모델링 계층으로 보고, peer·session·dialectic reasoning의 경계와 built-in memory와의 역할 분담을 정리한다.",
+    "category": "Article",
     "track": "ai-ax",
     "trackLabel": "AI · AX",
-    "tags": [],
+    "tags": [
+      "hermes",
+      "ai-agent",
+      "workflow",
+      "memory",
+      "honcho"
+    ],
     "date": "2026-07-07",
+    "modified": "2026-09-09",
     "thumbnail": "images/hermes-honcho-memory-cover.png",
     "author": "Deck"
   },
@@ -1366,6 +1442,7 @@
       "gui"
     ],
     "date": "2026-07-06",
+    "modified": "2026-07-06",
     "thumbnail": "images/hermes-desktop-native-app-cover.png",
     "author": "Deck"
   },
@@ -1385,6 +1462,7 @@
       "image-circulation"
     ],
     "date": "2026-07-06",
+    "modified": "2026-07-06",
     "thumbnail": "images/post-internet-art-circulating-artwork-cover.png",
     "author": "Deck"
   },
@@ -1404,6 +1482,7 @@
       "bitwarden"
     ],
     "date": "2026-07-05",
+    "modified": "2026-07-05",
     "thumbnail": "images/hermes-secrets-bitwarden-cover.png",
     "author": "Deck"
   },
@@ -1423,6 +1502,7 @@
       "ai-critique"
     ],
     "date": "2026-07-05",
+    "modified": "2026-07-05",
     "thumbnail": "images/surveillance-capitalism-captured-interface-cover.png",
     "author": "Deck"
   },
@@ -1442,6 +1522,7 @@
       "processing"
     ],
     "date": "2026-07-04",
+    "modified": "2026-07-04",
     "thumbnail": "images/ben-fry-readable-data-cover.png",
     "author": "Deck"
   },
@@ -1455,6 +1536,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-07-04",
+    "modified": "2026-07-04",
     "thumbnail": "images/hermes-dashboard-extensions-cover.png",
     "author": "Deck"
   },
@@ -1468,6 +1550,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-07-03",
+    "modified": "2026-07-03",
     "thumbnail": "images/hermes-model-catalog-selector-cover.png",
     "author": "Deck"
   },
@@ -1487,6 +1570,7 @@
       "digital-materialism"
     ],
     "date": "2026-07-03",
+    "modified": "2026-07-03",
     "thumbnail": "images/nicole-starosielski-and-undersea-networks-cover.png",
     "author": "Deck"
   },
@@ -1500,6 +1584,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-07-02",
+    "modified": "2026-07-02",
     "thumbnail": "images/hermes-spotify-music-control-cover.png",
     "author": "Deck"
   },
@@ -1521,6 +1606,7 @@
       "blog"
     ],
     "date": "2026-07-02",
+    "modified": "2026-07-02",
     "thumbnail": "images/ryoji-ikeda-limits-of-signal-cover.png",
     "author": "육대근"
   },
@@ -1541,6 +1627,7 @@
       "immersion"
     ],
     "date": "2026-07-01",
+    "modified": "2026-07-01",
     "thumbnail": "images/atmospheric-aesthetics-politics-of-mood-cover.png",
     "author": "Deck"
   },
@@ -1554,6 +1641,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-07-01",
+    "modified": "2026-07-01",
     "thumbnail": "images/hermes-kanban-worker-lanes-cover.png",
     "author": "Hermes Agent"
   },
@@ -1572,6 +1660,7 @@
       "codex-runtime"
     ],
     "date": "2026-06-30",
+    "modified": "2026-06-30",
     "thumbnail": "images/hermes-codex-app-server-runtime-cover.png",
     "author": "Deck"
   },
@@ -1590,6 +1679,7 @@
       "media-art"
     ],
     "date": "2026-06-30",
+    "modified": "2026-06-30",
     "thumbnail": "images/katherine-hayles-embodied-information-cover.png",
     "author": "Deck"
   },
@@ -1608,6 +1698,7 @@
       "tool-gateway"
     ],
     "date": "2026-06-29",
+    "modified": "2026-06-29",
     "thumbnail": "images/hermes-tool-gateway-managed-tools-cover.png",
     "author": "Deck"
   },
@@ -1626,6 +1717,7 @@
       "philosophy-of-technology"
     ],
     "date": "2026-06-29",
+    "modified": "2026-06-29",
     "thumbnail": "images/technics-externalized-memory-cover.png",
     "author": "육대근"
   },
@@ -1644,6 +1736,7 @@
       "memory-providers"
     ],
     "date": "2026-06-28",
+    "modified": "2026-06-28",
     "thumbnail": "images/hermes-memory-providers-cover.png",
     "author": "Deck"
   },
@@ -1662,6 +1755,7 @@
       "machine-vision"
     ],
     "date": "2026-06-28",
+    "modified": "2026-06-28",
     "thumbnail": "images/new-aesthetic-machine-vision-culture-cover.png",
     "author": "육대근"
   },
@@ -1682,15 +1776,16 @@
       "image-theory"
     ],
     "date": "2026-06-25",
+    "modified": "2026-06-25",
     "thumbnail": "images/computational-photography-after-the-shutter-cover.png",
     "author": "Deck"
   },
   {
     "slug": "hermes-petdex-mascots",
     "file": "_built/hermes-petdex-mascots.md",
-    "title": "Hermes Pets는 장난감이 아니라 에이전트 상태 표시등이다",
-    "description": "A practical guide to Hermes Agent Pets: how Petdex mascots install per profile, map agent activity to animation states, render across CLI/TUI/desktop, and stay cosmetic rather than behavioral.",
-    "category": "Post",
+    "title": "Hermes Agent Petdex는 에이전트 상태를 보이는 표지로 만든다",
+    "description": "Hermes Agent Petdex 마스코트를 에이전트 능력이 아니라 CLI·TUI·데스크톱 화면의 상태 표시 레이어로 보고, profile별 표시 경계와 운영상 쓸모를 정리한다.",
+    "category": "Article",
     "track": "ai-ax",
     "trackLabel": "AI · AX",
     "tags": [
@@ -1700,6 +1795,7 @@
       "petdex"
     ],
     "date": "2026-06-25",
+    "modified": "2026-09-09",
     "thumbnail": "images/hermes-petdex-mascots-cover.png",
     "author": "Deck"
   },
@@ -1719,6 +1815,7 @@
       "platform-culture"
     ],
     "date": "2026-06-24",
+    "modified": "2026-06-24",
     "thumbnail": "images/cyberfeminism-networked-bodies-cover.png",
     "author": "Deck"
   },
@@ -1737,6 +1834,7 @@
       "skins"
     ],
     "date": "2026-06-24",
+    "modified": "2026-06-24",
     "thumbnail": "images/hermes-skins-themes-cover.png",
     "author": "Deck"
   },
@@ -1750,6 +1848,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-06-23",
+    "modified": "2026-06-23",
     "thumbnail": "images/hermes-slash-command-surfaces-cover.png",
     "author": "Deck"
   },
@@ -1769,6 +1868,7 @@
       "smart-city"
     ],
     "date": "2026-06-23",
+    "modified": "2026-06-23",
     "thumbnail": "images/shannon-mattern-media-infrastructure-cover.png",
     "author": "Deck"
   },
@@ -1788,6 +1888,7 @@
       "Bill-Viola"
     ],
     "date": "2026-06-22",
+    "modified": "2026-06-22",
     "thumbnail": "images/bill-viola-tactile-time-cover.png",
     "author": "육대근"
   },
@@ -1801,6 +1902,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-06-22",
+    "modified": "2026-06-22",
     "thumbnail": "images/hermes-lsp-semantic-diagnostics-cover.png",
     "author": "Deck"
   },
@@ -1814,6 +1916,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-06-21",
+    "modified": "2026-06-21",
     "thumbnail": "images/hermes-soul-personality-cover.png",
     "author": "Deck"
   },
@@ -1835,6 +1938,7 @@
       "blog"
     ],
     "date": "2026-06-21",
+    "modified": "2026-06-21",
     "thumbnail": "images/stelarc-programmable-body-cover.png",
     "author": "육대근"
   },
@@ -1855,6 +1959,7 @@
       "infrastructure"
     ],
     "date": "2026-06-20",
+    "modified": "2026-06-20",
     "thumbnail": "images/dispositif-media-art-cover.png",
     "author": "육대근"
   },
@@ -1868,6 +1973,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-06-20",
+    "modified": "2026-06-20",
     "thumbnail": "images/hermes-tts-audio-output-cover.png",
     "author": "Deck"
   },
@@ -1886,6 +1992,7 @@
       "proxy"
     ],
     "date": "2026-06-19",
+    "modified": "2026-06-19",
     "thumbnail": "images/hermes-subscription-proxy-cover.png",
     "author": "육대근"
   },
@@ -1904,6 +2011,7 @@
       "media-art"
     ],
     "date": "2026-06-19",
+    "modified": "2026-06-19",
     "thumbnail": "images/safiya-noble-search-politics-cover.png",
     "author": "육대근"
   },
@@ -1917,6 +2025,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-06-18",
+    "modified": "2026-06-18",
     "thumbnail": "images/hermes-deliverable-mode-artifacts-cover.png",
     "author": "Deck"
   },
@@ -1938,6 +2047,7 @@
       "infrastructure"
     ],
     "date": "2026-06-18",
+    "modified": "2026-06-18",
     "thumbnail": "images/new-materialism-media-art-cover.png",
     "author": "육대근"
   },
@@ -1956,6 +2066,7 @@
       "media-art"
     ],
     "date": "2026-06-17",
+    "modified": "2026-06-17",
     "thumbnail": "images/data-feminism-politics-visibility-cover.png",
     "author": "육대근"
   },
@@ -1969,6 +2080,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-06-17",
+    "modified": "2026-06-17",
     "thumbnail": "images/hermes-x-search-social-listening-cover.png",
     "author": "Deck"
   },
@@ -1982,6 +2094,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-06-16",
+    "modified": "2026-06-16",
     "thumbnail": "images/hermes-tool-search-progressive-tools-cover.png",
     "author": "Deck"
   },
@@ -2002,6 +2115,7 @@
       "drone-warfare"
     ],
     "date": "2026-06-16",
+    "modified": "2026-06-16",
     "thumbnail": "images/lisa-parks-and-the-vertical-image-cover.png",
     "author": "육대근"
   },
@@ -2009,18 +2123,21 @@
     "slug": "agent-knowledge-management",
     "file": "_built/agent-knowledge-management.md",
     "title": "AKM — 에이전트에게 지식 운영체계를 주는 법",
-    "description": "AKM(Agent Knowledge Management)은 LLM Wiki식 지식 지도에 운영 기억, 절차, 실행 기록, 검증과 Learn Back 루프를 결합해 에이전트가 다음 실행에서 더 잘 일하게 만드는 Markdown 기반 지식 운영체계다.",
-    "category": "Post",
+    "description": "AKM(Agent Knowledge Management)을 LLM Wiki식 지식 지도, 운영 기억, 절차, 실행 기록, 검증과 Learn Back 루프를 결합한 에이전트용 지식 아키텍처로 정리한다.",
+    "category": "Article",
     "track": "ai-ax",
     "trackLabel": "AI · AX",
     "tags": [
-      "hermes",
+      "AI",
       "ai-agent",
-      "workflow",
+      "AKM",
+      "knowledge-architecture",
       "knowledge-management",
-      "memory"
+      "context-engineering",
+      "markdown"
     ],
     "date": "2026-06-15",
+    "modified": "2026-09-09",
     "thumbnail": "images/akm-agent-knowledge-management-cover.png",
     "author": "육대근"
   },
@@ -2040,6 +2157,7 @@
       "ecology"
     ],
     "date": "2026-06-15",
+    "modified": "2026-06-15",
     "thumbnail": "images/digital-materialism-media-art-cover.png",
     "author": "육대근"
   },
@@ -2053,6 +2171,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-06-15",
+    "modified": "2026-06-15",
     "thumbnail": "images/hermes-web-search-extract-cover.png",
     "author": "DECK"
   },
@@ -2066,6 +2185,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-06-14",
+    "modified": "2026-06-14",
     "thumbnail": "images/hermes-batch-processing-trajectories-cover.png",
     "author": "DECK"
   },
@@ -2084,6 +2204,7 @@
       "time-politics"
     ],
     "date": "2026-06-14",
+    "modified": "2026-06-14",
     "thumbnail": "images/raqs-media-collective-time-politics-cover.png",
     "author": "육대근"
   },
@@ -2104,6 +2225,7 @@
       "time-based-media"
     ],
     "date": "2026-06-13",
+    "modified": "2026-06-13",
     "thumbnail": "images/entropy-and-decaying-media-cover.png",
     "author": "육대근"
   },
@@ -2117,6 +2239,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-06-13",
+    "modified": "2026-06-13",
     "thumbnail": "images/hermes-api-server-openai-compatible-cover.png",
     "author": "Deck"
   },
@@ -2130,6 +2253,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-06-12",
+    "modified": "2026-06-12",
     "thumbnail": "images/hermes-context-files-references-cover.png",
     "author": "Deck"
   },
@@ -2150,6 +2274,7 @@
       "Virilio"
     ],
     "date": "2026-06-12",
+    "modified": "2026-06-12",
     "thumbnail": "images/technological-accident-cover.png",
     "author": "육대근"
   },
@@ -2163,6 +2288,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-06-09",
+    "modified": "2026-06-09",
     "thumbnail": "images/hermes-command-approval-security-cover.png",
     "author": "Deck"
   },
@@ -2184,6 +2310,7 @@
       "digital-labor"
     ],
     "date": "2026-06-09",
+    "modified": "2026-06-09",
     "thumbnail": "images/lisa-nakamura-racialized-digital-visibility-cover.png",
     "author": "육대근"
   },
@@ -2203,6 +2330,7 @@
       "credential-pools"
     ],
     "date": "2026-06-08",
+    "modified": "2026-06-08",
     "thumbnail": "images/hermes-credential-pools-cover.png",
     "author": "Deck"
   },
@@ -2225,6 +2353,7 @@
       "smart-city"
     ],
     "date": "2026-06-08",
+    "modified": "2026-06-08",
     "thumbnail": "images/metainterface-beyond-the-screen-cover.png",
     "author": "육대근"
   },
@@ -2244,6 +2373,7 @@
       "process-management"
     ],
     "date": "2026-06-07",
+    "modified": "2026-06-07",
     "thumbnail": "images/hermes-terminal-process-management-cover.png",
     "author": "Deck"
   },
@@ -2262,6 +2392,7 @@
       "platform-culture"
     ],
     "date": "2026-06-07",
+    "modified": "2026-06-07",
     "thumbnail": "images/networked-publics-unstable-audience-cover.png",
     "author": "육대근"
   },
@@ -2281,6 +2412,7 @@
       "variantology"
     ],
     "date": "2026-06-06",
+    "modified": "2026-06-06",
     "thumbnail": "images/deep-time-media-cover.png",
     "author": "육대근"
   },
@@ -2300,6 +2432,7 @@
       "automation"
     ],
     "date": "2026-06-06",
+    "modified": "2026-06-06",
     "thumbnail": "images/hermes-code-execution-rpc-cover.png",
     "author": "Deck"
   },
@@ -2319,6 +2452,7 @@
       "postdigital"
     ],
     "date": "2026-06-04",
+    "modified": "2026-06-04",
     "thumbnail": "images/cory-arcangel-software-archaeology-cover.png",
     "author": "육대근"
   },
@@ -2338,6 +2472,7 @@
       "automation"
     ],
     "date": "2026-06-04",
+    "modified": "2026-06-04",
     "thumbnail": "images/hermes-persistent-goals-cover.png",
     "author": "Deck"
   },
@@ -2357,6 +2492,7 @@
       "multimodal"
     ],
     "date": "2026-06-03",
+    "modified": "2026-06-03",
     "thumbnail": "images/hermes-vision-image-analysis-cover.png",
     "author": "Deck"
   },
@@ -2376,6 +2512,7 @@
       "machine-vision"
     ],
     "date": "2026-06-03",
+    "modified": "2026-06-03",
     "thumbnail": "images/simone-browne-history-of-surveillance-cover.png",
     "author": "육대근"
   },
@@ -2395,6 +2532,7 @@
       "editor"
     ],
     "date": "2026-06-02",
+    "modified": "2026-06-02",
     "thumbnail": "images/hermes-acp-editor-integration-cover.png",
     "author": "Deck"
   },
@@ -2414,6 +2552,7 @@
       "digital-human"
     ],
     "date": "2026-06-02",
+    "modified": "2026-06-02",
     "thumbnail": "images/synthetic-faces-uncanny-valley-cover.png",
     "author": "육대근"
   },
@@ -2433,6 +2572,7 @@
       "macos"
     ],
     "date": "2026-06-01",
+    "modified": "2026-06-01",
     "thumbnail": "images/hermes-computer-use-background-cover.png",
     "author": "Deck"
   },
@@ -2453,6 +2593,7 @@
       "STS"
     ],
     "date": "2026-06-01",
+    "modified": "2026-06-01",
     "thumbnail": "images/ruha-benjamin-automated-inequality-cover.png",
     "author": "육대근"
   },
@@ -2471,6 +2612,7 @@
       "checkpoints"
     ],
     "date": "2026-05-31",
+    "modified": "2026-05-31",
     "thumbnail": "images/hermes-checkpoints-rollback-cover.png",
     "author": "육대근"
   },
@@ -2490,6 +2632,7 @@
       "digital-materialism"
     ],
     "date": "2026-05-31",
+    "modified": "2026-05-31",
     "thumbnail": "images/infrastructural-media-hidden-work-cover.png",
     "author": "육대근"
   },
@@ -2503,6 +2646,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-05-30",
+    "modified": "2026-05-30",
     "thumbnail": "images/hermes-browser-automation-cover.png",
     "author": "육대근"
   },
@@ -2522,6 +2666,7 @@
       "media-theory"
     ],
     "date": "2026-05-30",
+    "modified": "2026-05-30",
     "thumbnail": "images/post-authorial-aesthetics-in-ai-art-cover.png",
     "author": "육대근"
   },
@@ -2540,6 +2685,7 @@
       "sessions"
     ],
     "date": "2026-05-29",
+    "modified": "2026-05-29",
     "thumbnail": "images/hermes-session-compression-cover.png",
     "author": "육대근"
   },
@@ -2559,6 +2705,7 @@
       "ai-critique"
     ],
     "date": "2026-05-29",
+    "modified": "2026-05-29",
     "thumbnail": "images/wendy-chun-software-habit-cover.png",
     "author": "육대근"
   },
@@ -2581,6 +2728,7 @@
       "critical-ai"
     ],
     "date": "2026-05-28",
+    "modified": "2026-05-28",
     "thumbnail": "images/algorithmic-biopolitics-and-media-art-cover.png",
     "author": "육대근"
   },
@@ -2599,6 +2747,7 @@
       "webhook"
     ],
     "date": "2026-05-28",
+    "modified": "2026-05-28",
     "thumbnail": "images/hermes-webhook-event-automation-cover.png",
     "author": "육대근"
   },
@@ -2612,6 +2761,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-05-27",
+    "modified": "2026-05-27",
     "thumbnail": "images/hermes-plugins-hooks-curator-cover.png",
     "author": "Deck"
   },
@@ -2632,6 +2782,7 @@
       "technical-image"
     ],
     "date": "2026-05-27",
+    "modified": "2026-05-27",
     "thumbnail": "images/latent-epistemology-cover.png",
     "author": "육대근"
   },
@@ -2645,6 +2796,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-05-26",
+    "modified": "2026-05-26",
     "thumbnail": "images/hermes-image-generation-provider-cover.png",
     "author": "Deck"
   },
@@ -2665,6 +2817,7 @@
       "image-politics"
     ],
     "date": "2026-05-26",
+    "modified": "2026-05-26",
     "thumbnail": "images/invisible-images-machine-vision-cover.png",
     "author": "육대근"
   },
@@ -2683,6 +2836,7 @@
       "setup"
     ],
     "date": "2026-05-25",
+    "modified": "2026-05-25",
     "thumbnail": "images/hermes-setup-first-checks-cover.png",
     "author": "육대근"
   },
@@ -2704,6 +2858,7 @@
       "software-studies"
     ],
     "date": "2026-05-25",
+    "modified": "2026-05-25",
     "thumbnail": "images/planetary-computation-cover.png",
     "author": "육대근"
   },
@@ -2722,6 +2877,7 @@
       "voice"
     ],
     "date": "2026-05-24",
+    "modified": "2026-05-24",
     "thumbnail": "images/hermes-voice-mode-cover.png",
     "author": "육대근"
   },
@@ -2742,6 +2898,7 @@
       "stiegler"
     ],
     "date": "2026-05-24",
+    "modified": "2026-05-24",
     "thumbnail": "images/technical-memory-and-the-politics-of-recall-cover.png",
     "author": "육대근"
   },
@@ -2761,6 +2918,7 @@
       "Brian-Massumi"
     ],
     "date": "2026-05-23",
+    "modified": "2026-05-23",
     "thumbnail": "images/brian-massumi-affect-media-art-cover.png",
     "author": "육대근"
   },
@@ -2779,6 +2937,7 @@
       "council"
     ],
     "date": "2026-05-23",
+    "modified": "2026-05-23",
     "thumbnail": "images/hermes-council-moa-cover.png",
     "author": "육대근"
   },
@@ -2797,6 +2956,7 @@
       "delegation"
     ],
     "date": "2026-05-22",
+    "modified": "2026-05-22",
     "thumbnail": "images/hermes-delegate-task-subagents-cover.png",
     "author": "육대근"
   },
@@ -2815,6 +2975,7 @@
       "memory"
     ],
     "date": "2026-05-21",
+    "modified": "2026-05-21",
     "thumbnail": "images/hermes-memory-user-profile-cover.png",
     "author": "육대근"
   },
@@ -2833,6 +2994,7 @@
       "kanban"
     ],
     "date": "2026-05-20",
+    "modified": "2026-05-20",
     "thumbnail": "images/hermes-kanban-work-queue-cover.png",
     "author": "Deck"
   },
@@ -2851,6 +3013,7 @@
       "mcp"
     ],
     "date": "2026-05-18",
+    "modified": "2026-05-18",
     "thumbnail": "images/hermes-mcp-native-tools-cover.png",
     "author": "육대근"
   },
@@ -2869,6 +3032,7 @@
       "tools"
     ],
     "date": "2026-05-17",
+    "modified": "2026-05-17",
     "thumbnail": "images/hermes-tools-and-toolsets-cover.png",
     "author": "육대근"
   },
@@ -2888,6 +3052,7 @@
       "game-engine"
     ],
     "date": "2026-05-17",
+    "modified": "2026-05-17",
     "thumbnail": "images/ian-cheng-simulation-worldbuilding-cover.png",
     "author": "육대근"
   },
@@ -2906,6 +3071,7 @@
       "cron"
     ],
     "date": "2026-05-15",
+    "modified": "2026-05-15",
     "thumbnail": "images/hermes-cron-scheduled-jobs-cover.png",
     "author": "Hermes Agent"
   },
@@ -2924,6 +3090,7 @@
       "cultural-techniques"
     ],
     "date": "2026-05-15",
+    "modified": "2026-05-15",
     "thumbnail": "images/operations-before-meaning-cover.png",
     "author": "육대근"
   },
@@ -2943,6 +3110,7 @@
       "platform-critique"
     ],
     "date": "2026-05-14",
+    "modified": "2026-05-14",
     "thumbnail": "images/attention-under-twenty-four-seven-capitalism-cover.png",
     "author": "육대근"
   },
@@ -2961,6 +3129,7 @@
       "model-routing"
     ],
     "date": "2026-05-14",
+    "modified": "2026-05-14",
     "thumbnail": "images/hermes-model-fallback-chain-cover.png",
     "author": "육대근"
   },
@@ -2974,6 +3143,7 @@
     "trackLabel": "AI · AX",
     "tags": [],
     "date": "2026-05-13",
+    "modified": "2026-05-13",
     "thumbnail": "images/hermes-dashboard-control-room-cover.png",
     "author": "Hermes"
   },
@@ -2992,6 +3162,7 @@
       "body-interface"
     ],
     "date": "2026-05-13",
+    "modified": "2026-05-13",
     "thumbnail": "images/2026-05-13-body-as-realtime-interface-cover.png",
     "author": "Deck"
   },
@@ -3010,6 +3181,7 @@
       "skills"
     ],
     "date": "2026-05-12",
+    "modified": "2026-05-12",
     "thumbnail": "images/hermes-skills-system-cover.png",
     "author": "육대근"
   },
@@ -3028,6 +3200,7 @@
       "time"
     ],
     "date": "2026-05-12",
+    "modified": "2026-05-12",
     "thumbnail": "images/2026-05-12-archive-as-operation-cover.png",
     "author": "Deck"
   },
@@ -3045,6 +3218,7 @@
       "workflow"
     ],
     "date": "2026-05-11",
+    "modified": "2026-05-11",
     "thumbnail": "images/2026-05-11-oauth-silent-failure-cover.png",
     "author": "Deck"
   },
@@ -3062,6 +3236,7 @@
       "workflow"
     ],
     "date": "2026-05-11",
+    "modified": "2026-05-11",
     "thumbnail": "images/2026-05-11-hermes-gateway-topic-routing-cover.png",
     "author": "Deck"
   },
@@ -3079,6 +3254,7 @@
       "workflow"
     ],
     "date": "2026-05-11",
+    "modified": "2026-05-11",
     "thumbnail": "images/2026-05-11-hermes-profiles-workers-cover.png",
     "author": "Deck"
   },
@@ -3097,6 +3273,7 @@
       "automation"
     ],
     "date": "2026-05-11",
+    "modified": "2026-05-11",
     "thumbnail": "images/2026-05-11-machine-time-cover.png",
     "author": "Deck"
   },
@@ -3115,6 +3292,7 @@
       "cron"
     ],
     "date": "2026-05-11",
+    "modified": "2026-05-11",
     "thumbnail": "images/2026-05-11-cron-pace-cover.png",
     "author": "Deck"
   },
@@ -3135,6 +3313,7 @@
       "human-rights"
     ],
     "date": "2026-05-08",
+    "modified": "2026-05-08",
     "thumbnail": "images/2026-05-08-forensic-architecture-cover.png",
     "author": "육대근"
   },
@@ -3156,6 +3335,7 @@
       "exhibition"
     ],
     "date": "2026-05-07",
+    "modified": "2026-05-07",
     "thumbnail": "images/dispositif-as-hidden-arrangement-cover.png",
     "author": "육대근"
   },
@@ -3174,6 +3354,7 @@
       "ai-aesthetics"
     ],
     "date": "2026-05-06",
+    "modified": "2026-05-06",
     "thumbnail": "images/software-grammar-of-culture-cover.png",
     "author": "육대근"
   },
@@ -3193,6 +3374,7 @@
       "software-studies"
     ],
     "date": "2026-05-04",
+    "modified": "2026-05-04",
     "thumbnail": "images/interfaces-that-teach-machines-to-feel-ordinary-cover.png",
     "author": "육대근"
   },
@@ -3211,6 +3393,7 @@
       "digital-literature"
     ],
     "date": "2026-05-02",
+    "modified": "2026-05-02",
     "thumbnail": "images/browser-cinema-and-the-speed-of-reading-cover.png",
     "author": "육대근"
   },
@@ -3231,6 +3414,7 @@
       "synthetic-media"
     ],
     "date": "2026-05-01",
+    "modified": "2026-05-01",
     "thumbnail": "images/yangachi-invisible-infrastructure-cover.png",
     "author": "육대근"
   },
@@ -3251,6 +3435,7 @@
       "anicka-yi"
     ],
     "date": "2026-04-28",
+    "modified": "2026-04-28",
     "thumbnail": "images/how-scent-becomes-a-medium-cover.png",
     "author": "육대근"
   },
@@ -3270,6 +3455,7 @@
       "diaspora"
     ],
     "date": "2026-04-27",
+    "modified": "2026-04-27",
     "thumbnail": "images/monuments-that-remember-the-wrong-cold-war-cover.png",
     "author": "육대근"
   },
@@ -3288,6 +3474,7 @@
       "digital-culture"
     ],
     "date": "2026-04-26",
+    "modified": "2026-04-26",
     "thumbnail": "images/new-media-returns-with-old-faces-cover.png",
     "author": "육대근"
   },
@@ -3308,6 +3495,7 @@
       "sound-art"
     ],
     "date": "2026-04-25",
+    "modified": "2026-04-25",
     "thumbnail": "images/when-noise-becomes-a-signal-cover.png",
     "author": "육대근"
   },
@@ -3327,6 +3515,7 @@
       "Codex"
     ],
     "date": "2026-04-24",
+    "modified": "2026-04-24",
     "thumbnail": "images/gpt-5-5-vs-gpt-5-4-cover.png",
     "author": "육대근"
   },
@@ -3349,6 +3538,7 @@
       "blog"
     ],
     "date": "2026-04-24",
+    "modified": "2026-04-24",
     "thumbnail": "images/when-code-becomes-a-medium-cover.png",
     "author": "육대근"
   },
@@ -3369,6 +3559,7 @@
       "data-politics"
     ],
     "date": "2026-04-23",
+    "modified": "2026-04-23",
     "thumbnail": "images/how-convenience-trains-us-cover.png",
     "author": "육대근"
   },
@@ -3388,6 +3579,7 @@
       "jack-burnham"
     ],
     "date": "2026-04-22",
+    "modified": "2026-04-22",
     "thumbnail": "images/art-after-the-object-cover.png",
     "author": "육대근"
   },
@@ -3406,6 +3598,7 @@
       "algorithmic-governance"
     ],
     "date": "2026-04-22",
+    "modified": "2026-04-22",
     "thumbnail": "images/ayoung-kim-courier-worlds-cover.png",
     "author": "육대근"
   },
@@ -3424,6 +3617,7 @@
       "real-time"
     ],
     "date": "2026-04-22",
+    "modified": "2026-04-22",
     "thumbnail": "images/liveness-cover.png",
     "author": "육대근"
   },
@@ -3442,6 +3636,7 @@
       "software"
     ],
     "date": "2026-04-22",
+    "modified": "2026-04-22",
     "thumbnail": "images/what-is-protocol-cover.png",
     "author": "육대근"
   },
@@ -3462,6 +3657,7 @@
       "interactivity"
     ],
     "date": "2026-04-22",
+    "modified": "2026-04-22",
     "thumbnail": "images/the-art-of-feedback-cover.png",
     "author": "육대근"
   },
@@ -3480,6 +3676,7 @@
       "AI"
     ],
     "date": "2026-04-22",
+    "modified": "2026-04-22",
     "thumbnail": "images/apparatus-cover.png",
     "author": "육대근"
   },
@@ -3498,6 +3695,7 @@
       "digital-culture"
     ],
     "date": "2026-04-22",
+    "modified": "2026-04-22",
     "thumbnail": "images/database-vs-narrative-cover.png",
     "author": "육대근"
   },
@@ -3516,6 +3714,7 @@
       "feedback"
     ],
     "date": "2026-04-22",
+    "modified": "2026-04-22",
     "thumbnail": "images/cybernetics-cover.png",
     "author": "육대근"
   },
@@ -3535,6 +3734,7 @@
       "immersion"
     ],
     "date": "2026-04-22",
+    "modified": "2026-04-22",
     "thumbnail": "images/when-images-become-regimes-cover.png",
     "author": "육대근"
   },
@@ -3555,6 +3755,7 @@
       "digital-culture"
     ],
     "date": "2026-04-22",
+    "modified": "2026-04-22",
     "thumbnail": "images/when-media-becomes-environment-cover.png",
     "author": "육대근"
   },
@@ -3573,6 +3774,7 @@
       "interface"
     ],
     "date": "2026-04-22",
+    "modified": "2026-04-22",
     "thumbnail": "images/embodiment-cover.png",
     "author": "육대근"
   },
@@ -3592,6 +3794,7 @@
       "aesthetics"
     ],
     "date": "2026-04-22",
+    "modified": "2026-04-22",
     "thumbnail": "images/why-presence-survives-reproduction-cover.png",
     "author": "육대근"
   },
@@ -3610,6 +3813,7 @@
       "platform"
     ],
     "date": "2026-04-17",
+    "modified": "2026-04-22",
     "thumbnail": "images/what-is-control-society-cover.png",
     "author": "육대근"
   },
@@ -3628,6 +3832,7 @@
       "critical-theory"
     ],
     "date": "2026-04-17",
+    "modified": "2026-04-22",
     "thumbnail": "images/what-is-data-colonialism-cover.png",
     "author": "육대근"
   },
@@ -3646,6 +3851,7 @@
       "installation"
     ],
     "date": "2026-04-17",
+    "modified": "2026-04-22",
     "thumbnail": "images/what-is-expanded-cinema-cover.png",
     "author": "육대근"
   },
@@ -3664,6 +3870,7 @@
       "ai-art"
     ],
     "date": "2026-04-17",
+    "modified": "2026-04-22",
     "thumbnail": "images/what-is-generative-art-cover.png",
     "author": "육대근"
   },
@@ -3682,6 +3889,7 @@
       "post-digital"
     ],
     "date": "2026-04-17",
+    "modified": "2026-04-22",
     "thumbnail": "images/what-is-glitch-aesthetics-cover.png",
     "author": "육대근"
   },
@@ -3700,14 +3908,15 @@
       "screen-culture"
     ],
     "date": "2026-04-17",
+    "modified": "2026-04-22",
     "thumbnail": "images/what-is-interface-cover.png",
     "author": "육대근"
   },
   {
     "slug": "what-is-intermedia",
     "file": "_built/what-is-intermedia.md",
-    "title": "장르 사이에서 태어나는 형식들: 인터미디어 이후의 예술",
-    "description": "인터미디어를 단순한 장르 혼합이 아니라 서로 다른 매체의 경계를 흔들며 새로운 형식을 발생시키는 사고방식으로 읽는다.",
+    "title": "인터미디어는 장르 사이에서 태어나는 형식이다",
+    "description": "인터미디어를 장르 혼합이 아니라 시·연극·음악·오브제의 경계를 흔들어 미디어아트의 새 형식을 만드는 태도로 읽는다.",
     "category": "Article",
     "track": "media-art",
     "trackLabel": "Media Art",
@@ -3718,6 +3927,7 @@
       "theory"
     ],
     "date": "2026-04-17",
+    "modified": "2026-09-09",
     "thumbnail": "images/intermedia-cover.png",
     "author": "육대근"
   },
@@ -3736,6 +3946,7 @@
       "theory"
     ],
     "date": "2026-04-17",
+    "modified": "2026-04-22",
     "thumbnail": "images/latent-space-cover.png",
     "author": "육대근"
   },
@@ -3754,6 +3965,7 @@
       "theory"
     ],
     "date": "2026-04-17",
+    "modified": "2026-04-22",
     "thumbnail": "images/what-is-operational-image-cover.png",
     "author": "육대근"
   },
@@ -3772,6 +3984,7 @@
       "benjamin"
     ],
     "date": "2026-04-17",
+    "modified": "2026-04-22",
     "thumbnail": "images/what-is-optical-unconscious-cover.png",
     "author": "육대근"
   },
@@ -3790,6 +4003,7 @@
       "theory"
     ],
     "date": "2026-04-17",
+    "modified": "2026-04-22",
     "thumbnail": "images/post-digital-cover.png",
     "author": "육대근"
   },
@@ -3808,6 +4022,7 @@
       "theory"
     ],
     "date": "2026-04-17",
+    "modified": "2026-04-22",
     "thumbnail": "images/remediation-cover.png",
     "author": "육대근"
   },
@@ -3826,6 +4041,7 @@
       "flusser"
     ],
     "date": "2026-04-17",
+    "modified": "2026-04-22",
     "thumbnail": "images/what-is-technical-image-cover.png",
     "author": "육대근"
   },
@@ -3844,6 +4060,7 @@
       "theory"
     ],
     "date": "2026-04-17",
+    "modified": "2026-04-17",
     "thumbnail": "images/immersion-cover.png",
     "author": "육대근"
   },
@@ -3862,6 +4079,7 @@
       "hito-steyerl"
     ],
     "date": "2026-04-17",
+    "modified": "2026-04-17",
     "thumbnail": "images/why-poor-images-matter-cover.png",
     "author": "육대근"
   },
@@ -3882,6 +4100,7 @@
       "Nano-Banana-2"
     ],
     "date": "2026-04-16",
+    "modified": "2026-04-16",
     "thumbnail": "images/gpt-image-2-duct-tape-cover.png",
     "author": "육대근"
   },
@@ -3901,6 +4120,7 @@
       "immersive"
     ],
     "date": "2026-04-15",
+    "modified": "2026-04-15",
     "thumbnail": "images/history-of-korean-media-art-cover.png",
     "author": "육대근"
   },
@@ -3920,6 +4140,7 @@
       "generative-art"
     ],
     "date": "2026-04-15",
+    "modified": "2026-04-15",
     "thumbnail": "images/history-of-media-art-cover.png",
     "author": "육대근"
   },
@@ -3941,14 +4162,15 @@
       "harness-engineering"
     ],
     "date": "2026-03-30",
+    "modified": "2026-03-30",
     "thumbnail": "images/vibe-coding-workspace-cover.png",
     "author": "육대근"
   },
   {
     "slug": "ai-and-media-art",
     "file": "_built/ai-and-media-art.md",
-    "title": "AI와 미디어아트의 현재와 미래",
-    "description": "미디어아트에서 기술은 언제나 이중적 위치를 점해왔다. 기술은 작품을 구현하는 도구이면서 동시에 작품이 질문하는 대상이었다. 비디오아트가 텔레비전이라는 매체 자체를 해부했듯, 인터랙티브 아트가 인간과 기계의 경계를 탐문했듯, AI는 이제 단순한 제작 도구를 넘어 미디어아트의 새로운 매체이...",
+    "title": "AI 미디어아트는 이미지를 만들기보다 감각의 조건을 바꾼다",
+    "description": "AI 미디어아트를 생성 이미지, 데이터 감각화, 실시간 인터랙션, 창작 파이프라인의 변화로 읽고 DEXA의 실제 프로젝트와 연결해 기술 시연을 넘어 감각 설계의 기준을 살핀다.",
     "category": "Article",
     "track": "media-art",
     "trackLabel": "Media Art",
@@ -3961,6 +4183,7 @@
       "data-art"
     ],
     "date": "2026-03-28",
+    "modified": "2026-09-09",
     "thumbnail": "images/ai-and-media-art-cover.png",
     "author": "육대근"
   },
@@ -3980,6 +4203,7 @@
       "immersive"
     ],
     "date": "2021-12-01",
+    "modified": "2026-03-28",
     "thumbnail": "images/afterglow.jpg",
     "author": "육대근"
   }

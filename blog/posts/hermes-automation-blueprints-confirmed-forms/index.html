@@ -13,6 +13,7 @@
     <meta property="og:image" content="https://dexa.art/blog/images/hermes-automation-blueprints-confirmed-forms-cover.png" />
     <meta property="og:site_name" content="DEXA" />
     <meta property="article:published_time" content="2026-07-19" />
+    <meta property="article:modified_time" content="2026-07-19" />
     <meta property="article:author" content="Deck" />
     <meta property="article:tag" content="hermes" />
     <meta property="article:tag" content="ai-agent" />
@@ -117,6 +118,12 @@ hermes cron resume &lt;job-id&gt;</code></pre>
 <ul><li><strong>Blueprint와 Cron을 경쟁 기능으로 보지 않는다.</strong> Blueprint는 안전한 설정 레이어이고 Cron은 실제 스케줄러다. 자유로운 일정·script·복잡한 전달 옵션이 필요하면 <code>hermes cron create</code>가 더 직접적이다.</li><li><strong>설치와 예약을 구분한다.</strong> Blueprint Skill 설치는 제안만 만들며, <code>/suggestions accept N</code> 전에는 실행되지 않는다.</li><li><strong><code>deliver=origin</code>의 문맥을 확인한다.</strong> Dashboard에서 만든 작업은 구성된 home channel을 기준으로 삼을 수 있다. <code>hermes cron list</code>에서 결과 위치를 다시 본다.</li><li><strong>Skill에 비밀을 쓰지 않는다.</strong> 공유 가능한 절차와 schedule만 두고 토큰·계정·개인 식별자는 환경 설정과 secret source에 남긴다.</li><li><strong>수정 후 새 작업에 반영되는지 확인한다.</strong> 이미 생성된 Cron 작업은 원본 템플릿을 실시간으로 따라가는 별칭이 아니다.</li></ul>
 <p>반복 요구가 이미 정형화되어 있고 비전문가도 같은 자동화를 설치해야 한다면 Blueprint가 알맞다. 단 한 번의 알림은 자연어로 요청해도 충분하고, 고급 스케줄·사전 script·세밀한 모델 지정까지 필요하다면 Cron을 직접 구성하는 편이 낫다.</p>
             </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
             <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
                 <a id="prev-post" href="/blog/posts/when-enjoyment-becomes-platform-value/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>좋아서 한 일이 플랫폼의 자산이 될 때</span></a>
                 <a id="next-post" href="/blog/posts/when-the-camera-stops-imitating-the-eye/" class="spec-row" style="text-decoration:none;"><span>카메라는 눈을 흉내 내지 않는다</span><span class="k">NEXT →</span></a>

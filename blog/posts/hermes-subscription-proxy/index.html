@@ -13,6 +13,7 @@
     <meta property="og:image" content="https://dexa.art/blog/images/hermes-subscription-proxy-cover.png" />
     <meta property="og:site_name" content="DEXA" />
     <meta property="article:published_time" content="2026-06-19" />
+    <meta property="article:modified_time" content="2026-06-19" />
     <meta property="article:author" content="육대근" />
     <meta property="article:tag" content="hermes" />
     <meta property="article:tag" content="ai-agent" />
@@ -113,6 +114,12 @@ Model: provider가 지원하는 모델명</code></pre>
 <h2>언제 이 기능을 쓰나</h2>
 <p>Subscription Proxy는 Hermes를 또 하나의 agent 서버로 공개하는 기능이 아니다. 외부 앱이 “모델 추론만” 필요하고, Hermes가 이미 provider 로그인과 갱신을 관리하고 있을 때 쓰는 얇은 인증 브리지다. agent 능력까지 필요하면 API Server, 시간 기반 자동화가 필요하면 Cron, 외부 이벤트가 필요하면 Webhook이 더 맞다. 반대로 로컬 앱 여러 개에 정적 키를 흩뿌리고 싶지 않다면, proxy가 가장 작은 표면으로 같은 구독을 재사용하게 해준다.</p>
             </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
             <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
                 <a id="prev-post" href="/blog/posts/safiya-noble-and-search-politics/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>검색창은 누구를 먼저 보여 주는가</span></a>
                 <a id="next-post" href="/blog/posts/hermes-tts-audio-output/" class="spec-row" style="text-decoration:none;"><span>Hermes TTS는 답변을 실행 가능한 음성 산출물로 바꾼다</span><span class="k">NEXT →</span></a>

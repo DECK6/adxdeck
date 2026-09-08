@@ -9,6 +9,16 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://dexa.art/blog/ax/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://dexa.art/learnmap/</loc>
+    <lastmod>2026-09-09</lastmod>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://dexa.art/osmu/</loc>
     <priority>0.7</priority>
   </url>
@@ -32,7 +42,7 @@
   </url>
   <url>
     <loc>https://dexa.art/mice-safety/</loc>
-    <lastmod>2026-05-24</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -387,7 +397,7 @@
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/hermes-honcho-memory/</loc>
-    <lastmod>2026-07-07</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -487,7 +497,7 @@
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/hermes-petdex-mascots/</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -582,7 +592,7 @@
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/agent-knowledge-management/</loc>
-    <lastmod>2026-06-15</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -1017,67 +1027,67 @@
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/what-is-control-society/</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/what-is-data-colonialism/</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/what-is-expanded-cinema/</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/what-is-generative-art/</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/what-is-glitch-aesthetics/</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/what-is-interface/</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/what-is-intermedia/</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/what-is-latent-space/</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/what-is-operational-image/</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/what-is-optical-unconscious/</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/what-is-post-digital/</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/what-is-remediation/</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/what-is-technical-image/</loc>
-    <lastmod>2026-04-17</lastmod>
+    <lastmod>2026-04-22</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -1112,12 +1122,12 @@
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/ai-and-media-art/</loc>
-    <lastmod>2026-03-28</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://dexa.art/blog/posts/afterglow/</loc>
-    <lastmod>2021-12-01</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <priority>0.8</priority>
   </url>
 </urlset>

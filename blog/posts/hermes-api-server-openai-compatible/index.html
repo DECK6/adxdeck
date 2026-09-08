@@ -13,6 +13,7 @@
     <meta property="og:image" content="https://dexa.art/blog/images/hermes-api-server-openai-compatible-cover.png" />
     <meta property="og:site_name" content="DEXA" />
     <meta property="article:published_time" content="2026-06-13" />
+    <meta property="article:modified_time" content="2026-06-13" />
     <meta property="article:author" content="Deck" />
     
     <meta name="twitter:card" content="summary_large_image" />
@@ -121,6 +122,12 @@ hermes -p alice gateway run</code></pre>
 <h2>언제 API Server를 선택할까</h2>
 <p>Telegram, Discord, Slack처럼 사람과 대화하는 채널이 필요하면 Gateway가 먼저다. 정해진 시간에 반복 실행하려면 Cron이 맞고, 긴 작업을 여러 에이전트에게 나눌 때는 Kanban이나 delegation이 더 자연스럽다. 반대로 이미 OpenAI 호환 UI, 사내 대시보드, 자동화 클라이언트가 있고 그 뒤에 Hermes Agent의 실제 도구 실행력을 붙이고 싶다면 API Server가 가장 얇고 표준적인 연결면이다.</p>
             </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
             <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
                 <a id="prev-post" href="/blog/posts/hermes-context-files-references/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>Hermes는 프로젝트의 규칙을 대화 전에 읽는다</span></a>
                 <a id="next-post" href="/blog/posts/entropy-and-decaying-media/" class="spec-row" style="text-decoration:none;"><span>사라지는 매체가 남기는 시간</span><span class="k">NEXT →</span></a>

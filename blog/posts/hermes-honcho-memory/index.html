@@ -3,23 +3,28 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Honcho를 붙이면 Hermes 기억은 파일을 넘어 사용자 모델이 된다 | DEXA Blog</title>
-    <meta name="description" content="A practical guide to Hermes Agent's Honcho memory provider: peer modeling, dialectic reasoning, setup boundaries, and when to use it instead of built-in memory alone." />
+    <title>Hermes Agent Honcho는 기억을 사용자 모델로 확장한다 | DEXA Blog</title>
+    <meta name="description" content="Hermes Agent Honcho를 파일형 기억 위에 붙는 사용자 모델링 계층으로 보고, peer·session·dialectic reasoning의 경계와 built-in memory와의 역할 분담을 정리한다." />
     <link rel="canonical" href="https://dexa.art/blog/posts/hermes-honcho-memory/" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Honcho를 붙이면 Hermes 기억은 파일을 넘어 사용자 모델이 된다" />
-    <meta property="og:description" content="A practical guide to Hermes Agent's Honcho memory provider: peer modeling, dialectic reasoning, setup boundaries, and when to use it instead of built-in memory alone." />
+    <meta property="og:title" content="Hermes Agent Honcho는 기억을 사용자 모델로 확장한다" />
+    <meta property="og:description" content="Hermes Agent Honcho를 파일형 기억 위에 붙는 사용자 모델링 계층으로 보고, peer·session·dialectic reasoning의 경계와 built-in memory와의 역할 분담을 정리한다." />
     <meta property="og:url" content="https://dexa.art/blog/posts/hermes-honcho-memory/" />
     <meta property="og:image" content="https://dexa.art/blog/images/hermes-honcho-memory-cover.png" />
     <meta property="og:site_name" content="DEXA" />
     <meta property="article:published_time" content="2026-07-07" />
+    <meta property="article:modified_time" content="2026-09-09" />
     <meta property="article:author" content="Deck" />
-    
+    <meta property="article:tag" content="hermes" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="workflow" />
+    <meta property="article:tag" content="memory" />
+    <meta property="article:tag" content="honcho" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Honcho를 붙이면 Hermes 기억은 파일을 넘어 사용자 모델이 된다" />
-    <meta name="twitter:description" content="A practical guide to Hermes Agent's Honcho memory provider: peer modeling, dialectic reasoning, setup boundaries, and when to use it instead of built-in memory alone." />
+    <meta name="twitter:title" content="Hermes Agent Honcho는 기억을 사용자 모델로 확장한다" />
+    <meta name="twitter:description" content="Hermes Agent Honcho를 파일형 기억 위에 붙는 사용자 모델링 계층으로 보고, peer·session·dialectic reasoning의 경계와 built-in memory와의 역할 분담을 정리한다." />
     <meta name="twitter:image" content="https://dexa.art/blog/images/hermes-honcho-memory-cover.png" />
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Honcho를 붙이면 Hermes 기억은 파일을 넘어 사용자 모델이 된다","description":"A practical guide to Hermes Agent's Honcho memory provider: peer modeling, dialectic reasoning, setup boundaries, and when to use it instead of built-in memory alone.","image":"https://dexa.art/blog/images/hermes-honcho-memory-cover.png","datePublished":"2026-07-07","dateModified":"2026-07-07","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-honcho-memory/"},"articleSection":"AI · AX","keywords":""}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"Hermes Agent Honcho는 기억을 사용자 모델로 확장한다","description":"Hermes Agent Honcho를 파일형 기억 위에 붙는 사용자 모델링 계층으로 보고, peer·session·dialectic reasoning의 경계와 built-in memory와의 역할 분담을 정리한다.","image":"https://dexa.art/blog/images/hermes-honcho-memory-cover.png","datePublished":"2026-07-07","dateModified":"2026-09-09","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/hermes-honcho-memory/"},"articleSection":"AI · AX","keywords":"hermes, ai-agent, workflow, memory, honcho"}</script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
@@ -72,14 +77,15 @@
                 <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
                 <div class="dx-meta" style="margin-top:20px;">
                     <span class="dx-badge">AI · AX</span>
-                    <span class="dx-date">Post · 2026.07.07</span>
+                    <span class="dx-date">Article · 2026.07.07</span>
                 </div>
             </div>
             <div class="prose">
-                <h1>Honcho를 붙이면 Hermes 기억은 파일을 넘어 사용자 모델이 된다</h1>
-                <p style="color:var(--muted);font-size:17px;">A practical guide to Hermes Agent's Honcho memory provider: peer modeling, dialectic reasoning, setup boundaries, and when to use it instead of built-in memory alone.</p>
-                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"></div>
+                <h1>Hermes Agent Honcho는 기억을 사용자 모델로 확장한다</h1>
+                <p style="color:var(--muted);font-size:17px;">Hermes Agent Honcho를 파일형 기억 위에 붙는 사용자 모델링 계층으로 보고, peer·session·dialectic reasoning의 경계와 built-in memory와의 역할 분담을 정리한다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">hermes</span><span class="dx-tag-chip">ai-agent</span><span class="dx-tag-chip">workflow</span><span class="dx-tag-chip">memory</span><span class="dx-tag-chip">honcho</span></div>
 <p><img src="/blog/images/hermes-honcho-memory-cover.png" alt="Abstract Honcho memory network cover" loading="lazy"></p>
+<p>짧게 말하면, Hermes Agent Honcho는 기억을 더 많이 저장하는 기능이라기보다 사용자와 에이전트의 관계를 다음 판단에 전달하기 위한 모델링 계층이다. 그래서 이 글은 특정 설정을 늘리는 법보다 built-in memory, session search, 외부 memory provider의 역할을 나누는 쪽에 초점을 둔다.</p>
 <p>Hermes Agent의 기본 memory는 “반복해서 필요한 사실”을 짧게 보관하는 장치다. Honcho는 그 다음 단계다. 대화가 쌓일수록 사용자와 agent의 관계를 peer 단위로 모델링하고, 세션 맥락과 장기 결론을 다음 turn의 판단 재료로 돌려준다.</p>
 <h2>기능 개요 — peer, session, dialectic</h2>
 <p>Honcho는 Hermes의 Memory Provider 시스템에 붙는 외부 기억 backend다. built-in <code>MEMORY.md</code> / <code>USER.md</code>를 대체하지 않고 그 위에 한 층을 더한다. 기본 memory가 사람이 직접 남긴 작고 확실한 사실이라면, Honcho는 대화 메시지, session summary, 사용자 peer card, AI identity card, 그리고 추론된 conclusion을 다룬다.</p>
@@ -117,7 +123,15 @@ hermes memory off</code></pre>
 <p>넷째, 비용과 지연을 조절한다. 긴 작업에는 <code>dialecticDepth</code>를 올릴 수 있지만, 대부분은 낮은 cadence와 얕은 pass로 시작한 뒤 필요할 때 깊게 보는 편이 낫다.</p>
 <h2>언제 Honcho를 쓰나</h2>
 <p>단순 선호와 환경 사실만 필요하면 built-in memory면 충분하다. 과거 대화를 찾아야 하면 session search가 맞다. 여러 agent가 같은 사용자를 장기적으로 이해해야 하거나, 대화의 결론과 현재 세션 요약을 자동으로 다음 turn에 반영하고 싶다면 Honcho를 검토할 차례다. Hermes에서 기억은 저장소 하나가 아니라, 명시적 사실·검색 가능한 기록·추론된 사용자 모델을 나누는 설계다.</p>
+<h2>관련 AX 글</h2>
+<p>Honcho를 더 넓은 에이전트 기억 설계로 보려면 <a href="/blog/posts/agent-memory-fails-at-delivery/">에이전트 기억은 저장보다 전달에서 실패한다</a>, <a href="/blog/posts/long-term-agent-memory-is-a-time-problem/">에이전트의 장기 기억은 검색보다 시간 관리가 어렵다</a>, <a href="/blog/posts/task-specific-context-budgets/">에이전트의 맥락은 작업마다 다시 편성되어야 한다</a>를 함께 읽는 편이 좋다.</p>
             </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
             <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
                 <a id="prev-post" href="/blog/posts/hermes-desktop-native-app/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>Hermes Desktop은 터미널 에이전트를 일상 작업창으로 끌어온다</span></a>
                 <a id="next-post" href="/blog/posts/donna-haraway-and-situated-cyborg-media/" class="spec-row" style="text-decoration:none;"><span>사이보그는 누구의 위치에서 말하는가</span><span class="k">NEXT →</span></a>

@@ -1,5 +1,9 @@
 ---
 type: article
+akmLayer: output
+akmType: output
+trustLevel: reviewed
+track: ai-ax
 title: "AKM — 에이전트에게 지식 운영체계를 주는 법"
 aliases:
   - "Agent Knowledge Management"
@@ -8,17 +12,19 @@ aliases:
 author:
   - "[[육대근]]"
 date created: 2026-06-15
-date modified: 2026-06-15
+date modified: 2026-09-09
 tags:
-  - hermes
+  - article
+  - AI
   - ai-agent
-  - workflow
+  - AKM
+  - knowledge-architecture
   - knowledge-management
-  - memory
-description: AKM(Agent Knowledge Management)은 LLM Wiki식 지식 지도에 운영 기억, 절차, 실행 기록, 검증과 Learn Back 루프를 결합해 에이전트가 다음 실행에서 더 잘 일하게 만드는 Markdown 기반 지식 운영체계다.
+  - context-engineering
+  - markdown
+description: "AKM(Agent Knowledge Management)을 LLM Wiki식 지식 지도, 운영 기억, 절차, 실행 기록, 검증과 Learn Back 루프를 결합한 에이전트용 지식 아키텍처로 정리한다."
 thumbnail: images/akm-agent-knowledge-management-cover.png
 status: completed
-series: hermes-notes
 ---
 
 ![cover](images/akm-agent-knowledge-management-cover.png)
@@ -55,7 +61,7 @@ Brain은 `50-procedures/`, `60-actions/`, `70-evaluation/`이다. 작업을 할 
 
 AKM의 운영 루프는 `Ingest → Classify → Compile → Contextualize → Execute → Verify → Learn Back`이다. 앞부분은 지식을 들여오고 분류하고 연결하는 과정이다. 뒤쪽은 실제 실행과 검증, 그리고 학습의 되먹임이다.
 
-여기서 가장 중요한 단어는 Learn Back이다. 실패를 단순히 “이번 세션의 오류”로 버리지 않고, 어떤 레이어가 고쳐져야 하는지 되돌린다. 같은 실수가 반복되면 `70-evaluation/failure-patterns/`에 기록하고 `40-memory/`에 예방 포인터를 추가한다. 절차대로 했는데 결과가 틀렸다면 `50-procedures/`의 검증 단계를 강화한다. 지식이 오래됐으면 `20-knowledge/`를 고치거나 신뢰도를 낮춘다. 저장 위치를 잘못 골랐다면 `00-system/ROUTER.md` 자체가 보완 대상이 된다.
+여기서 가장 중요한 단어는 Learn Back이다. 실패를 단순히 “이번 세션의 오류”로 버리지 않고, 어떤 레이어가 고쳐져야 하는지 되돌린다. 같은 실수가 반복되면 `70-evaluation/failure-patterns/`에 기록하고 `40-memory/`에 예방 포인터를 추가한다. 절차대로 했는데 결과가 틀렸다면 `50-procedures/`의 검증 단계를 강화한다. 지식이 오래됐으면 `20-knowledge/`를 고치거나 신뢰도를 낮춘다. 저장 위치를 잘못 골랐다면 `99-system/ROUTER.md` 자체가 보완 대상이 된다.
 
 이 점에서 AKM은 “자동으로 진화하는 마법의 메모리”가 아니다. 더 정확히는 에이전트와 사용자가 실패를 어디에 기록하고, 무엇을 고쳐야 다음 실행이 좋아지는지 합의할 수 있게 해 주는 구조다. 자동화보다 중요한 것은 실패를 잃어버리지 않는 라우팅이다.
 
@@ -63,7 +69,7 @@ AKM의 운영 루프는 `Ingest → Classify → Compile → Contextualize → E
 
 사용 방식은 의외로 가볍다. 저장소를 클론하고, 사용하는 도구의 adapter 문서를 고른다. 현재 AKM 저장소에는 [Claude Code adapter](https://github.com/DECK6/akm/blob/main/adapters/claude-code/README.md), [Codex adapter](https://github.com/DECK6/akm/blob/main/adapters/codex/README.md), [OpenClaw adapter](https://github.com/DECK6/akm/blob/main/adapters/openclaw/README.md), 그리고 [custom adapter 안내](https://github.com/DECK6/akm/blob/main/adapters/README.md)가 포함되어 있다.
 
-그 다음 에이전트의 진입점 파일, 예를 들면 `CLAUDE.md`나 `AGENTS.md`에 snippet을 붙이고 실제 AKM 경로를 지정한다. 에이전트가 지식을 저장하거나 찾아야 할 때는 [`00-system/ROUTER.md`](https://github.com/DECK6/akm/blob/main/00-system/ROUTER.md)의 분류 트리를 따라가고, 반복 실행과 피드백은 [`00-system/LOOP.md`](https://github.com/DECK6/akm/blob/main/00-system/LOOP.md)의 루프로 돌아간다. 인스턴스 검증은 [`scripts/lint.mjs`](https://github.com/DECK6/akm/blob/main/scripts/lint.mjs)로 schema, enum, 레이어 배치, 깨진 링크, INDEX 정합성, secret pattern을 점검할 수 있다.
+그 다음 에이전트의 진입점 파일, 예를 들면 `CLAUDE.md`나 `AGENTS.md`에 snippet을 붙이고 실제 AKM 경로를 지정한다. 에이전트가 지식을 저장하거나 찾아야 할 때는 공개 저장소에서 확인되는 [`99-system/ROUTER.md`](https://github.com/DECK6/akm/blob/main/99-system/ROUTER.md)의 분류 트리를 따라가고, 반복 실행과 피드백은 [`99-system/LOOP.md`](https://github.com/DECK6/akm/blob/main/99-system/LOOP.md)의 루프로 돌아간다. 인스턴스 검증은 [`scripts/lint.mjs`](https://github.com/DECK6/akm/blob/main/scripts/lint.mjs)로 schema, enum, 레이어 배치, 깨진 링크, INDEX 정합성, secret pattern을 점검할 수 있다.
 
 공개 저장소는 시스템 파일과 adapter, template, lint 스크립트를 배포한다. 실제 개인 지식이 들어가는 레이어들은 로컬 인스턴스 데이터로 남기는 설계다. 그래서 AKM은 팀이나 개인이 자기 환경에서 사적으로 쓰면서도, core 규칙은 계속 업데이트할 수 있다.
 
@@ -73,4 +79,4 @@ AKM의 운영 루프는 `Ingest → Classify → Compile → Contextualize → E
 
 AKM은 지식 관리를 “많이 저장하기”에서 “어디에 저장해야 다음 실행이 좋아지는가”로 바꾼다. Memory에는 포인터를, Knowledge에는 재사용 지식을, Context에는 특정 프로젝트의 사실을, Procedure에는 반복 절차를, Evaluation에는 실패와 품질 기준을 둔다. 이 단순한 분리만으로도 에이전트의 장기 작업은 훨씬 덜 흐려진다.
 
-시작점은 여기다: [github.com/DECK6/akm](https://github.com/DECK6/akm). AKM은 완성된 보안 제품이나 만능 자동 학습 엔진이 아니라, 파일을 읽고 쓰는 에이전트에게 장기 운영의 뼈대를 제공하는 Markdown 기반 시스템이다. 그 겸손함이 오히려 장점이다. 복잡한 플랫폼을 먼저 세우지 않고도, 오늘의 실패를 내일의 절차와 기억으로 되돌릴 수 있기 때문이다.
+시작점은 여기다: [github.com/DECK6/akm](https://github.com/DECK6/akm). DEXA의 더 넓은 AI · AX 글 흐름은 [/blog/ax/](/blog/ax/)에서 이어진다. AKM은 완성된 보안 제품이나 만능 자동 학습 엔진이 아니라, 파일을 읽고 쓰는 에이전트에게 장기 운영의 뼈대를 제공하는 Markdown 기반 시스템이다. 그 겸손함이 오히려 장점이다. 복잡한 플랫폼을 먼저 세우지 않고도, 오늘의 실패를 내일의 절차와 기억으로 되돌릴 수 있기 때문이다.

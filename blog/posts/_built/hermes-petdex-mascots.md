@@ -1,18 +1,20 @@
 ---
 type: article
-title: "Hermes Pets는 장난감이 아니라 에이전트 상태 표시등이다"
+track: ai-ax
+title: "Hermes Agent Petdex는 에이전트 상태를 보이는 표지로 만든다"
 aliases:
   - "hermes-petdex-mascots"
 author:
   - "Deck"
 date created: 2026-06-25
-date modified: 2026-06-25
+date modified: 2026-09-09
 tags:
+  - article
   - hermes
   - ai-agent
   - workflow
   - petdex
-description: "A practical guide to Hermes Agent Pets: how Petdex mascots install per profile, map agent activity to animation states, render across CLI/TUI/desktop, and stay cosmetic rather than behavioral."
+description: "Hermes Agent Petdex 마스코트를 에이전트 능력이 아니라 CLI·TUI·데스크톱 화면의 상태 표시 레이어로 보고, profile별 표시 경계와 운영상 쓸모를 정리한다."
 thumbnail: images/hermes-petdex-mascots-cover.png
 status: completed
 series: hermes-notes
@@ -26,9 +28,11 @@ localVerification:
   - "active profile display.pet config"
 ---
 
-# Hermes Pets는 장난감이 아니라 에이전트 상태 표시등이다
+# Hermes Agent Petdex는 에이전트 상태를 보이는 표지로 만든다
 
-![Hermes Pets cover](images/hermes-petdex-mascots-cover.png)
+![Hermes Agent Petdex mascots cover](images/hermes-petdex-mascots-cover.png)
+
+짧게 말하면, Hermes Agent Petdex는 에이전트에게 새 능력을 주는 기능이 아니라 지금 어떤 작업 표면이 어떤 상태인지 눈으로 확인하게 해 주는 표시 계층이다. 그래서 이 글은 마스코트의 귀여움보다 profile 경계, 작업 상태, 긴 실행 중의 운영 신호에 초점을 둔다.
 
 Hermes Pets는 CLI, TUI, desktop app에서 움직이는 작은 마스코트를 띄우는 기능입니다. 겉으로는 귀여운 장식처럼 보이지만, 실제 목적은 더 실용적입니다. 에이전트가 idle인지, tool을 실행 중인지, 검토 중인지, 실패했는지를 시각적으로 알려 주는 **상태 표시등**입니다.
 
@@ -100,3 +104,7 @@ Pet은 Hermes 내부의 activity state에 맞춰 움직입니다. tool 실행 �
 ## 언제 쓰면 좋나
 
 Pets는 작업 능력을 늘리는 기능이 아닙니다. Tools, Cron, Kanban, Delegation처럼 에이전트가 할 수 있는 일을 확장하지도 않습니다. 대신 Hermes를 오래 켜 두고 쓰는 사람에게 turn 상태, 실패, 완료, 대기 상태를 낮은 마찰로 보여 줍니다. 기능적으로는 `/status`나 로그를 볼 수 있지만, 매번 명령을 치지 않고도 에이전트의 움직임을 감지하고 싶을 때 Pets가 가장 가볍습니다.
+
+## 관련 AX 글
+
+Petdex를 더 넓은 에이전트 운영 관점에서 보려면 [한 작업을 두 에이전트가 잡았을 때 무엇이 무너지는가](/blog/posts/why-agent-jobs-need-leases-heartbeats-and-fencing-tokens/), [병렬 에이전트가 합류하는 순간, 무엇을 보존해야 하나](/blog/posts/designing-reliable-multi-agent-fan-in/), [AI는 빨라졌는데 왜 일은 늦어졌나](/blog/posts/ai-productivity-is-time-to-validated-outcome/)를 함께 읽는 편이 좋습니다.

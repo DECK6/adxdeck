@@ -13,6 +13,7 @@
     <meta property="og:image" content="https://dexa.art/blog/images/hermes-managed-scope-per-key-policy-cover.png" />
     <meta property="og:site_name" content="DEXA" />
     <meta property="article:published_time" content="2026-07-20" />
+    <meta property="article:modified_time" content="2026-07-20" />
     <meta property="article:author" content="Deck" />
     <meta property="article:tag" content="hermes" />
     <meta property="article:tag" content="ai-agent" />
@@ -111,6 +112,12 @@ hermes doctor</code></pre>
 <ul><li><strong>v1은 Linux/POSIX 우선 기능이다.</strong> macOS와 Windows의 native 관리 위치는 아직 별도 지원 범위가 아니다.</li><li><strong>강제력은 파일 권한에서 온다.</strong> 관리 디렉터리에 쓰기 권한이 있거나 Hermes를 root로 실행하면 경계가 약해진다.</li><li><strong>관리 <code>.env</code>를 비밀 금고로 오해하지 않는다.</strong> 공식 권장 mode <code>0644</code>는 로컬 사용자가 읽을 수 있으므로 공유 API base URL 같은 비민감 값에 한정하고, 민감 키는 Secret Source를 쓴다.</li><li><strong>완전한 sandbox가 아니다.</strong> 관리 env 값은 시작 시 적용되지만 agent가 자신의 subprocess 환경을 바꾸는 것까지 막지는 않는다.</li><li><strong>잘못된 관리 파일은 fail-open이다.</strong> 시작을 막지는 않고 경고와 함께 무시되므로 변경 뒤 <code>hermes doctor</code> 확인이 필수다.</li></ul>
 <p>조직이 소수의 설정을 모든 사용자에게 동일하게 강제해야 할 때는 Managed Scope가 맞다. 역할과 기억을 나누려면 Profiles, 위험 명령을 멈추려면 approvals, 자격 증명을 중앙 회전하려면 Secret Source를 써야 한다. 전체 설정을 잠그지 않고 필요한 키만 정책으로 승격하는 것이 이 기능의 정확한 용도다.</p>
             </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
             <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
                 <a id="prev-post" href="/blog/posts/when-the-camera-stops-imitating-the-eye/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>카메라는 눈을 흉내 내지 않는다</span></a>
                 <a id="next-post" href="/blog/posts/when-information-leaves-its-context/" class="spec-row" style="text-decoration:none;"><span>정보는 맥락을 떠나는 순간 달라진다</span><span class="k">NEXT →</span></a>

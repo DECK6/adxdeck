@@ -13,6 +13,7 @@
     <meta property="og:image" content="https://dexa.art/blog/images/hermes-model-catalog-selector-cover.png" />
     <meta property="og:site_name" content="DEXA" />
     <meta property="article:published_time" content="2026-07-03" />
+    <meta property="article:modified_time" content="2026-07-03" />
     <meta property="article:author" content="Deck" />
     
     <meta name="twitter:card" content="summary_large_image" />
@@ -112,6 +113,12 @@
 <ul><li>model catalog는 인증을 대신하지 않는다. 목록에 보이는 provider라도 API key나 OAuth가 없으면 실제 호출은 실패한다.</li><li>catalog의 <code>description</code>은 선택기 배지 같은 힌트일 뿐, 가격·context length는 보통 provider API나 models.dev 같은 실시간 정보에서 온다.</li><li><code>enabled: false</code>를 설정하면 원격 fetch를 끄고 설치본 스냅샷을 쓴다. 폐쇄망이나 재현성 테스트에는 유용하지만 최신 모델 반영은 늦어진다.</li><li><code>--refresh</code>는 목록 캐시를 다시 받는 기능이지, 현재 실행 중인 세션의 모델을 바꾸는 기능이 아니다. 이미 열린 세션은 시작 시점의 설정을 유지한다.</li><li>커스텀 catalog URL을 쓸 때는 schema version과 provider key를 맞춰야 한다. 알 수 없는 필드는 무시되지만 이해하지 못하는 schema version은 거부될 수 있다.</li></ul>
 <p>Model Catalog는 눈에 잘 띄지 않지만, Hermes를 오래 운영할수록 중요한 기반 기능이다. 모델이 빠르게 바뀌는 시대에는 선택지 목록 자체도 운영 대상이다. 새 모델을 실험하고 싶을 때는 <code>hermes model --refresh</code>로 catalog를 갱신하고, 안정적인 운영에서는 config·cache·fallback을 함께 확인하는 것이 좋다.</p>
             </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
             <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
                 <a id="prev-post" href="/blog/posts/nicole-starosielski-and-undersea-networks/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>클라우드는 결국 바다에 닿는다</span></a>
                 <a id="next-post" href="/blog/posts/hermes-dashboard-extensions/" class="spec-row" style="text-decoration:none;"><span>Hermes 대시보드는 포크 없이 확장된다</span><span class="k">NEXT →</span></a>

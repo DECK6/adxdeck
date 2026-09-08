@@ -13,6 +13,7 @@
     <meta property="og:image" content="https://dexa.art/blog/images/hermes-security-audit-supply-chain-cover.png" />
     <meta property="og:site_name" content="DEXA" />
     <meta property="article:published_time" content="2026-07-18" />
+    <meta property="article:modified_time" content="2026-07-18" />
     <meta property="article:author" content="Deck" />
     <meta property="article:tag" content="hermes" />
     <meta property="article:tag" content="ai-agent" />
@@ -104,6 +105,12 @@ hermes security audit --skip-mcp</code></pre>
 <ul><li><strong>발견 건수만으로 침해를 단정하지 않는다.</strong> 사용하지 않는 코드 경로인지, 외부에 노출되는 서비스인지, 수정 버전으로 올릴 수 있는지까지 함께 판단한다.</li><li><strong>핀 없는 항목은 안전 판정이 아니라 미검사다.</strong> 재현성과 감사 가능성이 중요하면 MCP와 플러그인 의존성을 정확한 버전으로 고정한다.</li><li><strong>JSON을 그대로 공개하지 않는다.</strong> 설치 패키지와 확장 이름은 운영 표면을 드러낼 수 있다. 외부 보고에는 필요한 식별자와 조치만 추린다.</li><li><strong>네트워크 실패와 무취약점을 구분한다.</strong> OSV.dev에 도달하지 못한 감사는 깨끗한 결과가 아니라 종료 코드 2의 실패다.</li></ul>
 <p>의심스러운 명령 실행을 막고 싶다면 approval과 sandbox를, 설정·인증·의존성 상태를 폭넓게 점검하려면 <code>hermes doctor</code>를 먼저 쓴다. 설치된 공급망과 공개 취약점의 교집합을 확인하고 배포 기준에 종료 코드를 연결해야 할 때 Security Audit이 맞는 도구다.</p>
             </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
             <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
                 <a id="prev-post" href="/blog/posts/mark-hansen-and-media-before-consciousness/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>인터페이스는 우리가 느끼기 전에 움직인다</span></a>
                 <a id="next-post" href="/blog/posts/when-enjoyment-becomes-platform-value/" class="spec-row" style="text-decoration:none;"><span>좋아서 한 일이 플랫폼의 자산이 될 때</span><span class="k">NEXT →</span></a>

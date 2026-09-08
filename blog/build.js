@@ -9,6 +9,7 @@
  */
 
 const fs = require('fs');
+const { validateAxTopics, axRelatedHtml, axGuideHtml } = require('./ax-guide');
 const path = require('path');
 const {
     extractGeneratedBlock,
@@ -501,7 +502,7 @@ function postPageHtml(post, bodyHtml, prev, next) {
         'description': desc,
         'image': ogImage,
         'datePublished': post.date,
-        'dateModified': post.date,
+        'dateModified': post.modified,
         'author': { '@type': 'Person', 'name': post.author || 'Deck' },
         'publisher': {
             '@type': 'Organization',
@@ -539,6 +540,7 @@ function postPageHtml(post, bodyHtml, prev, next) {
     <meta property="og:image" content="${escapeAttr(ogImage)}" />
     <meta property="og:site_name" content="DEXA" />
     <meta property="article:published_time" content="${post.date}" />
+    <meta property="article:modified_time" content="${post.modified}" />
     <meta property="article:author" content="${escapeAttr(post.author || 'Deck')}" />
     ${(post.tags || []).map(t => `<meta property="article:tag" content="${escapeAttr(t)}" />`).join('\n    ')}
     <meta name="twitter:card" content="summary_large_image" />
@@ -571,7 +573,7 @@ ${sharedShell.nav}
                 <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;">${tagsHtml}</div>
 ${bodyHtml}
             </div>
-            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+${post.track === 'ai-ax' ? `            ${axRelatedHtml(post)}\n` : ''}            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
                 ${prevLink}
                 ${nextLink}
             </nav>
@@ -638,7 +640,7 @@ function updateBlogIndex(postsPublic) {
                 '@id': `${SITE_URL}/blog/#collection`,
                 'name': 'DEXA Blog',
                 'url': `${SITE_URL}/blog/`,
-                'description': 'DEXA essays on AI, media art, creative technology, and agentic operations.',
+                'description': 'DEXA의 미디어아트와 AI·AX 기록. 업무 설계, 지식 관리, 자동화, 평가·거버넌스와 AI 활용 학습을 다룹니다.',
                 'inLanguage': 'ko-KR',
                 'isPartOf': { '@type': 'WebSite', '@id': `${SITE_URL}/#website` },
                 'mainEntity': { '@id': `${SITE_URL}/blog/#blog` }
@@ -738,6 +740,11 @@ const posts = files.map(filename => {
         trackLabel: trackLabel(resolvedTrack.track),
         tags: displayTags,
         date: normalizePostDate(filename, meta),
+        modified: (() => {
+            const published = normalizePostDate(filename, meta);
+            const modified = toIsoDateOnly(meta['date modified']);
+            return modified && modified >= published && modified <= currentKstDate() ? modified : published;
+        })(),
         thumbnail: meta.thumbnail || '',
         author: Array.isArray(meta.author) ? meta.author[0] : (meta.author || 'Deck'),
         _body: body,
@@ -754,6 +761,9 @@ posts.sort((a, b) => {
     return 0;
 });
 
+// Validate curated links before writing any generated output.
+validateAxTopics(posts);
+
 // The root page is the only shared-shell source. Synchronize the two blog
 // templates before generating static post pages so all derived routes use the
 // same brand, desktop/mobile navigation, and footer markup.
@@ -764,17 +774,18 @@ syncSharedShellTemplate(path.join(__dirname, 'post.html'));
 const BUILT_DIR = path.join(__dirname, 'posts', '_built');
 if (!fs.existsSync(BUILT_DIR)) fs.mkdirSync(BUILT_DIR, { recursive: true });
 
-// Replace generated markdown copies and static post directories only after all
-// source metadata has passed validation.
-fs.readdirSync(BUILT_DIR).filter(f => f.endsWith('.md')).forEach(f => {
-    fs.unlinkSync(path.join(BUILT_DIR, f));
-});
-const postsEntries = fs.readdirSync(POSTS_DIR, { withFileTypes: true });
-postsEntries.forEach(ent => {
-    if (ent.isDirectory() && ent.name !== '_built') {
-        fs.rmSync(path.join(POSTS_DIR, ent.name), { recursive: true, force: true });
-    }
-});
+// Update generated outputs in place. Never permanently delete routes during a
+// routine build. Removed/renamed sources require an explicit redirect decision
+// and moving obsolete output to the system Trash before rebuilding.
+const expectedSlugs = new Set(posts.map(post => post.slug));
+const staleBuilt = fs.readdirSync(BUILT_DIR)
+    .filter(file => file.endsWith('.md') && !expectedSlugs.has(file.slice(0, -3)));
+const staleRoutes = fs.readdirSync(POSTS_DIR, { withFileTypes: true })
+    .filter(entry => entry.isDirectory() && entry.name !== '_built' && !expectedSlugs.has(entry.name))
+    .map(entry => entry.name);
+if (staleBuilt.length || staleRoutes.length) {
+    throw new Error(`Obsolete generated output detected. Review redirects and move it to the system Trash: ${[...staleBuilt, ...staleRoutes].join(', ')}`);
+}
 posts.forEach(post => {
     fs.copyFileSync(
         path.join(POSTS_DIR, post._sourceFilename),
@@ -798,17 +809,22 @@ const postsPublic = posts.map(({ _body, _sourceFilename, _trackSource, _trackRea
 fs.writeFileSync(OUTPUT, JSON.stringify(postsPublic, null, 2), 'utf8');
 updateBlogIndex(postsPublic);
 updateHomePreview(postsPublic);
+const axDir = path.join(__dirname, 'ax');
+fs.mkdirSync(axDir, { recursive: true });
+fs.writeFileSync(path.join(axDir, 'index.html'), axGuideHtml(postsPublic, sharedShell), 'utf8');
 
 // Write sitemap.xml at repo root
 const staticUrls = [
     { loc: `${SITE_URL}/`, priority: '1.0' },
     { loc: `${SITE_URL}/blog/`, priority: '0.9' },
+    { loc: `${SITE_URL}/blog/ax/`, lastmod: '2026-09-09', priority: '0.9' },
+    { loc: `${SITE_URL}/learnmap/`, lastmod: '2026-09-09', priority: '0.7' },
     { loc: `${SITE_URL}/osmu/`, priority: '0.7' },
     { loc: `${SITE_URL}/osmu/fin.html`, priority: '0.6' },
     { loc: `${SITE_URL}/about-deck.html`, priority: '0.5' },
     { loc: `${SITE_URL}/clean/`, lastmod: '2026-08-11', priority: '0.6' },
     { loc: `${SITE_URL}/gptersakm/`, lastmod: '2026-08-16', priority: '0.8' },
-    { loc: `${SITE_URL}/mice-safety/`, lastmod: '2026-05-24', priority: '0.8' },
+    { loc: `${SITE_URL}/mice-safety/`, lastmod: '2026-09-09', priority: '0.8' },
     { loc: `${SITE_URL}/virme/`, lastmod: '2026-08-22', priority: '0.8' }
 ];
 // Guard: build.js is the ONLY author of sitemap.xml. If a new top-level page
@@ -821,7 +837,7 @@ const SITEMAP_INTENTIONALLY_UNLISTED = new Set([
     'docs', 'scripts', 'graphify-out', 'node_modules',
     'akm1w', 'akm2w', 'akm3w', 'akm4w',   // course/student pages, not for search
     'learning-coach-gem', 'mysuni-marketing',
-    'ai-school', 'gapmap', 'gen', 'glsl', 'interactive', 'learnmap',
+    'ai-school', 'gapmap', 'gen', 'glsl', 'interactive',
     'luckydrop', 'nara', 'pitch-lab-v2', 'pitchlab', 'vfx', 'vibecheck'
 ]);
 try {
@@ -842,7 +858,7 @@ try {
 
 const postUrls = posts.map(p => ({
     loc: `${SITE_URL}/blog/posts/${p.slug}/`,
-    lastmod: p.date,
+    lastmod: p.modified,
     priority: '0.8'
 }));
 const allUrls = [...staticUrls, ...postUrls];
