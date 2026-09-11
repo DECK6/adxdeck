@@ -1,5 +1,112 @@
 [
   {
+    "slug": "building-a-small-evaluation-set-before-ai-deployment",
+    "file": "_built/building-a-small-evaluation-set-before-ai-deployment.md",
+    "title": "AI 업무를 배포하기 전에 작은 평가 사례집부터 만드는 법",
+    "description": "대표 사례와 경계 사례, 실패 사례를 작은 평가 사례집으로 묶어 AI 업무의 배포 범위와 검증 기준을 정하는 방법을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "evaluation"
+    ],
+    "date": "2026-09-09",
+    "modified": "2026-09-11",
+    "thumbnail": "images/gpt2-building-a-small-evaluation-set-before-ai-deployment.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "choosing-a-safe-first-ax-experiment",
+    "file": "_built/choosing-a-safe-first-ax-experiment.md",
+    "title": "첫 AX 실험에 넣을 업무를 고르는 기준",
+    "description": "작은 AX 실험에 적합한 업무를 입력 자료, 검토 기준, 실패 비용과 되돌릴 가능성으로 고르고 첫 도입의 범위를 정한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "work-design"
+    ],
+    "date": "2026-09-09",
+    "modified": "2026-09-11",
+    "thumbnail": "images/gpt2-choosing-a-safe-first-ax-experiment.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "drawing-approval-boundaries-before-agent-automation",
+    "file": "_built/drawing-approval-boundaries-before-agent-automation.md",
+    "title": "에이전트에게 일을 맡기기 전에 승인선부터 그리는 법",
+    "description": "에이전트 자동화 전에 제안과 실행을 나누고 사람의 승인선, 권한, 재실행과 실패 복구 기준을 정하는 방법을 설명한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "automation"
+    ],
+    "date": "2026-09-09",
+    "modified": "2026-09-11",
+    "thumbnail": "images/gpt2-drawing-approval-boundaries-before-agent-automation.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "hildegard-westerkamp-and-the-soundwalk",
+    "file": "_built/hildegard-westerkamp-and-the-soundwalk.md",
+    "title": "도시는 걷는 동안 악보가 된다",
+    "description": "힐데가르트 베스터캄프의 사운드워크와 대표작을 따라 듣기가 도시의 배경음을 작품과 비평의 재료로 바꾸는 과정을 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "media-theorist",
+      "hildegard-westerkamp",
+      "soundwalk",
+      "acoustic-ecology",
+      "soundscape-composition"
+    ],
+    "date": "2026-09-09",
+    "modified": "2026-09-11",
+    "thumbnail": "images/gpt2-hildegard-westerkamp-and-the-soundwalk.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "managing-document-lifecycles-before-rag-retrieval",
+    "file": "_built/managing-document-lifecycles-before-rag-retrieval.md",
+    "title": "사내 RAG는 문서를 찾기 전에 문서의 수명을 관리해야 한다",
+    "description": "사내 RAG의 검색 품질을 문서의 권위, 유효 기간, 폐기와 접근 권한 관리에 연결하고 최신 근거를 유지하는 운영 원칙을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "knowledge"
+    ],
+    "date": "2026-09-09",
+    "modified": "2026-09-11",
+    "thumbnail": "images/gpt2-managing-document-lifecycles-before-rag-retrieval.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "turning-personal-ai-practice-into-reproducible-team-learning",
+    "file": "_built/turning-personal-ai-practice-into-reproducible-team-learning.md",
+    "title": "개인의 AI 활용법을 동료가 재현하는 업무 교재로 바꾸기",
+    "description": "개인의 AI 활용 요령을 업무 목적, 자료의 권위, 판단 과정과 검증 기준이 드러나는 재현 가능한 팀 교재로 바꾸는 방법을 설명한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "practice"
+    ],
+    "date": "2026-09-09",
+    "modified": "2026-09-11",
+    "thumbnail": "images/gpt2-turning-personal-ai-practice-into-reproducible-team-learning.png",
+    "author": "육대근"
+  },
+  {
     "slug": "agent-memory-fails-at-delivery",
     "file": "_built/agent-memory-fails-at-delivery.md",
     "title": "에이전트 기억은 저장보다 전달에서 실패한다",
@@ -62,6 +169,48 @@
     "author": "육대근"
   },
   {
+    "slug": "park-hyunki-and-the-material-weight-of-video",
+    "file": "_built/park-hyunki-and-the-material-weight-of-video.md",
+    "title": "돌 사이의 화면은 왜 자연을 대신하지 못하는가",
+    "description": "박현기의 돌과 모니터 설치를 미술관 기록으로 살펴보며 비디오의 물질성과 이미지가 자연을 대신하지 못하는 이유를 읽고, 오늘날의 보존 문제를 필자의 관점에서 짚는다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "korean-media-art",
+      "park-hyunki",
+      "video-art",
+      "installation-art",
+      "materiality",
+      "media-preservation"
+    ],
+    "date": "2026-09-05",
+    "modified": "2026-09-11",
+    "thumbnail": "images/gpt2-park-hyunki-and-the-material-weight-of-video.png",
+    "author": "Deck"
+  },
+  {
+    "slug": "agent-completion-must-be-judged-by-changed-world-state",
+    "file": "_built/agent-completion-must-be-judged-by-changed-world-state.md",
+    "title": "에이전트의 완료는 마지막 문장이 아니라 바뀐 세계에서 판정해야 한다",
+    "description": "도구를 쓰는 에이전트의 성공을 마지막 답변이 아니라 외부 시스템의 최종 상태, 필수 중간 사건, 금지된 부작용, 반복 성공으로 판정하는 런타임 설계를 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "ai-agent",
+      "agent-runtime",
+      "tool-use",
+      "evaluation"
+    ],
+    "date": "2026-08-21",
+    "modified": "2026-09-11",
+    "thumbnail": "images/gpt2-agent-completion-must-be-judged-by-changed-world-state.png",
+    "author": "육대근"
+  },
+  {
     "slug": "who-describes-the-generative-canvas",
     "file": "_built/who-describes-the-generative-canvas.md",
     "title": "생성 캔버스는 누가 설명하는가",
@@ -102,6 +251,28 @@
     "date": "2026-08-19",
     "modified": "2026-08-19",
     "thumbnail": "images/morehshin-allahyari-material-speculation-isis-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "designing-abstention-rules-for-ai-systems",
+    "file": "_built/designing-abstention-rules-for-ai-systems.md",
+    "title": "AI에게 ‘대답하지 않음’을 설계하는 법: 선택적 예측과 기권 규칙",
+    "description": "AI가 답할지, 되물을지, 사람에게 넘길지를 선택하도록 만드는 기권 규칙을 선택적 예측, 불확실성 보정, 위험-응답률 평가, 증거 상태의 관점에서 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "selective-prediction",
+      "abstention",
+      "uncertainty",
+      "evaluation",
+      "human-ai-collaboration",
+      "governance"
+    ],
+    "date": "2026-08-18",
+    "modified": "2026-09-11",
+    "thumbnail": "images/gpt2-designing-abstention-rules-for-ai-systems.png",
     "author": "육대근"
   },
   {
@@ -186,6 +357,27 @@
     "date": "2026-08-16",
     "modified": "2026-08-16",
     "thumbnail": "images/variable-media-artwork-identity-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "how-seoul-mediacity-biennale-turns-the-city-into-a-medium",
+    "file": "_built/how-seoul-mediacity-biennale-turns-the-city-into-a-medium.md",
+    "title": "도시는 무엇을 중계하는가",
+    "description": "서울미디어시티비엔날레의 1996년 전신부터 2025년 제13회까지 살펴보며, 도시가 전시장 밖의 스크린·기억·제도·관객을 연결하는 매체가 되는 방식을 읽는다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "institution",
+      "seoul-mediacity-biennale",
+      "urban-media",
+      "public-art",
+      "media-archaeology"
+    ],
+    "date": "2026-08-15",
+    "modified": "2026-09-11",
+    "thumbnail": "images/gpt2-how-seoul-mediacity-biennale-turns-the-city-into-a-medium.png",
     "author": "육대근"
   },
   {
@@ -335,6 +527,26 @@
     "date": "2026-08-11",
     "modified": "2026-08-11",
     "thumbnail": "images/self-verification-needs-an-evidence-gate-cover.png",
+    "author": "육대근"
+  },
+  {
+    "slug": "agent-experience-becomes-knowledge-when-it-transfers",
+    "file": "_built/agent-experience-becomes-knowledge-when-it-transfers.md",
+    "title": "에이전트의 경험은 전이될 때 지식이 된다",
+    "description": "에이전트의 성공과 실패를 재사용 가능한 지식으로 바꾸려면 무엇을 남기고, 어떻게 반증하며, 언제 전이 검증을 거쳐야 하는지 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "ai-agent",
+      "knowledge-management",
+      "self-improvement",
+      "evaluation"
+    ],
+    "date": "2026-08-10",
+    "modified": "2026-09-11",
+    "thumbnail": "images/gpt2-agent-experience-becomes-knowledge-when-it-transfers.png",
     "author": "육대근"
   },
   {

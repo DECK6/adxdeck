@@ -290,28 +290,45 @@ function normalizeContentUrl(url) {
 }
 
 function renderInline(text) {
-    // Escape HTML first
-    let out = escapeHtml(text);
-    // Protect inline code before emphasis parsing so `ha_*` does not become broken italic HTML.
-    const codeSpans = [];
-    out = out.replace(/`([^`]+)`/g, (_m, code) => {
-        const token = `\u0000CODE${codeSpans.length}\u0000`;
-        codeSpans.push(`<code>${code}</code>`);
-        return token;
-    });
-    // Images: ![alt](url)
-    out = out.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_m, alt, url) =>
-        `<img src="${escapeAttr(normalizeContentUrl(url))}" alt="${escapeAttr(alt)}" loading="lazy">`);
-    // Links: [text](url)
-    out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_m, txt, url) =>
-        `<a href="${escapeAttr(normalizeContentUrl(url))}">${txt}</a>`);
-    // Bold: **text**
+    // Parse raw destinations before HTML escaping. Protect generated tags from
+    // emphasis parsing so URL punctuation cannot turn into attribute markup.
+    const fragments = [];
+    const protect = html => `\u0000INLINE${fragments.push(html) - 1}\u0000`;
+    const pattern = /`([^`]+)`|(!?)\[([^\]]*)\]\(/g;
+    let out = '';
+    let cursor = 0;
+    let match;
+    while ((match = pattern.exec(text))) {
+        out += escapeHtml(text.slice(cursor, match.index));
+        if (match[1] !== undefined) {
+            out += protect(`<code>${escapeHtml(match[1])}</code>`);
+        } else {
+            // Balanced parentheses belong to the URL, including nested URLs.
+            const start = pattern.lastIndex;
+            let end = start;
+            let depth = 1;
+            for (; end < text.length; end++) {
+                if (text[end] === '\\' && end + 1 < text.length) { end++; continue; }
+                if (text[end] === '(') depth++;
+                if (text[end] === ')' && --depth === 0) break;
+            }
+            if (depth !== 0) {
+                out += escapeHtml(match[0]);
+            } else {
+                const url = escapeAttr(normalizeContentUrl(text.slice(start, end)));
+                const label = match[3];
+                out += protect(match[2]
+                    ? `<img src="${url}" alt="${escapeAttr(label)}" loading="lazy">`
+                    : `<a href="${url}">${renderInline(label)}</a>`);
+                pattern.lastIndex = end + 1;
+            }
+        }
+        cursor = pattern.lastIndex;
+    }
+    out += escapeHtml(text.slice(cursor));
     out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    // Italic: *text*
     out = out.replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
-    // Restore inline code spans.
-    out = out.replace(/\u0000CODE(\d+)\u0000/g, (_m, idx) => codeSpans[Number(idx)] || '');
-    return out;
+    return out.replace(/\u0000INLINE(\d+)\u0000/g, (_m, idx) => fragments[Number(idx)] || '');
 }
 
 function parseTableRow(line) {

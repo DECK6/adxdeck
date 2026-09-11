@@ -184,7 +184,7 @@ img{max-width:100%;display:block;}
 /* --------------------------------------------------------------------------
    ARTICLE PROSE (blog posts) — reading on Paper, code on Ink
    -------------------------------------------------------------------------- */
-.prose{max-width:720px;font-size:16.5px;line-height:1.75;color:var(--ink);}
+.prose{min-width:0;overflow-wrap:anywhere;max-width:720px;font-size:16.5px;line-height:1.75;color:var(--ink);}
 .prose h1{font-size:clamp(30px,4vw,44px);line-height:1.2;letter-spacing:-0.02em;font-weight:700;margin:0 0 16px;}
 .prose h2{font-size:26px;font-weight:700;letter-spacing:-0.02em;margin:48px 0 16px;padding-top:24px;border-top:1px solid var(--line);}
 .prose h3{font-size:20px;font-weight:600;margin:36px 0 12px;}

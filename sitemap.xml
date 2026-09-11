@@ -51,6 +51,36 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dexa.art/blog/posts/building-a-small-evaluation-set-before-ai-deployment/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dexa.art/blog/posts/choosing-a-safe-first-ax-experiment/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dexa.art/blog/posts/drawing-approval-boundaries-before-agent-automation/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dexa.art/blog/posts/hildegard-westerkamp-and-the-soundwalk/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dexa.art/blog/posts/managing-document-lifecycles-before-rag-retrieval/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dexa.art/blog/posts/turning-personal-ai-practice-into-reproducible-team-learning/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dexa.art/blog/posts/agent-memory-fails-at-delivery/</loc>
     <lastmod>2026-09-07</lastmod>
     <priority>0.8</priority>
@@ -66,6 +96,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dexa.art/blog/posts/park-hyunki-and-the-material-weight-of-video/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dexa.art/blog/posts/agent-completion-must-be-judged-by-changed-world-state/</loc>
+    <lastmod>2026-09-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dexa.art/blog/posts/who-describes-the-generative-canvas/</loc>
     <lastmod>2026-08-21</lastmod>
     <priority>0.8</priority>
@@ -73,6 +113,11 @@
   <url>
     <loc>https://dexa.art/blog/posts/can-destroyed-artifacts-return-as-data/</loc>
     <lastmod>2026-08-19</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dexa.art/blog/posts/designing-abstention-rules-for-ai-systems/</loc>
+    <lastmod>2026-09-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -93,6 +138,11 @@
   <url>
     <loc>https://dexa.art/blog/posts/variable-media-and-the-identity-of-artworks/</loc>
     <lastmod>2026-08-16</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dexa.art/blog/posts/how-seoul-mediacity-biennale-turns-the-city-into-a-medium/</loc>
+    <lastmod>2026-09-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>
@@ -128,6 +178,11 @@
   <url>
     <loc>https://dexa.art/blog/posts/self-verification-needs-an-evidence-gate/</loc>
     <lastmod>2026-08-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://dexa.art/blog/posts/agent-experience-becomes-knowledge-when-it-transfers/</loc>
+    <lastmod>2026-09-11</lastmod>
     <priority>0.8</priority>
   </url>
   <url>

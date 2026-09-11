@@ -8,35 +8,35 @@ const AX_TOPICS = Object.freeze([
         question: 'AI를 어디에 도입하고, 무엇을 성과로 볼까요?',
         description: '반복 업무 하나를 고르고 입력·산출물·완료 기준부터 정합니다. 초안 생성 속도뿐 아니라 사람이 검토하고 다시 작업하는 시간까지 함께 살펴봅니다.',
         action: '첫 실험: 같은 종류의 업무를 기존 방식과 AI 보조 방식으로 수행하고, 품질 기준을 통과하기까지의 시간을 비교하세요.',
-        slugs: ['ai-productivity-is-time-to-validated-outcome']
+        slugs: ['choosing-a-safe-first-ax-experiment', 'ai-productivity-is-time-to-validated-outcome']
     },
     {
         id: 'knowledge', label: '지식 관리와 RAG',
         question: 'AI가 우리 자료를 맥락에 맞게 쓰게 하려면?',
         description: '문서를 많이 저장하는 것과 필요한 근거를 제때 전달하는 것은 다릅니다. 지식 구조, 문맥을 보존하는 검색, 출처와 유효 기간을 함께 다룹니다.',
         action: '첫 실험: 자주 묻는 질문 몇 개에 답할 자료를 정하고, 답변에서 원문과 최신성을 확인할 수 있는지 검사하세요.',
-        slugs: ['agent-knowledge-management', 'retrieval-chunks-should-keep-document-context', 'knowledge-graphs-need-an-evidence-contract']
+        slugs: ['managing-document-lifecycles-before-rag-retrieval', 'agent-experience-becomes-knowledge-when-it-transfers', 'agent-knowledge-management', 'retrieval-chunks-should-keep-document-context', 'knowledge-graphs-need-an-evidence-contract']
     },
     {
         id: 'automation', label: '워크플로와 에이전트 자동화',
         question: '한 번의 성공을 반복 가능한 업무로 바꾸려면?',
         description: '실행 단계와 상태, 사람의 승인 지점, 실패 뒤 복구 경로를 설계합니다. 도구가 바뀌어도 필요한 재시도·중복 방지·결과 인수 원칙부터 읽습니다.',
         action: '첫 실험: 외부 전송이나 결제 없는 작은 작업으로 시작하고, 중간 실패와 재실행 때 결과가 중복되지 않는지 확인하세요.',
-        slugs: ['when-agent-loops-need-control-graphs', 'agent-retries-need-idempotency-and-receipts', 'designing-reliable-multi-agent-fan-in']
+        slugs: ['drawing-approval-boundaries-before-agent-automation', 'when-agent-loops-need-control-graphs', 'agent-retries-need-idempotency-and-receipts', 'designing-reliable-multi-agent-fan-in']
     },
     {
         id: 'evaluation', label: '평가와 거버넌스',
         question: '그럴듯한 답과 실제로 쓸 수 있는 결과를 어떻게 구분할까요?',
         description: '출력 형식, 사실 근거, 실행 권한은 서로 다른 검사 대상입니다. 자동 검증과 사람의 판단을 나누고, 실패가 다음 운영 기준을 바꾸게 합니다.',
         action: '첫 실험: 통과·실패 사례와 승인 책임자를 먼저 정하고, 답변과 실제 근거를 분리해서 검토하세요.',
-        slugs: ['self-verification-needs-an-evidence-gate', 'format-compliance-is-not-verification', 'evaluating-evidence-beyond-fluent-reports']
+        slugs: ['building-a-small-evaluation-set-before-ai-deployment', 'agent-completion-must-be-judged-by-changed-world-state', 'designing-abstention-rules-for-ai-systems', 'self-verification-needs-an-evidence-gate', 'format-compliance-is-not-verification', 'evaluating-evidence-beyond-fluent-reports']
     },
     {
         id: 'practice', label: 'AI 활용 학습과 제작',
         question: '개인의 실험을 팀이 이어 쓸 수 있는 방법으로 만들려면?',
         description: '프롬프트 묘기보다 목표, 작업 맥락, 도구 권한, 검증 가능한 결과를 먼저 배웁니다. 실습에서 남긴 판단 기준과 시행착오를 다음 사람에게 전달합니다.',
         action: '첫 실험: 작은 제작 과제 하나를 골라 목표·입력 자료·실행 단계·검증 결과를 남기고, 다른 사람이 재현할 수 있는지 확인하세요.',
-        slugs: ['vibe-coding-in-2026', 'task-specific-context-budgets']
+        slugs: ['turning-personal-ai-practice-into-reproducible-team-learning', 'vibe-coding-in-2026', 'task-specific-context-budgets']
     }
 ]);
 

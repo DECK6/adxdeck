@@ -1,0 +1,40 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Prose overflow regression</title>
+<h1>Prose overflow regression</h1>
+<pre id="result">Running</pre>
+<div id="frames"></div>
+<script>
+// Serve the repository root, then open this fixture through Aside.
+// Checks actual browser layout using the shared theme, including pre scrolling.
+(async () => {
+    const theme = new URL('../../dexa-theme.css', location.href).href;
+    const url = 'https://example.test/' + 'longurl'.repeat(85) + '?first=1&second=2';
+    const results = [];
+    for (const width of [320, 375, 768]) {
+        for (const layout of ['block', 'flex']) {
+            const frame = document.createElement('iframe');
+            frame.width = width;
+            frame.height = 220;
+            const loaded = new Promise(resolve => frame.onload = resolve);
+            frame.srcdoc = `<link rel="stylesheet" href="${theme}">
+                <main style="padding:24px;display:${layout}">
+                <article class="prose"><h2>Long citations</h2>
+                <p>${url}</p><ul><li><a href="#">${url}</a></li></ul>
+                <blockquote>${url}</blockquote><p><code>${url}</code></p>
+                <pre><code>${url}</code></pre></article></main>`;
+            document.querySelector('#frames').append(frame);
+            await loaded;
+            const doc = frame.contentDocument;
+            const pre = doc.querySelector('pre');
+            results.push({ width, layout, clientWidth: doc.documentElement.clientWidth,
+                scrollWidth: doc.documentElement.scrollWidth,
+                preScrolls: pre.scrollWidth > pre.clientWidth,
+                pass: doc.documentElement.scrollWidth <= doc.documentElement.clientWidth });
+        }
+    }
+    const pass = results.every(row => row.pass && row.preScrolls);
+    document.querySelector('#result').textContent = JSON.stringify({ pass, results }, null, 2);
+    if (!pass) throw new Error('Prose overflows its viewport or pre lost internal scrolling');
+})();
+</script>

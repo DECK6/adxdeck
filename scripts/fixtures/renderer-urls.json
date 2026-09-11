@@ -1,0 +1,37 @@
+[
+  {
+    "name": "citation",
+    "url": "https://hildegardwesterkamp.ca/writings/writings-by/?post_id=13&title=soundwalking",
+    "normalized": "https://hildegardwesterkamp.ca/writings/writings-by/?post_id=13&title=soundwalking"
+  },
+  {
+    "name": "literal entity",
+    "url": "https://example.test/?literal=&amp;title=x&numeric=&#39;&quote=&quot;",
+    "normalized": "https://example.test/?literal=&amp;title=x&numeric=&#39;&quote=&quot;"
+  },
+  {
+    "name": "quotes",
+    "url": "https://example.test/?author=O'Brien&title=\"sound\"",
+    "normalized": "https://example.test/?author=O'Brien&title=\"sound\""
+  },
+  {
+    "name": "nested punctuation",
+    "url": "https://example.test/a_(b_(c))?next=https://other.test/(d(e))&x=1#part",
+    "normalized": "https://example.test/a_(b_(c))?next=https://other.test/(d(e))&x=1#part"
+  },
+  {
+    "name": "emphasis punctuation",
+    "url": "https://example.test/?glob=ha_*&match=**value**",
+    "normalized": "https://example.test/?glob=ha_*&match=**value**"
+  },
+  {
+    "name": "relative image",
+    "url": "images/a(b).png?x=1&title=\"image\"",
+    "normalized": "/blog/images/a(b).png?x=1&title=\"image\""
+  },
+  {
+    "name": "attribute injection",
+    "url": "https://example.test/?q=\" onmouseover=\"alert(1)&tag=<svg>",
+    "normalized": "https://example.test/?q=\" onmouseover=\"alert(1)&tag=<svg>"
+  }
+]
