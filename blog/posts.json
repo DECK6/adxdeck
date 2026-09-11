@@ -1,5 +1,26 @@
 [
   {
+    "slug": "emergence-and-local-rules-in-media-art",
+    "file": "_built/emergence-and-local-rules-in-media-art.md",
+    "title": "새 떼의 움직임은 어디에 쓰여 있는가",
+    "description": "Boids의 국소 규칙과 필립 갤런터의 복잡계 논의를 따라 미디어아트의 창발을 살핀다. 미리 정한 군무, 무작위 변화, 이웃 간 상호작용을 구별하고 작품 설명과 제작 실험에 적용할 기준을 제안한다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "emergence",
+      "generative-art",
+      "boids",
+      "complex-systems"
+    ],
+    "date": "2026-09-12",
+    "modified": "2026-09-12",
+    "thumbnail": "images/emergence-local-rules-flocking-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "building-a-small-evaluation-set-before-ai-deployment",
     "file": "_built/building-a-small-evaluation-set-before-ai-deployment.md",
     "title": "AI 업무를 배포하기 전에 작은 평가 사례집부터 만드는 법",
