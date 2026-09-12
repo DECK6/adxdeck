@@ -56,6 +56,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dexa.art/blog/posts/missing-data-is-not-false-shacl-validation-boundaries/</loc>
+    <lastmod>2026-09-12</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dexa.art/blog/posts/building-a-small-evaluation-set-before-ai-deployment/</loc>
     <lastmod>2026-09-11</lastmod>
     <priority>0.8</priority>

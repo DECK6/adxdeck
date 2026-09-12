@@ -21,6 +21,27 @@
     "author": "육대근"
   },
   {
+    "slug": "missing-data-is-not-false-shacl-validation-boundaries",
+    "file": "_built/missing-data-is-not-false-shacl-validation-boundaries.md",
+    "title": "빠진 정보는 거짓이 아니다: SHACL로 업무 그래프의 입력 경계를 세우기",
+    "description": "OWL의 열린 세계 추론과 SHACL의 데이터 그래프 검증을 구별하고, shape target·검증 보고서·폐쇄 조건으로 업무상 필수 정보의 누락을 다루는 설계 원칙을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "graph-engineering",
+      "SHACL",
+      "OWL",
+      "data-validation",
+      "knowledge-graph"
+    ],
+    "date": "2026-09-12",
+    "modified": "2026-09-12",
+    "thumbnail": "images/missing-data-is-not-false-shacl-validation-boundaries-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "building-a-small-evaluation-set-before-ai-deployment",
     "file": "_built/building-a-small-evaluation-set-before-ai-deployment.md",
     "title": "AI 업무를 배포하기 전에 작은 평가 사례집부터 만드는 법",

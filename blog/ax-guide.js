@@ -15,7 +15,7 @@ const AX_TOPICS = Object.freeze([
         question: 'AI가 우리 자료를 맥락에 맞게 쓰게 하려면?',
         description: '문서를 많이 저장하는 것과 필요한 근거를 제때 전달하는 것은 다릅니다. 지식 구조, 문맥을 보존하는 검색, 출처와 유효 기간을 함께 다룹니다.',
         action: '첫 실험: 자주 묻는 질문 몇 개에 답할 자료를 정하고, 답변에서 원문과 최신성을 확인할 수 있는지 검사하세요.',
-        slugs: ['managing-document-lifecycles-before-rag-retrieval', 'agent-experience-becomes-knowledge-when-it-transfers', 'agent-knowledge-management', 'retrieval-chunks-should-keep-document-context', 'knowledge-graphs-need-an-evidence-contract']
+        slugs: ['managing-document-lifecycles-before-rag-retrieval', 'agent-experience-becomes-knowledge-when-it-transfers', 'agent-knowledge-management', 'retrieval-chunks-should-keep-document-context', 'knowledge-graphs-need-an-evidence-contract', 'missing-data-is-not-false-shacl-validation-boundaries']
     },
     {
         id: 'automation', label: '워크플로와 에이전트 자동화',
