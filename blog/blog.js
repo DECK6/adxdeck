@@ -11,6 +11,14 @@
         'ai-ax': 'AI · AX'
     });
     const VALID_TRACKS = new Set(Object.keys(TRACK_LABELS));
+    const VALID_MEDIA_ART_FIELDS = new Set([
+        'intro-concepts',
+        'artists-artworks',
+        'senses-forms',
+        'technology-making',
+        'society-power',
+        'institutions-infrastructure'
+    ]);
 
     const isLegacyPostPage = window.location.pathname.includes('post.html');
 
@@ -80,35 +88,63 @@
 
     function buildFilters() {
         const filterBar = document.getElementById('filter-bar');
+        const fieldBar = document.getElementById('media-art-filter-bar');
+        const status = document.getElementById('filter-status');
         if (!filterBar) return;
 
-        const applyFilter = (filter, updateUrl = false) => {
-            const resolved = VALID_TRACKS.has(filter) ? filter : 'all';
+        const applyFilters = (filter, field, historyMode = '') => {
+            let resolvedTrack = VALID_TRACKS.has(filter) ? filter : 'all';
+            let resolvedField = VALID_MEDIA_ART_FIELDS.has(field) ? field : 'all';
+            if (resolvedField !== 'all') resolvedTrack = 'media-art';
+            if (resolvedTrack !== 'media-art') resolvedField = 'all';
+
             filterBar.querySelectorAll('.dx-tag-chip').forEach(button => {
-                const isActive = button.dataset.filter === resolved;
+                const isActive = button.dataset.filter === resolvedTrack;
                 button.classList.toggle('active', isActive);
                 button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
             });
-            document.querySelectorAll('#post-grid .post-card').forEach(card => {
-                card.hidden = resolved !== 'all' && card.dataset.track !== resolved;
+            fieldBar?.querySelectorAll('.dx-tag-chip').forEach(button => {
+                const isActive = button.dataset.field === resolvedField && resolvedTrack === 'media-art';
+                button.classList.toggle('active', isActive);
+                button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
             });
 
-            if (updateUrl) {
+            let renderedCount = 0;
+            document.querySelectorAll('#post-grid .post-card').forEach(card => {
+                const wrongTrack = resolvedTrack !== 'all' && card.dataset.track !== resolvedTrack;
+                const wrongField = resolvedField !== 'all' && card.dataset.mediaArtField !== resolvedField;
+                card.hidden = wrongTrack || wrongField;
+                if (!card.hidden) renderedCount += 1;
+            });
+            if (status) status.textContent = `${renderedCount} POSTS`;
+
+            if (historyMode) {
                 const url = new URL(window.location.href);
-                if (resolved === 'all') url.searchParams.delete('track');
-                else url.searchParams.set('track', resolved);
-                window.history.replaceState(null, '', url);
+                if (resolvedTrack === 'all') url.searchParams.delete('track');
+                else url.searchParams.set('track', resolvedTrack);
+                if (resolvedField === 'all') url.searchParams.delete('field');
+                else url.searchParams.set('field', resolvedField);
+                window.history[historyMode === 'push' ? 'pushState' : 'replaceState'](null, '', url);
             }
         };
 
         filterBar.addEventListener('click', (e) => {
             const btn = e.target.closest('.dx-tag-chip');
             if (!btn || !filterBar.contains(btn)) return;
-            applyFilter(btn.dataset.filter, true);
+            applyFilters(btn.dataset.filter, 'all', 'push');
+        });
+        fieldBar?.addEventListener('click', (e) => {
+            const btn = e.target.closest('.dx-tag-chip');
+            if (!btn || !fieldBar.contains(btn)) return;
+            applyFilters('media-art', btn.dataset.field, 'push');
         });
 
-        const requestedTrack = new URLSearchParams(window.location.search).get('track');
-        applyFilter(requestedTrack || 'all');
+        const applyUrlState = () => {
+            const params = new URLSearchParams(window.location.search);
+            applyFilters(params.get('track') || 'all', params.get('field') || 'all');
+        };
+        window.addEventListener('popstate', applyUrlState);
+        applyUrlState();
     }
 
     function renderPostCards(posts) {
@@ -122,16 +158,20 @@
             card.className = 'post-card panel-card';
             card.dataset.track = post.track;
             card.dataset.category = post.category;
+            card.dataset.mediaArtField = post.mediaArtCategorySlug || '';
             card.setAttribute('aria-label', `Read ${post.title}`);
 
             const trackLabel = post.trackLabel || TRACK_LABELS[post.track] || post.track;
+            const cardType = post.mediaArtCategory
+                ? `${post.mediaArtCategory} · ${post.category}`
+                : post.category;
 
             card.innerHTML = `
                 ${post.thumbnail
                     ? `<div class="card-frame"><img src="${escapeHtml(blogAssetUrl(post.thumbnail))}" alt="${escapeHtml(post.title)}" loading="lazy"></div>`
                     : ''
                 }
-                <span class="dx-meta"><span class="dx-badge">${escapeHtml(trackLabel)}</span><span class="dx-date">${escapeHtml(post.category)} · ${formatDate(post.date)}</span></span>
+                <span class="dx-meta"><span class="dx-badge">${escapeHtml(trackLabel)}</span><span class="dx-date">${escapeHtml(cardType)} · ${formatDate(post.date)}</span></span>
                 <h3>${escapeHtml(post.title)}</h3>
                 <p>${escapeHtml(post.description)}</p>
                 <span class="dx-more">READ MORE →</span>`;

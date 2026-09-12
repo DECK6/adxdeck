@@ -18,7 +18,16 @@
     "date": "2026-09-12",
     "modified": "2026-09-12",
     "thumbnail": "images/emergence-local-rules-flocking-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-theory",
+      "emergence",
+      "generative-art",
+      "boids",
+      "complex-systems"
+    ]
   },
   {
     "slug": "missing-data-is-not-false-shacl-validation-boundaries",
@@ -112,7 +121,17 @@
     "date": "2026-09-09",
     "modified": "2026-09-11",
     "thumbnail": "images/gpt2-hildegard-westerkamp-and-the-soundwalk.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-theory",
+      "media-theorist",
+      "hildegard-westerkamp",
+      "soundwalk",
+      "acoustic-ecology",
+      "soundscape-composition"
+    ]
   },
   {
     "slug": "managing-document-lifecycles-before-rag-retrieval",
@@ -230,7 +249,17 @@
     "date": "2026-09-05",
     "modified": "2026-09-11",
     "thumbnail": "images/gpt2-park-hyunki-and-the-material-weight-of-video.png",
-    "author": "Deck"
+    "author": "Deck",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "korean-media-art",
+      "park-hyunki",
+      "video-art",
+      "installation-art",
+      "materiality",
+      "media-preservation"
+    ]
   },
   {
     "slug": "agent-completion-must-be-judged-by-changed-world-state",
@@ -271,7 +300,16 @@
     "date": "2026-08-21",
     "modified": "2026-08-21",
     "thumbnail": "images/who-describes-the-generative-canvas-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "accessibility",
+      "creative-coding",
+      "generative-art",
+      "p5js",
+      "canvas-description"
+    ]
   },
   {
     "slug": "can-destroyed-artifacts-return-as-data",
@@ -293,7 +331,17 @@
     "date": "2026-08-19",
     "modified": "2026-08-19",
     "thumbnail": "images/morehshin-allahyari-material-speculation-isis-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "international-artist",
+      "morehshin-allahyari",
+      "3d-printing",
+      "digital-archive",
+      "cultural-heritage",
+      "counter-archive"
+    ]
   },
   {
     "slug": "designing-abstention-rules-for-ai-systems",
@@ -336,7 +384,16 @@
     "date": "2026-08-18",
     "modified": "2026-08-18",
     "thumbnail": "images/yunchul-kim-nervous-system-of-matter-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "korean-media-art",
+      "yunchul-kim",
+      "art-science",
+      "kinetic-installation",
+      "material-systems"
+    ]
   },
   {
     "slug": "ai-productivity-is-time-to-validated-outcome",
@@ -377,7 +434,16 @@
     "date": "2026-08-17",
     "modified": "2026-08-17",
     "thumbnail": "images/experiments-in-art-and-technology-collaboration-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-art-history",
+      "experiments-in-art-and-technology",
+      "art-and-technology",
+      "artist-engineer-collaboration",
+      "institution"
+    ]
   },
   {
     "slug": "variable-media-and-the-identity-of-artworks",
@@ -399,7 +465,17 @@
     "date": "2026-08-16",
     "modified": "2026-08-16",
     "thumbnail": "images/variable-media-artwork-identity-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-theory",
+      "variable-media",
+      "preservation",
+      "conservation",
+      "technology-based-art",
+      "museum-practice"
+    ]
   },
   {
     "slug": "how-seoul-mediacity-biennale-turns-the-city-into-a-medium",
@@ -420,7 +496,16 @@
     "date": "2026-08-15",
     "modified": "2026-09-11",
     "thumbnail": "images/gpt2-how-seoul-mediacity-biennale-turns-the-city-into-a-medium.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "institution",
+      "seoul-mediacity-biennale",
+      "urban-media",
+      "public-art",
+      "media-archaeology"
+    ]
   },
   {
     "slug": "retrieval-chunks-should-keep-document-context",
@@ -484,7 +569,17 @@
     "date": "2026-08-14",
     "modified": "2026-08-14",
     "thumbnail": "images/joan-jonas-video-mirror-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "international-artist",
+      "joan-jonas",
+      "video-art",
+      "performance-art",
+      "video-mirror",
+      "vertical-roll"
+    ]
   },
   {
     "slug": "laura-u-marks-and-haptic-visuality",
@@ -506,7 +601,17 @@
     "date": "2026-08-13",
     "modified": "2026-08-13",
     "thumbnail": "images/laura-marks-haptic-visuality-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-theory",
+      "media-theorist",
+      "laura-u-marks",
+      "haptic-visuality",
+      "intercultural-cinema",
+      "embodied-media"
+    ]
   },
   {
     "slug": "critical-making-changes-the-question",
@@ -527,7 +632,16 @@
     "date": "2026-08-12",
     "modified": "2026-08-12",
     "thumbnail": "images/critical-making-changes-the-question.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-theory",
+      "critical-making",
+      "maker-culture",
+      "art-and-technology",
+      "workshop-method"
+    ]
   },
   {
     "slug": "nam-june-paik-and-the-uneven-satellite-stage",
@@ -548,7 +662,16 @@
     "date": "2026-08-11",
     "modified": "2026-08-11",
     "thumbnail": "images/nam-june-paik-uneven-satellite-stage-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "korean-media-art",
+      "nam-june-paik",
+      "satellite-art",
+      "television",
+      "live-broadcast"
+    ]
   },
   {
     "slug": "self-verification-needs-an-evidence-gate",
@@ -630,7 +753,17 @@
     "date": "2026-08-09",
     "modified": "2026-08-09",
     "thumbnail": "images/ars-electronica-institutional-ecosystem-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-theory",
+      "ars-electronica",
+      "media-art-institution",
+      "festival-ecosystem",
+      "curating",
+      "public-pedagogy"
+    ]
   },
   {
     "slug": "sabrina-ratte-and-synthetic-ecologies",
@@ -653,7 +786,18 @@
     "date": "2026-08-08",
     "modified": "2026-08-08",
     "thumbnail": "images/sabrina-ratte-synthetic-ecologies-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "international-artist",
+      "sabrina-ratte",
+      "synthetic-ecology",
+      "CGI",
+      "anthropocene",
+      "installation",
+      "AI-art"
+    ]
   },
   {
     "slug": "prefix-caching-reuses-computation-not-memory",
@@ -713,7 +857,14 @@
     "date": "2026-08-02",
     "modified": "2026-08-02",
     "thumbnail": "images/media-art-is-not-the-name-of-a-technology.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "ai-art",
+      "bioart",
+      "hideo-iwasaki"
+    ]
   },
   {
     "slug": "why-seedance-prompts-need-explicit-reference-roles",
@@ -755,7 +906,16 @@
     "date": "2026-07-30",
     "modified": "2026-07-30",
     "thumbnail": "images/hallucination-error-and-art-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-theory",
+      "hallucination",
+      "generative-ai",
+      "ai-art",
+      "epistemology"
+    ]
   },
   {
     "slug": "long-term-agent-memory-is-a-time-problem",
@@ -796,7 +956,15 @@
     "date": "2026-07-29",
     "modified": "2026-07-29",
     "thumbnail": "images/choe-uram-machine-organisms-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "choe-u-ram",
+      "kinetic-sculpture",
+      "robotic-art",
+      "korean-media-art"
+    ]
   },
   {
     "slug": "how-digital-art-entered-the-museum",
@@ -817,7 +985,16 @@
     "date": "2026-07-28",
     "modified": "2026-07-28",
     "thumbnail": "images/how-digital-art-entered-the-museum-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-theory",
+      "christiane-paul",
+      "digital-art",
+      "curating",
+      "preservation"
+    ]
   },
   {
     "slug": "knowledge-graphs-need-an-evidence-contract",
@@ -859,7 +1036,16 @@
     "date": "2026-07-27",
     "modified": "2026-07-27",
     "thumbnail": "images/fluxus-object-to-event-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "media-theory",
+      "fluxus",
+      "event-score",
+      "performance-art",
+      "intermedia"
+    ]
   },
   {
     "slug": "format-compliance-is-not-verification",
@@ -899,7 +1085,15 @@
     "date": "2026-07-26",
     "modified": "2026-07-26",
     "thumbnail": "images/anna-ridler-handmade-dataset-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "anna-ridler",
+      "dataset",
+      "machine-learning",
+      "generative-art"
+    ]
   },
   {
     "slug": "evaluating-evidence-beyond-fluent-reports",
@@ -962,7 +1156,18 @@
     "date": "2026-07-25",
     "modified": "2026-07-25",
     "thumbnail": "images/machine-vision-does-not-see-everyone-equally-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "joy-buolamwini",
+      "gender-shades",
+      "machine-vision",
+      "algorithmic-bias",
+      "facial-analysis",
+      "AI"
+    ]
   },
   {
     "slug": "task-specific-context-budgets",
@@ -1043,7 +1248,17 @@
     "date": "2026-07-24",
     "modified": "2026-07-24",
     "thumbnail": "images/the-observer-is-inside-the-system-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-theory",
+      "second-order-cybernetics",
+      "cybernetics",
+      "observer",
+      "feedback",
+      "AI"
+    ]
   },
   {
     "slug": "hermes-send-script-output-delivery",
@@ -1085,7 +1300,18 @@
     "date": "2026-07-23",
     "modified": "2026-07-23",
     "thumbnail": "images/orgnets-collective-capacity-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-theory",
+      "organized-networks",
+      "network-culture",
+      "governance",
+      "infrastructure",
+      "collective-practice",
+      "AI"
+    ]
   },
   {
     "slug": "hermes-python-library-in-process-agent-loop",
@@ -1126,7 +1352,17 @@
     "date": "2026-07-22",
     "modified": "2026-07-22",
     "thumbnail": "images/helen-nissenbaum-contextual-integrity-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "privacy",
+      "contextual-integrity",
+      "helen-nissenbaum",
+      "data-governance",
+      "AI"
+    ]
   },
   {
     "slug": "hermes-managed-scope-per-key-policy",
@@ -1167,7 +1403,17 @@
     "date": "2026-07-20",
     "modified": "2026-07-20",
     "thumbnail": "images/steina-vasulka-machine-vision-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "video-art",
+      "steina-vasulka",
+      "machine-vision",
+      "electronic-signal",
+      "feedback",
+      "media-archaeology"
+    ]
   },
   {
     "slug": "hermes-automation-blueprints-confirmed-forms",
@@ -1209,7 +1455,18 @@
     "date": "2026-07-19",
     "modified": "2026-07-19",
     "thumbnail": "images/free-labor-platform-value-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "free-labor",
+      "digital-labor",
+      "participation",
+      "platform-critique",
+      "AI",
+      "creative-labor"
+    ]
   },
   {
     "slug": "hermes-security-audit-supply-chain",
@@ -1251,7 +1508,18 @@
     "date": "2026-07-18",
     "modified": "2026-07-18",
     "thumbnail": "images/mark-hansen-media-before-consciousness-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-theory",
+      "embodied-media",
+      "environmental-media",
+      "feed-forward",
+      "interface",
+      "AI",
+      "immersion"
+    ]
   },
   {
     "slug": "hermes-session-export-portable-records",
@@ -1292,7 +1560,17 @@
     "date": "2026-07-17",
     "modified": "2026-07-17",
     "thumbnail": "images/cosmotechnics-multiple-technical-worlds-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "cosmotechnics",
+      "yuk-hui",
+      "technodiversity",
+      "philosophy-of-technology",
+      "AI"
+    ]
   },
   {
     "slug": "hermes-projects-multi-folder-workspaces",
@@ -1332,7 +1610,16 @@
     "date": "2026-07-16",
     "modified": "2026-07-16",
     "thumbnail": "images/tactical-media-power-gap-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "tactical-media",
+      "media-activism",
+      "platform-critique",
+      "critical-engineering"
+    ]
   },
   {
     "slug": "hermes-cross-platform-session-handoff",
@@ -1377,7 +1664,21 @@
     "date": "2026-07-15",
     "modified": "2026-07-15",
     "thumbnail": "images/emancipated-spectator-media-art-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "Jacques-Ranciere",
+      "spectatorship",
+      "participation",
+      "immersion",
+      "interface",
+      "AI",
+      "aesthetics",
+      "politics",
+      "theory"
+    ]
   },
   {
     "slug": "hermes-modern-tui",
@@ -1418,7 +1719,17 @@
     "date": "2026-07-14",
     "modified": "2026-07-14",
     "thumbnail": "images/olafur-eliasson-public-perception-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "Olafur-Eliasson",
+      "installation",
+      "phenomenology",
+      "light-art",
+      "climate-art",
+      "immersion"
+    ]
   },
   {
     "slug": "hermes-dm-pairing-access-control",
@@ -1454,7 +1765,17 @@
     "date": "2026-07-13",
     "modified": "2026-07-13",
     "thumbnail": "images/compression-artifact-circulation-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-theory",
+      "compression",
+      "image-circulation",
+      "digital-materiality",
+      "glitch",
+      "AI"
+    ]
   },
   {
     "slug": "hermes-git-worktree-isolation",
@@ -1495,7 +1816,17 @@
     "date": "2026-07-12",
     "modified": "2026-07-12",
     "thumbnail": "images/rafael-lozano-hemmer-public-pulse-cover.png",
-    "author": "DEXA"
+    "author": "DEXA",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "Rafael-Lozano-Hemmer",
+      "interactive-art",
+      "participation",
+      "biometric-media",
+      "public-art",
+      "surveillance"
+    ]
   },
   {
     "slug": "hermes-1password-secret-source",
@@ -1530,7 +1861,16 @@
     "date": "2026-07-11",
     "modified": "2026-07-11",
     "thumbnail": "images/the-surface-is-the-first-medium-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "projection-mapping",
+      "creative-technology",
+      "surface-material",
+      "installation",
+      "materiality"
+    ]
   },
   {
     "slug": "hermes-openrouter-provider-routing",
@@ -1566,7 +1906,17 @@
     "date": "2026-07-10",
     "modified": "2026-07-10",
     "thumbnail": "images/medium-specificity-after-tool-effects-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-theory",
+      "medium-specificity",
+      "post-media",
+      "software-studies",
+      "AI",
+      "installation"
+    ]
   },
   {
     "slug": "hermes-skill-bundles",
@@ -1601,7 +1951,16 @@
     "date": "2026-07-09",
     "modified": "2026-07-09",
     "thumbnail": "images/roy-ascott-telematic-embrace-cover.png",
-    "author": "DEXA"
+    "author": "DEXA",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-theory",
+      "cybernetics",
+      "telematic-art",
+      "interactive-art",
+      "distributed-authorship"
+    ]
   },
   {
     "slug": "database-aesthetics-and-the-searchable-artwork",
@@ -1623,7 +1982,17 @@
     "date": "2026-07-08",
     "modified": "2026-07-08",
     "thumbnail": "images/database-aesthetics-searchable-artwork-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-theory",
+      "database-aesthetics",
+      "archive",
+      "interface",
+      "AI",
+      "platform-culture"
+    ]
   },
   {
     "slug": "hermes-profile-distributions",
@@ -1658,7 +2027,16 @@
     "date": "2026-07-07",
     "modified": "2026-07-07",
     "thumbnail": "images/donna-haraway-situated-cyborg-media-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "feminism",
+      "posthumanism",
+      "cyborg",
+      "ai-critique"
+    ]
   },
   {
     "slug": "hermes-honcho-memory",
@@ -1718,7 +2096,15 @@
     "date": "2026-07-06",
     "modified": "2026-07-06",
     "thumbnail": "images/post-internet-art-circulating-artwork-cover.png",
-    "author": "Deck"
+    "author": "Deck",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-theory",
+      "post-internet",
+      "platform-aesthetics",
+      "image-circulation"
+    ]
   },
   {
     "slug": "hermes-secrets-bitwarden",
@@ -1758,7 +2144,15 @@
     "date": "2026-07-05",
     "modified": "2026-07-05",
     "thumbnail": "images/surveillance-capitalism-captured-interface-cover.png",
-    "author": "Deck"
+    "author": "Deck",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "surveillance-capitalism",
+      "platform-power",
+      "ai-critique"
+    ]
   },
   {
     "slug": "ben-fry-and-readable-data",
@@ -1778,7 +2172,15 @@
     "date": "2026-07-04",
     "modified": "2026-07-04",
     "thumbnail": "images/ben-fry-readable-data-cover.png",
-    "author": "Deck"
+    "author": "Deck",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "creative-coding",
+      "data-visualization",
+      "software-art",
+      "processing"
+    ]
   },
   {
     "slug": "hermes-dashboard-extensions",
@@ -1826,7 +2228,15 @@
     "date": "2026-07-03",
     "modified": "2026-07-03",
     "thumbnail": "images/nicole-starosielski-and-undersea-networks-cover.png",
-    "author": "Deck"
+    "author": "Deck",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-theory",
+      "infrastructure",
+      "undersea-cables",
+      "digital-materialism"
+    ]
   },
   {
     "slug": "hermes-spotify-music-control",
@@ -1862,7 +2272,15 @@
     "date": "2026-07-02",
     "modified": "2026-07-02",
     "thumbnail": "images/ryoji-ikeda-limits-of-signal-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "sound-art",
+      "data-art",
+      "audiovisual",
+      "signal"
+    ]
   },
   {
     "slug": "atmospheric-aesthetics-and-the-politics-of-mood",
@@ -1883,7 +2301,16 @@
     "date": "2026-07-01",
     "modified": "2026-07-01",
     "thumbnail": "images/atmospheric-aesthetics-politics-of-mood-cover.png",
-    "author": "Deck"
+    "author": "Deck",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-theory",
+      "atmospheric-aesthetics",
+      "affect",
+      "installation",
+      "immersion"
+    ]
   },
   {
     "slug": "hermes-kanban-worker-lanes",
@@ -1935,7 +2362,14 @@
     "date": "2026-06-30",
     "modified": "2026-06-30",
     "thumbnail": "images/katherine-hayles-embodied-information-cover.png",
-    "author": "Deck"
+    "author": "Deck",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-theory",
+      "posthumanism",
+      "embodied-information"
+    ]
   },
   {
     "slug": "hermes-tool-gateway-managed-tools",
@@ -1973,7 +2407,14 @@
     "date": "2026-06-29",
     "modified": "2026-06-29",
     "thumbnail": "images/technics-externalized-memory-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "media-theory",
+      "technics",
+      "philosophy-of-technology"
+    ]
   },
   {
     "slug": "hermes-memory-providers",
@@ -2011,7 +2452,14 @@
     "date": "2026-06-28",
     "modified": "2026-06-28",
     "thumbnail": "images/new-aesthetic-machine-vision-culture-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-theory",
+      "new-aesthetic",
+      "machine-vision"
+    ]
   },
   {
     "slug": "computational-photography-after-the-shutter",
@@ -2032,7 +2480,16 @@
     "date": "2026-06-25",
     "modified": "2026-06-25",
     "thumbnail": "images/computational-photography-after-the-shutter-cover.png",
-    "author": "Deck"
+    "author": "Deck",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-theory",
+      "computational-photography",
+      "photography",
+      "ai",
+      "image-theory"
+    ]
   },
   {
     "slug": "hermes-petdex-mascots",
@@ -2071,7 +2528,15 @@
     "date": "2026-06-24",
     "modified": "2026-06-24",
     "thumbnail": "images/cyberfeminism-networked-bodies-cover.png",
-    "author": "Deck"
+    "author": "Deck",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "cyberfeminism",
+      "feminism",
+      "platform-culture"
+    ]
   },
   {
     "slug": "hermes-skins-themes",
@@ -2124,7 +2589,15 @@
     "date": "2026-06-23",
     "modified": "2026-06-23",
     "thumbnail": "images/shannon-mattern-media-infrastructure-cover.png",
-    "author": "Deck"
+    "author": "Deck",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-theory",
+      "infrastructure",
+      "maintenance",
+      "smart-city"
+    ]
   },
   {
     "slug": "bill-viola-and-the-tactile-time-of-video",
@@ -2144,7 +2617,15 @@
     "date": "2026-06-22",
     "modified": "2026-06-22",
     "thumbnail": "images/bill-viola-tactile-time-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "video-art",
+      "installation",
+      "time-image",
+      "Bill-Viola"
+    ]
   },
   {
     "slug": "hermes-lsp-semantic-diagnostics",
@@ -2194,7 +2675,15 @@
     "date": "2026-06-21",
     "modified": "2026-06-21",
     "thumbnail": "images/stelarc-programmable-body-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "performance",
+      "posthumanism",
+      "cybernetics",
+      "body-interface"
+    ]
   },
   {
     "slug": "dispositif-and-media-art",
@@ -2215,7 +2704,16 @@
     "date": "2026-06-20",
     "modified": "2026-06-20",
     "thumbnail": "images/dispositif-media-art-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "dispositif",
+      "apparatus",
+      "surveillance",
+      "infrastructure"
+    ]
   },
   {
     "slug": "hermes-tts-audio-output",
@@ -2267,7 +2765,14 @@
     "date": "2026-06-19",
     "modified": "2026-06-19",
     "thumbnail": "images/safiya-noble-search-politics-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "algorithmic-bias",
+      "platform-culture"
+    ]
   },
   {
     "slug": "hermes-deliverable-mode-artifacts",
@@ -2303,7 +2808,17 @@
     "date": "2026-06-18",
     "modified": "2026-06-18",
     "thumbnail": "images/new-materialism-media-art-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-theory",
+      "new-materialism",
+      "materiality",
+      "posthumanism",
+      "AI",
+      "infrastructure"
+    ]
   },
   {
     "slug": "data-feminism-and-the-politics-of-visibility",
@@ -2322,7 +2837,14 @@
     "date": "2026-06-17",
     "modified": "2026-06-17",
     "thumbnail": "images/data-feminism-politics-visibility-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "data-studies",
+      "AI"
+    ]
   },
   {
     "slug": "hermes-x-search-social-listening",
@@ -2371,7 +2893,16 @@
     "date": "2026-06-16",
     "modified": "2026-06-16",
     "thumbnail": "images/lisa-parks-and-the-vertical-image-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-theory",
+      "infrastructure",
+      "satellite-media",
+      "surveillance",
+      "drone-warfare"
+    ]
   },
   {
     "slug": "agent-knowledge-management",
@@ -2413,7 +2944,15 @@
     "date": "2026-06-15",
     "modified": "2026-06-15",
     "thumbnail": "images/digital-materialism-media-art-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-theory",
+      "digital-materialism",
+      "infrastructure",
+      "ecology"
+    ]
   },
   {
     "slug": "hermes-web-search-extract",
@@ -2460,7 +2999,14 @@
     "date": "2026-06-14",
     "modified": "2026-06-14",
     "thumbnail": "images/raqs-media-collective-time-politics-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "collective-practice",
+      "archive",
+      "time-politics"
+    ]
   },
   {
     "slug": "entropy-and-decaying-media",
@@ -2481,7 +3027,16 @@
     "date": "2026-06-13",
     "modified": "2026-06-13",
     "thumbnail": "images/entropy-and-decaying-media-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-theory",
+      "entropy",
+      "preservation",
+      "glitch",
+      "time-based-media"
+    ]
   },
   {
     "slug": "hermes-api-server-openai-compatible",
@@ -2530,7 +3085,16 @@
     "date": "2026-06-12",
     "modified": "2026-06-12",
     "thumbnail": "images/technological-accident-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-theory",
+      "technology-critique",
+      "infrastructure",
+      "AI",
+      "Virilio"
+    ]
   },
   {
     "slug": "hermes-command-approval-security",
@@ -2566,7 +3130,17 @@
     "date": "2026-06-09",
     "modified": "2026-06-09",
     "thumbnail": "images/lisa-nakamura-racialized-digital-visibility-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "platform-studies",
+      "visual-culture",
+      "ai-critique",
+      "race",
+      "digital-labor"
+    ]
   },
   {
     "slug": "hermes-credential-pools",
@@ -2609,7 +3183,16 @@
     "date": "2026-06-08",
     "modified": "2026-06-08",
     "thumbnail": "images/metainterface-beyond-the-screen-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-theory",
+      "interface",
+      "platform",
+      "cloud",
+      "smart-city"
+    ]
   },
   {
     "slug": "hermes-terminal-process-management",
@@ -2648,7 +3231,14 @@
     "date": "2026-06-07",
     "modified": "2026-06-07",
     "thumbnail": "images/networked-publics-unstable-audience-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "network-culture",
+      "platform-culture"
+    ]
   },
   {
     "slug": "deep-time-of-the-media",
@@ -2668,7 +3258,15 @@
     "date": "2026-06-06",
     "modified": "2026-06-06",
     "thumbnail": "images/deep-time-media-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "media-theory",
+      "media-archaeology",
+      "deep-time",
+      "variantology"
+    ]
   },
   {
     "slug": "hermes-code-execution-rpc",
@@ -2708,7 +3306,15 @@
     "date": "2026-06-04",
     "modified": "2026-06-04",
     "thumbnail": "images/cory-arcangel-software-archaeology-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "artist",
+      "software-art",
+      "game-art",
+      "postdigital"
+    ]
   },
   {
     "slug": "hermes-persistent-goals",
@@ -2768,7 +3374,16 @@
     "date": "2026-06-03",
     "modified": "2026-06-03",
     "thumbnail": "images/simone-browne-history-of-surveillance-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "surveillance",
+      "black-studies",
+      "biometrics",
+      "machine-vision"
+    ]
   },
   {
     "slug": "hermes-acp-editor-integration",
@@ -2808,7 +3423,15 @@
     "date": "2026-06-02",
     "modified": "2026-06-02",
     "thumbnail": "images/synthetic-faces-uncanny-valley-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "uncanny-valley",
+      "AI",
+      "deepfake",
+      "digital-human"
+    ]
   },
   {
     "slug": "hermes-computer-use-background-macos",
@@ -2849,7 +3472,16 @@
     "date": "2026-06-01",
     "modified": "2026-06-01",
     "thumbnail": "images/ruha-benjamin-automated-inequality-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "AI",
+      "algorithmic-racism",
+      "justice",
+      "STS"
+    ]
   },
   {
     "slug": "hermes-checkpoints-rollback",
@@ -2888,7 +3520,15 @@
     "date": "2026-05-31",
     "modified": "2026-05-31",
     "thumbnail": "images/infrastructural-media-hidden-work-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-theory",
+      "infrastructure",
+      "platform-studies",
+      "digital-materialism"
+    ]
   },
   {
     "slug": "hermes-browser-automation",
@@ -2922,7 +3562,15 @@
     "date": "2026-05-30",
     "modified": "2026-05-30",
     "thumbnail": "images/post-authorial-aesthetics-in-ai-art-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "AI-art",
+      "aesthetics",
+      "authorship",
+      "media-theory"
+    ]
   },
   {
     "slug": "hermes-session-compression",
@@ -2961,7 +3609,15 @@
     "date": "2026-05-29",
     "modified": "2026-05-29",
     "thumbnail": "images/wendy-chun-software-habit-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "software-studies",
+      "platform",
+      "ai-critique"
+    ]
   },
   {
     "slug": "algorithmic-biopolitics-and-media-art",
@@ -2984,7 +3640,18 @@
     "date": "2026-05-28",
     "modified": "2026-05-28",
     "thumbnail": "images/algorithmic-biopolitics-and-media-art-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "AI",
+      "algorithmic-governance",
+      "biopolitics",
+      "surveillance",
+      "interface",
+      "critical-ai"
+    ]
   },
   {
     "slug": "hermes-webhook-event-automation",
@@ -3038,7 +3705,16 @@
     "date": "2026-05-27",
     "modified": "2026-05-27",
     "thumbnail": "images/latent-epistemology-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "AI",
+      "latent-space",
+      "epistemology",
+      "technical-image"
+    ]
   },
   {
     "slug": "hermes-image-generation-provider",
@@ -3073,7 +3749,16 @@
     "date": "2026-05-26",
     "modified": "2026-05-26",
     "thumbnail": "images/invisible-images-machine-vision-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "machine-vision",
+      "ai",
+      "surveillance",
+      "image-politics"
+    ]
   },
   {
     "slug": "hermes-setup-first-checks",
@@ -3114,7 +3799,17 @@
     "date": "2026-05-25",
     "modified": "2026-05-25",
     "thumbnail": "images/planetary-computation-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-theory",
+      "planetary-computation",
+      "infrastructure",
+      "AI",
+      "climate",
+      "software-studies"
+    ]
   },
   {
     "slug": "hermes-voice-mode",
@@ -3154,7 +3849,16 @@
     "date": "2026-05-24",
     "modified": "2026-05-24",
     "thumbnail": "images/technical-memory-and-the-politics-of-recall-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "archive",
+      "memory",
+      "technology",
+      "stiegler"
+    ]
   },
   {
     "slug": "brian-massumi-affect-and-media-art",
@@ -3174,7 +3878,15 @@
     "date": "2026-05-23",
     "modified": "2026-05-23",
     "thumbnail": "images/brian-massumi-affect-media-art-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-art-theory",
+      "affect-theory",
+      "theory",
+      "Brian-Massumi"
+    ]
   },
   {
     "slug": "hermes-council-moa",
@@ -3308,7 +4020,15 @@
     "date": "2026-05-17",
     "modified": "2026-05-17",
     "thumbnail": "images/ian-cheng-simulation-worldbuilding-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "simulation",
+      "ai-art",
+      "worldbuilding",
+      "game-engine"
+    ]
   },
   {
     "slug": "hermes-cron-scheduled-jobs",
@@ -3346,7 +4066,13 @@
     "date": "2026-05-15",
     "modified": "2026-05-15",
     "thumbnail": "images/operations-before-meaning-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-theory",
+      "cultural-techniques"
+    ]
   },
   {
     "slug": "attention-under-twenty-four-seven-capitalism",
@@ -3366,7 +4092,15 @@
     "date": "2026-05-14",
     "modified": "2026-05-14",
     "thumbnail": "images/attention-under-twenty-four-seven-capitalism-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "attention",
+      "perception",
+      "platform-critique"
+    ]
   },
   {
     "slug": "hermes-model-fallback-chain",
@@ -3418,7 +4152,14 @@
     "date": "2026-05-13",
     "modified": "2026-05-13",
     "thumbnail": "images/2026-05-13-body-as-realtime-interface-cover.png",
-    "author": "Deck"
+    "author": "Deck",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "performance",
+      "realtime",
+      "body-interface"
+    ]
   },
   {
     "slug": "hermes-skills-system",
@@ -3456,7 +4197,15 @@
     "date": "2026-05-12",
     "modified": "2026-05-12",
     "thumbnail": "images/2026-05-12-archive-as-operation-cover.png",
-    "author": "Deck"
+    "author": "Deck",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-theory",
+      "media-archaeology",
+      "archive",
+      "time"
+    ]
   },
   {
     "slug": "hermes-auth-readiness",
@@ -3569,7 +4318,15 @@
     "date": "2026-05-08",
     "modified": "2026-05-08",
     "thumbnail": "images/2026-05-08-forensic-architecture-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "investigative-aesthetics",
+      "operational-image",
+      "forensic-architecture",
+      "human-rights"
+    ]
   },
   {
     "slug": "who-arranged-what-we-see",
@@ -3591,7 +4348,17 @@
     "date": "2026-05-07",
     "modified": "2026-05-07",
     "thumbnail": "images/dispositif-as-hidden-arrangement-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "dispositif",
+      "apparatus",
+      "AI",
+      "surveillance",
+      "exhibition"
+    ]
   },
   {
     "slug": "software-as-the-grammar-of-culture",
@@ -3610,7 +4377,15 @@
     "date": "2026-05-06",
     "modified": "2026-05-06",
     "thumbnail": "images/software-grammar-of-culture-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "media-theory",
+      "software-studies",
+      "new-media",
+      "ai-aesthetics"
+    ]
   },
   {
     "slug": "interfaces-that-teach-machines-to-feel-ordinary",
@@ -3630,7 +4405,14 @@
     "date": "2026-05-04",
     "modified": "2026-05-04",
     "thumbnail": "images/interfaces-that-teach-machines-to-feel-ordinary-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-theory",
+      "interface-culture",
+      "software-studies"
+    ]
   },
   {
     "slug": "browser-cinema-and-the-speed-of-reading",
@@ -3649,7 +4431,14 @@
     "date": "2026-05-02",
     "modified": "2026-05-02",
     "thumbnail": "images/browser-cinema-and-the-speed-of-reading-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "net-art",
+      "korean-media-art",
+      "digital-literature"
+    ]
   },
   {
     "slug": "yangachi-and-the-invisible-infrastructure",
@@ -3670,7 +4459,16 @@
     "date": "2026-05-01",
     "modified": "2026-05-01",
     "thumbnail": "images/yangachi-invisible-infrastructure-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "korean-media-art",
+      "surveillance",
+      "net-art",
+      "AI",
+      "synthetic-media"
+    ]
   },
   {
     "slug": "how-scent-becomes-a-medium",
@@ -3691,7 +4489,16 @@
     "date": "2026-04-28",
     "modified": "2026-04-28",
     "thumbnail": "images/how-scent-becomes-a-medium-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "biomedia",
+      "olfactory-art",
+      "posthumanism",
+      "korean-diaspora",
+      "anicka-yi"
+    ]
   },
   {
     "slug": "monuments-that-remember-the-wrong-cold-war",
@@ -3711,7 +4518,15 @@
     "date": "2026-04-27",
     "modified": "2026-04-27",
     "thumbnail": "images/monuments-that-remember-the-wrong-cold-war-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "korean-media-art",
+      "archive",
+      "documentary",
+      "diaspora"
+    ]
   },
   {
     "slug": "new-media-returns-with-old-faces",
@@ -3730,7 +4545,14 @@
     "date": "2026-04-26",
     "modified": "2026-04-26",
     "thumbnail": "images/new-media-returns-with-old-faces-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "media-archaeology",
+      "media-theory",
+      "digital-culture"
+    ]
   },
   {
     "slug": "when-noise-becomes-a-signal",
@@ -3751,7 +4573,16 @@
     "date": "2026-04-25",
     "modified": "2026-04-25",
     "thumbnail": "images/when-noise-becomes-a-signal-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "noise",
+      "glitch",
+      "post-digital",
+      "AI",
+      "sound-art"
+    ]
   },
   {
     "slug": "gpt-five-five-replaces-gpt-five-four-for-most-work",
@@ -3794,7 +4625,16 @@
     "date": "2026-04-24",
     "modified": "2026-04-24",
     "thumbnail": "images/when-code-becomes-a-medium-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "generative-art",
+      "software-art",
+      "creative-coding",
+      "processing",
+      "artist"
+    ]
   },
   {
     "slug": "how-convenience-trains-us",
@@ -3815,7 +4655,16 @@
     "date": "2026-04-23",
     "modified": "2026-04-23",
     "thumbnail": "images/how-convenience-trains-us-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-theory",
+      "wendy-chun",
+      "software-studies",
+      "platform",
+      "data-politics"
+    ]
   },
   {
     "slug": "art-after-the-object",
@@ -3835,7 +4684,15 @@
     "date": "2026-04-22",
     "modified": "2026-04-22",
     "thumbnail": "images/art-after-the-object-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "theory",
+      "systems",
+      "cybernetics",
+      "jack-burnham"
+    ]
   },
   {
     "slug": "ayoung-kim-rewrites-the-future-city-through-courier-labor",
@@ -3854,7 +4711,14 @@
     "date": "2026-04-22",
     "modified": "2026-04-22",
     "thumbnail": "images/ayoung-kim-courier-worlds-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "korean-media-art",
+      "worldbuilding",
+      "algorithmic-governance"
+    ]
   },
   {
     "slug": "how-liveness-is-made",
@@ -3873,7 +4737,14 @@
     "date": "2026-04-22",
     "modified": "2026-04-22",
     "thumbnail": "images/liveness-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "liveness",
+      "performance",
+      "real-time"
+    ]
   },
   {
     "slug": "how-protocol-governs-the-network",
@@ -3892,7 +4763,14 @@
     "date": "2026-04-22",
     "modified": "2026-04-22",
     "thumbnail": "images/what-is-protocol-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "protocol",
+      "network",
+      "software"
+    ]
   },
   {
     "slug": "the-art-of-feedback",
@@ -3913,7 +4791,16 @@
     "date": "2026-04-22",
     "modified": "2026-04-22",
     "thumbnail": "images/the-art-of-feedback-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "theory",
+      "systems",
+      "cybernetics",
+      "feedback",
+      "interactivity"
+    ]
   },
   {
     "slug": "the-order-behind-the-screen",
@@ -3932,7 +4819,14 @@
     "date": "2026-04-22",
     "modified": "2026-04-22",
     "thumbnail": "images/apparatus-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "apparatus",
+      "theory",
+      "AI"
+    ]
   },
   {
     "slug": "walking-the-database",
@@ -3951,7 +4845,14 @@
     "date": "2026-04-22",
     "modified": "2026-04-22",
     "thumbnail": "images/database-vs-narrative-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "database",
+      "narrative",
+      "digital-culture"
+    ]
   },
   {
     "slug": "when-art-became-systems",
@@ -3970,7 +4871,14 @@
     "date": "2026-04-22",
     "modified": "2026-04-22",
     "thumbnail": "images/cybernetics-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "cybernetics",
+      "systems",
+      "feedback"
+    ]
   },
   {
     "slug": "when-images-become-regimes",
@@ -3990,7 +4898,15 @@
     "date": "2026-04-22",
     "modified": "2026-04-22",
     "thumbnail": "images/when-images-become-regimes-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "spectacle",
+      "critical-theory",
+      "platform",
+      "immersion"
+    ]
   },
   {
     "slug": "when-media-becomes-environment",
@@ -4011,7 +4927,16 @@
     "date": "2026-04-22",
     "modified": "2026-04-22",
     "thumbnail": "images/when-media-becomes-environment-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "media-theory",
+      "ecology",
+      "mcluhan",
+      "interface",
+      "digital-culture"
+    ]
   },
   {
     "slug": "why-disembodied-interfaces-fail",
@@ -4030,7 +4955,14 @@
     "date": "2026-04-22",
     "modified": "2026-04-22",
     "thumbnail": "images/embodiment-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "embodiment",
+      "body",
+      "interface"
+    ]
   },
   {
     "slug": "why-presence-survives-reproduction",
@@ -4050,7 +4982,15 @@
     "date": "2026-04-22",
     "modified": "2026-04-22",
     "thumbnail": "images/why-presence-survives-reproduction-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "benjamin",
+      "aura",
+      "reproduction",
+      "aesthetics"
+    ]
   },
   {
     "slug": "what-is-control-society",
@@ -4069,7 +5009,14 @@
     "date": "2026-04-17",
     "modified": "2026-04-22",
     "thumbnail": "images/what-is-control-society-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "control-society",
+      "surveillance",
+      "platform"
+    ]
   },
   {
     "slug": "what-is-data-colonialism",
@@ -4088,7 +5035,14 @@
     "date": "2026-04-17",
     "modified": "2026-04-22",
     "thumbnail": "images/what-is-data-colonialism-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "data-colonialism",
+      "AI",
+      "critical-theory"
+    ]
   },
   {
     "slug": "what-is-expanded-cinema",
@@ -4107,7 +5061,14 @@
     "date": "2026-04-17",
     "modified": "2026-04-22",
     "thumbnail": "images/what-is-expanded-cinema-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "expanded-cinema",
+      "cinema",
+      "installation"
+    ]
   },
   {
     "slug": "what-is-generative-art",
@@ -4126,7 +5087,14 @@
     "date": "2026-04-17",
     "modified": "2026-04-22",
     "thumbnail": "images/what-is-generative-art-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "generative-art",
+      "creative-coding",
+      "ai-art"
+    ]
   },
   {
     "slug": "what-is-glitch-aesthetics",
@@ -4145,7 +5113,14 @@
     "date": "2026-04-17",
     "modified": "2026-04-22",
     "thumbnail": "images/what-is-glitch-aesthetics-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "glitch",
+      "digital-image",
+      "post-digital"
+    ]
   },
   {
     "slug": "what-is-interface",
@@ -4164,7 +5139,14 @@
     "date": "2026-04-17",
     "modified": "2026-04-22",
     "thumbnail": "images/what-is-interface-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "interface",
+      "software",
+      "screen-culture"
+    ]
   },
   {
     "slug": "what-is-intermedia",
@@ -4183,7 +5165,14 @@
     "date": "2026-04-17",
     "modified": "2026-09-09",
     "thumbnail": "images/intermedia-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "intermedia",
+      "fluxus",
+      "theory"
+    ]
   },
   {
     "slug": "what-is-latent-space",
@@ -4202,7 +5191,14 @@
     "date": "2026-04-17",
     "modified": "2026-04-22",
     "thumbnail": "images/latent-space-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "ai-art",
+      "latent-space",
+      "theory"
+    ]
   },
   {
     "slug": "what-is-operational-image",
@@ -4221,7 +5217,14 @@
     "date": "2026-04-17",
     "modified": "2026-04-22",
     "thumbnail": "images/what-is-operational-image-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "operational-image",
+      "machine-vision",
+      "theory"
+    ]
   },
   {
     "slug": "what-is-optical-unconscious",
@@ -4240,7 +5243,14 @@
     "date": "2026-04-17",
     "modified": "2026-04-22",
     "thumbnail": "images/what-is-optical-unconscious-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "optical-unconscious",
+      "image-theory",
+      "benjamin"
+    ]
   },
   {
     "slug": "what-is-post-digital",
@@ -4259,7 +5269,14 @@
     "date": "2026-04-17",
     "modified": "2026-04-22",
     "thumbnail": "images/post-digital-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "post-digital",
+      "aesthetics",
+      "theory"
+    ]
   },
   {
     "slug": "what-is-remediation",
@@ -4278,7 +5295,14 @@
     "date": "2026-04-17",
     "modified": "2026-04-22",
     "thumbnail": "images/remediation-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "remediation",
+      "digital-media",
+      "theory"
+    ]
   },
   {
     "slug": "what-is-technical-image",
@@ -4297,7 +5321,14 @@
     "date": "2026-04-17",
     "modified": "2026-04-22",
     "thumbnail": "images/what-is-technical-image-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "technical-image",
+      "image-theory",
+      "flusser"
+    ]
   },
   {
     "slug": "why-immersion-became-the-core-language-of-media-art",
@@ -4316,7 +5347,14 @@
     "date": "2026-04-17",
     "modified": "2026-04-17",
     "thumbnail": "images/immersion-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "immersion",
+      "installation",
+      "theory"
+    ]
   },
   {
     "slug": "why-poor-images-matter",
@@ -4335,7 +5373,14 @@
     "date": "2026-04-17",
     "modified": "2026-04-17",
     "thumbnail": "images/why-poor-images-matter-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "poor-image",
+      "digital-image",
+      "hito-steyerl"
+    ]
   },
   {
     "slug": "gpt-image-2-vs-nano-banana-2",
@@ -4376,7 +5421,15 @@
     "date": "2026-04-15",
     "modified": "2026-04-15",
     "thumbnail": "images/history-of-korean-media-art-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "korean-art",
+      "art-history",
+      "digital-art",
+      "immersive"
+    ]
   },
   {
     "slug": "history-of-media-art",
@@ -4396,7 +5449,15 @@
     "date": "2026-04-15",
     "modified": "2026-04-15",
     "thumbnail": "images/history-of-media-art-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "art-history",
+      "new-media",
+      "digital-art",
+      "generative-art"
+    ]
   },
   {
     "slug": "vibe-coding-in-2026",
@@ -4439,7 +5500,16 @@
     "date": "2026-03-28",
     "modified": "2026-09-09",
     "thumbnail": "images/ai-and-media-art-cover.png",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "AI",
+      "generative-art",
+      "immersive",
+      "creative-coding",
+      "data-art"
+    ]
   },
   {
     "slug": "afterglow",
@@ -4459,6 +5529,14 @@
     "date": "2021-12-01",
     "modified": "2026-03-28",
     "thumbnail": "images/afterglow.jpg",
-    "author": "육대근"
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "light-installation",
+      "site-specific",
+      "B39",
+      "immersive"
+    ]
   }
 ]

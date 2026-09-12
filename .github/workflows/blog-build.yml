@@ -6,6 +6,10 @@ on:
       - 'blog/posts/**'
       - 'blog/build.js'
       - 'blog/ax-guide.js'
+      - 'blog/media-art-guide.js'
+      - 'blog/media-art-taxonomy.json'
+      - 'blog/index.html'
+      - 'blog/blog.js'
 
 permissions:
   contents: write
@@ -22,13 +26,13 @@ jobs:
       - name: Validate generated SEO artifacts
         run: |
           node scripts/seo-readiness-check.js
-          node --test scripts/ax-seo-regression.test.js
+          node --test scripts/ax-seo-regression.test.js scripts/media-art-taxonomy-regression.test.js scripts/shared-shell-regression.test.js
           git diff --check
 
       - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add blog/ax/ blog/posts.json blog/posts/_built/ blog/posts/*/index.html sitemap.xml robots.txt blog/index.html index.html
+          git add blog/ax/ blog/media-art/ blog/posts.json blog/posts/_built/ blog/posts/*/index.html sitemap.xml robots.txt blog/index.html index.html
           git diff --cached --quiet || git commit -m "chore: auto-generate blog index and built posts"
           git push

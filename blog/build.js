@@ -10,6 +10,11 @@
 
 const fs = require('fs');
 const { validateAxTopics, axRelatedHtml, axGuideHtml } = require('./ax-guide');
+const {
+    applyMediaArtTaxonomy,
+    mediaArtGuideHtml
+} = require('./media-art-guide');
+const mediaArtTaxonomy = require('./media-art-taxonomy.json');
 const path = require('path');
 const {
     extractGeneratedBlock,
@@ -621,9 +626,13 @@ function staticPostCardHtml(post) {
     const imageHtml = img
         ? `<div class="card-frame"><img src="${escapeAttr(img)}" alt="${escapeAttr(postImageAlt(post))}" loading="lazy"></div>`
         : '';
-    return `<a class="post-card panel-card" href="/blog/posts/${escapeAttr(post.slug)}/" data-track="${escapeAttr(post.track)}" data-category="${escapeAttr(post.category)}" aria-label="Read ${escapeAttr(post.title)}">
+    const mediaArtField = post.mediaArtCategorySlug || '';
+    const cardType = post.mediaArtCategory
+        ? `${post.mediaArtCategory} · ${post.category}`
+        : post.category;
+    return `<a class="post-card panel-card" href="/blog/posts/${escapeAttr(post.slug)}/" data-track="${escapeAttr(post.track)}" data-category="${escapeAttr(post.category)}" data-media-art-field="${escapeAttr(mediaArtField)}" aria-label="Read ${escapeAttr(post.title)}">
   ${imageHtml}
-  <span class="dx-meta"><span class="dx-badge">${escapeHtml(post.trackLabel)}</span><span class="dx-date">${escapeHtml(post.category)} · <time datetime="${escapeAttr(post.date)}">${escapeHtml(formatDateDots(post.date))}</time></span></span>
+  <span class="dx-meta"><span class="dx-badge">${escapeHtml(post.trackLabel)}</span><span class="dx-date">${escapeHtml(cardType)} · <time datetime="${escapeAttr(post.date)}">${escapeHtml(formatDateDots(post.date))}</time></span></span>
   <h3>${escapeHtml(post.title)}</h3>
   <p>${escapeHtml(post.description || '')}</p>
   <span class="dx-more">READ MORE →</span>
@@ -647,6 +656,10 @@ function updateBlogIndex(postsPublic) {
     const filters = [
         `<button class="dx-tag-chip active" type="button" data-filter="all" aria-pressed="true">All</button>`,
         ...EDITORIAL_TRACKS.map(track => `<button class="dx-tag-chip" type="button" data-filter="${escapeAttr(track.slug)}" aria-pressed="false">${escapeHtml(track.label)}</button>`)
+    ].join('\n                ');
+    const mediaArtFilters = [
+        `<button class="dx-tag-chip active" type="button" data-field="all" aria-pressed="true">미디어아트 전체 <span>${mediaArtTaxonomyState.mediaCount}</span></button>`,
+        ...mediaArtTaxonomyState.categories.map(category => `<button class="dx-tag-chip" type="button" data-field="${escapeAttr(category.slug)}" aria-pressed="false">${escapeHtml(category.label)} <span>${mediaArtTaxonomyState.counts[category.slug]}</span></button>`)
     ].join('\n                ');
     const cards = postsPublic.map(staticPostCardHtml).join('\n                ');
     const blogJsonLd = {
@@ -679,6 +692,7 @@ function updateBlogIndex(postsPublic) {
         ]
     };
     html = replaceGeneratedBlock(html, 'STATIC_FILTERS_START', 'STATIC_FILTERS_END', filters);
+    html = replaceGeneratedBlock(html, 'STATIC_MEDIA_ART_FILTERS_START', 'STATIC_MEDIA_ART_FILTERS_END', mediaArtFilters);
     html = replaceGeneratedBlock(html, 'STATIC_POSTS_START', 'STATIC_POSTS_END', cards);
     html = replaceGeneratedBlock(html, 'BLOG_SCHEMA_START', 'BLOG_SCHEMA_END', `    <script type="application/ld+json">${JSON.stringify(blogJsonLd)}</script>`);
     fs.writeFileSync(blogIndexPath, trimTrailingWhitespace(html), 'utf8');
@@ -767,7 +781,8 @@ const posts = files.map(filename => {
         _body: body,
         _sourceFilename: filename,
         _trackSource: resolvedTrack.source,
-        _trackReason: resolvedTrack.reason
+        _trackReason: resolvedTrack.reason,
+        _mediaArtExplicitCategory: meta.mediaArtCategory
     };
 });
 
@@ -780,6 +795,8 @@ posts.sort((a, b) => {
 
 // Validate curated links before writing any generated output.
 validateAxTopics(posts);
+const mediaArtTaxonomyState = applyMediaArtTaxonomy(posts, mediaArtTaxonomy);
+mediaArtTaxonomyState.mediaCount = posts.filter(post => post.track === 'media-art').length;
 
 // The root page is the only shared-shell source. Synchronize the two blog
 // templates before generating static post pages so all derived routes use the
@@ -822,18 +839,22 @@ posts.forEach((post, idx) => {
 });
 
 // Write posts.json (for client-side listing & legacy post.html)
-const postsPublic = posts.map(({ _body, _sourceFilename, _trackSource, _trackReason, ...rest }) => rest);
+const postsPublic = posts.map(({ _body, _sourceFilename, _trackSource, _trackReason, _mediaArtExplicitCategory, ...rest }) => rest);
 fs.writeFileSync(OUTPUT, JSON.stringify(postsPublic, null, 2), 'utf8');
 updateBlogIndex(postsPublic);
 updateHomePreview(postsPublic);
 const axDir = path.join(__dirname, 'ax');
 fs.mkdirSync(axDir, { recursive: true });
 fs.writeFileSync(path.join(axDir, 'index.html'), axGuideHtml(postsPublic, sharedShell), 'utf8');
+const mediaArtDir = path.join(__dirname, 'media-art');
+fs.mkdirSync(mediaArtDir, { recursive: true });
+fs.writeFileSync(path.join(mediaArtDir, 'index.html'), mediaArtGuideHtml(postsPublic, mediaArtTaxonomyState, sharedShell), 'utf8');
 
 // Write sitemap.xml at repo root
 const staticUrls = [
     { loc: `${SITE_URL}/`, priority: '1.0' },
     { loc: `${SITE_URL}/blog/`, priority: '0.9' },
+    { loc: `${SITE_URL}/blog/media-art/`, lastmod: '2026-09-12', priority: '0.9' },
     { loc: `${SITE_URL}/blog/ax/`, lastmod: '2026-09-09', priority: '0.9' },
     { loc: `${SITE_URL}/learnmap/`, lastmod: '2026-09-09', priority: '0.7' },
     { loc: `${SITE_URL}/osmu/`, priority: '0.7' },

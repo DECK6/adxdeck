@@ -1,0 +1,1503 @@
+{
+  "schemaVersion": 1,
+  "taxonomyVersion": "2026-09-12",
+  "categories": [
+    {
+      "slug": "intro-concepts",
+      "label": "입문·개념",
+      "question": "미디어아트는 무엇이며 어떤 계보와 핵심 개념을 가졌나?",
+      "purpose": "미디어아트의 범위와 역사, 반복되는 핵심 개념을 잡는 공통 좌표입니다."
+    },
+    {
+      "slug": "artists-artworks",
+      "label": "작가·작품",
+      "question": "누가 어떤 작품으로 이 질문을 다뤘나?",
+      "purpose": "작가와 집단, 대표 작품에서 출발해 미디어아트의 쟁점을 구체적으로 만납니다."
+    },
+    {
+      "slug": "senses-forms",
+      "label": "감각·형식",
+      "question": "작품은 어떻게 보이고, 들리고, 느껴지고, 시간화되는가?",
+      "purpose": "빛과 소리, 몸, 분위기, 몰입과 시간의 경험을 말하는 비평 언어를 익힙니다."
+    },
+    {
+      "slug": "technology-making",
+      "label": "기술·제작",
+      "question": "작품은 어떤 규칙·재료·코드·보존 방법으로 작동하는가?",
+      "purpose": "도구 목록을 넘어 작품이 만들어지고 실행되고 보존되는 원리를 살핍니다."
+    },
+    {
+      "slug": "society-power",
+      "label": "사회·권력",
+      "question": "기술과 이미지가 누구를 보이게 하고, 배제하고, 통제하는가?",
+      "purpose": "감시와 차별, 노동, 권리와 알고리즘 통치 속에서 기술의 힘을 읽습니다."
+    },
+    {
+      "slug": "institutions-infrastructure",
+      "label": "제도·인프라",
+      "question": "작품과 장면을 가능하게 하는 기관·네트워크·물질 기반은 무엇인가?",
+      "purpose": "미술관과 축제, 도시, 네트워크, 에너지와 아카이브의 지속 조건을 드러냅니다."
+    }
+  ],
+  "posts": [
+    {
+      "slug": "emergence-and-local-rules-in-media-art",
+      "category": "기술·제작",
+      "categorySlug": "technology-making",
+      "secondaryTags": [
+        "media-theory",
+        "emergence",
+        "generative-art",
+        "boids",
+        "complex-systems"
+      ]
+    },
+    {
+      "slug": "hildegard-westerkamp-and-the-soundwalk",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "media-theory",
+        "media-theorist",
+        "hildegard-westerkamp",
+        "soundwalk",
+        "acoustic-ecology",
+        "soundscape-composition"
+      ]
+    },
+    {
+      "slug": "park-hyunki-and-the-material-weight-of-video",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "korean-media-art",
+        "park-hyunki",
+        "video-art",
+        "installation-art",
+        "materiality",
+        "media-preservation"
+      ]
+    },
+    {
+      "slug": "who-describes-the-generative-canvas",
+      "category": "기술·제작",
+      "categorySlug": "technology-making",
+      "secondaryTags": [
+        "accessibility",
+        "creative-coding",
+        "generative-art",
+        "p5js",
+        "canvas-description"
+      ]
+    },
+    {
+      "slug": "can-destroyed-artifacts-return-as-data",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "international-artist",
+        "morehshin-allahyari",
+        "3d-printing",
+        "digital-archive",
+        "cultural-heritage",
+        "counter-archive"
+      ]
+    },
+    {
+      "slug": "yunchul-kim-and-the-nervous-system-of-matter",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "korean-media-art",
+        "yunchul-kim",
+        "art-science",
+        "kinetic-installation",
+        "material-systems"
+      ]
+    },
+    {
+      "slug": "experiments-in-art-and-technology-as-collaboration-infrastructure",
+      "category": "제도·인프라",
+      "categorySlug": "institutions-infrastructure",
+      "secondaryTags": [
+        "media-art-history",
+        "experiments-in-art-and-technology",
+        "art-and-technology",
+        "artist-engineer-collaboration",
+        "institution"
+      ]
+    },
+    {
+      "slug": "variable-media-and-the-identity-of-artworks",
+      "category": "기술·제작",
+      "categorySlug": "technology-making",
+      "secondaryTags": [
+        "media-theory",
+        "variable-media",
+        "preservation",
+        "conservation",
+        "technology-based-art",
+        "museum-practice"
+      ]
+    },
+    {
+      "slug": "how-seoul-mediacity-biennale-turns-the-city-into-a-medium",
+      "category": "제도·인프라",
+      "categorySlug": "institutions-infrastructure",
+      "secondaryTags": [
+        "institution",
+        "seoul-mediacity-biennale",
+        "urban-media",
+        "public-art",
+        "media-archaeology"
+      ]
+    },
+    {
+      "slug": "joan-jonas-and-the-fractured-video-mirror",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "international-artist",
+        "joan-jonas",
+        "video-art",
+        "performance-art",
+        "video-mirror",
+        "vertical-roll"
+      ]
+    },
+    {
+      "slug": "laura-u-marks-and-haptic-visuality",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "media-theory",
+        "media-theorist",
+        "laura-u-marks",
+        "haptic-visuality",
+        "intercultural-cinema",
+        "embodied-media"
+      ]
+    },
+    {
+      "slug": "critical-making-changes-the-question",
+      "category": "기술·제작",
+      "categorySlug": "technology-making",
+      "secondaryTags": [
+        "media-theory",
+        "critical-making",
+        "maker-culture",
+        "art-and-technology",
+        "workshop-method"
+      ]
+    },
+    {
+      "slug": "nam-june-paik-and-the-uneven-satellite-stage",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "korean-media-art",
+        "nam-june-paik",
+        "satellite-art",
+        "television",
+        "live-broadcast"
+      ]
+    },
+    {
+      "slug": "when-a-five-day-festival-becomes-a-year-round-ecosystem",
+      "category": "제도·인프라",
+      "categorySlug": "institutions-infrastructure",
+      "secondaryTags": [
+        "media-theory",
+        "ars-electronica",
+        "media-art-institution",
+        "festival-ecosystem",
+        "curating",
+        "public-pedagogy"
+      ]
+    },
+    {
+      "slug": "sabrina-ratte-and-synthetic-ecologies",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "international-artist",
+        "sabrina-ratte",
+        "synthetic-ecology",
+        "CGI",
+        "anthropocene",
+        "installation",
+        "AI-art"
+      ]
+    },
+    {
+      "slug": "media-art-is-not-the-name-of-a-technology",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "ai-art",
+        "bioart",
+        "hideo-iwasaki"
+      ]
+    },
+    {
+      "slug": "when-hallucination-blurs-error-and-art",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "media-theory",
+        "hallucination",
+        "generative-ai",
+        "ai-art",
+        "epistemology"
+      ]
+    },
+    {
+      "slug": "when-machines-take-on-the-body-of-desire",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "choe-u-ram",
+        "kinetic-sculpture",
+        "robotic-art",
+        "korean-media-art"
+      ]
+    },
+    {
+      "slug": "how-digital-art-entered-the-museum",
+      "category": "제도·인프라",
+      "categorySlug": "institutions-infrastructure",
+      "secondaryTags": [
+        "media-theory",
+        "christiane-paul",
+        "digital-art",
+        "curating",
+        "preservation"
+      ]
+    },
+    {
+      "slug": "event-scores-as-executable-art",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "media-theory",
+        "fluxus",
+        "event-score",
+        "performance-art",
+        "intermedia"
+      ]
+    },
+    {
+      "slug": "when-dataset-labor-becomes-the-artwork",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "anna-ridler",
+        "dataset",
+        "machine-learning",
+        "generative-art"
+      ]
+    },
+    {
+      "slug": "machine-vision-does-not-see-everyone-equally",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "joy-buolamwini",
+        "gender-shades",
+        "machine-vision",
+        "algorithmic-bias",
+        "facial-analysis",
+        "AI"
+      ]
+    },
+    {
+      "slug": "the-observer-is-inside-the-system",
+      "category": "기술·제작",
+      "categorySlug": "technology-making",
+      "secondaryTags": [
+        "media-theory",
+        "second-order-cybernetics",
+        "cybernetics",
+        "observer",
+        "feedback",
+        "AI"
+      ]
+    },
+    {
+      "slug": "when-networks-learn-to-organize",
+      "category": "제도·인프라",
+      "categorySlug": "institutions-infrastructure",
+      "secondaryTags": [
+        "media-theory",
+        "organized-networks",
+        "network-culture",
+        "governance",
+        "infrastructure",
+        "collective-practice",
+        "AI"
+      ]
+    },
+    {
+      "slug": "when-information-leaves-its-context",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "privacy",
+        "contextual-integrity",
+        "helen-nissenbaum",
+        "data-governance",
+        "AI"
+      ]
+    },
+    {
+      "slug": "when-the-camera-stops-imitating-the-eye",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "video-art",
+        "steina-vasulka",
+        "machine-vision",
+        "electronic-signal",
+        "feedback",
+        "media-archaeology"
+      ]
+    },
+    {
+      "slug": "when-enjoyment-becomes-platform-value",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "free-labor",
+        "digital-labor",
+        "participation",
+        "platform-critique",
+        "AI",
+        "creative-labor"
+      ]
+    },
+    {
+      "slug": "mark-hansen-and-media-before-consciousness",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "media-theory",
+        "embodied-media",
+        "environmental-media",
+        "feed-forward",
+        "interface",
+        "AI",
+        "immersion"
+      ]
+    },
+    {
+      "slug": "technology-does-not-make-only-one-world",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "cosmotechnics",
+        "yuk-hui",
+        "technodiversity",
+        "philosophy-of-technology",
+        "AI"
+      ]
+    },
+    {
+      "slug": "when-media-becomes-a-tactic",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "tactical-media",
+        "media-activism",
+        "platform-critique",
+        "critical-engineering"
+      ]
+    },
+    {
+      "slug": "the-emancipated-spectator-in-media-art",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "Jacques-Ranciere",
+        "spectatorship",
+        "participation",
+        "immersion",
+        "interface",
+        "AI",
+        "aesthetics",
+        "politics",
+        "theory"
+      ]
+    },
+    {
+      "slug": "olafur-eliasson-and-public-perception",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "Olafur-Eliasson",
+        "installation",
+        "phenomenology",
+        "light-art",
+        "climate-art",
+        "immersion"
+      ]
+    },
+    {
+      "slug": "the-image-travels-through-compression",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "media-theory",
+        "compression",
+        "image-circulation",
+        "digital-materiality",
+        "glitch",
+        "AI"
+      ]
+    },
+    {
+      "slug": "rafael-lozano-hemmer-and-the-public-pulse",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "Rafael-Lozano-Hemmer",
+        "interactive-art",
+        "participation",
+        "biometric-media",
+        "public-art",
+        "surveillance"
+      ]
+    },
+    {
+      "slug": "the-surface-is-the-first-medium",
+      "category": "기술·제작",
+      "categorySlug": "technology-making",
+      "secondaryTags": [
+        "projection-mapping",
+        "creative-technology",
+        "surface-material",
+        "installation",
+        "materiality"
+      ]
+    },
+    {
+      "slug": "medium-specificity-after-tool-effects",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "media-theory",
+        "medium-specificity",
+        "post-media",
+        "software-studies",
+        "AI",
+        "installation"
+      ]
+    },
+    {
+      "slug": "roy-ascott-and-the-telematic-embrace",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "media-theory",
+        "cybernetics",
+        "telematic-art",
+        "interactive-art",
+        "distributed-authorship"
+      ]
+    },
+    {
+      "slug": "database-aesthetics-and-the-searchable-artwork",
+      "category": "기술·제작",
+      "categorySlug": "technology-making",
+      "secondaryTags": [
+        "media-theory",
+        "database-aesthetics",
+        "archive",
+        "interface",
+        "AI",
+        "platform-culture"
+      ]
+    },
+    {
+      "slug": "donna-haraway-and-situated-cyborg-media",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "feminism",
+        "posthumanism",
+        "cyborg",
+        "ai-critique"
+      ]
+    },
+    {
+      "slug": "post-internet-art-and-the-circulating-artwork",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "media-theory",
+        "post-internet",
+        "platform-aesthetics",
+        "image-circulation"
+      ]
+    },
+    {
+      "slug": "surveillance-capitalism-and-the-captured-interface",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "surveillance-capitalism",
+        "platform-power",
+        "ai-critique"
+      ]
+    },
+    {
+      "slug": "ben-fry-and-readable-data",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "creative-coding",
+        "data-visualization",
+        "software-art",
+        "processing"
+      ]
+    },
+    {
+      "slug": "nicole-starosielski-and-undersea-networks",
+      "category": "제도·인프라",
+      "categorySlug": "institutions-infrastructure",
+      "secondaryTags": [
+        "media-theory",
+        "infrastructure",
+        "undersea-cables",
+        "digital-materialism"
+      ]
+    },
+    {
+      "slug": "ryoji-ikeda-and-the-limits-of-signal",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "sound-art",
+        "data-art",
+        "audiovisual",
+        "signal"
+      ]
+    },
+    {
+      "slug": "atmospheric-aesthetics-and-the-politics-of-mood",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "media-theory",
+        "atmospheric-aesthetics",
+        "affect",
+        "installation",
+        "immersion"
+      ]
+    },
+    {
+      "slug": "katherine-hayles-and-embodied-information",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "media-theory",
+        "posthumanism",
+        "embodied-information"
+      ]
+    },
+    {
+      "slug": "technics-and-externalized-memory",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "media-theory",
+        "technics",
+        "philosophy-of-technology"
+      ]
+    },
+    {
+      "slug": "new-aesthetic-and-machine-vision-culture",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "media-theory",
+        "new-aesthetic",
+        "machine-vision"
+      ]
+    },
+    {
+      "slug": "computational-photography-after-the-shutter",
+      "category": "기술·제작",
+      "categorySlug": "technology-making",
+      "secondaryTags": [
+        "media-theory",
+        "computational-photography",
+        "photography",
+        "ai",
+        "image-theory"
+      ]
+    },
+    {
+      "slug": "cyberfeminism-and-networked-bodies",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "cyberfeminism",
+        "feminism",
+        "platform-culture"
+      ]
+    },
+    {
+      "slug": "shannon-mattern-and-media-infrastructure",
+      "category": "제도·인프라",
+      "categorySlug": "institutions-infrastructure",
+      "secondaryTags": [
+        "media-theory",
+        "infrastructure",
+        "maintenance",
+        "smart-city"
+      ]
+    },
+    {
+      "slug": "bill-viola-and-the-tactile-time-of-video",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "video-art",
+        "installation",
+        "time-image",
+        "Bill-Viola"
+      ]
+    },
+    {
+      "slug": "stelarc-and-the-programmable-body",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "performance",
+        "posthumanism",
+        "cybernetics",
+        "body-interface"
+      ]
+    },
+    {
+      "slug": "dispositif-and-media-art",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "dispositif",
+        "apparatus",
+        "surveillance",
+        "infrastructure"
+      ]
+    },
+    {
+      "slug": "safiya-noble-and-search-politics",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "algorithmic-bias",
+        "platform-culture"
+      ]
+    },
+    {
+      "slug": "new-materialism-and-media-art",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "media-theory",
+        "new-materialism",
+        "materiality",
+        "posthumanism",
+        "AI",
+        "infrastructure"
+      ]
+    },
+    {
+      "slug": "data-feminism-and-the-politics-of-visibility",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "data-studies",
+        "AI"
+      ]
+    },
+    {
+      "slug": "lisa-parks-and-the-vertical-image",
+      "category": "제도·인프라",
+      "categorySlug": "institutions-infrastructure",
+      "secondaryTags": [
+        "media-theory",
+        "infrastructure",
+        "satellite-media",
+        "surveillance",
+        "drone-warfare"
+      ]
+    },
+    {
+      "slug": "digital-materialism-and-media-art",
+      "category": "제도·인프라",
+      "categorySlug": "institutions-infrastructure",
+      "secondaryTags": [
+        "media-theory",
+        "digital-materialism",
+        "infrastructure",
+        "ecology"
+      ]
+    },
+    {
+      "slug": "raqs-media-collective-and-the-politics-of-time",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "collective-practice",
+        "archive",
+        "time-politics"
+      ]
+    },
+    {
+      "slug": "entropy-and-decaying-media",
+      "category": "기술·제작",
+      "categorySlug": "technology-making",
+      "secondaryTags": [
+        "media-theory",
+        "entropy",
+        "preservation",
+        "glitch",
+        "time-based-media"
+      ]
+    },
+    {
+      "slug": "technological-accident-and-fragile-media-systems",
+      "category": "기술·제작",
+      "categorySlug": "technology-making",
+      "secondaryTags": [
+        "media-theory",
+        "technology-critique",
+        "infrastructure",
+        "AI",
+        "Virilio"
+      ]
+    },
+    {
+      "slug": "lisa-nakamura-and-racialized-digital-visibility",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "platform-studies",
+        "visual-culture",
+        "ai-critique",
+        "race",
+        "digital-labor"
+      ]
+    },
+    {
+      "slug": "metainterface-beyond-the-screen",
+      "category": "제도·인프라",
+      "categorySlug": "institutions-infrastructure",
+      "secondaryTags": [
+        "media-theory",
+        "interface",
+        "platform",
+        "cloud",
+        "smart-city"
+      ]
+    },
+    {
+      "slug": "networked-publics-and-the-unstable-audience",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "network-culture",
+        "platform-culture"
+      ]
+    },
+    {
+      "slug": "deep-time-of-the-media",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "media-theory",
+        "media-archaeology",
+        "deep-time",
+        "variantology"
+      ]
+    },
+    {
+      "slug": "cory-arcangel-and-software-archaeology",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "artist",
+        "software-art",
+        "game-art",
+        "postdigital"
+      ]
+    },
+    {
+      "slug": "simone-browne-and-the-history-of-surveillance",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "surveillance",
+        "black-studies",
+        "biometrics",
+        "machine-vision"
+      ]
+    },
+    {
+      "slug": "the-uneasy-valley-of-synthetic-faces",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "uncanny-valley",
+        "AI",
+        "deepfake",
+        "digital-human"
+      ]
+    },
+    {
+      "slug": "ruha-benjamin-and-automated-inequality",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "AI",
+        "algorithmic-racism",
+        "justice",
+        "STS"
+      ]
+    },
+    {
+      "slug": "infrastructural-media-and-the-hidden-work-of-images",
+      "category": "제도·인프라",
+      "categorySlug": "institutions-infrastructure",
+      "secondaryTags": [
+        "media-theory",
+        "infrastructure",
+        "platform-studies",
+        "digital-materialism"
+      ]
+    },
+    {
+      "slug": "post-authorial-aesthetics-in-ai-art",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "AI-art",
+        "aesthetics",
+        "authorship",
+        "media-theory"
+      ]
+    },
+    {
+      "slug": "wendy-chun-software-habit-and-discriminating-data",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "software-studies",
+        "platform",
+        "ai-critique"
+      ]
+    },
+    {
+      "slug": "algorithmic-biopolitics-and-media-art",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "AI",
+        "algorithmic-governance",
+        "biopolitics",
+        "surveillance",
+        "interface",
+        "critical-ai"
+      ]
+    },
+    {
+      "slug": "latent-epistemology-and-media-art",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "AI",
+        "latent-space",
+        "epistemology",
+        "technical-image"
+      ]
+    },
+    {
+      "slug": "invisible-images-and-machine-vision",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "machine-vision",
+        "ai",
+        "surveillance",
+        "image-politics"
+      ]
+    },
+    {
+      "slug": "planetary-computation-and-media-art",
+      "category": "제도·인프라",
+      "categorySlug": "institutions-infrastructure",
+      "secondaryTags": [
+        "media-theory",
+        "planetary-computation",
+        "infrastructure",
+        "AI",
+        "climate",
+        "software-studies"
+      ]
+    },
+    {
+      "slug": "technical-memory-and-the-politics-of-recall",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "archive",
+        "memory",
+        "technology",
+        "stiegler"
+      ]
+    },
+    {
+      "slug": "brian-massumi-affect-and-media-art",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "media-art-theory",
+        "affect-theory",
+        "theory",
+        "Brian-Massumi"
+      ]
+    },
+    {
+      "slug": "the-world-runs-without-being-finished",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "simulation",
+        "ai-art",
+        "worldbuilding",
+        "game-engine"
+      ]
+    },
+    {
+      "slug": "operations-before-meaning",
+      "category": "기술·제작",
+      "categorySlug": "technology-making",
+      "secondaryTags": [
+        "media-theory",
+        "cultural-techniques"
+      ]
+    },
+    {
+      "slug": "attention-under-twenty-four-seven-capitalism",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "attention",
+        "perception",
+        "platform-critique"
+      ]
+    },
+    {
+      "slug": "the-body-as-realtime-interface",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "performance",
+        "realtime",
+        "body-interface"
+      ]
+    },
+    {
+      "slug": "the-archive-is-an-operation",
+      "category": "기술·제작",
+      "categorySlug": "technology-making",
+      "secondaryTags": [
+        "media-theory",
+        "media-archaeology",
+        "archive",
+        "time"
+      ]
+    },
+    {
+      "slug": "evidence-as-public-interface",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "investigative-aesthetics",
+        "operational-image",
+        "forensic-architecture",
+        "human-rights"
+      ]
+    },
+    {
+      "slug": "who-arranged-what-we-see",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "dispositif",
+        "apparatus",
+        "AI",
+        "surveillance",
+        "exhibition"
+      ]
+    },
+    {
+      "slug": "software-as-the-grammar-of-culture",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "media-theory",
+        "software-studies",
+        "new-media",
+        "ai-aesthetics"
+      ]
+    },
+    {
+      "slug": "interfaces-that-teach-machines-to-feel-ordinary",
+      "category": "기술·제작",
+      "categorySlug": "technology-making",
+      "secondaryTags": [
+        "media-theory",
+        "interface-culture",
+        "software-studies"
+      ]
+    },
+    {
+      "slug": "browser-cinema-and-the-speed-of-reading",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "net-art",
+        "korean-media-art",
+        "digital-literature"
+      ]
+    },
+    {
+      "slug": "yangachi-and-the-invisible-infrastructure",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "korean-media-art",
+        "surveillance",
+        "net-art",
+        "AI",
+        "synthetic-media"
+      ]
+    },
+    {
+      "slug": "how-scent-becomes-a-medium",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "biomedia",
+        "olfactory-art",
+        "posthumanism",
+        "korean-diaspora",
+        "anicka-yi"
+      ]
+    },
+    {
+      "slug": "monuments-that-remember-the-wrong-cold-war",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "korean-media-art",
+        "archive",
+        "documentary",
+        "diaspora"
+      ]
+    },
+    {
+      "slug": "new-media-returns-with-old-faces",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "media-archaeology",
+        "media-theory",
+        "digital-culture"
+      ]
+    },
+    {
+      "slug": "when-noise-becomes-a-signal",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "noise",
+        "glitch",
+        "post-digital",
+        "AI",
+        "sound-art"
+      ]
+    },
+    {
+      "slug": "when-code-becomes-a-medium",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "generative-art",
+        "software-art",
+        "creative-coding",
+        "processing",
+        "artist"
+      ]
+    },
+    {
+      "slug": "how-convenience-trains-us",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "media-theory",
+        "wendy-chun",
+        "software-studies",
+        "platform",
+        "data-politics"
+      ]
+    },
+    {
+      "slug": "art-after-the-object",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "theory",
+        "systems",
+        "cybernetics",
+        "jack-burnham"
+      ]
+    },
+    {
+      "slug": "ayoung-kim-rewrites-the-future-city-through-courier-labor",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "korean-media-art",
+        "worldbuilding",
+        "algorithmic-governance"
+      ]
+    },
+    {
+      "slug": "how-liveness-is-made",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "liveness",
+        "performance",
+        "real-time"
+      ]
+    },
+    {
+      "slug": "how-protocol-governs-the-network",
+      "category": "제도·인프라",
+      "categorySlug": "institutions-infrastructure",
+      "secondaryTags": [
+        "protocol",
+        "network",
+        "software"
+      ]
+    },
+    {
+      "slug": "the-art-of-feedback",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "theory",
+        "systems",
+        "cybernetics",
+        "feedback",
+        "interactivity"
+      ]
+    },
+    {
+      "slug": "the-order-behind-the-screen",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "apparatus",
+        "theory",
+        "AI"
+      ]
+    },
+    {
+      "slug": "walking-the-database",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "database",
+        "narrative",
+        "digital-culture"
+      ]
+    },
+    {
+      "slug": "when-art-became-systems",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "cybernetics",
+        "systems",
+        "feedback"
+      ]
+    },
+    {
+      "slug": "when-images-become-regimes",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "spectacle",
+        "critical-theory",
+        "platform",
+        "immersion"
+      ]
+    },
+    {
+      "slug": "when-media-becomes-environment",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "media-theory",
+        "ecology",
+        "mcluhan",
+        "interface",
+        "digital-culture"
+      ]
+    },
+    {
+      "slug": "why-disembodied-interfaces-fail",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "embodiment",
+        "body",
+        "interface"
+      ]
+    },
+    {
+      "slug": "why-presence-survives-reproduction",
+      "category": "감각·형식",
+      "categorySlug": "senses-forms",
+      "secondaryTags": [
+        "benjamin",
+        "aura",
+        "reproduction",
+        "aesthetics"
+      ]
+    },
+    {
+      "slug": "what-is-control-society",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "control-society",
+        "surveillance",
+        "platform"
+      ]
+    },
+    {
+      "slug": "what-is-data-colonialism",
+      "category": "사회·권력",
+      "categorySlug": "society-power",
+      "secondaryTags": [
+        "data-colonialism",
+        "AI",
+        "critical-theory"
+      ]
+    },
+    {
+      "slug": "what-is-expanded-cinema",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "expanded-cinema",
+        "cinema",
+        "installation"
+      ]
+    },
+    {
+      "slug": "what-is-generative-art",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "generative-art",
+        "creative-coding",
+        "ai-art"
+      ]
+    },
+    {
+      "slug": "what-is-glitch-aesthetics",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "glitch",
+        "digital-image",
+        "post-digital"
+      ]
+    },
+    {
+      "slug": "what-is-interface",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "interface",
+        "software",
+        "screen-culture"
+      ]
+    },
+    {
+      "slug": "what-is-intermedia",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "intermedia",
+        "fluxus",
+        "theory"
+      ]
+    },
+    {
+      "slug": "what-is-latent-space",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "ai-art",
+        "latent-space",
+        "theory"
+      ]
+    },
+    {
+      "slug": "what-is-operational-image",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "operational-image",
+        "machine-vision",
+        "theory"
+      ]
+    },
+    {
+      "slug": "what-is-optical-unconscious",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "optical-unconscious",
+        "image-theory",
+        "benjamin"
+      ]
+    },
+    {
+      "slug": "what-is-post-digital",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "post-digital",
+        "aesthetics",
+        "theory"
+      ]
+    },
+    {
+      "slug": "what-is-remediation",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "remediation",
+        "digital-media",
+        "theory"
+      ]
+    },
+    {
+      "slug": "what-is-technical-image",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "technical-image",
+        "image-theory",
+        "flusser"
+      ]
+    },
+    {
+      "slug": "why-immersion-became-the-core-language-of-media-art",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "immersion",
+        "installation",
+        "theory"
+      ]
+    },
+    {
+      "slug": "why-poor-images-matter",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "poor-image",
+        "digital-image",
+        "hito-steyerl"
+      ]
+    },
+    {
+      "slug": "history-of-korean-media-art",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "korean-art",
+        "art-history",
+        "digital-art",
+        "immersive"
+      ]
+    },
+    {
+      "slug": "history-of-media-art",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "art-history",
+        "new-media",
+        "digital-art",
+        "generative-art"
+      ]
+    },
+    {
+      "slug": "ai-and-media-art",
+      "category": "입문·개념",
+      "categorySlug": "intro-concepts",
+      "secondaryTags": [
+        "AI",
+        "generative-art",
+        "immersive",
+        "creative-coding",
+        "data-art"
+      ]
+    },
+    {
+      "slug": "afterglow",
+      "category": "작가·작품",
+      "categorySlug": "artists-artworks",
+      "secondaryTags": [
+        "light-installation",
+        "site-specific",
+        "B39",
+        "immersive"
+      ]
+    }
+  ]
+}
