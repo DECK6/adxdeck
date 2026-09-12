@@ -1,5 +1,32 @@
 [
   {
+    "slug": "friedrich-kittler-and-the-conditions-of-recording",
+    "file": "_built/friedrich-kittler-and-the-conditions-of-recording.md",
+    "title": "키틀러는 왜 기록 장치부터 읽었는가",
+    "description": "프리드리히 키틀러의 담론 네트워크와 축음기·필름·타자기 논의를 따라, 기록 장치가 무엇을 남기고 읽을 수 있게 하는지 살핀다. 소프트웨어의 물질적 실행 조건을 미디어아트 제작과 비평에 연결하되 기술결정론의 한계도 짚는다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "friedrich-kittler",
+      "recording"
+    ],
+    "date": "2026-09-13",
+    "modified": "2026-09-13",
+    "thumbnail": "images/friedrich-kittler-and-the-conditions-of-recording-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "media-art",
+      "media-theory",
+      "friedrich-kittler",
+      "recording"
+    ]
+  },
+  {
     "slug": "emergence-and-local-rules-in-media-art",
     "file": "_built/emergence-and-local-rules-in-media-art.md",
     "title": "새 떼의 움직임은 어디에 쓰여 있는가",
