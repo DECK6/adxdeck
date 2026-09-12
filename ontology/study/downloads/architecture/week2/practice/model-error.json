@@ -1,0 +1,514 @@
+{
+  "id": "architecture",
+  "name": "한국 주거 건축",
+  "eyebrow": "SPACE & EVIDENCE",
+  "accent": "#365e85",
+  "intro": "방 3개·욕실 2개, 넓은 거실과 통창을 가진 집을 읽습니다.",
+  "scope": "FAMILY-02 가상 주택을 줄여 만든 학습용 모델입니다. 원 모델의 공간 좌표를 사용하며 건축 인허가·구조 안전·법규 적합 판정은 포함하지 않습니다.",
+  "provenance": "이전에 만든 FAMILY-02(2026-09-10)의 공간 10개 좌표를 재사용했습니다. 원 모델 SHA-256: 95af5e56fd279fa14981b9813e114c7fbef2bcb503f5f3b80d5388f4e436d681. 부품 관계는 설명용 부분 모델입니다.",
+  "classes": {
+    "Building": "주택",
+    "Space": "공간",
+    "Window": "창",
+    "Opening": "개구부",
+    "Wall": "벽",
+    "Door": "문",
+    "Drawing": "도면",
+    "Rule": "요구 조건"
+  },
+  "relations": {
+    "contains": {
+      "label": "공간을 포함한다",
+      "from": [
+        "Building"
+      ],
+      "to": [
+        "Space"
+      ]
+    },
+    "fillsOpening": {
+      "label": "개구부를 채운다",
+      "from": [
+        "Window"
+      ],
+      "to": [
+        "Opening"
+      ]
+    },
+    "hostedBy": {
+      "label": "벽에 뚫려 있다",
+      "from": [
+        "Opening"
+      ],
+      "to": [
+        "Wall"
+      ]
+    },
+    "bounds": {
+      "label": "경계를 이룬다",
+      "from": [
+        "Wall"
+      ],
+      "to": [
+        "Space"
+      ]
+    },
+    "connects": {
+      "label": "공간에 연결된다",
+      "from": [
+        "Door"
+      ],
+      "to": [
+        "Space"
+      ]
+    },
+    "depicts": {
+      "label": "형상을 나타낸다",
+      "from": [
+        "Drawing"
+      ],
+      "to": [
+        "Building"
+      ]
+    },
+    "appliesTo": {
+      "label": "요구를 적용한다",
+      "from": [
+        "Rule"
+      ],
+      "to": [
+        "Building"
+      ]
+    }
+  },
+  "notes": [
+    {
+      "id": "A01",
+      "title": "주택 요구사항 · FAMILY-02",
+      "body": "요청은 침실 3개, 욕실 2개, 넓은 거실과 통창, 거실·주방·다이닝 분리다. 긴 복도를 줄인 FAMILY-02 가상 배치를 대상으로 한다. 실제 주소·대지 조건·허가 정보는 없다. 이 문서는 사용자 공간 요구를 실습용으로 다시 쓴 것이다.",
+      "links": [
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A09",
+        "A10"
+      ]
+    },
+    {
+      "id": "A02",
+      "title": "거실 · 넓이와 위치",
+      "body": "LIVING의 실내 경계는 mm 단위로 (3860,0)–(10540,5540)이다. 넓이는 37.0072㎡다. 남측 벽과 거실 통창을 확인한다. 수치는 FAMILY-02 모델 좌표로 계산했으며 현장 실측값이 아니다.",
+      "links": [
+        "A01",
+        "A07",
+        "A09"
+      ]
+    },
+    {
+      "id": "A03",
+      "title": "주방과 다이닝 · 분리된 공간",
+      "body": "KITCHEN은 (0,6160)–(3740,9200), DINING은 (3860,5660)–(7740,9200)이다. LIVING과 각각 다른 공간 ID와 형상을 갖는다. 주방은 11.3696㎡, 다이닝은 13.7352㎡다. 공간 간 문은 원 모델에 있으며 여기서는 대표 연결만 다룬다.",
+      "links": [
+        "A02",
+        "A08",
+        "A09"
+      ]
+    },
+    {
+      "id": "A04",
+      "title": "침실 세 개와 드레스룸",
+      "body": "BED-1은 안방, BED-2와 BED-3은 두 침실이다. DRESS는 드레스룸으로 침실 수에 포함하지 않는다. 원 모델의 실내 영역을 도면에서 선택해 확인한다. 방의 수는 단어 빈도 대신 공간 ID와 역할로 센다.",
+      "links": [
+        "A01",
+        "A05",
+        "A09"
+      ]
+    },
+    {
+      "id": "A05",
+      "title": "욕실 두 개",
+      "body": "BATH-1은 공용 욕실, BATH-2는 안방 욕실이다. 각각 별도 공간으로 기록한다. 설비·배관·환기·방수의 실제 시공 적합성은 이 묶음으로 판단하지 않는다.",
+      "links": [
+        "A04",
+        "A09",
+        "A10"
+      ]
+    },
+    {
+      "id": "A06",
+      "title": "현관과 짧은 홀",
+      "body": "HALL은 (7860,5660)–(10540,9200), 넓이는 9.4872㎡다. 긴 복도를 줄인 배치이며 공간 효율과 거주 품질을 넓이 하나로 판단하지 않는다. D-LIVING은 홀과 거실을 연결하는 대표 문이다.",
+      "links": [
+        "A02",
+        "A08",
+        "A09"
+      ]
+    },
+    {
+      "id": "A07",
+      "title": "거실 통창 · 창과 개구부와 벽",
+      "body": "WINDOW는 폭 6000mm·높이 2400mm인 시각화 가정의 거실 통창이다. 창은 OPENING을 채우고, OPENING은 SOUTH-WALL에 뚫려 있으며 SOUTH-WALL은 LIVING의 남측 경계를 이룬다. 창 자체를 벽이나 공간으로 분류하지 않는다. 유리 구조·열성능 검토는 없다.",
+      "links": [
+        "A02",
+        "A09",
+        "A10"
+      ]
+    },
+    {
+      "id": "A08",
+      "title": "문 · 홀과 거실의 연결",
+      "body": "D-LIVING은 HALL과 LIVING 두 공간을 연결한다. 이것은 문이 어떤 공간의 이동을 잇는지 보여주는 부분 모델이다. 모델의 문 기호와 실제 통과 유효폭, 피난 적합성을 같은 것으로 해석하지 않는다.",
+      "links": [
+        "A02",
+        "A06",
+        "A09"
+      ]
+    },
+    {
+      "id": "A09",
+      "title": "도면 · 좌표와 리비전",
+      "body": "DRAWING은 HOUSE를 나타내며 리비전은 FAMILY-02다. 도면의 직사각형은 원 모델의 실내 공간 경계다. mm 좌표, 방 이름, 넓이는 모델과 함께 읽는다. 이 실습의 도면은 벽·문짝·설비가 생략된 공간 관계 도식이며 실시설계 도면이 아니다.",
+      "links": [
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06"
+      ]
+    },
+    {
+      "id": "A10",
+      "title": "요구 조건과 판단 보류",
+      "body": "이 사례의 요구는 침실 3개·욕실 2개, 거실/주방/다이닝의 별도 공간, 폭 6m 통창이다. 이는 사용자의 설계 요구이지 법정 최소 기준이 아니다. 프로젝트 위치, 적용 절차, 구조 검토, 허가 증거가 없으므로 허가 완료나 안전을 판정하지 않는다.",
+      "links": [
+        "A01",
+        "A07",
+        "A09"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "HOUSE",
+      "label": "FAMILY-02 주택",
+      "type": "Building",
+      "noteId": "A01",
+      "attrs": {}
+    },
+    {
+      "id": "LIVING",
+      "label": "거실",
+      "type": "Space",
+      "noteId": "A02",
+      "attrs": {
+        "role": "living",
+        "areaM2": 37.0072,
+        "x": 3860,
+        "y": 0,
+        "w": 6680,
+        "h": 5540
+      }
+    },
+    {
+      "id": "DINING",
+      "label": "다이닝",
+      "type": "Space",
+      "noteId": "A03",
+      "attrs": {
+        "role": "dining",
+        "areaM2": 13.7352,
+        "x": 3860,
+        "y": 5660,
+        "w": 3880,
+        "h": 3540
+      }
+    },
+    {
+      "id": "KITCHEN",
+      "label": "주방",
+      "type": "Space",
+      "noteId": "A03",
+      "attrs": {
+        "role": "kitchen",
+        "areaM2": 11.3696,
+        "x": 0,
+        "y": 6160,
+        "w": 3740,
+        "h": 3040
+      }
+    },
+    {
+      "id": "HALL",
+      "label": "현관 · 홀",
+      "type": "Space",
+      "noteId": "A06",
+      "attrs": {
+        "role": "hall",
+        "areaM2": 9.4872,
+        "x": 7860,
+        "y": 5660,
+        "w": 2680,
+        "h": 3540
+      }
+    },
+    {
+      "id": "BED-1",
+      "label": "안방",
+      "type": "Space",
+      "noteId": "A04",
+      "attrs": {
+        "role": "bedroom",
+        "areaM2": 15.8576,
+        "x": 0,
+        "y": 0,
+        "w": 3740,
+        "h": 4240
+      }
+    },
+    {
+      "id": "BED-2",
+      "label": "침실 2",
+      "type": "Space",
+      "noteId": "A04",
+      "attrs": {
+        "role": "bedroom",
+        "areaM2": 17.4936,
+        "x": 10660,
+        "y": 0,
+        "w": 3940,
+        "h": 4440
+      }
+    },
+    {
+      "id": "BED-3",
+      "label": "침실 3",
+      "type": "Space",
+      "noteId": "A04",
+      "attrs": {
+        "role": "bedroom",
+        "areaM2": 10.1652,
+        "x": 10660,
+        "y": 4560,
+        "w": 3940,
+        "h": 2580
+      }
+    },
+    {
+      "id": "BATH-1",
+      "label": "공용 욕실",
+      "type": "Space",
+      "noteId": "A05",
+      "attrs": {
+        "role": "bathroom",
+        "areaM2": 7.6436,
+        "x": 10660,
+        "y": 7260,
+        "w": 3940,
+        "h": 1940
+      }
+    },
+    {
+      "id": "BATH-2",
+      "label": "안방 욕실",
+      "type": "Space",
+      "noteId": "A05",
+      "attrs": {
+        "role": "bathroom",
+        "areaM2": 3.9312,
+        "x": 0,
+        "y": 4360,
+        "w": 2340,
+        "h": 1680
+      }
+    },
+    {
+      "id": "DRESS",
+      "label": "드레스룸",
+      "type": "Space",
+      "noteId": "A04",
+      "attrs": {
+        "role": "dress",
+        "areaM2": 2.1504,
+        "x": 2460,
+        "y": 4360,
+        "w": 1280,
+        "h": 1680
+      }
+    },
+    {
+      "id": "WINDOW",
+      "label": "거실 통창",
+      "type": "Window",
+      "noteId": "A07",
+      "attrs": {
+        "widthMm": 6000,
+        "heightMm": 2400
+      }
+    },
+    {
+      "id": "OPENING",
+      "label": "통창 개구부",
+      "type": "Opening",
+      "noteId": "A07",
+      "attrs": {}
+    },
+    {
+      "id": "SOUTH-WALL",
+      "label": "거실 남측 벽",
+      "type": "Wall",
+      "noteId": "A07",
+      "attrs": {}
+    },
+    {
+      "id": "D-LIVING",
+      "label": "홀–거실 문",
+      "type": "Door",
+      "noteId": "A08",
+      "attrs": {}
+    },
+    {
+      "id": "DRAWING",
+      "label": "공간 배치 도면",
+      "type": "Drawing",
+      "noteId": "A09",
+      "attrs": {
+        "revision": "FAMILY-02"
+      }
+    },
+    {
+      "id": "BRIEF",
+      "label": "방 3 · 욕실 2",
+      "type": "Rule",
+      "noteId": "A10",
+      "attrs": {}
+    }
+  ],
+  "edges": [
+    {
+      "from": "HOUSE",
+      "rel": "contains",
+      "to": "LIVING",
+      "source": "A02"
+    },
+    {
+      "from": "HOUSE",
+      "rel": "contains",
+      "to": "DINING",
+      "source": "A03"
+    },
+    {
+      "from": "HOUSE",
+      "rel": "contains",
+      "to": "KITCHEN",
+      "source": "A03"
+    },
+    {
+      "from": "HOUSE",
+      "rel": "contains",
+      "to": "HALL",
+      "source": "A06"
+    },
+    {
+      "from": "HOUSE",
+      "rel": "contains",
+      "to": "BED-1",
+      "source": "A04"
+    },
+    {
+      "from": "HOUSE",
+      "rel": "contains",
+      "to": "BED-2",
+      "source": "A04"
+    },
+    {
+      "from": "HOUSE",
+      "rel": "contains",
+      "to": "BED-3",
+      "source": "A04"
+    },
+    {
+      "from": "HOUSE",
+      "rel": "contains",
+      "to": "BATH-1",
+      "source": "A05"
+    },
+    {
+      "from": "HOUSE",
+      "rel": "contains",
+      "to": "BATH-2",
+      "source": "A05"
+    },
+    {
+      "from": "HOUSE",
+      "rel": "contains",
+      "to": "DRESS",
+      "source": "A04"
+    },
+    {
+      "from": "WINDOW",
+      "rel": "fillsOpening",
+      "to": "OPENING",
+      "source": "A07"
+    },
+    {
+      "from": "OPENING",
+      "rel": "hostedBy",
+      "to": "SOUTH-WALL",
+      "source": "A07"
+    },
+    {
+      "from": "SOUTH-WALL",
+      "rel": "bounds",
+      "to": "LIVING",
+      "source": "A07"
+    },
+    {
+      "from": "D-LIVING",
+      "rel": "connects",
+      "to": "HALL",
+      "source": "A08"
+    },
+    {
+      "from": "D-LIVING",
+      "rel": "connects",
+      "to": "LIVING",
+      "source": "A08"
+    },
+    {
+      "from": "DRAWING",
+      "rel": "depicts",
+      "to": "HOUSE",
+      "source": "A09"
+    },
+    {
+      "from": "BRIEF",
+      "rel": "appliesTo",
+      "to": "HOUSE",
+      "source": "A10"
+    },
+    {
+      "from": "WINDOW",
+      "rel": "fillsOpening",
+      "to": "LIVING",
+      "source": "A07"
+    }
+  ],
+  "questions": [
+    "침실 3개·욕실 2개이고 거실·주방·다이닝이 분리된 모델인가요?",
+    "거실 통창은 어떤 개구부와 벽을 통해 거실과 연결되나요?",
+    "이 도면만으로 구조 안전과 건축 허가 완료를 판단할 수 있나요?"
+  ],
+  "traps": [
+    "침실이라는 단어가 세 번 나온 것과 서로 다른 침실 세 개가 있는 것은 다릅니다.",
+    "도면 정합성 검사와 법규·구조 안전 검토는 다릅니다."
+  ],
+  "error": {
+    "from": "WINDOW",
+    "rel": "fillsOpening",
+    "to": "LIVING",
+    "source": "A07"
+  },
+  "target": "WINDOW"
+}

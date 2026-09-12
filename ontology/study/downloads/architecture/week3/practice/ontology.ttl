@@ -1,0 +1,208 @@
+@prefix ex: <https://dexa.art/ontology/study/vocab/architecture#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+ex:ontology a owl:Ontology ; rdfs:label "한국 주거 건축 실습 온톨로지" .
+ex:Building a owl:Class ; rdfs:label "주택" .
+ex:Space a owl:Class ; rdfs:label "공간" .
+ex:Window a owl:Class ; rdfs:label "창" .
+ex:Opening a owl:Class ; rdfs:label "개구부" .
+ex:Wall a owl:Class ; rdfs:label "벽" .
+ex:Door a owl:Class ; rdfs:label "문" .
+ex:Drawing a owl:Class ; rdfs:label "도면" .
+ex:Rule a owl:Class ; rdfs:label "요구 조건" .
+ex:contains a owl:ObjectProperty ; rdfs:label "공간을 포함한다" ; rdfs:domain ex:Building ; rdfs:range ex:Space .
+ex:fillsOpening a owl:ObjectProperty ; rdfs:label "개구부를 채운다" ; rdfs:domain ex:Window ; rdfs:range ex:Opening .
+ex:hostedBy a owl:ObjectProperty ; rdfs:label "벽에 뚫려 있다" ; rdfs:domain ex:Opening ; rdfs:range ex:Wall .
+ex:bounds a owl:ObjectProperty ; rdfs:label "경계를 이룬다" ; rdfs:domain ex:Wall ; rdfs:range ex:Space .
+ex:connects a owl:ObjectProperty ; rdfs:label "공간에 연결된다" ; rdfs:domain ex:Door ; rdfs:range ex:Space .
+ex:depicts a owl:ObjectProperty ; rdfs:label "형상을 나타낸다" ; rdfs:domain ex:Drawing ; rdfs:range ex:Building .
+ex:appliesTo a owl:ObjectProperty ; rdfs:label "요구를 적용한다" ; rdfs:domain ex:Rule ; rdfs:range ex:Building .
+ex:HOUSE a ex:Building ; rdfs:label "FAMILY-02 주택" ; prov:wasDerivedFrom ex:A01 .
+ex:LIVING a ex:Space ; rdfs:label "거실" ; prov:wasDerivedFrom ex:A02 .
+ex:role a owl:DatatypeProperty .
+ex:LIVING ex:role "living" .
+ex:areaM2 a owl:DatatypeProperty .
+ex:LIVING ex:areaM2 37.0072 .
+ex:x a owl:DatatypeProperty .
+ex:LIVING ex:x 3860 .
+ex:y a owl:DatatypeProperty .
+ex:LIVING ex:y 0 .
+ex:w a owl:DatatypeProperty .
+ex:LIVING ex:w 6680 .
+ex:h a owl:DatatypeProperty .
+ex:LIVING ex:h 5540 .
+ex:DINING a ex:Space ; rdfs:label "다이닝" ; prov:wasDerivedFrom ex:A03 .
+ex:role a owl:DatatypeProperty .
+ex:DINING ex:role "dining" .
+ex:areaM2 a owl:DatatypeProperty .
+ex:DINING ex:areaM2 13.7352 .
+ex:x a owl:DatatypeProperty .
+ex:DINING ex:x 3860 .
+ex:y a owl:DatatypeProperty .
+ex:DINING ex:y 5660 .
+ex:w a owl:DatatypeProperty .
+ex:DINING ex:w 3880 .
+ex:h a owl:DatatypeProperty .
+ex:DINING ex:h 3540 .
+ex:KITCHEN a ex:Space ; rdfs:label "주방" ; prov:wasDerivedFrom ex:A03 .
+ex:role a owl:DatatypeProperty .
+ex:KITCHEN ex:role "kitchen" .
+ex:areaM2 a owl:DatatypeProperty .
+ex:KITCHEN ex:areaM2 11.3696 .
+ex:x a owl:DatatypeProperty .
+ex:KITCHEN ex:x 0 .
+ex:y a owl:DatatypeProperty .
+ex:KITCHEN ex:y 6160 .
+ex:w a owl:DatatypeProperty .
+ex:KITCHEN ex:w 3740 .
+ex:h a owl:DatatypeProperty .
+ex:KITCHEN ex:h 3040 .
+ex:HALL a ex:Space ; rdfs:label "현관 · 홀" ; prov:wasDerivedFrom ex:A06 .
+ex:role a owl:DatatypeProperty .
+ex:HALL ex:role "hall" .
+ex:areaM2 a owl:DatatypeProperty .
+ex:HALL ex:areaM2 9.4872 .
+ex:x a owl:DatatypeProperty .
+ex:HALL ex:x 7860 .
+ex:y a owl:DatatypeProperty .
+ex:HALL ex:y 5660 .
+ex:w a owl:DatatypeProperty .
+ex:HALL ex:w 2680 .
+ex:h a owl:DatatypeProperty .
+ex:HALL ex:h 3540 .
+ex:BED-1 a ex:Space ; rdfs:label "안방" ; prov:wasDerivedFrom ex:A04 .
+ex:role a owl:DatatypeProperty .
+ex:BED-1 ex:role "bedroom" .
+ex:areaM2 a owl:DatatypeProperty .
+ex:BED-1 ex:areaM2 15.8576 .
+ex:x a owl:DatatypeProperty .
+ex:BED-1 ex:x 0 .
+ex:y a owl:DatatypeProperty .
+ex:BED-1 ex:y 0 .
+ex:w a owl:DatatypeProperty .
+ex:BED-1 ex:w 3740 .
+ex:h a owl:DatatypeProperty .
+ex:BED-1 ex:h 4240 .
+ex:BED-2 a ex:Space ; rdfs:label "침실 2" ; prov:wasDerivedFrom ex:A04 .
+ex:role a owl:DatatypeProperty .
+ex:BED-2 ex:role "bedroom" .
+ex:areaM2 a owl:DatatypeProperty .
+ex:BED-2 ex:areaM2 17.4936 .
+ex:x a owl:DatatypeProperty .
+ex:BED-2 ex:x 10660 .
+ex:y a owl:DatatypeProperty .
+ex:BED-2 ex:y 0 .
+ex:w a owl:DatatypeProperty .
+ex:BED-2 ex:w 3940 .
+ex:h a owl:DatatypeProperty .
+ex:BED-2 ex:h 4440 .
+ex:BED-3 a ex:Space ; rdfs:label "침실 3" ; prov:wasDerivedFrom ex:A04 .
+ex:role a owl:DatatypeProperty .
+ex:BED-3 ex:role "bedroom" .
+ex:areaM2 a owl:DatatypeProperty .
+ex:BED-3 ex:areaM2 10.1652 .
+ex:x a owl:DatatypeProperty .
+ex:BED-3 ex:x 10660 .
+ex:y a owl:DatatypeProperty .
+ex:BED-3 ex:y 4560 .
+ex:w a owl:DatatypeProperty .
+ex:BED-3 ex:w 3940 .
+ex:h a owl:DatatypeProperty .
+ex:BED-3 ex:h 2580 .
+ex:BATH-1 a ex:Space ; rdfs:label "공용 욕실" ; prov:wasDerivedFrom ex:A05 .
+ex:role a owl:DatatypeProperty .
+ex:BATH-1 ex:role "bathroom" .
+ex:areaM2 a owl:DatatypeProperty .
+ex:BATH-1 ex:areaM2 7.6436 .
+ex:x a owl:DatatypeProperty .
+ex:BATH-1 ex:x 10660 .
+ex:y a owl:DatatypeProperty .
+ex:BATH-1 ex:y 7260 .
+ex:w a owl:DatatypeProperty .
+ex:BATH-1 ex:w 3940 .
+ex:h a owl:DatatypeProperty .
+ex:BATH-1 ex:h 1940 .
+ex:BATH-2 a ex:Space ; rdfs:label "안방 욕실" ; prov:wasDerivedFrom ex:A05 .
+ex:role a owl:DatatypeProperty .
+ex:BATH-2 ex:role "bathroom" .
+ex:areaM2 a owl:DatatypeProperty .
+ex:BATH-2 ex:areaM2 3.9312 .
+ex:x a owl:DatatypeProperty .
+ex:BATH-2 ex:x 0 .
+ex:y a owl:DatatypeProperty .
+ex:BATH-2 ex:y 4360 .
+ex:w a owl:DatatypeProperty .
+ex:BATH-2 ex:w 2340 .
+ex:h a owl:DatatypeProperty .
+ex:BATH-2 ex:h 1680 .
+ex:DRESS a ex:Space ; rdfs:label "드레스룸" ; prov:wasDerivedFrom ex:A04 .
+ex:role a owl:DatatypeProperty .
+ex:DRESS ex:role "dress" .
+ex:areaM2 a owl:DatatypeProperty .
+ex:DRESS ex:areaM2 2.1504 .
+ex:x a owl:DatatypeProperty .
+ex:DRESS ex:x 2460 .
+ex:y a owl:DatatypeProperty .
+ex:DRESS ex:y 4360 .
+ex:w a owl:DatatypeProperty .
+ex:DRESS ex:w 1280 .
+ex:h a owl:DatatypeProperty .
+ex:DRESS ex:h 1680 .
+ex:WINDOW a ex:Window ; rdfs:label "거실 통창" ; prov:wasDerivedFrom ex:A07 .
+ex:widthMm a owl:DatatypeProperty .
+ex:WINDOW ex:widthMm 6000 .
+ex:heightMm a owl:DatatypeProperty .
+ex:WINDOW ex:heightMm 2400 .
+ex:OPENING a ex:Opening ; rdfs:label "통창 개구부" ; prov:wasDerivedFrom ex:A07 .
+ex:SOUTH-WALL a ex:Wall ; rdfs:label "거실 남측 벽" ; prov:wasDerivedFrom ex:A07 .
+ex:D-LIVING a ex:Door ; rdfs:label "홀–거실 문" ; prov:wasDerivedFrom ex:A08 .
+ex:DRAWING a ex:Drawing ; rdfs:label "공간 배치 도면" ; prov:wasDerivedFrom ex:A09 .
+ex:revision a owl:DatatypeProperty .
+ex:DRAWING ex:revision "FAMILY-02" .
+ex:BRIEF a ex:Rule ; rdfs:label "방 3 · 욕실 2" ; prov:wasDerivedFrom ex:A10 .
+ex:HOUSE ex:contains ex:LIVING .
+[] a owl:Axiom ; owl:annotatedSource ex:HOUSE ; owl:annotatedProperty ex:contains ; owl:annotatedTarget ex:LIVING ; prov:wasDerivedFrom ex:A02 .
+ex:HOUSE ex:contains ex:DINING .
+[] a owl:Axiom ; owl:annotatedSource ex:HOUSE ; owl:annotatedProperty ex:contains ; owl:annotatedTarget ex:DINING ; prov:wasDerivedFrom ex:A03 .
+ex:HOUSE ex:contains ex:KITCHEN .
+[] a owl:Axiom ; owl:annotatedSource ex:HOUSE ; owl:annotatedProperty ex:contains ; owl:annotatedTarget ex:KITCHEN ; prov:wasDerivedFrom ex:A03 .
+ex:HOUSE ex:contains ex:HALL .
+[] a owl:Axiom ; owl:annotatedSource ex:HOUSE ; owl:annotatedProperty ex:contains ; owl:annotatedTarget ex:HALL ; prov:wasDerivedFrom ex:A06 .
+ex:HOUSE ex:contains ex:BED-1 .
+[] a owl:Axiom ; owl:annotatedSource ex:HOUSE ; owl:annotatedProperty ex:contains ; owl:annotatedTarget ex:BED-1 ; prov:wasDerivedFrom ex:A04 .
+ex:HOUSE ex:contains ex:BED-2 .
+[] a owl:Axiom ; owl:annotatedSource ex:HOUSE ; owl:annotatedProperty ex:contains ; owl:annotatedTarget ex:BED-2 ; prov:wasDerivedFrom ex:A04 .
+ex:HOUSE ex:contains ex:BED-3 .
+[] a owl:Axiom ; owl:annotatedSource ex:HOUSE ; owl:annotatedProperty ex:contains ; owl:annotatedTarget ex:BED-3 ; prov:wasDerivedFrom ex:A04 .
+ex:HOUSE ex:contains ex:BATH-1 .
+[] a owl:Axiom ; owl:annotatedSource ex:HOUSE ; owl:annotatedProperty ex:contains ; owl:annotatedTarget ex:BATH-1 ; prov:wasDerivedFrom ex:A05 .
+ex:HOUSE ex:contains ex:BATH-2 .
+[] a owl:Axiom ; owl:annotatedSource ex:HOUSE ; owl:annotatedProperty ex:contains ; owl:annotatedTarget ex:BATH-2 ; prov:wasDerivedFrom ex:A05 .
+ex:HOUSE ex:contains ex:DRESS .
+[] a owl:Axiom ; owl:annotatedSource ex:HOUSE ; owl:annotatedProperty ex:contains ; owl:annotatedTarget ex:DRESS ; prov:wasDerivedFrom ex:A04 .
+ex:WINDOW ex:fillsOpening ex:OPENING .
+[] a owl:Axiom ; owl:annotatedSource ex:WINDOW ; owl:annotatedProperty ex:fillsOpening ; owl:annotatedTarget ex:OPENING ; prov:wasDerivedFrom ex:A07 .
+ex:OPENING ex:hostedBy ex:SOUTH-WALL .
+[] a owl:Axiom ; owl:annotatedSource ex:OPENING ; owl:annotatedProperty ex:hostedBy ; owl:annotatedTarget ex:SOUTH-WALL ; prov:wasDerivedFrom ex:A07 .
+ex:SOUTH-WALL ex:bounds ex:LIVING .
+[] a owl:Axiom ; owl:annotatedSource ex:SOUTH-WALL ; owl:annotatedProperty ex:bounds ; owl:annotatedTarget ex:LIVING ; prov:wasDerivedFrom ex:A07 .
+ex:D-LIVING ex:connects ex:HALL .
+[] a owl:Axiom ; owl:annotatedSource ex:D-LIVING ; owl:annotatedProperty ex:connects ; owl:annotatedTarget ex:HALL ; prov:wasDerivedFrom ex:A08 .
+ex:D-LIVING ex:connects ex:LIVING .
+[] a owl:Axiom ; owl:annotatedSource ex:D-LIVING ; owl:annotatedProperty ex:connects ; owl:annotatedTarget ex:LIVING ; prov:wasDerivedFrom ex:A08 .
+ex:DRAWING ex:depicts ex:HOUSE .
+[] a owl:Axiom ; owl:annotatedSource ex:DRAWING ; owl:annotatedProperty ex:depicts ; owl:annotatedTarget ex:HOUSE ; prov:wasDerivedFrom ex:A09 .
+ex:BRIEF ex:appliesTo ex:HOUSE .
+[] a owl:Axiom ; owl:annotatedSource ex:BRIEF ; owl:annotatedProperty ex:appliesTo ; owl:annotatedTarget ex:HOUSE ; prov:wasDerivedFrom ex:A10 .
+ex:A01 a prov:Entity ; rdfs:label "주택 요구사항 · FAMILY-02" .
+ex:A02 a prov:Entity ; rdfs:label "거실 · 넓이와 위치" .
+ex:A03 a prov:Entity ; rdfs:label "주방과 다이닝 · 분리된 공간" .
+ex:A04 a prov:Entity ; rdfs:label "침실 세 개와 드레스룸" .
+ex:A05 a prov:Entity ; rdfs:label "욕실 두 개" .
+ex:A06 a prov:Entity ; rdfs:label "현관과 짧은 홀" .
+ex:A07 a prov:Entity ; rdfs:label "거실 통창 · 창과 개구부와 벽" .
+ex:A08 a prov:Entity ; rdfs:label "문 · 홀과 거실의 연결" .
+ex:A09 a prov:Entity ; rdfs:label "도면 · 좌표와 리비전" .
+ex:A10 a prov:Entity ; rdfs:label "요구 조건과 판단 보류" .

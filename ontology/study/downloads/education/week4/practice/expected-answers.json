@@ -1,0 +1,52 @@
+[
+  {
+    "id": "Q1",
+    "question": "분모가 같은 분수의 덧셈 전에 어떤 주제를 어떤 순서로 확인하나요?",
+    "status": "SUPPORTED",
+    "answer": "똑같이 나누기 → 분수의 뜻 → 단위분수 → 분수 크기 비교 → 동분모 분수 덧셈 순서입니다. 이 수업 설계에 한정된 제안 경로이며, 학생별 필수 순서나 진단 결과는 아닙니다.",
+    "nodes": [
+      "T1",
+      "T2",
+      "T3",
+      "T4",
+      "T5"
+    ],
+    "evidence": [
+      "E05",
+      "E04",
+      "E03",
+      "E02"
+    ],
+    "kind": "deterministic-reference-not-LLM-run"
+  },
+  {
+    "id": "Q2",
+    "question": "분수 크기 비교를 돕는 교재와 이해 확인 질문은 무엇인가요?",
+    "status": "SUPPORTED",
+    "answer": "비교 카드: 학습을 돕는다 / 설명 확인 질문: 이해를 확인한다 — 실제 문서에서 활동 내용과 확인 질문을 읽으세요.",
+    "nodes": [
+      "M2",
+      "A1",
+      "T4"
+    ],
+    "evidence": [
+      "E07",
+      "E08"
+    ],
+    "kind": "deterministic-reference-not-LLM-run"
+  },
+  {
+    "id": "Q3",
+    "question": "민지A가 분수 덧셈을 이해했다고 판단할 수 있나요?",
+    "status": "UNKNOWN",
+    "answer": "판단 보류. 확인 질문은 있지만 민지A의 실제 답변·관찰·평가 결과가 없습니다. 학습 자료의 존재를 학습자의 성취로 바꿔 읽을 수 없습니다.",
+    "nodes": [
+      "A1"
+    ],
+    "evidence": [
+      "E08",
+      "E10"
+    ],
+    "kind": "deterministic-reference-not-LLM-run"
+  }
+]

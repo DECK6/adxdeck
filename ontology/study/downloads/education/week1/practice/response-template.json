@@ -1,0 +1,30 @@
+{
+  "domain": "education",
+  "phase": "before",
+  "model": "",
+  "runAt": "",
+  "status": "unmeasured",
+  "responses": [
+    {
+      "id": "Q1",
+      "question": "분모가 같은 분수의 덧셈 전에 어떤 주제를 어떤 순서로 확인하나요?",
+      "answer": "",
+      "evidence": [],
+      "limitations": ""
+    },
+    {
+      "id": "Q2",
+      "question": "분수 크기 비교를 돕는 교재와 이해 확인 질문은 무엇인가요?",
+      "answer": "",
+      "evidence": [],
+      "limitations": ""
+    },
+    {
+      "id": "Q3",
+      "question": "민지A가 분수 덧셈을 이해했다고 판단할 수 있나요?",
+      "answer": "",
+      "evidence": [],
+      "limitations": ""
+    }
+  ]
+}

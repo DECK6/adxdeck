@@ -1,0 +1,70 @@
+{
+  "classes": {
+    "Topic": "학습 주제",
+    "Material": "교재",
+    "Assessment": "확인 질문",
+    "Path": "학습 경로",
+    "Plan": "수업 설계"
+  },
+  "relations": {
+    "requires": {
+      "label": "먼저 확인한다",
+      "from": [
+        "Topic"
+      ],
+      "to": [
+        "Topic"
+      ]
+    },
+    "teaches": {
+      "label": "학습을 돕는다",
+      "from": [
+        "Material"
+      ],
+      "to": [
+        "Topic"
+      ]
+    },
+    "checks": {
+      "label": "이해를 확인한다",
+      "from": [
+        "Assessment"
+      ],
+      "to": [
+        "Topic"
+      ]
+    },
+    "targets": {
+      "label": "도달 목표로 삼는다",
+      "from": [
+        "Path"
+      ],
+      "to": [
+        "Topic"
+      ]
+    },
+    "documents": {
+      "label": "설계를 기록한다",
+      "from": [
+        "Plan"
+      ],
+      "to": [
+        "Path"
+      ]
+    }
+  },
+  "requiredNodeFields": [
+    "id",
+    "label",
+    "type",
+    "noteId",
+    "attrs"
+  ],
+  "rules": [
+    "unique IDs",
+    "known endpoints",
+    "domain/range",
+    "source exists",
+    "acyclic requires"
+  ]
+}

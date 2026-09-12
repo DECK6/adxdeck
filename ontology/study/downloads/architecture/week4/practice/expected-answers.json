@@ -1,0 +1,61 @@
+[
+  {
+    "id": "Q1",
+    "question": "침실 3개·욕실 2개이고 거실·주방·다이닝이 분리된 모델인가요?",
+    "status": "SUPPORTED",
+    "answer": "이 모델은 침실 3개, 욕실 2개입니다. 거실·주방·다이닝의 별도 공간 기록은 있습니다. 이는 기록된 공간 요구의 확인이며 거주 품질·시공·법규 적합 판정은 아닙니다.",
+    "nodes": [
+      "HOUSE",
+      "LIVING",
+      "DINING",
+      "KITCHEN",
+      "HALL",
+      "BED-1",
+      "BED-2",
+      "BED-3",
+      "BATH-1",
+      "BATH-2",
+      "DRESS"
+    ],
+    "evidence": [
+      "A01",
+      "A02",
+      "A03",
+      "A06",
+      "A04",
+      "A05"
+    ],
+    "kind": "deterministic-reference-not-LLM-run"
+  },
+  {
+    "id": "Q2",
+    "question": "거실 통창은 어떤 개구부와 벽을 통해 거실과 연결되나요?",
+    "status": "SUPPORTED",
+    "answer": "거실 통창 → 통창 개구부 → 거실 남측 벽 → 거실. 창의 기록 치수는 폭 6000mm, 높이 2400mm입니다.",
+    "nodes": [
+      "WINDOW",
+      "OPENING",
+      "SOUTH-WALL",
+      "LIVING"
+    ],
+    "evidence": [
+      "A07"
+    ],
+    "kind": "deterministic-reference-not-LLM-run"
+  },
+  {
+    "id": "Q3",
+    "question": "이 도면만으로 구조 안전과 건축 허가 완료를 판단할 수 있나요?",
+    "status": "UNKNOWN",
+    "answer": "판단 보류. 이 자료는 공간 배치와 요구 조건을 담은 개념 모델입니다. 구조 검토·대지 조건·적용 절차·허가 증거가 없어 안전이나 허가 완료를 판단할 수 없습니다.",
+    "nodes": [
+      "DRAWING",
+      "BRIEF"
+    ],
+    "evidence": [
+      "A09",
+      "A10"
+    ],
+    "kind": "deterministic-reference-not-LLM-run"
+  }
+]

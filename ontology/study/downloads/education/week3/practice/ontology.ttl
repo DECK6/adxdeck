@@ -1,0 +1,54 @@
+@prefix ex: <https://dexa.art/ontology/study/vocab/education#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+ex:ontology a owl:Ontology ; rdfs:label "초등교육 실습 온톨로지" .
+ex:Topic a owl:Class ; rdfs:label "학습 주제" .
+ex:Material a owl:Class ; rdfs:label "교재" .
+ex:Assessment a owl:Class ; rdfs:label "확인 질문" .
+ex:Path a owl:Class ; rdfs:label "학습 경로" .
+ex:Plan a owl:Class ; rdfs:label "수업 설계" .
+ex:requires a owl:ObjectProperty ; rdfs:label "먼저 확인한다" ; rdfs:domain ex:Topic ; rdfs:range ex:Topic .
+ex:teaches a owl:ObjectProperty ; rdfs:label "학습을 돕는다" ; rdfs:domain ex:Material ; rdfs:range ex:Topic .
+ex:checks a owl:ObjectProperty ; rdfs:label "이해를 확인한다" ; rdfs:domain ex:Assessment ; rdfs:range ex:Topic .
+ex:targets a owl:ObjectProperty ; rdfs:label "도달 목표로 삼는다" ; rdfs:domain ex:Path ; rdfs:range ex:Topic .
+ex:documents a owl:ObjectProperty ; rdfs:label "설계를 기록한다" ; rdfs:domain ex:Plan ; rdfs:range ex:Path .
+ex:T1 a ex:Topic ; rdfs:label "똑같이 나누기" ; prov:wasDerivedFrom ex:E01 .
+ex:T2 a ex:Topic ; rdfs:label "분수의 뜻" ; prov:wasDerivedFrom ex:E02 .
+ex:T3 a ex:Topic ; rdfs:label "단위분수" ; prov:wasDerivedFrom ex:E03 .
+ex:T4 a ex:Topic ; rdfs:label "분수 크기 비교" ; prov:wasDerivedFrom ex:E04 .
+ex:T5 a ex:Topic ; rdfs:label "동분모 분수 덧셈" ; prov:wasDerivedFrom ex:E05 .
+ex:M1 a ex:Material ; rdfs:label "분수 띠" ; prov:wasDerivedFrom ex:E06 .
+ex:M2 a ex:Material ; rdfs:label "비교 카드" ; prov:wasDerivedFrom ex:E07 .
+ex:A1 a ex:Assessment ; rdfs:label "설명 확인 질문" ; prov:wasDerivedFrom ex:E08 .
+ex:P1 a ex:Path ; rdfs:label "덧셈 준비 경로" ; prov:wasDerivedFrom ex:E09 .
+ex:S1 a ex:Plan ; rdfs:label "수업 설계 메모" ; prov:wasDerivedFrom ex:E10 .
+ex:T2 ex:requires ex:T1 .
+[] a owl:Axiom ; owl:annotatedSource ex:T2 ; owl:annotatedProperty ex:requires ; owl:annotatedTarget ex:T1 ; prov:wasDerivedFrom ex:E02 .
+ex:T3 ex:requires ex:T2 .
+[] a owl:Axiom ; owl:annotatedSource ex:T3 ; owl:annotatedProperty ex:requires ; owl:annotatedTarget ex:T2 ; prov:wasDerivedFrom ex:E03 .
+ex:T4 ex:requires ex:T3 .
+[] a owl:Axiom ; owl:annotatedSource ex:T4 ; owl:annotatedProperty ex:requires ; owl:annotatedTarget ex:T3 ; prov:wasDerivedFrom ex:E04 .
+ex:T5 ex:requires ex:T4 .
+[] a owl:Axiom ; owl:annotatedSource ex:T5 ; owl:annotatedProperty ex:requires ; owl:annotatedTarget ex:T4 ; prov:wasDerivedFrom ex:E05 .
+ex:M1 ex:teaches ex:T2 .
+[] a owl:Axiom ; owl:annotatedSource ex:M1 ; owl:annotatedProperty ex:teaches ; owl:annotatedTarget ex:T2 ; prov:wasDerivedFrom ex:E06 .
+ex:M2 ex:teaches ex:T4 .
+[] a owl:Axiom ; owl:annotatedSource ex:M2 ; owl:annotatedProperty ex:teaches ; owl:annotatedTarget ex:T4 ; prov:wasDerivedFrom ex:E07 .
+ex:A1 ex:checks ex:T4 .
+[] a owl:Axiom ; owl:annotatedSource ex:A1 ; owl:annotatedProperty ex:checks ; owl:annotatedTarget ex:T4 ; prov:wasDerivedFrom ex:E08 .
+ex:P1 ex:targets ex:T5 .
+[] a owl:Axiom ; owl:annotatedSource ex:P1 ; owl:annotatedProperty ex:targets ; owl:annotatedTarget ex:T5 ; prov:wasDerivedFrom ex:E09 .
+ex:S1 ex:documents ex:P1 .
+[] a owl:Axiom ; owl:annotatedSource ex:S1 ; owl:annotatedProperty ex:documents ; owl:annotatedTarget ex:P1 ; prov:wasDerivedFrom ex:E10 .
+ex:E01 a prov:Entity ; rdfs:label "똑같이 나누기" .
+ex:E02 a prov:Entity ; rdfs:label "분수의 뜻" .
+ex:E03 a prov:Entity ; rdfs:label "단위분수" .
+ex:E04 a prov:Entity ; rdfs:label "분모가 같은 분수의 크기 비교" .
+ex:E05 a prov:Entity ; rdfs:label "분모가 같은 분수의 덧셈" .
+ex:E06 a prov:Entity ; rdfs:label "교재 · 분수 띠 M1" .
+ex:E07 a prov:Entity ; rdfs:label "교재 · 비교 카드 M2" .
+ex:E08 a prov:Entity ; rdfs:label "확인 질문 A1 · 설명을 듣기" .
+ex:E09 a prov:Entity ; rdfs:label "경로 P1 · 분수 덧셈 준비" .
+ex:E10 a prov:Entity ; rdfs:label "수업 설계와 근거의 경계" .

@@ -1,0 +1,91 @@
+{
+  "classes": {
+    "Building": "주택",
+    "Space": "공간",
+    "Window": "창",
+    "Opening": "개구부",
+    "Wall": "벽",
+    "Door": "문",
+    "Drawing": "도면",
+    "Rule": "요구 조건"
+  },
+  "relations": {
+    "contains": {
+      "label": "공간을 포함한다",
+      "from": [
+        "Building"
+      ],
+      "to": [
+        "Space"
+      ]
+    },
+    "fillsOpening": {
+      "label": "개구부를 채운다",
+      "from": [
+        "Window"
+      ],
+      "to": [
+        "Opening"
+      ]
+    },
+    "hostedBy": {
+      "label": "벽에 뚫려 있다",
+      "from": [
+        "Opening"
+      ],
+      "to": [
+        "Wall"
+      ]
+    },
+    "bounds": {
+      "label": "경계를 이룬다",
+      "from": [
+        "Wall"
+      ],
+      "to": [
+        "Space"
+      ]
+    },
+    "connects": {
+      "label": "공간에 연결된다",
+      "from": [
+        "Door"
+      ],
+      "to": [
+        "Space"
+      ]
+    },
+    "depicts": {
+      "label": "형상을 나타낸다",
+      "from": [
+        "Drawing"
+      ],
+      "to": [
+        "Building"
+      ]
+    },
+    "appliesTo": {
+      "label": "요구를 적용한다",
+      "from": [
+        "Rule"
+      ],
+      "to": [
+        "Building"
+      ]
+    }
+  },
+  "requiredNodeFields": [
+    "id",
+    "label",
+    "type",
+    "noteId",
+    "attrs"
+  ],
+  "rules": [
+    "unique IDs",
+    "known endpoints",
+    "domain/range",
+    "source exists",
+    "acyclic requires"
+  ]
+}
