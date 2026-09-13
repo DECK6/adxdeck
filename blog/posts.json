@@ -1,5 +1,38 @@
 [
   {
+    "slug": "seiko-mikami-and-the-observed-viewer",
+    "file": "_built/seiko-mikami-and-the-observed-viewer.md",
+    "title": "미카미 세이코의 관객은 왜 보는 동시에 감시되는가",
+    "description": "미카미 세이코의 감각 설치와 《Desire of Codes》를 따라, 인터랙션이 관객에게 통제권을 주는 동시에 몸을 측정·기록하는 감시 장치가 되는 순간을 읽는다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "international-artist",
+      "seiko-mikami",
+      "interactive-installation",
+      "surveillance",
+      "embodiment",
+      "interface"
+    ],
+    "date": "2026-09-14",
+    "modified": "2026-09-14",
+    "thumbnail": "images/seiko-mikami-and-the-observed-viewer-cover.png",
+    "author": "Deck",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-art",
+      "international-artist",
+      "seiko-mikami",
+      "interactive-installation",
+      "surveillance",
+      "embodiment",
+      "interface"
+    ]
+  },
+  {
     "slug": "friedrich-kittler-and-the-conditions-of-recording",
     "file": "_built/friedrich-kittler-and-the-conditions-of-recording.md",
     "title": "키틀러는 왜 기록 장치부터 읽었는가",
