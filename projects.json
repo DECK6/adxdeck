@@ -361,13 +361,14 @@
     "title": "ringsplat",
     "category": "Python · 3DGS",
     "year": "2026",
-    "description": "360 파노라마 → 3D Gaussian Splat 변환 파이프라인, Apple Silicon 엔드투엔드",
+    "description": "360 파노라마를 구면 가우시안으로 재구성한 웹 체험 — 실사·일러스트·아트 애니메이션·수묵화 4종",
     "tags": [
       "3DGS",
       "Apple Silicon"
     ],
-    "url": "https://github.com/DECK6/ringsplat",
-    "size": "normal"
+    "url": "/ringsplat/",
+    "size": "normal",
+    "repo": "https://github.com/DECK6/ringsplat"
   },
   {
     "id": "dev-10",

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "style-photoreal",
+    "codec": "Spark 2.2.0 writeSpz from viewer PackedSplats",
+    "source_sha256": "90f8b7c58a500318f13029b28ef34e6c9510f86bf48b2a0d2a91a2639d2c6f2f",
+    "sha256": "4fb11dbe336050b463882a74e3f4379fc24de351bb6594bec914d1ea768f1ddb",
+    "bytes": 19020031,
+    "gaussians": 2000000,
+    "fractionalBits": 12,
+    "maxAbs": 528.5394287109375,
+    "source_coordinates": "opencv-x-right-y-down-z-forward",
+    "note": "Uses the same packed quantization as the existing web renderer; no thinning, source replacement or global rescaling."
+  },
+  {
+    "id": "style-illustration",
+    "codec": "Spark 2.2.0 writeSpz from viewer PackedSplats",
+    "source_sha256": "e2d2c71996b2ae4fc98e04f63c630780f84ea772a00ba498688ce6ce3757f891",
+    "sha256": "c8d25dea766545279d8a675b5864e5c5ae8c27fe5864966d56cca3ae571613a1",
+    "bytes": 19647427,
+    "gaussians": 2000000,
+    "fractionalBits": 11,
+    "maxAbs": 2349.70263671875,
+    "source_coordinates": "opencv-x-right-y-down-z-forward",
+    "note": "Uses the same packed quantization as the existing web renderer; no thinning, source replacement or global rescaling."
+  },
+  {
+    "id": "style-art-animation",
+    "codec": "Spark 2.2.0 writeSpz from viewer PackedSplats",
+    "source_sha256": "740314f04c4dc82c2c0f5f3eb83506a0f84e029996a6133af9604d9e4ce7e33a",
+    "sha256": "f4973a4f7ce91bd2f7d0e757213cf520bd3dbb8ec3f5858f3bbe64451ad53bf7",
+    "bytes": 18937905,
+    "gaussians": 2000000,
+    "fractionalBits": 12,
+    "maxAbs": 427.8246765136719,
+    "source_coordinates": "opencv-x-right-y-down-z-forward",
+    "note": "Uses the same packed quantization as the existing web renderer; no thinning, source replacement or global rescaling."
+  },
+  {
+    "id": "style-ink-wash",
+    "codec": "Spark 2.2.0 writeSpz from viewer PackedSplats",
+    "source_sha256": "c62a84f6de863f986ecc4d58a25ddb18aff87ca5fcef9dabf5f5b4d604359446",
+    "sha256": "dae17ebcc7852938a173f3e61bd96e6250aff9f52a0c041ecd4966ee454db6b5",
+    "bytes": 19334775,
+    "gaussians": 2000000,
+    "fractionalBits": 12,
+    "maxAbs": 185.5729522705078,
+    "source_coordinates": "opencv-x-right-y-down-z-forward",
+    "note": "Uses the same packed quantization as the existing web renderer; no thinning, source replacement or global rescaling."
+  }
+]
