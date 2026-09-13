@@ -27,6 +27,26 @@
     ]
   },
   {
+    "slug": "llm-quantization-needs-a-workload-contract",
+    "file": "_built/llm-quantization-needs-a-workload-contract.md",
+    "title": "LLM 양자화: 작은 모델 파일이 업무 품질을 보장하지는 않는다",
+    "description": "LLM 양자화가 가중치의 수치 표현과 메모리 사용을 바꾸는 원리를 AWQ로 살펴보고, KV 캐시·실행 커널·한국어 업무 오류를 구분해 도입을 판단하는 방법을 제안한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "model-inference",
+      "quantization",
+      "AWQ",
+      "knowledge-management"
+    ],
+    "date": "2026-09-13",
+    "modified": "2026-09-13",
+    "thumbnail": "images/llm-quantization-needs-a-workload-contract-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "emergence-and-local-rules-in-media-art",
     "file": "_built/emergence-and-local-rules-in-media-art.md",
     "title": "새 떼의 움직임은 어디에 쓰여 있는가",
