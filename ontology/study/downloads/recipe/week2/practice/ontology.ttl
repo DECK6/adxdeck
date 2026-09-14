@@ -1,0 +1,49 @@
+@prefix ex: <https://dexa.art/ontology/study/vocab/recipe#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+ex:ontology a owl:Ontology ; rdfs:label "요리와 보유 재료 실습 온톨로지" .
+ex:Recipe a owl:Class ; rdfs:label "요리" .
+ex:Ingredient a owl:Class ; rdfs:label "재료" .
+ex:Pantry a owl:Class ; rdfs:label "보관함" .
+ex:needsIngredient a owl:ObjectProperty ; rdfs:label "필요로 한다" ; rdfs:domain ex:Recipe ; rdfs:range ex:Ingredient .
+ex:hasIngredient a owl:ObjectProperty ; rdfs:label "보유한다" ; rdfs:domain ex:Pantry ; rdfs:range ex:Ingredient .
+ex:D1 a ex:Recipe ; rdfs:label "간장달걀밥" ; prov:wasDerivedFrom ex:R01 .
+ex:D2 a ex:Recipe ; rdfs:label "버터간장밥" ; prov:wasDerivedFrom ex:R02 .
+ex:D3 a ex:Recipe ; rdfs:label "버터달걀밥" ; prov:wasDerivedFrom ex:R03 .
+ex:RICE a ex:Ingredient ; rdfs:label "밥" ; prov:wasDerivedFrom ex:R01 .
+ex:EGG a ex:Ingredient ; rdfs:label "달걀" ; prov:wasDerivedFrom ex:R01 .
+ex:SOY a ex:Ingredient ; rdfs:label "간장" ; prov:wasDerivedFrom ex:R01 .
+ex:BUTTER a ex:Ingredient ; rdfs:label "버터" ; prov:wasDerivedFrom ex:R02 .
+ex:PANTRY a ex:Pantry ; rdfs:label "우리 집 보관함" ; prov:wasDerivedFrom ex:R04 .
+ex:inventoryComplete a owl:DatatypeProperty .
+ex:PANTRY ex:inventoryComplete true .
+ex:D1 ex:needsIngredient ex:RICE .
+[] a owl:Axiom ; owl:annotatedSource ex:D1 ; owl:annotatedProperty ex:needsIngredient ; owl:annotatedTarget ex:RICE ; prov:wasDerivedFrom ex:R01 .
+ex:D1 ex:needsIngredient ex:EGG .
+[] a owl:Axiom ; owl:annotatedSource ex:D1 ; owl:annotatedProperty ex:needsIngredient ; owl:annotatedTarget ex:EGG ; prov:wasDerivedFrom ex:R01 .
+ex:D1 ex:needsIngredient ex:SOY .
+[] a owl:Axiom ; owl:annotatedSource ex:D1 ; owl:annotatedProperty ex:needsIngredient ; owl:annotatedTarget ex:SOY ; prov:wasDerivedFrom ex:R01 .
+ex:D2 ex:needsIngredient ex:RICE .
+[] a owl:Axiom ; owl:annotatedSource ex:D2 ; owl:annotatedProperty ex:needsIngredient ; owl:annotatedTarget ex:RICE ; prov:wasDerivedFrom ex:R02 .
+ex:D2 ex:needsIngredient ex:BUTTER .
+[] a owl:Axiom ; owl:annotatedSource ex:D2 ; owl:annotatedProperty ex:needsIngredient ; owl:annotatedTarget ex:BUTTER ; prov:wasDerivedFrom ex:R02 .
+ex:D2 ex:needsIngredient ex:SOY .
+[] a owl:Axiom ; owl:annotatedSource ex:D2 ; owl:annotatedProperty ex:needsIngredient ; owl:annotatedTarget ex:SOY ; prov:wasDerivedFrom ex:R02 .
+ex:D3 ex:needsIngredient ex:RICE .
+[] a owl:Axiom ; owl:annotatedSource ex:D3 ; owl:annotatedProperty ex:needsIngredient ; owl:annotatedTarget ex:RICE ; prov:wasDerivedFrom ex:R03 .
+ex:D3 ex:needsIngredient ex:BUTTER .
+[] a owl:Axiom ; owl:annotatedSource ex:D3 ; owl:annotatedProperty ex:needsIngredient ; owl:annotatedTarget ex:BUTTER ; prov:wasDerivedFrom ex:R03 .
+ex:D3 ex:needsIngredient ex:EGG .
+[] a owl:Axiom ; owl:annotatedSource ex:D3 ; owl:annotatedProperty ex:needsIngredient ; owl:annotatedTarget ex:EGG ; prov:wasDerivedFrom ex:R03 .
+ex:PANTRY ex:hasIngredient ex:RICE .
+[] a owl:Axiom ; owl:annotatedSource ex:PANTRY ; owl:annotatedProperty ex:hasIngredient ; owl:annotatedTarget ex:RICE ; prov:wasDerivedFrom ex:R04 .
+ex:PANTRY ex:hasIngredient ex:EGG .
+[] a owl:Axiom ; owl:annotatedSource ex:PANTRY ; owl:annotatedProperty ex:hasIngredient ; owl:annotatedTarget ex:EGG ; prov:wasDerivedFrom ex:R04 .
+ex:PANTRY ex:hasIngredient ex:SOY .
+[] a owl:Axiom ; owl:annotatedSource ex:PANTRY ; owl:annotatedProperty ex:hasIngredient ; owl:annotatedTarget ex:SOY ; prov:wasDerivedFrom ex:R04 .
+ex:R01 a prov:Entity ; rdfs:label "간장달걀밥" .
+ex:R02 a prov:Entity ; rdfs:label "버터간장밥" .
+ex:R03 a prov:Entity ; rdfs:label "버터달걀밥" .
+ex:R04 a prov:Entity ; rdfs:label "우리 집 보관함과 판단 규칙" .

@@ -1,12 +1,22 @@
 [
   {
-    "domain": "education",
+    "domain": "recipe",
     "week": 1,
     "files": [
       {
         "path": "my-topic/this-week.md",
-        "bytes": 942,
-        "sha256": "4f9a77034cbd971d086984d93bf57a8e95cab903accfef05011ee4f37e31314d"
+        "bytes": 1040,
+        "sha256": "5347f6da16a6f3d4834a6d904a2d5a961b7489327b4fb7104b0be95de2f679eb"
+      },
+      {
+        "path": "my-topic/transfer-guide.md",
+        "bytes": 2150,
+        "sha256": "773c3bb60a3f4e7fbe21efbfbe2f9d6d816d324ee1cf84697cc247e9033934e3"
+      },
+      {
+        "path": "my-topic/idea-to-akm-prompt.md",
+        "bytes": 6244,
+        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
       },
       {
         "path": "my-topic/README.md",
@@ -15,8 +25,597 @@
       },
       {
         "path": "README.md",
-        "bytes": 2118,
-        "sha256": "935495ba710711562452933ac1b53cd8f9d9cc11716915bc89cb9b3b4f9a029d"
+        "bytes": 2167,
+        "sha256": "9b297e2d10a5904ee4937e548a0b7445fa51393877cbd53af45ddded1bc4dd0b"
+      },
+      {
+        "path": "practice/README.md",
+        "bytes": 700,
+        "sha256": "19c756b08a85d3509effd108f35e6f4a305438738f5a520114f66d6871b002af"
+      },
+      {
+        "path": "practice/domain-definition.md",
+        "bytes": 733,
+        "sha256": "2c50b8ff8f4f3a261b722714ed2d73998be8703371cff5fe8bce7d842f3b0795"
+      },
+      {
+        "path": "practice/diagnosis.md",
+        "bytes": 671,
+        "sha256": "55cb8a48a4e8169bcd01809d3b61e96c4e989a6a47f761783d27bf8534a40eb2"
+      },
+      {
+        "path": "practice/model.json",
+        "bytes": 5955,
+        "sha256": "5bc60c5d5eb9af14af96d7f3aa657f09bddba622bb1b4c7d9f2c81d1caa52fe2"
+      },
+      {
+        "path": "practice/questions.json",
+        "bytes": 355,
+        "sha256": "ae40a4daf40e5cfde479bf66d3cffec54834de4fabed996594a60f4cb9736c5d"
+      },
+      {
+        "path": "practice/agent-prompt.md",
+        "bytes": 877,
+        "sha256": "d0c9b5802509a171cf568fc60c6eaeb1a467fd657043ae469c9048255940daaf"
+      },
+      {
+        "path": "practice/response-template.json",
+        "bytes": 700,
+        "sha256": "0e2d1d3631533e0828102e26c81b8c8ba38fc6bfaf05f1db5fe435675a99a522"
+      },
+      {
+        "path": "practice/evaluation.csv",
+        "bytes": 161,
+        "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
+      },
+      {
+        "path": "00-inbox/R01.md",
+        "bytes": 534,
+        "sha256": "49a12d7c35bc04bc1128463b373feecdc2533142ed20b570b09133bac4749a96"
+      },
+      {
+        "path": "reference/20-knowledge/R01.md",
+        "bytes": 754,
+        "sha256": "a406ff2e0495e9886ec8fab6ec4b701d45875936e8bd775c68d323a0dac64bbf"
+      },
+      {
+        "path": "00-inbox/R02.md",
+        "bytes": 539,
+        "sha256": "afd9a05df71f7b17b40a8d9f70c4c009133d6954d5792f4c580f8e6b37c4a483"
+      },
+      {
+        "path": "reference/20-knowledge/R02.md",
+        "bytes": 762,
+        "sha256": "507d212492c666fc595293d89dc9bef3009e39df06c882c62053b8cb56b9d0eb"
+      },
+      {
+        "path": "00-inbox/R03.md",
+        "bytes": 524,
+        "sha256": "a899924fe060c828eafc5089eaf3ca3386fab9b415b0df7d6d67ecb6aa760f03"
+      },
+      {
+        "path": "reference/20-knowledge/R03.md",
+        "bytes": 793,
+        "sha256": "caa1c6145595127e123a4faf917d8829a3ce47c4f845d0bcd5a30141474ea6fc"
+      },
+      {
+        "path": "00-inbox/R04.md",
+        "bytes": 900,
+        "sha256": "b1617821496d0cca5845fc9f48458e7eebecd82551b86db27bf0166f72c3be2a"
+      },
+      {
+        "path": "reference/20-knowledge/R04.md",
+        "bytes": 1172,
+        "sha256": "8389b4776a2b32e34f46705dc5e3de4c3fe436ebec95fd87fad0722bb8917c2b"
+      },
+      {
+        "path": "reference/99-system/INDEX.local.md",
+        "bytes": 202,
+        "sha256": "16acdf28097a03dc587f1606c19f917ab8aa57e36b9ac86422fbcc84a3357129"
+      }
+    ]
+  },
+  {
+    "domain": "recipe",
+    "week": 2,
+    "files": [
+      {
+        "path": "my-topic/this-week.md",
+        "bytes": 1019,
+        "sha256": "c38d7f1f765ab47f6558cb7d04c87507141abc333bf251d788c4a2dd4ba93cb5"
+      },
+      {
+        "path": "my-topic/transfer-guide.md",
+        "bytes": 2150,
+        "sha256": "773c3bb60a3f4e7fbe21efbfbe2f9d6d816d324ee1cf84697cc247e9033934e3"
+      },
+      {
+        "path": "my-topic/idea-to-akm-prompt.md",
+        "bytes": 6244,
+        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+      },
+      {
+        "path": "my-topic/README.md",
+        "bytes": 314,
+        "sha256": "c31704a065e890e2c6360229eca7fcc278035a70933df7387f37e8f2e8113ade"
+      },
+      {
+        "path": "README.md",
+        "bytes": 2430,
+        "sha256": "04e4d047628899fc62615405d56ab562b4f8962b9ae08493b2d91f23c93993b2"
+      },
+      {
+        "path": "practice/README.md",
+        "bytes": 700,
+        "sha256": "19c756b08a85d3509effd108f35e6f4a305438738f5a520114f66d6871b002af"
+      },
+      {
+        "path": "practice/domain-definition.md",
+        "bytes": 733,
+        "sha256": "2c50b8ff8f4f3a261b722714ed2d73998be8703371cff5fe8bce7d842f3b0795"
+      },
+      {
+        "path": "practice/diagnosis.md",
+        "bytes": 671,
+        "sha256": "55cb8a48a4e8169bcd01809d3b61e96c4e989a6a47f761783d27bf8534a40eb2"
+      },
+      {
+        "path": "practice/schema-decisions.md",
+        "bytes": 242,
+        "sha256": "71cdbe0f95ad0c06abe0f61b63acd5c8091679f198f1c26ef11f425befa4dae3"
+      },
+      {
+        "path": "practice/model.json",
+        "bytes": 5955,
+        "sha256": "5bc60c5d5eb9af14af96d7f3aa657f09bddba622bb1b4c7d9f2c81d1caa52fe2"
+      },
+      {
+        "path": "practice/questions.json",
+        "bytes": 355,
+        "sha256": "ae40a4daf40e5cfde479bf66d3cffec54834de4fabed996594a60f4cb9736c5d"
+      },
+      {
+        "path": "practice/agent-prompt.md",
+        "bytes": 1573,
+        "sha256": "cd9bac31c4b4e753af2fabc3ff39933a2aaf8903860574542319e0febf1c1dc5"
+      },
+      {
+        "path": "practice/response-template.json",
+        "bytes": 699,
+        "sha256": "4b043a7796eb49fb34ec0a5766f9f90b7888055bfdc6a7369e4e99609d3d3e39"
+      },
+      {
+        "path": "practice/evaluation.csv",
+        "bytes": 161,
+        "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
+      },
+      {
+        "path": "10-sources/R01.md",
+        "bytes": 534,
+        "sha256": "49a12d7c35bc04bc1128463b373feecdc2533142ed20b570b09133bac4749a96"
+      },
+      {
+        "path": "20-knowledge/R01.md",
+        "bytes": 754,
+        "sha256": "a406ff2e0495e9886ec8fab6ec4b701d45875936e8bd775c68d323a0dac64bbf"
+      },
+      {
+        "path": "10-sources/R02.md",
+        "bytes": 539,
+        "sha256": "afd9a05df71f7b17b40a8d9f70c4c009133d6954d5792f4c580f8e6b37c4a483"
+      },
+      {
+        "path": "20-knowledge/R02.md",
+        "bytes": 762,
+        "sha256": "507d212492c666fc595293d89dc9bef3009e39df06c882c62053b8cb56b9d0eb"
+      },
+      {
+        "path": "10-sources/R03.md",
+        "bytes": 524,
+        "sha256": "a899924fe060c828eafc5089eaf3ca3386fab9b415b0df7d6d67ecb6aa760f03"
+      },
+      {
+        "path": "20-knowledge/R03.md",
+        "bytes": 793,
+        "sha256": "caa1c6145595127e123a4faf917d8829a3ce47c4f845d0bcd5a30141474ea6fc"
+      },
+      {
+        "path": "10-sources/R04.md",
+        "bytes": 900,
+        "sha256": "b1617821496d0cca5845fc9f48458e7eebecd82551b86db27bf0166f72c3be2a"
+      },
+      {
+        "path": "20-knowledge/R04.md",
+        "bytes": 1172,
+        "sha256": "8389b4776a2b32e34f46705dc5e3de4c3fe436ebec95fd87fad0722bb8917c2b"
+      },
+      {
+        "path": "99-system/INDEX.local.md",
+        "bytes": 202,
+        "sha256": "16acdf28097a03dc587f1606c19f917ab8aa57e36b9ac86422fbcc84a3357129"
+      },
+      {
+        "path": "practice/check.py",
+        "bytes": 2237,
+        "sha256": "783f9d61e2e0e49fdb2ffa04e52753bd3b1f58b5facd0c2226c0c1974c114707"
+      },
+      {
+        "path": "practice/model-error.json",
+        "bytes": 6062,
+        "sha256": "23f6a24a0055973835de36e4ed863942f7245da7d47a6ad86d1b5a242df3cf1c"
+      },
+      {
+        "path": "practice/expected-answers.json",
+        "bytes": 1605,
+        "sha256": "342dbeefa1da3b75320366a0d15b7bc6420ce6886a01a683fe986fbe11b4dede"
+      },
+      {
+        "path": "practice/ontology.ttl",
+        "bytes": 3887,
+        "sha256": "62cc68bd9d3a06f908ec21de58a0b885aa54879d592efb12b64a2819426a08b1"
+      },
+      {
+        "path": "practice/schema.json",
+        "bytes": 635,
+        "sha256": "d5a4b6e2da1aaada88a9f245b61eaccbdddb81b9ed0a484f7957bbe9d2638f8f"
+      },
+      {
+        "path": "practice/ONTOLOGY.md",
+        "bytes": 639,
+        "sha256": "52001bbf26e657fcc4ceb8111fd1312d6e6c161fd52145f6ec9edeb3484662ce"
+      }
+    ]
+  },
+  {
+    "domain": "recipe",
+    "week": 3,
+    "files": [
+      {
+        "path": "my-topic/this-week.md",
+        "bytes": 1068,
+        "sha256": "dc9edda9e675a45a5b49be0320975acc3b43ca6f3b3612aa631bbb9dc5736329"
+      },
+      {
+        "path": "my-topic/transfer-guide.md",
+        "bytes": 2150,
+        "sha256": "773c3bb60a3f4e7fbe21efbfbe2f9d6d816d324ee1cf84697cc247e9033934e3"
+      },
+      {
+        "path": "my-topic/idea-to-akm-prompt.md",
+        "bytes": 6244,
+        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+      },
+      {
+        "path": "my-topic/README.md",
+        "bytes": 314,
+        "sha256": "c31704a065e890e2c6360229eca7fcc278035a70933df7387f37e8f2e8113ade"
+      },
+      {
+        "path": "README.md",
+        "bytes": 2437,
+        "sha256": "2e8cadd1b2d4572dd2e41966c583e5b501229bd912f8102b7a66895680e400af"
+      },
+      {
+        "path": "practice/README.md",
+        "bytes": 700,
+        "sha256": "19c756b08a85d3509effd108f35e6f4a305438738f5a520114f66d6871b002af"
+      },
+      {
+        "path": "practice/domain-definition.md",
+        "bytes": 733,
+        "sha256": "2c50b8ff8f4f3a261b722714ed2d73998be8703371cff5fe8bce7d842f3b0795"
+      },
+      {
+        "path": "practice/diagnosis.md",
+        "bytes": 671,
+        "sha256": "55cb8a48a4e8169bcd01809d3b61e96c4e989a6a47f761783d27bf8534a40eb2"
+      },
+      {
+        "path": "practice/schema-decisions.md",
+        "bytes": 242,
+        "sha256": "71cdbe0f95ad0c06abe0f61b63acd5c8091679f198f1c26ef11f425befa4dae3"
+      },
+      {
+        "path": "practice/run-log.md",
+        "bytes": 402,
+        "sha256": "891ebfb60d7d871a124bba55d178c6c3558c9abdaa475267b84429d1eb77f950"
+      },
+      {
+        "path": "practice/model.json",
+        "bytes": 5955,
+        "sha256": "5bc60c5d5eb9af14af96d7f3aa657f09bddba622bb1b4c7d9f2c81d1caa52fe2"
+      },
+      {
+        "path": "practice/questions.json",
+        "bytes": 355,
+        "sha256": "ae40a4daf40e5cfde479bf66d3cffec54834de4fabed996594a60f4cb9736c5d"
+      },
+      {
+        "path": "practice/agent-prompt.md",
+        "bytes": 1573,
+        "sha256": "cd9bac31c4b4e753af2fabc3ff39933a2aaf8903860574542319e0febf1c1dc5"
+      },
+      {
+        "path": "practice/response-template.json",
+        "bytes": 699,
+        "sha256": "4b043a7796eb49fb34ec0a5766f9f90b7888055bfdc6a7369e4e99609d3d3e39"
+      },
+      {
+        "path": "practice/evaluation.csv",
+        "bytes": 161,
+        "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
+      },
+      {
+        "path": "10-sources/R01.md",
+        "bytes": 534,
+        "sha256": "49a12d7c35bc04bc1128463b373feecdc2533142ed20b570b09133bac4749a96"
+      },
+      {
+        "path": "20-knowledge/R01.md",
+        "bytes": 754,
+        "sha256": "a406ff2e0495e9886ec8fab6ec4b701d45875936e8bd775c68d323a0dac64bbf"
+      },
+      {
+        "path": "10-sources/R02.md",
+        "bytes": 539,
+        "sha256": "afd9a05df71f7b17b40a8d9f70c4c009133d6954d5792f4c580f8e6b37c4a483"
+      },
+      {
+        "path": "20-knowledge/R02.md",
+        "bytes": 762,
+        "sha256": "507d212492c666fc595293d89dc9bef3009e39df06c882c62053b8cb56b9d0eb"
+      },
+      {
+        "path": "10-sources/R03.md",
+        "bytes": 524,
+        "sha256": "a899924fe060c828eafc5089eaf3ca3386fab9b415b0df7d6d67ecb6aa760f03"
+      },
+      {
+        "path": "20-knowledge/R03.md",
+        "bytes": 793,
+        "sha256": "caa1c6145595127e123a4faf917d8829a3ce47c4f845d0bcd5a30141474ea6fc"
+      },
+      {
+        "path": "10-sources/R04.md",
+        "bytes": 900,
+        "sha256": "b1617821496d0cca5845fc9f48458e7eebecd82551b86db27bf0166f72c3be2a"
+      },
+      {
+        "path": "20-knowledge/R04.md",
+        "bytes": 1172,
+        "sha256": "8389b4776a2b32e34f46705dc5e3de4c3fe436ebec95fd87fad0722bb8917c2b"
+      },
+      {
+        "path": "99-system/INDEX.local.md",
+        "bytes": 202,
+        "sha256": "16acdf28097a03dc587f1606c19f917ab8aa57e36b9ac86422fbcc84a3357129"
+      },
+      {
+        "path": "practice/check.py",
+        "bytes": 2237,
+        "sha256": "783f9d61e2e0e49fdb2ffa04e52753bd3b1f58b5facd0c2226c0c1974c114707"
+      },
+      {
+        "path": "practice/model-error.json",
+        "bytes": 6062,
+        "sha256": "23f6a24a0055973835de36e4ed863942f7245da7d47a6ad86d1b5a242df3cf1c"
+      },
+      {
+        "path": "practice/expected-answers.json",
+        "bytes": 1605,
+        "sha256": "342dbeefa1da3b75320366a0d15b7bc6420ce6886a01a683fe986fbe11b4dede"
+      },
+      {
+        "path": "practice/ontology.ttl",
+        "bytes": 3887,
+        "sha256": "62cc68bd9d3a06f908ec21de58a0b885aa54879d592efb12b64a2819426a08b1"
+      },
+      {
+        "path": "practice/schema.json",
+        "bytes": 635,
+        "sha256": "d5a4b6e2da1aaada88a9f245b61eaccbdddb81b9ed0a484f7957bbe9d2638f8f"
+      },
+      {
+        "path": "practice/ONTOLOGY.md",
+        "bytes": 639,
+        "sha256": "52001bbf26e657fcc4ceb8111fd1312d6e6c161fd52145f6ec9edeb3484662ce"
+      }
+    ]
+  },
+  {
+    "domain": "recipe",
+    "week": 4,
+    "files": [
+      {
+        "path": "my-topic/this-week.md",
+        "bytes": 1027,
+        "sha256": "b8235c86b7a7863b940acc5f6fa2568c5d679334718f91ec7ce2f25f8fccd708"
+      },
+      {
+        "path": "my-topic/transfer-guide.md",
+        "bytes": 2150,
+        "sha256": "773c3bb60a3f4e7fbe21efbfbe2f9d6d816d324ee1cf84697cc247e9033934e3"
+      },
+      {
+        "path": "my-topic/idea-to-akm-prompt.md",
+        "bytes": 6244,
+        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+      },
+      {
+        "path": "my-topic/README.md",
+        "bytes": 314,
+        "sha256": "c31704a065e890e2c6360229eca7fcc278035a70933df7387f37e8f2e8113ade"
+      },
+      {
+        "path": "README.md",
+        "bytes": 2399,
+        "sha256": "4543bd1041802f1158d0013031fb3d7d368260da894ec3de5a2a41f09d1f7679"
+      },
+      {
+        "path": "practice/README.md",
+        "bytes": 700,
+        "sha256": "19c756b08a85d3509effd108f35e6f4a305438738f5a520114f66d6871b002af"
+      },
+      {
+        "path": "practice/domain-definition.md",
+        "bytes": 733,
+        "sha256": "2c50b8ff8f4f3a261b722714ed2d73998be8703371cff5fe8bce7d842f3b0795"
+      },
+      {
+        "path": "practice/diagnosis.md",
+        "bytes": 671,
+        "sha256": "55cb8a48a4e8169bcd01809d3b61e96c4e989a6a47f761783d27bf8534a40eb2"
+      },
+      {
+        "path": "practice/schema-decisions.md",
+        "bytes": 242,
+        "sha256": "71cdbe0f95ad0c06abe0f61b63acd5c8091679f198f1c26ef11f425befa4dae3"
+      },
+      {
+        "path": "practice/run-log.md",
+        "bytes": 402,
+        "sha256": "891ebfb60d7d871a124bba55d178c6c3558c9abdaa475267b84429d1eb77f950"
+      },
+      {
+        "path": "practice/final-report.md",
+        "bytes": 500,
+        "sha256": "c328d5c39320b41fe1c4a40485e1d3c1bc4c265a69635904703e91a633af49dd"
+      },
+      {
+        "path": "practice/model.json",
+        "bytes": 5955,
+        "sha256": "5bc60c5d5eb9af14af96d7f3aa657f09bddba622bb1b4c7d9f2c81d1caa52fe2"
+      },
+      {
+        "path": "practice/questions.json",
+        "bytes": 355,
+        "sha256": "ae40a4daf40e5cfde479bf66d3cffec54834de4fabed996594a60f4cb9736c5d"
+      },
+      {
+        "path": "practice/agent-prompt.md",
+        "bytes": 1573,
+        "sha256": "cd9bac31c4b4e753af2fabc3ff39933a2aaf8903860574542319e0febf1c1dc5"
+      },
+      {
+        "path": "practice/response-template.json",
+        "bytes": 699,
+        "sha256": "4b043a7796eb49fb34ec0a5766f9f90b7888055bfdc6a7369e4e99609d3d3e39"
+      },
+      {
+        "path": "practice/evaluation.csv",
+        "bytes": 161,
+        "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
+      },
+      {
+        "path": "10-sources/R01.md",
+        "bytes": 534,
+        "sha256": "49a12d7c35bc04bc1128463b373feecdc2533142ed20b570b09133bac4749a96"
+      },
+      {
+        "path": "20-knowledge/R01.md",
+        "bytes": 754,
+        "sha256": "a406ff2e0495e9886ec8fab6ec4b701d45875936e8bd775c68d323a0dac64bbf"
+      },
+      {
+        "path": "10-sources/R02.md",
+        "bytes": 539,
+        "sha256": "afd9a05df71f7b17b40a8d9f70c4c009133d6954d5792f4c580f8e6b37c4a483"
+      },
+      {
+        "path": "20-knowledge/R02.md",
+        "bytes": 762,
+        "sha256": "507d212492c666fc595293d89dc9bef3009e39df06c882c62053b8cb56b9d0eb"
+      },
+      {
+        "path": "10-sources/R03.md",
+        "bytes": 524,
+        "sha256": "a899924fe060c828eafc5089eaf3ca3386fab9b415b0df7d6d67ecb6aa760f03"
+      },
+      {
+        "path": "20-knowledge/R03.md",
+        "bytes": 793,
+        "sha256": "caa1c6145595127e123a4faf917d8829a3ce47c4f845d0bcd5a30141474ea6fc"
+      },
+      {
+        "path": "10-sources/R04.md",
+        "bytes": 900,
+        "sha256": "b1617821496d0cca5845fc9f48458e7eebecd82551b86db27bf0166f72c3be2a"
+      },
+      {
+        "path": "20-knowledge/R04.md",
+        "bytes": 1172,
+        "sha256": "8389b4776a2b32e34f46705dc5e3de4c3fe436ebec95fd87fad0722bb8917c2b"
+      },
+      {
+        "path": "99-system/INDEX.local.md",
+        "bytes": 202,
+        "sha256": "16acdf28097a03dc587f1606c19f917ab8aa57e36b9ac86422fbcc84a3357129"
+      },
+      {
+        "path": "practice/check.py",
+        "bytes": 2237,
+        "sha256": "783f9d61e2e0e49fdb2ffa04e52753bd3b1f58b5facd0c2226c0c1974c114707"
+      },
+      {
+        "path": "practice/model-error.json",
+        "bytes": 6062,
+        "sha256": "23f6a24a0055973835de36e4ed863942f7245da7d47a6ad86d1b5a242df3cf1c"
+      },
+      {
+        "path": "practice/expected-answers.json",
+        "bytes": 1605,
+        "sha256": "342dbeefa1da3b75320366a0d15b7bc6420ce6886a01a683fe986fbe11b4dede"
+      },
+      {
+        "path": "practice/ontology.ttl",
+        "bytes": 3887,
+        "sha256": "62cc68bd9d3a06f908ec21de58a0b885aa54879d592efb12b64a2819426a08b1"
+      },
+      {
+        "path": "practice/schema.json",
+        "bytes": 635,
+        "sha256": "d5a4b6e2da1aaada88a9f245b61eaccbdddb81b9ed0a484f7957bbe9d2638f8f"
+      },
+      {
+        "path": "practice/ONTOLOGY.md",
+        "bytes": 639,
+        "sha256": "52001bbf26e657fcc4ceb8111fd1312d6e6c161fd52145f6ec9edeb3484662ce"
+      },
+      {
+        "path": "practice/OPERATIONS.md",
+        "bytes": 1229,
+        "sha256": "2d686f4af5aa2036344d636d0b07d2855e4fe3bd10872bc7d9c4bdb1841bdca2"
+      }
+    ]
+  },
+  {
+    "domain": "education",
+    "week": 1,
+    "files": [
+      {
+        "path": "my-topic/this-week.md",
+        "bytes": 1040,
+        "sha256": "5347f6da16a6f3d4834a6d904a2d5a961b7489327b4fb7104b0be95de2f679eb"
+      },
+      {
+        "path": "my-topic/transfer-guide.md",
+        "bytes": 2150,
+        "sha256": "773c3bb60a3f4e7fbe21efbfbe2f9d6d816d324ee1cf84697cc247e9033934e3"
+      },
+      {
+        "path": "my-topic/idea-to-akm-prompt.md",
+        "bytes": 6244,
+        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+      },
+      {
+        "path": "my-topic/README.md",
+        "bytes": 314,
+        "sha256": "c31704a065e890e2c6360229eca7fcc278035a70933df7387f37e8f2e8113ade"
+      },
+      {
+        "path": "README.md",
+        "bytes": 2141,
+        "sha256": "2d1e57aef5cd5563ba0abede1917586c00f501aa45b927f8c368af9f578caf08"
       },
       {
         "path": "practice/README.md",
@@ -75,8 +674,8 @@
       },
       {
         "path": "reference/20-knowledge/E02.md",
-        "bytes": 680,
-        "sha256": "5fe8dd1723aa15baa87ebd17cf999fbbbc22dfafa8a7e1b8258425fd4c10c144"
+        "bytes": 674,
+        "sha256": "d24ca90279b8ae537d497d089493c551165fc4fa0be21dd69fb6ab57875ea2b4"
       },
       {
         "path": "00-inbox/E03.md",
@@ -85,8 +684,8 @@
       },
       {
         "path": "reference/20-knowledge/E03.md",
-        "bytes": 639,
-        "sha256": "c79bb76458ce98984a1e6aad3f9ecd86d301450118b4428a38e544691f54870b"
+        "bytes": 633,
+        "sha256": "691346ba6303f7eba16f0a96048591dc83cda8ab3a0e318acdd13480909b0bda"
       },
       {
         "path": "00-inbox/E04.md",
@@ -95,8 +694,8 @@
       },
       {
         "path": "reference/20-knowledge/E04.md",
-        "bytes": 691,
-        "sha256": "945736b524664294afcd1b4dd3b27e9f22f4af4832847a76d993645e45e474b6"
+        "bytes": 685,
+        "sha256": "21f19c8ffa44563a8333dc7b64337ba8f57d6cdd3ccbf4282c4b2021c282feb5"
       },
       {
         "path": "00-inbox/E05.md",
@@ -105,8 +704,8 @@
       },
       {
         "path": "reference/20-knowledge/E05.md",
-        "bytes": 703,
-        "sha256": "5507a96a37ee1f3e5b4e7b2ce87df99327c645582d9a28bbbbe17a078e889985"
+        "bytes": 697,
+        "sha256": "9e330c547b3d8bacaaab2bd40799f192618cc7171c5b348fe185cf16170a4837"
       },
       {
         "path": "00-inbox/E06.md",
@@ -115,8 +714,8 @@
       },
       {
         "path": "reference/20-knowledge/E06.md",
-        "bytes": 646,
-        "sha256": "6dcf6c47cb78dd898a51bd3f453205b6a52522024f788fc2aa6941e8f17b200d"
+        "bytes": 640,
+        "sha256": "f686c3d28e08db16281243af729bcd0f01ac62fc496e417ad44a55e887baf22b"
       },
       {
         "path": "00-inbox/E07.md",
@@ -125,8 +724,8 @@
       },
       {
         "path": "reference/20-knowledge/E07.md",
-        "bytes": 612,
-        "sha256": "0bea06e37977fec2ecf950ed93d4707864cef9e8514dba9ce54dfee3976a0ee9"
+        "bytes": 606,
+        "sha256": "7f195fb43c2adb344f1731e9e77d7d5df425f594bafeb2f6a59f9d363759587b"
       },
       {
         "path": "00-inbox/E08.md",
@@ -135,8 +734,8 @@
       },
       {
         "path": "reference/20-knowledge/E08.md",
-        "bytes": 764,
-        "sha256": "6c789b7b2d52f4e0e0ab2c691fc00038d37d4fa1888616afbc59642e8d7c428e"
+        "bytes": 758,
+        "sha256": "05a769063574fa7d711bf24d35afe3923bd4ab4c5246b14988f2892eaeea00c0"
       },
       {
         "path": "00-inbox/E09.md",
@@ -145,8 +744,8 @@
       },
       {
         "path": "reference/20-knowledge/E09.md",
-        "bytes": 797,
-        "sha256": "4e409204a9580a1cbf069e814f7594123cc691d4c15e73048623ba6b4dc1dd3e"
+        "bytes": 791,
+        "sha256": "2f4fab21af7dc569ba170c2aed40609ef431309bab5a601d3af99b3a0596d6bf"
       },
       {
         "path": "00-inbox/E10.md",
@@ -155,8 +754,8 @@
       },
       {
         "path": "reference/20-knowledge/E10.md",
-        "bytes": 752,
-        "sha256": "40fd724bac140b71e857a7d263d8b571c671ddaca73d7ea0eb0f5c1e90f5f911"
+        "bytes": 746,
+        "sha256": "0287fca88ad00072d9b678568327230a7554a557d684d33dfb2ff2e90190f2e8"
       },
       {
         "path": "reference/99-system/INDEX.local.md",
@@ -171,8 +770,18 @@
     "files": [
       {
         "path": "my-topic/this-week.md",
-        "bytes": 954,
-        "sha256": "d90589a169b58113a54cf5196cd6ef6840c764c140bd23f59ac7ca609b59ea8c"
+        "bytes": 1019,
+        "sha256": "c38d7f1f765ab47f6558cb7d04c87507141abc333bf251d788c4a2dd4ba93cb5"
+      },
+      {
+        "path": "my-topic/transfer-guide.md",
+        "bytes": 2150,
+        "sha256": "773c3bb60a3f4e7fbe21efbfbe2f9d6d816d324ee1cf84697cc247e9033934e3"
+      },
+      {
+        "path": "my-topic/idea-to-akm-prompt.md",
+        "bytes": 6244,
+        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
       },
       {
         "path": "my-topic/README.md",
@@ -246,8 +855,8 @@
       },
       {
         "path": "20-knowledge/E02.md",
-        "bytes": 680,
-        "sha256": "5fe8dd1723aa15baa87ebd17cf999fbbbc22dfafa8a7e1b8258425fd4c10c144"
+        "bytes": 674,
+        "sha256": "d24ca90279b8ae537d497d089493c551165fc4fa0be21dd69fb6ab57875ea2b4"
       },
       {
         "path": "10-sources/E03.md",
@@ -256,8 +865,8 @@
       },
       {
         "path": "20-knowledge/E03.md",
-        "bytes": 639,
-        "sha256": "c79bb76458ce98984a1e6aad3f9ecd86d301450118b4428a38e544691f54870b"
+        "bytes": 633,
+        "sha256": "691346ba6303f7eba16f0a96048591dc83cda8ab3a0e318acdd13480909b0bda"
       },
       {
         "path": "10-sources/E04.md",
@@ -266,8 +875,8 @@
       },
       {
         "path": "20-knowledge/E04.md",
-        "bytes": 691,
-        "sha256": "945736b524664294afcd1b4dd3b27e9f22f4af4832847a76d993645e45e474b6"
+        "bytes": 685,
+        "sha256": "21f19c8ffa44563a8333dc7b64337ba8f57d6cdd3ccbf4282c4b2021c282feb5"
       },
       {
         "path": "10-sources/E05.md",
@@ -276,8 +885,8 @@
       },
       {
         "path": "20-knowledge/E05.md",
-        "bytes": 703,
-        "sha256": "5507a96a37ee1f3e5b4e7b2ce87df99327c645582d9a28bbbbe17a078e889985"
+        "bytes": 697,
+        "sha256": "9e330c547b3d8bacaaab2bd40799f192618cc7171c5b348fe185cf16170a4837"
       },
       {
         "path": "10-sources/E06.md",
@@ -286,8 +895,8 @@
       },
       {
         "path": "20-knowledge/E06.md",
-        "bytes": 646,
-        "sha256": "6dcf6c47cb78dd898a51bd3f453205b6a52522024f788fc2aa6941e8f17b200d"
+        "bytes": 640,
+        "sha256": "f686c3d28e08db16281243af729bcd0f01ac62fc496e417ad44a55e887baf22b"
       },
       {
         "path": "10-sources/E07.md",
@@ -296,8 +905,8 @@
       },
       {
         "path": "20-knowledge/E07.md",
-        "bytes": 612,
-        "sha256": "0bea06e37977fec2ecf950ed93d4707864cef9e8514dba9ce54dfee3976a0ee9"
+        "bytes": 606,
+        "sha256": "7f195fb43c2adb344f1731e9e77d7d5df425f594bafeb2f6a59f9d363759587b"
       },
       {
         "path": "10-sources/E08.md",
@@ -306,8 +915,8 @@
       },
       {
         "path": "20-knowledge/E08.md",
-        "bytes": 764,
-        "sha256": "6c789b7b2d52f4e0e0ab2c691fc00038d37d4fa1888616afbc59642e8d7c428e"
+        "bytes": 758,
+        "sha256": "05a769063574fa7d711bf24d35afe3923bd4ab4c5246b14988f2892eaeea00c0"
       },
       {
         "path": "10-sources/E09.md",
@@ -316,8 +925,8 @@
       },
       {
         "path": "20-knowledge/E09.md",
-        "bytes": 797,
-        "sha256": "4e409204a9580a1cbf069e814f7594123cc691d4c15e73048623ba6b4dc1dd3e"
+        "bytes": 791,
+        "sha256": "2f4fab21af7dc569ba170c2aed40609ef431309bab5a601d3af99b3a0596d6bf"
       },
       {
         "path": "10-sources/E10.md",
@@ -326,8 +935,8 @@
       },
       {
         "path": "20-knowledge/E10.md",
-        "bytes": 752,
-        "sha256": "40fd724bac140b71e857a7d263d8b571c671ddaca73d7ea0eb0f5c1e90f5f911"
+        "bytes": 746,
+        "sha256": "0287fca88ad00072d9b678568327230a7554a557d684d33dfb2ff2e90190f2e8"
       },
       {
         "path": "99-system/INDEX.local.md",
@@ -372,8 +981,18 @@
     "files": [
       {
         "path": "my-topic/this-week.md",
-        "bytes": 989,
-        "sha256": "21a9edc31bb47488cb1ea46f42863aeb9b119f62f8fc3ab84eb78d7b05f5a2e3"
+        "bytes": 1068,
+        "sha256": "dc9edda9e675a45a5b49be0320975acc3b43ca6f3b3612aa631bbb9dc5736329"
+      },
+      {
+        "path": "my-topic/transfer-guide.md",
+        "bytes": 2150,
+        "sha256": "773c3bb60a3f4e7fbe21efbfbe2f9d6d816d324ee1cf84697cc247e9033934e3"
+      },
+      {
+        "path": "my-topic/idea-to-akm-prompt.md",
+        "bytes": 6244,
+        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
       },
       {
         "path": "my-topic/README.md",
@@ -452,8 +1071,8 @@
       },
       {
         "path": "20-knowledge/E02.md",
-        "bytes": 680,
-        "sha256": "5fe8dd1723aa15baa87ebd17cf999fbbbc22dfafa8a7e1b8258425fd4c10c144"
+        "bytes": 674,
+        "sha256": "d24ca90279b8ae537d497d089493c551165fc4fa0be21dd69fb6ab57875ea2b4"
       },
       {
         "path": "10-sources/E03.md",
@@ -462,8 +1081,8 @@
       },
       {
         "path": "20-knowledge/E03.md",
-        "bytes": 639,
-        "sha256": "c79bb76458ce98984a1e6aad3f9ecd86d301450118b4428a38e544691f54870b"
+        "bytes": 633,
+        "sha256": "691346ba6303f7eba16f0a96048591dc83cda8ab3a0e318acdd13480909b0bda"
       },
       {
         "path": "10-sources/E04.md",
@@ -472,8 +1091,8 @@
       },
       {
         "path": "20-knowledge/E04.md",
-        "bytes": 691,
-        "sha256": "945736b524664294afcd1b4dd3b27e9f22f4af4832847a76d993645e45e474b6"
+        "bytes": 685,
+        "sha256": "21f19c8ffa44563a8333dc7b64337ba8f57d6cdd3ccbf4282c4b2021c282feb5"
       },
       {
         "path": "10-sources/E05.md",
@@ -482,8 +1101,8 @@
       },
       {
         "path": "20-knowledge/E05.md",
-        "bytes": 703,
-        "sha256": "5507a96a37ee1f3e5b4e7b2ce87df99327c645582d9a28bbbbe17a078e889985"
+        "bytes": 697,
+        "sha256": "9e330c547b3d8bacaaab2bd40799f192618cc7171c5b348fe185cf16170a4837"
       },
       {
         "path": "10-sources/E06.md",
@@ -492,8 +1111,8 @@
       },
       {
         "path": "20-knowledge/E06.md",
-        "bytes": 646,
-        "sha256": "6dcf6c47cb78dd898a51bd3f453205b6a52522024f788fc2aa6941e8f17b200d"
+        "bytes": 640,
+        "sha256": "f686c3d28e08db16281243af729bcd0f01ac62fc496e417ad44a55e887baf22b"
       },
       {
         "path": "10-sources/E07.md",
@@ -502,8 +1121,8 @@
       },
       {
         "path": "20-knowledge/E07.md",
-        "bytes": 612,
-        "sha256": "0bea06e37977fec2ecf950ed93d4707864cef9e8514dba9ce54dfee3976a0ee9"
+        "bytes": 606,
+        "sha256": "7f195fb43c2adb344f1731e9e77d7d5df425f594bafeb2f6a59f9d363759587b"
       },
       {
         "path": "10-sources/E08.md",
@@ -512,8 +1131,8 @@
       },
       {
         "path": "20-knowledge/E08.md",
-        "bytes": 764,
-        "sha256": "6c789b7b2d52f4e0e0ab2c691fc00038d37d4fa1888616afbc59642e8d7c428e"
+        "bytes": 758,
+        "sha256": "05a769063574fa7d711bf24d35afe3923bd4ab4c5246b14988f2892eaeea00c0"
       },
       {
         "path": "10-sources/E09.md",
@@ -522,8 +1141,8 @@
       },
       {
         "path": "20-knowledge/E09.md",
-        "bytes": 797,
-        "sha256": "4e409204a9580a1cbf069e814f7594123cc691d4c15e73048623ba6b4dc1dd3e"
+        "bytes": 791,
+        "sha256": "2f4fab21af7dc569ba170c2aed40609ef431309bab5a601d3af99b3a0596d6bf"
       },
       {
         "path": "10-sources/E10.md",
@@ -532,8 +1151,8 @@
       },
       {
         "path": "20-knowledge/E10.md",
-        "bytes": 752,
-        "sha256": "40fd724bac140b71e857a7d263d8b571c671ddaca73d7ea0eb0f5c1e90f5f911"
+        "bytes": 746,
+        "sha256": "0287fca88ad00072d9b678568327230a7554a557d684d33dfb2ff2e90190f2e8"
       },
       {
         "path": "99-system/INDEX.local.md",
@@ -578,8 +1197,18 @@
     "files": [
       {
         "path": "my-topic/this-week.md",
-        "bytes": 958,
-        "sha256": "7c61a19ad88ab9473a7688fb5b073fbb0188fb285698ce42a5a7beabd050b702"
+        "bytes": 1027,
+        "sha256": "b8235c86b7a7863b940acc5f6fa2568c5d679334718f91ec7ce2f25f8fccd708"
+      },
+      {
+        "path": "my-topic/transfer-guide.md",
+        "bytes": 2150,
+        "sha256": "773c3bb60a3f4e7fbe21efbfbe2f9d6d816d324ee1cf84697cc247e9033934e3"
+      },
+      {
+        "path": "my-topic/idea-to-akm-prompt.md",
+        "bytes": 6244,
+        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
       },
       {
         "path": "my-topic/README.md",
@@ -663,8 +1292,8 @@
       },
       {
         "path": "20-knowledge/E02.md",
-        "bytes": 680,
-        "sha256": "5fe8dd1723aa15baa87ebd17cf999fbbbc22dfafa8a7e1b8258425fd4c10c144"
+        "bytes": 674,
+        "sha256": "d24ca90279b8ae537d497d089493c551165fc4fa0be21dd69fb6ab57875ea2b4"
       },
       {
         "path": "10-sources/E03.md",
@@ -673,8 +1302,8 @@
       },
       {
         "path": "20-knowledge/E03.md",
-        "bytes": 639,
-        "sha256": "c79bb76458ce98984a1e6aad3f9ecd86d301450118b4428a38e544691f54870b"
+        "bytes": 633,
+        "sha256": "691346ba6303f7eba16f0a96048591dc83cda8ab3a0e318acdd13480909b0bda"
       },
       {
         "path": "10-sources/E04.md",
@@ -683,8 +1312,8 @@
       },
       {
         "path": "20-knowledge/E04.md",
-        "bytes": 691,
-        "sha256": "945736b524664294afcd1b4dd3b27e9f22f4af4832847a76d993645e45e474b6"
+        "bytes": 685,
+        "sha256": "21f19c8ffa44563a8333dc7b64337ba8f57d6cdd3ccbf4282c4b2021c282feb5"
       },
       {
         "path": "10-sources/E05.md",
@@ -693,8 +1322,8 @@
       },
       {
         "path": "20-knowledge/E05.md",
-        "bytes": 703,
-        "sha256": "5507a96a37ee1f3e5b4e7b2ce87df99327c645582d9a28bbbbe17a078e889985"
+        "bytes": 697,
+        "sha256": "9e330c547b3d8bacaaab2bd40799f192618cc7171c5b348fe185cf16170a4837"
       },
       {
         "path": "10-sources/E06.md",
@@ -703,8 +1332,8 @@
       },
       {
         "path": "20-knowledge/E06.md",
-        "bytes": 646,
-        "sha256": "6dcf6c47cb78dd898a51bd3f453205b6a52522024f788fc2aa6941e8f17b200d"
+        "bytes": 640,
+        "sha256": "f686c3d28e08db16281243af729bcd0f01ac62fc496e417ad44a55e887baf22b"
       },
       {
         "path": "10-sources/E07.md",
@@ -713,8 +1342,8 @@
       },
       {
         "path": "20-knowledge/E07.md",
-        "bytes": 612,
-        "sha256": "0bea06e37977fec2ecf950ed93d4707864cef9e8514dba9ce54dfee3976a0ee9"
+        "bytes": 606,
+        "sha256": "7f195fb43c2adb344f1731e9e77d7d5df425f594bafeb2f6a59f9d363759587b"
       },
       {
         "path": "10-sources/E08.md",
@@ -723,8 +1352,8 @@
       },
       {
         "path": "20-knowledge/E08.md",
-        "bytes": 764,
-        "sha256": "6c789b7b2d52f4e0e0ab2c691fc00038d37d4fa1888616afbc59642e8d7c428e"
+        "bytes": 758,
+        "sha256": "05a769063574fa7d711bf24d35afe3923bd4ab4c5246b14988f2892eaeea00c0"
       },
       {
         "path": "10-sources/E09.md",
@@ -733,8 +1362,8 @@
       },
       {
         "path": "20-knowledge/E09.md",
-        "bytes": 797,
-        "sha256": "4e409204a9580a1cbf069e814f7594123cc691d4c15e73048623ba6b4dc1dd3e"
+        "bytes": 791,
+        "sha256": "2f4fab21af7dc569ba170c2aed40609ef431309bab5a601d3af99b3a0596d6bf"
       },
       {
         "path": "10-sources/E10.md",
@@ -743,8 +1372,8 @@
       },
       {
         "path": "20-knowledge/E10.md",
-        "bytes": 752,
-        "sha256": "40fd724bac140b71e857a7d263d8b571c671ddaca73d7ea0eb0f5c1e90f5f911"
+        "bytes": 746,
+        "sha256": "0287fca88ad00072d9b678568327230a7554a557d684d33dfb2ff2e90190f2e8"
       },
       {
         "path": "99-system/INDEX.local.md",
@@ -794,8 +1423,18 @@
     "files": [
       {
         "path": "my-topic/this-week.md",
-        "bytes": 942,
-        "sha256": "4f9a77034cbd971d086984d93bf57a8e95cab903accfef05011ee4f37e31314d"
+        "bytes": 1040,
+        "sha256": "5347f6da16a6f3d4834a6d904a2d5a961b7489327b4fb7104b0be95de2f679eb"
+      },
+      {
+        "path": "my-topic/transfer-guide.md",
+        "bytes": 2150,
+        "sha256": "773c3bb60a3f4e7fbe21efbfbe2f9d6d816d324ee1cf84697cc247e9033934e3"
+      },
+      {
+        "path": "my-topic/idea-to-akm-prompt.md",
+        "bytes": 6244,
+        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
       },
       {
         "path": "my-topic/README.md",
@@ -804,8 +1443,8 @@
       },
       {
         "path": "README.md",
-        "bytes": 2135,
-        "sha256": "06ed67f5732eded5061b3526605bdd112e739a6d6f3e9f0e8defcc5d1da48aa4"
+        "bytes": 2158,
+        "sha256": "24147b5db63e05f8f110148f1bade557f4e30ced3dd2d04668b4fdb7c2522147"
       },
       {
         "path": "practice/README.md",
@@ -854,8 +1493,8 @@
       },
       {
         "path": "reference/20-knowledge/A01.md",
-        "bytes": 1473,
-        "sha256": "da084649817f6fa6d15ad9e42aafd5ea73002a28dc57501fa5c43f5f4140b707"
+        "bytes": 1413,
+        "sha256": "9aa51e07a6b6e16b0825b5b0e2ff030a4bac3c55e76abc3637464b71fab53081"
       },
       {
         "path": "00-inbox/A02.md",
@@ -914,8 +1553,8 @@
       },
       {
         "path": "reference/20-knowledge/A07.md",
-        "bytes": 920,
-        "sha256": "50199da10fbdef70789f905b9dac5090699872ee7ec6040f796452ef1f6d4172"
+        "bytes": 902,
+        "sha256": "c8aa1d6257e14f78152eb5e825a4b9beb8fe944b2a6d998aa13f92852c29d3b7"
       },
       {
         "path": "00-inbox/A08.md",
@@ -924,8 +1563,8 @@
       },
       {
         "path": "reference/20-knowledge/A08.md",
-        "bytes": 771,
-        "sha256": "0dbaf1714a162dacb4b0eac48b5a094bb73d2dac71892eac23d865d0df2da51d"
+        "bytes": 759,
+        "sha256": "3cd33484c2dcbf19fa2ab72360e1d7171bfdaf7ef5eac7ac8487969485dd78d9"
       },
       {
         "path": "00-inbox/A09.md",
@@ -934,8 +1573,8 @@
       },
       {
         "path": "reference/20-knowledge/A09.md",
-        "bytes": 812,
-        "sha256": "c3d37c1ada11f2a110ba2c4e8159f071626c70e75e2f0c7864e5a23fd86fd456"
+        "bytes": 806,
+        "sha256": "0e474870a37e36585bcaaff979f720bc6aa0728019e2503540f2a69c541d4a63"
       },
       {
         "path": "00-inbox/A10.md",
@@ -944,8 +1583,8 @@
       },
       {
         "path": "reference/20-knowledge/A10.md",
-        "bytes": 760,
-        "sha256": "a19a24dc0a1d416b7ad6f8d3b7896fefd95c8044a427436fe6bc70c8e13b67f8"
+        "bytes": 754,
+        "sha256": "e644c08cec4853a4bc29869a32061e67d427a098e9241cd2194dc41792f303b2"
       },
       {
         "path": "reference/99-system/INDEX.local.md",
@@ -960,8 +1599,18 @@
     "files": [
       {
         "path": "my-topic/this-week.md",
-        "bytes": 954,
-        "sha256": "d90589a169b58113a54cf5196cd6ef6840c764c140bd23f59ac7ca609b59ea8c"
+        "bytes": 1019,
+        "sha256": "c38d7f1f765ab47f6558cb7d04c87507141abc333bf251d788c4a2dd4ba93cb5"
+      },
+      {
+        "path": "my-topic/transfer-guide.md",
+        "bytes": 2150,
+        "sha256": "773c3bb60a3f4e7fbe21efbfbe2f9d6d816d324ee1cf84697cc247e9033934e3"
+      },
+      {
+        "path": "my-topic/idea-to-akm-prompt.md",
+        "bytes": 6244,
+        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
       },
       {
         "path": "my-topic/README.md",
@@ -1025,8 +1674,8 @@
       },
       {
         "path": "20-knowledge/A01.md",
-        "bytes": 1473,
-        "sha256": "da084649817f6fa6d15ad9e42aafd5ea73002a28dc57501fa5c43f5f4140b707"
+        "bytes": 1413,
+        "sha256": "9aa51e07a6b6e16b0825b5b0e2ff030a4bac3c55e76abc3637464b71fab53081"
       },
       {
         "path": "10-sources/A02.md",
@@ -1085,8 +1734,8 @@
       },
       {
         "path": "20-knowledge/A07.md",
-        "bytes": 920,
-        "sha256": "50199da10fbdef70789f905b9dac5090699872ee7ec6040f796452ef1f6d4172"
+        "bytes": 902,
+        "sha256": "c8aa1d6257e14f78152eb5e825a4b9beb8fe944b2a6d998aa13f92852c29d3b7"
       },
       {
         "path": "10-sources/A08.md",
@@ -1095,8 +1744,8 @@
       },
       {
         "path": "20-knowledge/A08.md",
-        "bytes": 771,
-        "sha256": "0dbaf1714a162dacb4b0eac48b5a094bb73d2dac71892eac23d865d0df2da51d"
+        "bytes": 759,
+        "sha256": "3cd33484c2dcbf19fa2ab72360e1d7171bfdaf7ef5eac7ac8487969485dd78d9"
       },
       {
         "path": "10-sources/A09.md",
@@ -1105,8 +1754,8 @@
       },
       {
         "path": "20-knowledge/A09.md",
-        "bytes": 812,
-        "sha256": "c3d37c1ada11f2a110ba2c4e8159f071626c70e75e2f0c7864e5a23fd86fd456"
+        "bytes": 806,
+        "sha256": "0e474870a37e36585bcaaff979f720bc6aa0728019e2503540f2a69c541d4a63"
       },
       {
         "path": "10-sources/A10.md",
@@ -1115,8 +1764,8 @@
       },
       {
         "path": "20-knowledge/A10.md",
-        "bytes": 760,
-        "sha256": "a19a24dc0a1d416b7ad6f8d3b7896fefd95c8044a427436fe6bc70c8e13b67f8"
+        "bytes": 754,
+        "sha256": "e644c08cec4853a4bc29869a32061e67d427a098e9241cd2194dc41792f303b2"
       },
       {
         "path": "99-system/INDEX.local.md",
@@ -1161,8 +1810,18 @@
     "files": [
       {
         "path": "my-topic/this-week.md",
-        "bytes": 989,
-        "sha256": "21a9edc31bb47488cb1ea46f42863aeb9b119f62f8fc3ab84eb78d7b05f5a2e3"
+        "bytes": 1068,
+        "sha256": "dc9edda9e675a45a5b49be0320975acc3b43ca6f3b3612aa631bbb9dc5736329"
+      },
+      {
+        "path": "my-topic/transfer-guide.md",
+        "bytes": 2150,
+        "sha256": "773c3bb60a3f4e7fbe21efbfbe2f9d6d816d324ee1cf84697cc247e9033934e3"
+      },
+      {
+        "path": "my-topic/idea-to-akm-prompt.md",
+        "bytes": 6244,
+        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
       },
       {
         "path": "my-topic/README.md",
@@ -1231,8 +1890,8 @@
       },
       {
         "path": "20-knowledge/A01.md",
-        "bytes": 1473,
-        "sha256": "da084649817f6fa6d15ad9e42aafd5ea73002a28dc57501fa5c43f5f4140b707"
+        "bytes": 1413,
+        "sha256": "9aa51e07a6b6e16b0825b5b0e2ff030a4bac3c55e76abc3637464b71fab53081"
       },
       {
         "path": "10-sources/A02.md",
@@ -1291,8 +1950,8 @@
       },
       {
         "path": "20-knowledge/A07.md",
-        "bytes": 920,
-        "sha256": "50199da10fbdef70789f905b9dac5090699872ee7ec6040f796452ef1f6d4172"
+        "bytes": 902,
+        "sha256": "c8aa1d6257e14f78152eb5e825a4b9beb8fe944b2a6d998aa13f92852c29d3b7"
       },
       {
         "path": "10-sources/A08.md",
@@ -1301,8 +1960,8 @@
       },
       {
         "path": "20-knowledge/A08.md",
-        "bytes": 771,
-        "sha256": "0dbaf1714a162dacb4b0eac48b5a094bb73d2dac71892eac23d865d0df2da51d"
+        "bytes": 759,
+        "sha256": "3cd33484c2dcbf19fa2ab72360e1d7171bfdaf7ef5eac7ac8487969485dd78d9"
       },
       {
         "path": "10-sources/A09.md",
@@ -1311,8 +1970,8 @@
       },
       {
         "path": "20-knowledge/A09.md",
-        "bytes": 812,
-        "sha256": "c3d37c1ada11f2a110ba2c4e8159f071626c70e75e2f0c7864e5a23fd86fd456"
+        "bytes": 806,
+        "sha256": "0e474870a37e36585bcaaff979f720bc6aa0728019e2503540f2a69c541d4a63"
       },
       {
         "path": "10-sources/A10.md",
@@ -1321,8 +1980,8 @@
       },
       {
         "path": "20-knowledge/A10.md",
-        "bytes": 760,
-        "sha256": "a19a24dc0a1d416b7ad6f8d3b7896fefd95c8044a427436fe6bc70c8e13b67f8"
+        "bytes": 754,
+        "sha256": "e644c08cec4853a4bc29869a32061e67d427a098e9241cd2194dc41792f303b2"
       },
       {
         "path": "99-system/INDEX.local.md",
@@ -1367,8 +2026,18 @@
     "files": [
       {
         "path": "my-topic/this-week.md",
-        "bytes": 958,
-        "sha256": "7c61a19ad88ab9473a7688fb5b073fbb0188fb285698ce42a5a7beabd050b702"
+        "bytes": 1027,
+        "sha256": "b8235c86b7a7863b940acc5f6fa2568c5d679334718f91ec7ce2f25f8fccd708"
+      },
+      {
+        "path": "my-topic/transfer-guide.md",
+        "bytes": 2150,
+        "sha256": "773c3bb60a3f4e7fbe21efbfbe2f9d6d816d324ee1cf84697cc247e9033934e3"
+      },
+      {
+        "path": "my-topic/idea-to-akm-prompt.md",
+        "bytes": 6244,
+        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
       },
       {
         "path": "my-topic/README.md",
@@ -1442,8 +2111,8 @@
       },
       {
         "path": "20-knowledge/A01.md",
-        "bytes": 1473,
-        "sha256": "da084649817f6fa6d15ad9e42aafd5ea73002a28dc57501fa5c43f5f4140b707"
+        "bytes": 1413,
+        "sha256": "9aa51e07a6b6e16b0825b5b0e2ff030a4bac3c55e76abc3637464b71fab53081"
       },
       {
         "path": "10-sources/A02.md",
@@ -1502,8 +2171,8 @@
       },
       {
         "path": "20-knowledge/A07.md",
-        "bytes": 920,
-        "sha256": "50199da10fbdef70789f905b9dac5090699872ee7ec6040f796452ef1f6d4172"
+        "bytes": 902,
+        "sha256": "c8aa1d6257e14f78152eb5e825a4b9beb8fe944b2a6d998aa13f92852c29d3b7"
       },
       {
         "path": "10-sources/A08.md",
@@ -1512,8 +2181,8 @@
       },
       {
         "path": "20-knowledge/A08.md",
-        "bytes": 771,
-        "sha256": "0dbaf1714a162dacb4b0eac48b5a094bb73d2dac71892eac23d865d0df2da51d"
+        "bytes": 759,
+        "sha256": "3cd33484c2dcbf19fa2ab72360e1d7171bfdaf7ef5eac7ac8487969485dd78d9"
       },
       {
         "path": "10-sources/A09.md",
@@ -1522,8 +2191,8 @@
       },
       {
         "path": "20-knowledge/A09.md",
-        "bytes": 812,
-        "sha256": "c3d37c1ada11f2a110ba2c4e8159f071626c70e75e2f0c7864e5a23fd86fd456"
+        "bytes": 806,
+        "sha256": "0e474870a37e36585bcaaff979f720bc6aa0728019e2503540f2a69c541d4a63"
       },
       {
         "path": "10-sources/A10.md",
@@ -1532,8 +2201,8 @@
       },
       {
         "path": "20-knowledge/A10.md",
-        "bytes": 760,
-        "sha256": "a19a24dc0a1d416b7ad6f8d3b7896fefd95c8044a427436fe6bc70c8e13b67f8"
+        "bytes": 754,
+        "sha256": "e644c08cec4853a4bc29869a32061e67d427a098e9241cd2194dc41792f303b2"
       },
       {
         "path": "99-system/INDEX.local.md",

@@ -1,0 +1,41 @@
+{
+  "classes": {
+    "Recipe": "요리",
+    "Ingredient": "재료",
+    "Pantry": "보관함"
+  },
+  "relations": {
+    "needsIngredient": {
+      "label": "필요로 한다",
+      "from": [
+        "Recipe"
+      ],
+      "to": [
+        "Ingredient"
+      ]
+    },
+    "hasIngredient": {
+      "label": "보유한다",
+      "from": [
+        "Pantry"
+      ],
+      "to": [
+        "Ingredient"
+      ]
+    }
+  },
+  "requiredNodeFields": [
+    "id",
+    "label",
+    "type",
+    "noteId",
+    "attrs"
+  ],
+  "rules": [
+    "unique IDs",
+    "known endpoints",
+    "domain/range",
+    "source exists",
+    "acyclic requires"
+  ]
+}

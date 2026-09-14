@@ -1,0 +1,30 @@
+{
+  "domain": "recipe",
+  "phase": "after",
+  "model": "",
+  "runAt": "",
+  "status": "unmeasured",
+  "responses": [
+    {
+      "id": "Q1",
+      "question": "지금 보유 재료가 모두 충족되는 메뉴는 무엇인가요?",
+      "answer": "",
+      "evidence": [],
+      "limitations": ""
+    },
+    {
+      "id": "Q2",
+      "question": "버터간장밥에 부족한 재료는 무엇인가요?",
+      "answer": "",
+      "evidence": [],
+      "limitations": ""
+    },
+    {
+      "id": "Q3",
+      "question": "보관함에 버터를 추가하면 재료가 충족되는 메뉴는 어떻게 달라지나요?",
+      "answer": "",
+      "evidence": [],
+      "limitations": ""
+    }
+  ]
+}

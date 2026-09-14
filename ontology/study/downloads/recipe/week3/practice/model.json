@@ -1,0 +1,222 @@
+{
+  "id": "recipe",
+  "name": "요리와 보유 재료",
+  "eyebrow": "START SMALL",
+  "accent": "#286f60",
+  "intro": "메뉴 3개 · 재료 4개 · 우리 집 보관함 1개로 시작합니다.",
+  "scope": "학습용으로 정한 필수 재료의 보유 여부만 확인합니다. 기본 시나리오는 보유 목록을 전부 확인한 상태이며, 목록이 미완료이면 미기록 재료는 보류합니다.",
+  "provenance": "2026-09-14 새로 작성한 가상 메뉴·재료 기록입니다. Schema.org Recipe의 요리·재료 표현을 참고하되 needsIngredient/hasIngredient와 보관함은 이 실습에서 정의했습니다. https://schema.org/Recipe",
+  "classes": {
+    "Recipe": "요리",
+    "Ingredient": "재료",
+    "Pantry": "보관함"
+  },
+  "relations": {
+    "needsIngredient": {
+      "label": "필요로 한다",
+      "from": [
+        "Recipe"
+      ],
+      "to": [
+        "Ingredient"
+      ]
+    },
+    "hasIngredient": {
+      "label": "보유한다",
+      "from": [
+        "Pantry"
+      ],
+      "to": [
+        "Ingredient"
+      ]
+    }
+  },
+  "notes": [
+    {
+      "id": "R01",
+      "title": "간장달걀밥",
+      "body": "학습용 필수 재료는 밥, 달걀, 간장이다. D1은 이 메뉴의 ID다. R04의 보유 재료와 비교해 세 재료가 모두 확인되면 재료 충족으로 표시한다. 이 목록은 실습을 위해 단순화한 기록이다.",
+      "links": [
+        "R04"
+      ]
+    },
+    {
+      "id": "R02",
+      "title": "버터간장밥",
+      "body": "학습용 필수 재료는 밥, 버터, 간장이다. D2는 이 메뉴의 ID다. 필요한 재료와 현재 보유한 재료는 서로 다른 관계다. 버터가 필요한 메뉴라는 사실만으로 버터를 보유했다고 읽지 않는다.",
+      "links": [
+        "R04"
+      ]
+    },
+    {
+      "id": "R03",
+      "title": "버터달걀밥",
+      "body": "학습용 필수 재료는 밥, 버터, 달걀이다. D3는 이 메뉴의 ID다. R01·R02에 나온 밥·달걀·버터와 같은 재료 ID를 재사용한다. 같은 이름의 재료를 메뉴마다 중복 생성하지 않는다.",
+      "links": [
+        "R01",
+        "R02",
+        "R04"
+      ]
+    },
+    {
+      "id": "R04",
+      "title": "우리 집 보관함과 판단 규칙",
+      "body": "기본 시나리오: 밥·달걀·간장은 있고 버터는 없다. 이번 실습의 재고 목록은 전부 확인했으며 inventoryComplete=true다. 규칙: 등록된 필수 재료가 모두 보유 관계로 연결되면 재료 충족이다. 조건 변경 실험은 버터를 추가해 세 메뉴를 다시 확인하는 것이다. 목록 확인을 미완료(inventoryComplete=false)로 바꾼 실험에서는 연결이 없는 재료를 없다고 단정하지 않고 미확인으로 남긴다. 시나리오 변경은 실습 가정이며 실제 냉장고 조사 결과가 아니다.",
+      "links": [
+        "R01",
+        "R02",
+        "R03"
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "id": "D1",
+      "label": "간장달걀밥",
+      "type": "Recipe",
+      "noteId": "R01",
+      "attrs": {}
+    },
+    {
+      "id": "D2",
+      "label": "버터간장밥",
+      "type": "Recipe",
+      "noteId": "R02",
+      "attrs": {}
+    },
+    {
+      "id": "D3",
+      "label": "버터달걀밥",
+      "type": "Recipe",
+      "noteId": "R03",
+      "attrs": {}
+    },
+    {
+      "id": "RICE",
+      "label": "밥",
+      "type": "Ingredient",
+      "noteId": "R01",
+      "attrs": {}
+    },
+    {
+      "id": "EGG",
+      "label": "달걀",
+      "type": "Ingredient",
+      "noteId": "R01",
+      "attrs": {}
+    },
+    {
+      "id": "SOY",
+      "label": "간장",
+      "type": "Ingredient",
+      "noteId": "R01",
+      "attrs": {}
+    },
+    {
+      "id": "BUTTER",
+      "label": "버터",
+      "type": "Ingredient",
+      "noteId": "R02",
+      "attrs": {}
+    },
+    {
+      "id": "PANTRY",
+      "label": "우리 집 보관함",
+      "type": "Pantry",
+      "noteId": "R04",
+      "attrs": {
+        "inventoryComplete": true
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "D1",
+      "rel": "needsIngredient",
+      "to": "RICE",
+      "source": "R01"
+    },
+    {
+      "from": "D1",
+      "rel": "needsIngredient",
+      "to": "EGG",
+      "source": "R01"
+    },
+    {
+      "from": "D1",
+      "rel": "needsIngredient",
+      "to": "SOY",
+      "source": "R01"
+    },
+    {
+      "from": "D2",
+      "rel": "needsIngredient",
+      "to": "RICE",
+      "source": "R02"
+    },
+    {
+      "from": "D2",
+      "rel": "needsIngredient",
+      "to": "BUTTER",
+      "source": "R02"
+    },
+    {
+      "from": "D2",
+      "rel": "needsIngredient",
+      "to": "SOY",
+      "source": "R02"
+    },
+    {
+      "from": "D3",
+      "rel": "needsIngredient",
+      "to": "RICE",
+      "source": "R03"
+    },
+    {
+      "from": "D3",
+      "rel": "needsIngredient",
+      "to": "BUTTER",
+      "source": "R03"
+    },
+    {
+      "from": "D3",
+      "rel": "needsIngredient",
+      "to": "EGG",
+      "source": "R03"
+    },
+    {
+      "from": "PANTRY",
+      "rel": "hasIngredient",
+      "to": "RICE",
+      "source": "R04"
+    },
+    {
+      "from": "PANTRY",
+      "rel": "hasIngredient",
+      "to": "EGG",
+      "source": "R04"
+    },
+    {
+      "from": "PANTRY",
+      "rel": "hasIngredient",
+      "to": "SOY",
+      "source": "R04"
+    }
+  ],
+  "questions": [
+    "지금 보유 재료가 모두 충족되는 메뉴는 무엇인가요?",
+    "버터간장밥에 부족한 재료는 무엇인가요?",
+    "보관함에 버터를 추가하면 재료가 충족되는 메뉴는 어떻게 달라지나요?"
+  ],
+  "traps": [
+    "필요한 재료와 보유한 재료를 구분해서 읽습니다.",
+    "목록을 전부 확인한 경우에만 미기록 재료를 없다고 판단합니다."
+  ],
+  "error": {
+    "from": "D1",
+    "rel": "hasIngredient",
+    "to": "BUTTER",
+    "source": "R04"
+  },
+  "target": "PANTRY"
+}

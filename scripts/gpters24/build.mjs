@@ -15,7 +15,7 @@ for(const d of Object.values(domains)){
   manifests.push({domain:d.id,week:w,files:Object.entries(files).map(([path,text])=>({path,bytes:Buffer.byteLength(text),sha256:createHash('sha256').update(text).digest('hex')}))});
  }
 }
-const provenance=`# 실습 자료의 범위와 출처\n\n2026-09-12 · GPTers 24기 · DECK / DEXA\n\n## 최종 커리큘럼\nhttps://www.gpters.org/study/llm-ontology\n\n## 초등교육\n${domains.education.provenance}\n${domains.education.scope}\n\n## 한국 주거 건축\n${domains.architecture.provenance}\n${domains.architecture.scope}\n기존 기초 교안과 FAMILY-02 그림: https://dexa.art/ontology/\n\n## 도구 참고\n- AKM https://github.com/DECK6/akm\n- Obsidian Graph view https://help.obsidian.md/plugins/graph\n- Protégé https://protege.stanford.edu/\n- 로컬 AKM Studio 0.1.0: 문서 목록·상세 보기·검토 흐름 참고. 그래프 기능을 기존 Studio에 있던 것으로 주장하지 않는다.\n\n## 내 주제 실습\nmy-topic.html에서 수강생이 자신의 범위·질문·원자료·문서 링크·대상·관계·속성·실제 평가를 기록합니다. 개인 자료는 브라우저에 저장하며 프로젝트 JSON과 주차별 ZIP으로 내보냅니다. my-topic-starter.zip은 빈 4주 양식입니다.\n\n## 검증 범위\n웹 질의는 현재 모델로 계산하는 결정적 미리보기다. 실제 LLM 성능평가는 참여자가 같은 질문으로 실행하고 기록한다. 새 실습 자료를 기존 교육/건축 온톨로지의 전체 검증 결과로 취급하지 않는다. OWL export는 표준 표현의 입문용 부분집합이며, 웹/Python 검사는 별도 경량 검사다.\n`;
+const provenance=`# 실습 자료의 범위와 출처\n\n2026-09-14 · GPTers 24기 · DECK / DEXA\n\n## 최종 커리큘럼\nhttps://www.gpters.org/study/llm-ontology\n\n## 작은 공통 예제 · 요리와 재료\n${domains.recipe.provenance}\n${domains.recipe.scope}\n\n## 확장 사례 · 초등교육\n${domains.education.provenance}\n${domains.education.scope}\n\n## 확장 사례 · 한국 주거 건축\n${domains.architecture.provenance}\n${domains.architecture.scope}\n기존 기초 교안과 FAMILY-02 그림: https://dexa.art/ontology/\n\n## 도구 참고\n- AKM https://github.com/DECK6/akm\n- Obsidian Graph view https://help.obsidian.md/plugins/graph\n- Protégé https://protege.stanford.edu/\n- 로컬 AKM Studio 0.1.0: 문서 목록·상세 보기·검토 흐름 참고. 그래프 기능을 기존 Studio에 있던 것으로 주장하지 않는다.\n\n## 내 주제 실습\nmy-topic.html에서 수강생이 자료 3–5개로 판단 하나를 고르고, 자신의 대상·필요 자원·현재 상태·관계의 뜻·판단 규칙·보류 조건을 설계합니다. 질문별 예상 답과 근거, 실제 평가를 각각 기록하고 조건 하나를 바꿔 검증합니다. 문서 링크·대상·관계·속성을 직접 편집할 수 있습니다. 개인 자료는 브라우저에 저장하며 프로젝트 JSON과 주차별 ZIP으로 내보냅니다. my-topic-starter.zip은 빈 4주 양식입니다. idea-to-akm-prompt.md는 아이디어 메모를 원문·맥락·지식 노트와 작은 온톨로지로 정리하도록 코딩 에이전트에 전달하는 요청문입니다. 웹에서 메모를 입력해 개인화한 요청문을 복사할 수 있습니다.\n\n## 검증 범위\n웹 질의는 현재 모델로 계산하는 결정적 미리보기다. 실제 LLM 성능평가는 참여자가 같은 질문으로 실행하고 기록한다. 새 실습 자료를 기존 교육/건축 온톨로지의 전체 검증 결과로 취급하지 않는다. OWL export는 표준 표현의 입문용 부분집합이며, 웹/Python 검사는 별도 경량 검사다.\n`;
 await writeFile(new URL('PROVENANCE.md',downloads),provenance);
 await writeFile(new URL('manifest.json',downloads),JSON.stringify(manifests,null,2));
 const starter={};
@@ -33,13 +33,13 @@ def zip_entries(path, entries):
   for name,p in sorted(entries):
    info=ZipInfo(name,(2026,9,12,0,0,0));info.compress_type=ZIP_DEFLATED;info.external_attr=0o644<<16
    z.writestr(info,p.read_bytes())
-for domain in ['education','architecture']:
+for domain in ['recipe','education','architecture']:
  for week in range(1,5):
   folder=d/domain/f'week{week}'
   zip_entries(d/f'{domain}-week{week}.zip',[(p.relative_to(folder).as_posix(),p) for p in folder.rglob('*') if p.is_file()])
  folder=d/domain
  zip_entries(d/f'{domain}-all-weeks.zip',[(p.relative_to(folder).as_posix(),p) for p in folder.rglob('*') if p.is_file()])
 zip_entries(d/'web-lab-offline.zip',[(p.relative_to(root).as_posix(),p) for p in root.rglob('*') if p.is_file() and p.name!='web-lab-offline.zip'])
-print('Generated 8 weekly ZIPs, 2 full-domain ZIPs, and offline web ZIP.')
+print('Generated 4 primary recipe ZIPs, 8 extension ZIPs, 3 domain ZIPs, personal starter and offline web ZIP.')
 `],{stdio:'inherit'});
-console.log(JSON.stringify({domains:2,notes:20,questions:6,weeklyBundles:8,validation:Object.fromEntries(Object.values(domains).map(d=>[d.id,validate(d)])),queryStatus:Object.fromEntries(Object.values(domains).map(d=>[d.id,d.questions.map((q,i)=>query(d,i).status)]))},null,2));
+console.log(JSON.stringify({domains:3,primaryNotes:4,primaryEntities:8,weeklyBundles:12,validation:Object.fromEntries(Object.values(domains).map(d=>[d.id,validate(d)])),queryStatus:Object.fromEntries(Object.values(domains).map(d=>[d.id,d.questions.map((q,i)=>query(d,i).status)]))},null,2));

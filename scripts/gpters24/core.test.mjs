@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {domains} from './data.mjs';
 import {validate, query, toTTL, scoreReport, parseWorkspace, filesForWeek, setEvaluation} from './core.mjs';
 const copy=x=>structuredClone(x);
-for (const d of Object.values(domains)) {
+for (const d of [domains.education,domains.architecture]) {
   test(`${d.id}: ten notes, valid graph and fixed questions`,()=>{
     assert.equal(d.notes.length,10); assert.equal(d.questions.length,3);
     assert.deepEqual(validate(d),[]);

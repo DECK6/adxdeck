@@ -1,10 +1,11 @@
 import geometry from './rooms.json' with {type:'json'};
+import {recipe} from './recipe.mjs';
 const note=(id,title,body,links=[])=>({id,title,body,links});
 const node=(id,label,type,noteId,attrs={})=>({id,label,type,noteId,attrs});
 const edge=(from,rel,to,source)=>({from,rel,to,source});
 const relation=(label,from,to)=>({label,from,to});
 export const weeks=[
- {title:'내 지식을 Wiki로',short:'LLM Wiki',date:'9월 30일',lead:'흩어진 노트 10개를, AI가 찾아 읽는 지식으로.',goal:'자료의 출처를 보존하고 문서 구조·인덱스·링크를 만듭니다. AKM으로 시작하는 것을 권장합니다.',steps:['자료 10개를 읽고 내 도메인의 범위를 한 문장으로 정하세요.','질문 3개에 대한 현재 에이전트의 답과 출처를 기록하세요.','AKM에 원본과 정리한 지식을 나눠 넣고 관계망을 확인하세요.'],output:'도메인 정의서 · 진단 기록 · LLM Wiki v1',homework:'대표 노트를 재구조화한 과정과 달라진 점을 사례글 1편으로 남기세요.'},
+ {title:'내 지식을 Wiki로',short:'LLM Wiki',date:'9월 30일',lead:'작은 메모 묶음으로, AI가 찾아 읽는 지식을 만듭니다.',goal:'자료의 출처를 보존하고 문서 구조·인덱스·링크를 만듭니다. AKM으로 시작하는 것을 권장합니다.',steps:['선택한 예제의 메모를 읽고, 내 도메인은 작은 판단 하나로 정하세요.','질문 3개에 대한 현재 에이전트의 답과 출처를 기록하세요.','AKM에 원본과 정리한 지식을 나눠 넣고 관계망을 확인하세요.'],output:'도메인 정의서 · 진단 기록 · LLM Wiki v1',homework:'대표 노트를 재구조화한 과정과 달라진 점을 사례글 1편으로 남기세요.'},
  {title:'관계에 뜻을 더하기',short:'온톨로지 설계',date:'10월 7일',lead:'링크가 있다는 것에서, 어떤 관계인지 아는 것으로.',goal:'답하지 못한 질문에서 출발해 대상의 종류·속성·관계와 검사 규칙을 정의합니다.',steps:['문서 링크만으로 답하기 어려운 질문을 하나 고르세요.','아래 만들기 도구에서 대상과 관계를 추가하고 원문을 연결하세요.','검사 오류를 확인하고 JSON·OWL 파일과 설계 노트를 내보내세요.'],output:'내 도메인 온톨로지 스키마 v1',homework:'추가한 관계가 어떤 질문을 해결하는지 사례글 1편으로 설명하세요.'},
  {title:'에이전트가 찾아 쓰게',short:'에이전트 연결',date:'10월 14일',lead:'관계를 따라 찾고, 근거를 함께 답하게 만듭니다.',goal:'스키마를 문서와 메타데이터에 반영하고 본인이 쓰는 에이전트에 파일을 연결합니다.',steps:['3주차 파일을 새 실습 AKM에 넣고 에이전트에서 그 폴더를 여세요.','연결 프롬프트를 붙여 넣고 같은 질문 3개를 실행하세요.','답의 문장마다 출처와 모르는 범위가 있는지 확인하세요.'],output:'출처와 함께 답하는 에이전트 연결 데모',homework:'실제 에이전트의 답·출처·실패 장면을 담아 사례글 1편을 작성하세요.'},
  {title:'나아졌는지 확인하기',short:'평가와 운영',date:'10월 21일',lead:'같은 질문으로 비교하고, 오래 쓸 규칙을 남깁니다.',goal:'정확성·일관성·출처를 비교하고 자료 추가·수정·폐기와 스키마 변경의 운영 기준을 정합니다.',steps:['1주차에 남긴 질문·답변을 그대로 불러오세요.','현재 답변과 근거를 나란히 읽고 같은 기준으로 평가하세요.','개선되지 않은 질문과 다음 변경을 운영 노트에 남기세요.'],output:'완성 시스템 · 평가 리포트 · 지속 운영 규칙',homework:'새 과제 없이 완성한 시스템을 최종 발표합니다.'}
@@ -57,4 +58,4 @@ const architecture={
  traps:['침실이라는 단어가 세 번 나온 것과 서로 다른 침실 세 개가 있는 것은 다릅니다.','도면 정합성 검사와 법규·구조 안전 검토는 다릅니다.'],
  error:{from:'WINDOW',rel:'fillsOpening',to:'LIVING',source:'A07'},target:'WINDOW'
 };
-export const domains={education,architecture};
+export const domains={recipe,education,architecture};
