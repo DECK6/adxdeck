@@ -1,5 +1,26 @@
 [
   {
+    "slug": "hipporag-two-and-associative-retrieval",
+    "file": "_built/hipporag-two-and-associative-retrieval.md",
+    "title": "RAG가 놓친 연결을 찾는 법: HippoRAG 2와 개인화 PageRank",
+    "description": "HippoRAG 2가 문구와 원문 구간을 그래프로 연결하고 개인화 PageRank로 검색 순위를 바꾸는 원리를 살펴본다. 관계를 따라 찾은 자료와 검증된 근거를 구분해 업무 RAG에 적용하는 방법을 제안한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "graph-engineering",
+      "HippoRAG",
+      "PageRank",
+      "RAG",
+      "knowledge-management"
+    ],
+    "date": "2026-09-14",
+    "modified": "2026-09-14",
+    "thumbnail": "images/hipporag-two-and-associative-retrieval-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "seiko-mikami-and-the-observed-viewer",
     "file": "_built/seiko-mikami-and-the-observed-viewer.md",
     "title": "미카미 세이코의 관객은 왜 보는 동시에 감시되는가",
