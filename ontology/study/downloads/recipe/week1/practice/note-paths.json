@@ -1,0 +1,22 @@
+[
+  {
+    "id": "R01",
+    "source": "00-inbox/2026-09-14-recipe-r01.md",
+    "compiled": "reference/30-context/projects/gpters24-recipe/recipe-r01.md"
+  },
+  {
+    "id": "R02",
+    "source": "00-inbox/2026-09-14-recipe-r02.md",
+    "compiled": "reference/30-context/projects/gpters24-recipe/recipe-r02.md"
+  },
+  {
+    "id": "R03",
+    "source": "00-inbox/2026-09-14-recipe-r03.md",
+    "compiled": "reference/30-context/projects/gpters24-recipe/recipe-r03.md"
+  },
+  {
+    "id": "R04",
+    "source": "00-inbox/2026-09-14-recipe-r04.md",
+    "compiled": "reference/30-context/projects/gpters24-recipe/recipe-r04.md"
+  }
+]

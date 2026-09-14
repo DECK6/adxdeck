@@ -1,3 +1,4 @@
+import {notePaths,sourceMetadata,publicAkmGuide} from './akm-public.mjs';
 import {ideaToAkmPrompt} from './memo-prompt.mjs';
 import {blankDomainPlan,parseDomainPlan,domainGuide,domainPlanMarkdown,testDesignMarkdown,designPrompt} from './transfer.mjs';
 import {parseWorkspace,toTTL,scoreReport,validate} from './core.mjs';
@@ -39,19 +40,21 @@ export function applyResponses(project,text){
 export function personalPrompt(p,w){
  const exclude='practice/test-design.md, personal-project.json, 기존 평가 기록과 예상 답은 읽지 마세요. 원자료·검토한 지식·관계만으로 답하세요.';
  const questions=p.questions.map((q,i)=>`Q${i+1}. ${q||'[내 질문을 입력하세요]'}`).join('\n');
- if(w===1)return `주제: ${p.title||'[내 주제]'}\n범위: ${p.scope||'[다루는 범위]'}\n제외: ${p.excluded||'[다루지 않는 범위]'}\n\n${exclude}\n같은 모델·설정의 새 대화에서 정리 전 기준선을 측정합니다. 00-inbox의 내 원자료와 practice/questions.json만 읽고 아래 질문에 답하세요. 모델·완성 Wiki·예시 답안은 읽지 마세요. 답변/실제 근거 문장/판단 불가 사항을 구분해 response-template.json 형식의 새 before 파일로 저장하세요.\n${questions}\n\n기준선 기록이 끝난 뒤 별도 작업으로 공식 AKM https://github.com/DECK6/akm 의 INDEX·ROUTER·LOOP를 읽고 원본을 보존하면서 정리 노트와 링크를 만드세요.`;
- return `주제: ${p.title||'[내 주제]'}\n범위: ${p.scope||'[다루는 범위]'}\n제외: ${p.excluded||'[다루지 않는 범위]'}\n모델 리비전: ${p.revision}\n\n이 실습 AKM의 INDEX·ROUTER·LOOP와 practice/README.md를 읽으세요. 원자료 10-sources, 직접 검토한 정리 노트 20-knowledge, practice/model.json의 종류·관계·속성·근거를 함께 확인하세요. 정리 노트의 빈칸을 실제 지식으로 취급하지 마세요.\n${exclude}\n같은 모델·설정의 새 대화에서 아래 고정 질문에 답하세요. 답변/실제 근거 문장/따라간 관계/판단 불가 사항을 구분하고 근거가 없으면 보류하세요. 일반 지식으로 빈칸을 채우지 마세요. practice/response-template.json 형식의 새 after 파일에 실제 모델명과 실행일을 기록하세요. before를 덮어쓰지 마세요.\n${questions}`;
+ if(w===1)return `주제: ${p.title||'[내 주제]'}\n범위: ${p.scope||'[다루는 범위]'}\n제외: ${p.excluded||'[다루지 않는 범위]'}\n\n${exclude}\n같은 모델·설정의 새 대화에서 정리 전 기준선을 측정합니다. 00-inbox의 내 원자료와 practice/questions.json만 읽고 아래 질문에 답하세요. 모델·완성 Wiki·예시 답안은 읽지 마세요. 답변/실제 근거 문장/판단 불가 사항을 구분해 response-template.json 형식의 새 before 파일로 저장하세요.\n${questions}\n\n기준선 기록이 끝난 뒤 별도 작업으로 공식 AKM https://github.com/DECK6/akm 의 99-system/INDEX.md와 현재 40-memory 메모, ROUTER·SCHEMA·LOOP·VERIFICATION을 읽고 원본을 보존하면서 정리 노트와 링크를 만드세요.`;
+ return `주제: ${p.title||'[내 주제]'}\n범위: ${p.scope||'[다루는 범위]'}\n제외: ${p.excluded||'[다루지 않는 범위]'}\n모델 리비전: ${p.revision}\n\n이 실습 AKM의 99-system/INDEX.md, 현재 40-memory 메모, 99-system/ROUTER.md·LOOP.md·VERIFICATION.md와 practice/README.md를 읽으세요. 원자료 10-sources, 직접 검토한 지식 20-knowledge와 내 조건 30-context, practice/model.json의 종류·관계·속성·근거를 함께 확인하세요. 정리 노트의 빈칸을 실제 지식으로 취급하지 마세요.\n${exclude}\n같은 모델·설정의 새 대화에서 아래 고정 질문에 답하세요. 답변/실제 근거 문장/따라간 관계/판단 불가 사항을 구분하고 근거가 없으면 보류하세요. 일반 지식으로 빈칸을 채우지 마세요. practice/response-template.json 형식의 새 after 파일에 실제 모델명과 실행일을 기록하세요. before를 덮어쓰지 마세요.\n${questions}`;
 }
 export function personalFiles(p,w){
  const j=x=>JSON.stringify(x,null,2)+'\n',m={...p.model,name:p.title||'내 주제'};
  const f={
- 'README.md':`# 내 주제 실습 · ${p.title||'아직 입력하지 않음'}\n\n${w}주차 작업 파일입니다. 공식 AKM https://github.com/DECK6/akm 을 새 실습 폴더에 준비하고 자료를 추가하세요. 이 ZIP은 AKM 본체가 아닙니다. 1주차 before 기록과 직접 검토한 Wiki를 다음 주에도 이어 사용하세요. 기존 파일은 먼저 보관하고 비교한 뒤 적용합니다.\n\n웹에서 personal-project.json을 불러오면 주제·자료·관계·평가를 이어 편집할 수 있습니다. 이 파일은 비공개 개인 작업이며 공개 사이트에 자동 업로드되지 않습니다.\n`,
+ 'README.md':`# 내 주제 실습 · ${p.title||'아직 입력하지 않음'}\n\n${w}주차 작업 파일입니다. 공식 AKM https://github.com/DECK6/akm 을 새 실습 폴더에 준비하고 그 폴더에서 에이전트를 여세요. 루트 CLAUDE.md·AGENTS.md가 지침입니다. practice/akm-public-guide.md를 읽고 자료를 추가하세요. 이 ZIP은 AKM 본체가 아닙니다. 1주차 before 기록과 직접 검토한 Wiki를 다음 주에도 이어 사용하세요. 기존 파일은 먼저 보관하고 비교한 뒤 적용합니다. 포함된 INDEX.local.md는 기존 파일에 항목만 병합하세요.\n\n웹에서 personal-project.json을 불러오면 주제·자료·관계·평가를 이어 편집할 수 있습니다. 이 파일은 비공개 개인 작업이며 공개 사이트에 자동 업로드되지 않습니다.\n`,
  'personal-project.json':j(p),
  'practice/transfer-guide.md':domainGuide(),
  'practice/domain-design.md':domainPlanMarkdown(p),
  'practice/test-design.md':testDesignMarkdown(p),
  'practice/build-ontology-prompt.md':designPrompt(p),
  'practice/idea-to-akm-prompt.md':ideaToAkmPrompt(p),
+ 'practice/akm-public-guide.md':publicAkmGuide(),
+ 'practice/note-paths.json':j(m.notes.map(n=>{const {source,draft}=notePaths(m,n,w);return {id:n.id,source,draft};})),
  'practice/this-week.md':weeklyAssignment(w),
  'practice/source-note-template.md':'# 내 원자료 양식\n\nID: N1\n제목:\n출처 URL 또는 작성자·문서명:\n작성일:\n\n## 원문\n실제 자료를 붙여 넣습니다.\n\n원문과 에이전트의 해석을 분리하세요.\n',
  'practice/README.md':`# 내 도메인\n\n주제: ${p.title}\n\n범위: ${p.scope}\n\n제외: ${p.excluded}\n\n리비전: ${p.revision}\n\n원자료 ${m.notes.length}개, 대상 ${m.nodes.length}개, 관계 ${m.edges.length}개. 첫 테스트는 원자료 3–5개를 골라 시작합니다. 공식 공지의 준비 노트 10개 중 일부로 작게 검증한 뒤 넓힐 수 있습니다. 빈 양식은 완성 지식이 아니므로 작성·검토한 뒤 에이전트에 사용하세요.\n`,
@@ -64,12 +67,13 @@ export function personalFiles(p,w){
  'practice/OPERATIONS.md':`# 운영 규칙\n\n${p.operations||'새 자료의 출처·날짜를 확인할 사람:\n원본과 정리 노트를 구분하는 위치:\n관계 변경을 검토할 사람:\n자료·스키마 버전 기록 방법:\n추가·수정·폐기 시 재실행할 질문:\n보관 또는 휴지통으로 이동할 기준:'}\n`
  };
  for(const n of m.notes){
-  const meta=`---\ndescription: "Learner-provided source for a personal knowledge project."\nakmLayer: source\nakmType: source\ntrustLevel: raw\nsourcePath: ${JSON.stringify(n.source||'출처 미입력')}\ndate created: ${JSON.stringify(n.date||'2026-09-12')}\ndate modified: ${JSON.stringify(n.date||'2026-09-12')}\n---\n\n`;
-  f[`00-inbox/${n.id}.md`]=meta+`# ${n.id} · ${n.title}\n\n${n.body}\n`;
-  if(w>=2)f[`10-sources/${n.id}.md`]=f[`00-inbox/${n.id}.md`];
-  f[`wiki-drafts/${n.id}.md`]=`# ${n.title}\n\n## 정리할 내용\n내가 이해한 핵심을 직접 적거나 에이전트의 정리 결과를 검토하세요. 이 파일은 빈 초안입니다.\n\n## 출처\n[[10-sources/${n.id}]]\n\n## 연결\n${n.links.map(id=>`- [[20-knowledge/${id}]]`).join('\n')}\n\n## 검토할 관계\n${m.edges.filter(e=>m.nodes.find(x=>x.id===e.from)?.noteId===n.id).map(e=>`- ${e.from} — ${e.rel} → ${e.to} (근거: ${e.source})`).join('\n')}\n`;
+  const paths=notePaths(m,n,w),inbox=notePaths(m,n,1).source,stem=x=>x.replace(/\.md$/,'');
+  f[inbox]=sourceMetadata(m,n)+`# ${n.id} · ${n.title}\n\n${n.body}\n`;
+  if(w>=2)f[paths.source]=f[inbox];
+  f[paths.draft]=`# ${n.title} · 분류 전 작성 양식\n\n## 정리할 내용\n내가 이해한 핵심을 직접 적거나 에이전트의 정리 결과를 검토하세요. 이 파일은 교재용 빈 초안이며 검토된 지식이 아닙니다.\n\n## 분류할 위치\n재사용 개념은 20-knowledge, 특정 프로젝트 조건은 30-context입니다. ROUTER로 결정하고 SCHEMA의 frontmatter를 작성하세요.\n\n## 출처\n[[${stem(paths.source)}]]\n\n## 관련 초안\n${n.links.map(id=>m.notes.find(x=>x.id===id)).filter(Boolean).map(x=>`- [[${stem(notePaths(m,x,w).draft)}|${x.title}]]`).join('\n')}\n\n## 검토할 관계\n${m.edges.filter(e=>m.nodes.find(x=>x.id===e.from)?.noteId===n.id).map(e=>`- ${e.from} — ${e.rel} → ${e.to} (근거: ${e.source})`).join('\n')}\n`;
  }
- f['wiki-drafts/README.md']='# Wiki 초안 적용\n\n이 폴더는 완성 지식이 아닙니다. 각 초안에 핵심·출처·관계를 작성하고 검토한 뒤 AKM의 20-knowledge에 승격하세요. Obsidian에서 같은 AKM 폴더를 열어 그래프를 확인합니다. 99-system/INDEX.local.md에는 검토한 노트의 링크를 추가하세요. 이미 완성한 노트에 빈 초안을 덮어쓰지 마세요.\n';
+ f['wiki-drafts/README.md']='# Wiki 초안 적용\n\nwiki-drafts는 교재의 작성 양식 폴더이며 AKM 레이어가 아닙니다. 내용을 작성한 새 초안도 00-inbox에 먼저 넣고 ROUTER로 분류하세요. 재사용 지식은 20-knowledge, 내 목표·조건·미확인 상태는 30-context 등으로 옮깁니다. SCHEMA와 공개 concept/entity 템플릿을 참고해 메타데이터·출처·링크를 검토하세요. 인덱스에 실제 파일을 연결하고 링크 검사와 원문 대조를 마친 뒤 사용합니다. 빈 양식으로 기존 검토본을 덮어쓰지 마세요.\n';
+ if(w>=2)f['99-system/INDEX.local.md']='# 내 원문 색인 · 기존 인덱스에 항목 병합\n\n'+m.notes.map(n=>`- [[${notePaths(m,n,w).source.replace(/\.md$/,'')}|${n.id} · ${n.title}]]`).join('\n')+'\n';
  if(w>=2){f['practice/schema.json']=j({classes:m.classes,relations:m.relations});f['practice/check.py']=validationScript;f['practice/schema-decisions.md']=`# 관계 설계 기록\n\n해결할 질문:\n대상 종류와 구분 기준:\n관계 이름과 시작→끝 종류:\n근거 문서와 문장:\n추가한 속성과 단위:\n잘못 연결한 반례와 검사 결과:\n변경 이유와 검토자:\n`;
   if(!validate(m).length&&m.nodes.length)f['practice/ontology.ttl']=toTTL(m);
  }

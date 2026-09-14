@@ -15,8 +15,13 @@
       },
       {
         "path": "my-topic/idea-to-akm-prompt.md",
-        "bytes": 6244,
-        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+        "bytes": 8950,
+        "sha256": "9b4d05cda73011bc5ab4915daf702e53b9d5d060c1123b193d669e6d507887a4"
+      },
+      {
+        "path": "my-topic/akm-public-guide.md",
+        "bytes": 5788,
+        "sha256": "400785ee5e5525fec3169f53b219859d13702ee1b5b6128e37e2bb68dd2d0b25"
       },
       {
         "path": "my-topic/README.md",
@@ -25,8 +30,8 @@
       },
       {
         "path": "README.md",
-        "bytes": 2167,
-        "sha256": "9b297e2d10a5904ee4937e548a0b7445fa51393877cbd53af45ddded1bc4dd0b"
+        "bytes": 2504,
+        "sha256": "d0d8a74961f65dfe105ca288f79273c63c4e7998cdca18f87ba1da7c142682bf"
       },
       {
         "path": "practice/README.md",
@@ -69,49 +74,54 @@
         "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
       },
       {
-        "path": "00-inbox/R01.md",
-        "bytes": 534,
-        "sha256": "49a12d7c35bc04bc1128463b373feecdc2533142ed20b570b09133bac4749a96"
+        "path": "00-inbox/2026-09-14-recipe-r01.md",
+        "bytes": 691,
+        "sha256": "d6a037c8f101a11b6d0e8881fd67702e991b5dd310927f7fdacfc0021a52c793"
       },
       {
-        "path": "reference/20-knowledge/R01.md",
-        "bytes": 754,
-        "sha256": "a406ff2e0495e9886ec8fab6ec4b701d45875936e8bd775c68d323a0dac64bbf"
+        "path": "reference/30-context/projects/gpters24-recipe/recipe-r01.md",
+        "bytes": 1159,
+        "sha256": "cb4d5bc7c55a4b3894ecbee2f708a02d909a867d2b7784a68a26dc91ab34cfc8"
       },
       {
-        "path": "00-inbox/R02.md",
-        "bytes": 539,
-        "sha256": "afd9a05df71f7b17b40a8d9f70c4c009133d6954d5792f4c580f8e6b37c4a483"
+        "path": "00-inbox/2026-09-14-recipe-r02.md",
+        "bytes": 696,
+        "sha256": "9ac2e0e1f4aefe254cfd3b11e065bc10cc41647dbb47c64468b9f54135ec4cb2"
       },
       {
-        "path": "reference/20-knowledge/R02.md",
-        "bytes": 762,
-        "sha256": "507d212492c666fc595293d89dc9bef3009e39df06c882c62053b8cb56b9d0eb"
+        "path": "reference/30-context/projects/gpters24-recipe/recipe-r02.md",
+        "bytes": 1167,
+        "sha256": "ce3507ac915de54404f89abad09530c93a7f9b15a1f4bbf098901951470d353d"
       },
       {
-        "path": "00-inbox/R03.md",
-        "bytes": 524,
-        "sha256": "a899924fe060c828eafc5089eaf3ca3386fab9b415b0df7d6d67ecb6aa760f03"
+        "path": "00-inbox/2026-09-14-recipe-r03.md",
+        "bytes": 681,
+        "sha256": "01d075edd1fb0194f18ff868346e1d8478ced603d008c78bfe3933a44a61047e"
       },
       {
-        "path": "reference/20-knowledge/R03.md",
-        "bytes": 793,
-        "sha256": "caa1c6145595127e123a4faf917d8829a3ce47c4f845d0bcd5a30141474ea6fc"
+        "path": "reference/30-context/projects/gpters24-recipe/recipe-r03.md",
+        "bytes": 1310,
+        "sha256": "e62ff981cae8ab6cfea9df1ced25e0dbced5319a60ac3f3e479784ce1d645dba"
       },
       {
-        "path": "00-inbox/R04.md",
-        "bytes": 900,
-        "sha256": "b1617821496d0cca5845fc9f48458e7eebecd82551b86db27bf0166f72c3be2a"
+        "path": "00-inbox/2026-09-14-recipe-r04.md",
+        "bytes": 1057,
+        "sha256": "ff67cf5a01973c43a52a4735faf3361dba51963288ab6165094d762f10291101"
       },
       {
-        "path": "reference/20-knowledge/R04.md",
-        "bytes": 1172,
-        "sha256": "8389b4776a2b32e34f46705dc5e3de4c3fe436ebec95fd87fad0722bb8917c2b"
+        "path": "reference/30-context/projects/gpters24-recipe/recipe-r04.md",
+        "bytes": 1667,
+        "sha256": "26e592b6c13a51ecccccb29155c01f163e89021afdb75f96198e338bc35ae082"
+      },
+      {
+        "path": "practice/note-paths.json",
+        "bytes": 623,
+        "sha256": "b40944047e5074cec74c5a6af20157d30bbc2928589cebf381a0574b938c7223"
       },
       {
         "path": "reference/99-system/INDEX.local.md",
-        "bytes": 202,
-        "sha256": "16acdf28097a03dc587f1606c19f917ab8aa57e36b9ac86422fbcc84a3357129"
+        "bytes": 622,
+        "sha256": "8c080125828ac886dfd9fbc0a189277da8cbcace9b4906fc0ad62352f5d09bac"
       }
     ]
   },
@@ -131,8 +141,13 @@
       },
       {
         "path": "my-topic/idea-to-akm-prompt.md",
-        "bytes": 6244,
-        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+        "bytes": 8950,
+        "sha256": "9b4d05cda73011bc5ab4915daf702e53b9d5d060c1123b193d669e6d507887a4"
+      },
+      {
+        "path": "my-topic/akm-public-guide.md",
+        "bytes": 5788,
+        "sha256": "400785ee5e5525fec3169f53b219859d13702ee1b5b6128e37e2bb68dd2d0b25"
       },
       {
         "path": "my-topic/README.md",
@@ -141,8 +156,8 @@
       },
       {
         "path": "README.md",
-        "bytes": 2430,
-        "sha256": "04e4d047628899fc62615405d56ab562b4f8962b9ae08493b2d91f23c93993b2"
+        "bytes": 2767,
+        "sha256": "f15757c3fe393ad60969aa3ea9221659c94f857c3597b8730bc428abdd9f32e5"
       },
       {
         "path": "practice/README.md",
@@ -176,8 +191,8 @@
       },
       {
         "path": "practice/agent-prompt.md",
-        "bytes": 1573,
-        "sha256": "cd9bac31c4b4e753af2fabc3ff39933a2aaf8903860574542319e0febf1c1dc5"
+        "bytes": 1704,
+        "sha256": "cefcf019bfa98586d77d9b7c517decfcf0418bee7bf0947f1f90c971af570594"
       },
       {
         "path": "practice/response-template.json",
@@ -190,49 +205,54 @@
         "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
       },
       {
-        "path": "10-sources/R01.md",
-        "bytes": 534,
-        "sha256": "49a12d7c35bc04bc1128463b373feecdc2533142ed20b570b09133bac4749a96"
+        "path": "10-sources/2026-09-14-recipe-r01.md",
+        "bytes": 691,
+        "sha256": "d6a037c8f101a11b6d0e8881fd67702e991b5dd310927f7fdacfc0021a52c793"
       },
       {
-        "path": "20-knowledge/R01.md",
-        "bytes": 754,
-        "sha256": "a406ff2e0495e9886ec8fab6ec4b701d45875936e8bd775c68d323a0dac64bbf"
+        "path": "30-context/projects/gpters24-recipe/recipe-r01.md",
+        "bytes": 1153,
+        "sha256": "02b690855deab0e55ea1901e069b2a065d05483e67898e1f8e33c7d4171de958"
       },
       {
-        "path": "10-sources/R02.md",
-        "bytes": 539,
-        "sha256": "afd9a05df71f7b17b40a8d9f70c4c009133d6954d5792f4c580f8e6b37c4a483"
+        "path": "10-sources/2026-09-14-recipe-r02.md",
+        "bytes": 696,
+        "sha256": "9ac2e0e1f4aefe254cfd3b11e065bc10cc41647dbb47c64468b9f54135ec4cb2"
       },
       {
-        "path": "20-knowledge/R02.md",
-        "bytes": 762,
-        "sha256": "507d212492c666fc595293d89dc9bef3009e39df06c882c62053b8cb56b9d0eb"
+        "path": "30-context/projects/gpters24-recipe/recipe-r02.md",
+        "bytes": 1161,
+        "sha256": "727dc9b9951f8caa4259cc03e14dbb6d54b875cd2c34d57ab3032839246da426"
       },
       {
-        "path": "10-sources/R03.md",
-        "bytes": 524,
-        "sha256": "a899924fe060c828eafc5089eaf3ca3386fab9b415b0df7d6d67ecb6aa760f03"
+        "path": "10-sources/2026-09-14-recipe-r03.md",
+        "bytes": 681,
+        "sha256": "01d075edd1fb0194f18ff868346e1d8478ced603d008c78bfe3933a44a61047e"
       },
       {
-        "path": "20-knowledge/R03.md",
-        "bytes": 793,
-        "sha256": "caa1c6145595127e123a4faf917d8829a3ce47c4f845d0bcd5a30141474ea6fc"
+        "path": "30-context/projects/gpters24-recipe/recipe-r03.md",
+        "bytes": 1284,
+        "sha256": "1f95ffdf43bf897850c946258538d082459138fe05917d42154d344ba31cc40b"
       },
       {
-        "path": "10-sources/R04.md",
-        "bytes": 900,
-        "sha256": "b1617821496d0cca5845fc9f48458e7eebecd82551b86db27bf0166f72c3be2a"
+        "path": "10-sources/2026-09-14-recipe-r04.md",
+        "bytes": 1057,
+        "sha256": "ff67cf5a01973c43a52a4735faf3361dba51963288ab6165094d762f10291101"
       },
       {
-        "path": "20-knowledge/R04.md",
-        "bytes": 1172,
-        "sha256": "8389b4776a2b32e34f46705dc5e3de4c3fe436ebec95fd87fad0722bb8917c2b"
+        "path": "30-context/projects/gpters24-recipe/recipe-r04.md",
+        "bytes": 1641,
+        "sha256": "76ba15cece647ac2f9c1d315324fcbb54b4ff64fb041cfc6474584d893708b44"
+      },
+      {
+        "path": "practice/note-paths.json",
+        "bytes": 591,
+        "sha256": "5ff8898fe50506fc865ff69e273bd35471cff910c0f9538e5fa33adbc58facd9"
       },
       {
         "path": "99-system/INDEX.local.md",
-        "bytes": 202,
-        "sha256": "16acdf28097a03dc587f1606c19f917ab8aa57e36b9ac86422fbcc84a3357129"
+        "bytes": 590,
+        "sha256": "2e4389938076f83ceb77aff856d26979006c74d50e20e9f5ba95152752131f76"
       },
       {
         "path": "practice/check.py",
@@ -282,8 +302,13 @@
       },
       {
         "path": "my-topic/idea-to-akm-prompt.md",
-        "bytes": 6244,
-        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+        "bytes": 8950,
+        "sha256": "9b4d05cda73011bc5ab4915daf702e53b9d5d060c1123b193d669e6d507887a4"
+      },
+      {
+        "path": "my-topic/akm-public-guide.md",
+        "bytes": 5788,
+        "sha256": "400785ee5e5525fec3169f53b219859d13702ee1b5b6128e37e2bb68dd2d0b25"
       },
       {
         "path": "my-topic/README.md",
@@ -292,8 +317,8 @@
       },
       {
         "path": "README.md",
-        "bytes": 2437,
-        "sha256": "2e8cadd1b2d4572dd2e41966c583e5b501229bd912f8102b7a66895680e400af"
+        "bytes": 2774,
+        "sha256": "ed2ffd2f7dbad0f418044854d356d2e225d8b3d4a1d3b538b16a75b082353975"
       },
       {
         "path": "practice/README.md",
@@ -332,8 +357,8 @@
       },
       {
         "path": "practice/agent-prompt.md",
-        "bytes": 1573,
-        "sha256": "cd9bac31c4b4e753af2fabc3ff39933a2aaf8903860574542319e0febf1c1dc5"
+        "bytes": 1704,
+        "sha256": "cefcf019bfa98586d77d9b7c517decfcf0418bee7bf0947f1f90c971af570594"
       },
       {
         "path": "practice/response-template.json",
@@ -346,49 +371,54 @@
         "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
       },
       {
-        "path": "10-sources/R01.md",
-        "bytes": 534,
-        "sha256": "49a12d7c35bc04bc1128463b373feecdc2533142ed20b570b09133bac4749a96"
+        "path": "10-sources/2026-09-14-recipe-r01.md",
+        "bytes": 691,
+        "sha256": "d6a037c8f101a11b6d0e8881fd67702e991b5dd310927f7fdacfc0021a52c793"
       },
       {
-        "path": "20-knowledge/R01.md",
-        "bytes": 754,
-        "sha256": "a406ff2e0495e9886ec8fab6ec4b701d45875936e8bd775c68d323a0dac64bbf"
+        "path": "30-context/projects/gpters24-recipe/recipe-r01.md",
+        "bytes": 1153,
+        "sha256": "02b690855deab0e55ea1901e069b2a065d05483e67898e1f8e33c7d4171de958"
       },
       {
-        "path": "10-sources/R02.md",
-        "bytes": 539,
-        "sha256": "afd9a05df71f7b17b40a8d9f70c4c009133d6954d5792f4c580f8e6b37c4a483"
+        "path": "10-sources/2026-09-14-recipe-r02.md",
+        "bytes": 696,
+        "sha256": "9ac2e0e1f4aefe254cfd3b11e065bc10cc41647dbb47c64468b9f54135ec4cb2"
       },
       {
-        "path": "20-knowledge/R02.md",
-        "bytes": 762,
-        "sha256": "507d212492c666fc595293d89dc9bef3009e39df06c882c62053b8cb56b9d0eb"
+        "path": "30-context/projects/gpters24-recipe/recipe-r02.md",
+        "bytes": 1161,
+        "sha256": "727dc9b9951f8caa4259cc03e14dbb6d54b875cd2c34d57ab3032839246da426"
       },
       {
-        "path": "10-sources/R03.md",
-        "bytes": 524,
-        "sha256": "a899924fe060c828eafc5089eaf3ca3386fab9b415b0df7d6d67ecb6aa760f03"
+        "path": "10-sources/2026-09-14-recipe-r03.md",
+        "bytes": 681,
+        "sha256": "01d075edd1fb0194f18ff868346e1d8478ced603d008c78bfe3933a44a61047e"
       },
       {
-        "path": "20-knowledge/R03.md",
-        "bytes": 793,
-        "sha256": "caa1c6145595127e123a4faf917d8829a3ce47c4f845d0bcd5a30141474ea6fc"
+        "path": "30-context/projects/gpters24-recipe/recipe-r03.md",
+        "bytes": 1284,
+        "sha256": "1f95ffdf43bf897850c946258538d082459138fe05917d42154d344ba31cc40b"
       },
       {
-        "path": "10-sources/R04.md",
-        "bytes": 900,
-        "sha256": "b1617821496d0cca5845fc9f48458e7eebecd82551b86db27bf0166f72c3be2a"
+        "path": "10-sources/2026-09-14-recipe-r04.md",
+        "bytes": 1057,
+        "sha256": "ff67cf5a01973c43a52a4735faf3361dba51963288ab6165094d762f10291101"
       },
       {
-        "path": "20-knowledge/R04.md",
-        "bytes": 1172,
-        "sha256": "8389b4776a2b32e34f46705dc5e3de4c3fe436ebec95fd87fad0722bb8917c2b"
+        "path": "30-context/projects/gpters24-recipe/recipe-r04.md",
+        "bytes": 1641,
+        "sha256": "76ba15cece647ac2f9c1d315324fcbb54b4ff64fb041cfc6474584d893708b44"
+      },
+      {
+        "path": "practice/note-paths.json",
+        "bytes": 591,
+        "sha256": "5ff8898fe50506fc865ff69e273bd35471cff910c0f9538e5fa33adbc58facd9"
       },
       {
         "path": "99-system/INDEX.local.md",
-        "bytes": 202,
-        "sha256": "16acdf28097a03dc587f1606c19f917ab8aa57e36b9ac86422fbcc84a3357129"
+        "bytes": 590,
+        "sha256": "2e4389938076f83ceb77aff856d26979006c74d50e20e9f5ba95152752131f76"
       },
       {
         "path": "practice/check.py",
@@ -438,8 +468,13 @@
       },
       {
         "path": "my-topic/idea-to-akm-prompt.md",
-        "bytes": 6244,
-        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+        "bytes": 8950,
+        "sha256": "9b4d05cda73011bc5ab4915daf702e53b9d5d060c1123b193d669e6d507887a4"
+      },
+      {
+        "path": "my-topic/akm-public-guide.md",
+        "bytes": 5788,
+        "sha256": "400785ee5e5525fec3169f53b219859d13702ee1b5b6128e37e2bb68dd2d0b25"
       },
       {
         "path": "my-topic/README.md",
@@ -448,8 +483,8 @@
       },
       {
         "path": "README.md",
-        "bytes": 2399,
-        "sha256": "4543bd1041802f1158d0013031fb3d7d368260da894ec3de5a2a41f09d1f7679"
+        "bytes": 2736,
+        "sha256": "b26ccd0464dcf950f4932189d70fddbf8335f6ef7b08a2de1fed6d2a11d722a7"
       },
       {
         "path": "practice/README.md",
@@ -493,8 +528,8 @@
       },
       {
         "path": "practice/agent-prompt.md",
-        "bytes": 1573,
-        "sha256": "cd9bac31c4b4e753af2fabc3ff39933a2aaf8903860574542319e0febf1c1dc5"
+        "bytes": 1704,
+        "sha256": "cefcf019bfa98586d77d9b7c517decfcf0418bee7bf0947f1f90c971af570594"
       },
       {
         "path": "practice/response-template.json",
@@ -507,49 +542,54 @@
         "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
       },
       {
-        "path": "10-sources/R01.md",
-        "bytes": 534,
-        "sha256": "49a12d7c35bc04bc1128463b373feecdc2533142ed20b570b09133bac4749a96"
+        "path": "10-sources/2026-09-14-recipe-r01.md",
+        "bytes": 691,
+        "sha256": "d6a037c8f101a11b6d0e8881fd67702e991b5dd310927f7fdacfc0021a52c793"
       },
       {
-        "path": "20-knowledge/R01.md",
-        "bytes": 754,
-        "sha256": "a406ff2e0495e9886ec8fab6ec4b701d45875936e8bd775c68d323a0dac64bbf"
+        "path": "30-context/projects/gpters24-recipe/recipe-r01.md",
+        "bytes": 1153,
+        "sha256": "02b690855deab0e55ea1901e069b2a065d05483e67898e1f8e33c7d4171de958"
       },
       {
-        "path": "10-sources/R02.md",
-        "bytes": 539,
-        "sha256": "afd9a05df71f7b17b40a8d9f70c4c009133d6954d5792f4c580f8e6b37c4a483"
+        "path": "10-sources/2026-09-14-recipe-r02.md",
+        "bytes": 696,
+        "sha256": "9ac2e0e1f4aefe254cfd3b11e065bc10cc41647dbb47c64468b9f54135ec4cb2"
       },
       {
-        "path": "20-knowledge/R02.md",
-        "bytes": 762,
-        "sha256": "507d212492c666fc595293d89dc9bef3009e39df06c882c62053b8cb56b9d0eb"
+        "path": "30-context/projects/gpters24-recipe/recipe-r02.md",
+        "bytes": 1161,
+        "sha256": "727dc9b9951f8caa4259cc03e14dbb6d54b875cd2c34d57ab3032839246da426"
       },
       {
-        "path": "10-sources/R03.md",
-        "bytes": 524,
-        "sha256": "a899924fe060c828eafc5089eaf3ca3386fab9b415b0df7d6d67ecb6aa760f03"
+        "path": "10-sources/2026-09-14-recipe-r03.md",
+        "bytes": 681,
+        "sha256": "01d075edd1fb0194f18ff868346e1d8478ced603d008c78bfe3933a44a61047e"
       },
       {
-        "path": "20-knowledge/R03.md",
-        "bytes": 793,
-        "sha256": "caa1c6145595127e123a4faf917d8829a3ce47c4f845d0bcd5a30141474ea6fc"
+        "path": "30-context/projects/gpters24-recipe/recipe-r03.md",
+        "bytes": 1284,
+        "sha256": "1f95ffdf43bf897850c946258538d082459138fe05917d42154d344ba31cc40b"
       },
       {
-        "path": "10-sources/R04.md",
-        "bytes": 900,
-        "sha256": "b1617821496d0cca5845fc9f48458e7eebecd82551b86db27bf0166f72c3be2a"
+        "path": "10-sources/2026-09-14-recipe-r04.md",
+        "bytes": 1057,
+        "sha256": "ff67cf5a01973c43a52a4735faf3361dba51963288ab6165094d762f10291101"
       },
       {
-        "path": "20-knowledge/R04.md",
-        "bytes": 1172,
-        "sha256": "8389b4776a2b32e34f46705dc5e3de4c3fe436ebec95fd87fad0722bb8917c2b"
+        "path": "30-context/projects/gpters24-recipe/recipe-r04.md",
+        "bytes": 1641,
+        "sha256": "76ba15cece647ac2f9c1d315324fcbb54b4ff64fb041cfc6474584d893708b44"
+      },
+      {
+        "path": "practice/note-paths.json",
+        "bytes": 591,
+        "sha256": "5ff8898fe50506fc865ff69e273bd35471cff910c0f9538e5fa33adbc58facd9"
       },
       {
         "path": "99-system/INDEX.local.md",
-        "bytes": 202,
-        "sha256": "16acdf28097a03dc587f1606c19f917ab8aa57e36b9ac86422fbcc84a3357129"
+        "bytes": 590,
+        "sha256": "2e4389938076f83ceb77aff856d26979006c74d50e20e9f5ba95152752131f76"
       },
       {
         "path": "practice/check.py",
@@ -604,8 +644,13 @@
       },
       {
         "path": "my-topic/idea-to-akm-prompt.md",
-        "bytes": 6244,
-        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+        "bytes": 8950,
+        "sha256": "9b4d05cda73011bc5ab4915daf702e53b9d5d060c1123b193d669e6d507887a4"
+      },
+      {
+        "path": "my-topic/akm-public-guide.md",
+        "bytes": 5788,
+        "sha256": "400785ee5e5525fec3169f53b219859d13702ee1b5b6128e37e2bb68dd2d0b25"
       },
       {
         "path": "my-topic/README.md",
@@ -614,8 +659,8 @@
       },
       {
         "path": "README.md",
-        "bytes": 2141,
-        "sha256": "2d1e57aef5cd5563ba0abede1917586c00f501aa45b927f8c368af9f578caf08"
+        "bytes": 2478,
+        "sha256": "16400a9b9264f4bf9dc39855c1724ea5bda846bede08278529b5335cdedfc814"
       },
       {
         "path": "practice/README.md",
@@ -658,109 +703,114 @@
         "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
       },
       {
-        "path": "00-inbox/E01.md",
-        "bytes": 577,
-        "sha256": "1c6a7c28e9f8933c1eda462c9735960f171a9f5f96c558e548f8da99a7f692b3"
+        "path": "00-inbox/2026-09-12-education-e01.md",
+        "bytes": 732,
+        "sha256": "5566cbfbd7281325812e024af979fc093538c5712c31f1ad106233add101f3a9"
       },
       {
-        "path": "reference/20-knowledge/E01.md",
-        "bytes": 611,
-        "sha256": "53fdfb86ec9d73dcdff0ed4cbeafd02b34cb4086a1da32bb59a2ee32efe0e5d5"
+        "path": "reference/30-context/projects/gpters24-education/education-e01.md",
+        "bytes": 1079,
+        "sha256": "1a553134f9199439037d134af052210cdf927129e59384c587fa2be0811c3a86"
       },
       {
-        "path": "00-inbox/E02.md",
-        "bytes": 555,
-        "sha256": "700f96a309f65a7ba2207d815187da1b0a66f6987d6d97932009e4d6c4a2f320"
+        "path": "00-inbox/2026-09-12-education-e02.md",
+        "bytes": 710,
+        "sha256": "82f45338b731c4b5dc3e4442a51a7110ea5c2833b5130a6eead1a966e14468fd"
       },
       {
-        "path": "reference/20-knowledge/E02.md",
-        "bytes": 674,
-        "sha256": "d24ca90279b8ae537d497d089493c551165fc4fa0be21dd69fb6ab57875ea2b4"
+        "path": "reference/30-context/projects/gpters24-education/education-e02.md",
+        "bytes": 1205,
+        "sha256": "96ab28b9c74868ef92e0e82964d8b4d31a8ee02ead79862ef42be1cb1a94df83"
       },
       {
-        "path": "00-inbox/E03.md",
-        "bytes": 537,
-        "sha256": "00347abeba95c553caaac1a45442a8e7faee5ca4e51bbbff4c42779d324edd83"
+        "path": "00-inbox/2026-09-12-education-e03.md",
+        "bytes": 692,
+        "sha256": "38decff10b072b41bbd49b0c73b82f24389cbb9f66811817b54f46285dd1689b"
       },
       {
-        "path": "reference/20-knowledge/E03.md",
-        "bytes": 633,
-        "sha256": "691346ba6303f7eba16f0a96048591dc83cda8ab3a0e318acdd13480909b0bda"
+        "path": "reference/30-context/projects/gpters24-education/education-e03.md",
+        "bytes": 1116,
+        "sha256": "d530f81f0dbf00043d52f44113f4c315165339b882e6f4657ff941b086f40717"
       },
       {
-        "path": "00-inbox/E04.md",
-        "bytes": 566,
-        "sha256": "f61fb9ced3cc445b1abb13734e858a0708e776b20b28216ccce9d8f14503d29e"
+        "path": "00-inbox/2026-09-12-education-e04.md",
+        "bytes": 721,
+        "sha256": "a3b499feac9ccefea9a6c4b176ce8c1821dffd74756b284a57f32f81ffbf01d8"
       },
       {
-        "path": "reference/20-knowledge/E04.md",
-        "bytes": 685,
-        "sha256": "21f19c8ffa44563a8333dc7b64337ba8f57d6cdd3ccbf4282c4b2021c282feb5"
+        "path": "reference/30-context/projects/gpters24-education/education-e04.md",
+        "bytes": 1236,
+        "sha256": "101e61648ae7c246fff33e23494832711c2d4ac4905ececd3442ba9749b58f3a"
       },
       {
-        "path": "00-inbox/E05.md",
-        "bytes": 601,
-        "sha256": "7fa39077453ab3098ce50c3c10b6f5fc714a55dab12cb1c5a9ba405286a97cb3"
+        "path": "00-inbox/2026-09-12-education-e05.md",
+        "bytes": 756,
+        "sha256": "de3113ee4fab54cd3a96eb61f7fc4a7fd00517704f0d83aec90132ecd2b130b7"
       },
       {
-        "path": "reference/20-knowledge/E05.md",
-        "bytes": 697,
-        "sha256": "9e330c547b3d8bacaaab2bd40799f192618cc7171c5b348fe185cf16170a4837"
+        "path": "reference/30-context/projects/gpters24-education/education-e05.md",
+        "bytes": 1200,
+        "sha256": "b6a8d94ae550b492757056eeff43c1ee93879f8b1da857b02d03e4e85079356b"
       },
       {
-        "path": "00-inbox/E06.md",
-        "bytes": 545,
-        "sha256": "7998c120e5746d5e37db22212d9cd758fec2b7a3c95fa3e9010e49dec27cd40c"
+        "path": "00-inbox/2026-09-12-education-e06.md",
+        "bytes": 700,
+        "sha256": "74c1a674a5853c63ed18dd4a0f430e955fbb429850d0828428a5e816cecad8c1"
       },
       {
-        "path": "reference/20-knowledge/E06.md",
-        "bytes": 640,
-        "sha256": "f686c3d28e08db16281243af729bcd0f01ac62fc496e417ad44a55e887baf22b"
+        "path": "reference/30-context/projects/gpters24-education/education-e06.md",
+        "bytes": 1102,
+        "sha256": "19661bac502cb039d74dc9fdfdb4f766cb7a948f369d1e2bb942ca892e2e63a7"
       },
       {
-        "path": "00-inbox/E07.md",
-        "bytes": 511,
-        "sha256": "08bfd568a9a4abcd587b4a583310b4e8033e51559cb52a3f32c53f5df1132a93"
+        "path": "00-inbox/2026-09-12-education-e07.md",
+        "bytes": 666,
+        "sha256": "f6a7d6dba5b2bf9bc3fc4c77763dbed87ccdc8ddeb09c69f7f67d4512ee77cd8"
       },
       {
-        "path": "reference/20-knowledge/E07.md",
-        "bytes": 606,
-        "sha256": "7f195fb43c2adb344f1731e9e77d7d5df425f594bafeb2f6a59f9d363759587b"
+        "path": "reference/30-context/projects/gpters24-education/education-e07.md",
+        "bytes": 1112,
+        "sha256": "d363c93a0f593020f4c16b6dc884361dd21ad68c0f0f9adf93d8f4d0aa1f8d16"
       },
       {
-        "path": "00-inbox/E08.md",
-        "bytes": 664,
-        "sha256": "66ead05c94f652838e0c3488a87794cc5b97748148cfeeff236ca72a30d645a8"
+        "path": "00-inbox/2026-09-12-education-e08.md",
+        "bytes": 819,
+        "sha256": "e2defba39d6647041be2d8c96cf716aac49338fe42c4144f89ccb81cfb7ce76d"
       },
       {
-        "path": "reference/20-knowledge/E08.md",
-        "bytes": 758,
-        "sha256": "05a769063574fa7d711bf24d35afe3923bd4ab4c5246b14988f2892eaeea00c0"
+        "path": "reference/30-context/projects/gpters24-education/education-e08.md",
+        "bytes": 1254,
+        "sha256": "b78e7e06d7fcc2af9b4f7d2b5b805af2c47ffef6da1b5a0a9fae8e54e593dbd5"
       },
       {
-        "path": "00-inbox/E09.md",
-        "bytes": 604,
-        "sha256": "f8171a0e61406908238f806b23ebd977f4f012817d8b436e05a907442c488872"
+        "path": "00-inbox/2026-09-12-education-e09.md",
+        "bytes": 759,
+        "sha256": "915de516f0276738718d441bbc9aab85628d6e55d4191855a19bab3cb0985ebc"
       },
       {
-        "path": "reference/20-knowledge/E09.md",
-        "bytes": 791,
-        "sha256": "2f4fab21af7dc569ba170c2aed40609ef431309bab5a601d3af99b3a0596d6bf"
+        "path": "reference/30-context/projects/gpters24-education/education-e09.md",
+        "bytes": 1559,
+        "sha256": "841ec78054dd071bd0cbff8d1421bf04bf3806a013295e2b855eafad5c884aed"
       },
       {
-        "path": "00-inbox/E10.md",
-        "bytes": 672,
-        "sha256": "24bf65f8c105d17d16be1e57219ec710834df8c8cf23b213d9040699e861cb91"
+        "path": "00-inbox/2026-09-12-education-e10.md",
+        "bytes": 827,
+        "sha256": "60ef24ca5bbcb4981ff51f59230f3d9d479f1de4e697e38d82d4423c145f6cae"
       },
       {
-        "path": "reference/20-knowledge/E10.md",
-        "bytes": 746,
-        "sha256": "0287fca88ad00072d9b678568327230a7554a557d684d33dfb2ff2e90190f2e8"
+        "path": "reference/30-context/projects/gpters24-education/education-e10.md",
+        "bytes": 1162,
+        "sha256": "b28b645caef937229e4429dd1f9f016f993fad322afd1b28ae3202bb799810c5"
+      },
+      {
+        "path": "practice/note-paths.json",
+        "bytes": 1643,
+        "sha256": "d2995d16d4b936914e39255d3b8877476ac90001bd2d9f58e4ce86e58ba16c88"
       },
       {
         "path": "reference/99-system/INDEX.local.md",
-        "bytes": 532,
-        "sha256": "39b2b434f8e0d488199d36c5cc08c8e70872c8245dfa2d44c9adb3d5249f86b3"
+        "bytes": 1672,
+        "sha256": "dc04c9c32ee7050edc6a4753b2b58c366ca1f6e637c129b718dc4900cebc77b8"
       }
     ]
   },
@@ -780,8 +830,13 @@
       },
       {
         "path": "my-topic/idea-to-akm-prompt.md",
-        "bytes": 6244,
-        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+        "bytes": 8950,
+        "sha256": "9b4d05cda73011bc5ab4915daf702e53b9d5d060c1123b193d669e6d507887a4"
+      },
+      {
+        "path": "my-topic/akm-public-guide.md",
+        "bytes": 5788,
+        "sha256": "400785ee5e5525fec3169f53b219859d13702ee1b5b6128e37e2bb68dd2d0b25"
       },
       {
         "path": "my-topic/README.md",
@@ -790,8 +845,8 @@
       },
       {
         "path": "README.md",
-        "bytes": 2404,
-        "sha256": "a066a53a537a9d378526b0892904f2e2ebdd12887f87bc747192d0e95bdbeb23"
+        "bytes": 2741,
+        "sha256": "3b0c1e6a275d4c34756fc3d5d808be4ba919e7270592e31ef75077459c846232"
       },
       {
         "path": "practice/README.md",
@@ -825,8 +880,8 @@
       },
       {
         "path": "practice/agent-prompt.md",
-        "bytes": 1567,
-        "sha256": "674d20522247d3c205671e35d7ae367efd2369a367a20503066fa71d8521d4be"
+        "bytes": 1698,
+        "sha256": "3399d22fa2fcec6167d188d6991e0c8e4cbffb67b48905325ab59749d3e15861"
       },
       {
         "path": "practice/response-template.json",
@@ -839,109 +894,114 @@
         "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
       },
       {
-        "path": "10-sources/E01.md",
-        "bytes": 577,
-        "sha256": "1c6a7c28e9f8933c1eda462c9735960f171a9f5f96c558e548f8da99a7f692b3"
+        "path": "10-sources/2026-09-12-education-e01.md",
+        "bytes": 732,
+        "sha256": "5566cbfbd7281325812e024af979fc093538c5712c31f1ad106233add101f3a9"
       },
       {
-        "path": "20-knowledge/E01.md",
-        "bytes": 611,
-        "sha256": "53fdfb86ec9d73dcdff0ed4cbeafd02b34cb4086a1da32bb59a2ee32efe0e5d5"
+        "path": "30-context/projects/gpters24-education/education-e01.md",
+        "bytes": 1063,
+        "sha256": "bafc50d2e3f842967eeecd704cac998427f82d85245409d327a438591fb8c391"
       },
       {
-        "path": "10-sources/E02.md",
-        "bytes": 555,
-        "sha256": "700f96a309f65a7ba2207d815187da1b0a66f6987d6d97932009e4d6c4a2f320"
+        "path": "10-sources/2026-09-12-education-e02.md",
+        "bytes": 710,
+        "sha256": "82f45338b731c4b5dc3e4442a51a7110ea5c2833b5130a6eead1a966e14468fd"
       },
       {
-        "path": "20-knowledge/E02.md",
-        "bytes": 674,
-        "sha256": "d24ca90279b8ae537d497d089493c551165fc4fa0be21dd69fb6ab57875ea2b4"
+        "path": "30-context/projects/gpters24-education/education-e02.md",
+        "bytes": 1179,
+        "sha256": "986a1c6cec1a8dcb25edf9c33abfb10164833f25cff2f1b581646b4acf8568ab"
       },
       {
-        "path": "10-sources/E03.md",
-        "bytes": 537,
-        "sha256": "00347abeba95c553caaac1a45442a8e7faee5ca4e51bbbff4c42779d324edd83"
+        "path": "10-sources/2026-09-12-education-e03.md",
+        "bytes": 692,
+        "sha256": "38decff10b072b41bbd49b0c73b82f24389cbb9f66811817b54f46285dd1689b"
       },
       {
-        "path": "20-knowledge/E03.md",
-        "bytes": 633,
-        "sha256": "691346ba6303f7eba16f0a96048591dc83cda8ab3a0e318acdd13480909b0bda"
+        "path": "30-context/projects/gpters24-education/education-e03.md",
+        "bytes": 1100,
+        "sha256": "e0bd09901c59728b850820e6a8e54d6225bc416a82e81cfedb1bdb3b482b43bc"
       },
       {
-        "path": "10-sources/E04.md",
-        "bytes": 566,
-        "sha256": "f61fb9ced3cc445b1abb13734e858a0708e776b20b28216ccce9d8f14503d29e"
+        "path": "10-sources/2026-09-12-education-e04.md",
+        "bytes": 721,
+        "sha256": "a3b499feac9ccefea9a6c4b176ce8c1821dffd74756b284a57f32f81ffbf01d8"
       },
       {
-        "path": "20-knowledge/E04.md",
-        "bytes": 685,
-        "sha256": "21f19c8ffa44563a8333dc7b64337ba8f57d6cdd3ccbf4282c4b2021c282feb5"
+        "path": "30-context/projects/gpters24-education/education-e04.md",
+        "bytes": 1210,
+        "sha256": "6be89c066cce9f78e0bcaf432f6096c94765db933a8314f5f9af325816442c85"
       },
       {
-        "path": "10-sources/E05.md",
-        "bytes": 601,
-        "sha256": "7fa39077453ab3098ce50c3c10b6f5fc714a55dab12cb1c5a9ba405286a97cb3"
+        "path": "10-sources/2026-09-12-education-e05.md",
+        "bytes": 756,
+        "sha256": "de3113ee4fab54cd3a96eb61f7fc4a7fd00517704f0d83aec90132ecd2b130b7"
       },
       {
-        "path": "20-knowledge/E05.md",
-        "bytes": 697,
-        "sha256": "9e330c547b3d8bacaaab2bd40799f192618cc7171c5b348fe185cf16170a4837"
+        "path": "30-context/projects/gpters24-education/education-e05.md",
+        "bytes": 1184,
+        "sha256": "b26d08101a53fcdd4e71c4b80e08d12ddc20d56d055d2be8798b177cddcb5fba"
       },
       {
-        "path": "10-sources/E06.md",
-        "bytes": 545,
-        "sha256": "7998c120e5746d5e37db22212d9cd758fec2b7a3c95fa3e9010e49dec27cd40c"
+        "path": "10-sources/2026-09-12-education-e06.md",
+        "bytes": 700,
+        "sha256": "74c1a674a5853c63ed18dd4a0f430e955fbb429850d0828428a5e816cecad8c1"
       },
       {
-        "path": "20-knowledge/E06.md",
-        "bytes": 640,
-        "sha256": "f686c3d28e08db16281243af729bcd0f01ac62fc496e417ad44a55e887baf22b"
+        "path": "30-context/projects/gpters24-education/education-e06.md",
+        "bytes": 1086,
+        "sha256": "b9589394b18d1ae5d47591a4c362f8ba2d8ade71f38a9e69d35d00f722da8983"
       },
       {
-        "path": "10-sources/E07.md",
-        "bytes": 511,
-        "sha256": "08bfd568a9a4abcd587b4a583310b4e8033e51559cb52a3f32c53f5df1132a93"
+        "path": "10-sources/2026-09-12-education-e07.md",
+        "bytes": 666,
+        "sha256": "f6a7d6dba5b2bf9bc3fc4c77763dbed87ccdc8ddeb09c69f7f67d4512ee77cd8"
       },
       {
-        "path": "20-knowledge/E07.md",
-        "bytes": 606,
-        "sha256": "7f195fb43c2adb344f1731e9e77d7d5df425f594bafeb2f6a59f9d363759587b"
+        "path": "30-context/projects/gpters24-education/education-e07.md",
+        "bytes": 1096,
+        "sha256": "0cf6bb9c700597c964c79b640b2e848cc38e6a3c1080ef4b063a627169f3794f"
       },
       {
-        "path": "10-sources/E08.md",
-        "bytes": 664,
-        "sha256": "66ead05c94f652838e0c3488a87794cc5b97748148cfeeff236ca72a30d645a8"
+        "path": "10-sources/2026-09-12-education-e08.md",
+        "bytes": 819,
+        "sha256": "e2defba39d6647041be2d8c96cf716aac49338fe42c4144f89ccb81cfb7ce76d"
       },
       {
-        "path": "20-knowledge/E08.md",
-        "bytes": 758,
-        "sha256": "05a769063574fa7d711bf24d35afe3923bd4ab4c5246b14988f2892eaeea00c0"
+        "path": "30-context/projects/gpters24-education/education-e08.md",
+        "bytes": 1238,
+        "sha256": "9f3352bf991ca05b029afe767d7a026e2173c4d08acaac8918bcaf104fe89210"
       },
       {
-        "path": "10-sources/E09.md",
-        "bytes": 604,
-        "sha256": "f8171a0e61406908238f806b23ebd977f4f012817d8b436e05a907442c488872"
+        "path": "10-sources/2026-09-12-education-e09.md",
+        "bytes": 759,
+        "sha256": "915de516f0276738718d441bbc9aab85628d6e55d4191855a19bab3cb0985ebc"
       },
       {
-        "path": "20-knowledge/E09.md",
-        "bytes": 791,
-        "sha256": "2f4fab21af7dc569ba170c2aed40609ef431309bab5a601d3af99b3a0596d6bf"
+        "path": "30-context/projects/gpters24-education/education-e09.md",
+        "bytes": 1503,
+        "sha256": "dfe52a1af76d6c0cae4dc631f2c1f9ff865de82a0429b72b37c3f9cf38bc2e2c"
       },
       {
-        "path": "10-sources/E10.md",
-        "bytes": 672,
-        "sha256": "24bf65f8c105d17d16be1e57219ec710834df8c8cf23b213d9040699e861cb91"
+        "path": "10-sources/2026-09-12-education-e10.md",
+        "bytes": 827,
+        "sha256": "60ef24ca5bbcb4981ff51f59230f3d9d479f1de4e697e38d82d4423c145f6cae"
       },
       {
-        "path": "20-knowledge/E10.md",
-        "bytes": 746,
-        "sha256": "0287fca88ad00072d9b678568327230a7554a557d684d33dfb2ff2e90190f2e8"
+        "path": "30-context/projects/gpters24-education/education-e10.md",
+        "bytes": 1156,
+        "sha256": "a1cb4e9b7df30a98a23ef04d4411350fa89ef4597b72f88b77fbd7b5c1ac2889"
+      },
+      {
+        "path": "practice/note-paths.json",
+        "bytes": 1563,
+        "sha256": "2693a3e788b0e501b81f126755f6ed78c473132b99f2138d451d57e58f7bcc2c"
       },
       {
         "path": "99-system/INDEX.local.md",
-        "bytes": 532,
-        "sha256": "39b2b434f8e0d488199d36c5cc08c8e70872c8245dfa2d44c9adb3d5249f86b3"
+        "bytes": 1592,
+        "sha256": "cbb8747a021bce9f3275ffcb69cc1318bd27285ab4f4f1d1a8ea114268c26db2"
       },
       {
         "path": "practice/check.py",
@@ -991,8 +1051,13 @@
       },
       {
         "path": "my-topic/idea-to-akm-prompt.md",
-        "bytes": 6244,
-        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+        "bytes": 8950,
+        "sha256": "9b4d05cda73011bc5ab4915daf702e53b9d5d060c1123b193d669e6d507887a4"
+      },
+      {
+        "path": "my-topic/akm-public-guide.md",
+        "bytes": 5788,
+        "sha256": "400785ee5e5525fec3169f53b219859d13702ee1b5b6128e37e2bb68dd2d0b25"
       },
       {
         "path": "my-topic/README.md",
@@ -1001,8 +1066,8 @@
       },
       {
         "path": "README.md",
-        "bytes": 2411,
-        "sha256": "898fee997e90d8377a521f5c5e7b59adb7e40e0e8de24bf05fe649eb6ed315ca"
+        "bytes": 2748,
+        "sha256": "748403c9418a7e4f310be282858a24ebcb4ed622b2eac04387b0c17906f1e28f"
       },
       {
         "path": "practice/README.md",
@@ -1041,8 +1106,8 @@
       },
       {
         "path": "practice/agent-prompt.md",
-        "bytes": 1567,
-        "sha256": "674d20522247d3c205671e35d7ae367efd2369a367a20503066fa71d8521d4be"
+        "bytes": 1698,
+        "sha256": "3399d22fa2fcec6167d188d6991e0c8e4cbffb67b48905325ab59749d3e15861"
       },
       {
         "path": "practice/response-template.json",
@@ -1055,109 +1120,114 @@
         "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
       },
       {
-        "path": "10-sources/E01.md",
-        "bytes": 577,
-        "sha256": "1c6a7c28e9f8933c1eda462c9735960f171a9f5f96c558e548f8da99a7f692b3"
+        "path": "10-sources/2026-09-12-education-e01.md",
+        "bytes": 732,
+        "sha256": "5566cbfbd7281325812e024af979fc093538c5712c31f1ad106233add101f3a9"
       },
       {
-        "path": "20-knowledge/E01.md",
-        "bytes": 611,
-        "sha256": "53fdfb86ec9d73dcdff0ed4cbeafd02b34cb4086a1da32bb59a2ee32efe0e5d5"
+        "path": "30-context/projects/gpters24-education/education-e01.md",
+        "bytes": 1063,
+        "sha256": "bafc50d2e3f842967eeecd704cac998427f82d85245409d327a438591fb8c391"
       },
       {
-        "path": "10-sources/E02.md",
-        "bytes": 555,
-        "sha256": "700f96a309f65a7ba2207d815187da1b0a66f6987d6d97932009e4d6c4a2f320"
+        "path": "10-sources/2026-09-12-education-e02.md",
+        "bytes": 710,
+        "sha256": "82f45338b731c4b5dc3e4442a51a7110ea5c2833b5130a6eead1a966e14468fd"
       },
       {
-        "path": "20-knowledge/E02.md",
-        "bytes": 674,
-        "sha256": "d24ca90279b8ae537d497d089493c551165fc4fa0be21dd69fb6ab57875ea2b4"
+        "path": "30-context/projects/gpters24-education/education-e02.md",
+        "bytes": 1179,
+        "sha256": "986a1c6cec1a8dcb25edf9c33abfb10164833f25cff2f1b581646b4acf8568ab"
       },
       {
-        "path": "10-sources/E03.md",
-        "bytes": 537,
-        "sha256": "00347abeba95c553caaac1a45442a8e7faee5ca4e51bbbff4c42779d324edd83"
+        "path": "10-sources/2026-09-12-education-e03.md",
+        "bytes": 692,
+        "sha256": "38decff10b072b41bbd49b0c73b82f24389cbb9f66811817b54f46285dd1689b"
       },
       {
-        "path": "20-knowledge/E03.md",
-        "bytes": 633,
-        "sha256": "691346ba6303f7eba16f0a96048591dc83cda8ab3a0e318acdd13480909b0bda"
+        "path": "30-context/projects/gpters24-education/education-e03.md",
+        "bytes": 1100,
+        "sha256": "e0bd09901c59728b850820e6a8e54d6225bc416a82e81cfedb1bdb3b482b43bc"
       },
       {
-        "path": "10-sources/E04.md",
-        "bytes": 566,
-        "sha256": "f61fb9ced3cc445b1abb13734e858a0708e776b20b28216ccce9d8f14503d29e"
+        "path": "10-sources/2026-09-12-education-e04.md",
+        "bytes": 721,
+        "sha256": "a3b499feac9ccefea9a6c4b176ce8c1821dffd74756b284a57f32f81ffbf01d8"
       },
       {
-        "path": "20-knowledge/E04.md",
-        "bytes": 685,
-        "sha256": "21f19c8ffa44563a8333dc7b64337ba8f57d6cdd3ccbf4282c4b2021c282feb5"
+        "path": "30-context/projects/gpters24-education/education-e04.md",
+        "bytes": 1210,
+        "sha256": "6be89c066cce9f78e0bcaf432f6096c94765db933a8314f5f9af325816442c85"
       },
       {
-        "path": "10-sources/E05.md",
-        "bytes": 601,
-        "sha256": "7fa39077453ab3098ce50c3c10b6f5fc714a55dab12cb1c5a9ba405286a97cb3"
+        "path": "10-sources/2026-09-12-education-e05.md",
+        "bytes": 756,
+        "sha256": "de3113ee4fab54cd3a96eb61f7fc4a7fd00517704f0d83aec90132ecd2b130b7"
       },
       {
-        "path": "20-knowledge/E05.md",
-        "bytes": 697,
-        "sha256": "9e330c547b3d8bacaaab2bd40799f192618cc7171c5b348fe185cf16170a4837"
+        "path": "30-context/projects/gpters24-education/education-e05.md",
+        "bytes": 1184,
+        "sha256": "b26d08101a53fcdd4e71c4b80e08d12ddc20d56d055d2be8798b177cddcb5fba"
       },
       {
-        "path": "10-sources/E06.md",
-        "bytes": 545,
-        "sha256": "7998c120e5746d5e37db22212d9cd758fec2b7a3c95fa3e9010e49dec27cd40c"
+        "path": "10-sources/2026-09-12-education-e06.md",
+        "bytes": 700,
+        "sha256": "74c1a674a5853c63ed18dd4a0f430e955fbb429850d0828428a5e816cecad8c1"
       },
       {
-        "path": "20-knowledge/E06.md",
-        "bytes": 640,
-        "sha256": "f686c3d28e08db16281243af729bcd0f01ac62fc496e417ad44a55e887baf22b"
+        "path": "30-context/projects/gpters24-education/education-e06.md",
+        "bytes": 1086,
+        "sha256": "b9589394b18d1ae5d47591a4c362f8ba2d8ade71f38a9e69d35d00f722da8983"
       },
       {
-        "path": "10-sources/E07.md",
-        "bytes": 511,
-        "sha256": "08bfd568a9a4abcd587b4a583310b4e8033e51559cb52a3f32c53f5df1132a93"
+        "path": "10-sources/2026-09-12-education-e07.md",
+        "bytes": 666,
+        "sha256": "f6a7d6dba5b2bf9bc3fc4c77763dbed87ccdc8ddeb09c69f7f67d4512ee77cd8"
       },
       {
-        "path": "20-knowledge/E07.md",
-        "bytes": 606,
-        "sha256": "7f195fb43c2adb344f1731e9e77d7d5df425f594bafeb2f6a59f9d363759587b"
+        "path": "30-context/projects/gpters24-education/education-e07.md",
+        "bytes": 1096,
+        "sha256": "0cf6bb9c700597c964c79b640b2e848cc38e6a3c1080ef4b063a627169f3794f"
       },
       {
-        "path": "10-sources/E08.md",
-        "bytes": 664,
-        "sha256": "66ead05c94f652838e0c3488a87794cc5b97748148cfeeff236ca72a30d645a8"
+        "path": "10-sources/2026-09-12-education-e08.md",
+        "bytes": 819,
+        "sha256": "e2defba39d6647041be2d8c96cf716aac49338fe42c4144f89ccb81cfb7ce76d"
       },
       {
-        "path": "20-knowledge/E08.md",
-        "bytes": 758,
-        "sha256": "05a769063574fa7d711bf24d35afe3923bd4ab4c5246b14988f2892eaeea00c0"
+        "path": "30-context/projects/gpters24-education/education-e08.md",
+        "bytes": 1238,
+        "sha256": "9f3352bf991ca05b029afe767d7a026e2173c4d08acaac8918bcaf104fe89210"
       },
       {
-        "path": "10-sources/E09.md",
-        "bytes": 604,
-        "sha256": "f8171a0e61406908238f806b23ebd977f4f012817d8b436e05a907442c488872"
+        "path": "10-sources/2026-09-12-education-e09.md",
+        "bytes": 759,
+        "sha256": "915de516f0276738718d441bbc9aab85628d6e55d4191855a19bab3cb0985ebc"
       },
       {
-        "path": "20-knowledge/E09.md",
-        "bytes": 791,
-        "sha256": "2f4fab21af7dc569ba170c2aed40609ef431309bab5a601d3af99b3a0596d6bf"
+        "path": "30-context/projects/gpters24-education/education-e09.md",
+        "bytes": 1503,
+        "sha256": "dfe52a1af76d6c0cae4dc631f2c1f9ff865de82a0429b72b37c3f9cf38bc2e2c"
       },
       {
-        "path": "10-sources/E10.md",
-        "bytes": 672,
-        "sha256": "24bf65f8c105d17d16be1e57219ec710834df8c8cf23b213d9040699e861cb91"
+        "path": "10-sources/2026-09-12-education-e10.md",
+        "bytes": 827,
+        "sha256": "60ef24ca5bbcb4981ff51f59230f3d9d479f1de4e697e38d82d4423c145f6cae"
       },
       {
-        "path": "20-knowledge/E10.md",
-        "bytes": 746,
-        "sha256": "0287fca88ad00072d9b678568327230a7554a557d684d33dfb2ff2e90190f2e8"
+        "path": "30-context/projects/gpters24-education/education-e10.md",
+        "bytes": 1156,
+        "sha256": "a1cb4e9b7df30a98a23ef04d4411350fa89ef4597b72f88b77fbd7b5c1ac2889"
+      },
+      {
+        "path": "practice/note-paths.json",
+        "bytes": 1563,
+        "sha256": "2693a3e788b0e501b81f126755f6ed78c473132b99f2138d451d57e58f7bcc2c"
       },
       {
         "path": "99-system/INDEX.local.md",
-        "bytes": 532,
-        "sha256": "39b2b434f8e0d488199d36c5cc08c8e70872c8245dfa2d44c9adb3d5249f86b3"
+        "bytes": 1592,
+        "sha256": "cbb8747a021bce9f3275ffcb69cc1318bd27285ab4f4f1d1a8ea114268c26db2"
       },
       {
         "path": "practice/check.py",
@@ -1207,8 +1277,13 @@
       },
       {
         "path": "my-topic/idea-to-akm-prompt.md",
-        "bytes": 6244,
-        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+        "bytes": 8950,
+        "sha256": "9b4d05cda73011bc5ab4915daf702e53b9d5d060c1123b193d669e6d507887a4"
+      },
+      {
+        "path": "my-topic/akm-public-guide.md",
+        "bytes": 5788,
+        "sha256": "400785ee5e5525fec3169f53b219859d13702ee1b5b6128e37e2bb68dd2d0b25"
       },
       {
         "path": "my-topic/README.md",
@@ -1217,8 +1292,8 @@
       },
       {
         "path": "README.md",
-        "bytes": 2373,
-        "sha256": "6d69b0becee92aba7cbcbc7f4c0295069006dcc9fd11a882b1814309facb5047"
+        "bytes": 2710,
+        "sha256": "eb003dac90c36c8f3aa44022c63f26497aafb336e3b77585b7cad8cc90b9c912"
       },
       {
         "path": "practice/README.md",
@@ -1262,8 +1337,8 @@
       },
       {
         "path": "practice/agent-prompt.md",
-        "bytes": 1567,
-        "sha256": "674d20522247d3c205671e35d7ae367efd2369a367a20503066fa71d8521d4be"
+        "bytes": 1698,
+        "sha256": "3399d22fa2fcec6167d188d6991e0c8e4cbffb67b48905325ab59749d3e15861"
       },
       {
         "path": "practice/response-template.json",
@@ -1276,109 +1351,114 @@
         "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
       },
       {
-        "path": "10-sources/E01.md",
-        "bytes": 577,
-        "sha256": "1c6a7c28e9f8933c1eda462c9735960f171a9f5f96c558e548f8da99a7f692b3"
+        "path": "10-sources/2026-09-12-education-e01.md",
+        "bytes": 732,
+        "sha256": "5566cbfbd7281325812e024af979fc093538c5712c31f1ad106233add101f3a9"
       },
       {
-        "path": "20-knowledge/E01.md",
-        "bytes": 611,
-        "sha256": "53fdfb86ec9d73dcdff0ed4cbeafd02b34cb4086a1da32bb59a2ee32efe0e5d5"
+        "path": "30-context/projects/gpters24-education/education-e01.md",
+        "bytes": 1063,
+        "sha256": "bafc50d2e3f842967eeecd704cac998427f82d85245409d327a438591fb8c391"
       },
       {
-        "path": "10-sources/E02.md",
-        "bytes": 555,
-        "sha256": "700f96a309f65a7ba2207d815187da1b0a66f6987d6d97932009e4d6c4a2f320"
+        "path": "10-sources/2026-09-12-education-e02.md",
+        "bytes": 710,
+        "sha256": "82f45338b731c4b5dc3e4442a51a7110ea5c2833b5130a6eead1a966e14468fd"
       },
       {
-        "path": "20-knowledge/E02.md",
-        "bytes": 674,
-        "sha256": "d24ca90279b8ae537d497d089493c551165fc4fa0be21dd69fb6ab57875ea2b4"
+        "path": "30-context/projects/gpters24-education/education-e02.md",
+        "bytes": 1179,
+        "sha256": "986a1c6cec1a8dcb25edf9c33abfb10164833f25cff2f1b581646b4acf8568ab"
       },
       {
-        "path": "10-sources/E03.md",
-        "bytes": 537,
-        "sha256": "00347abeba95c553caaac1a45442a8e7faee5ca4e51bbbff4c42779d324edd83"
+        "path": "10-sources/2026-09-12-education-e03.md",
+        "bytes": 692,
+        "sha256": "38decff10b072b41bbd49b0c73b82f24389cbb9f66811817b54f46285dd1689b"
       },
       {
-        "path": "20-knowledge/E03.md",
-        "bytes": 633,
-        "sha256": "691346ba6303f7eba16f0a96048591dc83cda8ab3a0e318acdd13480909b0bda"
+        "path": "30-context/projects/gpters24-education/education-e03.md",
+        "bytes": 1100,
+        "sha256": "e0bd09901c59728b850820e6a8e54d6225bc416a82e81cfedb1bdb3b482b43bc"
       },
       {
-        "path": "10-sources/E04.md",
-        "bytes": 566,
-        "sha256": "f61fb9ced3cc445b1abb13734e858a0708e776b20b28216ccce9d8f14503d29e"
+        "path": "10-sources/2026-09-12-education-e04.md",
+        "bytes": 721,
+        "sha256": "a3b499feac9ccefea9a6c4b176ce8c1821dffd74756b284a57f32f81ffbf01d8"
       },
       {
-        "path": "20-knowledge/E04.md",
-        "bytes": 685,
-        "sha256": "21f19c8ffa44563a8333dc7b64337ba8f57d6cdd3ccbf4282c4b2021c282feb5"
+        "path": "30-context/projects/gpters24-education/education-e04.md",
+        "bytes": 1210,
+        "sha256": "6be89c066cce9f78e0bcaf432f6096c94765db933a8314f5f9af325816442c85"
       },
       {
-        "path": "10-sources/E05.md",
-        "bytes": 601,
-        "sha256": "7fa39077453ab3098ce50c3c10b6f5fc714a55dab12cb1c5a9ba405286a97cb3"
+        "path": "10-sources/2026-09-12-education-e05.md",
+        "bytes": 756,
+        "sha256": "de3113ee4fab54cd3a96eb61f7fc4a7fd00517704f0d83aec90132ecd2b130b7"
       },
       {
-        "path": "20-knowledge/E05.md",
-        "bytes": 697,
-        "sha256": "9e330c547b3d8bacaaab2bd40799f192618cc7171c5b348fe185cf16170a4837"
+        "path": "30-context/projects/gpters24-education/education-e05.md",
+        "bytes": 1184,
+        "sha256": "b26d08101a53fcdd4e71c4b80e08d12ddc20d56d055d2be8798b177cddcb5fba"
       },
       {
-        "path": "10-sources/E06.md",
-        "bytes": 545,
-        "sha256": "7998c120e5746d5e37db22212d9cd758fec2b7a3c95fa3e9010e49dec27cd40c"
+        "path": "10-sources/2026-09-12-education-e06.md",
+        "bytes": 700,
+        "sha256": "74c1a674a5853c63ed18dd4a0f430e955fbb429850d0828428a5e816cecad8c1"
       },
       {
-        "path": "20-knowledge/E06.md",
-        "bytes": 640,
-        "sha256": "f686c3d28e08db16281243af729bcd0f01ac62fc496e417ad44a55e887baf22b"
+        "path": "30-context/projects/gpters24-education/education-e06.md",
+        "bytes": 1086,
+        "sha256": "b9589394b18d1ae5d47591a4c362f8ba2d8ade71f38a9e69d35d00f722da8983"
       },
       {
-        "path": "10-sources/E07.md",
-        "bytes": 511,
-        "sha256": "08bfd568a9a4abcd587b4a583310b4e8033e51559cb52a3f32c53f5df1132a93"
+        "path": "10-sources/2026-09-12-education-e07.md",
+        "bytes": 666,
+        "sha256": "f6a7d6dba5b2bf9bc3fc4c77763dbed87ccdc8ddeb09c69f7f67d4512ee77cd8"
       },
       {
-        "path": "20-knowledge/E07.md",
-        "bytes": 606,
-        "sha256": "7f195fb43c2adb344f1731e9e77d7d5df425f594bafeb2f6a59f9d363759587b"
+        "path": "30-context/projects/gpters24-education/education-e07.md",
+        "bytes": 1096,
+        "sha256": "0cf6bb9c700597c964c79b640b2e848cc38e6a3c1080ef4b063a627169f3794f"
       },
       {
-        "path": "10-sources/E08.md",
-        "bytes": 664,
-        "sha256": "66ead05c94f652838e0c3488a87794cc5b97748148cfeeff236ca72a30d645a8"
+        "path": "10-sources/2026-09-12-education-e08.md",
+        "bytes": 819,
+        "sha256": "e2defba39d6647041be2d8c96cf716aac49338fe42c4144f89ccb81cfb7ce76d"
       },
       {
-        "path": "20-knowledge/E08.md",
-        "bytes": 758,
-        "sha256": "05a769063574fa7d711bf24d35afe3923bd4ab4c5246b14988f2892eaeea00c0"
+        "path": "30-context/projects/gpters24-education/education-e08.md",
+        "bytes": 1238,
+        "sha256": "9f3352bf991ca05b029afe767d7a026e2173c4d08acaac8918bcaf104fe89210"
       },
       {
-        "path": "10-sources/E09.md",
-        "bytes": 604,
-        "sha256": "f8171a0e61406908238f806b23ebd977f4f012817d8b436e05a907442c488872"
+        "path": "10-sources/2026-09-12-education-e09.md",
+        "bytes": 759,
+        "sha256": "915de516f0276738718d441bbc9aab85628d6e55d4191855a19bab3cb0985ebc"
       },
       {
-        "path": "20-knowledge/E09.md",
-        "bytes": 791,
-        "sha256": "2f4fab21af7dc569ba170c2aed40609ef431309bab5a601d3af99b3a0596d6bf"
+        "path": "30-context/projects/gpters24-education/education-e09.md",
+        "bytes": 1503,
+        "sha256": "dfe52a1af76d6c0cae4dc631f2c1f9ff865de82a0429b72b37c3f9cf38bc2e2c"
       },
       {
-        "path": "10-sources/E10.md",
-        "bytes": 672,
-        "sha256": "24bf65f8c105d17d16be1e57219ec710834df8c8cf23b213d9040699e861cb91"
+        "path": "10-sources/2026-09-12-education-e10.md",
+        "bytes": 827,
+        "sha256": "60ef24ca5bbcb4981ff51f59230f3d9d479f1de4e697e38d82d4423c145f6cae"
       },
       {
-        "path": "20-knowledge/E10.md",
-        "bytes": 746,
-        "sha256": "0287fca88ad00072d9b678568327230a7554a557d684d33dfb2ff2e90190f2e8"
+        "path": "30-context/projects/gpters24-education/education-e10.md",
+        "bytes": 1156,
+        "sha256": "a1cb4e9b7df30a98a23ef04d4411350fa89ef4597b72f88b77fbd7b5c1ac2889"
+      },
+      {
+        "path": "practice/note-paths.json",
+        "bytes": 1563,
+        "sha256": "2693a3e788b0e501b81f126755f6ed78c473132b99f2138d451d57e58f7bcc2c"
       },
       {
         "path": "99-system/INDEX.local.md",
-        "bytes": 532,
-        "sha256": "39b2b434f8e0d488199d36c5cc08c8e70872c8245dfa2d44c9adb3d5249f86b3"
+        "bytes": 1592,
+        "sha256": "cbb8747a021bce9f3275ffcb69cc1318bd27285ab4f4f1d1a8ea114268c26db2"
       },
       {
         "path": "practice/check.py",
@@ -1433,8 +1513,13 @@
       },
       {
         "path": "my-topic/idea-to-akm-prompt.md",
-        "bytes": 6244,
-        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+        "bytes": 8950,
+        "sha256": "9b4d05cda73011bc5ab4915daf702e53b9d5d060c1123b193d669e6d507887a4"
+      },
+      {
+        "path": "my-topic/akm-public-guide.md",
+        "bytes": 5788,
+        "sha256": "400785ee5e5525fec3169f53b219859d13702ee1b5b6128e37e2bb68dd2d0b25"
       },
       {
         "path": "my-topic/README.md",
@@ -1443,8 +1528,8 @@
       },
       {
         "path": "README.md",
-        "bytes": 2158,
-        "sha256": "24147b5db63e05f8f110148f1bade557f4e30ced3dd2d04668b4fdb7c2522147"
+        "bytes": 2495,
+        "sha256": "af29eb191bc7a538ce1194abf5755ab6fcbc325cee01ec9665a754e4c90c007f"
       },
       {
         "path": "practice/README.md",
@@ -1487,109 +1572,114 @@
         "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
       },
       {
-        "path": "00-inbox/A01.md",
-        "bytes": 611,
-        "sha256": "669b3dad5612f271f9f9590954bd20f23319efd090b66c9604078862a433fff3"
+        "path": "00-inbox/2026-09-12-architecture-a01.md",
+        "bytes": 766,
+        "sha256": "a5b57ad049035e43d8f36204c0f04e228e2363e7e6fff619b4c88dcf287d47a1"
       },
       {
-        "path": "reference/20-knowledge/A01.md",
-        "bytes": 1413,
-        "sha256": "9aa51e07a6b6e16b0825b5b0e2ff030a4bac3c55e76abc3637464b71fab53081"
+        "path": "reference/30-context/projects/gpters24-architecture/architecture-a01.md",
+        "bytes": 2244,
+        "sha256": "f307c6454f351754adb4a53730ecea39c13ee8f073571f9a8b6c6049475d07fb"
       },
       {
-        "path": "00-inbox/A02.md",
-        "bytes": 529,
-        "sha256": "0a6f0f1749db32f3be6fcb13e171e09569a22bac0229c567cba6e2fe970f9fa3"
+        "path": "00-inbox/2026-09-12-architecture-a02.md",
+        "bytes": 684,
+        "sha256": "006618576301ce395dd50e061b122a6835ea60f5755dacf768ee657f75351c93"
       },
       {
-        "path": "reference/20-knowledge/A02.md",
-        "bytes": 586,
-        "sha256": "9c70c44a63c90d193aa06d4adcc9cf287ff6f7be5cd70274ede538bfbd4d6198"
+        "path": "reference/30-context/projects/gpters24-architecture/architecture-a02.md",
+        "bytes": 1193,
+        "sha256": "348c0c1ca7e47ae0865195ad714d874aedb52de9f903454da3b1c32f21e7f5e2"
       },
       {
-        "path": "00-inbox/A03.md",
-        "bytes": 586,
-        "sha256": "0974cde822b514afc5cb5beb705ac7f8013a7a25ce6d55aa2f53f10d71858786"
+        "path": "00-inbox/2026-09-12-architecture-a03.md",
+        "bytes": 741,
+        "sha256": "c8d02747d2391a13c51790cee8cb51b98eb9f213286ef0f8004a51e404df04b5"
       },
       {
-        "path": "reference/20-knowledge/A03.md",
-        "bytes": 643,
-        "sha256": "932da6c22f8a93299bc0644154773fd37f39678367c67e8ffd7574eb7b512c75"
+        "path": "reference/30-context/projects/gpters24-architecture/architecture-a03.md",
+        "bytes": 1234,
+        "sha256": "774747c2233bb153d2c81acbc3d8ec77f3529210d64211a0409fa1329ac0abf8"
       },
       {
-        "path": "00-inbox/A04.md",
-        "bytes": 561,
-        "sha256": "26026db08b9a3bb06f236f195c582e2d9da574afc8f7d97fbca7b5dc2e68340f"
+        "path": "00-inbox/2026-09-12-architecture-a04.md",
+        "bytes": 716,
+        "sha256": "c1c8426d7e8ba695f8d1d3abbfce5c4779d0b09d0a967673d10617b02dab926a"
       },
       {
-        "path": "reference/20-knowledge/A04.md",
-        "bytes": 618,
-        "sha256": "7fd53cd9df24740d5eef636a5d47a75b5ea3f7187beb4ef00d1ff218bc494acb"
+        "path": "reference/30-context/projects/gpters24-architecture/architecture-a04.md",
+        "bytes": 1199,
+        "sha256": "24085bdbe7a5ca4d714135c1d1051cc16ca91c264bcd841b2e7ce63613929244"
       },
       {
-        "path": "00-inbox/A05.md",
-        "bytes": 491,
-        "sha256": "9da2393faa8232514a546daf00ffff68fe270a33f260acb206838dbd7104e7ac"
+        "path": "00-inbox/2026-09-12-architecture-a05.md",
+        "bytes": 646,
+        "sha256": "8b8c9c970141db8b0e2b57a135f283b236e7b69b1d8a9c7eb096a4f24b0f634c"
       },
       {
-        "path": "reference/20-knowledge/A05.md",
-        "bytes": 548,
-        "sha256": "65b549815be7dac48889212de1fd66d259196c340578ab8d353cc0bdb0321843"
+        "path": "reference/30-context/projects/gpters24-architecture/architecture-a05.md",
+        "bytes": 1143,
+        "sha256": "7753550d6c3e826f19234252f04ea93d5d8a5ea73928f0bc9c9cf40aae021d0d"
       },
       {
-        "path": "00-inbox/A06.md",
-        "bytes": 527,
-        "sha256": "6fed44d4fb8cc5e571856b7846af939a1ea9dcc3b4be5f51913ab8b9d10423b0"
+        "path": "00-inbox/2026-09-12-architecture-a06.md",
+        "bytes": 682,
+        "sha256": "7cf40984b9e10161a332375ac2a957a318625511a3c9ec9b079f27b43dcb8447"
       },
       {
-        "path": "reference/20-knowledge/A06.md",
-        "bytes": 584,
-        "sha256": "e956f631a78bcc500519c9258fb97251f6d2ea3f379bd66aa89228906ff6eda6"
+        "path": "reference/30-context/projects/gpters24-architecture/architecture-a06.md",
+        "bytes": 1175,
+        "sha256": "5d8641ad584742b95ccb4995f0f447bc1fcc4dbc1209fad360b1cdc309ce30fd"
       },
       {
-        "path": "00-inbox/A07.md",
-        "bytes": 625,
-        "sha256": "5585013485e27f6b2f9e0d39860af60c60ae1c15b100030620a22cfa136ee0ad"
+        "path": "00-inbox/2026-09-12-architecture-a07.md",
+        "bytes": 780,
+        "sha256": "5b407cd70d2262642ba319faab943c325682f3f9a9458cc031979a2f6fc11f7f"
       },
       {
-        "path": "reference/20-knowledge/A07.md",
-        "bytes": 902,
-        "sha256": "c8aa1d6257e14f78152eb5e825a4b9beb8fe944b2a6d998aa13f92852c29d3b7"
+        "path": "reference/30-context/projects/gpters24-architecture/architecture-a07.md",
+        "bytes": 1491,
+        "sha256": "97784282cbfef2069655bcf98b019415b1b116689e13b0d8b81f73a4e1da5e25"
       },
       {
-        "path": "00-inbox/A08.md",
-        "bytes": 561,
-        "sha256": "b3e6419ddd5cccd002560276a57de7b36de0755acb36c1d41d72688974043103"
+        "path": "00-inbox/2026-09-12-architecture-a08.md",
+        "bytes": 716,
+        "sha256": "cde1ae9eac3800561abe9811f064f536760cf0f69341b82daca95ed5f77a2b07"
       },
       {
-        "path": "reference/20-knowledge/A08.md",
-        "bytes": 759,
-        "sha256": "3cd33484c2dcbf19fa2ab72360e1d7171bfdaf7ef5eac7ac8487969485dd78d9"
+        "path": "reference/30-context/projects/gpters24-architecture/architecture-a08.md",
+        "bytes": 1338,
+        "sha256": "c202d852c1df6fcb27c897c73e7133ad32088549e4fd74a56ec7fff608e2b361"
       },
       {
-        "path": "00-inbox/A09.md",
-        "bytes": 611,
-        "sha256": "3659ddf3c1347473d88c8dd3259582177909dd56ba5c8f14e7acc3ce9f9bad24"
+        "path": "00-inbox/2026-09-12-architecture-a09.md",
+        "bytes": 766,
+        "sha256": "522f93cacd12311e461060db0b46fe9f27102a24c7b312800e2e7b8f660ed4cb"
       },
       {
-        "path": "reference/20-knowledge/A09.md",
-        "bytes": 806,
-        "sha256": "0e474870a37e36585bcaaff979f720bc6aa0728019e2503540f2a69c541d4a63"
+        "path": "reference/30-context/projects/gpters24-architecture/architecture-a09.md",
+        "bytes": 1630,
+        "sha256": "8a2924559f4bc24dcbb4492b738e2032400eccd016af869cb5eab9259e31d784"
       },
       {
-        "path": "00-inbox/A10.md",
-        "bytes": 628,
-        "sha256": "4aef9831a24b52bf126a8f107d34f703392d9bd3e0c026b0b4e4597b4abfc20d"
+        "path": "00-inbox/2026-09-12-architecture-a10.md",
+        "bytes": 783,
+        "sha256": "90a515bc72a2d9e716cdee0b26c514b4018bd7c913e6059b9fb42ee42bb54bf9"
       },
       {
-        "path": "reference/20-knowledge/A10.md",
-        "bytes": 754,
-        "sha256": "e644c08cec4853a4bc29869a32061e67d427a098e9241cd2194dc41792f303b2"
+        "path": "reference/30-context/projects/gpters24-architecture/architecture-a10.md",
+        "bytes": 1359,
+        "sha256": "778a185276cf7f692904d85731b6edc432321289b3eaee72fab623dfcaa18e5c"
+      },
+      {
+        "path": "practice/note-paths.json",
+        "bytes": 1733,
+        "sha256": "91b66e9b130fdd0c5b9dcc2fdfece777d2e4696c80542298a3ad2fa69ff224d3"
       },
       {
         "path": "reference/99-system/INDEX.local.md",
-        "bytes": 554,
-        "sha256": "957fa1bc6408bc49154ca407c5241f439d45332dc0a2ec5a15e7ae8006d67dda"
+        "bytes": 1784,
+        "sha256": "aa917a37f167b50f5888a9defe9e1a180fe8ac5189bd281d1669a962aa15b979"
       }
     ]
   },
@@ -1609,8 +1699,13 @@
       },
       {
         "path": "my-topic/idea-to-akm-prompt.md",
-        "bytes": 6244,
-        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+        "bytes": 8950,
+        "sha256": "9b4d05cda73011bc5ab4915daf702e53b9d5d060c1123b193d669e6d507887a4"
+      },
+      {
+        "path": "my-topic/akm-public-guide.md",
+        "bytes": 5788,
+        "sha256": "400785ee5e5525fec3169f53b219859d13702ee1b5b6128e37e2bb68dd2d0b25"
       },
       {
         "path": "my-topic/README.md",
@@ -1619,8 +1714,8 @@
       },
       {
         "path": "README.md",
-        "bytes": 2421,
-        "sha256": "5239659dea7f663fdfc17fca1d9360cbb063d0cf03baaf7b2151035bfd0c6d9f"
+        "bytes": 2758,
+        "sha256": "fcfafb6af49d6a652a157013d0365e8823bbb3a7d6f33b56cbfc426298fee707"
       },
       {
         "path": "practice/README.md",
@@ -1654,8 +1749,8 @@
       },
       {
         "path": "practice/agent-prompt.md",
-        "bytes": 1583,
-        "sha256": "4a482f3174d0e8b790e3c0df2d545f883c48e967be7cde12060551ccc8f398d1"
+        "bytes": 1714,
+        "sha256": "8e9ef9dd06db5c7b2dd96a0896faf92ae049ba2427674cba73524e03b1a952e6"
       },
       {
         "path": "practice/response-template.json",
@@ -1668,109 +1763,114 @@
         "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
       },
       {
-        "path": "10-sources/A01.md",
-        "bytes": 611,
-        "sha256": "669b3dad5612f271f9f9590954bd20f23319efd090b66c9604078862a433fff3"
+        "path": "10-sources/2026-09-12-architecture-a01.md",
+        "bytes": 766,
+        "sha256": "a5b57ad049035e43d8f36204c0f04e228e2363e7e6fff619b4c88dcf287d47a1"
       },
       {
-        "path": "20-knowledge/A01.md",
-        "bytes": 1413,
-        "sha256": "9aa51e07a6b6e16b0825b5b0e2ff030a4bac3c55e76abc3637464b71fab53081"
+        "path": "30-context/projects/gpters24-architecture/architecture-a01.md",
+        "bytes": 2188,
+        "sha256": "4fa82c0c19d738ef8191c019856560f68521f1f5f82e082432fa8d528d0f2283"
       },
       {
-        "path": "10-sources/A02.md",
-        "bytes": 529,
-        "sha256": "0a6f0f1749db32f3be6fcb13e171e09569a22bac0229c567cba6e2fe970f9fa3"
+        "path": "10-sources/2026-09-12-architecture-a02.md",
+        "bytes": 684,
+        "sha256": "006618576301ce395dd50e061b122a6835ea60f5755dacf768ee657f75351c93"
       },
       {
-        "path": "20-knowledge/A02.md",
-        "bytes": 586,
-        "sha256": "9c70c44a63c90d193aa06d4adcc9cf287ff6f7be5cd70274ede538bfbd4d6198"
+        "path": "30-context/projects/gpters24-architecture/architecture-a02.md",
+        "bytes": 1167,
+        "sha256": "90b4b3f6aceca76f829e70b600ff7557765cfcb24f634ad883da75b3227921c7"
       },
       {
-        "path": "10-sources/A03.md",
-        "bytes": 586,
-        "sha256": "0974cde822b514afc5cb5beb705ac7f8013a7a25ce6d55aa2f53f10d71858786"
+        "path": "10-sources/2026-09-12-architecture-a03.md",
+        "bytes": 741,
+        "sha256": "c8d02747d2391a13c51790cee8cb51b98eb9f213286ef0f8004a51e404df04b5"
       },
       {
-        "path": "20-knowledge/A03.md",
-        "bytes": 643,
-        "sha256": "932da6c22f8a93299bc0644154773fd37f39678367c67e8ffd7574eb7b512c75"
+        "path": "30-context/projects/gpters24-architecture/architecture-a03.md",
+        "bytes": 1208,
+        "sha256": "645c4d42983794f569309c75f155a353de7c68989d04936cc9d42c16bc6b85f2"
       },
       {
-        "path": "10-sources/A04.md",
-        "bytes": 561,
-        "sha256": "26026db08b9a3bb06f236f195c582e2d9da574afc8f7d97fbca7b5dc2e68340f"
+        "path": "10-sources/2026-09-12-architecture-a04.md",
+        "bytes": 716,
+        "sha256": "c1c8426d7e8ba695f8d1d3abbfce5c4779d0b09d0a967673d10617b02dab926a"
       },
       {
-        "path": "20-knowledge/A04.md",
-        "bytes": 618,
-        "sha256": "7fd53cd9df24740d5eef636a5d47a75b5ea3f7187beb4ef00d1ff218bc494acb"
+        "path": "30-context/projects/gpters24-architecture/architecture-a04.md",
+        "bytes": 1173,
+        "sha256": "2de95e4877db894dd57d57003186c33a3014793d9ef4e5e0ea891994efb2f311"
       },
       {
-        "path": "10-sources/A05.md",
-        "bytes": 491,
-        "sha256": "9da2393faa8232514a546daf00ffff68fe270a33f260acb206838dbd7104e7ac"
+        "path": "10-sources/2026-09-12-architecture-a05.md",
+        "bytes": 646,
+        "sha256": "8b8c9c970141db8b0e2b57a135f283b236e7b69b1d8a9c7eb096a4f24b0f634c"
       },
       {
-        "path": "20-knowledge/A05.md",
-        "bytes": 548,
-        "sha256": "65b549815be7dac48889212de1fd66d259196c340578ab8d353cc0bdb0321843"
+        "path": "30-context/projects/gpters24-architecture/architecture-a05.md",
+        "bytes": 1117,
+        "sha256": "38faafb288a23eb70a45786ce254d0d4da575f1108e18ed044ac184610eaf4fe"
       },
       {
-        "path": "10-sources/A06.md",
-        "bytes": 527,
-        "sha256": "6fed44d4fb8cc5e571856b7846af939a1ea9dcc3b4be5f51913ab8b9d10423b0"
+        "path": "10-sources/2026-09-12-architecture-a06.md",
+        "bytes": 682,
+        "sha256": "7cf40984b9e10161a332375ac2a957a318625511a3c9ec9b079f27b43dcb8447"
       },
       {
-        "path": "20-knowledge/A06.md",
-        "bytes": 584,
-        "sha256": "e956f631a78bcc500519c9258fb97251f6d2ea3f379bd66aa89228906ff6eda6"
+        "path": "30-context/projects/gpters24-architecture/architecture-a06.md",
+        "bytes": 1149,
+        "sha256": "e7fd4edaf2d38b14d07e67f61f56753d1b8b844c6fcf318bb0a1840279313448"
       },
       {
-        "path": "10-sources/A07.md",
-        "bytes": 625,
-        "sha256": "5585013485e27f6b2f9e0d39860af60c60ae1c15b100030620a22cfa136ee0ad"
+        "path": "10-sources/2026-09-12-architecture-a07.md",
+        "bytes": 780,
+        "sha256": "5b407cd70d2262642ba319faab943c325682f3f9a9458cc031979a2f6fc11f7f"
       },
       {
-        "path": "20-knowledge/A07.md",
-        "bytes": 902,
-        "sha256": "c8aa1d6257e14f78152eb5e825a4b9beb8fe944b2a6d998aa13f92852c29d3b7"
+        "path": "30-context/projects/gpters24-architecture/architecture-a07.md",
+        "bytes": 1465,
+        "sha256": "cb72e9f0d54408f2cc4b53984c23a33d0eb0c0ab2b459e46371f833d447d9515"
       },
       {
-        "path": "10-sources/A08.md",
-        "bytes": 561,
-        "sha256": "b3e6419ddd5cccd002560276a57de7b36de0755acb36c1d41d72688974043103"
+        "path": "10-sources/2026-09-12-architecture-a08.md",
+        "bytes": 716,
+        "sha256": "cde1ae9eac3800561abe9811f064f536760cf0f69341b82daca95ed5f77a2b07"
       },
       {
-        "path": "20-knowledge/A08.md",
-        "bytes": 759,
-        "sha256": "3cd33484c2dcbf19fa2ab72360e1d7171bfdaf7ef5eac7ac8487969485dd78d9"
+        "path": "30-context/projects/gpters24-architecture/architecture-a08.md",
+        "bytes": 1312,
+        "sha256": "c5f23aba02b0ab1575b0ee1d59a0ee90d52e8d1b0da724475fdfe32a9fdfd8e9"
       },
       {
-        "path": "10-sources/A09.md",
-        "bytes": 611,
-        "sha256": "3659ddf3c1347473d88c8dd3259582177909dd56ba5c8f14e7acc3ce9f9bad24"
+        "path": "10-sources/2026-09-12-architecture-a09.md",
+        "bytes": 766,
+        "sha256": "522f93cacd12311e461060db0b46fe9f27102a24c7b312800e2e7b8f660ed4cb"
       },
       {
-        "path": "20-knowledge/A09.md",
-        "bytes": 806,
-        "sha256": "0e474870a37e36585bcaaff979f720bc6aa0728019e2503540f2a69c541d4a63"
+        "path": "30-context/projects/gpters24-architecture/architecture-a09.md",
+        "bytes": 1574,
+        "sha256": "bf89a6c64735691c6c4052bab4021f3ae7409b44f3947872e99b2ae67fff3775"
       },
       {
-        "path": "10-sources/A10.md",
-        "bytes": 628,
-        "sha256": "4aef9831a24b52bf126a8f107d34f703392d9bd3e0c026b0b4e4597b4abfc20d"
+        "path": "10-sources/2026-09-12-architecture-a10.md",
+        "bytes": 783,
+        "sha256": "90a515bc72a2d9e716cdee0b26c514b4018bd7c913e6059b9fb42ee42bb54bf9"
       },
       {
-        "path": "20-knowledge/A10.md",
-        "bytes": 754,
-        "sha256": "e644c08cec4853a4bc29869a32061e67d427a098e9241cd2194dc41792f303b2"
+        "path": "30-context/projects/gpters24-architecture/architecture-a10.md",
+        "bytes": 1333,
+        "sha256": "2b0cc625f6646b6a8d21f1e2bb9cddd2da5ece28c207be9c89bb91b0af1168b5"
+      },
+      {
+        "path": "practice/note-paths.json",
+        "bytes": 1653,
+        "sha256": "6c009faa63e89fd1671943a383fdd4f5b50b4df2de871ddc2fd92cca0b20aea0"
       },
       {
         "path": "99-system/INDEX.local.md",
-        "bytes": 554,
-        "sha256": "957fa1bc6408bc49154ca407c5241f439d45332dc0a2ec5a15e7ae8006d67dda"
+        "bytes": 1704,
+        "sha256": "26953503e0850df9e29bebaa3d9282b8212d78dbf3163757e9aff2263aa70a0d"
       },
       {
         "path": "practice/check.py",
@@ -1820,8 +1920,13 @@
       },
       {
         "path": "my-topic/idea-to-akm-prompt.md",
-        "bytes": 6244,
-        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+        "bytes": 8950,
+        "sha256": "9b4d05cda73011bc5ab4915daf702e53b9d5d060c1123b193d669e6d507887a4"
+      },
+      {
+        "path": "my-topic/akm-public-guide.md",
+        "bytes": 5788,
+        "sha256": "400785ee5e5525fec3169f53b219859d13702ee1b5b6128e37e2bb68dd2d0b25"
       },
       {
         "path": "my-topic/README.md",
@@ -1830,8 +1935,8 @@
       },
       {
         "path": "README.md",
-        "bytes": 2428,
-        "sha256": "50307934e52bf8db34483324733ef1b2e25ff2fb211f1e68a37169029eeb801d"
+        "bytes": 2765,
+        "sha256": "6f600357b44c364405dec8ce6013500aa4f05bf4891e300d8b6385a3eb89b4b9"
       },
       {
         "path": "practice/README.md",
@@ -1870,8 +1975,8 @@
       },
       {
         "path": "practice/agent-prompt.md",
-        "bytes": 1583,
-        "sha256": "4a482f3174d0e8b790e3c0df2d545f883c48e967be7cde12060551ccc8f398d1"
+        "bytes": 1714,
+        "sha256": "8e9ef9dd06db5c7b2dd96a0896faf92ae049ba2427674cba73524e03b1a952e6"
       },
       {
         "path": "practice/response-template.json",
@@ -1884,109 +1989,114 @@
         "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
       },
       {
-        "path": "10-sources/A01.md",
-        "bytes": 611,
-        "sha256": "669b3dad5612f271f9f9590954bd20f23319efd090b66c9604078862a433fff3"
+        "path": "10-sources/2026-09-12-architecture-a01.md",
+        "bytes": 766,
+        "sha256": "a5b57ad049035e43d8f36204c0f04e228e2363e7e6fff619b4c88dcf287d47a1"
       },
       {
-        "path": "20-knowledge/A01.md",
-        "bytes": 1413,
-        "sha256": "9aa51e07a6b6e16b0825b5b0e2ff030a4bac3c55e76abc3637464b71fab53081"
+        "path": "30-context/projects/gpters24-architecture/architecture-a01.md",
+        "bytes": 2188,
+        "sha256": "4fa82c0c19d738ef8191c019856560f68521f1f5f82e082432fa8d528d0f2283"
       },
       {
-        "path": "10-sources/A02.md",
-        "bytes": 529,
-        "sha256": "0a6f0f1749db32f3be6fcb13e171e09569a22bac0229c567cba6e2fe970f9fa3"
+        "path": "10-sources/2026-09-12-architecture-a02.md",
+        "bytes": 684,
+        "sha256": "006618576301ce395dd50e061b122a6835ea60f5755dacf768ee657f75351c93"
       },
       {
-        "path": "20-knowledge/A02.md",
-        "bytes": 586,
-        "sha256": "9c70c44a63c90d193aa06d4adcc9cf287ff6f7be5cd70274ede538bfbd4d6198"
+        "path": "30-context/projects/gpters24-architecture/architecture-a02.md",
+        "bytes": 1167,
+        "sha256": "90b4b3f6aceca76f829e70b600ff7557765cfcb24f634ad883da75b3227921c7"
       },
       {
-        "path": "10-sources/A03.md",
-        "bytes": 586,
-        "sha256": "0974cde822b514afc5cb5beb705ac7f8013a7a25ce6d55aa2f53f10d71858786"
+        "path": "10-sources/2026-09-12-architecture-a03.md",
+        "bytes": 741,
+        "sha256": "c8d02747d2391a13c51790cee8cb51b98eb9f213286ef0f8004a51e404df04b5"
       },
       {
-        "path": "20-knowledge/A03.md",
-        "bytes": 643,
-        "sha256": "932da6c22f8a93299bc0644154773fd37f39678367c67e8ffd7574eb7b512c75"
+        "path": "30-context/projects/gpters24-architecture/architecture-a03.md",
+        "bytes": 1208,
+        "sha256": "645c4d42983794f569309c75f155a353de7c68989d04936cc9d42c16bc6b85f2"
       },
       {
-        "path": "10-sources/A04.md",
-        "bytes": 561,
-        "sha256": "26026db08b9a3bb06f236f195c582e2d9da574afc8f7d97fbca7b5dc2e68340f"
+        "path": "10-sources/2026-09-12-architecture-a04.md",
+        "bytes": 716,
+        "sha256": "c1c8426d7e8ba695f8d1d3abbfce5c4779d0b09d0a967673d10617b02dab926a"
       },
       {
-        "path": "20-knowledge/A04.md",
-        "bytes": 618,
-        "sha256": "7fd53cd9df24740d5eef636a5d47a75b5ea3f7187beb4ef00d1ff218bc494acb"
+        "path": "30-context/projects/gpters24-architecture/architecture-a04.md",
+        "bytes": 1173,
+        "sha256": "2de95e4877db894dd57d57003186c33a3014793d9ef4e5e0ea891994efb2f311"
       },
       {
-        "path": "10-sources/A05.md",
-        "bytes": 491,
-        "sha256": "9da2393faa8232514a546daf00ffff68fe270a33f260acb206838dbd7104e7ac"
+        "path": "10-sources/2026-09-12-architecture-a05.md",
+        "bytes": 646,
+        "sha256": "8b8c9c970141db8b0e2b57a135f283b236e7b69b1d8a9c7eb096a4f24b0f634c"
       },
       {
-        "path": "20-knowledge/A05.md",
-        "bytes": 548,
-        "sha256": "65b549815be7dac48889212de1fd66d259196c340578ab8d353cc0bdb0321843"
+        "path": "30-context/projects/gpters24-architecture/architecture-a05.md",
+        "bytes": 1117,
+        "sha256": "38faafb288a23eb70a45786ce254d0d4da575f1108e18ed044ac184610eaf4fe"
       },
       {
-        "path": "10-sources/A06.md",
-        "bytes": 527,
-        "sha256": "6fed44d4fb8cc5e571856b7846af939a1ea9dcc3b4be5f51913ab8b9d10423b0"
+        "path": "10-sources/2026-09-12-architecture-a06.md",
+        "bytes": 682,
+        "sha256": "7cf40984b9e10161a332375ac2a957a318625511a3c9ec9b079f27b43dcb8447"
       },
       {
-        "path": "20-knowledge/A06.md",
-        "bytes": 584,
-        "sha256": "e956f631a78bcc500519c9258fb97251f6d2ea3f379bd66aa89228906ff6eda6"
+        "path": "30-context/projects/gpters24-architecture/architecture-a06.md",
+        "bytes": 1149,
+        "sha256": "e7fd4edaf2d38b14d07e67f61f56753d1b8b844c6fcf318bb0a1840279313448"
       },
       {
-        "path": "10-sources/A07.md",
-        "bytes": 625,
-        "sha256": "5585013485e27f6b2f9e0d39860af60c60ae1c15b100030620a22cfa136ee0ad"
+        "path": "10-sources/2026-09-12-architecture-a07.md",
+        "bytes": 780,
+        "sha256": "5b407cd70d2262642ba319faab943c325682f3f9a9458cc031979a2f6fc11f7f"
       },
       {
-        "path": "20-knowledge/A07.md",
-        "bytes": 902,
-        "sha256": "c8aa1d6257e14f78152eb5e825a4b9beb8fe944b2a6d998aa13f92852c29d3b7"
+        "path": "30-context/projects/gpters24-architecture/architecture-a07.md",
+        "bytes": 1465,
+        "sha256": "cb72e9f0d54408f2cc4b53984c23a33d0eb0c0ab2b459e46371f833d447d9515"
       },
       {
-        "path": "10-sources/A08.md",
-        "bytes": 561,
-        "sha256": "b3e6419ddd5cccd002560276a57de7b36de0755acb36c1d41d72688974043103"
+        "path": "10-sources/2026-09-12-architecture-a08.md",
+        "bytes": 716,
+        "sha256": "cde1ae9eac3800561abe9811f064f536760cf0f69341b82daca95ed5f77a2b07"
       },
       {
-        "path": "20-knowledge/A08.md",
-        "bytes": 759,
-        "sha256": "3cd33484c2dcbf19fa2ab72360e1d7171bfdaf7ef5eac7ac8487969485dd78d9"
+        "path": "30-context/projects/gpters24-architecture/architecture-a08.md",
+        "bytes": 1312,
+        "sha256": "c5f23aba02b0ab1575b0ee1d59a0ee90d52e8d1b0da724475fdfe32a9fdfd8e9"
       },
       {
-        "path": "10-sources/A09.md",
-        "bytes": 611,
-        "sha256": "3659ddf3c1347473d88c8dd3259582177909dd56ba5c8f14e7acc3ce9f9bad24"
+        "path": "10-sources/2026-09-12-architecture-a09.md",
+        "bytes": 766,
+        "sha256": "522f93cacd12311e461060db0b46fe9f27102a24c7b312800e2e7b8f660ed4cb"
       },
       {
-        "path": "20-knowledge/A09.md",
-        "bytes": 806,
-        "sha256": "0e474870a37e36585bcaaff979f720bc6aa0728019e2503540f2a69c541d4a63"
+        "path": "30-context/projects/gpters24-architecture/architecture-a09.md",
+        "bytes": 1574,
+        "sha256": "bf89a6c64735691c6c4052bab4021f3ae7409b44f3947872e99b2ae67fff3775"
       },
       {
-        "path": "10-sources/A10.md",
-        "bytes": 628,
-        "sha256": "4aef9831a24b52bf126a8f107d34f703392d9bd3e0c026b0b4e4597b4abfc20d"
+        "path": "10-sources/2026-09-12-architecture-a10.md",
+        "bytes": 783,
+        "sha256": "90a515bc72a2d9e716cdee0b26c514b4018bd7c913e6059b9fb42ee42bb54bf9"
       },
       {
-        "path": "20-knowledge/A10.md",
-        "bytes": 754,
-        "sha256": "e644c08cec4853a4bc29869a32061e67d427a098e9241cd2194dc41792f303b2"
+        "path": "30-context/projects/gpters24-architecture/architecture-a10.md",
+        "bytes": 1333,
+        "sha256": "2b0cc625f6646b6a8d21f1e2bb9cddd2da5ece28c207be9c89bb91b0af1168b5"
+      },
+      {
+        "path": "practice/note-paths.json",
+        "bytes": 1653,
+        "sha256": "6c009faa63e89fd1671943a383fdd4f5b50b4df2de871ddc2fd92cca0b20aea0"
       },
       {
         "path": "99-system/INDEX.local.md",
-        "bytes": 554,
-        "sha256": "957fa1bc6408bc49154ca407c5241f439d45332dc0a2ec5a15e7ae8006d67dda"
+        "bytes": 1704,
+        "sha256": "26953503e0850df9e29bebaa3d9282b8212d78dbf3163757e9aff2263aa70a0d"
       },
       {
         "path": "practice/check.py",
@@ -2036,8 +2146,13 @@
       },
       {
         "path": "my-topic/idea-to-akm-prompt.md",
-        "bytes": 6244,
-        "sha256": "e883f0eed6f22f3e7eee2746b43ee831fd74b396ae64a692d5fb14eef8c8a477"
+        "bytes": 8950,
+        "sha256": "9b4d05cda73011bc5ab4915daf702e53b9d5d060c1123b193d669e6d507887a4"
+      },
+      {
+        "path": "my-topic/akm-public-guide.md",
+        "bytes": 5788,
+        "sha256": "400785ee5e5525fec3169f53b219859d13702ee1b5b6128e37e2bb68dd2d0b25"
       },
       {
         "path": "my-topic/README.md",
@@ -2046,8 +2161,8 @@
       },
       {
         "path": "README.md",
-        "bytes": 2390,
-        "sha256": "948b94457fc1bdc0bfdd8da6ed5f9686c1ee8ba6b71a95947d5da5c6743da4d1"
+        "bytes": 2727,
+        "sha256": "26fd61a4238b75d4de549bc239a67f86aba7a5f04f90faef9558ce7326746bb3"
       },
       {
         "path": "practice/README.md",
@@ -2091,8 +2206,8 @@
       },
       {
         "path": "practice/agent-prompt.md",
-        "bytes": 1583,
-        "sha256": "4a482f3174d0e8b790e3c0df2d545f883c48e967be7cde12060551ccc8f398d1"
+        "bytes": 1714,
+        "sha256": "8e9ef9dd06db5c7b2dd96a0896faf92ae049ba2427674cba73524e03b1a952e6"
       },
       {
         "path": "practice/response-template.json",
@@ -2105,109 +2220,114 @@
         "sha256": "86ffdca9a58bc27e18cbdaee11ac3fd93ac7ad7e90e9fea241dc9f792da2ef1c"
       },
       {
-        "path": "10-sources/A01.md",
-        "bytes": 611,
-        "sha256": "669b3dad5612f271f9f9590954bd20f23319efd090b66c9604078862a433fff3"
+        "path": "10-sources/2026-09-12-architecture-a01.md",
+        "bytes": 766,
+        "sha256": "a5b57ad049035e43d8f36204c0f04e228e2363e7e6fff619b4c88dcf287d47a1"
       },
       {
-        "path": "20-knowledge/A01.md",
-        "bytes": 1413,
-        "sha256": "9aa51e07a6b6e16b0825b5b0e2ff030a4bac3c55e76abc3637464b71fab53081"
+        "path": "30-context/projects/gpters24-architecture/architecture-a01.md",
+        "bytes": 2188,
+        "sha256": "4fa82c0c19d738ef8191c019856560f68521f1f5f82e082432fa8d528d0f2283"
       },
       {
-        "path": "10-sources/A02.md",
-        "bytes": 529,
-        "sha256": "0a6f0f1749db32f3be6fcb13e171e09569a22bac0229c567cba6e2fe970f9fa3"
+        "path": "10-sources/2026-09-12-architecture-a02.md",
+        "bytes": 684,
+        "sha256": "006618576301ce395dd50e061b122a6835ea60f5755dacf768ee657f75351c93"
       },
       {
-        "path": "20-knowledge/A02.md",
-        "bytes": 586,
-        "sha256": "9c70c44a63c90d193aa06d4adcc9cf287ff6f7be5cd70274ede538bfbd4d6198"
+        "path": "30-context/projects/gpters24-architecture/architecture-a02.md",
+        "bytes": 1167,
+        "sha256": "90b4b3f6aceca76f829e70b600ff7557765cfcb24f634ad883da75b3227921c7"
       },
       {
-        "path": "10-sources/A03.md",
-        "bytes": 586,
-        "sha256": "0974cde822b514afc5cb5beb705ac7f8013a7a25ce6d55aa2f53f10d71858786"
+        "path": "10-sources/2026-09-12-architecture-a03.md",
+        "bytes": 741,
+        "sha256": "c8d02747d2391a13c51790cee8cb51b98eb9f213286ef0f8004a51e404df04b5"
       },
       {
-        "path": "20-knowledge/A03.md",
-        "bytes": 643,
-        "sha256": "932da6c22f8a93299bc0644154773fd37f39678367c67e8ffd7574eb7b512c75"
+        "path": "30-context/projects/gpters24-architecture/architecture-a03.md",
+        "bytes": 1208,
+        "sha256": "645c4d42983794f569309c75f155a353de7c68989d04936cc9d42c16bc6b85f2"
       },
       {
-        "path": "10-sources/A04.md",
-        "bytes": 561,
-        "sha256": "26026db08b9a3bb06f236f195c582e2d9da574afc8f7d97fbca7b5dc2e68340f"
+        "path": "10-sources/2026-09-12-architecture-a04.md",
+        "bytes": 716,
+        "sha256": "c1c8426d7e8ba695f8d1d3abbfce5c4779d0b09d0a967673d10617b02dab926a"
       },
       {
-        "path": "20-knowledge/A04.md",
-        "bytes": 618,
-        "sha256": "7fd53cd9df24740d5eef636a5d47a75b5ea3f7187beb4ef00d1ff218bc494acb"
+        "path": "30-context/projects/gpters24-architecture/architecture-a04.md",
+        "bytes": 1173,
+        "sha256": "2de95e4877db894dd57d57003186c33a3014793d9ef4e5e0ea891994efb2f311"
       },
       {
-        "path": "10-sources/A05.md",
-        "bytes": 491,
-        "sha256": "9da2393faa8232514a546daf00ffff68fe270a33f260acb206838dbd7104e7ac"
+        "path": "10-sources/2026-09-12-architecture-a05.md",
+        "bytes": 646,
+        "sha256": "8b8c9c970141db8b0e2b57a135f283b236e7b69b1d8a9c7eb096a4f24b0f634c"
       },
       {
-        "path": "20-knowledge/A05.md",
-        "bytes": 548,
-        "sha256": "65b549815be7dac48889212de1fd66d259196c340578ab8d353cc0bdb0321843"
+        "path": "30-context/projects/gpters24-architecture/architecture-a05.md",
+        "bytes": 1117,
+        "sha256": "38faafb288a23eb70a45786ce254d0d4da575f1108e18ed044ac184610eaf4fe"
       },
       {
-        "path": "10-sources/A06.md",
-        "bytes": 527,
-        "sha256": "6fed44d4fb8cc5e571856b7846af939a1ea9dcc3b4be5f51913ab8b9d10423b0"
+        "path": "10-sources/2026-09-12-architecture-a06.md",
+        "bytes": 682,
+        "sha256": "7cf40984b9e10161a332375ac2a957a318625511a3c9ec9b079f27b43dcb8447"
       },
       {
-        "path": "20-knowledge/A06.md",
-        "bytes": 584,
-        "sha256": "e956f631a78bcc500519c9258fb97251f6d2ea3f379bd66aa89228906ff6eda6"
+        "path": "30-context/projects/gpters24-architecture/architecture-a06.md",
+        "bytes": 1149,
+        "sha256": "e7fd4edaf2d38b14d07e67f61f56753d1b8b844c6fcf318bb0a1840279313448"
       },
       {
-        "path": "10-sources/A07.md",
-        "bytes": 625,
-        "sha256": "5585013485e27f6b2f9e0d39860af60c60ae1c15b100030620a22cfa136ee0ad"
+        "path": "10-sources/2026-09-12-architecture-a07.md",
+        "bytes": 780,
+        "sha256": "5b407cd70d2262642ba319faab943c325682f3f9a9458cc031979a2f6fc11f7f"
       },
       {
-        "path": "20-knowledge/A07.md",
-        "bytes": 902,
-        "sha256": "c8aa1d6257e14f78152eb5e825a4b9beb8fe944b2a6d998aa13f92852c29d3b7"
+        "path": "30-context/projects/gpters24-architecture/architecture-a07.md",
+        "bytes": 1465,
+        "sha256": "cb72e9f0d54408f2cc4b53984c23a33d0eb0c0ab2b459e46371f833d447d9515"
       },
       {
-        "path": "10-sources/A08.md",
-        "bytes": 561,
-        "sha256": "b3e6419ddd5cccd002560276a57de7b36de0755acb36c1d41d72688974043103"
+        "path": "10-sources/2026-09-12-architecture-a08.md",
+        "bytes": 716,
+        "sha256": "cde1ae9eac3800561abe9811f064f536760cf0f69341b82daca95ed5f77a2b07"
       },
       {
-        "path": "20-knowledge/A08.md",
-        "bytes": 759,
-        "sha256": "3cd33484c2dcbf19fa2ab72360e1d7171bfdaf7ef5eac7ac8487969485dd78d9"
+        "path": "30-context/projects/gpters24-architecture/architecture-a08.md",
+        "bytes": 1312,
+        "sha256": "c5f23aba02b0ab1575b0ee1d59a0ee90d52e8d1b0da724475fdfe32a9fdfd8e9"
       },
       {
-        "path": "10-sources/A09.md",
-        "bytes": 611,
-        "sha256": "3659ddf3c1347473d88c8dd3259582177909dd56ba5c8f14e7acc3ce9f9bad24"
+        "path": "10-sources/2026-09-12-architecture-a09.md",
+        "bytes": 766,
+        "sha256": "522f93cacd12311e461060db0b46fe9f27102a24c7b312800e2e7b8f660ed4cb"
       },
       {
-        "path": "20-knowledge/A09.md",
-        "bytes": 806,
-        "sha256": "0e474870a37e36585bcaaff979f720bc6aa0728019e2503540f2a69c541d4a63"
+        "path": "30-context/projects/gpters24-architecture/architecture-a09.md",
+        "bytes": 1574,
+        "sha256": "bf89a6c64735691c6c4052bab4021f3ae7409b44f3947872e99b2ae67fff3775"
       },
       {
-        "path": "10-sources/A10.md",
-        "bytes": 628,
-        "sha256": "4aef9831a24b52bf126a8f107d34f703392d9bd3e0c026b0b4e4597b4abfc20d"
+        "path": "10-sources/2026-09-12-architecture-a10.md",
+        "bytes": 783,
+        "sha256": "90a515bc72a2d9e716cdee0b26c514b4018bd7c913e6059b9fb42ee42bb54bf9"
       },
       {
-        "path": "20-knowledge/A10.md",
-        "bytes": 754,
-        "sha256": "e644c08cec4853a4bc29869a32061e67d427a098e9241cd2194dc41792f303b2"
+        "path": "30-context/projects/gpters24-architecture/architecture-a10.md",
+        "bytes": 1333,
+        "sha256": "2b0cc625f6646b6a8d21f1e2bb9cddd2da5ece28c207be9c89bb91b0af1168b5"
+      },
+      {
+        "path": "practice/note-paths.json",
+        "bytes": 1653,
+        "sha256": "6c009faa63e89fd1671943a383fdd4f5b50b4df2de871ddc2fd92cca0b20aea0"
       },
       {
         "path": "99-system/INDEX.local.md",
-        "bytes": 554,
-        "sha256": "957fa1bc6408bc49154ca407c5241f439d45332dc0a2ec5a15e7ae8006d67dda"
+        "bytes": 1704,
+        "sha256": "26953503e0850df9e29bebaa3d9282b8212d78dbf3163757e9aff2263aa70a0d"
       },
       {
         "path": "practice/check.py",

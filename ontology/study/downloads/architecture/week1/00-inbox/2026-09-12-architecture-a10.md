@@ -1,0 +1,19 @@
+---
+description: "Synthetic source record for the GPTers ontology practice case."
+akmLayer: source
+akmRole: raw-source
+akmType: source
+trustLevel: raw
+CMDS: Connect
+sourceType: agent-output
+sourcePath: "https://github.com/DECK6/adxdeck/blob/main/scripts/gpters24/data.mjs"
+nextAction: merge
+date created: 2026-09-12
+date modified: 2026-09-12
+---
+
+# A10 · 요구 조건과 판단 보류
+
+이 사례의 요구는 침실 3개·욕실 2개, 거실/주방/다이닝의 별도 공간, 폭 6m 통창이다. 이는 사용자의 설계 요구이지 법정 최소 기준이 아니다. 프로젝트 위치, 적용 절차, 구조 검토, 허가 증거가 없으므로 허가 완료나 안전을 판정하지 않는다.
+
+원본 상태를 보존하고 해석은 별도 노트에 기록하세요.

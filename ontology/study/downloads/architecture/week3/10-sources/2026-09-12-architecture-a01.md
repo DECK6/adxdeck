@@ -1,0 +1,19 @@
+---
+description: "Synthetic source record for the GPTers ontology practice case."
+akmLayer: source
+akmRole: raw-source
+akmType: source
+trustLevel: raw
+CMDS: Connect
+sourceType: agent-output
+sourcePath: "https://github.com/DECK6/adxdeck/blob/main/scripts/gpters24/data.mjs"
+nextAction: merge
+date created: 2026-09-12
+date modified: 2026-09-12
+---
+
+# A01 · 주택 요구사항 · FAMILY-02
+
+요청은 침실 3개, 욕실 2개, 넓은 거실과 통창, 거실·주방·다이닝 분리다. 긴 복도를 줄인 FAMILY-02 가상 배치를 대상으로 한다. 실제 주소·대지 조건·허가 정보는 없다. 이 문서는 사용자 공간 요구를 실습용으로 다시 쓴 것이다.
+
+원본 상태를 보존하고 해석은 별도 노트에 기록하세요.

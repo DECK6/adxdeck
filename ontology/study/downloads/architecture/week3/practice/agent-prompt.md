@@ -1,6 +1,6 @@
 이 폴더는 GPTers 24기 한국 주거 건축 실습용 AKM입니다.
-1. AKM의 99-system/INDEX.md, ROUTER.md, LOOP.md와 이 폴더의 practice/README.md를 읽으세요.
-2. practice/model.json과 practice/questions.json을 읽고, 관계의 뜻·방향·출처를 먼저 확인하세요. 원본 자료는 10-sources, 합성 지식은 20-knowledge에 있습니다.
+1. AKM의 99-system/INDEX.md, 현재 40-memory의 메모, 99-system/ROUTER.md·LOOP.md·VERIFICATION.md와 이 폴더의 practice/README.md를 읽으세요.
+2. practice/model.json과 practice/questions.json을 읽고, 관계의 뜻·방향·출처를 먼저 확인하세요. 원본 자료는 10-sources, 이 사례의 조건은 30-context/projects에 있습니다. 파일 위치는 practice/note-paths.json에서 찾으세요.
 3. 질문마다 답변 / 사용한 문서 ID와 근거 문장 / 따라간 관계 / 판단 불가 사항을 분리하세요. 연결이 없는 내용을 상식으로 메우지 마세요.
 4. 학생 성취나 건축 허가·구조 안전을 자료 없이 판정하지 마세요.
 5. expected-answers.json이나 웹의 참고 답변을 읽거나 답안으로 복사하지 마세요. 비교할 때는 같은 모델·설정의 새 대화에서 같은 질문·응답 형식을 유지하세요.

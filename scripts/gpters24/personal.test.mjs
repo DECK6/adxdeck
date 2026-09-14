@@ -30,7 +30,7 @@ test('own responses require matching questions and retain unmeasured scores',()=
  r.responses[1].question='다른 질문';assert.throws(()=>applyResponses(p,JSON.stringify(r)));assert.deepEqual(p.records,{});
 });
 test('all four own-topic packages contain student data, assignments and no sample answer keys',()=>{
- const p=project();for(let w=1;w<=4;w++){const f=personalFiles(p,w);assert.match(f['practice/this-week.md'],new RegExp(`${w}주차`));assert.match(f['practice/questions.json'],/어떤 실험/);assert.match(f['00-inbox/N1.md'],/실험 A/);assert.ok(f['personal-project.json']);assert.ok(!f['practice/expected-answers.json']);if(w>=2)assert.match(f['practice/ontology.ttl'],/ex:A ex:tests ex:B/);}
+ const p=project();for(let w=1;w<=4;w++){const f=personalFiles(p,w);assert.match(f['practice/this-week.md'],new RegExp(`${w}주차`));assert.match(f['practice/questions.json'],/어떤 실험/);assert.ok(Object.entries(f).some(([path,text])=>path.startsWith('00-inbox/')&&text.includes('실험 A')));assert.ok(f['personal-project.json']);assert.ok(!f['practice/expected-answers.json']);if(w>=2)assert.match(f['practice/ontology.ttl'],/ex:A ex:tests ex:B/);}
  assert.match(personalPrompt(p,1),/00-inbox/);assert.match(personalPrompt(p,3),/model.json/);
 });
 test('ZIP exports real uncompressed files with UTF-8 names and valid signatures',()=>{

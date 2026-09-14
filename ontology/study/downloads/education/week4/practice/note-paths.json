@@ -1,0 +1,52 @@
+[
+  {
+    "id": "E01",
+    "source": "10-sources/2026-09-12-education-e01.md",
+    "compiled": "30-context/projects/gpters24-education/education-e01.md"
+  },
+  {
+    "id": "E02",
+    "source": "10-sources/2026-09-12-education-e02.md",
+    "compiled": "30-context/projects/gpters24-education/education-e02.md"
+  },
+  {
+    "id": "E03",
+    "source": "10-sources/2026-09-12-education-e03.md",
+    "compiled": "30-context/projects/gpters24-education/education-e03.md"
+  },
+  {
+    "id": "E04",
+    "source": "10-sources/2026-09-12-education-e04.md",
+    "compiled": "30-context/projects/gpters24-education/education-e04.md"
+  },
+  {
+    "id": "E05",
+    "source": "10-sources/2026-09-12-education-e05.md",
+    "compiled": "30-context/projects/gpters24-education/education-e05.md"
+  },
+  {
+    "id": "E06",
+    "source": "10-sources/2026-09-12-education-e06.md",
+    "compiled": "30-context/projects/gpters24-education/education-e06.md"
+  },
+  {
+    "id": "E07",
+    "source": "10-sources/2026-09-12-education-e07.md",
+    "compiled": "30-context/projects/gpters24-education/education-e07.md"
+  },
+  {
+    "id": "E08",
+    "source": "10-sources/2026-09-12-education-e08.md",
+    "compiled": "30-context/projects/gpters24-education/education-e08.md"
+  },
+  {
+    "id": "E09",
+    "source": "10-sources/2026-09-12-education-e09.md",
+    "compiled": "30-context/projects/gpters24-education/education-e09.md"
+  },
+  {
+    "id": "E10",
+    "source": "10-sources/2026-09-12-education-e10.md",
+    "compiled": "30-context/projects/gpters24-education/education-e10.md"
+  }
+]

@@ -20,12 +20,18 @@ FAMILY-02 가상 주택을 줄여 만든 학습용 모델입니다. 원 모델�
 
 ## 도구 참고
 - AKM https://github.com/DECK6/akm
+- 확인 기준 f26ace2a16caba724b24db12cbee238ebb52498f · AKM 0.3 / schema 0.2
+- 공개 규칙·템플릿: https://github.com/DECK6/akm/blob/f26ace2a16caba724b24db12cbee238ebb52498f/99-system/SCHEMA.md / https://github.com/DECK6/akm/blob/f26ace2a16caba724b24db12cbee238ebb52498f/99-system/ROUTER.md
+- 공개 어댑터: https://github.com/DECK6/akm/blob/f26ace2a16caba724b24db12cbee238ebb52498f/adapters/claude-code/README.md / https://github.com/DECK6/akm/blob/f26ace2a16caba724b24db12cbee238ebb52498f/adapters/codex/README.md
 - Obsidian Graph view https://help.obsidian.md/plugins/graph
 - Protégé https://protege.stanford.edu/
-- 로컬 AKM Studio 0.1.0: 문서 목록·상세 보기·검토 흐름 참고. 그래프 기능을 기존 Studio에 있던 것으로 주장하지 않는다.
+- 공개 AKM은 Markdown·규칙·템플릿·검사 스크립트를 제공하며, 문서/온톨로지 그래프와 편집 화면은 이 교재의 별도 도구다. qmd·개인 Studio·고정 개인 메모 파일은 설치 요건이 아니다.
 
 ## 내 주제 실습
 my-topic.html에서 수강생이 자료 3–5개로 판단 하나를 고르고, 자신의 대상·필요 자원·현재 상태·관계의 뜻·판단 규칙·보류 조건을 설계합니다. 질문별 예상 답과 근거, 실제 평가를 각각 기록하고 조건 하나를 바꿔 검증합니다. 문서 링크·대상·관계·속성을 직접 편집할 수 있습니다. 개인 자료는 브라우저에 저장하며 프로젝트 JSON과 주차별 ZIP으로 내보냅니다. my-topic-starter.zip은 빈 4주 양식입니다. idea-to-akm-prompt.md는 아이디어 메모를 원문·맥락·지식 노트와 작은 온톨로지로 정리하도록 코딩 에이전트에 전달하는 요청문입니다. 웹에서 메모를 입력해 개인화한 요청문을 복사할 수 있습니다.
+
+## AKM 적용
+공통 시나리오의 조건·상태는 30-context/projects에 분류하고, 원문은 sourcePath와 날짜를 포함한 별도 파일명으로 보존한다. practice/note-paths.json에서 문서 ID와 실제 경로를 연결한다. 개인 wiki-drafts는 분류 전 교재 양식이며 모든 초안을 20-knowledge로 자동 승격하지 않는다. 공개 AKM 검사기와 웹 관계 검사기를 구분한다.
 
 ## 검증 범위
 웹 질의는 현재 모델로 계산하는 결정적 미리보기다. 실제 LLM 성능평가는 참여자가 같은 질문으로 실행하고 기록한다. 새 실습 자료를 기존 교육/건축 온톨로지의 전체 검증 결과로 취급하지 않는다. OWL export는 표준 표현의 입문용 부분집합이며, 웹/Python 검사는 별도 경량 검사다.

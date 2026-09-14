@@ -6,9 +6,9 @@ FAMILY-02 가상 주택을 줄여 만든 학습용 모델입니다. 원 모델�
 
 ## 시작
 
-1. 공식 AKM https://github.com/DECK6/akm 을 새 폴더에 준비하세요. 에이전트에 “공식 AKM을 새 gpters24-architecture 폴더에 설치해줘”라고 요청하거나 GitHub의 Code → Download ZIP을 사용하세요. 기존 개인 볼트에서 시작하지 않는 것을 권장합니다.
+1. 공식 AKM https://github.com/DECK6/akm 을 새 폴더에 준비하고 그 폴더에서 에이전트를 여세요. 루트 CLAUDE.md·AGENTS.md가 포함되어 있습니다. 에이전트에 “공식 AKM을 새 gpters24-architecture 폴더에 설치해줘”라고 요청하거나 GitHub의 Code → Download ZIP을 사용하세요. 기존 개인 볼트에서 시작하지 않는 것을 권장합니다.
 2. 이 ZIP은 AKM 본체가 아니라 주차별 실습 자료입니다. 1주차에는 00-inbox와 practice를 새 AKM 폴더에 복사하세요. reference는 완성 예시입니다.
-3. 2주차 이후에는 같은 사례 폴더를 이어 사용하세요. 직접 만든 파일은 먼저 별도 보관하고, 패키지의 완성 예시와 나란히 비교하세요. before 답변 기록을 덮어쓰지 마세요.
+3. 2주차 이후에는 같은 사례 폴더를 이어 사용하세요. 직접 만든 파일은 먼저 별도 보관하고, 패키지의 정리 예시와 나란히 비교하세요. 기존 INDEX.local.md는 덮어쓰지 말고 필요한 항목만 합치세요. before 답변 기록을 덮어쓰지 마세요.
 4. Obsidian에서 AKM 폴더를 볼트로 열고 Graph view를 확인하세요. 문서 링크망의 선은 관계의 의미까지 자동 검증하지 않습니다.
 
 ## 이번 주
@@ -28,6 +28,8 @@ FAMILY-02 가상 주택을 줄여 만든 학습용 모델입니다. 원 모델�
 - practice/response-template.json: 실제 에이전트 응답 기록용 빈 양식
 - practice/agent-prompt.md: 에이전트에 연결하는 요청문
 - practice/evaluation.csv: 답·출처·평가를 기록하는 빈 표
-- reference 또는 20-knowledge: 비교용 합성 지식
+- reference 또는 30-context/projects: 비교용 사례 맥락
+- my-topic/akm-public-guide.md: 공개 AKM 설치·분류·템플릿·검사 안내
+- practice/note-paths.json: 문서 ID와 실제 파일 경로 대응
 
 웹에서 보인 참고 답변은 실제 LLM 실행 성적이 아닙니다.
