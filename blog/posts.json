@@ -29,6 +29,26 @@
     ]
   },
   {
+    "slug": "chunked-prefill-keeps-shared-llm-responses-moving",
+    "file": "_built/chunked-prefill-keeps-shared-llm-responses-moving.md",
+    "title": "LLM 응답 지연: 긴 입력을 나눠 처리하면 무엇이 달라지는가",
+    "description": "LLM의 프리필과 디코드가 공유 서버에서 서로 지연시키는 원리를 살펴본다. Sarathi-Serve와 vLLM의 chunked prefill을 바탕으로 긴 문서와 짧은 질문이 함께 들어오는 업무의 응답 시간을 설계하는 방법을 제안한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "model-inference",
+      "LLM-serving",
+      "chunked-prefill",
+      "work-design"
+    ],
+    "date": "2026-09-15",
+    "modified": "2026-09-15",
+    "thumbnail": "images/chunked-prefill-keeps-shared-llm-responses-moving-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "hipporag-two-and-associative-retrieval",
     "file": "_built/hipporag-two-and-associative-retrieval.md",
     "title": "RAG가 놓친 연결을 찾는 법: HippoRAG 2와 개인화 PageRank",
