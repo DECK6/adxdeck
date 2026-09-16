@@ -31,6 +31,25 @@
     ]
   },
   {
+    "slug": "portable-ai-knowledge-with-okf-provenance-and-verification",
+    "file": "_built/portable-ai-knowledge-with-okf-provenance-and-verification.md",
+    "title": "AI 지식의 이식성: OKF v0.2로 출처와 검증 이력을 함께 옮기기",
+    "description": "Open Knowledge Format v0.2는 지식 문서와 함께 출처, 생성·검증 이력, 수명 정보를 전달한다. 형식 호환과 업무상 신뢰를 구분하고, AKM과 RAG의 지식을 다른 도구로 옮길 때 보존할 기준을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "knowledge-management",
+      "interoperability",
+      "provenance",
+      "RAG"
+    ],
+    "date": "2026-09-16",
+    "modified": "2026-09-16",
+    "thumbnail": "images/okf-knowledge-portability-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "affordance-and-the-first-action-in-media-art",
     "file": "_built/affordance-and-the-first-action-in-media-art.md",
     "title": "관객은 무엇을 할 수 있는가: 어포던스와 참여의 문턱",
