@@ -1,5 +1,36 @@
 [
   {
+    "slug": "minouk-lim-and-the-voices-and-warmth-of-the-city",
+    "file": "_built/minouk-lim-and-the-voices-and-warmth-of-the-city.md",
+    "title": "임민욱의 비디오에 남은 도시의 목소리와 체온",
+    "description": "임민욱의 《New Town Ghost》, 《S.O.S—Adoptive Dissensus》, 《The Weight of Hands》를 따라 도시의 기억이 목소리와 이동, 체온으로 기록되는 방식을 살핀다. 퍼포먼스와 촬영이 만나는 지점에서 공공장소를 다루는 미디어아트의 제작 책임을 짚는다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "korean-media-art",
+      "minouk-lim",
+      "video-art",
+      "performance",
+      "urban-memory"
+    ],
+    "date": "2026-09-17",
+    "modified": "2026-09-17",
+    "thumbnail": "images/minouk-lim-and-the-voices-and-warmth-of-the-city-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "korean-media-art",
+      "minouk-lim",
+      "video-art",
+      "performance",
+      "urban-memory"
+    ]
+  },
+  {
     "slug": "electronic-arts-intermix-and-the-circulation-of-video-art",
     "file": "_built/electronic-arts-intermix-and-the-circulation-of-video-art.md",
     "title": "비디오아트는 누가 다시 볼 수 있게 만드는가",
