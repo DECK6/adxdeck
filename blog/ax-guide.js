@@ -22,7 +22,7 @@ const AX_TOPICS = Object.freeze([
         question: '한 번의 성공을 반복 가능한 업무로 바꾸려면?',
         description: '실행 단계와 상태, 사람의 승인 지점, 실패 뒤 복구 경로를 설계합니다. 도구가 바뀌어도 필요한 재시도·중복 방지·결과 인수 원칙부터 읽습니다.',
         action: '첫 실험: 외부 전송이나 결제 없는 작은 작업으로 시작하고, 중간 실패와 재실행 때 결과가 중복되지 않는지 확인하세요.',
-        slugs: ['drawing-approval-boundaries-before-agent-automation', 'when-agent-loops-need-control-graphs', 'agent-retries-need-idempotency-and-receipts', 'designing-reliable-multi-agent-fan-in']
+        slugs: ['drawing-approval-boundaries-before-agent-automation', 'when-agent-loops-need-control-graphs', 'agent-retries-need-idempotency-and-receipts', 'designing-reliable-multi-agent-fan-in', 'can-a-long-running-agent-survive-a-code-change']
     },
     {
         id: 'evaluation', label: '평가와 거버넌스',

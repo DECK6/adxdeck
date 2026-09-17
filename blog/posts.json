@@ -1,5 +1,25 @@
 [
   {
+    "slug": "can-a-long-running-agent-survive-a-code-change",
+    "file": "_built/can-a-long-running-agent-survive-a-code-change.md",
+    "title": "오래 실행 중인 에이전트에 새 코드를 배포해도 되는가",
+    "description": "체크포인트가 있더라도 실행 이력과 새 코드의 명령 순서가 어긋나면 재개는 실패할 수 있다. replay 결정론, 실행 버전, 부수효과 경계를 이용해 장기 에이전트의 안전한 변경 조건을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "ai-agent",
+      "agent-runtime",
+      "durable-execution",
+      "workflow-versioning"
+    ],
+    "date": "2026-09-17",
+    "modified": "2026-09-17",
+    "thumbnail": "images/can-a-long-running-agent-survive-a-code-change-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "minouk-lim-and-the-voices-and-warmth-of-the-city",
     "file": "_built/minouk-lim-and-the-voices-and-warmth-of-the-city.md",
     "title": "임민욱의 비디오에 남은 도시의 목소리와 체온",

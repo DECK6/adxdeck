@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>오래 실행 중인 에이전트에 새 코드를 배포해도 되는가 | DEXA Blog</title>
+    <meta name="description" content="체크포인트가 있더라도 실행 이력과 새 코드의 명령 순서가 어긋나면 재개는 실패할 수 있다. replay 결정론, 실행 버전, 부수효과 경계를 이용해 장기 에이전트의 안전한 변경 조건을 살펴본다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/can-a-long-running-agent-survive-a-code-change/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="오래 실행 중인 에이전트에 새 코드를 배포해도 되는가" />
+    <meta property="og:description" content="체크포인트가 있더라도 실행 이력과 새 코드의 명령 순서가 어긋나면 재개는 실패할 수 있다. replay 결정론, 실행 버전, 부수효과 경계를 이용해 장기 에이전트의 안전한 변경 조건을 살펴본다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/can-a-long-running-agent-survive-a-code-change/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/can-a-long-running-agent-survive-a-code-change-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-09-17" />
+    <meta property="article:modified_time" content="2026-09-17" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="AI" />
+    <meta property="article:tag" content="ai-agent" />
+    <meta property="article:tag" content="agent-runtime" />
+    <meta property="article:tag" content="durable-execution" />
+    <meta property="article:tag" content="workflow-versioning" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="오래 실행 중인 에이전트에 새 코드를 배포해도 되는가" />
+    <meta name="twitter:description" content="체크포인트가 있더라도 실행 이력과 새 코드의 명령 순서가 어긋나면 재개는 실패할 수 있다. replay 결정론, 실행 버전, 부수효과 경계를 이용해 장기 에이전트의 안전한 변경 조건을 살펴본다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/can-a-long-running-agent-survive-a-code-change-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"오래 실행 중인 에이전트에 새 코드를 배포해도 되는가","description":"체크포인트가 있더라도 실행 이력과 새 코드의 명령 순서가 어긋나면 재개는 실패할 수 있다. replay 결정론, 실행 버전, 부수효과 경계를 이용해 장기 에이전트의 안전한 변경 조건을 살펴본다.","image":"https://dexa.art/blog/images/can-a-long-running-agent-survive-a-code-change-cover.png","datePublished":"2026-09-17","dateModified":"2026-09-17","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/can-a-long-running-agent-survive-a-code-change/"},"articleSection":"AI · AX","keywords":"AI, ai-agent, agent-runtime, durable-execution, workflow-versioning"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.09.17</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>오래 실행 중인 에이전트에 새 코드를 배포해도 되는가</h1>
+                <p style="color:var(--muted);font-size:17px;">체크포인트가 있더라도 실행 이력과 새 코드의 명령 순서가 어긋나면 재개는 실패할 수 있다. replay 결정론, 실행 버전, 부수효과 경계를 이용해 장기 에이전트의 안전한 변경 조건을 살펴본다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">AI</span><span class="dx-tag-chip">ai-agent</span><span class="dx-tag-chip">agent-runtime</span><span class="dx-tag-chip">durable-execution</span><span class="dx-tag-chip">workflow-versioning</span></div>
+<p><img src="/blog/images/can-a-long-running-agent-survive-a-code-change-cover.png" alt="오래 실행되는 에이전트의 실행 이력과 코드 버전이 교차하는 추상 개념 이미지" loading="lazy"></p>
+<p><em>이 글의 개념을 표현한 AI 생성 이미지이며, 실제 제품 화면이 아니다.</em></p>
+<p>에이전트가 자료를 모으고 초안을 만든 뒤 사람의 승인을 기다리고 있다고 하자. 대기하는 사이 개발팀은 검증 단계를 하나 더 넣은 새 코드를 배포했다. 다음 날 승인이 들어오면 이 실행은 어느 코드로 이어져야 할까. 새 검증 단계를 건너뛰면 정책이 낡고, 무작정 처음부터 다시 돌리면 이미 만든 파일이나 보낸 요청이 중복될 수 있다.</p>
+<p>이 문제는 장애 복구와 닮았지만 조금 다르다. 프로세스가 다시 뜨는지만 묻는 것이 아니라, 과거의 실행 이력과 현재의 코드가 같은 다음 행동을 합의할 수 있는가를 묻는다. 체크포인트를 저장했다는 사실만으로는 답이 되지 않는다. 무엇을 저장했고, 어떤 코드가 저장한 내용을 읽으며, 재생 중에는 무엇을 다시 실행하지 않아야 하는지가 함께 정해져야 한다.</p>
+<h2>실행 이력으로 상태를 복원하는 런타임</h2>
+<p>장기 실행을 이어 가는 방법은 하나가 아니다. 그래프 상태를 시점별 스냅샷으로 저장할 수도 있고, 이미 일어난 사건을 순서대로 기록한 뒤 코드를 다시 실행해 상태를 재구성할 수도 있다. 이 글은 이 가운데 실행 이력을 재생하는 런타임의 코드 변경 문제를 다룬다. 모든 체크포인트 구현이 같은 방식으로 복구된다는 뜻은 아니다.</p>
+<p>2026-09-17에 확인한 Temporal 공식 문서는 실행 이력 재생 방식을 설명한다. 워크플로를 재개할 때 프로세스 메모리를 그대로 복원하는 것이 아니라 코드를 처음부터 다시 실행하면서 Event History에 기록된 타이머, Activity 결과, 신호를 재생해 이전 상태에 도달한다. 이미 완료된 외부 작업은 기록된 결과를 사용하므로 재생 때문에 다시 수행되지 않는다.[1] Microsoft Durable Functions 문서도 orchestrator가 event sourcing으로 로컬 상태를 유지하며 여러 번 replay될 수 있으므로 같은 입력과 이력에서 같은 결과를 내야 한다고 설명한다.[4]</p>
+<p>여기서 재생은 동영상처럼 과거 행동을 그대로 반복한다는 뜻이 아니다. 과거 사건을 읽으며 같은 제어 결정을 다시 계산하는 과정에 가깝다. 이력에 “자료 수집 완료”, “승인 대기 시작”이 남아 있다면 코드는 그 결과를 받아 승인 다음 단계까지 도달해야 한다. 자료 수집 API를 다시 부르거나 승인 요청을 또 보내서는 안 된다.</p>
+<p>이를 에이전트의 인계 기록에 적용한다면 현재 단계 이름 하나보다 더 많은 경계를 남길 필요가 있다. 실행 식별자, 입력 리비전, 완료된 단계의 결과 참조, 대기 중인 사건, 사용한 workflow 정의의 버전, 외부 행동의 영수증이 연결돼야 한다. 반대로 대화 전문과 거대한 모델 컨텍스트를 통째로 저장한다고 안전한 재개가 보장되지는 않는다. 복구가 필요한 상태와 우연히 메모리에 있던 정보를 구분해야 한다.</p>
+<h2>새 코드는 과거의 명령 순서를 바꿀 수 있다</h2>
+<p>재생 기반 실행에서 코드 변경은 단순 배포가 아니다. 과거 이력을 해석하는 프로그램을 바꾸는 일이다. Temporal은 같은 입력을 받았을 때 Workflow API 호출이 같은 순서로 나와야 한다고 요구한다. 타이머를 시작하고 Activity를 예약하는 순서를 바꾸면, 새 코드가 낸 첫 명령과 과거 이력의 첫 사건이 맞지 않아 비결정성 오류가 날 수 있다.[2]</p>
+<p>가령 이전 버전이 <code>자료 읽기 → 승인 대기 → 게시</code> 순서였다고 하자. 새 버전에 <code>사실 검증</code>을 승인 대기 앞에 바로 끼워 넣으면 신규 실행에는 자연스럽다. 그러나 이미 승인 대기까지 온 실행을 새 코드로 replay하면 과거 이력에는 없던 검증 명령이 중간에 나타난다. 런타임은 이를 “더 좋은 최신 절차”로 이해하지 못한다. 기록과 명령이 어긋났다고 판정한다.</p>
+<p>그래서 장기 실행의 배포 단위에는 코드 commit만이 아니라 실행 버전 정책이 필요하다. 오래된 실행을 시작한 worker 버전에 고정할지, 새 코드 안에 구버전과 신버전 경로를 함께 두고 이력의 version marker로 분기할지 정해야 한다. Microsoft의 orchestration versioning 문서도 각 인스턴스에 버전을 연결하고, 새 worker가 이전 버전 실행을 처리할 때 호환 경로를 유지하는 방식을 설명한다.[5] 지원 SDK와 패키지 버전을 먼저 확인해야 하며, 이 기능의 세부 API는 제품마다 다르지만, 실행 중인 인스턴스가 어떤 동작을 하는 코드와 묶였는지를 잃지 말라는 원칙은 옮겨 쓸 수 있다.</p>
+<p>배포 전에는 단위 테스트만으로 부족하다. 새 코드가 새 입력에서 잘 작동해도, 과거 중간 지점의 이력을 읽지 못할 수 있기 때문이다. Temporal은 이전 코드로 만들어진 실제 Event History를 현재 코드에 replay해 호환성을 확인하는 배포 전 검증을 권한다.[3] 개인정보나 비밀정보가 든 이력을 시험에 사용할 때는 암호화와 비식별화가 별도 조건이다. 모든 이력을 무기한 보존하는 것도 답이 아니다. 대표 이력과 위험한 분기, 장기 대기 지점을 골라 회귀 세트로 관리해야 한다.</p>
+<h2>LLM 호출과 외부 행동은 재생 경계 밖에 둔다</h2>
+<p>오케스트레이션 코드는 과거와 같은 결정을 재현해야 하지만, LLM은 같은 prompt에도 다른 답을 낼 수 있다. 현재 시각, 난수, 검색 결과, 외부 데이터베이스도 replay 때 달라질 수 있다. 이런 값을 제어 흐름 안에서 직접 다시 읽으면 같은 이력에서 다른 분기가 나온다. Temporal은 API 호출, LLM 호출, 데이터베이스 질의 같은 비결정적 상호작용을 replay 경로 밖의 Activity에 두라고 안내한다.[2]</p>
+<p>핵심은 “LLM을 결정론적으로 만들라”가 아니다. 한 번 얻은 LLM 결과와 외부 호출 결과를 사건으로 기록하고, replay 때는 그 결과를 다시 사용하라는 뜻이다. 새 모델로 더 나은 답을 받고 싶다면 기존 실행의 과거를 몰래 바꾸지 말고, 명시적인 재평가 단계나 새 실행을 시작해야 한다. 그렇지 않으면 같은 실행 ID 안에서 이전 판단의 근거와 새 판단의 근거가 섞인다.</p>
+<p>부수효과 경계도 여기서 선명해진다. 파일 쓰기, 이메일 발송, 게시, 결제처럼 외부 세계를 바꾸는 행동은 orchestrator 안에서 직접 수행하지 않고 별도 작업으로 보낸다. 완료 결과가 이력에 기록되면 replay는 기록을 읽고 그 행동을 반복하지 않는다.[1] 다만 이것이 외부 시스템까지 정확히 한 번 실행됐다는 보장은 아니다. 작업은 끝났지만 완료 기록을 남기기 전에 연결이 끊길 수 있다. 이 경우에는 멱등 키, 제공자 영수증, 실제 상태 재조회이 여전히 필요하다.</p>
+<p>이 지점에서 기존 재시도 설계와의 차이가 드러난다. 재시도·멱등성은 한 외부 행동을 다시 요청해도 중복 효과를 막는 방법을 다룬다. lease와 fencing은 현재 누가 쓸 권한을 갖는가를 다룬다. fan-in은 병렬 결과를 어떤 조건으로 합칠 것인가를 다룬다. 여기서 다루는 replay와 versioning은 과거 이력을 새 코드가 같은 실행으로 계속 해석할 수 있는가가 중심이다. 네 문제는 함께 나타날 수 있지만 같은 해결책으로 합치면 안 된다.</p>
+<h2>AKM에서는 실행 버전을 지식 버전처럼 다룰 수 있다</h2>
+<p>다음은 현재 AKM에 구현돼 있다는 설명이 아니라 적용 제안이다. AKM이 장기 실행의 인계와 복구를 지원하려면 산출물의 최신본만 남기지 말고, 어떤 실행 정의가 어느 이력을 만들었는지 연결할 수 있다. 예를 들어 실행 기록에 <code>execution_id</code>, <code>workflow_version</code>, <code>code_revision</code>, <code>checkpoint_id</code>, <code>input_revision</code>, <code>last_event</code>, <code>side_effect_receipt</code>, <code>resume_policy</code>를 둔다. 사람의 승인을 기다리는 상태라면 승인 대상의 hash와 만료 조건도 함께 남긴다.</p>
+<p>변경 관리도 두 갈래로 나눈다. 과거 명령 순서를 바꾸지 않는 문구 수정 등은 호환 변경으로 검토한다. 관측 필드 추가도 런타임 명령을 만드는 API를 호출한다면 별도의 호환성 검사가 필요하다. Activity 추가, 타이머 순서 변경, 승인 위치 이동처럼 명령 흐름을 바꾸는 변경은 새 실행 버전으로 올리고, 기존 실행을 고정하거나 명시적 이관 경로를 둔다. 배포 게이트에는 대표 history replay, 오래된 checkpoint 읽기, 외부 부수효과 미실행, 승인 대기 상태 재개를 넣을 수 있다.</p>
+<p>이 설계에는 비용이 따른다. 실행 이력은 계속 커지고 민감한 입력이나 모델 출력이 섞일 수 있다. 구버전 worker를 오래 유지하면 보안 패치와 운영 부담이 늘며, 모든 중간 버전에 이관 절차를 제공하기도 어렵다. checkpoint schema가 바뀌면 코드 결정론과 별개로 역직렬화가 실패할 수 있다. 장기 실행이 배포 주기보다 훨씬 길다면 무기한 호환을 유지하기보다 안전한 중단, 사람이 확인하는 이관, 새 실행으로의 재시작이 나을 수 있다.</p>
+<p>따라서 목표는 모든 에이전트를 영원히 이어 가는 데 있지 않다. 먼저 한 실행이 배포를 몇 번 가로지를 수 있는지, 중단 뒤 어디까지 되돌려도 되는지, 어떤 외부 행동은 반복할 수 없는지 정해야 한다. 그다음 실행 버전과 이력 보존 기간을 맞춘다. 체크포인트는 멈춘 위치를 알려 주지만, 그 위치의 의미를 보존하는 것은 versioned workflow와 replay 검증이다.</p>
+<p>오래 실행되는 에이전트의 안전성은 장애가 없다는 데서 나오지 않는다. 장애와 배포 뒤에도 과거에 일어난 일을 지우지 않고, 새 코드가 이어받을 수 있는 실행만 계속하며, 호환되지 않는 경우에는 자동 진행 대신 분명하게 멈추는 데서 나온다. 새 코드를 배포하기 전 물어야 할 질문은 “테스트가 통과했는가” 하나가 아니라 “어제의 실행 이력이 오늘의 코드에서도 같은 다음 행동을 만드는가”다.</p>
+<h2>출처</h2>
+<p>[1] <a href="https://docs.temporal.io/workflows">Temporal Workflow</a> [2] <a href="https://docs.temporal.io/workflow-definition">Temporal Workflow Definition</a> [3] <a href="https://docs.temporal.io/develop/safe-deployments">Safely deploying changes to Workflow code</a> [4] <a href="https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-code-constraints">Durable orchestrator code constraints</a> [5] <a href="https://learn.microsoft.com/en-us/azure/durable-task/common/durable-orchestration-versioning">Durable Orchestration Versioning</a></p>
+            </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/minouk-lim-and-the-voices-and-warmth-of-the-city/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>임민욱의 비디오에 남은 도시의 목소리와 체온</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>
