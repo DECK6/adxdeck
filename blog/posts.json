@@ -1,5 +1,38 @@
 [
   {
+    "slug": "sound-crosses-the-wall-brandon-labelle-and-acoustic-territories",
+    "file": "_built/sound-crosses-the-wall-brandon-labelle-and-acoustic-territories.md",
+    "title": "소리는 벽보다 먼저 경계를 넘는다: 브랜던 라벨의 음향적 영토",
+    "description": "브랜던 라벨의 음향적 영토와 소닉 에이전시를 따라 소리가 공간의 경계, 공공성, 발언권을 어떻게 조직하는지 미디어아트의 관점에서 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "media-theorist",
+      "brandon-labelle",
+      "sound-art",
+      "sound-studies",
+      "listening"
+    ],
+    "date": "2026-09-18",
+    "modified": "2026-09-18",
+    "thumbnail": "images/sound-crosses-the-wall-brandon-labelle-and-acoustic-territories-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-art",
+      "media-theory",
+      "media-theorist",
+      "brandon-labelle",
+      "sound-art",
+      "sound-studies",
+      "listening"
+    ]
+  },
+  {
     "slug": "can-a-long-running-agent-survive-a-code-change",
     "file": "_built/can-a-long-running-agent-survive-a-code-change.md",
     "title": "오래 실행 중인 에이전트에 새 코드를 배포해도 되는가",
