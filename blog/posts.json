@@ -1,5 +1,36 @@
 [
   {
+    "slug": "ryoichi-kurokawa-and-composed-audiovisual-time",
+    "file": "_built/ryoichi-kurokawa-and-composed-audiovisual-time.md",
+    "title": "쿠로카와 료이치의 시간 조각은 어떻게 전시되는가",
+    "description": "쿠로카와 료이치의 《Rheo》와 《unfold》를 통해 공연의 시간과 반복 설치의 시간을 비교한다. 천체물리 데이터를 소리·영상·진동으로 옮기는 과정에서 과학적 근거와 예술적 구성을 구분하고, 오디오비주얼 작품의 전시·기록 조건을 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "international-artist",
+      "ryoichi-kurokawa",
+      "audiovisual",
+      "time-sculpture",
+      "art-science"
+    ],
+    "date": "2026-09-19",
+    "modified": "2026-09-19",
+    "thumbnail": "images/ryoichi-kurokawa-and-composed-audiovisual-time-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "international-artist",
+      "ryoichi-kurokawa",
+      "audiovisual",
+      "time-sculpture",
+      "art-science"
+    ]
+  },
+  {
     "slug": "ontology-competency-questions-as-a-work-contract",
     "file": "_built/ontology-competency-questions-as-a-work-contract.md",
     "title": "업무 질문이 온톨로지의 계약이 되는 순간",
