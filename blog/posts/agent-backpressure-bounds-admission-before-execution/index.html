@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>에이전트 작업이 밀릴 때 대기열부터 제한하기 | DEXA Blog</title>
+    <meta name="description" content="생성 속도보다 검토·색인·외부 API가 느린 에이전트 업무에서 실행 수와 대기 작업을 구분하고, 생산자 앞의 입장 상한·거절·병합·종료 정책을 설계하는 방법을 살펴본다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/agent-backpressure-bounds-admission-before-execution/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="에이전트 작업이 밀릴 때 대기열부터 제한하기" />
+    <meta property="og:description" content="생성 속도보다 검토·색인·외부 API가 느린 에이전트 업무에서 실행 수와 대기 작업을 구분하고, 생산자 앞의 입장 상한·거절·병합·종료 정책을 설계하는 방법을 살펴본다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/agent-backpressure-bounds-admission-before-execution/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/agent-backpressure-bounds-admission-before-execution-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-09-19" />
+    <meta property="article:modified_time" content="2026-09-19" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="ai-ax" />
+    <meta property="article:tag" content="agent-runtime" />
+    <meta property="article:tag" content="backpressure" />
+    <meta property="article:tag" content="work-design" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="에이전트 작업이 밀릴 때 대기열부터 제한하기" />
+    <meta name="twitter:description" content="생성 속도보다 검토·색인·외부 API가 느린 에이전트 업무에서 실행 수와 대기 작업을 구분하고, 생산자 앞의 입장 상한·거절·병합·종료 정책을 설계하는 방법을 살펴본다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/agent-backpressure-bounds-admission-before-execution-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"에이전트 작업이 밀릴 때 대기열부터 제한하기","description":"생성 속도보다 검토·색인·외부 API가 느린 에이전트 업무에서 실행 수와 대기 작업을 구분하고, 생산자 앞의 입장 상한·거절·병합·종료 정책을 설계하는 방법을 살펴본다.","image":"https://dexa.art/blog/images/agent-backpressure-bounds-admission-before-execution-cover.png","datePublished":"2026-09-19","dateModified":"2026-09-19","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/agent-backpressure-bounds-admission-before-execution/"},"articleSection":"AI · AX","keywords":"ai-ax, agent-runtime, backpressure, work-design"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.09.19</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>에이전트 작업이 밀릴 때 대기열부터 제한하기</h1>
+                <p style="color:var(--muted);font-size:17px;">생성 속도보다 검토·색인·외부 API가 느린 에이전트 업무에서 실행 수와 대기 작업을 구분하고, 생산자 앞의 입장 상한·거절·병합·종료 정책을 설계하는 방법을 살펴본다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">ai-ax</span><span class="dx-tag-chip">agent-runtime</span><span class="dx-tag-chip">backpressure</span><span class="dx-tag-chip">work-design</span></div>
+<p><img src="/blog/images/agent-backpressure-bounds-admission-before-execution-cover.png" alt="좁은 입구를 통과한 작업 카드만 제한된 실행 슬롯으로 이동하고 나머지는 앞에서 기다리는 모습을 그린 추상 개념 이미지" loading="lazy"></p>
+<p><em>AI로 생성한 개념 이미지이며, 실제 운영 대시보드나 성능 측정 결과가 아니다.</em></p>
+<p>문서 갱신 에이전트가 새 자료를 빠르게 읽고 수정안을 만든다고 해 보자. 모델 생성은 몇 초 만에 끝나지만, 다음 단계의 사실 검토에는 사람이 필요하다. 색인 갱신은 한 번에 처리할 수 있는 양이 적고, 외부 API도 호출 제한이 있다. 생성기는 일이 끝났다고 보고 곧바로 다음 문서를 집어 든다. 오전에는 빨라 보이던 흐름이 오후가 되면 검토 대기 목록, 아직 회수하지 않은 비동기 작업, 재시도 예약으로 흩어진다.</p>
+<p>이때 실행기 수만 줄이면 CPU나 API 동시 사용량은 낮아질 수 있다. 그래도 생산자가 작업을 계속 만들면 기다리는 장소만 바뀐다. 애플리케이션 내부 목록의 일이 메시지 브로커나 데이터베이스, 외부 작업 서비스로 옮겨 갈 뿐이다. 운영자가 보지 않는 곳에 대기열이 생기면 시스템은 한동안 정상처럼 보이다가 오래된 결과와 중복 갱신을 한꺼번에 내놓는다.</p>
+<p>이 글은 에이전트가 더 영리하게 계획하는 법보다, 작업을 실행기로 넘기기 전에 얼마나 받아들일지를 다룬다. Backpressure는 AI가 새로 만든 기법이 아니다. 생산 속도가 소비 속도를 넘을 때 생산자를 기다리게 하거나 입력을 제한하는 오래된 흐름 제어 원리다. 여기서는 이 원리를 문서 갱신, 검토, 색인, 외부 API가 이어지는 AI·AX 업무에 적용한다. 아래 장면과 운영안은 DEXA의 설계 제안이며 이미 구현된 시스템이나 성능 실적이 아니다.</p>
+<h2>작업 수를 셀 때 실행 중과 대기를 섞지 않는다</h2>
+<p>운영 화면에 &quot;동시 작업 4개&quot;라고 적혀 있어도 무엇을 세는지는 제각각이다. 실행 슬롯에서 모델이나 도구를 쓰는 작업만 4개일 수 있고, 슬롯 밖에서 기다리는 작업은 수백 개일 수 있다. 반대로 대기열 길이만 보면 소비자가 이미 꺼내 처리 중인 작업은 보이지 않는다. 한 숫자로 시스템의 압력을 설명하기 어려운 이유다.</p>
+<p>운영자가 따로 적어야 할 값이 있다. 실행 동시성(running concurrency)은 지금 자원을 점유해 처리 중인 작업 수다. 대기 작업(queued work)은 받아들였지만 아직 실행을 시작하지 않은 작업이다. 속도 제한(rate limit)은 일정 시간 동안 허용하는 요청이나 토큰의 양이다. 실행 동시성은 순간 점유를, 대기열은 미완료 약속의 양을, 속도 제한은 시간당 유입을 다룬다. 서로 영향을 주지만 같은 제어 장치는 아니다.</p>
+<p>예를 들어 실행 슬롯을 4개로 묶고 대기열에는 12개까지 받는다면, 시스템이 책임지는 미완료 작업은 최대 16개라는 식으로 따로 적을 수 있다. 여기에는 재시도 예약, 사람 검토로 넘어간 항목, 외부 서비스가 접수했지만 끝내지 않은 항목을 포함할지 정해야 한다. 포함 범위가 없으면 숫자는 쉽게 좋아 보이는 쪽으로 바뀐다. 특히 사람 검토 단계가 별도 보드로 옮겨 갔다고 해서 시스템의 약속이 끝난 것은 아니다.</p>
+<p>Python 3.14.7의 <code>asyncio.Queue</code> 문서는 <code>maxsize</code>가 0 이하이면 크기가 무제한이고, 양수이면 대기열이 가득 찼을 때 <code>await put()</code>이 항목 하나가 <code>get()</code>으로 빠질 때까지 기다린다고 설명한다.[1] 여기서 <code>qsize()</code>는 대기열 안의 항목 수다. 소비자가 이미 꺼내 실행 중인 작업은 이 값에 남아 있지 않으므로, 전체 미완료 작업을 알고 싶다면 실행 중인 수나 별도의 unfinished 상태를 함께 봐야 한다. <code>qsize()</code> 하나를 전체 부하로 읽으면 실행이 느린 순간을 놓칠 수 있다.</p>
+<p>Ray 2.58.0 문서는 생산자가 처리 속도보다 계속 빨리 작업을 제출하면 pending task queue가 커져 메모리 부족으로 이어질 수 있다고 경고한다. 문서의 패턴은 <code>ray.wait()</code>로 완료된 결과를 일부 회수한 뒤 새 작업을 제출해 동시에 in-flight 상태인 작업 수를 제한한다.[2] 문서는 이 패턴을 실행 동시성 조절 수단으로 쓰는 것은 권장하지 않는다. 실제로 동시에 실행할 양은 각 작업의 자원 요구량과 스케줄러가 맡고, <code>ray.wait()</code> 패턴은 제출되어 기다리는 약속이 끝없이 늘지 않게 하는 데 초점이 있다.[2]</p>
+<p>LangGraph의 현재 Graph API 문서에는 그래프를 호출할 때 <code>max_concurrency</code>로 동시 task 수를 제어하는 설정이 나온다.[3] 이는 그래프 내부에서 한꺼번에 실행되는 양을 다루는 근거다. 문서의 해당 설정만으로 여러 호출과 외부 생산자가 만든 전역 backlog에 상한이 생긴다고 볼 근거는 없다. 그래프 앞에 무제한 <code>create_task</code>나 별도 외부 queue를 두면, 제한은 실행기 안에서만 작동하고 밀림은 그 앞에 남는다.</p>
+<p>최근 다룬 chunked prefill과도 층이 다르다. Chunked prefill은 추론 서버 안에서 긴 입력 계산을 나눠 다른 생성 요청과 배치하는 토큰 스케줄링 문제다. 이 글의 admission은 문서 갱신이나 검토 같은 업무 단위가 추론 호출과 외부 도구 실행에 들어가기 전, 시스템이 새 약속을 받을지 정하는 문제다. 서버 내부 스케줄링이 좋아져도 업무 대기열의 총량과 유효 기간이 자동으로 정해지지는 않는다.</p>
+<h2>상한은 생산자가 새 약속을 만드는 지점에 둔다</h2>
+<p>대기열 상한이 실제로 작동하려면 생산자가 그 상한을 느껴야 한다. 가득 찬 뒤에도 생산자가 작업 객체를 만들고, 입력 전체를 메모리에 올리고, 외부 브로커에 무제한 적재할 수 있다면 backpressure가 아니다. 제한된 실행기 앞에 더 큰 무제한 대기실을 하나 둔 셈이다. 입장 제어는 비싼 준비 작업과 비동기 task 생성보다 앞에 있어야 한다.</p>
+<p>입장 결과는 기다림, 명시적 거절, 병합 가운데 하나다. 소비자가 곧 자리를 낼 것으로 예상되고 생산자가 기다려도 되는 내부 흐름이라면, 빈자리가 생길 때까지 생산자를 멈춘다. 사용자 요청이나 마감이 있는 호출이라면 무작정 붙잡아 두기보다 &quot;현재 처리 한도를 넘었다&quot;는 결과와 다시 시도할 조건을 돌려줄 수 있다. 같은 대상에 대한 새 갱신이 연달아 들어오면 일부는 하나로 합칠 수 있다. 어느 쪽이 맞는지는 업무 의미에 달려 있다. queue 라이브러리의 기본 동작에 맡기지 말고 계약으로 적어야 한다.</p>
+<p>문서 갱신에서는 병합이 유용할 때가 있다. 같은 문서, 같은 권한, 같은 입력 버전을 대상으로 아직 시작하지 않은 갱신이 여러 개라면 가장 최근 요청 하나로 합치는 방안을 검토할 수 있다. 반대로 승인, 감사, 결재, 외부 발송처럼 사건 자체가 기록이어야 하는 작업은 중복처럼 보여도 버리면 안 된다. 내용이 같다는 이유만으로 서로 다른 승인자의 행위를 합치면 추적성이 사라진다. 병합 키에는 대상만이 아니라 권한, 입력 revision, 요청 목적과 보존 의무가 들어가야 한다.</p>
+<p>속도 제한도 별도로 남는다. 대기열에 빈자리가 있다고 해서 외부 API의 분당 호출 한도를 소진해도 된다는 뜻은 아니다. 반대로 분당 요청 수가 낮아도 각 작업이 오래 걸리면 실행 슬롯과 대기열은 찰 수 있다. 입장 제어는 &quot;현재 책임질 미완료 작업이 몇 개인가&quot;를 보고, rate limit은 &quot;정해진 시간 창에서 얼마나 호출했는가&quot;를 본다. 둘 중 하나만 통과해도 되는 것이 아니라 필요한 조건을 모두 통과해야 한다.</p>
+<p>상한의 단위도 업무에 맞아야 한다. 작업 1개가 짧은 메타데이터 확인일 수도 있고 수백 쪽 문서 검토일 수도 있다. 처음에는 항목 수 상한으로 시작하되, 입력 크기나 예상 비용 차이가 크면 가중치를 둘 수 있다. 예상 token 수처럼 오차가 큰 값은 정밀한 약속처럼 쓰지 않는다. 항목 수, 입력 바이트, 예상 호출 수 가운데 운영자가 설명하고 재현할 수 있는 기준을 고르는 편이 낫다.</p>
+<p>전체 시스템 admission과 개별 실행기 상한도 구분한다. 모델 실행기, 색인기, 외부 API별로 대기열을 제한해도 한 요청이 여러 단계를 동시에 예약하면 전체 미완료 약속이 커질 수 있다. 시스템 입구에는 전체 요청 수와 사용자·프로젝트별 몫을 보는 제어가 필요하고, 각 단계에는 자신이 보호할 자원에 맞는 더 작은 상한이 필요하다. 한 단계의 semaphore를 전체 안정성 보장으로 소개해서는 안 된다.</p>
+<p>상한을 낮출수록 무조건 좋은 것도 아니다. 너무 보수적인 입장 제한은 실행기가 비는 순간에도 새 작업 준비가 늦어져 처리량을 떨어뜨릴 수 있다. 짧은 작업 뒤에 긴 작업이 줄을 서면 공정성 문제가 생기고, 사용자별 고정 몫은 남는 용량을 낭비할 수 있다. 따라서 상한은 안전 숫자 하나를 선언하는 일이 아니라, 허용할 대기와 메모리, 외부 한도, 작업 크기 분포를 보고 조정하는 운영 값이다. 이 글은 특정 수치를 권하지 않으며 별도의 성능 측정을 수행하지 않았다.</p>
+<h2>오래 기다린 작업은 실행 전에 다시 판정한다</h2>
+<p>대기열이 유한해도 기다린 작업이 계속 유효한 것은 아니다. 그사이 문서가 바뀌거나 사용자가 요청을 취소할 수 있고, 승인 기한도 지난다. 오래된 작업을 그대로 실행하면 최신 내용을 옛 입력으로 덮거나 이미 끝난 검토를 다시 열 수 있다. 그래서 queue length와 함께 queue age를 봐야 한다. 평균 대기 시간은 가장 오래 묶인 작업 하나를 숨길 수 있으므로 최대 age와 기한 초과 항목도 따로 본다.</p>
+<p>각 작업에는 최소한 입력 revision과 접수 시각, deadline 또는 유효 기간을 붙인다. 실행 슬롯을 얻은 순간 현재 revision을 다시 비교하고, 달라졌다면 무조건 실행하지 않는다. 최신 요청과 합칠 수 있는지, 새 입력으로 다시 만들지, 오래된 요청으로 명시적으로 종료할지 판단한다. 여기서 <code>deadline expired</code>는 단순 삭제 사유가 아니다. 만료 뒤의 처분(disposition)을 <code>rejected</code>, <code>superseded</code>, <code>cancelled</code>, <code>needs-human-review</code>처럼 남겨야 요청자가 결과를 기다릴지 다시 제출할지 알 수 있다.</p>
+<p>재시도는 새 작업을 만드는 지름길이 되기 쉽다. 단계마다 3회 재시도를 허용한다는 식으로만 설계하면 여러 단계와 하위 에이전트에서 횟수가 곱해질 수 있다. 원 요청에 재시도 총예산을 두고, 어떤 단계가 얼마를 썼는지 이어받게 해야 한다. 외부 API가 이미 요청을 접수했는지 불분명한 경우에는 같은 작업을 다시 보내기 전에 idempotency나 조회 경로를 확인한다. 실패를 빨리 복제하는 것은 복구가 아니다.</p>
+<p>사람 검토 단계는 대기열 밖의 예외가 아니다. 모델이 초안을 만든 뒤 사람이 승인해야 완료된다면, 검토 중인 항목도 시스템이 책임지는 미완료 작업이다. 검토자에게 넘어간 시각, 현재 담당자, 입력 revision, 승인 기한을 남기고 새 갱신이 들어왔을 때 기존 검토를 유지할지 교체할지 정한다. 최신 초안이 왔다는 이유로 이미 진행된 감사나 승인 사건을 조용히 폐기해서는 안 된다.</p>
+<p>수락(accepted)과 성공(successful)도 다른 상태다. 대기열이 작업을 받았다는 응답은 입장 계약이 성립했다는 뜻이지, 사실 검토와 색인 반영이 끝났다는 뜻이 아니다. 외부 작업 API가 receipt ID를 돌려준 순간도 마찬가지다. 접수, 실행 시작, 단계 완료, 최종 성공, 실패와 취소를 분리해야 한다. 이 구분이 없으면 대시보드의 &quot;처리됨&quot;이 대기열에서 꺼냈다는 뜻인지 실제 결과가 반영됐다는 뜻인지 알 수 없다.</p>
+<p>Python의 queue 종료 동작은 이 차이를 잘 보여 준다. Python 3.13에 추가된 <code>Queue.shutdown()</code>은 기본 모드에서 더 이상 새 항목을 받지 않으면서 이미 들어온 항목을 <code>get()</code>으로 꺼내 정상적으로 비울 수 있다.[1] 반면 <code>immediate=True</code>는 대기열을 즉시 비우고, 실제 작업이 끝나지 않았어도 <code>join()</code>을 해제할 수 있어 문서가 주의를 요구한다.[1] 종료 대기가 풀렸다는 사실을 작업 성공으로 기록하면 안 된다.</p>
+<p>운영에서는 drain과 cancel을 명시적으로 고른다. 배포나 짧은 점검이라면 새 입장을 닫고 접수된 작업을 끝내는 drain이 맞을 수 있다. 잘못된 입력이 대량 유입됐거나 권한이 철회됐다면 실행 전 항목을 취소해야 할 수 있다. 이미 외부 부작용을 낸 작업은 queue에서 지운다고 되돌아가지 않는다. 취소 대상, 이미 시작한 단계, 보상 조치, 최종 disposition을 남겨야 한다. 프로세스 종료 방식이 업무 의미를 대신 결정하게 두지 않는다.</p>
+<h2>DEXA 업무에는 입장 기록과 완료 증거를 함께 둔다</h2>
+<p>DEXA의 문서 갱신·검토 흐름에 적용한다면, 입구에서 먼저 작업 계약을 만든다. 대상 문서와 입력 revision, 요청 권한, deadline, 중복 병합 가능 여부, 사람 검토 필요 여부, 재시도 총예산을 기록한다. 그다음 전체 admission과 단계별 상한을 확인한다. 통과하지 못한 작업은 기다리게 할지 거절할지 분명한 상태를 돌려준다. 이는 공개된 구현 설명이 아니라 앞으로 검증할 설계안이다.</p>
+<p>대시보드에는 running과 queued를 한 숫자로 합치지 않는다. 단계별 실행 수, 대기열 길이, 가장 오래 기다린 작업의 age, revision 불일치 수, deadline이 지난 작업과 그 disposition을 나란히 둔다. 재시도는 시도 횟수보다 남은 총예산을 보여 주는 편이 판단에 유리하다. 사람 검토 항목은 별도 색으로 숨기기보다 미완료 작업의 한 단계로 표시한다.</p>
+<p>입장 기록은 내용의 품질 보증서가 아니다. AKM에서 왔거나 특정 분류를 통과했고 대기열에 접수됐더라도, 근거의 자격이나 최신성이 자동으로 높아지지는 않는다. 실행 직전에도 입력 revision과 출처 날짜를 다시 확인하고, 결과를 반영하기 전에는 인용 근거와 승인 상태를 검증한다. Backpressure는 작업량을 통제할 뿐, 낡은 자료를 최신으로 만들거나 약한 근거를 강하게 만들지 않는다.</p>
+<p>가상의 운영 시험은 빠른 모델 생성과 느린 사람 검토가 만나는 작은 흐름으로 시작할 수 있다. 같은 문서에 갱신 요청을 연속으로 넣어 권한과 revision이 같은 미실행 요청만 병합되는지 본다. 승인 사건은 병합되지 않는지, deadline이 지난 작업에 처분 상태가 남는지, 재시도 총예산이 하위 단계로 이어지는지도 확인한다. 종료 시험에서는 새 입장을 닫고 drain한 경우와 즉시 cancel한 경우의 결과를 구분한다. 이 시험은 처리량 성과를 증명하는 실험이 아니라 상태 계약이 지켜지는지 보는 기능 검증이다.</p>
+<p>기능 검증을 마친 뒤 상한을 조정한다. 완료 건수만 봐서는 부족하다. queue age가 계속 늘어나는지, 실행기는 놀고 있는데 admission이 막히는지, 병합 때문에 보존해야 할 감사 사건이 사라지지 않았는지 살핀다. 거절률이 높다면 상한을 무작정 늘리기 전에 생산 빈도와 업무 우선순위를 바꿀 수 있다. 반대로 메모리와 외부 한도에 여유가 있고 실행기가 자주 빈다면 준비 구간이나 상한이 지나치게 보수적인지 확인한다.</p>
+<p>이 설계는 안정성을 위해 일부 즉시성을 포기한다. 요청자는 기다리거나 명시적인 거절을 받을 수 있고, 운영자는 만료와 병합 규칙을 관리해야 한다. 대신 시스템이 이미 감당하지 못하는 일을 계속 수락해 실패를 나중으로 미루는 상황을 줄인다. 에이전트가 빠르게 생성한다는 사실보다, 아직 끝내지 못한 약속을 셀 수 있고 그 약속을 어디까지 받을지 정할 수 있는지가 먼저다.</p>
+<p>작은 업무를 고르고 평가 기준을 만드는 방법은 <a href="https://dexa.art/blog/ax/">AX 실무 가이드</a>에서 이어 볼 수 있다. 첫 시험에서는 실행 동시성, 대기 작업, 시간당 호출을 각각 적고, 생산자가 실제로 멈추거나 거절을 받는 지점을 확인하면 된다. 제한이 실행기 뒤에 숨어 있다면 대기열부터 앞으로 옮겨야 한다.</p>
+<h2>참고 자료</h2>
+<ul><li>[1] Python Software Foundation, <a href="https://docs.python.org/3.14/library/asyncio-queue.html"><code>asyncio</code> Queues</a>, Python 3.14.7 문서, 2026-09-19 확인. <code>maxsize</code>, <code>put()</code>, <code>qsize()</code>, <code>join()</code>, <code>shutdown()</code>의 의미를 확인했다. <code>shutdown()</code>은 Python 3.13에 추가됐으며, 실제 적용 전 설치 버전의 동작을 다시 확인해야 한다.</li><li>[2] Ray, <a href="https://docs.ray.io/en/releases-2.58.0/ray-core/patterns/limit-pending-tasks.html">Pattern: Using ray.wait to limit the number of pending tasks</a>, Ray 2.58.0 문서, 2026-09-19 확인. pending/in-flight 작업 제한과 실행 동시성·자원 요구량의 구분을 확인했다.</li><li>[3] LangChain, <a href="https://docs.langchain.com/oss/python/langgraph/use-graph-api#set-max-concurrency">Use the graph API</a>, 2026-09-19 확인. <code>max_concurrency</code>가 그래프 호출의 동시 task 수를 제어한다는 설명을 사용했다. 현재 문서는 갱신될 수 있으므로 실제 적용 시 설치 버전의 API와 범위를 확인해야 한다.</li></ul>
+            </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/ryoichi-kurokawa-and-composed-audiovisual-time/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>쿠로카와 료이치의 시간 조각은 어떻게 전시되는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>

@@ -1,5 +1,24 @@
 [
   {
+    "slug": "agent-backpressure-bounds-admission-before-execution",
+    "file": "_built/agent-backpressure-bounds-admission-before-execution.md",
+    "title": "에이전트 작업이 밀릴 때 대기열부터 제한하기",
+    "description": "생성 속도보다 검토·색인·외부 API가 느린 에이전트 업무에서 실행 수와 대기 작업을 구분하고, 생산자 앞의 입장 상한·거절·병합·종료 정책을 설계하는 방법을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "agent-runtime",
+      "backpressure",
+      "work-design"
+    ],
+    "date": "2026-09-19",
+    "modified": "2026-09-19",
+    "thumbnail": "images/agent-backpressure-bounds-admission-before-execution-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "ryoichi-kurokawa-and-composed-audiovisual-time",
     "file": "_built/ryoichi-kurokawa-and-composed-audiovisual-time.md",
     "title": "쿠로카와 료이치의 시간 조각은 어떻게 전시되는가",
