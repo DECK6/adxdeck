@@ -1,5 +1,36 @@
 [
   {
+    "slug": "isea-as-a-nomadic-media-art-institution",
+    "file": "_built/isea-as-a-nomadic-media-art-institution.md",
+    "title": "도시를 옮겨 다니는 미디어아트 기관: ISEA의 순회형 인프라",
+    "description": "ISEA가 고정 건물 대신 국제 조직, 개최지의 호스트 기관, 학술 발표와 전시, 장기 아카이브를 연결해 미디어아트의 순회형 인프라를 만드는 방식을 살핀다. 이동성이 지역의 관점을 넓히는 가능성과 접근 격차를 함께 검토한다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "institution",
+      "ISEA",
+      "electronic-art",
+      "symposium",
+      "archive"
+    ],
+    "date": "2026-09-20",
+    "modified": "2026-09-20",
+    "thumbnail": "images/isea-as-a-nomadic-media-art-institution-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-art",
+      "institution",
+      "ISEA",
+      "electronic-art",
+      "symposium",
+      "archive"
+    ]
+  },
+  {
     "slug": "agent-backpressure-bounds-admission-before-execution",
     "file": "_built/agent-backpressure-bounds-admission-before-execution.md",
     "title": "에이전트 작업이 밀릴 때 대기열부터 제한하기",
