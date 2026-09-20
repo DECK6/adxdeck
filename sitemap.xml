@@ -61,6 +61,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dexa.art/blog/posts/retrieved-documents-are-data-not-instructions/</loc>
+    <lastmod>2026-09-20</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dexa.art/blog/posts/agent-backpressure-bounds-admission-before-execution/</loc>
     <lastmod>2026-09-19</lastmod>
     <priority>0.8</priority>

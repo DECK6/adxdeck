@@ -31,6 +31,26 @@
     ]
   },
   {
+    "slug": "retrieved-documents-are-data-not-instructions",
+    "file": "_built/retrieved-documents-are-data-not-instructions.md",
+    "title": "검색된 문서는 명령이 아니다: AI 지식 파이프라인의 신뢰 경계",
+    "description": "검색 문서와 도구 결과에 섞인 지시가 에이전트의 계획과 권한으로 바뀌지 않도록, 간접 프롬프트 주입의 위협과 데이터·제어 분리 원칙을 AKM과 사내 RAG 업무에 연결한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "knowledge-management",
+      "rag",
+      "prompt-injection",
+      "security"
+    ],
+    "date": "2026-09-20",
+    "modified": "2026-09-20",
+    "thumbnail": "images/retrieved-documents-are-data-not-instructions-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "agent-backpressure-bounds-admission-before-execution",
     "file": "_built/agent-backpressure-bounds-admission-before-execution.md",
     "title": "에이전트 작업이 밀릴 때 대기열부터 제한하기",

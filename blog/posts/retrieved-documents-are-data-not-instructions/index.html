@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>검색된 문서는 명령이 아니다: AI 지식 파이프라인의 신뢰 경계 | DEXA Blog</title>
+    <meta name="description" content="검색 문서와 도구 결과에 섞인 지시가 에이전트의 계획과 권한으로 바뀌지 않도록, 간접 프롬프트 주입의 위협과 데이터·제어 분리 원칙을 AKM과 사내 RAG 업무에 연결한다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/retrieved-documents-are-data-not-instructions/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="검색된 문서는 명령이 아니다: AI 지식 파이프라인의 신뢰 경계" />
+    <meta property="og:description" content="검색 문서와 도구 결과에 섞인 지시가 에이전트의 계획과 권한으로 바뀌지 않도록, 간접 프롬프트 주입의 위협과 데이터·제어 분리 원칙을 AKM과 사내 RAG 업무에 연결한다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/retrieved-documents-are-data-not-instructions/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/retrieved-documents-are-data-not-instructions-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-09-20" />
+    <meta property="article:modified_time" content="2026-09-20" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="ai-ax" />
+    <meta property="article:tag" content="knowledge-management" />
+    <meta property="article:tag" content="rag" />
+    <meta property="article:tag" content="prompt-injection" />
+    <meta property="article:tag" content="security" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="검색된 문서는 명령이 아니다: AI 지식 파이프라인의 신뢰 경계" />
+    <meta name="twitter:description" content="검색 문서와 도구 결과에 섞인 지시가 에이전트의 계획과 권한으로 바뀌지 않도록, 간접 프롬프트 주입의 위협과 데이터·제어 분리 원칙을 AKM과 사내 RAG 업무에 연결한다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/retrieved-documents-are-data-not-instructions-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"검색된 문서는 명령이 아니다: AI 지식 파이프라인의 신뢰 경계","description":"검색 문서와 도구 결과에 섞인 지시가 에이전트의 계획과 권한으로 바뀌지 않도록, 간접 프롬프트 주입의 위협과 데이터·제어 분리 원칙을 AKM과 사내 RAG 업무에 연결한다.","image":"https://dexa.art/blog/images/retrieved-documents-are-data-not-instructions-cover.png","datePublished":"2026-09-20","dateModified":"2026-09-20","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/retrieved-documents-are-data-not-instructions/"},"articleSection":"AI · AX","keywords":"ai-ax, knowledge-management, rag, prompt-injection, security"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.09.20</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>검색된 문서는 명령이 아니다: AI 지식 파이프라인의 신뢰 경계</h1>
+                <p style="color:var(--muted);font-size:17px;">검색 문서와 도구 결과에 섞인 지시가 에이전트의 계획과 권한으로 바뀌지 않도록, 간접 프롬프트 주입의 위협과 데이터·제어 분리 원칙을 AKM과 사내 RAG 업무에 연결한다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">ai-ax</span><span class="dx-tag-chip">knowledge-management</span><span class="dx-tag-chip">rag</span><span class="dx-tag-chip">prompt-injection</span><span class="dx-tag-chip">security</span></div>
+<p><img src="/blog/images/retrieved-documents-are-data-not-instructions-cover.png" alt="아래쪽 자료 처리 경로와 위쪽의 고정된 제어 경로를 분리하고 실행 앞에 경계를 둔 추상 개념 이미지" loading="lazy"></p>
+<p><em>AI로 생성한 개념 이미지이며, 실제 제품 화면이나 검증된 보안 시스템의 기록이 아니다.</em></p>
+<p>회의록에서 고객이 요청한 자료를 찾아 전달할 초안을 만드는 에이전트를 생각해 보자. 검색 결과에는 회의 내용뿐 아니라 첨부 문서, 외부 링크, 다른 사람이 남긴 메모도 들어 있다. 그중 한 문서가 수신자를 바꾸거나 추가 자료를 가져오라고 요구한다면, 에이전트는 그 문장을 회의의 기록으로 읽어야 할까, 지금 수행할 지시로 읽어야 할까.</p>
+<p>사람에게는 문서 작성자와 현재 업무 지시자가 다르다는 사실이 비교적 분명하다. 그러나 두 사람의 문장이 한 모델 문맥에 들어가면, 시스템은 그 차이를 끝까지 유지해야 한다. 검색이 정확했다고 해서 검색된 내용에 실행 권한까지 생기는 것은 아니다. 출처가 달린 답변도 잘못된 지시를 따라 만든 결과일 수 있다.</p>
+<p>이것이 간접 프롬프트 주입(indirect prompt injection)을 지식 관리의 문제로도 다뤄야 하는 이유다. 외부 자료를 더 잘 읽게 만드는 작업과, 그 자료가 에이전트의 행동을 어디까지 바꿀 수 있는지 정하는 작업을 함께 진행해야 한다. 이 글은 최근 연구와 보안 지침을 바탕으로 그 경계를 설명한다. 뒤의 AKM 적용안과 회의록 장면은 DEXA의 설계 제안이며, 특정 운영 시스템의 구현이나 방어 성능을 보고하는 내용은 아니다.</p>
+<h2>문서의 신뢰도와 지시할 권한은 다르다</h2>
+<p>간접 주입은 사용자가 직접 모델을 설득하는 상황과 구별된다. 사용자가 맡긴 정상 업무를 수행하는 도중, 검색 페이지나 이메일, 도구 반환값 같은 외부 데이터가 행동을 바꾸는 통로가 된다. OWASP의 2025년 프롬프트 주입 지침은 RAG와 미세조정이 관련성과 정확성을 높이는 데 도움을 줄 수 있어도 이 취약성을 완전히 해소하지는 못한다고 설명한다. 사람이 눈으로 읽기 어려운 표현이라도 모델이 처리한다면 입력 경계에 포함해야 한다.[1]</p>
+<p>여기서 비신뢰라는 말은 그 문서가 거짓이라는 뜻이 아니다. 공식 기관의 정확한 문서도 에이전트의 도구 권한이나 수신자 목록을 정할 권한은 없을 수 있다. 반대로 사용자의 유효한 업무 지시에도 사실 오류가 있을 수 있다. 내용의 사실성, 출처의 권위, 현재 실행을 지시할 권한은 별도로 판단해야 한다.</p>
+<p>가령 회사가 승인한 출장 규정은 비용 계산의 근거가 될 수 있다. 그렇다고 그 PDF 본문에 있는 모든 명령형 문장을 에이전트 설정으로 적용할 수는 없다. 규정의 내용을 업무에 적용하는 것은 승인된 절차가 맡고, 문서가 스스로 검색 범위를 넓히거나 외부 전송을 허용하게 두지는 않는 식이다. 문서의 유효 기간을 관리하는 일과 이 경계도 다르다. 최신 승인본인지 확인한 뒤에도, 어떤 용도로 읽고 어떤 행동에는 사용할 수 없는지를 정해야 한다.</p>
+<p>AgentDojo의 2024년 연구는 이러한 문제를 정상 업무와 공격 과제가 함께 있는 환경에서 평가했다. 논문이 제시한 환경에는 이메일 관리와 여행 예약 등을 포함한 97개 업무, 629개 보안 테스트 사례가 있다. 저자들은 당시 모델들이 공격이 없는 기본 업무에서도 실패하며, 공격 또한 모든 보안 속성을 동일하게 깨뜨리는 것은 아니라고 보고한다.[2] 따라서 공격 문장 몇 개를 거절했다는 관찰만으로 사내 RAG 전체를 안전하다고 판정할 수 없다. 정상 업무를 얼마나 수행했는지와 허용되지 않은 행동을 했는지를 함께 봐야 한다.</p>
+<h2>계획을 세우는 경로와 자료를 읽는 경로</h2>
+<p>시스템 프롬프트에 외부 지시를 따르지 말라고 적고, 검색 결과를 별도 구역에 넣는 것은 유용한 출발점이다. 하지만 구분자를 넣었다는 사실이 권한 분리를 보장하지는 않는다. 모델이 같은 문맥을 읽고 계획 수정과 도구 호출까지 맡는다면, 경계를 지키는 마지막 판단도 모델의 해석에 남는다.</p>
+<p>2025년 논문 <em>Defeating Prompt Injections by Design</em>이 제안한 CaMeL은 이 부담을 시스템 구조로 옮긴다. 신뢰된 사용자 요청으로 계획을 만드는 Privileged LLM과, 외부 내용을 읽는 Quarantined LLM을 분리한다. 계획을 만드는 모델은 잠재적으로 오염된 문서 본문을 직접 보지 않는다. 외부 내용을 읽는 모델은 계획이 요청한 정보를 추출하는 역할을 맡는다.[3]</p>
+<p>모델 둘을 나누는 것만으로 문제를 해결했다고 보지는 않는다. 회의록에서 문서 이름과 수신자를 추출하도록 했을 때, 읽기 담당 모델이 잘못된 문서 이름이나 주소를 반환할 수 있다. 상위 계획의 단계가 그대로여도 도구 인자가 바뀌면 다른 파일을 다른 사람에게 보낼 수 있다. CaMeL 논문은 이 사례로 계획 격리만으로 부족한 이유를 설명한다.[3]</p>
+<p>그래서 CaMeL은 값의 출처와 의존 관계를 추적하고, 그 값이 어떤 도구와 전달 대상에 사용될 수 있는지를 보안 정책으로 검사한다. 여기서 capability는 모델이 글을 잘 쓰는 능력이 아니라, 데이터에 연결된 허용 범위를 뜻한다. 해석기는 도구 호출 전에 정책을 확인하며, 비신뢰 자료에서 나온 값이 허용되지 않은 정보 흐름을 만들지 못하도록 제한한다. 제어 흐름을 분리하는 일과 도구 인자를 검사하는 일이 함께 필요한 설계다.[3]</p>
+<p>실무에서 먼저 살필 것은 모델 수가 아니라, 검색된 내용이 새 계획이나 실행 권한을 만들 수 있는 경로다. 자료를 읽는 작업에는 읽기 기능만 주고, 외부 전송에 필요한 대상과 범위는 별도의 신뢰된 입력과 정책으로 확인할 수 있다. 조직의 승인된 절차가 문서 내용을 일정한 규칙으로 해석하는 것은 가능하다. 다만 문서가 자신의 문장만으로 그 절차를 바꿀 수는 없어야 한다.</p>
+<p>이 분리에는 비용이 따른다. 자료를 보며 계획을 유연하게 수정해야 하는 업무에서는 허용된 재계획 경로를 따로 마련해야 한다. 출처를 잃지 않으려면 추출·요약·변환 단계의 의존 관계를 유지해야 하고, 정책이 너무 좁으면 정상 업무도 자주 중단된다. OWASP가 최소 권한, 외부 콘텐츠 구분, 고위험 행동의 사람 승인, 적대적 시험을 함께 권고하는 것도 방어를 한 문장에 맡기지 않기 위한 접근으로 읽을 수 있다.[1]</p>
+<h2>AKM에서 요약을 거쳐도 권한이 생기지 않게 하기</h2>
+<p>AKM과 사내 지식 파이프라인에는 원문을 수집하고 요약한 뒤, 다른 작업의 문맥으로 재사용하는 흐름이 있다. 이때 주의할 부분은 요약 과정에서 생기는 권한 변화다. 외부 자료 속 요청이 요약 노트의 권고로 바뀌고, 다음 에이전트가 그 권고를 상시 규칙으로 읽는다면 원문과 지시의 경계가 사라진다. 사람이 읽기 좋은 문장으로 정리했다는 이유만으로 출처의 권한이 높아져서는 안 된다.</p>
+<p>다음은 이를 막기 위해 제안하는 작은 설계다. 자료를 저장할 때 출처 식별자와 원본 버전, 추출·요약 방법을 남긴다. 그 자료가 사실 근거인지, 외부 의견인지, 조직이 승인한 운영 지침인지도 구별한다. 다만 이런 라벨 자체를 문서 작성자가 마음대로 선언하게 두면 같은 문제가 반복된다. 라벨을 부여하는 주체와 허용 정책은 자료 본문 밖에서 관리해야 한다.</p>
+<p>회의록 요약이라면 고객이 요청한 자료명은 추출 결과로 보존할 수 있다. 이후 발송 준비 단계에서는 해당 자료를 그 고객에게 제공해도 되는지 확인한다. 수신자 주소도 회의록에서 발견한 문자열이라는 이유만으로 승인된 주소가 되지 않는다. 신뢰된 연락처나 담당자의 확인과 대조하는 별도 단계가 필요하다. 문서가 제공한 값은 검토할 후보이며, 그 값의 사용 권한은 다른 근거로 결정한다.</p>
+<p>이때 남길 기록은 복잡한 보안 점수보다 업무에 가까워야 한다. 예를 들면 아래와 같다. 필드 이름은 논문의 표준이나 현재 AKM 구현이 아니라 이 글의 제안이다.</p>
+<ul><li><code>source_revision</code>: 어떤 원문 버전에서 추출한 값인가</li><li><code>derived_from</code>: 요약이나 변환이 어떤 입력에 의존하는가</li><li><code>authority_scope</code>: 이 자료가 어떤 판단의 근거로만 사용될 수 있는가</li><li><code>allowed_use</code>: 조회·초안·전송 등 어떤 단계에 사용할 수 있는가</li><li><code>approval_basis</code>: 사용 범위를 승인한 별도 정책이나 사람의 결정은 무엇인가</li></ul>
+<p>기록만 붙인다고 방어가 완성되는 것은 아니다. 실행기가 그 기록을 읽고 제한을 적용해야 한다. 외부 문서의 내용을 검토 없이 <code>approval_basis</code>에 복사한다면 데이터에 스스로 허가증을 쓰게 한 셈이다. 요약을 다시 검색해 쓰는 경우에도 원래의 출처와 제한이 남아 있는지 시험해야 한다.</p>
+<p>읽기 전용 RAG에도 이 원칙을 적용할 수 있다. 외부 전송 도구가 없으면 피해 범위는 줄어들지만, 답변 자체를 왜곡하려는 주입은 여전히 문제가 된다. 검색된 문장이 답변 지침처럼 사용되지 않게 구별하고, 중요한 주장이 원문을 충실히 반영하는지 별도로 확인해야 한다. 허용되지 않은 도구 호출을 막는 검사와 답변의 근거를 확인하는 검사는 서로 대체할 수 없다.</p>
+<h2>막은 행동과 남은 오류를 함께 기록한다</h2>
+<p>CaMeL의 주장도 범위를 좁혀 읽어야 한다. 논문은 데이터 흐름에 영향을 주지 않는 text-to-text 공격을 명시적인 비목표로 둔다. 이메일 요약을 원문과 다르게 만들지만 정보 유출로 이어지지 않는 경우가 그 예다.[3] 공개 저장소 역시 연구 재현용 산출물이며, 구현에 버그가 있거나 완전히 안전하지 않을 수 있고 공식 지원 제품이 아니라고 경고한다.[4] 논문의 설계 원리를 채택하는 일과 해당 코드를 운영 환경에 그대로 설치하는 일은 다른 결정이다.</p>
+<p>시험은 정상 문서와 변형 문서를 같은 업무에 넣어 비교하는 방식으로 시작할 수 있다. 원래 자료를 읽고 올바른 초안을 만드는지 확인한 뒤, 문서 안에 업무 범위를 바꾸려는 요청이 들어 있어도 허용되지 않은 행동으로 이어지지 않는지 살펴본다. 실제 개인정보나 전송 권한 대신 합성 자료와 실행되지 않는 도구를 사용해, 어떤 인자가 호출 후보로 만들어지는지 관찰하는 편이 안전하다. 이 절차는 벤치마크 성능의 재현이 아니라 조직별 경계를 확인하기 위한 제안이다.</p>
+<p>통과 기준에는 서로 다른 실패를 남겨야 한다. 외부 전송을 차단했지만 잘못된 요약을 만들었다면 행동 제한은 작동했고 내용 검증은 실패한 것이다. 모든 요청을 거절해 공격도 막았지만 정상 초안도 만들지 못했다면 업무 도입의 성공이라고 할 수 없다. 모델이나 문서 추출기를 바꿨을 때는 이전 결과를 그대로 승계하지 않고, 영향을 받는 입력과 행동 경계를 다시 시험해야 한다.</p>
+<p>지식 파이프라인을 점검하는 팀이라면 다음 회의에서 문서 하나를 골라 그 내용이 어디로 흘러가는지 따라가 볼 만하다. 원문에서 요약으로, 요약에서 계획으로, 계획에서 실행 인자로 넘어갈 때 누가 사용 범위를 정하는지 확인한다. 자료를 인용했다는 기록과 그 자료에 행동 권한을 준 근거를 구별할 수 없다면, 먼저 고칠 곳은 검색 순위가 아니라 그 사이의 연결이다.</p>
+<h2>참고 자료</h2>
+<p>[1] <a href="https://genai.owasp.org/llmrisk/llm01-prompt-injection/">OWASP, LLM01:2025 Prompt Injection</a>. 2025 항목, 2026-09-20 확인. RAG·미세조정의 한계와 최소 권한·외부 콘텐츠 분리·사람 승인·적대적 시험 권고.</p>
+<p>[2] <a href="https://arxiv.org/abs/2406.13352v3">AgentDojo: A Dynamic Environment to Evaluate Prompt Injection Attacks and Defenses for LLM Agents</a>. 2024-11-24 개정본. 평가 환경과 정상 업무·공격 성공의 구분.</p>
+<p>[3] <a href="https://arxiv.org/html/2503.18813v2">Defeating Prompt Injections by Design</a>. 2025-06-24 개정본, 특히 §2, §3.1, §5.1–5.4. 계획·자료 처리 분리, 보안 정책, 명시적 비목표.</p>
+<p>[4] <a href="https://github.com/google-research/camel-prompt-injection">CaMeL 공개 연구 코드와 구현상 주의사항</a>. 2026-09-20 확인. 논문 재현용 코드의 지원·보안 한계.</p>
+            </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/agent-backpressure-bounds-admission-before-execution/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>에이전트 작업이 밀릴 때 대기열부터 제한하기</span></a>
+                <a id="next-post" href="/blog/posts/isea-as-a-nomadic-media-art-institution/" class="spec-row" style="text-decoration:none;"><span>도시를 옮겨 다니는 미디어아트 기관: ISEA의 순회형 인프라</span><span class="k">NEXT →</span></a>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>
