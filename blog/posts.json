@@ -1,5 +1,34 @@
 [
   {
+    "slug": "where-must-you-stand-for-the-illusion-to-work",
+    "file": "_built/where-must-you-stand-for-the-illusion-to-work.md",
+    "title": "착시는 어디에 서 있을 때 완성되는가",
+    "description": "특정 자리에서만 복원되는 아나모픽 영상을 기술적 묘기가 아니라 관람 위치를 작품의 좌표로 삼는 제작 조건으로 읽는다. 홀바인의 왜상 해골부터 TouchDesigner의 sweetSpot·camSchnappr 문서까지, 시점을 먼저 고정해야 이미지가 성립하는 작업의 구조와 그 대가를 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "projection-mapping",
+      "anamorphic",
+      "installation",
+      "perception"
+    ],
+    "date": "2026-09-22",
+    "modified": "2026-09-22",
+    "thumbnail": "images/where-must-you-stand-for-the-illusion-to-work-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-art",
+      "projection-mapping",
+      "anamorphic",
+      "installation",
+      "perception"
+    ]
+  },
+  {
     "slug": "isea-as-a-nomadic-media-art-institution",
     "file": "_built/isea-as-a-nomadic-media-art-institution.md",
     "title": "도시를 옮겨 다니는 미디어아트 기관: ISEA의 순회형 인프라",
