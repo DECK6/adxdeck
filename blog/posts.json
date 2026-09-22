@@ -1,5 +1,36 @@
 [
   {
+    "slug": "haegue-yang-and-the-movement-of-incubated-abstraction",
+    "file": "_built/haegue-yang-and-the-movement-of-incubated-abstraction.md",
+    "title": "양혜규의 추상은 왜 출처를 숨긴 채 움직이는가",
+    "description": "양혜규의 베네치안 블라인드 설치와 소리 나는 조각을 따라, 역사적 참조가 직접 설명되지 않은 채 빛·소리·이동의 구조로 작동하는 ‘배양된 추상’을 읽는다. 감각적 몰입이 출처를 지우는 장식이 되지 않으려면 전시와 기록에서 무엇을 함께 남겨야 하는지 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "korean-media-art",
+      "haegue-yang",
+      "installation-art",
+      "abstraction",
+      "sensory-environment"
+    ],
+    "date": "2026-09-23",
+    "modified": "2026-09-23",
+    "thumbnail": "images/haegue-yang-incubated-abstraction-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "korean-media-art",
+      "haegue-yang",
+      "installation-art",
+      "abstraction",
+      "sensory-environment"
+    ]
+  },
+  {
     "slug": "moe-sparse-routing-does-not-make-a-large-model-small",
     "file": "_built/moe-sparse-routing-does-not-make-a-large-model-small.md",
     "title": "MoE의 활성 파라미터만 보면 배포 비용을 놓친다",
