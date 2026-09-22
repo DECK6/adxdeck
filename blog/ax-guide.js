@@ -8,7 +8,7 @@ const AX_TOPICS = Object.freeze([
         question: 'AI를 어디에 도입하고, 무엇을 성과로 볼까요?',
         description: '반복 업무 하나를 고르고 입력·산출물·완료 기준부터 정합니다. 초안 생성 속도뿐 아니라 사람이 검토하고 다시 작업하는 시간까지 함께 살펴봅니다.',
         action: '첫 실험: 같은 종류의 업무를 기존 방식과 AI 보조 방식으로 수행하고, 품질 기준을 통과하기까지의 시간을 비교하세요.',
-        slugs: ['choosing-a-safe-first-ax-experiment', 'ai-productivity-is-time-to-validated-outcome', 'chunked-prefill-keeps-shared-llm-responses-moving']
+        slugs: ['choosing-a-safe-first-ax-experiment', 'ai-productivity-is-time-to-validated-outcome', 'chunked-prefill-keeps-shared-llm-responses-moving', 'moe-sparse-routing-does-not-make-a-large-model-small']
     },
     {
         id: 'knowledge', label: '지식 관리와 RAG',

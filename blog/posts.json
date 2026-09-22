@@ -1,5 +1,25 @@
 [
   {
+    "slug": "moe-sparse-routing-does-not-make-a-large-model-small",
+    "file": "_built/moe-sparse-routing-does-not-make-a-large-model-small.md",
+    "title": "MoE의 활성 파라미터만 보면 배포 비용을 놓친다",
+    "description": "Mixture-of-Experts 모델이 일부 전문가만 계산하는 원리와 전체 가중치 메모리, 전문가 간 통신, 부하 쏠림을 분리해 실제 업무 도입 기준을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "model-inference",
+      "mixture-of-experts",
+      "expert-routing",
+      "workload-evaluation"
+    ],
+    "date": "2026-09-22",
+    "modified": "2026-09-22",
+    "thumbnail": "images/moe-sparse-routing-does-not-make-a-large-model-small-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "where-must-you-stand-for-the-illusion-to-work",
     "file": "_built/where-must-you-stand-for-the-illusion-to-work.md",
     "title": "착시는 어디에 서 있을 때 완성되는가",
