@@ -1,0 +1,15 @@
+소리지음 1주차 HTML 슬라이드 — 외부 구성 요소
+
+HyperFrames player and slideshow 0.8.40
+Package: https://www.npmjs.com/package/hyperframes
+License: Apache License 2.0 — https://www.apache.org/licenses/LICENSE-2.0
+The bundled runtime is included unmodified apart from HTML-safe script-tag escaping.
+
+GSAP 3.13.0
+Copyright GreenSock / Webflow
+Standard no-charge license: https://gsap.com/standard-license/
+The bundled GSAP file retains its license header.
+
+Artwork videos remain hosted by their original providers. Artist, recording creator,
+work information sources, and exact player URLs are listed in media.json and in each slide.
+Locally embedded preview images are the official player thumbnails used to identify recordings.
