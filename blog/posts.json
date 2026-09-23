@@ -1,5 +1,36 @@
 [
   {
+    "slug": "where-platforms-re-edit-the-artwork",
+    "file": "_built/where-platforms-re-edit-the-artwork.md",
+    "title": "플랫폼은 작품을 어디에서 다시 편집하는가",
+    "description": "플랫폼 미학을 유행하는 화면 스타일이 아니라 포맷, 지표, 정렬, 순환, 수정이 작품의 공개 형식을 바꾸는 과정으로 읽는다. 현장 작품과 플랫폼용 파생본을 구별하고, 알고리즘 인과를 말하기 전에 필요한 증거를 제안한다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "platform-aesthetics",
+      "platformization",
+      "interface",
+      "cultural-production"
+    ],
+    "date": "2026-09-24",
+    "modified": "2026-09-24",
+    "thumbnail": "images/where-platforms-re-edit-the-artwork-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "사회·권력",
+    "mediaArtCategorySlug": "society-power",
+    "mediaArtTags": [
+      "media-art",
+      "media-theory",
+      "platform-aesthetics",
+      "platformization",
+      "interface",
+      "cultural-production"
+    ]
+  },
+  {
     "slug": "ai-judge-is-an-instrument-not-ground-truth",
     "file": "_built/ai-judge-is-an-instrument-not-ground-truth.md",
     "title": "AI 심사위원의 한 표를 정답으로 취급하지 않는 법",
