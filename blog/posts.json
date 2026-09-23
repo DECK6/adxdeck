@@ -1,5 +1,25 @@
 [
   {
+    "slug": "ai-judge-is-an-instrument-not-ground-truth",
+    "file": "_built/ai-judge-is-an-instrument-not-ground-truth.md",
+    "title": "AI 심사위원의 한 표를 정답으로 취급하지 않는 법",
+    "description": "LLM-as-a-Judge의 위치 편향과 반복 불안정을 측정하는 방법을 살펴보고, 자동 평가를 단일 판정이 아닌 교란·불일치·근거가 남는 평가 절차로 설계한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "evaluation",
+      "llm-as-a-judge",
+      "reliability",
+      "knowledge-management"
+    ],
+    "date": "2026-09-23",
+    "modified": "2026-09-23",
+    "thumbnail": "images/ai-judge-is-an-instrument-not-ground-truth-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "haegue-yang-and-the-movement-of-incubated-abstraction",
     "file": "_built/haegue-yang-and-the-movement-of-incubated-abstraction.md",
     "title": "양혜규의 추상은 왜 출처를 숨긴 채 움직이는가",

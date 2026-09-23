@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 심사위원의 한 표를 정답으로 취급하지 않는 법 | DEXA Blog</title>
+    <meta name="description" content="LLM-as-a-Judge의 위치 편향과 반복 불안정을 측정하는 방법을 살펴보고, 자동 평가를 단일 판정이 아닌 교란·불일치·근거가 남는 평가 절차로 설계한다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/ai-judge-is-an-instrument-not-ground-truth/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="AI 심사위원의 한 표를 정답으로 취급하지 않는 법" />
+    <meta property="og:description" content="LLM-as-a-Judge의 위치 편향과 반복 불안정을 측정하는 방법을 살펴보고, 자동 평가를 단일 판정이 아닌 교란·불일치·근거가 남는 평가 절차로 설계한다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/ai-judge-is-an-instrument-not-ground-truth/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/ai-judge-is-an-instrument-not-ground-truth-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-09-23" />
+    <meta property="article:modified_time" content="2026-09-23" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="ai-ax" />
+    <meta property="article:tag" content="evaluation" />
+    <meta property="article:tag" content="llm-as-a-judge" />
+    <meta property="article:tag" content="reliability" />
+    <meta property="article:tag" content="knowledge-management" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI 심사위원의 한 표를 정답으로 취급하지 않는 법" />
+    <meta name="twitter:description" content="LLM-as-a-Judge의 위치 편향과 반복 불안정을 측정하는 방법을 살펴보고, 자동 평가를 단일 판정이 아닌 교란·불일치·근거가 남는 평가 절차로 설계한다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/ai-judge-is-an-instrument-not-ground-truth-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"AI 심사위원의 한 표를 정답으로 취급하지 않는 법","description":"LLM-as-a-Judge의 위치 편향과 반복 불안정을 측정하는 방법을 살펴보고, 자동 평가를 단일 판정이 아닌 교란·불일치·근거가 남는 평가 절차로 설계한다.","image":"https://dexa.art/blog/images/ai-judge-is-an-instrument-not-ground-truth-cover.png","datePublished":"2026-09-23","dateModified":"2026-09-23","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/ai-judge-is-an-instrument-not-ground-truth/"},"articleSection":"AI · AX","keywords":"ai-ax, evaluation, llm-as-a-judge, reliability, knowledge-management"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.09.23</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>AI 심사위원의 한 표를 정답으로 취급하지 않는 법</h1>
+                <p style="color:var(--muted);font-size:17px;">LLM-as-a-Judge의 위치 편향과 반복 불안정을 측정하는 방법을 살펴보고, 자동 평가를 단일 판정이 아닌 교란·불일치·근거가 남는 평가 절차로 설계한다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">ai-ax</span><span class="dx-tag-chip">evaluation</span><span class="dx-tag-chip">llm-as-a-judge</span><span class="dx-tag-chip">reliability</span><span class="dx-tag-chip">knowledge-management</span></div>
+<p><img src="/blog/images/ai-judge-is-an-instrument-not-ground-truth-cover.png" alt="두 답변의 순서를 바꿔 가며 빛의 균형과 흔들림을 측정하는 추상 개념 이미지" loading="lazy"></p>
+<p><em>이 글의 개념을 표현하기 위해 GPT Image 2로 생성한 이미지이며, 실제 평가 시스템 화면이나 실험 장비가 아니다.</em></p>
+<p>두 모델이 만든 업무 요약 중 어느 쪽이 나은지 확인해야 한다고 하자. 사람이 수백 건을 모두 읽기에는 시간이 부족하다. 더 강한 언어 모델에 평가 기준과 두 답변을 주고 승자를 고르게 하면 빠르게 비교표를 만들 수 있다. 비교표가 만들어지면 정답까지 생긴 듯 보이지만, 둘은 다른 일이다.</p>
+<p>LLM-as-a-Judge는 열린 답변을 대규모로 비교하는 데 쓸 만한 평가 도구다. 다만 판정 모델도 확률적 시스템이고, 답변의 내용과 무관한 배치 순서나 길이, 출처 표식에 반응할 수 있다. 따라서 판정 결과는 진실의 대리물이 아니라 특정 평가 조건에서 나온 측정치다. 측정 도구라면 먼저 교정하고, 반복했을 때 얼마나 흔들리는지 확인하며, 흔들리는 구간을 사람에게 넘겨야 한다.</p>
+<p>이 글은 2024년과 2025년에 공개된 편향 연구를 중심으로 자동 판정을 운영 가능한 평가 절차로 바꾸는 방법을 다룬다. 2023년 MT-Bench 연구는 계보로만 사용한다. 뒤의 AKM 적용은 공개 논문의 실험 결과가 아니라 DEXA의 설계 제안이다.</p>
+<h2>자동 판정은 유용하지만 조건부다</h2>
+<p>2023년 공개된 MT-Bench 연구는 강한 LLM 판정자와 사람 선호의 일치율이 80%를 넘는 조건을 보고했다. 동시에 위치 편향, 장황함 선호, 자기 답변 선호, 제한된 추론 능력을 한계로 제시했다. 이 결과는 자동 평가가 사람과 비슷한 결론을 내릴 수 있음을 보였지만, 모든 업무와 모든 판정 모델에서 80% 이상 일치한다는 보증은 아니다. 질문 집합, 답변 분포, 판정 프롬프트, 모델 버전이 바뀌면 측정 조건도 달라진다.</p>
+<p>2024년 10월 공개된 「Justice or Prejudice?」는 CALM이라는 틀로 12가지 편향을 시험했다. 답변 위치, 장황함, 권위 표식, 다수 의견, 무관한 정보, 자기 답변 선호처럼 내용 품질과 분리돼야 할 단서가 판정에 미치는 영향을 자동 교란으로 측정했다. 같은 평가 항목에서도 모델과 과제에 따라 취약한 편향이 달랐고, 더 강한 모델이 모든 편향에서 더 안정적인 것도 아니었다.</p>
+<p>편향 검사는 판정 모델이 틀렸다는 사실을 한 번에 증명하지 않는다. 답변에 가한 교란이 의미까지 건드렸다면 승자가 바뀌는 것이 당연할 수 있다. 반대로 위치만 바꾸거나 의미를 유지한 채 불필요한 표현만 늘렸는데 판정이 바뀐다면, 그 변화는 내용 품질보다 평가 형식에 민감했다는 증거가 된다. 자동 교란 자체도 의미 보존 검사를 받아야 한다.</p>
+<h2>순서를 바꾼 판정은 하나의 작은 스트레스 테스트다</h2>
+<p>Lin Shi와 동료들이 2025년 IJCNLP-AACL에 발표한 연구는 15개 LLM 판정자, 22개 과제, 약 40개 답변 생성 모델을 대상으로 15만 건이 넘는 평가 사례를 분석했다. 연구팀은 반복 안정성, 위치 일관성, 선호 공정성을 나눠 측정했다. 같은 질의를 여러 번 줬을 때 선택이 유지되는지, 두 답변의 자리를 바꿔도 같은 내용을 승자로 고르는지, 불일치가 첫 번째나 뒤쪽 위치를 일관되게 선호하는지 구별한 것이다.</p>
+<p>위치 편향은 단순한 무작위 변동만으로 설명되지 않았고, 판정 모델과 과제에 따라 크게 달랐다. 답변 길이와의 상관은 약한 반면, 두 답변의 품질 차이가 작을수록 위치 일관성이 낮아지는 경향이 강했다. 이 차이는 평가 운영에서 꽤 중요하다. 명백히 좋은 답변과 나쁜 답변을 가르는 쉬운 사례에서 안정적이었다고 해서, 배포 후보처럼 품질이 비슷한 두 답변도 안정적으로 가를 수 있다고 볼 수 없다.</p>
+<p>실무에서는 A/B 순서를 한 번 바꾸는 데서 시작하면 된다. 원래 순서와 교환한 순서에서 같은 내용이 이기면 위치 일관성이 있다. 승자가 바뀌면 그 사례를 억지로 합산해 한쪽 승리로 만들기보다 불일치로 남긴다. 확률적 샘플링을 쓰는 판정자라면 같은 조건을 반복해 반복 안정성도 따로 계산해야 한다. 순서 교환과 반복 실행은 서로 다른 문제를 측정한다.</p>
+<h2>평가 기준과 증거를 판정문 밖에 고정한다</h2>
+<p>판정 모델에 &quot;더 좋은 답변을 고르라&quot;고만 하면 모델은 자체적으로 기준을 보충한다. 문장이 매끄러운지, 설명이 긴지, 자신감이 있는지 같은 대리 신호가 사실 정확성이나 업무 적합성을 밀어낼 수 있다. 평가 전에 기준을 쪼개야 한다. 예를 들어 업무 요약이라면 사실 정확성, 출처 지지, 누락, 사용 목적 적합성을 서로 다른 축으로 둔다. 각 점수의 의미와 치명적인 실패 조건도 적는다.</p>
+<p>참조 답변이 있다고 해서 문제가 모두 해결되지는 않는다. 참조 자체가 불완전하거나 특정 표현만 허용하면 새로운 편향이 생긴다. 인용이 붙어 있다는 이유로 점수를 주는 것도 위험하다. CALM 연구는 권위 있어 보이는 표식과 가짜 인용이 판정에 영향을 줄 수 있음을 다뤘다. 출처가 있다는 형식과 실제 출처가 주장을 지지한다는 검사는 분리해야 한다.</p>
+<p>판정 모델의 설명문도 증거로 과대평가하면 안 된다. 매끄러운 이유를 출력했다고 해서 그 이유가 실제 선택 과정을 충실히 설명한다는 보장은 없다. 설명은 검토 단서로 보관하되, 판정의 재현성은 입력, 기준, 모델과 버전, 디코딩 설정, 답변 순서, 원점수로 확인한다.</p>
+<h2>AKM에서는 판정값보다 불일치 기록이 더 오래 남아야 한다</h2>
+<p>AKM에서 여러 요약 후보나 검색 결과 묶음을 비교한다고 가정해 보자. 먼저 하나의 평가 단위를 질문, 후보 답변, 근거 locator, 평가 기준 버전으로 묶는다. 판정 실행에는 판정 모델과 버전, 프롬프트 버전, 후보 순서, 반복 번호, 축별 점수, 최종 선택을 남긴다. 이 구성은 특정 AKM 시스템에 이미 구현된 기능을 설명하는 것이 아니라 평가 이력을 재현하기 위한 설계 제안이다.</p>
+<p>평균 점수보다 먼저 볼 것은 판정이 얼마나 바뀌는지다. A/B 순서를 바꿨을 때 승자가 유지되는가. 같은 입력을 반복했을 때 점수 범위가 얼마나 넓은가. 서로 다른 계열의 판정 모델이 같은 치명적 오류를 찾는가. 어느 기준에서 불일치가 집중되는가. 이 기록이 있어야 판정 모델을 바꾸거나 프롬프트를 고친 뒤 결과가 좋아진 것인지, 단순히 채점 습관이 달라진 것인지 구별할 수 있다.</p>
+<p>근거 품질은 판정 모델에게 위임하지 않는다. 주장과 출처 locator의 연결은 별도 검증 단계에서 확인하고, 판정자는 그 연결이 기준을 만족하는지 평가한다. 판정자가 직접 읽지 않은 문서의 사실성을 단정하게 두지 않는다. 검색 후보, 직접 읽은 출처, 주장 지지 여부를 분리하면 높은 점수가 낮은 신뢰도의 증거를 세탁하는 일을 막을 수 있다.</p>
+<p>자동 승인선을 단일 점수로 잡기도 어렵다. 위치 일관성과 반복 안정성이 모두 높고, 치명적 오류가 없으며, 서로 다른 판정 경로가 합의한 사례만 낮은 위험 구간으로 보낼 수 있다. 불일치, 낮은 품질 차이, 안전이나 권리처럼 비용이 큰 판단은 사람 검토 대상으로 남긴다. 사람 검토 표본은 무작위 사례뿐 아니라 판정이 흔들린 사례를 의도적으로 포함해야 한다.</p>
+<h2>판정자를 늘리는 것만으로 독립성이 생기지는 않는다</h2>
+<p>여러 판정 모델을 투표시키면 한 모델의 우연한 오류를 줄일 수 있다. 그러나 같은 학습 자료, 비슷한 후처리, 같은 프롬프트와 기준을 공유하면 오류도 함께 움직일 수 있다. 모델 수 자체가 독립성을 증명하지는 않는다. 서로 다른 계열을 섞더라도 실제 불일치율과 사람 기준에 대한 성능을 업무별로 측정해야 한다.</p>
+<p>순서 교환도 만능 해법은 아니다. 두 번의 판정이 다르면 위치 민감성을 발견할 수 있지만, 둘이 같다고 해서 판정이 사실에 맞는 것은 아니다. 장황함, 권위 표식, 자기 선호, 누락된 평가 기준은 그대로 남을 수 있다. 교란 검사는 알려진 취약점을 찾는 도구이지 모든 오류를 없애는 인증서가 아니다.</p>
+<p>그만큼 비용도 는다. 순서를 바꾸면 호출이 최소 두 배로 늘고 반복 실행, 다중 판정자, 사람 검토를 더하면 평가 비용과 지연이 커진다. 그래서 모든 결과에 같은 강도를 적용하기보다 위험과 불확실성에 따라 단계를 나누는 편이 낫다. 저위험 초안의 대량 선별과 채용, 의료, 안전 판단은 같은 승인선을 쓸 수 없다.</p>
+<h2>평가 절차는 판정이 흔들리는 곳을 보여 줘야 한다</h2>
+<p>LLM 판정자를 도입할 때 먼저 물어야 할 것은 &quot;어떤 모델이 가장 똑똑한가&quot;가 아니다. 어떤 교란에서 판정이 바뀌는지, 비슷한 품질의 답변에서 얼마나 흔들리는지, 그 불일치를 누가 검토하는지가 먼저다. 작은 사례집을 만들고 사람 기준을 고정한 뒤, 위치 교환과 반복 실행으로 판정자의 측정 특성을 기록해야 한다.</p>
+<p>자동 평가는 사람 평가를 없애는 장치보다 사람의 주의를 배분하는 장치에 가깝다. 일관된 쉬운 사례는 빠르게 통과시키고, 품질 차이가 작거나 근거가 약하거나 판정이 갈리는 사례를 사람에게 모아 준다. 이렇게 설계하면 한 표의 권위가 줄어드는 대신 평가 과정의 재현성이 높아진다. AI 심사위원에게 필요한 것은 단호한 목소리보다 언제 믿지 말아야 하는지 보여 주는 측정 기록이다.</p>
+<h2>참고 자료</h2>
+<ul><li>Lin Shi et al., <a href="https://aclanthology.org/2025.ijcnlp-long.18/">Judging the Judges: A Systematic Study of Position Bias in LLM-as-a-Judge</a>, IJCNLP-AACL 2025, pp. 292–314.</li><li>Jiayi Ye et al., <a href="https://arxiv.org/abs/2410.02736">Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge</a>, arXiv:2410.02736, 2024-10-03. 2024 NeurIPS Safe Generative AI Workshop 자료다.</li><li>Lianmin Zheng et al., <a href="https://arxiv.org/abs/2306.05685">Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena</a>, 2023-06-09. 최근 36개월 기본 범위를 벗어난 계보 자료로 사용했다.</li></ul>
+            </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/haegue-yang-and-the-movement-of-incubated-abstraction/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>양혜규의 추상은 왜 출처를 숨긴 채 움직이는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>
