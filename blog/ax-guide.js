@@ -29,7 +29,7 @@ const AX_TOPICS = Object.freeze([
         question: '그럴듯한 답과 실제로 쓸 수 있는 결과를 어떻게 구분할까요?',
         description: '출력 형식, 사실 근거, 실행 권한은 서로 다른 검사 대상입니다. 자동 검증과 사람의 판단을 나누고, 실패가 다음 운영 기준을 바꾸게 합니다.',
         action: '첫 실험: 통과·실패 사례와 승인 책임자를 먼저 정하고, 답변과 실제 근거를 분리해서 검토하세요.',
-        slugs: ['building-a-small-evaluation-set-before-ai-deployment', 'ai-judge-is-an-instrument-not-ground-truth', 'agent-completion-must-be-judged-by-changed-world-state', 'designing-abstention-rules-for-ai-systems', 'self-verification-needs-an-evidence-gate', 'format-compliance-is-not-verification', 'evaluating-evidence-beyond-fluent-reports']
+        slugs: ['building-a-small-evaluation-set-before-ai-deployment', 'ai-judge-is-an-instrument-not-ground-truth', 'when-the-score-rises-but-the-task-fails', 'agent-completion-must-be-judged-by-changed-world-state', 'designing-abstention-rules-for-ai-systems', 'self-verification-needs-an-evidence-gate', 'format-compliance-is-not-verification', 'evaluating-evidence-beyond-fluent-reports']
     },
     {
         id: 'practice', label: 'AI 활용 학습과 제작',

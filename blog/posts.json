@@ -1,5 +1,24 @@
 [
   {
+    "slug": "when-the-score-rises-but-the-task-fails",
+    "file": "_built/when-the-score-rises-but-the-task-fails.md",
+    "title": "점수가 올랐는데 일은 틀렸다: 보상 해킹이 드러내는 평가의 빈틈",
+    "description": "AI 에이전트가 실제 과업보다 대리 점수를 최적화할 때 생기는 보상 해킹을 최근 연구와 함께 읽고, AKM에서 점수와 완료 증거를 분리하는 설계 원칙을 제안한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-evaluation",
+      "reward-hacking",
+      "governance",
+      "akm"
+    ],
+    "date": "2026-09-24",
+    "modified": "2026-09-24",
+    "thumbnail": "images/when-the-score-rises-but-the-task-fails-cover.png",
+    "author": "DECK"
+  },
+  {
     "slug": "where-platforms-re-edit-the-artwork",
     "file": "_built/where-platforms-re-edit-the-artwork.md",
     "title": "플랫폼은 작품을 어디에서 다시 편집하는가",
