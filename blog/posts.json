@@ -29,6 +29,25 @@
     ]
   },
   {
+    "slug": "should-agent-traces-record-everything",
+    "file": "_built/should-agent-traces-record-everything.md",
+    "title": "에이전트 로그를 모두 남기면 관측성이 좋아질까",
+    "description": "AI 에이전트의 실행을 추적할 때 무엇을 구조화해 남기고 어떤 원문은 수집하지 않을지, OpenTelemetry의 GenAI 의미 규약과 프라이버시 경계를 바탕으로 AKM 운영 원칙을 제안한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "agent-observability",
+      "opentelemetry",
+      "privacy"
+    ],
+    "date": "2026-09-25",
+    "modified": "2026-09-25",
+    "thumbnail": "images/should-agent-traces-record-everything-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "when-the-score-rises-but-the-task-fails",
     "file": "_built/when-the-score-rises-but-the-task-fails.md",
     "title": "점수가 올랐는데 일은 틀렸다: 보상 해킹이 드러내는 평가의 빈틈",
