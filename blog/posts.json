@@ -1,5 +1,36 @@
 [
   {
+    "slug": "sougwen-chung-and-the-memory-of-gesture",
+    "file": "_built/sougwen-chung-and-the-memory-of-gesture.md",
+    "title": "로봇은 손의 기억을 어떻게 그리는가",
+    "description": "수그웬 청의 D.O.U.G. 연작을 따라 로봇이 손의 움직임을 모사하고 과거 드로잉을 학습하며 생체 신호에 반응하는 과정을 살핀다. 인간과 기계의 공저라는 말이 성립하려면 무엇을 확인해야 하는지도 짚는다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "international-artist",
+      "sougwen-chung",
+      "robotic-art",
+      "drawing",
+      "human-machine-collaboration"
+    ],
+    "date": "2026-09-26",
+    "modified": "2026-09-26",
+    "thumbnail": "images/sougwen-chung-memory-of-gesture-cover.png",
+    "author": "DECK",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "international-artist",
+      "sougwen-chung",
+      "robotic-art",
+      "drawing",
+      "human-machine-collaboration"
+    ]
+  },
+  {
     "slug": "new-technology-wears-old-promises",
     "file": "_built/new-technology-wears-old-promises.md",
     "title": "새 기술은 왜 늘 낡은 약속을 입는가",

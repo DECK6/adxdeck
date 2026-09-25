@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로봇은 손의 기억을 어떻게 그리는가 | DEXA Blog</title>
+    <meta name="description" content="수그웬 청의 D.O.U.G. 연작을 따라 로봇이 손의 움직임을 모사하고 과거 드로잉을 학습하며 생체 신호에 반응하는 과정을 살핀다. 인간과 기계의 공저라는 말이 성립하려면 무엇을 확인해야 하는지도 짚는다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/sougwen-chung-and-the-memory-of-gesture/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="로봇은 손의 기억을 어떻게 그리는가" />
+    <meta property="og:description" content="수그웬 청의 D.O.U.G. 연작을 따라 로봇이 손의 움직임을 모사하고 과거 드로잉을 학습하며 생체 신호에 반응하는 과정을 살핀다. 인간과 기계의 공저라는 말이 성립하려면 무엇을 확인해야 하는지도 짚는다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/sougwen-chung-and-the-memory-of-gesture/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/sougwen-chung-memory-of-gesture-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-09-26" />
+    <meta property="article:modified_time" content="2026-09-26" />
+    <meta property="article:author" content="DECK" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="international-artist" />
+    <meta property="article:tag" content="sougwen-chung" />
+    <meta property="article:tag" content="robotic-art" />
+    <meta property="article:tag" content="drawing" />
+    <meta property="article:tag" content="human-machine-collaboration" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="로봇은 손의 기억을 어떻게 그리는가" />
+    <meta name="twitter:description" content="수그웬 청의 D.O.U.G. 연작을 따라 로봇이 손의 움직임을 모사하고 과거 드로잉을 학습하며 생체 신호에 반응하는 과정을 살핀다. 인간과 기계의 공저라는 말이 성립하려면 무엇을 확인해야 하는지도 짚는다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/sougwen-chung-memory-of-gesture-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"로봇은 손의 기억을 어떻게 그리는가","description":"수그웬 청의 D.O.U.G. 연작을 따라 로봇이 손의 움직임을 모사하고 과거 드로잉을 학습하며 생체 신호에 반응하는 과정을 살핀다. 인간과 기계의 공저라는 말이 성립하려면 무엇을 확인해야 하는지도 짚는다.","image":"https://dexa.art/blog/images/sougwen-chung-memory-of-gesture-cover.png","datePublished":"2026-09-26","dateModified":"2026-09-26","author":{"@type":"Person","name":"DECK"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/sougwen-chung-and-the-memory-of-gesture/"},"articleSection":"Media Art","keywords":"media-art, international-artist, sougwen-chung, robotic-art, drawing, human-machine-collaboration"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">Media Art</span>
+                    <span class="dx-date">Article · 2026.09.26</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>로봇은 손의 기억을 어떻게 그리는가</h1>
+                <p style="color:var(--muted);font-size:17px;">수그웬 청의 D.O.U.G. 연작을 따라 로봇이 손의 움직임을 모사하고 과거 드로잉을 학습하며 생체 신호에 반응하는 과정을 살핀다. 인간과 기계의 공저라는 말이 성립하려면 무엇을 확인해야 하는지도 짚는다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">media-art</span><span class="dx-tag-chip">international-artist</span><span class="dx-tag-chip">sougwen-chung</span><span class="dx-tag-chip">robotic-art</span><span class="dx-tag-chip">drawing</span><span class="dx-tag-chip">human-machine-collaboration</span></div>
+<p><img src="/blog/images/sougwen-chung-memory-of-gesture-cover.png" alt="붓 자국을 남기는 사람의 손과 여러 관절의 추상 로봇 장치가 같은 화면에서 서로 다른 선을 이어 가는 개념적 생성 이미지" loading="lazy"></p>
+<p><em>이 커버는 글의 개념을 바탕으로 생성한 비다큐멘터리 이미지다. 실제 작품이나 전시 기록이 아니다.</em></p>
+<p>AI로 만든 이미지를 볼 때 시선은 대개 마지막 화면에 멈춘다. 누가 더 그럴듯한 결과를 냈는지, 사람의 솜씨와 구별할 수 있는지, 기계가 작가를 대신했는지를 묻는다. 수그웬 청(Sougwen Chung)의 작업은 질문을 결과물 앞에서 제작 과정으로 돌려놓는다. 한 장의 표면에 도달하기까지 사람과 기계가 주고받은 동작이 완성된 그림보다 먼저 보인다.</p>
+<p>청은 <a href="https://sougwen.com/info">공식 소개</a>에서 자신을 중국계 캐나다인 작가이자 연구자로 밝힌다. 2015년부터 로봇 시스템 곁에서 그림을 그리는 실천을 ‘Operational Art’라고 불러 왔다. 여기서 로봇은 버튼을 누르면 이미지를 내놓는 상자가 아니다. 카메라로 손을 좇고, 작가가 남긴 과거의 선을 학습하며, 때로는 생체 신호에 반응하는 장치다. 사람도 명령만 내리고 물러서지 않는다. 로봇이 예상과 다르게 움직이면 몸의 속도와 선의 방향을 다시 조절한다.</p>
+<p>이 관계를 곧바로 평등한 공저라고 부르기는 어렵다. 시스템의 목적과 데이터, 센서, 작동 범위는 작가와 제작팀이 설계한다. 청의 작업이 전면에 놓는 것은 자동화라는 한 단어로 지워지기 쉬운 시간이다. 서로 보고 반응하고 수정하는 동안 드로잉은 결과물이 아니라 관계가 만들어지는 사건이 된다.</p>
+<h2>손을 따라가는 기계</h2>
+<p><a href="https://sougwen.com/work/mimicry-drawing-operations">D.O.U.G. 1의 공식 작업 페이지</a>는 2015년의 《MIMICRY》를 Drawing Operations의 출발점으로 소개한다. 머리 위 카메라가 청의 손을 보고, 로봇 팔은 실시간으로 그 움직임을 따라 선을 긋는다. 공식 설명에 따르면 이 장치는 4축 로봇 팔과 색 추적 시스템을 사용했다.</p>
+<p>겉으로는 능숙한 사람의 그림을 기계가 흉내 내는 시연처럼 보인다. 두 선은 완전히 겹치지 않는다. 카메라가 움직임을 포착하는 방식, 모터가 반응하는 속도, 팔의 관절이 허용하는 범위 때문에 기계의 선에는 지연과 어긋남이 생긴다. 청은 그 차이를 오류로 지우지 않고 다음 동작의 조건으로 받아들인다. 로봇이 사람을 따라가는 동안 사람도 로봇의 리듬을 보며 움직임을 바꾼다.</p>
+<p>여기서 ‘협업’은 기계가 창의적인 의도를 가졌다는 선언이 아니다. 하나의 몸이 모든 흔적을 통제할 수 없게 된 상태에 가깝다. 사람의 제스처는 카메라 입력으로 바뀌고, 프로그램은 그것을 좌표와 속도로 해석한다. 로봇 팔이 물리적인 마찰과 관성 속에서 다시 선으로 옮길 때, 같은 동작도 달라진다.</p>
+<p>그래서 《MIMICRY》를 보려면 최종 드로잉만으로는 부족하다. 카메라가 어디에 달렸는지, 로봇이 무엇을 추적하는지, 사람과 기계가 어느 거리에서 같은 표면을 공유하는지까지 봐야 한다. 작품의 핵심은 로봇이 사람처럼 잘 그렸다는 데 있지 않다. 손의 움직임이 측정 가능한 신호가 되고, 그 신호가 다시 낯선 몸의 동작으로 돌아오는 회로에 있다.</p>
+<h2>기계가 현재의 손 대신 과거의 선을 볼 때</h2>
+<p>《MIMICRY》가 현재의 제스처를 따라갔다면 《MEMORY》는 작가의 과거로 향한다. <a href="https://sougwen.com/work/memory-drawing-operations">D.O.U.G. 2의 공식 설명</a>은 이 시스템이 청의 20년 드로잉 아카이브를 학습한 신경망을 사용한다고 밝힌다. 로봇 팔은 그 학습 결과에서 나온 흔적을 그리고, 청은 옆에서 함께 선을 잇는다.</p>
+<p>여기서 기억은 저장된 이미지를 그대로 불러오는 일이 아니다. 모델이 수많은 선에서 반복되는 움직임을 통계적으로 익힌 뒤 새로운 좌표와 궤적으로 되돌려 주는 과정이다. 되돌아온 선은 작가의 것이면서도 작가가 직접 그린 선은 아니다. 청은 자신의 오래된 습관을 외부 장치가 변형한 형태로 마주한다.</p>
+<p>이 구조 앞에서는 AI 학습 데이터라는 추상적인 쟁점도 구체적인 질문으로 바뀐다. 거대한 익명 이미지 묶음 대신 작가 자신의 아카이브를 사용하면 데이터의 출처와 동의 범위는 비교적 분명해진다. 모든 문제가 사라지는 것은 아니다. 어느 시기의 드로잉이 들어갔는지, 모델이 무엇을 특징으로 삼았는지, 실패한 출력은 제외됐는지에 따라 ‘기억’의 모습이 달라진다. 아카이브는 중립적인 과거가 아니라 선택되고 가공된 재료다.</p>
+<p>청의 공식 소개는 2022년 빅토리아 앨버트 박물관이 《MEMORY》를 영구 소장했고, 이를 주요 문화 기관이 수집한 첫 AI 모델이라고 설명한다. 이 표현은 작가 측의 공식 프레이밍으로 읽어야 한다. 더 중요한 점은 미술관이 종이 위의 완성된 선만 보존해서는 작업 전체를 설명할 수 없다는 사실이다. 모델과 코드, 로봇의 기구, 학습 데이터의 계보, 퍼포먼스의 절차가 함께 작품의 정체성을 이룬다.</p>
+<h2>생체 신호는 생각을 읽는 장치가 아니다</h2>
+<p>청의 작업은 다음 세대에서 신체 내부의 신호를 입력으로 끌어들인다. <a href="https://sougwen.com/work/assembly-drawing-operations">《ASSEMBLY LINES》 공식 페이지</a>는 D.O.U.G. 5가 앞선 세대에서 도입한 EEG 바이오피드백을 공간적인 다중 로봇 설치로 확장했다고 설명한다. 이 작업은 EEG 헤드셋, 접촉 마이크, 여러 로봇으로 구성되며 24분 동안 진행되는 라이브 퍼포먼스의 형태를 취한다.</p>
+<p>EEG가 등장하면 작품 설명은 쉽게 ‘기계가 생각을 읽는다’는 말로 미끄러진다. 그러나 EEG는 마음속 문장이나 이미지를 그대로 해독하는 장치가 아니다. 두피에서 측정한 전기적 활동의 특정 패턴을 기록하고, 시스템이 정한 규칙에 따라 움직임이나 소리와 연결한다. 어떤 신호를 선택하고 어떤 임계값을 적용했는지가 작품의 중요한 설계가 된다.</p>
+<p>이 경계를 지켜야 퍼포먼스도 정확하게 볼 수 있다. 청의 몸은 로봇을 직접 조종하는 조이스틱이 아니다. 명상과 드로잉 중 발생한 신호는 여러 번 변환된 뒤 로봇의 움직임에 영향을 준다. 그 움직임은 다시 작가의 호흡과 손의 속도에 영향을 준다. 생체 신호는 내면의 진실을 증명하는 표지가 아니라 사람과 기계 사이에 또 하나의 지연과 불확실성을 넣는 재료다.</p>
+<p>다중 로봇이라는 구성도 공저의 범위를 넓힌다. 한 사람과 한 팔의 이중주에서는 상대를 비교적 쉽게 특정할 수 있다. 여러 장치가 서로 다른 위치에서 움직이기 시작하면 저자성은 공간 전체에 분산된다. 관객은 누가 어느 선을 시작했는지보다 움직임들이 어떻게 충돌하지 않고 서로의 여백을 바꾸는지 보게 된다.</p>
+<h2>로봇 드로잉이 공저가 되기 위한 조건</h2>
+<p>수그웬 청의 작업은 인간과 기계의 협업을 낙관적인 구호로만 제시하지 않는다. 공식 아카이브를 따라가면 각 세대가 무엇을 입력으로 삼았고 어떤 장치를 사용했는지 확인할 수 있다. 현재의 손을 추적한 《MIMICRY》, 과거 드로잉을 학습한 《MEMORY》, 생체 신호와 여러 로봇을 연결한 《ASSEMBLY LINES》는 모두 ‘AI와 함께 그렸다’는 문장으로 묶이지만, 실제 관계는 서로 다르다.</p>
+<p>작품 사이의 차이는 전시 설명에도 남아야 한다. 로봇이 자율적이라고 말하려면 먼저 자율성이 허용된 범위를 밝혀야 한다. 학습 데이터의 출처와 선택 기준, 센서가 측정한 값과 변환 과정도 설명해야 한다. 장치의 지연과 실패를 완성된 이미지 뒤에 숨기는 순간 협업은 마케팅 문구에 가까워진다.</p>
+<p>청의 최근 연구는 드로잉 표면 밖으로도 이동한다. <a href="https://sougwen.com/work/bodymachinemeridians-2024">《BODY MACHINE (MERIDIANS)》 공식 페이지</a>는 2023년과 2024년에 멕시코 테포스틀란의 숲과 노르웨이 스발바르의 빙하에서 환경 데이터를 수집해 공중에 그리는 로봇 조각을 만들었다고 설명한다. 작가의 손과 로봇 팔 사이에서 시작한 문제가 생태 데이터와 공간 구조로 넓어진 셈이다.</p>
+<p>환경 데이터가 들어갔다고 해서 조각이 생태계를 대변하는 것은 아니다. 어떤 지역에서 무엇을 측정했는지, 그 값이 형태로 바뀌면서 무엇이 버려졌는지 따져야 한다. 데이터는 숲이나 빙하 그 자체가 아니다. 입력의 출처와 변환 규칙이 보여야 관객도 기계가 만든 형상을 신비화하지 않고 관계의 구조로 읽을 수 있다.</p>
+<h2>결과보다 관계를 보존하는 법</h2>
+<p>수그웬 청의 로봇은 작가를 대신해 혼자 그림을 완성하는 기계와 거리가 있다. 한 세대는 손을 따라가고, 다음 세대는 과거의 선을 학습하며, 또 다른 세대는 생체 신호와 여러 장치의 움직임을 연결한다. 공통점은 사람이 사라진 자동 생성이 아니라 사람이 자신의 움직임을 낯선 시스템 속에서 다시 만나는 데 있다.</p>
+<p>이 작업을 전시하거나 기록할 때는 완성된 드로잉만 남겨서는 부족하다. 입력 데이터의 범위, 센서와 모델의 역할, 로봇의 물리적 제약, 퍼포먼스의 시간, 작가가 기계의 반응을 보고 수정한 순간이 함께 보존돼야 한다. 그래야 ‘인간-기계 공저’가 막연한 미래상이 아니라 검토할 수 있는 제작 관계가 된다.</p>
+<p>관객에게도 판단 기준은 비슷하다. 기계가 얼마나 사람처럼 그렸는지보다 어느 손의 기억을 배웠는지, 그 기억을 어떤 규칙으로 바꿨는지, 사람과 기계가 서로의 다음 동작을 실제로 바꿀 수 있었는지를 묻는 편이 낫다. 수그웬 청의 드로잉은 저자 한 명의 흔적을 찾기보다, 선 하나가 여러 몸과 시간과 장치를 통과한 경로를 보게 한다.</p>
+            </div>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/new-technology-wears-old-promises/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>새 기술은 왜 늘 낡은 약속을 입는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>
