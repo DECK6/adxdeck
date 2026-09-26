@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>에이전트의 보상 트랜잭션은 되감기가 아니다 | DEXA Blog</title>
+    <meta name="description" content="여러 시스템을 바꾸는 에이전트가 중간에 실패했을 때, 보상 트랜잭션이 이미 일어난 일을 어떻게 수습하는지와 정확한 되돌리기가 불가능한 경계를 살펴본다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/compensation-is-not-rewind-for-agent-workflows/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="에이전트의 보상 트랜잭션은 되감기가 아니다" />
+    <meta property="og:description" content="여러 시스템을 바꾸는 에이전트가 중간에 실패했을 때, 보상 트랜잭션이 이미 일어난 일을 어떻게 수습하는지와 정확한 되돌리기가 불가능한 경계를 살펴본다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/compensation-is-not-rewind-for-agent-workflows/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/compensation-is-not-rewind-for-agent-workflows-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-09-26" />
+    <meta property="article:modified_time" content="2026-09-26" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="ai-ax" />
+    <meta property="article:tag" content="agent-runtime" />
+    <meta property="article:tag" content="compensating-transactions" />
+    <meta property="article:tag" content="workflow-reliability" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="에이전트의 보상 트랜잭션은 되감기가 아니다" />
+    <meta name="twitter:description" content="여러 시스템을 바꾸는 에이전트가 중간에 실패했을 때, 보상 트랜잭션이 이미 일어난 일을 어떻게 수습하는지와 정확한 되돌리기가 불가능한 경계를 살펴본다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/compensation-is-not-rewind-for-agent-workflows-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"에이전트의 보상 트랜잭션은 되감기가 아니다","description":"여러 시스템을 바꾸는 에이전트가 중간에 실패했을 때, 보상 트랜잭션이 이미 일어난 일을 어떻게 수습하는지와 정확한 되돌리기가 불가능한 경계를 살펴본다.","image":"https://dexa.art/blog/images/compensation-is-not-rewind-for-agent-workflows-cover.png","datePublished":"2026-09-26","dateModified":"2026-09-26","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/compensation-is-not-rewind-for-agent-workflows/"},"articleSection":"AI · AX","keywords":"ai-ax, agent-runtime, compensating-transactions, workflow-reliability"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.09.26</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>에이전트의 보상 트랜잭션은 되감기가 아니다</h1>
+                <p style="color:var(--muted);font-size:17px;">여러 시스템을 바꾸는 에이전트가 중간에 실패했을 때, 보상 트랜잭션이 이미 일어난 일을 어떻게 수습하는지와 정확한 되돌리기가 불가능한 경계를 살펴본다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">ai-ax</span><span class="dx-tag-chip">agent-runtime</span><span class="dx-tag-chip">compensating-transactions</span><span class="dx-tag-chip">workflow-reliability</span></div>
+<p><img src="/blog/images/compensation-is-not-rewind-for-agent-workflows-cover.png" alt="앞으로 진행한 작업 경로와 그 옆에서 반대 방향으로 작동하는 보상 경로를 추상적으로 표현한 개념 이미지" loading="lazy"></p>
+<p><em>이 글의 개념을 표현하기 위해 GPT Image 2로 생성한 이미지이며, 실제 에이전트 시스템 화면이나 운영 기록을 재현한 것이 아니다.</em></p>
+<p>에이전트가 고객 목록을 정리하고, 외부 서비스에 새 레코드를 만들고, 담당자에게 알림까지 보내는 일을 맡았다고 하자. 첫 두 단계는 끝났는데 마지막 단계에서 권한 오류가 났다. 이때 “실패”라고 표시하고 다시 실행하면 새 레코드가 중복될 수 있다. 그렇다고 실행 전 체크포인트로 파일만 되돌리면 외부 서비스에 이미 생긴 레코드는 그대로 남는다.</p>
+<p>긴 에이전트 작업에서 복구가 어려운 이유는 모델의 계획이 부족해서만이 아니다. 한 작업이 여러 저장소와 API에 걸쳐 있고, 각 단계가 서로 다른 시점에 확정되기 때문이다. 데이터베이스 하나 안의 트랜잭션처럼 전체를 한 번에 취소할 수 없는 경우가 많다. 이때 쓰는 설계가 보상 트랜잭션(compensating transaction)이다.</p>
+<p>보상은 과거 상태를 그대로 복원하는 시간 여행이 아니다. 이미 실행된 행동의 효과를 상쇄하거나, 현재 상태를 다시 유효한 상태로 만드는 새로운 행동이다. 생성한 레코드를 삭제할 수도 있고, 결제를 환불할 수도 있으며, 잘못 공개한 문서를 내리고 정정 이력을 남길 수도 있다. 무엇이 적절한 보상인지는 업무 규칙과 동시 변경, 외부 시스템의 제약에 따라 달라진다.</p>
+<h2>롤백과 보상은 다른 복구다</h2>
+<p>Saga 패턴의 출발점은 1987년 Hector Garcia-Molina와 Kenneth Salem의 논문이다. 이 논문은 오래 실행되는 트랜잭션을 서로 끼어들 수 있는 작은 트랜잭션의 연속으로 나누고, 일부만 실행된 채 실패하면 보상 트랜잭션을 수행하는 모델을 제안했다.[1] 이 논문은 현재 에이전트 설계의 직접 증거가 아니라 개념의 계보다. 한 번에 잠글 수 없는 긴 작업을 작은 확정 단위와 보상 단위로 나눈다는 생각만 여기서 가져온다.</p>
+<p>Microsoft의 현재 Compensating Transaction 문서는 보상과 원래 데이터의 스냅샷 복원을 구분한다. 실행 중 다른 주체가 같은 데이터를 바꿨다면 과거 값을 덮어쓰는 롤백이 그 변경까지 지울 수 있다. 그래서 보상은 현재 상태와 업무 규칙을 읽고 원래 행동의 효과를 반대 방향으로 처리해야 한다.[2] 항공권 취소가 전액 환불과 같지 않은 것처럼, 보상 뒤의 상태도 실행 전 상태와 완전히 같지 않을 수 있다.</p>
+<p>실행 순서를 거꾸로 따라가는 것이 항상 정답도 아니다. 서로 독립적인 보상은 병렬로 처리할 수 있고, 불일치 위험이 큰 저장소를 먼저 수습해야 할 수도 있다. 보상 자체도 실패한다. 취소 API가 멈추거나, 삭제 권한이 만료되거나, 환불 가능 기간이 지날 수 있다. 따라서 원래 작업의 상태와 보상 작업의 상태를 따로 기록하고, 보상 실패를 사람이 이어받을 경로가 필요하다.[2]</p>
+<p>Temporal의 Saga 문서는 각 단계에 대응하는 보상 행동을 등록하고, 실패하면 등록된 행동을 역순으로 실행하는 구현을 설명한다. 특히 외부 효과가 부분적으로 발생한 뒤 응답 전에 실패할 수 있는 단계에서는 실행 전에 보상을 등록하고, 실제 선행 행동이 없었던 경우에도 안전하게 no-op이 되도록 보상 함수를 멱등하게 만들라고 권한다.[3] 이는 Temporal의 현재 구현 지침이다. 모든 워크플로 엔진이 같은 실행 보장이나 등록 시점을 제공한다고 일반화해서는 안 된다.</p>
+<h2>에이전트가 남겨야 할 것은 계획보다 실행 영수증이다</h2>
+<p>LLM은 “삭제했으니 나중에 다시 만들면 된다”처럼 그럴듯한 보상안을 낼 수 있다. 그러나 복구에 필요한 것은 문장으로 된 의도가 아니라 실제 실행 상태다. 어느 대상을 바꿨는지, 외부 시스템이 어떤 ID를 돌려줬는지, 행동이 완전히 끝났는지 일부만 반영됐는지 확인해야 한다. 같은 보상을 다시 호출해도 안전한지도 정해져 있어야 한다.</p>
+<p>2025년 PVLDB에 실린 SagaLLM은 Saga 패턴을 다중 에이전트 계획에 적용한 연구 사례다. 이 시스템은 애플리케이션 상태, 작업 입력·출력과 실행 상태, 작업 사이 의존성을 나누어 기록하고, 실패 시 의존성 그래프를 따라 영향을 받은 작업을 찾는 구조를 제시한다.[4] 보상 절차와 복구 상태도 작업 기록에 포함한다. 에이전트가 계획을 다시 쓰기 전에 이미 일어난 상태 전이와 아직 지켜야 할 제약을 보존하려는 접근이다.</p>
+<p>연구의 범위는 좁게 읽어야 한다. 저자들은 REALM 벤치마크에서 고른 네 가지 순차·반응형 계획 문제를 사용했고, 2025년 3월 12일부터 17일까지 Claude 3.7, DeepSeek R1, GPT-4o, GPT-o1과 비교했다.[4] 실험은 일정 변경과 제약 보존을 다루며, 실제 결제·게시·권한 변경 API의 장애 복구를 검증한 생산 환경 연구가 아니다. 논문도 보상 코드의 형식 검증과 더 넓은 실험을 후속 과제로 남긴다. 따라서 “LLM이 보상 코드를 만들면 트랜잭션 문제가 해결된다”는 결론은 이 근거에서 나오지 않는다.</p>
+<p>실무에서 먼저 필요한 것은 에이전트의 그럴듯한 설명이 아니라 결정론적인 실행 장부다. 각 쓰기 단계에는 최소한 다음 정보가 필요하다.</p>
+<ul><li>실행 ID와 단계 ID, 대상의 안정적인 식별자</li><li>실행 전 확인한 상태와 실행 뒤 다시 읽은 상태</li><li>외부 시스템이 반환한 영수증 또는 revision</li><li>재시도에 쓸 idempotency key</li><li>대응하는 보상 행동과 필요한 입력</li><li>보상 시도 횟수, 결과, 마지막 확인 시각</li><li>자동 보상이 불가능할 때 이어받을 책임자와 승인 조건</li></ul>
+<p>이 목록은 특정 제품의 스키마가 아니라 DEXA가 제안하는 최소 계약이다. 모든 프롬프트와 내부 추론을 저장하자는 뜻도 아니다. 복구에 필요한 상태, 외부 효과, 상관관계와 판정 근거만 남기면 된다.</p>
+<h2>AKM 작업에는 보상 가능성부터 표시한다</h2>
+<p>AKM에서 문서 하나를 요약하는 읽기 작업과 정본을 수정하고 외부에 공개하는 쓰기 작업은 같은 복구 정책을 가질 수 없다. 읽기와 임시 변환은 다시 계산하면 끝나는 경우가 많다. 파일 수정은 버전이나 체크포인트로 되돌릴 수 있다. 외부 게시, 메시지 전송, 권한 변경, 결제처럼 다른 시스템과 사람이 이미 반응한 행동은 단순 롤백으로 닫히지 않는다.</p>
+<p>작업 그래프를 만들 때 각 단계를 <code>재계산 가능</code>, <code>로컬 롤백 가능</code>, <code>보상 가능</code>, <code>비가역</code>으로 분류할 수 있다. 이 분류는 기술 속성만이 아니라 업무 규칙을 포함한다. 공개 글을 내리는 API가 있어도 독자가 이미 읽었다면 사회적 효과까지 취소되지는 않는다. 메시지를 삭제할 수 있어도 수신자의 판단은 되돌릴 수 없다. 이런 단계는 실행 전에 승인하고, 가능한 한 흐름의 뒤쪽에 배치해야 한다.</p>
+<p>보상 가능한 단계에는 forward action과 compensating action을 한 쌍으로 둔다. 문서 공개라면 “게시”와 “비공개 전환”만 적어서는 부족하다. 어느 revision을 공개했는지, 이후 다른 편집이 있었는지, 검색 색인과 캐시까지 바뀌었는지 확인해야 한다. 현재 상태에서 안전한 보상이 무엇인지 판정한 뒤 실행하고, 끝난 다음 실제 공개 상태를 다시 읽어야 한다.</p>
+<p>에이전트가 자동으로 보상을 시작할 조건도 좁혀야 한다. 대상과 원인이 분명하고 영향이 제한된 경우에는 자동 수습이 가능하다. 반대로 다른 사용자의 변경을 덮을 위험이 있거나, 비용·법적 의무·외부 커뮤니케이션이 얽힌 경우에는 중간 상태를 보존하고 사람에게 선택지를 넘겨야 한다. Microsoft 문서 역시 영향이 크거나 자동화하기 어려운 결정에서는 사람이 대체 경로와 보상 사이를 판단하도록 권한다.[2]</p>
+<h2>완벽한 취소보다 유효한 끝 상태를 설계한다</h2>
+<p>보상 트랜잭션을 붙였다고 여러 시스템이 하나의 ACID 트랜잭션이 되지는 않는다. 중간 상태는 다른 주체에게 보일 수 있고, 보상하는 동안 또 다른 변경이 들어올 수 있다. 보상 함수가 멱등해도 업무 의미가 완전히 복원된다는 보장은 없다. 취소 수수료, 이미 전달된 알림, 공개된 정보, 물리적 행동은 흔적을 남긴다.</p>
+<p>복구 목표를 “실행 전과 바이트 단위로 동일한 상태”라고 두기보다, 업무 불변 조건을 다시 만족하고 남은 차이를 설명할 수 있는 상태로 정하는 쪽이 현실적이다. 예를 들어 중복 레코드가 없어야 하고, 금액 합계가 맞아야 하며, 공개 상태와 승인 상태가 일치해야 한다. 되돌릴 수 없는 차이가 있다면 숨기지 않고 사고나 정정 기록으로 남긴다.</p>
+<p>도입은 작은 쓰기 흐름 하나에서 시작할 수 있다. 각 단계의 확정 시점과 보상 가능성을 표시하고, 외부 영수증을 보관하며, 한 단계를 의도적으로 실패시켜 보상도 실제로 완료되는지 확인한다. 원래 작업의 성공률만 보지 말고 보상 성공률, 수동 수습 시간, 설명되지 않은 잔여 상태를 함께 측정한다. 보상 코드도 실행되지 않는 예외 경로로 방치하지 말고 정기적으로 시험해야 한다.</p>
+<p>에이전트의 복구력은 더 긴 계획을 세우는 능력에서만 나오지 않는다. 이미 세계를 바꾼 행동을 정확히 식별하고, 취소할 수 있는 것과 없는 것을 구분하며, 수습 과정까지 검증 가능한 작업으로 다루는 데서 나온다. 되감기는 비유지만 보상은 실제로 실행되는 두 번째 업무다.</p>
+<h2>참고 자료</h2>
+<ol><li>Hector Garcia-Molina and Kenneth Salem, <a href="https://dl.acm.org/doi/10.1145/38713.38742">“Sagas”</a>, ACM SIGMOD, 1987. Saga 패턴의 계보와 보상 트랜잭션 정의를 확인했다.</li><li>Microsoft Azure Architecture Center, <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/compensating-transaction">“Compensating Transaction pattern”</a>, 2026-04-20 갱신. 동시 변경, 업무별 보상, 보상 실패와 비가역 단계의 경계를 확인했다.</li><li>Temporal Documentation, <a href="https://docs.temporal.io/design-patterns/saga-pattern">“Saga Pattern”</a>, 2026-09-26 확인. 보상 등록 시점, 역순 실행, 멱등성과 구현별 경계를 확인했다.</li><li>Edward Y. Chang and Longling Geng, <a href="https://doi.org/10.14778/3750601.3750611">“SagaLLM: Context Management, Validation, and Transaction Guarantees for Multi-Agent LLM Planning”</a>, PVLDB 18(12), 2025, pp. 4874–4886. 상태·의존성·보상 구조와 네 가지 계획 문제의 실험 범위를 확인했다.</li></ol>
+            </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/sougwen-chung-and-the-memory-of-gesture/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>로봇은 손의 기억을 어떻게 그리는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>

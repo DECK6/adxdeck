@@ -1,5 +1,24 @@
 [
   {
+    "slug": "compensation-is-not-rewind-for-agent-workflows",
+    "file": "_built/compensation-is-not-rewind-for-agent-workflows.md",
+    "title": "에이전트의 보상 트랜잭션은 되감기가 아니다",
+    "description": "여러 시스템을 바꾸는 에이전트가 중간에 실패했을 때, 보상 트랜잭션이 이미 일어난 일을 어떻게 수습하는지와 정확한 되돌리기가 불가능한 경계를 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "agent-runtime",
+      "compensating-transactions",
+      "workflow-reliability"
+    ],
+    "date": "2026-09-26",
+    "modified": "2026-09-26",
+    "thumbnail": "images/compensation-is-not-rewind-for-agent-workflows-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "sougwen-chung-and-the-memory-of-gesture",
     "file": "_built/sougwen-chung-and-the-memory-of-gesture.md",
     "title": "로봇은 손의 기억을 어떻게 그리는가",
