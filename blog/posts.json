@@ -1,5 +1,34 @@
 [
   {
+    "slug": "how-a-dark-silhouette-catches-a-sentence",
+    "file": "_built/how-a-dark-silhouette-catches-a-sentence.md",
+    "title": "검은 실루엣은 어떻게 문장을 붙잡는가",
+    "description": "카미유 어터백과 로미 아키투브의 《Text Rain》을 어두운 윤곽에 글자가 멈추는 하나의 규칙에서 다시 읽는다. 몸으로 시를 읽게 하는 인터랙션의 매력과 임계값이 만드는 참여의 경계를 함께 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "interactive-art",
+      "computer-vision",
+      "body-interface",
+      "text-rain"
+    ],
+    "date": "2026-09-27",
+    "modified": "2026-09-27",
+    "thumbnail": "images/how-a-dark-silhouette-catches-a-sentence-cover.png",
+    "author": "Deck",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-art",
+      "interactive-art",
+      "computer-vision",
+      "body-interface",
+      "text-rain"
+    ]
+  },
+  {
     "slug": "compensation-is-not-rewind-for-agent-workflows",
     "file": "_built/compensation-is-not-rewind-for-agent-workflows.md",
     "title": "에이전트의 보상 트랜잭션은 되감기가 아니다",
