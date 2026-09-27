@@ -1,5 +1,36 @@
 [
   {
+    "slug": "how-deep-listening-makes-time-for-art",
+    "file": "_built/how-deep-listening-makes-time-for-art.md",
+    "title": "깊이 듣기는 어떻게 작품의 시간이 되는가",
+    "description": "폴린 올리베로스의 Deep Listening과 《Sonic Meditations》를 따라, 사운드 작품이 소리를 들려주는 장치에서 관객의 주의와 관계를 조직하는 시간으로 바뀌는 과정을 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "media-theorist",
+      "pauline-oliveros",
+      "deep-listening",
+      "sound-art"
+    ],
+    "date": "2026-09-28",
+    "modified": "2026-09-28",
+    "thumbnail": "images/pauline-oliveros-deep-listening-cover.png",
+    "author": "Deck",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-art",
+      "media-theory",
+      "media-theorist",
+      "pauline-oliveros",
+      "deep-listening",
+      "sound-art"
+    ]
+  },
+  {
     "slug": "a-new-pipeline-object-is-not-an-independent-copy",
     "file": "_built/a-new-pipeline-object-is-not-an-independent-copy.md",
     "title": "새 파이프라인 객체는 독립 복제본이 아니다",
