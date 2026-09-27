@@ -1,5 +1,24 @@
 [
   {
+    "slug": "a-new-pipeline-object-is-not-an-independent-copy",
+    "file": "_built/a-new-pipeline-object-is-not-an-independent-copy.md",
+    "title": "새 파이프라인 객체는 독립 복제본이 아니다",
+    "description": "Diffusers의 from_pipe가 새 작업용 객체를 만들면서 기존 모듈을 재사용하는 방식을 살펴보고, 객체 정체성과 상태 독립성을 구분해 생성 업무의 기록·검증 경계를 설계한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "model-inference",
+      "diffusers",
+      "workflow-design"
+    ],
+    "date": "2026-09-27",
+    "modified": "2026-09-27",
+    "thumbnail": "images/a-new-pipeline-object-is-not-an-independent-copy-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "how-a-dark-silhouette-catches-a-sentence",
     "file": "_built/how-a-dark-silhouette-catches-a-sentence.md",
     "title": "검은 실루엣은 어떻게 문장을 붙잡는가",
