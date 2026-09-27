@@ -84,5 +84,6 @@ AKM 적용 역시 개념 제안이다. 어떤 필드를 필수로 만들고 얼�
 
 ## Sources
 
-[1] https://huggingface.co/docs/diffusers/main/en/api/pipelines/auto_pipeline — AutoPipeline · Hugging Face Diffusers
-[2] https://huggingface.co/docs/diffusers/main/en/using-diffusers/loading — DiffusionPipeline loading and reuse · Hugging Face Diffusers
+[1] [AutoPipeline · Hugging Face Diffusers](https://huggingface.co/docs/diffusers/main/en/api/pipelines/auto_pipeline)
+
+[2] [DiffusionPipeline loading and reuse · Hugging Face Diffusers](https://huggingface.co/docs/diffusers/main/en/using-diffusers/loading)
