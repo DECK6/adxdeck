@@ -1,5 +1,36 @@
 [
   {
+    "slug": "how-rules-persuade-the-audience",
+    "file": "_built/how-rules-persuade-the-audience.md",
+    "title": "규칙은 어떻게 관객을 설득하는가",
+    "description": "절차적 수사의 관점에서 게임과 인터랙티브 미디어아트의 규칙, 선택지, 피드백이 어떻게 세계에 대한 주장이 되는지 살피고, 관객의 전유가 그 주장을 흔드는 지점까지 짚는다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "procedural-rhetoric",
+      "interactive-art",
+      "simulation",
+      "game-studies"
+    ],
+    "date": "2026-09-29",
+    "modified": "2026-09-29",
+    "thumbnail": "images/procedural-rhetoric-rules-cover.png",
+    "author": "Deck",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "media-art",
+      "media-theory",
+      "procedural-rhetoric",
+      "interactive-art",
+      "simulation",
+      "game-studies"
+    ]
+  },
+  {
     "slug": "a-source-on-an-edge-does-not-make-it-true",
     "file": "_built/a-source-on-an-edge-does-not-make-it-true.md",
     "title": "관계에 출처를 붙였다고 그 관계가 사실이 되지는 않는다",
