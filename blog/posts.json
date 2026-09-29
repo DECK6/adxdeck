@@ -1,5 +1,40 @@
 [
   {
+    "slug": "who-sits-behind-the-voice-of-a-smart-home",
+    "file": "_built/who-sits-behind-the-voice-of-a-smart-home.md",
+    "title": "스마트홈의 목소리 뒤에는 누가 앉아 있는가",
+    "description": "로런 리 매카시의 《SOMEONE》은 스마트홈의 매끄러운 자동화 뒤에 숨은 인간의 노동, 돌봄, 감시를 관객이 직접 수행하게 만든다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "international-artist",
+      "lauren-lee-mccarthy",
+      "someone",
+      "smart-home",
+      "surveillance",
+      "care",
+      "automation"
+    ],
+    "date": "2026-09-30",
+    "modified": "2026-09-30",
+    "thumbnail": "images/who-sits-behind-the-voice-of-a-smart-home-cover.png",
+    "author": "Deck",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "international-artist",
+      "lauren-lee-mccarthy",
+      "someone",
+      "smart-home",
+      "surveillance",
+      "care",
+      "automation"
+    ]
+  },
+  {
     "slug": "how-rules-persuade-the-audience",
     "file": "_built/how-rules-persuade-the-audience.md",
     "title": "규칙은 어떻게 관객을 설득하는가",
