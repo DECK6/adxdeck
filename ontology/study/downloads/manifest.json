@@ -5,8 +5,8 @@
     "files": [
       {
         "path": "my-topic/this-week.md",
-        "bytes": 1040,
-        "sha256": "5347f6da16a6f3d4834a6d904a2d5a961b7489327b4fb7104b0be95de2f679eb"
+        "bytes": 1272,
+        "sha256": "d2684a125e09ea50b95bd22e0c59d1199d339c0ba259a39353898405d2593c17"
       },
       {
         "path": "my-topic/transfer-guide.md",
@@ -122,6 +122,36 @@
         "path": "reference/99-system/INDEX.local.md",
         "bytes": 622,
         "sha256": "8c080125828ac886dfd9fbc0a189277da8cbcace9b4906fc0ad62352f5d09bac"
+      },
+      {
+        "path": "week1/02-workshop.md",
+        "bytes": 13988,
+        "sha256": "810372387538546379d1c371081dcf0a1b4c298e656a605aeeda47d1db2dcc5a"
+      },
+      {
+        "path": "week1/03-runner.md",
+        "bytes": 10152,
+        "sha256": "b7d764e0b707cc0eb8dfecf2946e77a492f526becdebb223b77a8a1491318366"
+      },
+      {
+        "path": "week1/README.md",
+        "bytes": 4224,
+        "sha256": "c7b97186437a559c3be91d922c48f5ce7486cad032f20ceeb5ed36f0c9a417af"
+      },
+      {
+        "path": "week1/01-case-study.md",
+        "bytes": 7485,
+        "sha256": "baa8599e9387a0f4daa3359a3e8886e79fef6c203066bed29f1112a0d0aad8d6"
+      },
+      {
+        "path": "week1/05-research.md",
+        "bytes": 24169,
+        "sha256": "b0056425408a7ec9b3bfc3246940c7ca4c5655319f1e53e946b0abce39d308ee"
+      },
+      {
+        "path": "week1/definition-card.md",
+        "bytes": 1076,
+        "sha256": "0e7fe846feaf732cc0d34124c203a5298cec02162d688f1ed208af369380185e"
       }
     ]
   },
@@ -634,8 +664,8 @@
     "files": [
       {
         "path": "my-topic/this-week.md",
-        "bytes": 1040,
-        "sha256": "5347f6da16a6f3d4834a6d904a2d5a961b7489327b4fb7104b0be95de2f679eb"
+        "bytes": 1272,
+        "sha256": "d2684a125e09ea50b95bd22e0c59d1199d339c0ba259a39353898405d2593c17"
       },
       {
         "path": "my-topic/transfer-guide.md",
@@ -811,6 +841,36 @@
         "path": "reference/99-system/INDEX.local.md",
         "bytes": 1672,
         "sha256": "dc04c9c32ee7050edc6a4753b2b58c366ca1f6e637c129b718dc4900cebc77b8"
+      },
+      {
+        "path": "week1/02-workshop.md",
+        "bytes": 13988,
+        "sha256": "810372387538546379d1c371081dcf0a1b4c298e656a605aeeda47d1db2dcc5a"
+      },
+      {
+        "path": "week1/03-runner.md",
+        "bytes": 10152,
+        "sha256": "b7d764e0b707cc0eb8dfecf2946e77a492f526becdebb223b77a8a1491318366"
+      },
+      {
+        "path": "week1/README.md",
+        "bytes": 4224,
+        "sha256": "c7b97186437a559c3be91d922c48f5ce7486cad032f20ceeb5ed36f0c9a417af"
+      },
+      {
+        "path": "week1/01-case-study.md",
+        "bytes": 7485,
+        "sha256": "baa8599e9387a0f4daa3359a3e8886e79fef6c203066bed29f1112a0d0aad8d6"
+      },
+      {
+        "path": "week1/05-research.md",
+        "bytes": 24169,
+        "sha256": "b0056425408a7ec9b3bfc3246940c7ca4c5655319f1e53e946b0abce39d308ee"
+      },
+      {
+        "path": "week1/definition-card.md",
+        "bytes": 1076,
+        "sha256": "0e7fe846feaf732cc0d34124c203a5298cec02162d688f1ed208af369380185e"
       }
     ]
   },
@@ -1503,8 +1563,8 @@
     "files": [
       {
         "path": "my-topic/this-week.md",
-        "bytes": 1040,
-        "sha256": "5347f6da16a6f3d4834a6d904a2d5a961b7489327b4fb7104b0be95de2f679eb"
+        "bytes": 1272,
+        "sha256": "d2684a125e09ea50b95bd22e0c59d1199d339c0ba259a39353898405d2593c17"
       },
       {
         "path": "my-topic/transfer-guide.md",
@@ -1680,6 +1740,36 @@
         "path": "reference/99-system/INDEX.local.md",
         "bytes": 1784,
         "sha256": "aa917a37f167b50f5888a9defe9e1a180fe8ac5189bd281d1669a962aa15b979"
+      },
+      {
+        "path": "week1/02-workshop.md",
+        "bytes": 13988,
+        "sha256": "810372387538546379d1c371081dcf0a1b4c298e656a605aeeda47d1db2dcc5a"
+      },
+      {
+        "path": "week1/03-runner.md",
+        "bytes": 10152,
+        "sha256": "b7d764e0b707cc0eb8dfecf2946e77a492f526becdebb223b77a8a1491318366"
+      },
+      {
+        "path": "week1/README.md",
+        "bytes": 4224,
+        "sha256": "c7b97186437a559c3be91d922c48f5ce7486cad032f20ceeb5ed36f0c9a417af"
+      },
+      {
+        "path": "week1/01-case-study.md",
+        "bytes": 7485,
+        "sha256": "baa8599e9387a0f4daa3359a3e8886e79fef6c203066bed29f1112a0d0aad8d6"
+      },
+      {
+        "path": "week1/05-research.md",
+        "bytes": 24169,
+        "sha256": "b0056425408a7ec9b3bfc3246940c7ca4c5655319f1e53e946b0abce39d308ee"
+      },
+      {
+        "path": "week1/definition-card.md",
+        "bytes": 1076,
+        "sha256": "0e7fe846feaf732cc0d34124c203a5298cec02162d688f1ed208af369380185e"
       }
     ]
   },

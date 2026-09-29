@@ -7,7 +7,9 @@
 3. 정리 전 답변을 기록한 뒤 AKM에서 Wiki를 만들고 문서 링크를 확인합니다.
 
 ## 완료 기준
-도메인 정의서, 작은 자료 묶음, 고정 질문 3개, before 응답, LLM Wiki v1
+도메인 정의서, 작은 자료 묶음, 고정 질문 3개, before 응답, LLM Wiki v1, 정의 v1/v2 검토 카드
+
+GitHub kb-jev와 Ontology + Jev 사례는 week1/01-case-study.md, 15분 정의 검토 실습은 week1/02-workshop.md를 읽고 week1/definition-card.md에 기록합니다. API 실행은 선택입니다.
 
 ## 동료 확인 질문
 아무 자료나 한 개 골랐을 때 출처와 연결 문서를 다시 찾을 수 있나요?

@@ -1,6 +1,9 @@
 # 실습 자료의 범위와 출처
 
-2026-09-14 · GPTers 24기 · DECK / DEXA
+기존 웹 실습실 개정 2026-09-14 · 최신 개정 2026-09-29 · GPTers 24기 · DECK / DEXA
+
+## 이번 개정
+Jev 교안 최초 작성 2026-09-26, 최신 개정 2026-09-29. week1.html에서 kb-jev·Ontology + Jev 사례, AKM 결합안과 15분 정의 검토 실습을 읽는다. R01–R04 그래프 예제와 N01–N05 Jev 예제는 서로 다른 합성 자료다. 강사 확인 답안은 instructor.html로 분리하고 수강생 ZIP에는 넣지 않는다.
 
 ## 최종 커리큘럼
 https://www.gpters.org/study/llm-ontology

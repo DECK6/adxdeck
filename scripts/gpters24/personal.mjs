@@ -1,3 +1,4 @@
+import {weekOneFiles} from './week1.mjs';
 import {notePaths,sourceMetadata,publicAkmGuide} from './akm-public.mjs';
 import {ideaToAkmPrompt} from './memo-prompt.mjs';
 import {blankDomainPlan,parseDomainPlan,domainGuide,domainPlanMarkdown,testDesignMarkdown,designPrompt} from './transfer.mjs';
@@ -78,6 +79,7 @@ export function personalFiles(p,w){
   if(!validate(m).length&&m.nodes.length)f['practice/ontology.ttl']=toTTL(m);
  }
  if(w===4)f['practice/final-presentation.md']='# 최종 발표 순서\n\n1. 내 주제와 처음의 질문 3개\n2. Wiki 구조와 온톨로지 관계망\n3. 실제 에이전트의 답변과 출처\n4. 적용 전후 평가와 남은 한계\n5. 새 자료를 넣고 계속 운영할 규칙\n\n점수의 상승을 미리 가정하지 않습니다. 빈 평가를 실행 결과로 제출하지 않습니다.\n';
+ Object.assign(f,weekOneFiles(w));
  return Object.fromEntries(Object.entries(f).map(([k,v])=>[k,v.trimEnd()+'\n']));
 }
 
@@ -88,8 +90,8 @@ export function zipFiles(files){
  for(const [path,text] of Object.entries(files)){
   if(path.startsWith('/')||path.split('/').includes('..'))throw Error('ZIP 경로를 확인하세요.');
   const name=enc.encode(path),data=enc.encode(text),sum=crc(data),local=new Uint8Array(30+name.length+data.length),v=new DataView(local.buffer);
-  v.setUint32(0,0x04034b50,true);v.setUint16(4,20,true);v.setUint16(6,0x800,true);v.setUint16(12,23852,true);v.setUint32(14,sum,true);v.setUint32(18,data.length,true);v.setUint32(22,data.length,true);v.setUint16(26,name.length,true);local.set(name,30);local.set(data,30+name.length);locals.push(local);
-  const center=new Uint8Array(46+name.length),c=new DataView(center.buffer);c.setUint32(0,0x02014b50,true);c.setUint16(4,20,true);c.setUint16(6,20,true);c.setUint16(8,0x800,true);c.setUint16(14,23852,true);c.setUint32(16,sum,true);c.setUint32(20,data.length,true);c.setUint32(24,data.length,true);c.setUint16(28,name.length,true);c.setUint32(42,offset,true);center.set(name,46);centrals.push(center);offset+=local.length;
+  v.setUint32(0,0x04034b50,true);v.setUint16(4,20,true);v.setUint16(6,0x800,true);v.setUint16(12,23869,true);v.setUint32(14,sum,true);v.setUint32(18,data.length,true);v.setUint32(22,data.length,true);v.setUint16(26,name.length,true);local.set(name,30);local.set(data,30+name.length);locals.push(local);
+  const center=new Uint8Array(46+name.length),c=new DataView(center.buffer);c.setUint32(0,0x02014b50,true);c.setUint16(4,20,true);c.setUint16(6,20,true);c.setUint16(8,0x800,true);c.setUint16(14,23869,true);c.setUint32(16,sum,true);c.setUint32(20,data.length,true);c.setUint32(24,data.length,true);c.setUint16(28,name.length,true);c.setUint32(42,offset,true);center.set(name,46);centrals.push(center);offset+=local.length;
  }
  const centralSize=centrals.reduce((n,x)=>n+x.length,0),end=new Uint8Array(22),e=new DataView(end.buffer);e.setUint32(0,0x06054b50,true);e.setUint16(8,centrals.length,true);e.setUint16(10,centrals.length,true);e.setUint32(12,centralSize,true);e.setUint32(16,offset,true);
  const out=new Uint8Array(offset+centralSize+22);let pos=0;for(const bytes of [...locals,...centrals,end]){out.set(bytes,pos);pos+=bytes.length;}return out;

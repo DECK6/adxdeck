@@ -1,3 +1,4 @@
+import {weekOneFiles} from './week1.mjs';
 import {notePaths,sourceMetadata,contextMetadata,publicAkmGuide} from './akm-public.mjs';
 import {ideaToAkmPrompt} from './memo-prompt.mjs';
 import {weeklyAssignment} from './assignments.mjs';
@@ -120,5 +121,6 @@ export function filesForWeek(m,w){
  f[(w===1?'reference/':'')+'99-system/INDEX.local.md']='# 실습 문서 색인\n\n'+m.notes.flatMap(n=>{const p=notePaths(m,n,w);return [`- [[${p.source.replace(/\.md$/,'')}|${n.id} 원문]]`,`- [[${p.compiled.replace(/\.md$/,'')}|${n.title} · 사례 맥락]]`];}).join('\n')+'\n';
  if(w>=2){f['practice/check.py']=validationScript;f['practice/model-error.json']=j({...m,edges:[...m.edges,m.error]});f['practice/expected-answers.json']=j(m.questions.map((question,i)=>({id:'Q'+(i+1),question,...query(m,i),kind:'deterministic-reference-not-LLM-run'})));f['practice/ontology.ttl']=toTTL(m);f['practice/schema.json']=j({classes:m.classes,relations:m.relations,requiredNodeFields:['id','label','type','noteId','attrs'],rules:['unique IDs','known endpoints','domain/range','source exists','acyclic requires']});f['practice/ONTOLOGY.md']=`# ${m.name} 온톨로지 설계\n\n${m.scope}\n\n## 종류\n${Object.entries(m.classes).map(([k,v])=>`- ${k}: ${v}`).join('\n')}\n\n## 관계\n${Object.entries(m.relations).map(([k,v])=>`- ${k}: ${v.label} (${v.from.join('/')} → ${v.to.join('/')})`).join('\n')}\n\nOWL 파일은 종류·관계·개체·출처를 표현합니다. 웹의 순환/필수값 검사는 별도의 경량 검사이며 OWL reasoner나 SHACL 엔진 실행 결과가 아닙니다.\n`;}
  if(w===4)f['practice/OPERATIONS.md']='# 지속 운영 규칙\n\n1. 새 자료는 inbox에 넣고 출처·날짜·범위를 확인한다.\n2. 원본과 해석을 분리한다. 같은 대상을 중복 ID로 만들지 않는다.\n3. 관계의 방향·뜻·출처를 검토한 뒤 승인한다.\n4. 자료나 스키마를 바꾸면 변경 이유·담당자·리비전을 기록한다.\n5. 세 질문을 재실행하고 답변·출처·보류 판단을 비교한다.\n6. 폐기할 자료는 근거 연결을 확인하고 보관 폴더나 휴지통으로 이동한다.\n7. 오류가 나면 모델·원자료·검색·응답 중 어느 단계가 원인인지 구분해 수정한다.\n\n## 평가 기준\n정확성: 0 근거와 충돌 / 1 일부 맞음 또는 누락 / 2 근거에 맞게 답하거나 필요한 판단 보류.\n일관성: 0 같은 질문·관계를 모순되게 해석 / 1 일부 용어·방향 흔들림 / 2 ID·관계 의미·판단 범위를 일관되게 사용.\n출처: 0 없거나 다른 자료 / 1 문서만 제시 / 2 실제 근거 문장과 연결을 확인할 수 있음.\n반복 실행 일관성을 평가하려면 같은 질문을 반복 실행하고 그 결과도 보관한다. 한 번의 답변 비교를 모델 안정성 검증으로 확대하지 않는다.\n';
+ Object.assign(f,weekOneFiles(w));
  return Object.fromEntries(Object.entries(f).map(([path,text])=>[path,text.trimEnd()+'\n']));
 }
