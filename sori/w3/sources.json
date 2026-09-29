@@ -1,0 +1,22 @@
+[
+  {
+    "title": "PixVerse · Image to Video",
+    "url": "https://pixverse.ai/en/product/image-to-video",
+    "use": "이미지를 기준으로 움직임을 더하는 작업 흐름"
+  },
+  {
+    "title": "PixVerse · Image generation",
+    "url": "https://pixverse.ai/en/model/gpt-image-2-5",
+    "use": "텍스트·참조 이미지로 이미지 생성과 수정 후 영상으로 이어가기; 특정 모델 선택은 수업 필수가 아님"
+  },
+  {
+    "title": "PixVerse · Text to Video",
+    "url": "https://pixverse.ai/en/product/text-to-video",
+    "use": "텍스트에서 영상으로 직접 만드는 경로와 이미지 기반 경로 구별"
+  },
+  {
+    "title": "PixVerse 실제 웹 화면",
+    "url": "https://app.pixverse.ai/",
+    "use": "수업일에 이미지·영상 경로와 실제 사용량 확인"
+  }
+]
