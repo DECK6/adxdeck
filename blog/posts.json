@@ -31,6 +31,26 @@
     ]
   },
   {
+    "slug": "relevant-context-is-not-sufficient-context",
+    "file": "_built/relevant-context-is-not-sufficient-context.md",
+    "title": "관련 문서를 찾았는데도 RAG가 답하면 안 되는 이유",
+    "description": "RAG에서 관련성 높은 검색 결과와 질문에 답하기 충분한 맥락을 구분하고, 검색 실패·생성 실패·응답 정책 실패를 따로 진단하는 방법을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "RAG",
+      "context-engineering",
+      "evaluation",
+      "AKM"
+    ],
+    "date": "2026-09-29",
+    "modified": "2026-09-29",
+    "thumbnail": "images/relevant-context-is-not-sufficient-context-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "a-source-on-an-edge-does-not-make-it-true",
     "file": "_built/a-source-on-an-edge-does-not-make-it-true.md",
     "title": "관계에 출처를 붙였다고 그 관계가 사실이 되지는 않는다",
