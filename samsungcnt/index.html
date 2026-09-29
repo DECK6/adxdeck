@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex, nofollow">
+  <title>삼성물산 · 교육 QR</title>
+  <link rel="icon" href="data:,">
+  <style>
+    * { box-sizing: border-box; }
+    [hidden] { display: none !important; }
+    :root { font-family: "Apple SD Gothic Neo", "Noto Sans KR", Arial, sans-serif; color: #202a3e; }
+    body { margin: 0; background: white; }
+    button { font: inherit; cursor: pointer; }
+    button:focus-visible { outline: 3px solid #645af5; outline-offset: 4px; }
+    .survey-stage { height: 100dvh; display: grid; place-items: center; background: #fffbec; }
+    .slide { width: min(100vw, 177.7778dvh); aspect-ratio: 16/9; background: #fffbec; container-type: inline-size; display: flex; flex-direction: column; }
+    .slide-header { text-align: center; padding: 2.25cqw 4cqw 1.65cqw; }
+    h1 { margin: 0 0 .85cqw; font-size: 3.05cqw; line-height: 1.3; letter-spacing: -.09cqw; font-weight: 800; }
+    .subtitle { margin: 0; font-size: 1.65cqw; color: #6b7f9a; }
+    .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 2.3cqw; padding: 0 5.2cqw; flex: 1; min-height: 0; }
+    .card { border: 1px solid #eef2fb; border-radius: 1.2cqw; background: white; overflow: hidden; box-shadow: 0 .7cqw 1.5cqw #28223708; display: flex; flex-direction: column; }
+    .card h2 { color: white; font-size: 2.4cqw; margin: 0; padding: 1.3cqw 1cqw; text-align: center; line-height: 1.4; }
+    .qr-card h2 { background: #6860f5; }
+    .setup-card h2 { background: #12b5a5; }
+    .qr-area { flex: 1; min-height: 0; display: grid; place-items: center; }
+    .qr-area img { height: 28.5cqw; width: 28.5cqw; image-rendering: pixelated; }
+    .setup-body { padding: 1.4cqw 1.25cqw 1.2cqw; display: flex; flex-direction: column; flex: 1; }
+    .setup-body ul { list-style: none; padding: 0; margin: 0; font-size: 1.72cqw; color: #414c62; line-height: 1.7; letter-spacing: -.045cqw; }
+    .setup-body li { position: relative; padding-left: 1.65cqw; margin: 1cqw 0; }
+    .setup-body li::before { content: ""; position: absolute; width: .7cqw; height: .7cqw; border-radius: 50%; background: #12b5a5; left: 0; top: .9cqw; }
+    .off { color: #fc4965; font-weight: 800; }
+    .on { color: #009e90; font-weight: 800; }
+    .camera-note { color: #02a83a; font-size: 1.68cqw; font-weight: 700; font-style: italic; margin: .2cqw 0 1.6cqw 1.65cqw; white-space: nowrap; }
+    .login { margin: auto .65cqw 0; border: 1px solid #edf1f8; border-radius: .9cqw; background: #f7f9fc; display: flex; align-items: center; justify-content: space-between; padding: .7cqw 1.9cqw; font-size: 1.8cqw; font-weight: 700; }
+    .done { background: #d9fce6; color: #09873a; border-radius: .6cqw; font-size: 1.3cqw; padding: .25cqw 1.3cqw; }
+    .slide-footer { margin-top: 2.9cqw; background: #ffc31c; padding: 1.05cqw 2cqw; color: #626371; font-size: 2.15cqw; font-weight: 800; text-align: center; white-space: nowrap; }
+    .slide-footer span { padding: 0 2.7cqw; }
+    .assessment-slide .slide-header { padding: 1.7cqw 3cqw 1.4cqw; }
+    .assessment-slide h1 { font-size: 2.75cqw; }
+    .assessment-slide .cards { padding: 0 3.2cqw; gap: 2cqw; grid-template-columns: 1fr 1.18fr; }
+    .assessment-slide .card h2 { font-size: 2cqw; padding: 1.15cqw .8cqw; }
+    .assessment-guide { padding: .75cqw 1.35cqw 1cqw; color: #414c62; font-size: 1.4cqw; line-height: 1.55; letter-spacing: -.035cqw; }
+    .assessment-guide h3 { margin: .55cqw 0 .15cqw; font-size: 1.58cqw; color: #6860f5; }
+    .assessment-guide p { margin: .22cqw 0; }
+    .assessment-guide .screen-share { color: #049c43; font-size: 1.26cqw; padding-left: .8cqw; }
+    .assessment-guide .evaluation-time { color: #202a3e; font-weight: 750; }
+    .assessment-access { padding: 1.1cqw 1.3cqw; flex: 1; min-height: 0; display: flex; flex-direction: column; }
+    .assessment-access p { margin: 0 0 .65cqw; font-size: 1.53cqw; color: #009e90; font-weight: 750; }
+    .assessment-access a { color: #2563ed; text-decoration: none; font-size: 1.65cqw; }
+    .assessment-access a:hover { text-decoration: underline; }
+    .assessment-access code { color: #2563ed; font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; }
+    .assessment-access .password-rule { border-top: 1px solid #e6edf5; padding-top: .6cqw; font-size: 1.22cqw; }
+    .password-rule span { color: #71819b; font-weight: 500; }
+    .roster { margin: .15cqw 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: .55cqw .75cqw; }
+    .roster li { display: grid; grid-template-columns: auto auto 1fr; gap: .45cqw; align-items: center; background: #f7f9fd; border: 1px solid #e4eaf6; border-radius: .6cqw; padding: .62cqw .65cqw; font-size: 1.2cqw; }
+    .roster .allocation { font-size: 1.1cqw; color: #64748b; font-weight: 650; font-variant-numeric: tabular-nums; }
+    .roster code { font-size: 1.18cqw; font-weight: 650; text-align: right; white-space: nowrap; }
+    .assessment-access .login-status { margin: auto 0 0; padding: .48cqw .7cqw; font-size: 1.17cqw; background: #edfdf2; border-radius: .55cqw; color: #09873a; text-align: center; }
+    .assessment-slide .slide-footer { margin-top: 2cqw; font-size: 1.7cqw; padding: 1.1cqw 1cqw; }
+    .controls { position: fixed; z-index: 10; bottom: 18px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; flex-wrap: wrap; justify-content: center; gap: 7px; width: max-content; max-width: calc(100vw - 24px); padding: 10px; border-radius: 16px; background: #202a3ef5; box-shadow: 0 6px 28px #0003; }
+    .controls button { border: 0; padding: 10px 13px; border-radius: 8px; background: #ffffff18; color: white; font-size: 14px; white-space: nowrap; }
+    .controls button[aria-pressed="true"] { background: #7165ff; }
+    .controls .shortcut { width: 100%; color: #d5dbe7; text-align: center; font-size: 12px; padding-top: 4px; }
+    body[data-mode="survey"] { background: #fffbec; }
+    @media print { .controls { display: none !important; } }
+  </style>
+</head>
+<body data-mode="assessment">
+  <main>
+    <section class="survey-stage" id="assessment" aria-label="18차시 평가 안내">
+      <div class="slide assessment-slide">
+        <header class="slide-header">
+          <h1>삼성물산 AI에이전트 응용과정(구주·아중동)</h1>
+          <p class="subtitle">18차시 · AI 응용 역량 평가 및 개인별 접속 안내 📋</p>
+        </header>
+        <div class="cards">
+          <section class="card qr-card">
+            <h2>📝 평가 안내 및 유의사항</h2>
+            <div class="assessment-guide">
+              <h3>▪ 평가 일정 및 방식</h3>
+              <p><strong>평가 시간:</strong> <span class="evaluation-time">23:00 – 익일 01:00 (KST)</span></p>
+              <p><strong>자료 공유:</strong> 23:00 정각 Zoom 대화창 공유</p>
+              <h3>▪ 권장 환경 설정</h3>
+              <p>원활한 진행을 위해 <strong>카메라 ON</strong>을 권장합니다.</p>
+              <p class="screen-share">↳ 카메라 사용 불가 시, <strong>학습자 화면 공유</strong>를 요청드립니다.</p>
+              <h3>▪ 제출 및 문의 안내</h3>
+              <p>• 1문제에 <strong class="off">2번 제출 가능</strong>하며,<br>　최종 제출안이 반영됩니다.</p>
+              <p>• 평가 중 질문은 <strong>개인채팅</strong>으로 문의 주세요.</p>
+              <p>• 마치셨다면, <strong>채팅창에 완료</strong>되었다고 말씀해 주세요.</p>
+              <p>• <strong>설문 QR 완료 후 퇴장</strong>해 주세요.</p>
+            </div>
+          </section>
+          <section class="card setup-card">
+            <h2>🔑 개인별 접속 비밀번호</h2>
+            <div class="assessment-access">
+              <p>평가 링크: <a id="assessment-link" href="https://ax-assessment.com/18" target="_blank" rel="noopener noreferrer">https://ax-assessment.com/18</a></p>
+              <p>공통 참가 비밀번호: <code>samsung00@</code></p>
+              <p class="password-rule">개별 입장 비밀번호: <span>samsung + 할당번호 두 자리 + @</span></p>
+              <ol class="roster" aria-label="18차시 개인별 할당번호">
+                <li data-number="01"><span class="allocation">18-01</span><strong>정재훈</strong><code>samsung01@</code></li>
+                <li data-number="02"><span class="allocation">18-02</span><strong>김대회</strong><code>samsung02@</code></li>
+                <li data-number="03"><span class="allocation">18-03</span><strong>김윤산</strong><code>samsung03@</code></li>
+                <li data-number="04"><span class="allocation">18-04</span><strong>김진우</strong><code>samsung04@</code></li>
+                <li data-number="05"><span class="allocation">18-05</span><strong>김태구</strong><code>samsung05@</code></li>
+                <li data-number="06"><span class="allocation">18-06</span><strong>박진수</strong><code>samsung06@</code></li>
+                <li data-number="07"><span class="allocation">18-07</span><strong>신창길</strong><code>samsung07@</code></li>
+                <li data-number="08"><span class="allocation">18-08</span><strong>이광원</strong><code>samsung08@</code></li>
+                <li data-number="09"><span class="allocation">18-09</span><strong>이종원</strong><code>samsung09@</code></li>
+                <li data-number="10"><span class="allocation">18-10</span><strong>이진흥</strong><code>samsung10@</code></li>
+                <li data-number="11"><span class="allocation">18-11</span><strong>하병욱</strong><code>samsung11@</code></li>
+              </ol>
+              <p class="login-status">ChatGPT 로그인 완료 ✅</p>
+            </div>
+          </section>
+        </div>
+        <footer class="slide-footer">🙌 이틀 동안 정말 수고 많으셨습니다! <span>|</span> 🔊 원활한 평가 진행을 위해 안내에 협조 부탁드립니다.</footer>
+      </div>
+    </section>
+    <section class="survey-stage" id="survey" hidden aria-label="만족도 설문 안내">
+      <div class="slide">
+        <header class="slide-header">
+          <h1>삼성물산 AI에이전트 응용과정(구주·아중동)</h1>
+          <p class="subtitle">평가 시작 전, 아래 내용을 미리 확인해 주세요 👇</p>
+        </header>
+        <div class="cards">
+          <section class="card qr-card">
+            <h2>👤 퇴장 시 설문</h2>
+            <div class="qr-area"><img src="assets/survey.png" alt="만족도 설문 QR 코드" width="200" height="200"></div>
+          </section>
+          <section class="card setup-card">
+            <h2>💻 평가 환경 준비</h2>
+            <div class="setup-body">
+              <ul>
+                <li>마이크 <span class="off">OFF</span> / 스피커 <span class="on">ON</span>으로 설정해 주세요</li>
+                <li>카메라 <strong>ON</strong>을 부탁드립니다 😊</li>
+              </ul>
+              <p class="camera-note">🌱 카메라가 없으면 화면공유를 부탁드립니다</p>
+              <ul><li>총 <strong>3문제</strong> 입니다. 한 문제당 2회 제출 가능합니다.</li></ul>
+              <div class="login"><span>ChatGPT 로그인</span><span class="done">완료 ✅</span></div>
+            </div>
+          </section>
+        </div>
+        <footer class="slide-footer">🙌 이틀동안 정말 수고많으셨습니다! <span>|</span> 🔊 QR링크 접속 › 마지막 설문해주세요!</footer>
+      </div>
+    </section>
+  </main>
+  <nav class="controls" id="controls" aria-label="페이지 선택" hidden>
+    <button type="button" data-screen="assessment">평가 안내</button>
+    <button type="button" data-screen="survey">퇴장 설문</button>
+    <button type="button" id="fullscreen">전체 화면</button>
+    <button type="button" id="hide-controls">메뉴 숨기기</button>
+    <span class="shortcut">← → 페이지 이동 · 1 / A 평가 · 2 / S 설문 · M 메뉴 · F 전체 화면</span>
+  </nav>
+  <script>
+    (() => {
+      const expiresAt = Date.parse('2026-09-29T17:02:00+00:00');
+      const screens = ['assessment', 'survey'];
+      const controls = document.getElementById('controls');
+      let current = 'assessment';
+      let expired = false;
+      const expire = () => {
+        if (Date.now() < expiresAt) return false;
+        if (!expired) {
+          expired = true;
+          document.title = '삼성물산 · 안내 종료';
+          document.body.replaceChildren();
+          const message = document.createElement('main');
+          message.style.cssText = 'min-height:100dvh;display:grid;place-content:center;text-align:center;background:#fffbec;padding:24px';
+          const heading = document.createElement('h1');
+          heading.textContent = '안내가 종료되었습니다';
+          heading.style.cssText = 'font-size:clamp(24px,4vw,48px);color:#6860f5';
+          const note = document.createElement('p');
+          note.textContent = '교육에 참여해 주셔서 감사합니다.';
+          message.append(heading, note);
+          document.body.append(message);
+        }
+        return true;
+      };
+      const paint = () => {
+        if (expire()) return;
+        current = screens.includes(location.hash.slice(1)) ? location.hash.slice(1) : 'assessment';
+        screens.forEach(id => { document.getElementById(id).hidden = id !== current; });
+        document.body.dataset.mode = current;
+        document.title = `삼성물산 · ${current === 'assessment' ? '18차시 평가 안내' : '퇴장 설문'}`;
+        document.querySelectorAll('[data-screen]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.screen === current)));
+        controls.hidden = true;
+      };
+      const select = screen => {
+        if (expire()) return;
+        if (location.hash !== `#${screen}`) location.hash = screen;
+        paint();
+      };
+      const fullscreen = async () => {
+        if (expire()) return;
+        try {
+          if (document.fullscreenElement) await document.exitFullscreen();
+          else await document.documentElement.requestFullscreen();
+          controls.hidden = true;
+        } catch { controls.hidden = false; }
+      };
+      document.querySelectorAll('[data-screen]').forEach(button => button.addEventListener('click', () => select(button.dataset.screen)));
+      document.getElementById('fullscreen').addEventListener('click', fullscreen);
+      document.getElementById('hide-controls').addEventListener('click', () => { controls.hidden = true; });
+      document.querySelector('main').addEventListener('click', event => {
+        if (!expire() && !event.target.closest('button, a')) controls.hidden = !controls.hidden;
+      });
+      window.addEventListener('hashchange', paint);
+      window.addEventListener('pageshow', paint);
+      document.addEventListener('visibilitychange', expire);
+      window.addEventListener('keydown', event => {
+        if (expire() || event.ctrlKey || event.metaKey || event.altKey || event.repeat) return;
+        const key = event.key.toLowerCase();
+        if (['1','8','a','home'].includes(key)) select('assessment');
+        else if (['2','6','s','end'].includes(key)) select('survey');
+        else if (key === 'm') controls.hidden = !controls.hidden;
+        else if (key === 'f') fullscreen();
+        else if (key === 'escape') controls.hidden = true;
+        else if (['arrowright','arrowleft'].includes(key)) {
+          event.preventDefault();
+          select(screens[(screens.indexOf(current) + 1) % screens.length]);
+        }
+      });
+      setInterval(expire, 1000);
+      paint();
+    })();
+  </script>
+</body>
+</html>
