@@ -6,6 +6,7 @@ import json,re,html
 import markdown
 root=Path(__file__).resolve().parents[2]
 content=json.loads((root/'scripts/gpters24/week1-content.json').read_text())
+content['documents'].update(json.loads((root/'scripts/gpters24/week1-instructor.json').read_text()))
 out=root/'ontology/study'
 downloads=out/'downloads/jev-week1'
 downloads.mkdir(parents=True,exist_ok=True)

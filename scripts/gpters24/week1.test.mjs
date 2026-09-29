@@ -21,3 +21,9 @@ test('week-one definitions material does not silently extend later-week assignme
   assert.ok(!personalFiles(createProject(),w)['week1/definition-card.md']);
  }
 });
+
+test('browser lesson content does not embed instructor holdout answers',async()=>{
+ const {readFile}=await import('node:fs/promises');
+ const content=await readFile(new URL('./week1-content.json',import.meta.url),'utf8');
+ assert.doesNotMatch(content,/H01|cucumber/);
+});
