@@ -125,33 +125,33 @@
       },
       {
         "path": "week1/02-workshop.md",
-        "bytes": 13988,
-        "sha256": "810372387538546379d1c371081dcf0a1b4c298e656a605aeeda47d1db2dcc5a"
+        "bytes": 14003,
+        "sha256": "2c1cff5f16d59d3e7030d24603d9b3054055d53be6cc14527170c33754c67bf0"
       },
       {
         "path": "week1/03-runner.md",
-        "bytes": 10152,
-        "sha256": "b7d764e0b707cc0eb8dfecf2946e77a492f526becdebb223b77a8a1491318366"
+        "bytes": 10182,
+        "sha256": "42eecee4db53e7fd9a7c9ebac6ef2d9b838e4e9446284b67dc625fe1f847a77c"
       },
       {
         "path": "week1/README.md",
-        "bytes": 4224,
-        "sha256": "c7b97186437a559c3be91d922c48f5ce7486cad032f20ceeb5ed36f0c9a417af"
+        "bytes": 4269,
+        "sha256": "8b7144b42e49135740b2905a5cd643d88ce59831529a2965ac036138db8eec98"
       },
       {
         "path": "week1/01-case-study.md",
-        "bytes": 7485,
-        "sha256": "baa8599e9387a0f4daa3359a3e8886e79fef6c203066bed29f1112a0d0aad8d6"
+        "bytes": 7497,
+        "sha256": "a3dfeec4d0e74c6c3f52efbe72fbe9d1e330d14dd8f63dae37b0b6da61c7eb1d"
       },
       {
         "path": "week1/05-research.md",
-        "bytes": 24169,
-        "sha256": "b0056425408a7ec9b3bfc3246940c7ca4c5655319f1e53e946b0abce39d308ee"
+        "bytes": 24181,
+        "sha256": "d8f51716e0913eb7a4ffe8012290945d67788178e91dd678aef45d9a24b6f0ca"
       },
       {
         "path": "week1/definition-card.md",
-        "bytes": 1076,
-        "sha256": "0e7fe846feaf732cc0d34124c203a5298cec02162d688f1ed208af369380185e"
+        "bytes": 1082,
+        "sha256": "7bd2eeddfa3104ec55f1de87bf23815906a62b3c04b82f80b05af595feb7cb68"
       }
     ]
   },
@@ -488,8 +488,8 @@
     "files": [
       {
         "path": "my-topic/this-week.md",
-        "bytes": 1027,
-        "sha256": "b8235c86b7a7863b940acc5f6fa2568c5d679334718f91ec7ce2f25f8fccd708"
+        "bytes": 1033,
+        "sha256": "196ea29ff7104237d02c7864fe3451087f44b745595bc57cc3d9e1f7ab511fe8"
       },
       {
         "path": "my-topic/transfer-guide.md",
@@ -844,33 +844,33 @@
       },
       {
         "path": "week1/02-workshop.md",
-        "bytes": 13988,
-        "sha256": "810372387538546379d1c371081dcf0a1b4c298e656a605aeeda47d1db2dcc5a"
+        "bytes": 14003,
+        "sha256": "2c1cff5f16d59d3e7030d24603d9b3054055d53be6cc14527170c33754c67bf0"
       },
       {
         "path": "week1/03-runner.md",
-        "bytes": 10152,
-        "sha256": "b7d764e0b707cc0eb8dfecf2946e77a492f526becdebb223b77a8a1491318366"
+        "bytes": 10182,
+        "sha256": "42eecee4db53e7fd9a7c9ebac6ef2d9b838e4e9446284b67dc625fe1f847a77c"
       },
       {
         "path": "week1/README.md",
-        "bytes": 4224,
-        "sha256": "c7b97186437a559c3be91d922c48f5ce7486cad032f20ceeb5ed36f0c9a417af"
+        "bytes": 4269,
+        "sha256": "8b7144b42e49135740b2905a5cd643d88ce59831529a2965ac036138db8eec98"
       },
       {
         "path": "week1/01-case-study.md",
-        "bytes": 7485,
-        "sha256": "baa8599e9387a0f4daa3359a3e8886e79fef6c203066bed29f1112a0d0aad8d6"
+        "bytes": 7497,
+        "sha256": "a3dfeec4d0e74c6c3f52efbe72fbe9d1e330d14dd8f63dae37b0b6da61c7eb1d"
       },
       {
         "path": "week1/05-research.md",
-        "bytes": 24169,
-        "sha256": "b0056425408a7ec9b3bfc3246940c7ca4c5655319f1e53e946b0abce39d308ee"
+        "bytes": 24181,
+        "sha256": "d8f51716e0913eb7a4ffe8012290945d67788178e91dd678aef45d9a24b6f0ca"
       },
       {
         "path": "week1/definition-card.md",
-        "bytes": 1076,
-        "sha256": "0e7fe846feaf732cc0d34124c203a5298cec02162d688f1ed208af369380185e"
+        "bytes": 1082,
+        "sha256": "7bd2eeddfa3104ec55f1de87bf23815906a62b3c04b82f80b05af595feb7cb68"
       }
     ]
   },
@@ -1327,8 +1327,8 @@
     "files": [
       {
         "path": "my-topic/this-week.md",
-        "bytes": 1027,
-        "sha256": "b8235c86b7a7863b940acc5f6fa2568c5d679334718f91ec7ce2f25f8fccd708"
+        "bytes": 1033,
+        "sha256": "196ea29ff7104237d02c7864fe3451087f44b745595bc57cc3d9e1f7ab511fe8"
       },
       {
         "path": "my-topic/transfer-guide.md",
@@ -1743,33 +1743,33 @@
       },
       {
         "path": "week1/02-workshop.md",
-        "bytes": 13988,
-        "sha256": "810372387538546379d1c371081dcf0a1b4c298e656a605aeeda47d1db2dcc5a"
+        "bytes": 14003,
+        "sha256": "2c1cff5f16d59d3e7030d24603d9b3054055d53be6cc14527170c33754c67bf0"
       },
       {
         "path": "week1/03-runner.md",
-        "bytes": 10152,
-        "sha256": "b7d764e0b707cc0eb8dfecf2946e77a492f526becdebb223b77a8a1491318366"
+        "bytes": 10182,
+        "sha256": "42eecee4db53e7fd9a7c9ebac6ef2d9b838e4e9446284b67dc625fe1f847a77c"
       },
       {
         "path": "week1/README.md",
-        "bytes": 4224,
-        "sha256": "c7b97186437a559c3be91d922c48f5ce7486cad032f20ceeb5ed36f0c9a417af"
+        "bytes": 4269,
+        "sha256": "8b7144b42e49135740b2905a5cd643d88ce59831529a2965ac036138db8eec98"
       },
       {
         "path": "week1/01-case-study.md",
-        "bytes": 7485,
-        "sha256": "baa8599e9387a0f4daa3359a3e8886e79fef6c203066bed29f1112a0d0aad8d6"
+        "bytes": 7497,
+        "sha256": "a3dfeec4d0e74c6c3f52efbe72fbe9d1e330d14dd8f63dae37b0b6da61c7eb1d"
       },
       {
         "path": "week1/05-research.md",
-        "bytes": 24169,
-        "sha256": "b0056425408a7ec9b3bfc3246940c7ca4c5655319f1e53e946b0abce39d308ee"
+        "bytes": 24181,
+        "sha256": "d8f51716e0913eb7a4ffe8012290945d67788178e91dd678aef45d9a24b6f0ca"
       },
       {
         "path": "week1/definition-card.md",
-        "bytes": 1076,
-        "sha256": "0e7fe846feaf732cc0d34124c203a5298cec02162d688f1ed208af369380185e"
+        "bytes": 1082,
+        "sha256": "7bd2eeddfa3104ec55f1de87bf23815906a62b3c04b82f80b05af595feb7cb68"
       }
     ]
   },
@@ -2226,8 +2226,8 @@
     "files": [
       {
         "path": "my-topic/this-week.md",
-        "bytes": 1027,
-        "sha256": "b8235c86b7a7863b940acc5f6fa2568c5d679334718f91ec7ce2f25f8fccd708"
+        "bytes": 1033,
+        "sha256": "196ea29ff7104237d02c7864fe3451087f44b745595bc57cc3d9e1f7ab511fe8"
       },
       {
         "path": "my-topic/transfer-guide.md",
