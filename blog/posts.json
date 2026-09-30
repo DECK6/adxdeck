@@ -1,5 +1,38 @@
 [
   {
+    "slug": "kim-heecheon-and-the-afterlife-of-gps-data",
+    "file": "_built/kim-heecheon-and-the-afterlife-of-gps-data.md",
+    "title": "데이터는 죽은 사람의 길을 어디까지 되살리는가",
+    "description": "김희천의 《바벨》과 《Deep in the Forking Tanks》를 통해 GPS 기록과 디지털 인터페이스가 상실 이후의 기억을 어떻게 다시 구성하는지 살펴본다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "korean-media-art",
+      "kim-heecheon",
+      "video-art",
+      "gps",
+      "memory",
+      "interface"
+    ],
+    "date": "2026-10-01",
+    "modified": "2026-10-01",
+    "thumbnail": "images/kim-heecheon-gps-memory-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "korean-media-art",
+      "kim-heecheon",
+      "video-art",
+      "gps",
+      "memory",
+      "interface"
+    ]
+  },
+  {
     "slug": "who-sits-behind-the-voice-of-a-smart-home",
     "file": "_built/who-sits-behind-the-voice-of-a-smart-home.md",
     "title": "스마트홈의 목소리 뒤에는 누가 앉아 있는가",
