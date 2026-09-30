@@ -35,6 +35,25 @@
     ]
   },
   {
+    "slug": "why-hybrid-search-fuses-ranks-instead-of-scores",
+    "file": "_built/why-hybrid-search-fuses-ranks-instead-of-scores.md",
+    "title": "검색 점수는 더할 수 없지만 순위는 합칠 수 있다",
+    "description": "어휘 검색과 벡터 검색의 서로 다른 점수를 직접 더하지 않고 순위를 결합하는 RRF의 원리, 실무 경계, AKM 적용안을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "RAG",
+      "hybrid-search",
+      "retrieval",
+      "knowledge-management"
+    ],
+    "date": "2026-09-30",
+    "modified": "2026-09-30",
+    "thumbnail": "images/hybrid-search-rank-fusion-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "how-rules-persuade-the-audience",
     "file": "_built/how-rules-persuade-the-audience.md",
     "title": "규칙은 어떻게 관객을 설득하는가",
