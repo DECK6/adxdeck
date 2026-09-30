@@ -18,5 +18,15 @@
     "title": "PixVerse 실제 웹 화면",
     "url": "https://app.pixverse.ai/",
     "use": "수업일에 이미지·영상 경로와 실제 사용량 확인"
+  },
+  {
+    "title": "Google AI Studio · Build 공식 안내",
+    "url": "https://ai.google.dev/gemini-api/docs/aistudio-build-mode",
+    "use": "자연어로 앱 생성, 미리보기에서 확인, 대화로 수정"
+  },
+  {
+    "title": "Google AI Studio · 이용 가능 지역과 연령",
+    "url": "https://ai.google.dev/gemini-api/docs/available-regions",
+    "use": "18세 이상 이용 조건과 접속 가능 여부를 수업 전에 확인"
   }
 ]
