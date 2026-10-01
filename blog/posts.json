@@ -33,6 +33,25 @@
     ]
   },
   {
+    "slug": "model-routing-is-not-cheapest-model-selection",
+    "file": "_built/model-routing-is-not-cheapest-model-selection.md",
+    "title": "모델 라우팅은 가장 싼 모델을 고르는 일이 아니다",
+    "description": "LLM 라우터가 질문별로 모델을 고르는 원리와 품질·비용·지연·보류를 함께 평가해야 하는 이유를 AKM 업무 설계에 연결해 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "model-routing",
+      "inference",
+      "evaluation",
+      "akm"
+    ],
+    "date": "2026-10-01",
+    "modified": "2026-10-01",
+    "thumbnail": "images/model-routing-is-not-cheapest-model-selection-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "who-sits-behind-the-voice-of-a-smart-home",
     "file": "_built/who-sits-behind-the-voice-of-a-smart-home.md",
     "title": "스마트홈의 목소리 뒤에는 누가 앉아 있는가",

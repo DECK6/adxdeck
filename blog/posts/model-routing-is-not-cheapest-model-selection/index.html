@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>모델 라우팅은 가장 싼 모델을 고르는 일이 아니다 | DEXA Blog</title>
+    <meta name="description" content="LLM 라우터가 질문별로 모델을 고르는 원리와 품질·비용·지연·보류를 함께 평가해야 하는 이유를 AKM 업무 설계에 연결해 살펴본다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/model-routing-is-not-cheapest-model-selection/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="모델 라우팅은 가장 싼 모델을 고르는 일이 아니다" />
+    <meta property="og:description" content="LLM 라우터가 질문별로 모델을 고르는 원리와 품질·비용·지연·보류를 함께 평가해야 하는 이유를 AKM 업무 설계에 연결해 살펴본다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/model-routing-is-not-cheapest-model-selection/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/model-routing-is-not-cheapest-model-selection-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-10-01" />
+    <meta property="article:modified_time" content="2026-10-01" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="model-routing" />
+    <meta property="article:tag" content="inference" />
+    <meta property="article:tag" content="evaluation" />
+    <meta property="article:tag" content="akm" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="모델 라우팅은 가장 싼 모델을 고르는 일이 아니다" />
+    <meta name="twitter:description" content="LLM 라우터가 질문별로 모델을 고르는 원리와 품질·비용·지연·보류를 함께 평가해야 하는 이유를 AKM 업무 설계에 연결해 살펴본다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/model-routing-is-not-cheapest-model-selection-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"모델 라우팅은 가장 싼 모델을 고르는 일이 아니다","description":"LLM 라우터가 질문별로 모델을 고르는 원리와 품질·비용·지연·보류를 함께 평가해야 하는 이유를 AKM 업무 설계에 연결해 살펴본다.","image":"https://dexa.art/blog/images/model-routing-is-not-cheapest-model-selection-cover.png","datePublished":"2026-10-01","dateModified":"2026-10-01","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/model-routing-is-not-cheapest-model-selection/"},"articleSection":"AI · AX","keywords":"model-routing, inference, evaluation, akm"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.10.01</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>모델 라우팅은 가장 싼 모델을 고르는 일이 아니다</h1>
+                <p style="color:var(--muted);font-size:17px;">LLM 라우터가 질문별로 모델을 고르는 원리와 품질·비용·지연·보류를 함께 평가해야 하는 이유를 AKM 업무 설계에 연결해 살펴본다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">model-routing</span><span class="dx-tag-chip">inference</span><span class="dx-tag-chip">evaluation</span><span class="dx-tag-chip">akm</span></div>
+<p><img src="/blog/images/model-routing-is-not-cheapest-model-selection-cover.png" alt="여러 추론 경로와 보류 지점을 표현한 생성형 개념 이미지" loading="lazy"></p>
+<p><em>이 표지는 모델 라우팅의 선택 경로를 추상화한 생성형 개념 이미지이며 실제 서비스 화면이나 벤치마크 결과가 아니다.</em></p>
+<p>같은 모델을 모든 업무에 쓰면 운영은 단순해진다. 대신 쉬운 분류에도 비싼 모델을 호출하고, 긴 문서 검토와 짧은 형식 변환을 같은 조건에서 처리하게 된다. 여러 모델을 준비해 두고 질문마다 하나를 고르면 비용을 줄일 수 있다. 다만 이 생각은 곧잘 라우팅을 &quot;쉬운 질문은 작은 모델, 어려운 질문은 큰 모델&quot;이라는 규칙 한 줄로 축소한다.</p>
+<p>질문의 난이도는 답을 보기 전에 완전히 알기 어렵다. 모델별 강점도 고정되지 않는다. 코딩, 긴 문맥, 한국어, 도구 호출처럼 작업 분포가 달라지면 어제의 강한 모델이 오늘의 가장 좋은 선택이 아닐 수 있다. 라우터가 틀리면 절감한 호출비보다 재작업과 검토에 더 많은 비용이 든다. 그래서 모델 라우팅은 가격표를 정렬하는 기능이 아니라, 제한된 증거로 품질과 비용의 위험을 배분하는 추론 단계다.</p>
+<h2>라우터는 모델의 승률을 추정한다</h2>
+<p>RouteLLM은 2024년 공개된 연구에서 강한 모델과 약한 모델 사이의 이진 라우팅을 다뤘다. 각 질문에서 두 모델의 응답을 비교한 선호 데이터로 라우터를 학습하고, 강한 모델이 이길 확률과 비용 임계값을 결합해 어느 모델을 호출할지 정한다.[1] 모든 질문을 작은 모델에 보내는 것도, 큰 모델에 보내는 것도 라우팅이라 부를 수 있지만 두 극단은 품질과 비용의 절충을 학습하지 않는다.</p>
+<p>이 연구는 MT-Bench와 MMLU 같은 공개 벤치마크에서 품질을 크게 해치지 않으면서 두 배가 넘는 비용 절감을 보고했다. 눈여겨볼 대목은 세부 결과다. Chatbot Arena 선호 데이터만으로 학습한 라우터는 분포가 다른 MMLU에서 무작위 라우터 수준으로 부진했고, MMLU 검증 자료를 보강했을 때 성능이 개선됐다.[1] 라우터는 질문의 보편적 난이도를 읽는 심판이 아니라 학습 분포 안에서 모델 간 상대 우위를 추정하는 모델이다.</p>
+<p>BEST-Route는 2025년 이 문제를 모델 선택에서 시험 시점 계산량 선택으로 넓혔다. 질문마다 모델 하나만 고르지 않고, 같은 모델에서 몇 개의 응답을 뽑아 비교할지도 정한다. 연구진은 사용한 실제 데이터셋 조건에서 성능 하락을 1% 미만으로 두고 최대 60% 비용 절감을 보고했다.[2] 이 수치를 모든 업무에 적용되는 요금표처럼 읽어서는 안 된다. 후보 모델, 보상 모델, 데이터 분포, 샘플 수 상한이 바뀌면 절충선도 달라진다.</p>
+<h2>비용 하나로는 좋은 라우터를 고를 수 없다</h2>
+<p>라우터의 결과를 평균 호출비만으로 평가하면 중요한 실패가 숨는다. 가장 싼 모델이 답한 비율이 높아도 잘못된 자동 승인 한 건이 큰 손실을 만들 수 있다. 반대로 거의 모든 요청을 상위 모델로 보내면 품질은 유지되지만 라우터를 둔 이유가 사라진다. 최소한 다음 값은 따로 봐야 한다.</p>
+<ul><li>작업 유형별 통과율과 중대한 오류율</li><li>상위 모델 호출 비율과 총 토큰 비용</li><li>라우터 판단 시간, 모델 응답 시간, 재시도까지 포함한 지연</li><li>사람이 다시 고친 시간과 검토 대기량</li><li>라우터가 선택을 보류한 비율과 보류 뒤의 처리 결과</li></ul>
+<p>2026년의 LLMRouterBench는 이 평가 문제를 더 넓은 모델 풀에서 다시 확인했다. 21개 데이터셋, 33개 모델, 40만 건이 넘는 사례로 10개 라우팅 기준선을 비교했고, 여러 최신 방법과 상용 라우터가 단순한 기준선을 안정적으로 이기지 못했다고 보고했다. 모델 수를 늘릴수록 이득은 줄었고, 후보 모델을 잘 고르는 일이 앙상블 규모를 키우는 일보다 중요할 수 있었다.[3] 복잡한 라우터라는 사실 자체는 성과 증거가 아니다.</p>
+<p>평가 데이터도 라우터의 일부다. 과거 질문이 쉬운 분류 위주였다면 라우터는 작은 모델을 과도하게 신뢰할 수 있다. 판정 라벨을 한 LLM이 만들었다면 그 모델의 선호와 편향이 라우팅 정책에 들어간다. 모델 버전이나 가격이 바뀌면 품질과 비용의 곡선도 움직인다. 따라서 한 번 정한 임계값을 영구 설정으로 보관해서는 안 된다.</p>
+<h2>AKM에서는 업무 카드가 라우팅의 입력이 된다</h2>
+<p>AKM에 모델 라우팅을 적용한다면 노트의 길이나 파일명만 보고 모델을 고르는 방식은 부족하다. 먼저 업무를 판정 가능한 단위로 나눠야 한다. 공개 자료의 형식을 정리하는 일, 여러 출처가 같은 주장을 지지하는지 검토하는 일, 외부로 발송할 문장을 승인하는 일은 입력 길이가 비슷해도 실패 비용이 다르다.</p>
+<p>DEXA의 설계 제안은 각 작업 카드에 <code>riskTier</code>, <code>qualityGate</code>, <code>latencyBudget</code>, <code>maxCost</code>, <code>abstainRoute</code>를 명시하는 것이다. 라우터는 이 조건과 질문 특징을 바탕으로 후보 모델을 고른다. 실행 결과는 정해 둔 검증기를 통과해야 하고, 증거가 부족하거나 분포 밖 입력이면 상위 모델이나 사람에게 넘긴다. 이 구조에서 라우터의 confidence는 실행 권한이 아니다. 높은 점수도 외부 발송, 공개, 삭제 같은 부작용 작업을 자동 승인하지 않는다.</p>
+<p>작은 자체 평가셋은 실제 업무 분포를 반영해야 한다. 단순 분류, 긴 문서 대조, 한국어와 영어가 섞인 입력, 정답이 하나가 아닌 판단, 반드시 보류해야 하는 요청을 나눠 담는다. 모델 이름과 가격만 교체하는 시험이 아니라, 같은 입력과 같은 판정 기준에서 라우팅 정책만 바꿔야 한다. 전체 평균 외에 위험 등급별 실패를 따로 계산하고, 시간 초과와 fallback 비용도 결과에서 빼지 않는다.</p>
+<h2>보류할 수 없는 라우터는 비용만 옮긴다</h2>
+<p>라우팅은 정답을 아는 과정이 아니다. 호출 전에 어느 모델이 충분할지 추정하는 과정이다. 이 추정에는 틀릴 권리와 함께 멈출 의무가 필요하다. 후보 모델의 차이가 작거나 입력이 학습 분포에서 멀다면, 억지로 하나를 고르기보다 보류하고 검토 경로로 넘기는 편이 낫다.</p>
+<p>또한 라우팅과 fallback은 구분해야 한다. 라우팅은 정상 상태에서 작업과 모델의 적합성을 고른다. fallback은 선택한 모델이 한도, 장애, 정책 문제로 실행되지 못했을 때 대체 경로를 찾는다. 싼 모델이 실패할 때까지 순서대로 호출하는 cascade도 가능하지만, 이미 발생한 지연과 호출비를 포함해 평가해야 한다. 마지막에 가장 비싼 모델이 답했다고 해서 앞선 실패 비용이 사라지지는 않는다.</p>
+<p>실무에서는 선택 규칙을 시험할 수 있는 기록부터 만들어야 한다. 어떤 종류의 작업이 어느 모델에서 통과했고, 무엇이 실패했으며, 재작업에 얼마가 들었는지를 남긴다. 그 기록이 쌓인 뒤에야 &quot;작은 모델로 보내도 되는 일&quot;을 좁힐 수 있다. 라우터의 성패는 싼 모델을 얼마나 많이 호출했는지가 아니라, 값싼 선택의 실패가 비싸지는 지점에서 멈췄는지로 판단해야 한다.</p>
+<h2>직접 읽은 자료</h2>
+<ul><li>[1] Isaac Ong et al., <a href="https://arxiv.org/html/2406.18665v4">RouteLLM: Learning to Route LLMs with Preference Data</a>, arXiv:2406.18665v4, 2024-06-26 최초 제출, 2025-02-23 v4.</li><li>[2] Dujian Ding et al., <a href="https://arxiv.org/html/2506.22716">BEST-Route: Adaptive LLM Routing with Test-Time Optimal Compute</a>, arXiv:2506.22716v1, 2025-06-28.</li><li>[3] Hao Li et al., <a href="https://arxiv.org/html/2601.07206v1">LLMRouterBench: A Massive Benchmark and Unified Framework for LLM Routing</a>, arXiv:2601.07206v1, 2026-01-12.</li></ul>
+            </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/who-sits-behind-the-voice-of-a-smart-home/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>스마트홈의 목소리 뒤에는 누가 앉아 있는가</span></a>
+                <a id="next-post" href="/blog/posts/kim-heecheon-and-the-afterlife-of-gps-data/" class="spec-row" style="text-decoration:none;"><span>데이터는 죽은 사람의 길을 어디까지 되살리는가</span><span class="k">NEXT →</span></a>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>
