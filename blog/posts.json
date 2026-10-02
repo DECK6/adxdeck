@@ -1,5 +1,36 @@
 [
   {
+    "slug": "when-design-refuses-to-solve-the-problem",
+    "file": "_built/when-design-refuses-to-solve-the-problem.md",
+    "title": "디자인은 왜 문제를 해결하지 않아도 되는가",
+    "description": "앤서니 던과 피오나 레이비의 비판적·사변적 디자인을 따라, 제품이 답을 제공하는 대신 기술이 전제한 가치와 미래를 토론하게 만드는 방식을 살펴본다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "media-theorist",
+      "critical-design",
+      "speculative-design",
+      "design-fiction"
+    ],
+    "date": "2026-10-03",
+    "modified": "2026-10-03",
+    "thumbnail": "images/when-design-refuses-to-solve-the-problem-cover.png",
+    "author": "Deck",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "media-art",
+      "media-theory",
+      "media-theorist",
+      "critical-design",
+      "speculative-design",
+      "design-fiction"
+    ]
+  },
+  {
     "slug": "a-graph-in-rag-does-not-prove-the-graph-helped",
     "file": "_built/a-graph-in-rag-does-not-prove-the-graph-helped.md",
     "title": "그래프를 붙였다는 것과 그래프 덕분에 좋아졌다는 것은 다르다",
