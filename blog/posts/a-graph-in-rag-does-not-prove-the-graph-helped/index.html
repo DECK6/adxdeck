@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>그래프를 붙였다는 것과 그래프 덕분에 좋아졌다는 것은 다르다 | DEXA Blog</title>
+    <meta name="description" content="GraphRAG의 효과를 최종 답변 점수 하나로 판단하지 않고, 질문 유형과 그래프 구성·검색·생성 단계를 나눠 검증하는 방법을 AKM 설계에 연결해 살펴본다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/a-graph-in-rag-does-not-prove-the-graph-helped/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="그래프를 붙였다는 것과 그래프 덕분에 좋아졌다는 것은 다르다" />
+    <meta property="og:description" content="GraphRAG의 효과를 최종 답변 점수 하나로 판단하지 않고, 질문 유형과 그래프 구성·검색·생성 단계를 나눠 검증하는 방법을 AKM 설계에 연결해 살펴본다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/a-graph-in-rag-does-not-prove-the-graph-helped/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/a-graph-in-rag-does-not-prove-the-graph-helped-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-10-02" />
+    <meta property="article:modified_time" content="2026-10-02" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="ai-ax" />
+    <meta property="article:tag" content="graph-engineering" />
+    <meta property="article:tag" content="GraphRAG" />
+    <meta property="article:tag" content="evaluation" />
+    <meta property="article:tag" content="AKM" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="그래프를 붙였다는 것과 그래프 덕분에 좋아졌다는 것은 다르다" />
+    <meta name="twitter:description" content="GraphRAG의 효과를 최종 답변 점수 하나로 판단하지 않고, 질문 유형과 그래프 구성·검색·생성 단계를 나눠 검증하는 방법을 AKM 설계에 연결해 살펴본다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/a-graph-in-rag-does-not-prove-the-graph-helped-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"그래프를 붙였다는 것과 그래프 덕분에 좋아졌다는 것은 다르다","description":"GraphRAG의 효과를 최종 답변 점수 하나로 판단하지 않고, 질문 유형과 그래프 구성·검색·생성 단계를 나눠 검증하는 방법을 AKM 설계에 연결해 살펴본다.","image":"https://dexa.art/blog/images/a-graph-in-rag-does-not-prove-the-graph-helped-cover.png","datePublished":"2026-10-02","dateModified":"2026-10-02","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/a-graph-in-rag-does-not-prove-the-graph-helped/"},"articleSection":"AI · AX","keywords":"ai-ax, graph-engineering, GraphRAG, evaluation, AKM"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.10.02</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>그래프를 붙였다는 것과 그래프 덕분에 좋아졌다는 것은 다르다</h1>
+                <p style="color:var(--muted);font-size:17px;">GraphRAG의 효과를 최종 답변 점수 하나로 판단하지 않고, 질문 유형과 그래프 구성·검색·생성 단계를 나눠 검증하는 방법을 AKM 설계에 연결해 살펴본다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">ai-ax</span><span class="dx-tag-chip">graph-engineering</span><span class="dx-tag-chip">GraphRAG</span><span class="dx-tag-chip">evaluation</span><span class="dx-tag-chip">AKM</span></div>
+<p><img src="/blog/images/a-graph-in-rag-does-not-prove-the-graph-helped-cover.png" alt="문서 조각과 관계 그래프, 세 개의 검증 관문을 추상적으로 표현한 생성형 개념 이미지" loading="lazy"></p>
+<p><em>이 표지는 GraphRAG의 단계별 검증 구조를 표현하기 위해 GPT Image 2로 생성한 개념 이미지이며, 실제 지식 그래프나 평가 화면을 재현한 것이 아니다.</em></p>
+<p>한 팀이 문서 검색에 지식 그래프를 붙였다고 하자. 데모에서는 답이 길어졌고, 여러 문서의 이름과 사건을 한 문단에 엮었다. 평가 모델도 기존 RAG보다 새 답변을 더 자주 골랐다. 이 결과만 보면 그래프가 추론을 개선한 듯하다. 하지만 다른 설명도 가능하다. 검색 문맥이 길어져 답변이 장황해졌고, 평가 모델이 긴 답을 선호했을 수 있다. 질문이 애초에 그래프의 연결 구조를 요구하지 않았을 수도 있다. 그래프가 좋은 근거를 찾았지만 생성 모델이 잘못 읽었을 수도 있고, 반대로 검색 결과는 평범했는데 모델의 사전 지식이 답을 맞혔을 수도 있다.</p>
+<p>GraphRAG를 평가할 때 &quot;그래프를 썼는가&quot;부터 묻는다면 순서가 뒤집힌다. 어떤 질문에서 그래프가 필요한 정보를 추가로 찾았는지, 그 정보가 답을 실제로 지지했는지, 같은 결과를 더 단순한 검색으로 얻을 수 없었는지를 확인해야 한다. 최종 답변 점수만 보면 이 세 질문이 한 숫자에 섞인다.</p>
+<p>2025년에 arXiv에 처음 공개된 두 연구의 2026년 개정판은 이 문제를 서로 다른 방향에서 다룬다. ICLR 2026 논문 <a href="https://arxiv.org/abs/2506.05690v3">《When to Use Graphs in RAG》</a>은 과제를 단순 사실 검색, 복합 추론, 맥락 요약, 창작 생성으로 나누고 그래프 구성부터 검색과 생성까지 단계별로 비교했다.[1] 같은 해 8월 갱신된 <a href="https://arxiv.org/abs/2506.06331v2">《How Significant Are the Real Performance Gains?》</a>은 질문 생성과 LLM 평가기의 편향을 손보자 기존에 크게 보이던 성능 차이가 줄거나 사라질 수 있다고 보고했다.[2] 두 결과는 GraphRAG가 쓸모없다는 결론이 아니다. 그래프의 효용이 질문, 코퍼스, 검색기, 평가 절차에 따라 달라진다는 경고에 가깝다.</p>
+<h2>답을 채점하기 전에 그래프의 일을 분리한다</h2>
+<p>일반적인 RAG는 질문과 가까운 문서 구간을 찾는다. GraphRAG는 엔티티와 관계를 만들고, 연결된 부분 그래프나 커뮤니티 요약을 검색 문맥에 보탠다. 여러 문서에 흩어진 원인과 결과, 상하위 개념, 사건의 연쇄를 따라가야 할 때 이 구조가 유용할 수 있다. 한 문서의 정확한 날짜나 이름을 찾는 질문이라면 그래프 경로가 오히려 관련 없는 이웃을 데려올 수 있다.</p>
+<p>이 차이를 보려면 그래프 구성, 검색, 생성을 따로 측정해야 한다. 그래프 구성에서는 원문에서 노드와 관계를 제대로 추출했는지, 같은 실체를 지나치게 합치거나 쪼개지 않았는지, 각 관계에서 원문 위치로 돌아갈 수 있는지를 확인한다. 노드와 간선이 많다는 사실은 품질의 충분조건이 아니다. 잘못된 관계가 촘촘히 연결되면 검색 오류가 더 넓게 퍼진다.</p>
+<p>검색 단계에서는 질문에 필요한 근거가 결과에 들어왔는지를 나타내는 evidence recall과, 불필요한 내용이 얼마나 섞였는지를 보여 주는 context relevance를 분리해서 본다. 그래프 검색이 먼 문서의 필요한 구간을 추가로 찾았다면 여기에서 차이가 드러난다. 많은 구간을 가져와 recall만 높인 뒤 생성 모델에 정리를 맡기는 방식은 그래프 검색의 성공으로 보기 어렵다. 문맥이 길어질수록 관련 정보가 묻힐 수 있기 때문이다.</p>
+<p>생성 단계에서는 검색된 근거가 충분했는데도 답이 틀리는 경우를 잡아낸다. 답이 그럴듯해도 검색 문맥에 없는 주장을 덧붙였다면 faithfulness가 낮다. 반대로 답이 맞아도 모델이 학습 과정에서 이미 알고 있던 내용을 말했을 수 있다. 따라서 정답률만으로 검색 구조의 기여를 증명할 수 없다. 같은 생성 모델과 같은 질문을 두고 검색 문맥을 바꿔 비교하고, 최종 답의 각 주장을 실제 근거 구간과 대조해야 한다.</p>
+<p>이렇게 나누면 실패의 수리 위치도 달라진다. 관계 추출 오류는 그래프 구성 규칙을 고쳐야 한다. 필요한 노드가 있는데 검색하지 못했다면 진입점이나 순위 계산을 살핀다. 근거를 찾았지만 답에서 왜곡했다면 생성 지시와 검증 절차를 고친다. 최종 점수 하나는 어느 단계를 고쳐야 하는지 알려 주지 못한다.</p>
+<h2>복잡한 질문에서 생긴 이득은 단순 질문의 기준선까지 이기지 않는다</h2>
+<p>Zhishang Xiang, Chuanjie Wu, Qinggang Zhang, Shengyuan Chen, Zijin Hong, Xiao Huang, Jinsong Su의 ICLR 2026 논문은 소설과 의료 자료를 바탕으로 질문을 네 수준으로 나눴다. 단일 지식점을 찾는 사실 검색에서 시작해, 여러 지식점을 연결하는 복합 추론, 흩어진 정보를 구조화하는 맥락 요약, 주어진 근거를 넘어 새로운 형식으로 구성하는 창작 생성까지 난도를 달리했다.[1] 이 구분은 GraphRAG가 모든 질문에서 같은 일을 한다는 가정을 피한다.</p>
+<p>연구진이 비교한 조건에서 기본 RAG는 단순 사실 검색에 충분히 강했고, 일부 조건에서는 GraphRAG와 비슷하거나 더 나았다. 그래프의 장점은 복합 추론과 맥락 요약처럼 떨어진 정보의 관계를 모아야 하는 과제에서 더 분명했다. 그렇다고 하나의 GraphRAG 방식이 모든 복합 과제에서 우세했던 것은 아니다. 프레임워크마다 만든 그래프의 밀도와 검색 문맥의 길이가 크게 달랐고, 넓은 범위를 회수하는 대신 관련성이 떨어지는 절충도 나타났다.[1]</p>
+<p>비용도 같은 표에 놓아야 한다. 그래프는 색인할 때 엔티티와 관계를 추출하고, 질의할 때 연결 구조와 요약을 읽는다. ICLR 2026 논문은 구현에 따라 색인 시간과 토큰 사용량이 크게 달랐으며, 일부 방식에서는 과제가 복잡해질수록 프롬프트가 늘어 중복 문맥이 관련성을 떨어뜨렸다고 보고했다.[1] &quot;복합 질문에서 더 많이 찾았다&quot;와 &quot;운영할 가치가 있다&quot;는 별도 판단이다. 자료가 자주 바뀌면 최초 색인 비용보다 갱신 지연과 오래된 관계를 폐기하는 비용이 더 중요할 수 있다.</p>
+<p>Qiming Zeng, Hao Luo, Yuhao Lin, Yicheng Jin, Yuxiang Wang, Fangcheng Fu, Xiao Yan, Jiawei Jiang의 2026년 8월 v2로 갱신된 프리프린트는 평가 절차 자체를 문제 삼았다. 기존 방식으로 만든 질문이 원문 세부와 느슨하게 연결될 수 있고, 답변 비교에 쓰는 LLM 판정자가 앞에 놓인 답이나 긴 답을 선호하며 반복 평가에서 결과가 흔들릴 수 있다는 것이다.[2]</p>
+<p>연구진은 지식 그래프의 노드, 관계, 부분 그래프와 대응 원문을 함께 사용해 질문을 만들었다. 답변 비교에서는 A와 B의 순서를 바꾼 두 평가를 실행하고, 짧은 답과 긴 답의 길이 차이를 조정하며, 여러 차례 반복한 분포를 보고했다. 논문의 한 사례에서 기존 평가는 LightRAG가 NaiveRAG를 72% 대 28%로 앞선다고 판정했지만, 편향을 줄인 절차에서는 그 우위가 사라졌다. 비교한 세 GraphRAG 방식 가운데 다른 방식보다 나은 결과도 있었지만, 연구진은 차이가 기존 보고보다 대체로 작았다고 정리했다.[2]</p>
+<p>이 연구도 최종 기준은 아니다. 저자들도 자신들의 평가 틀에 결함이 남을 수 있다고 적었다. ICLR 2026 벤치마크는 텍스트 자료만 다뤘고, 실제 조직의 표·도면·센서 기록이 섞인 환경을 포함하지 않았다.[1] 두 연구를 함께 읽으면 성능표를 버려야 한다는 결론보다, 질문과 평가기가 어느 시스템에 유리한지 함께 공개해야 한다는 원칙이 남는다.</p>
+<h2>AKM에서는 그래프 전용 질문을 먼저 만들고 단순 검색과 겨룬다</h2>
+<p>다음은 두 논문의 구현 결과를 옮긴 설명이 아니라 DEXA의 AKM 설계 제안이다. 현재 운영 중인 기능이나 측정된 성능을 주장하지 않는다.</p>
+<p>AKM 같은 지식 체계에서 그래프를 검토하려면 먼저 질문 묶음을 세 층으로 나눌 수 있다. 첫 층은 한 원문에서 답을 찾는 질문이다. 특정 회의의 날짜, 문서 버전, 확정된 책임자를 묻는 경우가 여기에 속한다. 둘째 층은 여러 문서의 관계를 따라야 하는 질문이다. 한 결정이 어떤 요구사항과 후속 작업을 바꿨는지, 같은 이름이 다른 시기의 동일 대상을 가리키는지 살펴보는 일이다. 셋째 층은 일정 기간의 자료를 종합해 반복되는 쟁점이나 충돌을 정리하는 질문이다.</p>
+<p>세 층 모두에 같은 검색기를 강제할 이유는 없다. 직접 검색과 어휘·벡터 검색을 기준선으로 두고, 그래프 검색이 둘째와 셋째 층에서 추가로 회수한 근거를 기록한다. 첫 층에서 더 느리고 더 부정확하다면 단순 경로를 유지한다. 질문 유형을 미리 알기 어렵다면 작은 라우터를 두되, 라우터의 오분류 비용도 평가에 포함한다. 복합 질문을 단순 검색으로 보내 근거를 놓치는 오류와, 단순 질문을 비싼 그래프 경로로 보내 잡음을 늘리는 오류는 결과가 다르다.</p>
+<p>그래프 구성표에는 관계 자체보다 관계의 상태를 먼저 남길 필요가 있다. 각 관계는 원문 위치, 추출 시점, 그래프 버전, 검토 상태를 가져야 한다. 자동 추출된 관계는 후보이며, 검색에 등장했다는 이유로 확정 사실이 되지 않는다. 별칭 병합도 같은 방식으로 다룬다. 두 이름을 한 노드로 합친 결정과 합치지 못한 미해결 상태를 모두 추적해야, 검색 결과가 달라진 이유를 나중에 설명할 수 있다.</p>
+<p>평가표는 단계별로 읽을 수 있어야 한다. 그래프 구성에서는 원문으로 돌아갈 수 있는 관계의 비율과 잘못된 병합을 본다. 검색에서는 필요한 근거의 회수율, 관련성, 중복, 권한 위반 여부를 기록한다. 생성에서는 답의 주장별 근거 지지와 보류가 필요한데도 단정한 사례를 확인한다. 운영 비용에는 색인과 갱신 시간, 질의 지연, 토큰 사용량을 넣는다. 이 값들을 합산한 단일 점수는 편할 수 있지만, 원자료도 함께 남겨야 한다.</p>
+<p>평가 질문을 만드는 과정도 그래프와 분리해 검토한다. 그래프에서 질문과 정답을 동시에 만들면 추출 오류가 평가셋에 복제될 수 있다. 그래프가 제안한 관계 질문을 원문과 대조하고, 그래프 없이도 답할 수 있는 반례를 섞는다. 평가 모델을 쓴다면 답의 위치를 바꾸고 동점 선택을 허용하며, 길이와 반복 실행의 영향을 기록한다. 몇 점 차이로 도입을 결정하기보다 어떤 질문에서 같은 차이가 반복되는지를 보는 편이 낫다.</p>
+<p>채택하려면 그래프가 필요한 질문군에서 직접 검색보다 유효 근거를 더 잘 찾아야 한다. 그 차이는 갱신 비용과 오류 전파 위험을 감당할 만큼 커야 한다. 조건을 만족하지 못하면 그래프 범위를 줄이거나 제거한다. 이미 그래프를 만들었다는 사실은 유지해야 할 이유가 아니다.</p>
+<h2>그래프의 연결성과 답의 신뢰성을 같은 축에 놓지 않는다</h2>
+<p>GraphRAG는 연결된 자료를 찾는 방법이다. 그 연결이 참인지, 최신인지, 현재 질문에 쓸 권한이 있는지까지 자동으로 보증하지 않는다. 높은 degree나 촘촘한 cluster는 구조의 특징을 설명하지만, 관계의 정확도와 출처의 권위를 대신할 수 없다. 그래프 기반 검색 경로를 시각화해도 생성 모델이 실제로 그 경로만 사용했다고 단정할 수 없다.</p>
+<p>그래서 도입 검토에서 남겨야 할 문장은 &quot;GraphRAG가 RAG보다 좋았다&quot;가 아니다. &quot;여러 문서의 관계를 요구하는 이 질문군에서, 이 버전의 그래프가 기준선보다 필요한 근거를 더 회수했고, 생성 답변의 근거 지지율은 이 범위였으며, 갱신과 질의 비용은 이 정도였다&quot;처럼 조건을 드러내야 한다. 다음 데이터와 다음 버전에서도 같은 결론이 나오는지는 다시 확인한다.</p>
+<p>관계를 따라야만 풀리는 질문을 식별하고, 그 질문에서 실제로 추가된 근거를 보여 주며, 이득이 없는 경로는 끌 수 있어야 한다. 그래프라는 이름보다 그래프가 맡은 구체적인 일을 검증하는 편이 낫다.</p>
+<h2>참고 자료</h2>
+<ul><li>[1] Zhishang Xiang, Chuanjie Wu, Qinggang Zhang, Shengyuan Chen, Zijin Hong, Xiao Huang, Jinsong Su, <a href="https://arxiv.org/abs/2506.05690v3">《When to Use Graphs in RAG: A Comprehensive Analysis for Graph Retrieval-Augmented Generation》</a>, ICLR 2026 conference paper, arXiv v3, 2026-02-22.</li><li>[2] Qiming Zeng, Hao Luo, Yuhao Lin, Yicheng Jin, Yuxiang Wang, Fangcheng Fu, Xiao Yan, Jiawei Jiang, <a href="https://arxiv.org/abs/2506.06331v2">《How Significant Are the Real Performance Gains? An Unbiased Evaluation Framework for GraphRAG》</a>, arXiv v2, 2026-08-13.</li><li>AKM 적용을 위한 내부 출발점은 그래프 검색의 가중치를 고정값이 아니라 질문 유형별 가설로 다뤄야 한다는 기존 지식 정리였다. 공개 글에서는 위의 직접 출처로 연구 주장과 날짜를 다시 확인했다.</li></ul>
+            </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/why-media-art-must-be-run-again-every-night/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>미디어아트는 왜 밤마다 다시 실행되어야 하는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>

@@ -1,5 +1,25 @@
 [
   {
+    "slug": "a-graph-in-rag-does-not-prove-the-graph-helped",
+    "file": "_built/a-graph-in-rag-does-not-prove-the-graph-helped.md",
+    "title": "그래프를 붙였다는 것과 그래프 덕분에 좋아졌다는 것은 다르다",
+    "description": "GraphRAG의 효과를 최종 답변 점수 하나로 판단하지 않고, 질문 유형과 그래프 구성·검색·생성 단계를 나눠 검증하는 방법을 AKM 설계에 연결해 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "graph-engineering",
+      "GraphRAG",
+      "evaluation",
+      "AKM"
+    ],
+    "date": "2026-10-02",
+    "modified": "2026-10-02",
+    "thumbnail": "images/a-graph-in-rag-does-not-prove-the-graph-helped-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "why-media-art-must-be-run-again-every-night",
     "file": "_built/why-media-art-must-be-run-again-every-night.md",
     "title": "미디어아트는 왜 밤마다 다시 실행되어야 하는가",
