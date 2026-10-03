@@ -31,6 +31,26 @@
     ]
   },
   {
+    "slug": "when-two-resume-requests-race-after-one-approval",
+    "file": "_built/when-two-resume-requests-race-after-one-approval.md",
+    "title": "승인 한 번 뒤에 재개 요청이 두 번 오면 어떻게 되는가",
+    "description": "사람의 승인을 기다리는 에이전트 워크플로에서 동시 재개 요청이 왜 중복 실행으로 이어질 수 있는지 살펴보고, 승인 결정과 실행 권한을 한 번만 소비하는 AKM 설계안을 제시한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "agent-runtime",
+      "human-in-the-loop",
+      "concurrency",
+      "AKM"
+    ],
+    "date": "2026-10-03",
+    "modified": "2026-10-03",
+    "thumbnail": "images/when-two-resume-requests-race-after-one-approval-cover.png",
+    "author": "Deck"
+  },
+  {
     "slug": "a-graph-in-rag-does-not-prove-the-graph-helped",
     "file": "_built/a-graph-in-rag-does-not-prove-the-graph-helped.md",
     "title": "그래프를 붙였다는 것과 그래프 덕분에 좋아졌다는 것은 다르다",

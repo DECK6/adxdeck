@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>승인 한 번 뒤에 재개 요청이 두 번 오면 어떻게 되는가 | DEXA Blog</title>
+    <meta name="description" content="사람의 승인을 기다리는 에이전트 워크플로에서 동시 재개 요청이 왜 중복 실행으로 이어질 수 있는지 살펴보고, 승인 결정과 실행 권한을 한 번만 소비하는 AKM 설계안을 제시한다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/when-two-resume-requests-race-after-one-approval/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="승인 한 번 뒤에 재개 요청이 두 번 오면 어떻게 되는가" />
+    <meta property="og:description" content="사람의 승인을 기다리는 에이전트 워크플로에서 동시 재개 요청이 왜 중복 실행으로 이어질 수 있는지 살펴보고, 승인 결정과 실행 권한을 한 번만 소비하는 AKM 설계안을 제시한다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/when-two-resume-requests-race-after-one-approval/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/when-two-resume-requests-race-after-one-approval-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-10-03" />
+    <meta property="article:modified_time" content="2026-10-03" />
+    <meta property="article:author" content="Deck" />
+    <meta property="article:tag" content="ai-ax" />
+    <meta property="article:tag" content="agent-runtime" />
+    <meta property="article:tag" content="human-in-the-loop" />
+    <meta property="article:tag" content="concurrency" />
+    <meta property="article:tag" content="AKM" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="승인 한 번 뒤에 재개 요청이 두 번 오면 어떻게 되는가" />
+    <meta name="twitter:description" content="사람의 승인을 기다리는 에이전트 워크플로에서 동시 재개 요청이 왜 중복 실행으로 이어질 수 있는지 살펴보고, 승인 결정과 실행 권한을 한 번만 소비하는 AKM 설계안을 제시한다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/when-two-resume-requests-race-after-one-approval-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"승인 한 번 뒤에 재개 요청이 두 번 오면 어떻게 되는가","description":"사람의 승인을 기다리는 에이전트 워크플로에서 동시 재개 요청이 왜 중복 실행으로 이어질 수 있는지 살펴보고, 승인 결정과 실행 권한을 한 번만 소비하는 AKM 설계안을 제시한다.","image":"https://dexa.art/blog/images/when-two-resume-requests-race-after-one-approval-cover.png","datePublished":"2026-10-03","dateModified":"2026-10-03","author":{"@type":"Person","name":"Deck"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/when-two-resume-requests-race-after-one-approval/"},"articleSection":"AI · AX","keywords":"ai-ax, agent-runtime, human-in-the-loop, concurrency, AKM"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.10.03</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>승인 한 번 뒤에 재개 요청이 두 번 오면 어떻게 되는가</h1>
+                <p style="color:var(--muted);font-size:17px;">사람의 승인을 기다리는 에이전트 워크플로에서 동시 재개 요청이 왜 중복 실행으로 이어질 수 있는지 살펴보고, 승인 결정과 실행 권한을 한 번만 소비하는 AKM 설계안을 제시한다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">ai-ax</span><span class="dx-tag-chip">agent-runtime</span><span class="dx-tag-chip">human-in-the-loop</span><span class="dx-tag-chip">concurrency</span><span class="dx-tag-chip">AKM</span></div>
+<p><img src="/blog/images/when-two-resume-requests-race-after-one-approval-cover.png" alt="한 번의 승인에서 갈라진 두 재개 경로 중 하나만 실행 관문을 통과하는 모습을 표현한 생성형 개념 이미지" loading="lazy"></p>
+<p><em>이 표지는 사람 승인 뒤에 발생하는 동시 재개 경쟁을 표현하기 위해 GPT Image 2로 생성한 개념 이미지이며, 실제 서비스 화면이나 실험 장면을 재현한 것이 아니다.</em></p>
+<p>상황을 가정해 보자. 사람이 이메일 발송을 승인했고 화면에서 버튼은 한 번만 눌렀다. 그런데 브라우저가 응답을 받기 전에 재시도했고, 백엔드의 다른 인스턴스도 같은 승인 알림을 처리했다. 두 요청은 거의 동시에 멈춰 있던 에이전트를 깨웠다. 승인 기록은 하나지만 이메일도 하나라고 장담할 수는 없다.</p>
+<p>사람의 판단, 멈춘 실행을 다시 여는 요청, 외부 시스템을 바꾸는 효과는 서로 다른 사건이다. 사용자 화면에서 승인 버튼을 비활성화해도 네트워크 재시도나 중복 메시지, 여러 worker의 경쟁까지 사라지지는 않는다. 체크포인트도 같은 요청을 누가 먼저 소비했는지 자동으로 정해 주지 않는다.</p>
+<p>2026년 8월 8일 공개된 Sajjad Khan의 프리프린트 <a href="https://arxiv.org/abs/2608.03836v3">《Resume Means Resume》</a>은 이 경계를 <code>consume-once</code>라는 성질로 다룬다.[1] 같은 승인 입력을 여러 실행자가 동시에 전달받더라도, 하나의 재개 요청만 그 입력을 소비하고 효과 실행으로 넘어가야 한다는 뜻이다. 논문은 이 성질을 포함한 여섯 가지 재개 계약을 제안하고, 다섯 개 에이전트 워크플로 프레임워크의 고정 버전을 시험했다. 체크포인트가 있느냐보다 재개 요청을 원자적으로 선점하느냐가 문제의 중심에 놓인다.</p>
+<h2>멈춤과 재개는 한 줄 뒤에서 이어지는 일이 아니다</h2>
+<p>사람 검토를 넣은 에이전트는 대개 위험한 행동 앞에서 실행을 멈춘다. 승인 여부와 수정된 인자 같은 값을 받은 뒤 같은 실행 ID를 다시 호출한다. 이 흐름은 사용자의 눈에는 일시정지와 재생처럼 보이지만, 런타임 내부의 동작은 더 복잡하다.</p>
+<p>LangGraph 공식 문서는 <code>interrupt()</code>가 상태를 저장하고 입력을 기다리며, 같은 thread ID와 <code>Command(resume=...)</code>로 실행을 재개한다고 설명한다.[2] 재개할 때는 중단된 코드 줄 바로 다음으로 점프하지 않는다. 노드나 entrypoint의 앞부분부터 다시 실행하고, 저장된 task 결과를 읽으며 중단 지점까지 전진한다.[2][3] 그래서 공식 문서도 <code>interrupt()</code> 앞의 부수효과를 멱등하게 만들거나, 부수효과를 별도 task로 분리하라고 권고한다. 시작됐지만 끝났다고 기록되지 않은 task는 재개 과정에서 다시 실행될 수 있다.[3]</p>
+<p>이 설명은 단일 재개가 어떤 코드를 다시 실행하는지 알려 준다. 한 승인에 재개 요청 두 개가 동시에 도착했을 때 어느 요청이 입력을 소비하는지는 별도 문제다. 두 worker가 모두 같은 미처리 체크포인트를 읽고 자신이 첫 요청이라고 판단하면, 각자 승인 뒤의 행동을 시작할 수 있다. 화면의 버튼 상태는 이 경쟁을 해결하는 공유 잠금이 아니다.</p>
+<h2>승인 기록과 실행 권한을 분리해서 본다</h2>
+<p>《Resume Means Resume》는 체크포인트, 인터럽트, 재개 API를 평가하기 위한 여섯 가지 성질을 제시한다. 이미 끝난 접두 작업을 반복하지 않는지, 효과가 중복되지 않는지, 같은 체크포인트에서 갈라진 실행이 입력에 맞게 분기하는지, 잘못된 상태를 저장하지 않는지, 승인 입력을 한 번만 소비하는지, 복구 판단이 영속 상태로 결정되는지를 나눠 본다.[1]</p>
+<p>여기서 <code>consume-once</code>는 효과의 멱등성과 같지 않다. 두 재개 요청이 승인 하나를 모두 소비했지만 외부 API의 멱등 키가 중복 발송을 막을 수 있다. 이 경우 이메일은 하나지만 승인 장부는 두 실행이 같은 권한을 사용한 것으로 남는다. 반대로 재개 입력은 한 worker만 받았더라도, worker가 외부 API 호출 뒤 완료 기록 전에 죽으면 task 재시도로 효과가 반복될 수 있다. 승인 소비와 효과 중복 방지는 각각 검사해야 한다.</p>
+<p>논문은 LLM 호출 없는 하네스로 LangGraph 1.2.9, LlamaIndex Workflows 2.22.2, CrewAI 1.15.2, pydantic-graph 1.107.1, AutoGen AgentChat 0.7.5를 고정해 재개 성질을 비교했다.[1] 다만 다음 동시성 수치는 결정론적 프로토콜 셀이 아니라 race를 반복 관측한 LangGraph 1.2.9 시험 결과다. 순차 재전달은 추가 효과를 내지 않았지만, 같은 parked interrupt를 여러 OS 프로세스가 동시에 재개한 시험에서는 gated effect가 프로세스 수만큼 실행됐다. 두 durable backend의 40개 조건 가운데 36개는 포화도 1.0이었고 나머지도 0.933 아래로 내려가지 않았다. 서로 다른 두 호스트의 재개 요청 두 개도 10회 모두 중복 효과를 냈다.[1]</p>
+<p>이 수치를 모든 프레임워크와 모든 배포에 옮길 수는 없다. 논문이 시험한 것은 고정된 다섯 버전과 특정 API 경로다. 저자도 위반의 보급률이나 전체 생태계 대표성을 주장하지 않는다. 다만 순차 시험을 통과한 승인 흐름도 동시 요청에서는 깨질 수 있다는 반례는 분명하다.</p>
+<h2>한 번만 소비하는 관문은 공유 저장소에 있어야 한다</h2>
+<p>UI, queue consumer, workflow worker 한 곳이 “아마 한 번만 올 것”이라고 기대하는 것만으로는 네트워크 재시도와 여러 프로세스의 경쟁을 막을 수 없다. 논문이 검증한 범위에서는 공유 저장소의 opt-in gate가 소비권을 선점해 다른 racer를 노드 실행 전에 거부했다.[1] 아래 상태 전이는 그 구현을 그대로 옮긴 것이 아니라, 이 결과와 일반적인 멱등·감사 원칙을 바탕으로 한 DEXA의 설계 예시다.</p>
+<p><code>pending(interrupt_id) → claimed(decision_id, claimant_id) → effected(effect_id) → verified(receipt_id)</code></p>
+<p>첫 재개 요청은 <code>pending</code>을 <code>claimed</code>로 바꾸는 비교 후 교환에 성공한다. 뒤따른 요청은 이미 소비된 <code>decision_id</code>를 읽고 실행을 시작하지 않는다. 이때 요청 ID만 새로 발급해서는 부족하다. 브라우저 재시도가 서로 다른 요청 ID를 가질 수 있으므로, 고유성은 사람이 답한 <code>interrupt_id</code>와 결정 자체에 묶여야 한다.</p>
+<p>외부 효과에는 별도의 멱등 키가 필요하다. 이메일 제공자나 결제 API에 보낼 키는 <code>effect_id</code>처럼 안정적인 업무 식별자에서 파생하고, timeout 뒤에는 새 효과를 만들기 전에 제공자 영수증과 실제 상태를 조회한다. 체크포인트에 &quot;발송 시작&quot;만 기록돼 있다면 성공과 실패를 구분할 수 없다. 반대로 제공자 영수증이 있으면 workflow의 완료 기록이 늦었더라도 같은 효과를 다시 만들지 않고 장부를 복구할 수 있다.</p>
+<p>사람이 내린 결정의 내용도 고정해야 한다. 수신자와 제목이 A인 이메일을 승인한 뒤, 재개 과정에서 agent가 인자를 B로 바꾸면 승인 자체는 한 번만 소비됐어도 승인 범위를 벗어난다. <code>decision_id</code>에는 검토한 action name, canonical arguments의 hash, reviewer, 결정 시각, 정책 버전을 묶을 수 있다. 실행 직전의 인자가 다르면 새 승인을 요청해야 한다.</p>
+<h2>AKM의 승인 단계를 증거 패킷으로 남긴다면</h2>
+<p>다음은 특정 AKM 기능이 이미 구현됐다는 설명이 아니라 설계 제안이다. 지식 검색 결과를 공개 글, 외부 메시지, canonical note 변경으로 이어 주는 흐름에는 결정과 효과를 분리한 작은 증거 패킷을 둘 수 있다.</p>
+<ul><li><code>interrupt_id</code>: 사람이 어떤 대기 지점에 답했는지 가리킨다.</li><li><code>decision_id</code>: 승인·수정·거절 가운데 하나의 결정을 식별한다.</li><li><code>approved_payload_hash</code>: 사람이 실제로 본 대상과 실행 대상을 비교한다.</li><li><code>claim_status</code>: <code>pending</code>, <code>claimed</code>, <code>consumed</code>, <code>rejected</code> 가운데 현재 상태를 공유 저장소에서 관리한다.</li><li><code>effect_id</code>와 <code>provider_receipt</code>: 외부 행동의 멱등성과 실제 완료를 확인한다.</li><li><code>verification</code>: 게시 URL, 저장된 파일 hash, API readback처럼 실행 뒤 관찰한 상태를 남긴다.</li></ul>
+<p>이 패킷은 모델의 설명을 믿기 위한 문서가 아니다. 같은 승인으로 두 실행이 시작되지 않았는지, 승인한 내용과 실행한 내용이 같은지, 외부 효과가 실제로 한 번만 일어났는지를 나중에 대조하는 최소 장부다. 검색과 초안 작성처럼 되돌리기 쉬운 단계에는 이 구조가 과할 수 있다. 공개, 발송, 결제, 삭제처럼 되돌리기 어렵거나 다른 사람에게 영향을 주는 단계부터 적용하는 편이 낫다.</p>
+<p>시험도 성공 경로 하나로 끝내지 않는다. 같은 <code>decision_id</code>를 순차로 두 번 보내는 경우, 두 프로세스가 barrier 뒤에서 동시에 보내는 경우, 외부 효과 직후 worker를 종료하는 경우, 응답을 잃고 다른 worker가 재시도하는 경우를 나눠 본다. 하나의 claimant만 행동을 시작하고, 나머지는 이미 소비된 결정을 읽어야 한다. 효과가 완료됐는데 workflow 기록만 늦었다면 영수증 조회로 상태를 맞춘다.</p>
+<h2>이 연구가 보장하지 않는 것</h2>
+<p>《Resume Means Resume》는 2026년 8월의 단일 저자 프리프린트다. 동료 심사를 통과한 최종 논문이 아니며, 본문에 따르면 재현 artifact도 출판 전까지 비공개다.[1] 논문은 명시한 버전과 경로에서 강한 반례를 제시하지만 현재 버전의 모든 동작을 판정하지 않는다. 각 프레임워크의 수정 여부는 도입 시점에 다시 시험해야 한다.</p>
+<p><code>consume-once</code>를 구현해도 사람의 판단이 옳아지는 것은 아니다. reviewer가 잘못된 수신자나 과도한 권한을 승인할 수 있고, 승인 화면이 중요한 인자를 숨길 수도 있다. 공유 저장소가 손상되거나 권한 없는 주체가 <code>claimed</code> 상태를 쓰면 원자적 전이가 오히려 잘못된 행동을 확정한다. 인증, 최소 권한, 감사, 데이터 보존 정책은 여전히 필요하다.</p>
+<p>강한 잠금은 비용도 만든다. 재개 요청이 많은 시스템에서 한 행의 비교 후 교환이 병목이 될 수 있고, claimant가 죽은 뒤 claim을 언제 회수할지 정해야 한다. lease를 쓴다면 만료된 worker가 뒤늦게 쓰지 못하도록 fencing token이 필요하다. 모든 읽기 작업에 같은 수준의 관문을 붙이면 운영 비용만 늘어난다.</p>
+<h2>승인 화면보다 승인 소비 경로를 시험한다</h2>
+<p>사람 검토가 있다는 말은 안전 속성의 시작일 뿐이다. 사람이 한 번 판단했다는 사실, 시스템이 그 결정을 한 번 소비했다는 사실, 외부 효과가 한 번만 일어났다는 사실은 따로 증명해야 한다.</p>
+<p>실무에서는 동일한 인터럽트에 두 재개 요청이 동시에 왔을 때 누가 이기는지부터 확인한다. 패배한 요청은 효과 단계에 들어가기 전에 멈춰야 한다. 승인한 payload와 실행 payload가 같은지, 효과 완료와 기록 사이에서 장애가 나도 provider receipt로 실제 상태를 복구하는지도 함께 본다.</p>
+<p>승인 버튼을 한 번 눌렀다는 화면 기록만으로는 부족하다. 위험한 행동을 맡은 agent runtime이라면 승인 결정을 일회성 실행 권한으로 바꾸고, 그 권한을 공유 저장소에서 원자적으로 소비하며, 외부 효과는 별도의 멱등 키와 readback으로 확인해야 한다. 그래야 사람의 한 번의 판단이 시스템에서도 한 번의 행동으로 남는다.</p>
+<h2>참고 자료</h2>
+<ul><li>[1] Sajjad Khan, <a href="https://arxiv.org/abs/2608.03836v3">《Resume Means Resume: A Machine-Checked Conformance Contract for Checkpoint, Interrupt, and Resume Semantics in Workflow Persistence Layers》</a>, arXiv:2608.03836v3, 2026-08-08.</li><li>[2] LangChain, <a href="https://docs.langchain.com/oss/python/langgraph/interrupts">《Interrupts - Docs by LangChain》</a>, 2026-10-03 확인.</li><li>[3] LangChain, <a href="https://docs.langchain.com/oss/python/langgraph/functional-api">《Functional API overview - Docs by LangChain》</a>, 2026-10-03 확인.</li><li>AKM 적용 부분은 위 출처의 제품 동작을 그대로 옮긴 사례가 아니라, 승인·실행·검증 증거를 분리하기 위한 DEXA의 설계 제안이다.</li></ul>
+            </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/a-graph-in-rag-does-not-prove-the-graph-helped/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>그래프를 붙였다는 것과 그래프 덕분에 좋아졌다는 것은 다르다</span></a>
+                <a id="next-post" href="/blog/posts/when-design-refuses-to-solve-the-problem/" class="spec-row" style="text-decoration:none;"><span>디자인은 왜 문제를 해결하지 않아도 되는가</span><span class="k">NEXT →</span></a>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>
