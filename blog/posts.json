@@ -1,5 +1,38 @@
 [
   {
+    "slug": "why-media-art-institutions-must-fund-time-to-fail",
+    "file": "_built/why-media-art-institutions-must-fund-time-to-fail.md",
+    "title": "미디어아트 기관은 왜 완성작보다 실패할 시간을 사야 하는가",
+    "description": "Eyebeam의 레지던시와 펠로우십을 따라, 미디어아트 기관이 완성작을 전시하는 곳을 넘어 실패할 시간과 보상, 동료 비평, 공공 연결을 제공하는 인프라가 되는 방식을 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "institution",
+      "Eyebeam",
+      "artist-residency",
+      "critical-technology",
+      "artist-support",
+      "public-interest-technology"
+    ],
+    "date": "2026-10-05",
+    "modified": "2026-10-05",
+    "thumbnail": "images/why-media-art-institutions-must-fund-time-to-fail-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-art",
+      "institution",
+      "Eyebeam",
+      "artist-residency",
+      "critical-technology",
+      "artist-support",
+      "public-interest-technology"
+    ]
+  },
+  {
     "slug": "michel-chion-and-the-added-value-of-sound",
     "file": "_built/michel-chion-and-the-added-value-of-sound.md",
     "title": "소리는 어떻게 보이는 것을 다시 쓰는가",
