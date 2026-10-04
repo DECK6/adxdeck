@@ -33,6 +33,25 @@
     ]
   },
   {
+    "slug": "similar-questions-do-not-guarantee-the-same-answer",
+    "file": "_built/similar-questions-do-not-guarantee-the-same-answer.md",
+    "title": "비슷한 질문이 같은 답을 뜻하지 않는 이유: 의미 캐시의 적중 경계",
+    "description": "의미 캐시가 비슷한 질문에 과거 답변을 재사용할 때 생기는 오류를 살펴보고, 출처 버전과 권한·유효기간까지 묶어 판정하는 AKM 캐시 계약을 제안한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "semantic-caching",
+      "RAG",
+      "knowledge-management"
+    ],
+    "date": "2026-10-04",
+    "modified": "2026-10-04",
+    "thumbnail": "images/similar-questions-do-not-guarantee-the-same-answer-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "when-design-refuses-to-solve-the-problem",
     "file": "_built/when-design-refuses-to-solve-the-problem.md",
     "title": "디자인은 왜 문제를 해결하지 않아도 되는가",
