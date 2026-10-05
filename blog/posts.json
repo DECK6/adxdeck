@@ -1,5 +1,27 @@
 [
   {
+    "slug": "confidence-is-not-calibration",
+    "file": "_built/confidence-is-not-calibration.md",
+    "title": "말투가 자신 있어도 확률은 맞지 않는다: LLM 캘리브레이션의 운영 설계",
+    "description": "LLM의 자신감 표현을 정답 확률로 오해하지 않고, 반복 사례의 예측과 실제 결과를 연결해 보정 상태를 측정하는 운영 설계를 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "LLM",
+      "calibration",
+      "uncertainty",
+      "evaluation",
+      "RAG",
+      "human-ai-collaboration"
+    ],
+    "date": "2026-10-05",
+    "modified": "2026-10-05",
+    "thumbnail": "images/gpt2-confidence-is-not-calibration-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "why-media-art-institutions-must-fund-time-to-fail",
     "file": "_built/why-media-art-institutions-must-fund-time-to-fail.md",
     "title": "미디어아트 기관은 왜 완성작보다 실패할 시간을 사야 하는가",

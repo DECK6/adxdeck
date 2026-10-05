@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>말투가 자신 있어도 확률은 맞지 않는다: LLM 캘리브레이션의 운영 설계 | DEXA Blog</title>
+    <meta name="description" content="LLM의 자신감 표현을 정답 확률로 오해하지 않고, 반복 사례의 예측과 실제 결과를 연결해 보정 상태를 측정하는 운영 설계를 살펴본다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/confidence-is-not-calibration/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="말투가 자신 있어도 확률은 맞지 않는다: LLM 캘리브레이션의 운영 설계" />
+    <meta property="og:description" content="LLM의 자신감 표현을 정답 확률로 오해하지 않고, 반복 사례의 예측과 실제 결과를 연결해 보정 상태를 측정하는 운영 설계를 살펴본다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/confidence-is-not-calibration/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/gpt2-confidence-is-not-calibration-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-10-05" />
+    <meta property="article:modified_time" content="2026-10-05" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="AI" />
+    <meta property="article:tag" content="LLM" />
+    <meta property="article:tag" content="calibration" />
+    <meta property="article:tag" content="uncertainty" />
+    <meta property="article:tag" content="evaluation" />
+    <meta property="article:tag" content="RAG" />
+    <meta property="article:tag" content="human-ai-collaboration" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="말투가 자신 있어도 확률은 맞지 않는다: LLM 캘리브레이션의 운영 설계" />
+    <meta name="twitter:description" content="LLM의 자신감 표현을 정답 확률로 오해하지 않고, 반복 사례의 예측과 실제 결과를 연결해 보정 상태를 측정하는 운영 설계를 살펴본다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/gpt2-confidence-is-not-calibration-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"말투가 자신 있어도 확률은 맞지 않는다: LLM 캘리브레이션의 운영 설계","description":"LLM의 자신감 표현을 정답 확률로 오해하지 않고, 반복 사례의 예측과 실제 결과를 연결해 보정 상태를 측정하는 운영 설계를 살펴본다.","image":"https://dexa.art/blog/images/gpt2-confidence-is-not-calibration-cover.png","datePublished":"2026-10-05","dateModified":"2026-10-05","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/confidence-is-not-calibration/"},"articleSection":"AI · AX","keywords":"AI, LLM, calibration, uncertainty, evaluation, RAG, human-ai-collaboration"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.10.05</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>말투가 자신 있어도 확률은 맞지 않는다: LLM 캘리브레이션의 운영 설계</h1>
+                <p style="color:var(--muted);font-size:17px;">LLM의 자신감 표현을 정답 확률로 오해하지 않고, 반복 사례의 예측과 실제 결과를 연결해 보정 상태를 측정하는 운영 설계를 살펴본다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">AI</span><span class="dx-tag-chip">LLM</span><span class="dx-tag-chip">calibration</span><span class="dx-tag-chip">uncertainty</span><span class="dx-tag-chip">evaluation</span><span class="dx-tag-chip">RAG</span><span class="dx-tag-chip">human-ai-collaboration</span></div>
+<p><img src="/blog/images/gpt2-confidence-is-not-calibration-cover.png" alt="빛나는 답변 경로 일부는 깨진 결정에 닿고 일부는 안정된 그릇에 도달하는 모습을 담은 개념 이미지" loading="lazy"></p>
+<p><em>AI로 생성한 개념 이미지이며, 실제 모델의 확률 분포나 제품 화면이 아니다.</em></p>
+<p>회의를 앞둔 팀이 사내 문서 검색 AI에 묻는다. &quot;이 계약은 자동 갱신되나요?&quot; 답변은 또렷하다. 조항을 인용하고 결론도 단정한다. 마지막에는 <code>확신도 92%</code>가 붙는다. 하지만 인용한 문서는 계약서가 아니라 과거 제안서였고, 실제 계약서에는 예외 조항이 있다. 문제는 숫자의 크기가 아니었다. 그 숫자가 반복해서 관찰한 정답률과 연결된 적이 없었다.</p>
+<p>캘리브레이션(calibration)은 자신 있게 말하도록 만드는 기법이 아니다. 예측한 확률과 실제 결과의 빈도를 맞추는 성질이다. <code>0.8</code>이라고 표시한 답들을 충분히 모았을 때 그중 약 <code>80%</code>가 정답이어야 &quot;보정됐다&quot;고 말할 수 있다. 한 답변의 말투나 숫자만 보고는 이 관계를 확인할 수 없다. 캘리브레이션은 문장 속 속성이 아니라 <strong>같은 조건에서 축적한 예측과 결과 사이의 관계</strong>다.</p>
+<h2>토큰 확률과 답의 정답 확률은 다르다</h2>
+<p>언어 모델은 다음 토큰의 확률을 계산한다. 하지만 특정 문자열이 나올 확률은 그 문자열이 표현하는 답이 맞을 확률과 같지 않다. 같은 의미를 표현하는 문장은 많고, 긴 답은 여러 주장으로 이루어진다. 2024년 UncertaiNLP 논문 <em>Calibration-Tuning</em>은 답 전체의 개념 수준 확률을 토큰 확률의 곱으로 바로 구하기 어려운 이유를 이 차이에서 설명한다. 연구진은 질문응답 모델이 정답 여부의 보정된 확률을 직접 내도록 학습하는 절차를 제안했고, 객관식으로 학습한 보정 능력이 공개형 질문 평가에도 이어졌다고 보고했다.[1]</p>
+<p>모델에게 &quot;얼마나 확신하나요?&quot;라고 물어 숫자를 받는 방법도 자동으로 해결책이 되지 않는다. 질문 방식이 바뀌면 숫자가 달라질 수 있고, 선호도에 맞춰 유창하고 단정적으로 답하도록 조정된 모델은 정확성보다 표현상의 확신을 강화할 수 있다. 2024년 EMNLP 연구 <em>Calibrating the Confidence of Large Language Models by Eliciting Fidelity</em>는 RLHF 이후 모델의 표현된 자신감이 정답률과 어긋나는 과신 문제를 출발점으로 삼았다. 이 연구는 질문 자체의 불확실성과 이미 생성한 답을 고수하는 성향을 분리해 자신감을 추정했으며, <code>6</code>개 RLHF 모델과 <code>4</code>개 객관식 질문응답 데이터셋에서 방법을 평가했다.[2]</p>
+<p>이 결과를 모든 모델과 업무에 일반화할 수는 없다. 실험은 답 후보가 정해진 과제에 집중했고, 실제 RAG 답변은 문서 버전, 인용의 적합성, 질문의 누락 조건까지 함께 다뤄야 한다. 그래도 &quot;모델이 92라고 말했다&quot;와 &quot;92로 분류된 사례가 실제로 92% 맞았다&quot;는 서로 다른 주장이다.</p>
+<h2>긴 답변에는 한 개의 정답표가 부족하다</h2>
+<p>짧은 객관식 답은 맞음과 틀림으로 나누기 쉽다. 긴 답변은 한 문단 안에서도 일부 주장은 맞고 일부는 틀릴 수 있다. 문장은 사실이어도 질문의 범위를 놓칠 수 있고, 결론은 맞아도 근거가 낡았을 수 있다. 이 답을 하나의 <code>true</code>나 <code>false</code>로 줄이면 무엇이 잘못됐는지 사라진다.</p>
+<p>2024년 Findings of EMNLP 논문 <em>Calibrating Long-form Generations from Large Language Models</em>은 장문 답의 정확성과 자신감을 각각 <code>0</code>과 <code>1</code> 사이 점수의 분포로 다룬다. 연구진은 장문 평가가 사실성, 일관성, 명료성, 포괄성에 따라 달라지고 평가자 사이에도 차이가 생긴다고 본다. 실험에서는 더 큰 모델이 반드시 더 잘 보정되지 않았고, 사실형 데이터셋이 개방형 데이터셋보다 나은 보정 상태를 보였다.[3]</p>
+<p>계약 답변을 운영할 때는 이 관점을 더 잘게 나눠 다음 결과를 따로 기록할 수 있다.</p>
+<ul><li>핵심 결론이 맞았는가</li><li>인용한 조항이 실제 결론을 지지했는가</li><li>적용 날짜와 계약 주체를 올바르게 제한했는가</li><li>사용자가 다음 행동을 결정하는 데 필요한 예외를 빠뜨리지 않았는가</li></ul>
+<p>각 항목의 점수를 무작정 평균내면 위험한 결함이 가려질 수 있다. 핵심 조항을 틀린 답이 문체와 포괄성에서 높은 점수를 받았다는 이유로 통과해서는 안 된다. 보정의 대상은 &quot;답변 품질&quot;이라는 막연한 총점이 아니라, 실제 결정에 쓰이는 주장이나 행동 단위여야 한다.</p>
+<h2>절대 확률보다 순서가 먼저 필요한 경우도 있다</h2>
+<p>모든 시스템이 처음부터 정확한 확률을 낼 필요는 없다. 사람 검토 대기열에 무엇을 먼저 보낼지 정하는 업무라면, 불확실성이 높은 답이 실제로 더 자주 틀리는지만 확인해도 유용하다. 2024년 EMNLP 논문 <em>Uncertainty in Language Models: Assessment through Rank-Calibration</em>은 서로 범위가 다른 불확실성 지표를 비교하기 위해 순위 보정(rank-calibration)을 제안한다. 핵심 조건은 불확실성이 높을수록 평균적인 생성 품질이 낮아지는 것이다. 이 접근은 정답 점수를 임의의 이진 임계값으로 자르지 않고도 지표가 유용한 순서를 만드는지 평가한다.[4]</p>
+<p>하지만 순서가 맞는 것과 확률이 맞는 것은 다르다. A가 B보다 위험하다는 판단이 맞아도 A의 오류 확률이 <code>40%</code>인지 <code>70%</code>인지는 알 수 없다. 검토 우선순위에는 순위 보정이 쓸모 있지만, 자동 승인이나 비용 한도를 정하려면 절대 확률의 보정이 다시 필요하다. 두 목적을 하나의 <code>confidence</code> 필드로 처리하면 운영 규칙이 불명확해진다.</p>
+<h2>RAG 운영에서는 예측과 결과를 한 묶음으로 남긴다</h2>
+<p>보정은 모델 호출 한 번으로 끝나는 기능이 아니다. 질문, 검색 결과, 답변, 당시의 자신감 신호, 나중에 확인된 결과가 다시 연결돼야 한다. RAG 시스템이라면 최소한 질문 유형, 사용한 문서 revision, 인용 구간, 모델·프롬프트 버전, 예측 점수, claim별 판정, 검토자와 판정 시점을 하나의 평가 레코드에 남겨야 한다.</p>
+<p>이 기록은 팀 학습의 단위가 된다. 규정 질문에서 <code>0.8–0.9</code> 구간의 답이 실제로는 <code>60%</code>만 승인됐다고 해 보자. 점수를 낮추는 후처리로 끝낼 일이 아니다. 오래된 문서가 섞였는지, 적용 날짜를 묻지 않았는지, 인용이 결론을 지지하지 않았는지 오류 유형을 나눠야 한다. 검색·생성·평가가 같은 버전 정보를 공유해야 어떤 변경이 보정을 깨뜨렸는지도 찾을 수 있다.</p>
+<p>운영 절차는 다음처럼 구성할 수 있다.</p>
+<ol><li><strong>결정 단위를 고정한다.</strong> 답변 전체, claim, 인용 적합성, 후속 행동 중 무엇의 확률인지 먼저 정한다.</li><li><strong>예측 시점의 조건을 보존한다.</strong> 모델, 프롬프트, 검색 인덱스와 문서 revision을 함께 기록한다.</li><li><strong>결과 판정을 지연 결합한다.</strong> 사람 검토, 실제 업무 결과, 정답 자료가 생겼을 때 원래 예측과 연결한다.</li><li><strong>구간별 신뢰도를 본다.</strong> 점수 구간마다 예측 평균과 실제 정답률을 비교하고, 업무 유형과 위험 등급별로 다시 나눈다.</li><li><strong>변경 뒤 다시 측정한다.</strong> 모델 교체, 검색 정책 수정, 문서군 변화가 있으면 이전 보정값을 그대로 승계하지 않는다.</li></ol>
+<p>평가셋도 한 번 만들고 끝낼 수 없다. 실패 사례를 추가하되 같은 유형만 과대표집하지 않고, 실제 질문 분포와 고위험 꼬리 사례를 따로 관리해야 한다. 팀은 월별 총점보다 &quot;어떤 조건에서 과신했는가&quot;를 검토해야 다음 검색 규칙, 프롬프트, 이관 기준을 고칠 수 있다.</p>
+<h2>보정된 숫자도 근거를 대신하지 않는다</h2>
+<p>캘리브레이션에는 경계가 있다. 첫째, 과거 데이터에서 잘 보정된 점수도 질문 분포나 문서 정책이 바뀌면 어긋날 수 있다. 둘째, 장문 답의 정답 판정에는 평가자의 주관과 자동 평가기의 오류가 들어간다. 셋째, 낮은 평균 오차가 소수의 고위험 집단에서 생기는 과신을 가릴 수 있다. 넷째, 사용자가 높은 점수만 신뢰하기 시작하면 사용 방식 자체가 달라져 관측 결과도 변한다.</p>
+<p>무엇보다 보정은 출처 검증을 생략할 면허가 아니다. <code>90%</code>로 잘 보정된 시스템도 열 번 중 한 번은 틀릴 수 있다. 되돌릴 수 없는 실행, 법률·의료 판단, 외부 발송처럼 오류 비용이 큰 업무에서는 권위 있는 원문, 최신성, 권한, 사람 승인을 별도 조건으로 둬야 한다. 점수는 이 조건을 통과한 뒤 자동화 범위를 조절하는 신호로 써야 한다.</p>
+<p>자신감 있는 문장은 한 사례의 인상을 남길 뿐이다. 캘리브레이션은 많은 사례에서 예측과 결과가 얼마나 맞물렸는지를 보여 주는 운영 기록이다. AI의 확률을 제품에 노출하려면 그 숫자가 무엇의 확률인지 먼저 정해야 한다. 나중에 나온 결과와 연결하고, 분포가 바뀔 때 다시 측정해야 <code>92%</code>를 검증 가능한 약속으로 다룰 수 있다.</p>
+<h2>Sources consulted</h2>
+<p>[1] Sanyam Kapoor et al., “Calibration-Tuning: Teaching Large Language Models to Know What They Don’t Know,” UncertaiNLP 2024. https://aclanthology.org/2024.uncertainlp-1.1/</p>
+<p>[2] Mozhi Zhang et al., “Calibrating the Confidence of Large Language Models by Eliciting Fidelity,” EMNLP 2024. https://aclanthology.org/2024.emnlp-main.173/</p>
+<p>[3] Yukun Huang et al., “Calibrating Long-form Generations from Large Language Models,” Findings of EMNLP 2024. https://aclanthology.org/2024.findings-emnlp.785/</p>
+<p>[4] Xinmeng Huang et al., “Uncertainty in Language Models: Assessment through Rank-Calibration,” EMNLP 2024. https://aclanthology.org/2024.emnlp-main.18/</p>
+            </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/why-media-art-institutions-must-fund-time-to-fail/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>미디어아트 기관은 왜 완성작보다 실패할 시간을 사야 하는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>
