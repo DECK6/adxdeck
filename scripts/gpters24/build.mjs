@@ -2,14 +2,41 @@ import {weekOneFiles} from './week1.mjs';
 import {resourcePage} from './resources.mjs';
 import {publicAkm,publicFile} from './akm-public.mjs';
 import {existsSync} from 'node:fs';
-import {mkdir,writeFile,readFile} from 'node:fs/promises';
+import {mkdir,writeFile,readFile,readdir} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 import {execFileSync} from 'node:child_process';
 import {domains} from './data.mjs';
 import {filesForWeek,validate,query} from './core.mjs';
 import {createProject,personalFiles,zipFiles} from './personal.mjs';
+import {sample as personalSample,toMarkdown as personalMarkdown,promptFor as personalPrompt} from '../../ontology/study/assets/personal-ontology-core.mjs';
 const root=new URL('../../ontology/study/',import.meta.url),downloads=new URL('downloads/',root);
 await mkdir(downloads,{recursive:true});
+// The interview skill carries the exact web model without its personal demo data.
+const modelSource=await readFile(new URL('assets/personal-ontology-core.mjs',root),'utf8');
+const modelStart=modelSource.indexOf('export function sample('),modelEnd=modelSource.indexOf('const str=',modelStart);
+if(modelStart<0||modelEnd<modelStart)throw Error('Cannot locate the personal demo boundary.');
+const portableModel=(modelSource.slice(0,modelStart)+modelSource.slice(modelEnd)).replace("import {extendCareer} from './personal-career.mjs';\n",'');
+const skillName='personal-ontology-interview',skillFiles={'scripts/model.mjs':portableModel};
+async function collectSkill(folder,prefix=''){
+ for(const entry of await readdir(folder,{withFileTypes:true})){
+  const path=prefix+entry.name;
+  if(entry.isDirectory())await collectSkill(new URL(entry.name+'/',folder),path+'/');
+  else skillFiles[path]=await readFile(new URL(entry.name,folder),'utf8');
+ }
+}
+await collectSkill(new URL('./skills/'+skillName+'/',import.meta.url));
+for(const [name,text] of Object.entries(skillFiles)){const path=new URL(skillName+'/'+name,downloads);await mkdir(new URL('.',path),{recursive:true});await writeFile(path,text);}
+await writeFile(new URL(skillName+'.zip',downloads),zipFiles(Object.fromEntries(Object.entries(skillFiles).map(([name,text])=>[skillName+'/'+name,text]))));
+await writeFile(new URL(skillName+'.json',downloads),JSON.stringify({name:skillName,version:'2026-10-06',files:Object.entries(skillFiles).map(([path,text])=>({path,bytes:Buffer.byteLength(text),sha256:createHash('sha256').update(text).digest('hex')}))},null,2));
+const personalExample=personalSample(4),personalWeek2={
+ 'README.md':'# GPTers 24기 2주차 · 나를 둘러싼 세계\n\n작성·개정: 2026-10-06 · 수업: 2026-10-07\n\n육대근의 실제 커리어·작품·프로젝트를 연결한 실습 예제입니다. 주변 인물·기관은 익명화했습니다. 커리어 DB 95개 기록과 후속 프로젝트 기록 14개를 연결하며 구상·증빙 보강·과거 시점을 보존합니다.\n\n1. https://dexa.art/ontology/study/week2.html 에서 4단계 커리어 전체를 펼칩니다.\n2. sample.json은 JSON 가져오기로 편집할 수 있습니다. ontology.md는 종류·관계·근거를 포함합니다.\n3. agent-prompt.txt를 자기 원문과 함께 에이전트에게 전달하고 실제 답변과 수정 사항을 기록합니다.\n4. 다른 사람의 사례를 자기 이력으로 사용하지 말고 자기 자료로 대상을 바꿉니다.\n\n웹 전체 오프라인 ZIP을 사용할 때는 압축을 푼 폴더에서 `python3 -m http.server 8000`을 실행하고 http://localhost:8000/week2.html 을 엽니다.\n',
+ 'sample.json':JSON.stringify(personalExample,null,2),
+ 'ontology.md':personalMarkdown(personalExample,'2026-10-07'),
+ 'agent-prompt.txt':personalPrompt(personalExample,'2026-10-07')
+};
+await mkdir(new URL('week2/',downloads),{recursive:true});
+for(const [name,text] of Object.entries(personalWeek2))await writeFile(new URL('week2/'+name,downloads),text);
+await writeFile(new URL('week2-personal-ontology.zip',downloads),zipFiles(personalWeek2));
 await writeFile(new URL('resources.html',root),resourcePage());
 let previous=[];try{previous=JSON.parse(await readFile(new URL('manifest.json',downloads),'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}
 const manifests=[];

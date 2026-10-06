@@ -1,0 +1,36 @@
+{
+  "name": "personal-ontology-interview",
+  "version": "2026-10-06",
+  "files": [
+    {
+      "path": "scripts/model.mjs",
+      "bytes": 17322,
+      "sha256": "a51130ef957f7b5034a03a5a4ffec677c6db52924abaad98c92bfa2ff5fa676d"
+    },
+    {
+      "path": "references/data-contract.md",
+      "bytes": 4839,
+      "sha256": "c032f0b5e8917ec6aca43405a29d640f4978f5a40f2c5693097da1baffd95861"
+    },
+    {
+      "path": "references/interview-guide.md",
+      "bytes": 2981,
+      "sha256": "9a179d0e14442858a65f036d41b674da27cf543146e4a67bae394db5a1778fac"
+    },
+    {
+      "path": "README.md",
+      "bytes": 1833,
+      "sha256": "f2214978f430bcb3449f911143175ff18dfab65f13f542736b37f88bdcc50a2c"
+    },
+    {
+      "path": "scripts/ontology.mjs",
+      "bytes": 4558,
+      "sha256": "e80792b088ae8ce65f5b7334aff43501d6a25f6a8d733ccbf01dbc97114e77f1"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 6312,
+      "sha256": "bb723991629682faa01ee63cf8ffda85179c32c154afd47c1c8e27d255f8f9cf"
+    }
+  ]
+}
