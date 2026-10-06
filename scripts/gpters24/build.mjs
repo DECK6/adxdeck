@@ -9,8 +9,10 @@ import {domains} from './data.mjs';
 import {filesForWeek,validate,query} from './core.mjs';
 import {createProject,personalFiles,zipFiles} from './personal.mjs';
 import {sample as personalSample,toMarkdown as personalMarkdown,promptFor as personalPrompt} from '../../ontology/study/assets/personal-ontology-core.mjs';
+import {writeNoosphere} from './noosphere.mjs';
 const root=new URL('../../ontology/study/',import.meta.url),downloads=new URL('downloads/',root);
 await mkdir(downloads,{recursive:true});
+await writeNoosphere(root);
 // The interview skill carries the exact web model without its personal demo data.
 const modelSource=await readFile(new URL('assets/personal-ontology-core.mjs',root),'utf8');
 const modelStart=modelSource.indexOf('export function sample('),modelEnd=modelSource.indexOf('const str=',modelStart);
