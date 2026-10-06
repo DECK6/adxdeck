@@ -128,7 +128,8 @@ const works=[
 ];
 for(const [id,label,note,src,section,status,s,cs] of works){
  add(`work-${id}`,label,'work',note,src,section,{status});
- link('world','contains',`work-${id}`,'누스피어 탐색 예제에 포함한 작품 또는 관련 시안. 공식 시리즈 편입을 자동으로 뜻하지 않는다.',src,section);
+ const candidate=['hand','forgetting'].includes(id);
+ link('world','contains',`work-${id}`,candidate?'누스피어와 함께 살펴보도록 포함한 후보 작품. 정본의 직접 편입은 미확인이다.':'세계관 또는 해당 작품 기록에서 누스피어와 연결한 작품·기획·시안.',src,section,candidate?'proposed':'documented');
  if(s)link(`work-${id}`,'belongsTo',`series-${s}`,'세계관 정본이 제안한 시리즈 대응.','S01','§8');
  for(const c of cs)link(`work-${id}`,'explores',c,'작품 기록 또는 세계관 정본에서 이 작품과 연결한 개념.', ['hand','forgetting','residual','animation'].includes(id)?src:'S01',['hand','forgetting','residual','animation'].includes(id)?section:'§3·§8');
 }

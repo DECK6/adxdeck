@@ -37,6 +37,7 @@ test('world membership does not become an invented theoretical influence',()=>{
  assert.deepEqual(findPaths(d,'work-chaos','theory-barad'),[]);
 });
 test('proposed interpretation is excluded by default and shown only when requested',()=>{
+ assert.ok(!connections(noosphere,'work-forgetting').some(e=>e.from==='world'));
  assert.ok(!connections(noosphere,'work-forgetting').some(e=>e.to==='irreversibility'));
  assert.ok(connections(noosphere,'work-forgetting',{includeProposed:true}).some(e=>e.to==='irreversibility'&&e.status==='proposed'));
  assert.deepEqual(findPaths(noosphere,'work-forgetting','irreversibility'),[]);

@@ -2888,7 +2888,7 @@
       "from": "world",
       "predicate": "contains",
       "to": "work-chaos",
-      "meaning": "누스피어 탐색 예제에 포함한 작품 또는 관련 시안. 공식 시리즈 편입을 자동으로 뜻하지 않는다.",
+      "meaning": "세계관 또는 해당 작품 기록에서 누스피어와 연결한 작품·기획·시안.",
       "status": "documented",
       "evidence": [
         {
@@ -2930,8 +2930,8 @@
       "from": "world",
       "predicate": "contains",
       "to": "work-hand",
-      "meaning": "누스피어 탐색 예제에 포함한 작품 또는 관련 시안. 공식 시리즈 편입을 자동으로 뜻하지 않는다.",
-      "status": "documented",
+      "meaning": "누스피어와 함께 살펴보도록 포함한 후보 작품. 정본의 직접 편입은 미확인이다.",
+      "status": "proposed",
       "evidence": [
         {
           "source": "S05",
@@ -2958,7 +2958,7 @@
       "from": "world",
       "predicate": "contains",
       "to": "work-afterglow",
-      "meaning": "누스피어 탐색 예제에 포함한 작품 또는 관련 시안. 공식 시리즈 편입을 자동으로 뜻하지 않는다.",
+      "meaning": "세계관 또는 해당 작품 기록에서 누스피어와 연결한 작품·기획·시안.",
       "status": "documented",
       "evidence": [
         {
@@ -3014,7 +3014,7 @@
       "from": "world",
       "predicate": "contains",
       "to": "work-christmas",
-      "meaning": "누스피어 탐색 예제에 포함한 작품 또는 관련 시안. 공식 시리즈 편입을 자동으로 뜻하지 않는다.",
+      "meaning": "세계관 또는 해당 작품 기록에서 누스피어와 연결한 작품·기획·시안.",
       "status": "documented",
       "evidence": [
         {
@@ -3056,7 +3056,7 @@
       "from": "world",
       "predicate": "contains",
       "to": "work-voyage",
-      "meaning": "누스피어 탐색 예제에 포함한 작품 또는 관련 시안. 공식 시리즈 편입을 자동으로 뜻하지 않는다.",
+      "meaning": "세계관 또는 해당 작품 기록에서 누스피어와 연결한 작품·기획·시안.",
       "status": "documented",
       "evidence": [
         {
@@ -3196,7 +3196,7 @@
       "from": "world",
       "predicate": "contains",
       "to": "work-threshold",
-      "meaning": "누스피어 탐색 예제에 포함한 작품 또는 관련 시안. 공식 시리즈 편입을 자동으로 뜻하지 않는다.",
+      "meaning": "세계관 또는 해당 작품 기록에서 누스피어와 연결한 작품·기획·시안.",
       "status": "documented",
       "evidence": [
         {
@@ -3238,7 +3238,7 @@
       "from": "world",
       "predicate": "contains",
       "to": "work-hitl",
-      "meaning": "누스피어 탐색 예제에 포함한 작품 또는 관련 시안. 공식 시리즈 편입을 자동으로 뜻하지 않는다.",
+      "meaning": "세계관 또는 해당 작품 기록에서 누스피어와 연결한 작품·기획·시안.",
       "status": "documented",
       "evidence": [
         {
@@ -3280,8 +3280,8 @@
       "from": "world",
       "predicate": "contains",
       "to": "work-forgetting",
-      "meaning": "누스피어 탐색 예제에 포함한 작품 또는 관련 시안. 공식 시리즈 편입을 자동으로 뜻하지 않는다.",
-      "status": "documented",
+      "meaning": "누스피어와 함께 살펴보도록 포함한 후보 작품. 정본의 직접 편입은 미확인이다.",
+      "status": "proposed",
       "evidence": [
         {
           "source": "S09",
@@ -3322,7 +3322,7 @@
       "from": "world",
       "predicate": "contains",
       "to": "work-residual",
-      "meaning": "누스피어 탐색 예제에 포함한 작품 또는 관련 시안. 공식 시리즈 편입을 자동으로 뜻하지 않는다.",
+      "meaning": "세계관 또는 해당 작품 기록에서 누스피어와 연결한 작품·기획·시안.",
       "status": "documented",
       "evidence": [
         {
@@ -3350,7 +3350,7 @@
       "from": "world",
       "predicate": "contains",
       "to": "work-animation",
-      "meaning": "누스피어 탐색 예제에 포함한 작품 또는 관련 시안. 공식 시리즈 편입을 자동으로 뜻하지 않는다.",
+      "meaning": "세계관 또는 해당 작품 기록에서 누스피어와 연결한 작품·기획·시안.",
       "status": "documented",
       "evidence": [
         {
