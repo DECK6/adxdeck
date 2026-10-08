@@ -1,5 +1,32 @@
 [
   {
+    "slug": "lee-bul-and-the-unfinished-cyborg-body",
+    "file": "_built/lee-bul-and-the-unfinished-cyborg-body.md",
+    "title": "이불의 사이보그는 왜 완벽한 몸을 완성하지 않는가",
+    "description": "이불의 《Cyborg》와 《Anagram》, 《Mon grand récit》 연작을 따라, 매끈한 미래의 표면이 완전한 몸과 유토피아의 기준을 어떻게 흔드는지 살펴본다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "lee-bul",
+      "cyborg",
+      "korean-media-art"
+    ],
+    "date": "2026-10-09",
+    "modified": "2026-10-09",
+    "thumbnail": "images/lee-bul-unfinished-cyborg-cover.png",
+    "author": "Deck",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "lee-bul",
+      "cyborg",
+      "korean-media-art"
+    ]
+  },
+  {
     "slug": "confidence-is-not-calibration",
     "file": "_built/confidence-is-not-calibration.md",
     "title": "말투가 자신 있어도 확률은 맞지 않는다: LLM 캘리브레이션의 운영 설계",
