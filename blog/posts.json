@@ -1,5 +1,36 @@
 [
   {
+    "slug": "anthony-mccall-and-the-space-inside-projected-light",
+    "file": "_built/anthony-mccall-and-the-space-inside-projected-light.md",
+    "title": "앤서니 매콜의 빛은 왜 스크린 앞에서 멈추지 않는가",
+    "description": "Anthony McCall's solid light works turn the interval between projector and wall into a space of bodily spectatorship. This essay examines duration, atmospheric conditions, and the limits of treating immersion as a visual effect.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "international-artist",
+      "anthony-mccall",
+      "expanded-cinema",
+      "light-installation",
+      "spectatorship"
+    ],
+    "date": "2026-10-10",
+    "modified": "2026-10-10",
+    "thumbnail": "images/anthony-mccall-solid-light-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "international-artist",
+      "anthony-mccall",
+      "expanded-cinema",
+      "light-installation",
+      "spectatorship"
+    ]
+  },
+  {
     "slug": "flashattention-does-not-remove-quadratic-attention",
     "file": "_built/flashattention-does-not-remove-quadratic-attention.md",
     "title": "FlashAttention은 긴 문맥의 제곱 비용을 없애지 않는다",
