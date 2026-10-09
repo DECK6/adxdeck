@@ -1,5 +1,26 @@
 [
   {
+    "slug": "flashattention-does-not-remove-quadratic-attention",
+    "file": "_built/flashattention-does-not-remove-quadratic-attention.md",
+    "title": "FlashAttention은 긴 문맥의 제곱 비용을 없애지 않는다",
+    "description": "FlashAttention이 정확한 어텐션을 유지하면서 GPU 메모리 이동을 줄이는 원리와, 긴 문맥의 제곱 연산량·하드웨어별 성능·AKM 적용에서 남는 경계를 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "LLM",
+      "FlashAttention",
+      "inference",
+      "GPU",
+      "context-engineering"
+    ],
+    "date": "2026-10-09",
+    "modified": "2026-10-09",
+    "thumbnail": "images/gpt2-flashattention-quadratic-cost-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "lee-bul-and-the-unfinished-cyborg-body",
     "file": "_built/lee-bul-and-the-unfinished-cyborg-body.md",
     "title": "이불의 사이보그는 왜 완벽한 몸을 완성하지 않는가",
