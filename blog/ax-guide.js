@@ -36,7 +36,7 @@ const AX_TOPICS = Object.freeze([
         question: '개인의 실험을 팀이 이어 쓸 수 있는 방법으로 만들려면?',
         description: '프롬프트 묘기보다 목표, 작업 맥락, 도구 권한, 검증 가능한 결과를 먼저 배웁니다. 실습에서 남긴 판단 기준과 시행착오를 다음 사람에게 전달합니다.',
         action: '첫 실험: 작은 제작 과제 하나를 골라 목표·입력 자료·실행 단계·검증 결과를 남기고, 다른 사람이 재현할 수 있는지 확인하세요.',
-        slugs: ['turning-personal-ai-practice-into-reproducible-team-learning', 'vibe-coding-in-2026', 'task-specific-context-budgets']
+        slugs: ['turning-personal-ai-practice-into-reproducible-team-learning', 'ai-assisted-performance-is-not-skill-formation', 'vibe-coding-in-2026', 'task-specific-context-budgets']
     }
 ]);
 

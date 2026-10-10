@@ -1,5 +1,25 @@
 [
   {
+    "slug": "ai-assisted-performance-is-not-skill-formation",
+    "file": "_built/ai-assisted-performance-is-not-skill-formation.md",
+    "title": "AI로 끝낸 업무가 곧 팀의 실력은 아니다",
+    "description": "AI의 도움으로 완성한 결과와 사람에게 남은 이해·오류 진단 능력을 구분하고, 코딩·수학 실험을 바탕으로 조직의 온보딩에서 보존할 연습을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "organizational-learning",
+      "skill-formation",
+      "human-ai-collaboration",
+      "work-design"
+    ],
+    "date": "2026-10-10",
+    "modified": "2026-10-10",
+    "thumbnail": "images/ai-assisted-performance-skill-formation-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "anthony-mccall-and-the-space-inside-projected-light",
     "file": "_built/anthony-mccall-and-the-space-inside-projected-light.md",
     "title": "앤서니 매콜의 빛은 왜 스크린 앞에서 멈추지 않는가",
