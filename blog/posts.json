@@ -1,5 +1,36 @@
 [
   {
+    "slug": "where-distant-bodies-meet-through-telepresence",
+    "file": "_built/where-distant-bodies-meet-through-telepresence.md",
+    "title": "멀리 있는 몸은 어디에서 만나는가",
+    "description": "폴 서먼의 《Telematic Dreaming》과 켄 골드버그·조지프 산타로마나의 《Telegarden》을 통해 원격현존이 만드는 친밀함, 먼 곳에 작용하는 행위, 그 결과가 남는 장소를 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "media-theory",
+      "telepresence",
+      "embodiment",
+      "telematic-art",
+      "remote-agency"
+    ],
+    "date": "2026-10-12",
+    "modified": "2026-10-12",
+    "thumbnail": "images/telepresence-touch-and-remote-garden-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "media-art",
+      "media-theory",
+      "telepresence",
+      "embodiment",
+      "telematic-art",
+      "remote-agency"
+    ]
+  },
+  {
     "slug": "what-teams-must-keep-when-ai-crosses-functional-boundaries",
     "file": "_built/what-teams-must-keep-when-ai-crosses-functional-boundaries.md",
     "title": "AI가 부서의 경계를 넘을 때, 팀에 남겨야 할 일",
