@@ -263,13 +263,14 @@
     "title": "Anamorphic Sim",
     "category": "TypeScript · WebGL",
     "year": "2026",
-    "description": "평면/ㄱ자 LED 아나모픽 콘텐츠 변환 엔진 — sweet spot 재투영, 곡면 세그먼트, 픽셀맵 출력, AI 원본 콘텐츠 가이드",
+    "description": "콘텐츠 사각지대의 미디어월에도 입체감 있는 영상을 — AI 영상 가이드부터 시뮬레이션·UV 출력까지 이어주는 아나모픽 제작 도구",
     "tags": [
       "LED",
       "Anamorphic"
     ],
     "badge": "R&D",
-    "size": "normal"
+    "size": "normal",
+    "url": "/anamorphic-sim/"
   },
   {
     "id": "dev-03",
