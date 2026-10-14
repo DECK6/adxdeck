@@ -1,0 +1,107 @@
+[
+  {
+    "id": "N1",
+    "path": "wiki/01-founding-events.md",
+    "status": "current",
+    "question_ids": [
+      "Q1",
+      "Q2"
+    ],
+    "concept_ids": [
+      "C01",
+      "C03",
+      "C06",
+      "C07",
+      "C08",
+      "C09",
+      "C10",
+      "C12",
+      "C13",
+      "C14",
+      "C15"
+    ],
+    "claim_ids": [
+      "A01",
+      "A02",
+      "A03",
+      "A08",
+      "A09",
+      "A10",
+      "A11",
+      "A14",
+      "A15",
+      "A16"
+    ],
+    "source_ids": [
+      "S002",
+      "S003",
+      "S004",
+      "S005"
+    ],
+    "links": [
+      "N2",
+      "N3"
+    ]
+  },
+  {
+    "id": "N2",
+    "path": "wiki/02-two-taejo.md",
+    "status": "current",
+    "question_ids": [
+      "Q3"
+    ],
+    "concept_ids": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05"
+    ],
+    "claim_ids": [
+      "A04",
+      "A05",
+      "A06",
+      "A07"
+    ],
+    "source_ids": [
+      "S005",
+      "S006"
+    ],
+    "links": [
+      "N1",
+      "N3"
+    ]
+  },
+  {
+    "id": "N3",
+    "path": "wiki/03-reading-annals.md",
+    "status": "current",
+    "question_ids": [
+      "Q4"
+    ],
+    "concept_ids": [
+      "C08",
+      "C09",
+      "C10",
+      "C11",
+      "C13",
+      "C16"
+    ],
+    "claim_ids": [
+      "A12",
+      "A13",
+      "A17",
+      "A18"
+    ],
+    "source_ids": [
+      "S002",
+      "S003",
+      "S004",
+      "S005"
+    ],
+    "links": [
+      "N1",
+      "N2"
+    ]
+  }
+]

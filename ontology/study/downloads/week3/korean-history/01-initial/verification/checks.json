@@ -1,0 +1,86 @@
+[
+  {
+    "question_id": "Q1",
+    "case": "normal",
+    "result": "pass",
+    "revision": 1,
+    "path": "verification/question-checks.md"
+  },
+  {
+    "question_id": "Q1",
+    "case": "counterexample",
+    "result": "pass",
+    "revision": 1,
+    "path": "verification/question-checks.md"
+  },
+  {
+    "question_id": "Q1",
+    "case": "unknown",
+    "result": "pass",
+    "revision": 1,
+    "path": "verification/question-checks.md"
+  },
+  {
+    "question_id": "Q2",
+    "case": "normal",
+    "result": "pass",
+    "revision": 1,
+    "path": "verification/question-checks.md"
+  },
+  {
+    "question_id": "Q2",
+    "case": "counterexample",
+    "result": "pass",
+    "revision": 1,
+    "path": "verification/question-checks.md"
+  },
+  {
+    "question_id": "Q2",
+    "case": "unknown",
+    "result": "pass",
+    "revision": 1,
+    "path": "verification/question-checks.md"
+  },
+  {
+    "question_id": "Q3",
+    "case": "normal",
+    "result": "pass",
+    "revision": 1,
+    "path": "verification/question-checks.md"
+  },
+  {
+    "question_id": "Q3",
+    "case": "counterexample",
+    "result": "pass",
+    "revision": 1,
+    "path": "verification/question-checks.md"
+  },
+  {
+    "question_id": "Q3",
+    "case": "unknown",
+    "result": "pass",
+    "revision": 1,
+    "path": "verification/question-checks.md"
+  },
+  {
+    "question_id": "Q4",
+    "case": "normal",
+    "result": "pass",
+    "revision": 1,
+    "path": "verification/question-checks.md"
+  },
+  {
+    "question_id": "Q4",
+    "case": "counterexample",
+    "result": "pass",
+    "revision": 1,
+    "path": "verification/question-checks.md"
+  },
+  {
+    "question_id": "Q4",
+    "case": "unknown",
+    "result": "pass",
+    "revision": 1,
+    "path": "verification/question-checks.md"
+  }
+]

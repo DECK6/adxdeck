@@ -1,0 +1,111 @@
+{
+  "domain_id": "korean-history-demo",
+  "revision": 1,
+  "findings": [
+    {
+      "code": "question-gap",
+      "target": "Q5",
+      "message": "1394년 이후 한양이 계속 수도였는가?",
+      "severity": "warning",
+      "role": "akm-explore"
+    },
+    {
+      "code": "question-unverified",
+      "target": "Q5",
+      "message": "Needs current normal/counterexample/unknown checks",
+      "severity": "warning",
+      "role": "akm-review"
+    },
+    {
+      "code": "question-gap",
+      "target": "Q6",
+      "message": "경복궁 창건과 한양 천도는 같은 사건·연도인가?",
+      "severity": "warning",
+      "role": "akm-explore"
+    },
+    {
+      "code": "question-unverified",
+      "target": "Q6",
+      "message": "Needs current normal/counterexample/unknown checks",
+      "severity": "warning",
+      "role": "akm-review"
+    }
+  ],
+  "coverage": {
+    "declared_questions": 8,
+    "required_questions": 6,
+    "open_question_ids": [
+      "Q5",
+      "Q6"
+    ],
+    "verified_question_ids": [
+      "Q1",
+      "Q2",
+      "Q3",
+      "Q4"
+    ],
+    "complete_for_declared_scope": false,
+    "meaning": "Recorded checks for this declared scope and revision; not proof of factual truth or field-wide completeness."
+  },
+  "inspected_sha256": {
+    "ontology.json": "eb2939d26f5088117d469d8e16a2f429c6d739b0fba7c593be7d17276da806cc",
+    "AGENTS.md": "880413aeb0496d9f3235c0f1ed389abe9623374cf19c74a1f2060854cf18ec28",
+    "CLAUDE.md": "638114c52ca8b87460951d7f1345c4b1382a384f3ca1ff2f016790b6eb6d1970",
+    "PROFILE.json": "cc4559608c28b6eb0554514515fe268ac78d3fbcd83873dc7c3dc233a2822e75",
+    "README.md": "b4c964c5740928f840f87ababd57ba50b9bf1eb9d89c7a184184a93cad8a26a6",
+    "domain-brief.md": "519cebaf59926acd853a43c7f508c28ed1b4c80ff80b89afd6da99d8770d9b56",
+    "interview.md": "679823ba85e8d16354c4c64e377ebecd7993ecda64fa661a8b2cda5c7de77c71",
+    "notes.json": "d40a7de151b55283e3b8949992dcf2549d5856103ca429ed16c0cfb144beab12",
+    "ontology.md": "27715d050a0c132028fee55534a58455891a4d9f5dd24eb0ace7bb0ae999ffd1",
+    "operations/resume.md": "ef71776375147078d675c6091dd8279c2f7dc865bf37f1b3b2a4c5f9d06a6e03",
+    "sources/S002.md": "d5fe25f8ce6d1ec232c1179cfe1181b9cc59adde182eb880227102ff5253184e",
+    "sources/S003.md": "53de57e4a39e714b44f9b7bf00570748cc39b0cd79ef94d85bc2a2e3bd4a6bfd",
+    "sources/S004.md": "fe60c36e60e55cf728d942ded49d199877f77dec6a80d5ca9f3f2e03d5968d0b",
+    "sources/S005.md": "25026e0b0c8ccf8e3a505879f585cef6e2992df247678b164757dfd87e47abc7",
+    "sources/S006.md": "a586572b926d76d935749124ab4575c4a5414d34eb82d70af2ca60ea3c623cbf",
+    "sources/registry.json": "1c8e0f0ae3ac030ebd0cf1013b5c35b4607d0107f00d99e87c57841c64e32b99",
+    "state.json": "2da6bf034fa1c9f9e509a869a6eb3072e8fd5fdecb8904060d89b914870e7904",
+    "tools/LICENSE": "502bba8a4cc4e51d6cb09cdf783c56dd1307d21cebabee4125a0e626ca720d9f",
+    "tools/knowledge.py": "d9028c336c2e81689a491645f8e8cf4b489d67fc8c8297e5c367960d3cf240fe",
+    "verification/checks.json": "cf0a2d56cf667c884433aee6ec03ae9da54f9ed18b09b3b885075108e305213d",
+    "verification/question-checks.md": "5945b27957121eab6ad0e0daa05ed072b42f4d0953500880277c5766b95d54f5",
+    "verification/semantic-review.md": "c626ec4d810c922baf9e432ecd2e4e9d86ee451e27a7aea10f7ff5c8436c6809",
+    "wiki/01-founding-events.md": "49019d73a825dee4f1801f4614b30635c050036727606cf3c5875bf13e7ffecd",
+    "wiki/02-two-taejo.md": "d59afe08536a12232a78784ec2f65d0a40c406553dd9ea51117c7e896c966fa7",
+    "wiki/03-reading-annals.md": "17ca4a13b6c488639ea2eb53e2b822135ae4ff37e30dbb5487d3e56167becd5b"
+  },
+  "tasks": [
+    {
+      "id": "task-12a758ad58a0",
+      "role": "akm-explore",
+      "target": "Q6",
+      "reason": "경복궁 창건과 한양 천도는 같은 사건·연도인가?",
+      "status": "pending",
+      "priority": 1
+    },
+    {
+      "id": "task-3f91b14c9fcf",
+      "role": "akm-review",
+      "target": "Q6",
+      "reason": "Needs current normal/counterexample/unknown checks",
+      "status": "pending",
+      "priority": 1
+    },
+    {
+      "id": "task-6c932d6ff3eb",
+      "role": "akm-explore",
+      "target": "Q5",
+      "reason": "1394년 이후 한양이 계속 수도였는가?",
+      "status": "pending",
+      "priority": 1
+    },
+    {
+      "id": "task-eae6f4e3fc69",
+      "role": "akm-review",
+      "target": "Q5",
+      "reason": "Needs current normal/counterexample/unknown checks",
+      "status": "pending",
+      "priority": 1
+    }
+  ]
+}

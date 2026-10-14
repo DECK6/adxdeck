@@ -1,0 +1,329 @@
+{
+  "version": 1,
+  "domain_id": "korean-history-demo",
+  "entry_intent": "ontology",
+  "simulation": true,
+  "active_role": "akm-maintain",
+  "discovery": {
+    "status": "user-saturated",
+    "synthetic": true,
+    "stop_signal": "새로 떠오르는 건 더 없어요. 여기까지 정리해서 먼저 세 개를 만들어주세요.",
+    "source": "interview.md R7"
+  },
+  "knowledge_revision": 2,
+  "initial_note_ids": [
+    "N1",
+    "N2",
+    "N3"
+  ],
+  "notes": [
+    {
+      "id": "N1",
+      "path": "wiki/01-founding-events.md",
+      "status": "current",
+      "question_ids": [
+        "Q1",
+        "Q2"
+      ],
+      "concept_ids": [
+        "C01",
+        "C03",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C12",
+        "C13",
+        "C14",
+        "C15",
+        "C17",
+        "C18",
+        "C19",
+        "C20",
+        "C21",
+        "C22",
+        "C23",
+        "C24"
+      ],
+      "claim_ids": [
+        "A01",
+        "A02",
+        "A03",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A14",
+        "A15",
+        "A16",
+        "A19",
+        "A20",
+        "A22",
+        "A23",
+        "A25",
+        "A26"
+      ],
+      "source_ids": [
+        "S002",
+        "S003",
+        "S004",
+        "S005",
+        "S007",
+        "S008"
+      ],
+      "links": [
+        "N2",
+        "N3",
+        "N4",
+        "N5"
+      ]
+    },
+    {
+      "id": "N2",
+      "path": "wiki/02-two-taejo.md",
+      "status": "current",
+      "question_ids": [
+        "Q3"
+      ],
+      "concept_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05"
+      ],
+      "claim_ids": [
+        "A04",
+        "A05",
+        "A06",
+        "A07"
+      ],
+      "source_ids": [
+        "S005",
+        "S006"
+      ],
+      "links": [
+        "N1",
+        "N3"
+      ]
+    },
+    {
+      "id": "N3",
+      "path": "wiki/03-reading-annals.md",
+      "status": "current",
+      "question_ids": [
+        "Q4"
+      ],
+      "concept_ids": [
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C13",
+        "C16",
+        "C18",
+        "C19",
+        "C20",
+        "C21",
+        "C23",
+        "C24"
+      ],
+      "claim_ids": [
+        "A12",
+        "A13",
+        "A17",
+        "A18",
+        "A20",
+        "A23",
+        "A26"
+      ],
+      "source_ids": [
+        "S002",
+        "S003",
+        "S004",
+        "S005",
+        "S007",
+        "S008"
+      ],
+      "links": [
+        "N1",
+        "N2",
+        "N4",
+        "N5"
+      ]
+    },
+    {
+      "id": "N4",
+      "path": "wiki/04-capital-returns.md",
+      "status": "current",
+      "question_ids": [
+        "Q5"
+      ],
+      "concept_ids": [
+        "C03",
+        "C07",
+        "C10",
+        "C15",
+        "C17",
+        "C18",
+        "C19",
+        "C20",
+        "C21"
+      ],
+      "claim_ids": [
+        "A10",
+        "A11",
+        "A19",
+        "A20",
+        "A21",
+        "A22",
+        "A23",
+        "A24"
+      ],
+      "source_ids": [
+        "S004",
+        "S007"
+      ],
+      "links": [
+        "N1",
+        "N3",
+        "N5"
+      ]
+    },
+    {
+      "id": "N5",
+      "path": "wiki/05-palace-and-capital.md",
+      "status": "current",
+      "question_ids": [
+        "Q6"
+      ],
+      "concept_ids": [
+        "C03",
+        "C07",
+        "C10",
+        "C15",
+        "C22",
+        "C23",
+        "C24"
+      ],
+      "claim_ids": [
+        "A10",
+        "A11",
+        "A25",
+        "A26",
+        "A27"
+      ],
+      "source_ids": [
+        "S004",
+        "S008"
+      ],
+      "links": [
+        "N1",
+        "N3",
+        "N4"
+      ]
+    }
+  ],
+  "paths": {
+    "brief": "domain-brief.md",
+    "discovery": "interview.md",
+    "ontology": "ontology.json",
+    "audit_map": "knowledge-map.json",
+    "index": "README.md",
+    "sources": "sources/registry.json",
+    "evaluation": "verification/question-checks.md"
+  },
+  "backlog": [
+    {
+      "id": "task-Q5",
+      "question_ids": [
+        "Q5"
+      ],
+      "role": "akm-explore",
+      "status": "completed",
+      "needed_evidence": "1394년 이후 개경 환도·한양 재천도 여부",
+      "target_ids": [
+        "A10",
+        "N1"
+      ],
+      "cycle_id": "cycle-01"
+    },
+    {
+      "id": "task-Q6",
+      "question_ids": [
+        "Q6"
+      ],
+      "role": "akm-explore",
+      "status": "completed",
+      "needed_evidence": "경복궁 창건 시점과 천도 시점의 구별",
+      "target_ids": [
+        "N1"
+      ],
+      "cycle_id": "cycle-01"
+    },
+    {
+      "id": "task-connect",
+      "question_ids": [
+        "Q5",
+        "Q6"
+      ],
+      "role": "akm-connect",
+      "status": "completed",
+      "needed_evidence": "실제 확장 노트가 작성된 뒤 왕조·장소·사건·기존 설명 연결",
+      "target_ids": [
+        "C03",
+        "C07",
+        "N1",
+        "N3"
+      ],
+      "cycle_id": "cycle-01"
+    },
+    {
+      "id": "task-Q7",
+      "question_ids": [
+        "Q7"
+      ],
+      "role": "akm-discover",
+      "status": "deferred",
+      "needed_evidence": "시기·지역·사회집단을 좁힌 새 질문과 사회사 자료",
+      "target_ids": []
+    },
+    {
+      "id": "task-Q8",
+      "question_ids": [
+        "Q8"
+      ],
+      "role": "akm-explore",
+      "status": "deferred",
+      "needed_evidence": "S003/S005의 월 표기 차이를 설명할 자료; 근거 없이 역법 차이로 판정하지 않기",
+      "target_ids": [
+        "A09",
+        "N1",
+        "N3"
+      ]
+    }
+  ],
+  "next_action": "Q7 또는 Q8의 보류를 명시적으로 해제할 범위를 정한 뒤 추가 조사. 현재 완료 작업은 반복하지 않는다.",
+  "cycle": {
+    "id": "cycle-01",
+    "status": "completed",
+    "execution": "foreground-agent",
+    "tasks_completed": 3,
+    "new_sources": [
+      "S007",
+      "S008"
+    ],
+    "new_notes": [
+      "N4",
+      "N5"
+    ],
+    "updated_notes": [
+      "N1",
+      "N3"
+    ],
+    "source_limit": 3,
+    "source_limit_used": 2,
+    "background_scheduler_installed": false
+  }
+}

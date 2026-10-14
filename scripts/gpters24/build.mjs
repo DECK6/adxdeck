@@ -63,6 +63,7 @@ await writeFile(new URL('PROVENANCE.md',downloads),provenance+'\n## 추가 자�
 await writeFile(new URL('manifest.json',downloads),JSON.stringify(manifests,null,2));
 await writeFile(new URL('jev-week1-student.zip',downloads),zipFiles(weekOneFiles(1)));
 execFileSync('uv',['run','--with','markdown==3.9','python',new URL('./render-week1.py',import.meta.url).pathname],{stdio:'inherit'});
+execFileSync('uv',['run','--with','markdown==3.9','python',new URL('./render-week3.py',import.meta.url).pathname],{stdio:'inherit'});
 const starter={};
 for(let w=1;w<=4;w++)for(const [name,text] of Object.entries(personalFiles(createProject(),w)))starter[`week${w}/${name}`]=text;
 await writeFile(new URL('my-topic-starter.zip',downloads),zipFiles(starter));

@@ -1,0 +1,26 @@
+[
+  {
+    "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 tools/knowledge.py lint --root . --map knowledge-map.json",
+    "exit_code": 0,
+    "stderr": "",
+    "report": "verification/lint.json"
+  },
+  {
+    "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 tools/knowledge.py coverage --root . --map knowledge-map.json",
+    "exit_code": 0,
+    "stderr": "",
+    "report": "verification/coverage.json"
+  },
+  {
+    "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 tools/knowledge.py frontier --root . --map knowledge-map.json",
+    "exit_code": 0,
+    "stderr": "",
+    "report": "verification/frontier.json"
+  },
+  {
+    "command": "/opt/homebrew/opt/python@3.14/bin/python3.14 tools/knowledge.py impact --root . --map knowledge-map.json --id S004",
+    "exit_code": 0,
+    "stderr": "",
+    "report": "verification/impact-S004.json"
+  }
+]

@@ -1,0 +1,734 @@
+{
+  "domain_id": "korean-history-demo",
+  "revision": 1,
+  "scope": "한국 역사; 조선 초기 질문에서 출발하는 최소 모델",
+  "format": "typed property graph, not OWL/RDF",
+  "types": [
+    {
+      "id": "T-person",
+      "label": "인물",
+      "definition": "개별 역사적 인물. 지위와 이름 문자열은 별도이다."
+    },
+    {
+      "id": "T-polity",
+      "label": "정치체·왕조",
+      "definition": "이번 모델에서 역사적으로 특정한 왕조를 지칭한다. 시대 일반이나 현대 민족국가와 동일시하지 않는다."
+    },
+    {
+      "id": "T-place",
+      "label": "장소",
+      "definition": "사료에서 특정한 역사적 장소. 현대 행정 경계를 자동 부여하지 않는다."
+    },
+    {
+      "id": "T-event",
+      "label": "사건",
+      "definition": "누가 언제 어디서 무엇을 했는지 조건을 가진 발생 단위."
+    },
+    {
+      "id": "T-label",
+      "label": "호칭·명칭",
+      "definition": "다른 개체들이 공유할 수 있는 이름 문자열."
+    },
+    {
+      "id": "T-document",
+      "label": "문헌",
+      "definition": "사건을 기록하는 텍스트와 그 편찬 이력을 가진 대상."
+    },
+    {
+      "id": "T-date",
+      "label": "시점",
+      "definition": "역법과 정밀도를 명시한 시점. ISO 양력 날짜로 자동 변환하지 않는다."
+    }
+  ],
+  "concepts": [
+    {
+      "id": "C01",
+      "label": "이성계",
+      "type_ids": [
+        "T-person"
+      ],
+      "definition": "S005에서 초명 성계로 설명하는 조선 태조.",
+      "kind": "instance",
+      "aliases": [
+        "조선 태조"
+      ],
+      "source_ids": [
+        "S005"
+      ]
+    },
+    {
+      "id": "C02",
+      "label": "왕건",
+      "type_ids": [
+        "T-person"
+      ],
+      "definition": "S006에서 이름 왕건으로 설명하는 고려 태조.",
+      "kind": "instance",
+      "aliases": [
+        "고려 태조"
+      ],
+      "source_ids": [
+        "S006"
+      ]
+    },
+    {
+      "id": "C03",
+      "label": "조선 왕조",
+      "type_ids": [
+        "T-polity"
+      ],
+      "definition": "이성계가 개창한 왕조. C12의 명칭 문자열과 구별한다.",
+      "kind": "instance",
+      "source_ids": [
+        "S005"
+      ]
+    },
+    {
+      "id": "C04",
+      "label": "고려 왕조",
+      "type_ids": [
+        "T-polity"
+      ],
+      "definition": "S006에서 왕건을 제1대 왕으로 설명하는 왕조.",
+      "kind": "instance",
+      "source_ids": [
+        "S006"
+      ]
+    },
+    {
+      "id": "C05",
+      "label": "태조",
+      "type_ids": [
+        "T-label"
+      ],
+      "definition": "문헌과 왕조 맥락에 따라 지시 인물이 달라지는 호칭. 그 자체는 인물이 아니다.",
+      "kind": "instance"
+    },
+    {
+      "id": "C06",
+      "label": "수창궁",
+      "type_ids": [
+        "T-place"
+      ],
+      "definition": "S002 즉위 기사에 명시된 궁궐.",
+      "kind": "instance",
+      "source_ids": [
+        "S002"
+      ]
+    },
+    {
+      "id": "C07",
+      "label": "한양",
+      "type_ids": [
+        "T-place"
+      ],
+      "definition": "S004 천도 목적지의 역사적 지명. 현대 서울의 행정 경계와 동일한 개체로 확장하지 않는다.",
+      "kind": "instance",
+      "source_ids": [
+        "S004"
+      ]
+    },
+    {
+      "id": "C08",
+      "label": "1392년 즉위",
+      "type_ids": [
+        "T-event"
+      ],
+      "definition": "S002에 기록된 조선 태조의 수창궁 즉위 사건.",
+      "kind": "instance",
+      "source_ids": [
+        "S002"
+      ]
+    },
+    {
+      "id": "C09",
+      "label": "1393년 국호 자문 전달과 사용 교지",
+      "type_ids": [
+        "T-event"
+      ],
+      "definition": "S003 기사의 자문 전달 및 국호 사용 교지. 해외 조칙 발급일·후대 해제 서술과 구별한다.",
+      "kind": "instance",
+      "source_ids": [
+        "S003"
+      ]
+    },
+    {
+      "id": "C10",
+      "label": "1394년 한양 천도",
+      "type_ids": [
+        "T-event"
+      ],
+      "definition": "S004에 기록된 한양으로의 천도 사건. 영구 수도 상태를 뜻하지 않는다.",
+      "kind": "instance",
+      "source_ids": [
+        "S004"
+      ]
+    },
+    {
+      "id": "C11",
+      "label": "태조실록",
+      "type_ids": [
+        "T-document"
+      ],
+      "definition": "태조대 사건을 서술하며 뒤에 편찬·개수된 문헌.",
+      "kind": "instance",
+      "source_ids": [
+        "S005"
+      ]
+    },
+    {
+      "id": "C12",
+      "label": "조선이라는 국호",
+      "type_ids": [
+        "T-label"
+      ],
+      "definition": "정치체 C03에 쓰는 이름 문자열. 다른 시대의 동명 명칭과 자동 병합하지 않는다.",
+      "kind": "instance"
+    },
+    {
+      "id": "C13",
+      "label": "1392년·원자료 7월 17일",
+      "type_ids": [
+        "T-date"
+      ],
+      "definition": "S002의 기사 역일. 현대 양력으로 환산하지 않았다.",
+      "kind": "instance",
+      "year": 1392,
+      "calendar": "source-lunisolar",
+      "precision": "day",
+      "source_ids": [
+        "S002"
+      ]
+    },
+    {
+      "id": "C14",
+      "label": "1393년·원자료 2월 15일",
+      "type_ids": [
+        "T-date"
+      ],
+      "definition": "S003의 기사 역일. S005의 3월 서술과 차이가 있으며 현대 양력 미환산.",
+      "kind": "instance",
+      "year": 1393,
+      "calendar": "source-lunisolar",
+      "precision": "day",
+      "source_ids": [
+        "S003"
+      ]
+    },
+    {
+      "id": "C15",
+      "label": "1394년·원자료 10월 25일",
+      "type_ids": [
+        "T-date"
+      ],
+      "definition": "S004의 기사 역일. 현대 양력으로 환산하지 않았다.",
+      "kind": "instance",
+      "year": 1394,
+      "calendar": "source-lunisolar",
+      "precision": "day",
+      "source_ids": [
+        "S004"
+      ]
+    },
+    {
+      "id": "C16",
+      "label": "1413년 최초 편찬 완성",
+      "type_ids": [
+        "T-date"
+      ],
+      "definition": "S005에 따른 최초 편찬 완성 연도. 현전본의 모든 문장이 이때 확정되었다는 뜻이 아니다.",
+      "kind": "instance",
+      "year": 1413,
+      "calendar": "year-correspondence",
+      "precision": "year",
+      "source_ids": [
+        "S005"
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "id": "R01",
+      "label": "주요 인물",
+      "definition": "해당 사건에 이 역할로 등장하는 인물. 모든 참여자 목록은 아님.",
+      "domain_types": [
+        "T-event"
+      ],
+      "range_types": [
+        "T-person"
+      ],
+      "transitive": false,
+      "symmetric": false
+    },
+    {
+      "id": "R02",
+      "label": "사건 장소",
+      "definition": "사건이 발생한 장소. 이동 목적지는 R03으로 구별.",
+      "domain_types": [
+        "T-event"
+      ],
+      "range_types": [
+        "T-place"
+      ],
+      "transitive": false,
+      "symmetric": false
+    },
+    {
+      "id": "R03",
+      "label": "이동 목적지",
+      "definition": "해당 천도 사건의 도착지. 영구 수도 상태를 함의하지 않음.",
+      "domain_types": [
+        "T-event"
+      ],
+      "range_types": [
+        "T-place"
+      ],
+      "transitive": false,
+      "symmetric": false
+    },
+    {
+      "id": "R04",
+      "label": "기사 시점",
+      "definition": "이 사건을 기록한 기사에 표시된 역일. 현대 양력 동치 금지.",
+      "domain_types": [
+        "T-event"
+      ],
+      "range_types": [
+        "T-date"
+      ],
+      "transitive": false,
+      "symmetric": false
+    },
+    {
+      "id": "R05",
+      "label": "왕조의 군주",
+      "definition": "조건에 적힌 왕조의 군주. 모든 시기의 동일 역할을 뜻하지 않음.",
+      "domain_types": [
+        "T-person"
+      ],
+      "range_types": [
+        "T-polity"
+      ],
+      "transitive": false,
+      "symmetric": false
+    },
+    {
+      "id": "R06",
+      "label": "호칭",
+      "definition": "해당 문헌/왕조 맥락에서 쓰인 인물 호칭. 역방향은 다대일 가능.",
+      "domain_types": [
+        "T-person"
+      ],
+      "range_types": [
+        "T-label"
+      ],
+      "transitive": false,
+      "symmetric": false
+    },
+    {
+      "id": "R07",
+      "label": "사용 명칭",
+      "definition": "국호 사용 교지가 지정한 명칭. 정치체 자체와 구별.",
+      "domain_types": [
+        "T-event"
+      ],
+      "range_types": [
+        "T-label"
+      ],
+      "transitive": false,
+      "symmetric": false
+    },
+    {
+      "id": "R08",
+      "label": "최초 편찬 완성",
+      "definition": "최초 편찬 완료 시점. 사건일이나 최종 개수일이 아님.",
+      "domain_types": [
+        "T-document"
+      ],
+      "range_types": [
+        "T-date"
+      ],
+      "transitive": false,
+      "symmetric": false
+    },
+    {
+      "id": "R09",
+      "label": "기록한다",
+      "definition": "문헌이 사건을 서술함. 서술된 동기·평가를 모두 사실로 승인하지 않음.",
+      "domain_types": [
+        "T-document"
+      ],
+      "range_types": [
+        "T-event"
+      ],
+      "transitive": false,
+      "symmetric": false
+    },
+    {
+      "id": "R10",
+      "label": "대상 왕조",
+      "definition": "해당 사건이 다루는 왕조. 사건의 모든 정치적 원인을 설명하지 않음.",
+      "domain_types": [
+        "T-event"
+      ],
+      "range_types": [
+        "T-polity"
+      ],
+      "transitive": false,
+      "symmetric": false
+    }
+  ],
+  "claims": [
+    {
+      "id": "A01",
+      "subject": "C08",
+      "predicate": "R01",
+      "object": "C01",
+      "conditions": "S005의 인물 정의와 연결한 즉위 기사",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S002",
+          "locator": "태조실록 1권, 태조 1년 7월 17일 첫째 기사; 국역 첫 문장과 말미"
+        },
+        {
+          "source_id": "S005",
+          "locator": "1절 편찬 및 개수 경위; 2절 태조 인적 사항과 건국·국호 단락"
+        }
+      ]
+    },
+    {
+      "id": "A02",
+      "subject": "C08",
+      "predicate": "R02",
+      "object": "C06",
+      "conditions": "1392년 즉위 장소",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S002",
+          "locator": "태조실록 1권, 태조 1년 7월 17일 첫째 기사; 국역 첫 문장과 말미"
+        }
+      ]
+    },
+    {
+      "id": "A03",
+      "subject": "C08",
+      "predicate": "R04",
+      "object": "C13",
+      "conditions": "원자료 역일 그대로; 양력 미환산",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S002",
+          "locator": "태조실록 1권, 태조 1년 7월 17일 첫째 기사; 국역 첫 문장과 말미"
+        }
+      ]
+    },
+    {
+      "id": "A04",
+      "subject": "C01",
+      "predicate": "R05",
+      "object": "C03",
+      "conditions": "조선 태조라는 왕조 맥락",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S005",
+          "locator": "1절 편찬 및 개수 경위; 2절 태조 인적 사항과 건국·국호 단락"
+        }
+      ]
+    },
+    {
+      "id": "A05",
+      "subject": "C02",
+      "predicate": "R05",
+      "object": "C04",
+      "conditions": "고려 제1대 왕; 재위 918~943",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S006",
+          "locator": "내용 요약·정의·가계 및 인적사항"
+        }
+      ]
+    },
+    {
+      "id": "A06",
+      "subject": "C01",
+      "predicate": "R06",
+      "object": "C05",
+      "conditions": "조선 왕조 맥락에서의 묘호",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S005",
+          "locator": "1절 편찬 및 개수 경위; 2절 태조 인적 사항과 건국·국호 단락"
+        }
+      ]
+    },
+    {
+      "id": "A07",
+      "subject": "C02",
+      "predicate": "R06",
+      "object": "C05",
+      "conditions": "고려 왕조 맥락에서의 호칭",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S006",
+          "locator": "내용 요약·정의·가계 및 인적사항"
+        }
+      ]
+    },
+    {
+      "id": "A08",
+      "subject": "C09",
+      "predicate": "R07",
+      "object": "C12",
+      "conditions": "국호 사용 교지의 내용",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S003",
+          "locator": "태조실록 3권, 태조 2년 2월 15일 첫째 기사; 한상질의 자문 전달과 경내 교지"
+        }
+      ]
+    },
+    {
+      "id": "A09",
+      "subject": "C09",
+      "predicate": "R04",
+      "object": "C14",
+      "conditions": "S003 기사 표기를 보고한 주장; S005의 월 표기 차이는 CF1로 미해소",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S003",
+          "locator": "태조실록 3권, 태조 2년 2월 15일 첫째 기사; 한상질의 자문 전달과 경내 교지"
+        }
+      ]
+    },
+    {
+      "id": "A10",
+      "subject": "C10",
+      "predicate": "R03",
+      "object": "C07",
+      "conditions": "1394년의 천도 사건에 한정. 이후 영구 지속은 주장하지 않음",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S004",
+          "locator": "태조실록 6권, 태조 3년 10월 25일 첫째 기사; 국역"
+        }
+      ]
+    },
+    {
+      "id": "A11",
+      "subject": "C10",
+      "predicate": "R04",
+      "object": "C15",
+      "conditions": "원자료 역일 그대로; 양력 미환산",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S004",
+          "locator": "태조실록 6권, 태조 3년 10월 25일 첫째 기사; 국역"
+        }
+      ]
+    },
+    {
+      "id": "A12",
+      "subject": "C11",
+      "predicate": "R08",
+      "object": "C16",
+      "conditions": "최초 편찬 완성. 뒤의 개수가 없었다는 뜻이 아님",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S005",
+          "locator": "1절 편찬 및 개수 경위; 2절 태조 인적 사항과 건국·국호 단락"
+        }
+      ]
+    },
+    {
+      "id": "A13",
+      "subject": "C11",
+      "predicate": "R09",
+      "object": "C08",
+      "conditions": "해당 기사의 서술 존재",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S002",
+          "locator": "태조실록 1권, 태조 1년 7월 17일 첫째 기사; 국역 첫 문장과 말미"
+        }
+      ]
+    },
+    {
+      "id": "A14",
+      "subject": "C08",
+      "predicate": "R10",
+      "object": "C03",
+      "conditions": "해제 2절의 왕조 개창 설명",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S005",
+          "locator": "1절 편찬 및 개수 경위; 2절 태조 인적 사항과 건국·국호 단락"
+        }
+      ]
+    },
+    {
+      "id": "A15",
+      "subject": "C10",
+      "predicate": "R10",
+      "object": "C03",
+      "conditions": "해제 2절의 조선 태조 천도 설명",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S005",
+          "locator": "1절 편찬 및 개수 경위; 2절 태조 인적 사항과 건국·국호 단락"
+        }
+      ]
+    },
+    {
+      "id": "A16",
+      "subject": "C09",
+      "predicate": "R10",
+      "object": "C03",
+      "conditions": "국호 사용 교지의 대상",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S003",
+          "locator": "태조실록 3권, 태조 2년 2월 15일 첫째 기사; 한상질의 자문 전달과 경내 교지"
+        }
+      ]
+    },
+    {
+      "id": "A17",
+      "subject": "C11",
+      "predicate": "R09",
+      "object": "C09",
+      "conditions": "해당 기사의 서술 존재",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S003",
+          "locator": "태조실록 3권, 태조 2년 2월 15일 첫째 기사; 한상질의 자문 전달과 경내 교지"
+        }
+      ]
+    },
+    {
+      "id": "A18",
+      "subject": "C11",
+      "predicate": "R09",
+      "object": "C10",
+      "conditions": "해당 기사의 서술 존재",
+      "basis": "source-supported",
+      "status": "current",
+      "evidence": [
+        {
+          "source_id": "S004",
+          "locator": "태조실록 6권, 태조 3년 10월 25일 첫째 기사; 국역"
+        }
+      ]
+    }
+  ],
+  "questions": [
+    {
+      "id": "Q1",
+      "text": "즉위·국호 사용 교지·한양 천도는 같은 사건인가?",
+      "status": "answered",
+      "origin": "synthetic-user",
+      "reason": "R1~R2"
+    },
+    {
+      "id": "Q2",
+      "text": "원자료 날짜를 현대 양력 날짜로 읽어도 되는가?",
+      "status": "answered",
+      "origin": "synthetic-user",
+      "reason": "R5"
+    },
+    {
+      "id": "Q3",
+      "text": "고려 태조와 조선 태조는 같은 인물인가?",
+      "status": "answered",
+      "origin": "synthetic-user",
+      "reason": "R3"
+    },
+    {
+      "id": "Q4",
+      "text": "태조실록의 사건일과 문헌 편찬일은 같은가?",
+      "status": "answered",
+      "origin": "synthetic-user",
+      "reason": "R4"
+    },
+    {
+      "id": "Q5",
+      "text": "1394년 이후 한양이 계속 수도였는가?",
+      "status": "open",
+      "origin": "synthetic-user",
+      "reason": "R2·R7에서 나온 확장 질문"
+    },
+    {
+      "id": "Q6",
+      "text": "경복궁 창건과 한양 천도는 같은 사건·연도인가?",
+      "status": "open",
+      "origin": "synthetic-user",
+      "reason": "R1·R5·R7에서 나온 확장 질문"
+    },
+    {
+      "id": "Q7",
+      "text": "왕조 교체가 당시 모든 주민의 삶에 미친 영향은?",
+      "status": "deferred",
+      "origin": "synthetic-user",
+      "reason": "사회집단별 별도 근거가 필요하여 이번 씨앗에서 제외"
+    },
+    {
+      "id": "Q8",
+      "text": "S003의 2월 15일과 S005의 3월 표기 차이는 왜 생겼는가?",
+      "status": "deferred",
+      "origin": "source-review",
+      "reason": "역법/오류를 추정으로 확정하지 않고 추가 연구로 남김"
+    }
+  ],
+  "conflicts": [
+    {
+      "id": "CF1",
+      "sources": [
+        "S003",
+        "S005"
+      ],
+      "topic": "국호 변경의 월 표기",
+      "status": "unresolved",
+      "resolution": "연도 수준은 일치. S003 기사 역일을 출처별로 제시하고 차이의 원인은 보류."
+    }
+  ],
+  "inference_rules": [
+    "이름이 같다는 이유로 인물을 합치지 않는다.",
+    "선후관계만으로 인과를 만들지 않는다.",
+    "천도 사건에서 영구 수도 상태를 추론하지 않는다.",
+    "기록에 적힌 발언을 속마음의 확정 사실로 변환하지 않는다.",
+    "없음은 기본적으로 미확인이다."
+  ]
+}

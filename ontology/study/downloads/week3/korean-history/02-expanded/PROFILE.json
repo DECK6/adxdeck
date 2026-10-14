@@ -1,0 +1,26 @@
+{
+  "domain_id": "korean-history-demo",
+  "domain": "한국 역사",
+  "synthetic_persona": true,
+  "inbox": false,
+  "layout": "standalone-flat",
+  "components": [
+    "wiki",
+    "ontology",
+    "sources",
+    "interview",
+    "verification",
+    "operations"
+  ],
+  "omitted": [
+    "personal-memory",
+    "dedicated-procedure-layer",
+    "background-scheduler"
+  ],
+  "reason": "가상 인터뷰 R6와 실제 사용자의 독립 폴더 요청",
+  "initial_note_ids": [
+    "N1",
+    "N2",
+    "N3"
+  ]
+}

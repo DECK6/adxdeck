@@ -1,0 +1,209 @@
+[
+  {
+    "id": "N1",
+    "path": "wiki/01-founding-events.md",
+    "status": "current",
+    "question_ids": [
+      "Q1",
+      "Q2"
+    ],
+    "concept_ids": [
+      "C01",
+      "C03",
+      "C06",
+      "C07",
+      "C08",
+      "C09",
+      "C10",
+      "C12",
+      "C13",
+      "C14",
+      "C15",
+      "C17",
+      "C18",
+      "C19",
+      "C20",
+      "C21",
+      "C22",
+      "C23",
+      "C24"
+    ],
+    "claim_ids": [
+      "A01",
+      "A02",
+      "A03",
+      "A08",
+      "A09",
+      "A10",
+      "A11",
+      "A14",
+      "A15",
+      "A16",
+      "A19",
+      "A20",
+      "A22",
+      "A23",
+      "A25",
+      "A26"
+    ],
+    "source_ids": [
+      "S002",
+      "S003",
+      "S004",
+      "S005",
+      "S007",
+      "S008"
+    ],
+    "links": [
+      "N2",
+      "N3",
+      "N4",
+      "N5"
+    ]
+  },
+  {
+    "id": "N2",
+    "path": "wiki/02-two-taejo.md",
+    "status": "current",
+    "question_ids": [
+      "Q3"
+    ],
+    "concept_ids": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05"
+    ],
+    "claim_ids": [
+      "A04",
+      "A05",
+      "A06",
+      "A07"
+    ],
+    "source_ids": [
+      "S005",
+      "S006"
+    ],
+    "links": [
+      "N1",
+      "N3"
+    ]
+  },
+  {
+    "id": "N3",
+    "path": "wiki/03-reading-annals.md",
+    "status": "current",
+    "question_ids": [
+      "Q4"
+    ],
+    "concept_ids": [
+      "C08",
+      "C09",
+      "C10",
+      "C11",
+      "C13",
+      "C16",
+      "C18",
+      "C19",
+      "C20",
+      "C21",
+      "C23",
+      "C24"
+    ],
+    "claim_ids": [
+      "A12",
+      "A13",
+      "A17",
+      "A18",
+      "A20",
+      "A23",
+      "A26"
+    ],
+    "source_ids": [
+      "S002",
+      "S003",
+      "S004",
+      "S005",
+      "S007",
+      "S008"
+    ],
+    "links": [
+      "N1",
+      "N2",
+      "N4",
+      "N5"
+    ]
+  },
+  {
+    "id": "N4",
+    "path": "wiki/04-capital-returns.md",
+    "status": "current",
+    "question_ids": [
+      "Q5"
+    ],
+    "concept_ids": [
+      "C03",
+      "C07",
+      "C10",
+      "C15",
+      "C17",
+      "C18",
+      "C19",
+      "C20",
+      "C21"
+    ],
+    "claim_ids": [
+      "A10",
+      "A11",
+      "A19",
+      "A20",
+      "A21",
+      "A22",
+      "A23",
+      "A24"
+    ],
+    "source_ids": [
+      "S004",
+      "S007"
+    ],
+    "links": [
+      "N1",
+      "N3",
+      "N5"
+    ]
+  },
+  {
+    "id": "N5",
+    "path": "wiki/05-palace-and-capital.md",
+    "status": "current",
+    "question_ids": [
+      "Q6"
+    ],
+    "concept_ids": [
+      "C03",
+      "C07",
+      "C10",
+      "C15",
+      "C22",
+      "C23",
+      "C24"
+    ],
+    "claim_ids": [
+      "A10",
+      "A11",
+      "A25",
+      "A26",
+      "A27"
+    ],
+    "source_ids": [
+      "S004",
+      "S008"
+    ],
+    "links": [
+      "N1",
+      "N3",
+      "N4"
+    ]
+  }
+]

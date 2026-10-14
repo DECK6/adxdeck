@@ -1,0 +1,179 @@
+{
+  "version": 1,
+  "domain_id": "korean-history-demo",
+  "entry_intent": "ontology",
+  "simulation": true,
+  "active_role": "akm-maintain",
+  "discovery": {
+    "status": "user-saturated",
+    "synthetic": true,
+    "stop_signal": "새로 떠오르는 건 더 없어요. 여기까지 정리해서 먼저 세 개를 만들어주세요.",
+    "source": "interview.md R7"
+  },
+  "knowledge_revision": 1,
+  "initial_note_ids": [
+    "N1",
+    "N2",
+    "N3"
+  ],
+  "notes": [
+    {
+      "id": "N1",
+      "path": "wiki/01-founding-events.md",
+      "status": "current",
+      "question_ids": [
+        "Q1",
+        "Q2"
+      ],
+      "concept_ids": [
+        "C01",
+        "C03",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C12",
+        "C13",
+        "C14",
+        "C15"
+      ],
+      "claim_ids": [
+        "A01",
+        "A02",
+        "A03",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A14",
+        "A15",
+        "A16"
+      ],
+      "source_ids": [
+        "S002",
+        "S003",
+        "S004",
+        "S005"
+      ],
+      "links": [
+        "N2",
+        "N3"
+      ]
+    },
+    {
+      "id": "N2",
+      "path": "wiki/02-two-taejo.md",
+      "status": "current",
+      "question_ids": [
+        "Q3"
+      ],
+      "concept_ids": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05"
+      ],
+      "claim_ids": [
+        "A04",
+        "A05",
+        "A06",
+        "A07"
+      ],
+      "source_ids": [
+        "S005",
+        "S006"
+      ],
+      "links": [
+        "N1",
+        "N3"
+      ]
+    },
+    {
+      "id": "N3",
+      "path": "wiki/03-reading-annals.md",
+      "status": "current",
+      "question_ids": [
+        "Q4"
+      ],
+      "concept_ids": [
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C13",
+        "C16"
+      ],
+      "claim_ids": [
+        "A12",
+        "A13",
+        "A17",
+        "A18"
+      ],
+      "source_ids": [
+        "S002",
+        "S003",
+        "S004",
+        "S005"
+      ],
+      "links": [
+        "N1",
+        "N2"
+      ]
+    }
+  ],
+  "paths": {
+    "brief": "domain-brief.md",
+    "discovery": "interview.md",
+    "ontology": "ontology.json",
+    "audit_map": "knowledge-map.json",
+    "index": "README.md",
+    "sources": "sources/registry.json",
+    "evaluation": "verification/question-checks.md"
+  },
+  "backlog": [
+    {
+      "id": "task-Q5",
+      "question_ids": [
+        "Q5"
+      ],
+      "role": "akm-explore",
+      "status": "pending",
+      "needed_evidence": "1394년 이후 개경 환도·한양 재천도 여부",
+      "target_ids": [
+        "A10",
+        "N1"
+      ]
+    },
+    {
+      "id": "task-Q6",
+      "question_ids": [
+        "Q6"
+      ],
+      "role": "akm-explore",
+      "status": "pending",
+      "needed_evidence": "경복궁 창건 시점과 천도 시점의 구별",
+      "target_ids": [
+        "N1"
+      ]
+    },
+    {
+      "id": "task-connect",
+      "question_ids": [
+        "Q5",
+        "Q6"
+      ],
+      "role": "akm-connect",
+      "status": "pending",
+      "needed_evidence": "실제 확장 노트가 작성된 뒤 왕조·장소·사건·기존 설명 연결",
+      "target_ids": [
+        "C03",
+        "C07",
+        "N1",
+        "N3"
+      ]
+    }
+  ],
+  "next_action": "별도 02-expanded 복사본에서 Q5·Q6 조사와 연결 보완. 초기 폴더는 보존한다."
+}

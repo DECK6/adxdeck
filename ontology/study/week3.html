@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="GPTers 24기 3주차. 한국사 사례로 RAG·지식그래프·온톨로지의 역할과 결합 방식을 이해하고, AKM으로 인터뷰·위키·자동 확장·출처가 있는 에이전트 응답을 연결합니다.">
+  <title>연결된 지식에서 근거 있는 답으로 · GPTers 24기 3주차</title>
+  <link rel="icon" href="/dexa-mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/personal-ontology.css"><link rel="stylesheet" href="assets/week3-history.css">
+  <script type="module" src="assets/week3-history-app.mjs"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">본문으로 이동</a>
+<header class="top"><a class="brand" href="./"><span class="brand-icon">◎</span> 지식이 연결되는 실습실</a><nav aria-label="실습실"><a href="week1.html">1주차</a><a href="week2.html">2주차</a><a href="week3.html" aria-current="page">3주차</a><a href="resources.html">자료실</a></nav></header>
+<main id="main">
+  <section class="hero">
+    <div><p class="eyebrow">GPTers 24 · WEEK 03 · KNOWLEDGE IN USE</p><h1>연결된 지식이,<br><em>AI의 답이 되려면.</em></h1><p class="intro">한국사 한 질문으로 RAG·지식그래프·온톨로지의 역할을 살펴봅니다.<br>위키와 의미 모델을 함께 만들고, 근거를 찾아 답하고 확장합니다.</p><div class="hero-actions"><a class="button primary" href="#compare">세 역할 비교하기 ↗</a><a class="button ghost" href="downloads/week3-korean-history.zip" download>한국사 사례 전체 받기 ↓</a></div><div class="hero-meta"><span>스터디장 설명·시연 50분 + 질문 10분</span><span>2026.10.14 · 3주차</span></div></div>
+    <aside class="hero-note"><span class="note-index">이번 주의 질문</span><p>“한양으로 천도했다면,<br>그 뒤에도 계속<br>수도였을까요?”</p><div class="note-line"></div><small>같은 연결이라도 <b>어떤 뜻과 조건</b>인지.<br>AI가 그 차이를 읽을 수 있게 합니다.</small></aside>
+  </section>
+  <nav class="section-nav" aria-label="페이지 목차"><a href="#route">01 이번 주</a><a href="#compare">02 RAG·그래프·온톨로지</a><a href="#why">03 의미 정의와 운영</a><a href="#case">04 한국사 사례</a><a href="#grow">05 자동 확장</a><a href="#ask">06 근거로 답하기</a><a href="#practice">07 내 지식에 적용</a></nav>
+  <noscript><p class="notice">교안 본문은 그대로 읽을 수 있습니다. 그래프 전환과 규칙 조회는 JavaScript가 필요합니다. <a href="downloads/week3-korean-history.zip">초기·확장 결과 ZIP</a>에서 모든 모델과 위키를 확인하세요.</p></noscript>
+  <p id="app-status" role="status" class="hint">한국사 사례 데이터를 준비하고 있습니다.</p>
+
+  <section id="route" class="section">
+    <div class="section-heading"><div><p class="eyebrow">01 / FROM STRUCTURE TO USE</p><h2>정의한 관계를, 실제 답변에 씁니다.</h2></div><span class="caption">전주 사례발표·피드백 60분은 별도</span></div>
+    <div class="week-path"><a href="week1.html"><small>01 · 자료와 질문</small><b>어떤 근거를 읽을까</b></a><a href="week2.html"><small>02 · 개념과 관계</small><b>그 연결은 무슨 뜻일까</b></a><div class="current"><small>03 · 연결과 조회</small><b>AI가 어떻게 써야 할까</b></div><div><small>04 · 비교와 운영</small><b>같은 질문으로 확인하기</b></div></div>
+    <p class="section-lead">이번 주 결과는 <strong>에이전트가 조회할 수 있는 온톨로지 지식시스템과 출처가 포함된 응답 데모</strong>입니다. 1주차에 고정한 질문·답변은 보존하고, 온톨로지 적용 후의 답을 별도로 남깁니다.</p>
+    <div class="timeline"><div><b>00—10</b><h3>세 가지 역할</h3><p>RAG·지식그래프·온톨로지를 구별하고 연결합니다.</p></div><div><b>10—20</b><h3>한국사 인터뷰</h3><p>질문이 모델과 첫 위키로 바뀝니다.</p></div><div><b>20—35</b><h3>확장과 연결</h3><p>새 근거가 기존 설명까지 바꿉니다.</p></div><div><b>35—50</b><h3>에이전트 조회</h3><p>관계·조건·출처를 답에 연결합니다.</p></div><div><b>50—60</b><h3>질문과 점검</h3><p>확인한 것과 모르는 것을 남깁니다.</p></div></div>
+  </section>
+
+  <section id="compare" class="section">
+    <div class="section-heading"><div><p class="eyebrow">02 / RETRIEVAL, STRUCTURE & MEANING</p><h2>찾는 방법, 연결된 구조, 의미의 정의.</h2></div><span class="badge">같은 질문: “태조는 누구인가?”</span></div>
+    <p class="section-lead"><strong>RAG는 검색과 답변 생성 방법, 지식그래프는 지식의 표현 구조, 온톨로지는 의미를 정의하는 모델</strong>입니다. 서로 다른 역할이므로 목적에 맞게 결합할 수 있습니다.</p>
+    <div class="three-layers">
+      <article><span>RAG · 검색과 생성 방법</span><h3>어떤 근거를 가져올까?</h3><p>질문과 관련된 외부 지식을 찾아 LLM의 답변 생성에 제공합니다. ‘태조’를 물으면 왕건·이성계에 관한 자료를 검색하고, 찾은 근거를 바탕으로 왕조 맥락을 확인하는 답을 만들 수 있습니다.</p><code>질문 → 관련 근거 검색 → 답변 생성</code></article>
+      <article><span>지식그래프 · 지식의 표현 구조</span><h3>대상들이 어떻게 연결될까?</h3><p>대상과 관계를 그래프로 표현합니다. 왕건과 이성계에 서로 다른 ID를 부여하고, 각각 고려·조선 및 ‘태조’라는 묘호와 연결합니다. 시점·출처·개념 정의도 함께 담을 수 있습니다.</p><code>왕건 / 이성계 → 묘호 → 태조</code></article>
+      <article><span>온톨로지 · 의미를 정의하는 모델</span><h3>개념과 관계는 무슨 뜻일까?</h3><p>인물·호칭·왕조의 의미와 관계를 명시합니다. 예를 들어 ‘묘호는 호칭의 한 종류’라고 정의합니다. 여러 자료와 도구가 같은 개념을 일관되게 다루도록 기준을 공유합니다.</p><code>묘호 ⊆ 호칭 · 인물과 호칭을 구분</code></article>
+    </div>
+    <p class="concept-note"><strong>지식그래프와 온톨로지는 겹칠 수 있습니다.</strong> 그래프 안에 온톨로지 정의를 담을 수 있고, 온톨로지에도 개별 대상에 관한 사실이 포함될 수 있습니다. RAG는 문서만으로도 구성할 수 있으며, 그래프를 검색에 활용하는 GraphRAG 방식도 있습니다. 벡터 검색은 RAG를 구현하는 한 방법입니다.</p>
+    <p class="hint">개념 근거: <a href="https://arxiv.org/abs/2005.11401" target="_blank" rel="noreferrer">RAG 원 논문</a> · <a href="https://arxiv.org/abs/2003.02320" target="_blank" rel="noreferrer">Knowledge Graphs</a> · <a href="https://www.w3.org/TR/owl2-primer/#What_is_OWL_2.3F" target="_blank" rel="noreferrer">W3C 온톨로지 설명</a> · <a href="https://arxiv.org/abs/2404.16130" target="_blank" rel="noreferrer">GraphRAG 연구</a></p>
+    <h3>함께 사용할 때의 흐름</h3>
+    <p>온톨로지의 정의를 그래프 구성과 조회 조건에 반영하고, 위키·그래프에서 찾은 근거를 LLM에 전달합니다. 아래는 결합 방식을 설명하는 예시이며 실제 LLM 실행 결과는 아닙니다.</p>
+    <div class="artifact-flow" aria-label="위키와 지식그래프를 활용하는 RAG 흐름"><div><small>질문</small><b>태조는 누구인가?</b><span>왕조 맥락 확인</span></div><i aria-hidden="true">→</i><div><small>검색·조회</small><b>위키 + 지식그래프</b><span>인물·관계·출처 찾기</span></div><i aria-hidden="true">→</i><div><small>근거 전달</small><b>LLM에 맥락 제공</b><span>찾은 주장과 조건</span></div><i aria-hidden="true">→</i><div><small>답변 생성</small><b>후보와 근거 설명</b><span>모호하면 되묻기</span></div></div>
+    <h3>같은 지식시스템의 두 보기</h3>
+    <p>아래 왼쪽은 구체적인 주장을, 오른쪽은 그 주장에 사용한 타입과 관계 정의를 골라 그린 것입니다. <strong>지식그래프의 두 측면을 나란히 살펴보는 시각화</strong>입니다. 이 사례의 정의 보기에는 타입과 관계 정의를 표시합니다.</p>
+    <div class="demo-controls"><div class="segmented" role="group" aria-label="한국사 자료 버전"><button data-revision="initial" aria-pressed="true">초기 · 3편</button><button data-revision="expanded" aria-pressed="false">자동 확장 후 · 5편</button></div><span class="revision-label">초기 리비전 1</span></div>
+    <div class="topic-tabs" role="group" aria-label="비교할 한국사 질문"><button data-topic="taejo" aria-pressed="true">① 두 명의 태조</button><button data-topic="capital" aria-pressed="false">② 한양과 수도 이동</button><button data-topic="record" aria-pressed="false">③ 사건과 실록</button></div>
+    <div class="graph-pair">
+      <article class="graph-card"><header><span class="layer-tag">INSTANCE / ASSERTION VIEW</span><h3>구체적 주장 보기</h3><p>개별 대상·관계·근거를 골라 본 그래프</p></header><div id="fact-graph" class="history-graph"></div><p class="graph-foot">실선: 출처가 연결된 주장 · 점선 테두리: 확장에서 추가된 대상</p></article>
+      <article class="graph-card schema-card"><header><span class="layer-tag">ONTOLOGY / DEFINITION VIEW</span><h3>온톨로지 정의 보기</h3><p>같은 모델의 타입·관계 정의를 골라 본 그래프</p></header><div id="schema-graph" class="history-graph"></div><p class="graph-foot">화살표는 타입 사이의 관계 정의를 보여줍니다. 모든 인물이 모든 왕조의 군주라는 뜻이 아닙니다.</p></article>
+    </div>
+    <div id="claim-picker" class="claim-picker" role="group" aria-label="주장 선택"></div>
+    <p class="hint graph-mobile-hint">작은 화면에서는 지도를 좌우로 밀어 볼 수 있습니다. 아래 주장 버튼으로도 같은 연결을 선택할 수 있습니다.</p>
+    <div id="meaning-inspector" class="meaning-inspector" aria-live="polite"></div>
+    <details class="teaching"><summary>그림 뒤의 정확한 약속</summary><p>이 사례는 JSON 타입 그래프입니다. 인물·정치체·장소·사건·호칭·문헌·시점 7개 타입을 정의하고, 각 주장의 ID·성립 조건·출처 위치를 보존합니다. OWL/RDF 추론기를 실행한 예제는 아닙니다.</p><p>RDF는 주어·술어·목적어로 그래프를 나타낼 수 있고, OWL은 개념과 관계의 의미를 표현하는 언어입니다. RDFS/OWL의 정의·추론과 데이터 적합성 검사는 구별해야 합니다. 이 교안의 타입 검사는 별도 코드로 수행하며, RDF에서 제약 검사를 하고 싶다면 SHACL 같은 방법을 검토할 수 있습니다.</p><p><a href="https://www.w3.org/TR/rdf11-concepts/#section-Graph-syntax" target="_blank" rel="noreferrer">W3C RDF 그래프</a> · <a href="https://www.w3.org/TR/owl2-primer/" target="_blank" rel="noreferrer">OWL 2 Primer</a> · <a href="https://www.w3.org/TR/shacl/" target="_blank" rel="noreferrer">SHACL</a></p></details>
+  </section>
+
+  <section id="why" class="section">
+    <div class="section-heading"><div><p class="eyebrow">03 / SHARED MEANING & OPERATIONS</p><h2>AI와 공유할 의미를 명시합니다.</h2></div></div>
+    <p class="section-lead">온톨로지가 유용한 이유는 <strong>여러 문서·도구·에이전트가 같은 개념과 관계를 일관되게 사용할 기준</strong>을 제공하기 때문입니다. ‘태조’라는 문자열만 넘기는 데서 더 나아가 인물과 묘호의 구별, 관계의 의미를 함께 전달합니다. 에이전트가 실제로 그 정의를 읽고 사용하도록 조회 절차도 연결해야 합니다.</p>
+    <p>자연어로 작성한 정의를 LLM이 참고하는 것과, OWL 같은 형식 언어의 정의를 추론기로 처리하는 것은 구별합니다. 후자는 명시한 공리와 언어의 의미에 따라 일부 논리적 귀결과 정합성을 확인할 수 있습니다. 이 교안은 자연어 정의와 JSON 타입 모델, 별도의 검사 코드를 사용합니다.</p>
+    <h3>함께 설계하고 운영할 네 가지</h3>
+    <p><strong>아래 네 가지는 지식그래프에서도 구현할 수 있으며, 온톨로지만의 차별점이 아닙니다.</strong> 의미 정의와 함께 식별·근거 조회·갱신 절차를 설계해야 합니다.</p>
+    <div class="reason-grid">
+      <article><b>01 / 식별자와 대상 판별</b><h3>같은 묘호를 쓰는 두 인물을 구별합니다.</h3><p>지식그래프에서 왕건과 이성계를 서로 다른 ID로 표현할 수 있습니다. 온톨로지는 인물·호칭·왕조의 의미를 공유하는 데 도움을 줍니다. 두 기록이 실제로 같은 인물인지는 맥락과 근거를 확인해 판별합니다.</p></article>
+      <article><b>02 / 사건·시간·관계 모델</b><h3>이동 사건과 수도의 지속 기간을 구별합니다.</h3><p>지식그래프에도 사건·시점·조건을 담을 수 있습니다. 온톨로지는 ‘이동 목적지’와 ‘특정 기간의 수도’가 각각 무엇을 뜻하는지 명시합니다. 지속 기간을 답하려면 후속 사건과 근거를 더 조회해야 합니다.</p></article>
+      <article><b>03 / 출처 저장과 근거 조회</b><h3>답을 뒷받침할 원문을 찾아 읽습니다.</h3><p>질문 → 위키·그래프 → 주장 ID → 출처 위치로 이어지는 경로를 저장합니다. 검색·조회 절차가 이 경로를 따라 근거를 가져와야 합니다. 온톨로지 정의만으로 출처가 생성되거나 읽히지는 않습니다.</p></article>
+      <article><b>04 / 의존 관계와 갱신 절차</b><h3>새 자료가 바꾸는 기존 설명을 검토합니다.</h3><p>환도 사건을 추가하면 수도 관련 주장과 위키의 의존 관계를 추적하고 다시 검토합니다. 온톨로지는 의미의 일관성을 확인하는 기준이 되고, 실제 갱신은 AKM의 연결 보완·검수·유지관리 절차가 수행합니다.</p></article>
+    </div>
+    <div class="check-lab"><div><p class="eyebrow">A SMALL CHECK</p><h3>타입 검사로 무엇까지 알 수 있을까요?</h3><label for="check-example">확인할 연결</label><select id="check-example"><option value="valid">1394년 천도 → 이동 목적지 → 한양</option><option value="type">이성계 → 이동 목적지 → 한양</option><option value="scope">천도 목적지가 한양 → 이후 영구 수도도 한양?</option></select></div><div id="check-result" aria-live="polite"></div></div>
+    <p class="concept-note"><strong>온톨로지 형식만으로 정확한 답이 보장되지는 않습니다.</strong> 정의가 틀리거나 근거가 없으면 구조화된 오류가 될 수 있습니다. 단순한 문서 요약에는 출처가 있는 위키와 검색만으로 충분할 수 있습니다. 반복되는 이름 혼동, 역할·시간·예외 판단, 여러 자료의 통합이 중요해질 때 작은 온톨로지부터 더합니다.</p>
+  </section>
+
+  <section id="case" class="section">
+    <div class="section-heading"><div><p class="eyebrow">04 / FROM INTERVIEW TO A LIVING WIKI</p><h2>한국사 전체 대신, 막힌 질문 하나부터.</h2></div><span class="badge pale">가상 인터뷰 · 실제 역사 출처</span></div>
+    <div class="case-layout"><article class="story"><h3>“건국·천도·궁궐 창건이 한 번의 일인 줄 알았어요.”</h3><p>가상 사용자는 역사 영상을 보고 궁궐을 방문하는 성인 독학자입니다. 조선 초기의 사건을 설명하려다 인물·국호·수도 변화가 뒤섞입니다. 인터뷰는 이 혼동을 중심으로 사람, 사건, 장소, 날짜, 기록의 의미를 파고듭니다.</p><p>관련 질문을 묶어 묻고, 답에서 새로운 가지를 찾습니다. 달력을 “모르겠다”고 한 것은 그 가지의 미확인입니다. 다른 중요한 가지까지 살핀 뒤 가상 사용자가 더 떠오르는 것이 없다고 말한 시점에 첫 결과를 정리했습니다.</p><p>인박스·개인 기억·복잡한 운영층은 필요하지 않다는 답에 따라 <b>위키·온톨로지·출처·작은 상태와 검증 기록</b>만 남겼습니다. AKM은 이 구조를 만드는 스킬 묶음이며 모든 사용자에게 같은 폴더를 강제하는 이름이 아닙니다.</p><a class="text-link" href="week3-readings/korean-history/01-initial/interview.html" target="_blank">가상 인터뷰 7라운드 전체 읽기 ↗</a></article><aside class="interview-card"><small>답변에서 이어지는 질문</small><ol><li><b>경험</b><p>최근 설명이 막힌 구체적인 장면은 무엇인가요?</p></li><li><b>의미</b><p>왕위에 오름·국호 사용·천도를 같은 사건으로 보셨나요?</p></li><li><b>조건과 예외</b><p>수도를 옮긴 뒤 다시 돌아갈 수도 있나요?</p></li><li><b>근거와 모름</b><p>공공 자료끼리 날짜가 다르면 어떻게 남길까요?</p></li><li><b>운영</b><p>인박스가 필요한가요? 자동 확장은 어디까지 맡길까요?</p></li></ol></aside></div>
+    <div class="artifact-flow"><div><small>01</small><b>도메인 질문</b><span>Q1–Q8</span></div><i>→</i><div><small>02</small><b>개념·관계·조건</b><span>ontology.json</span></div><i>↔</i><div><small>03</small><b>첫 위키 3편</b><span>N1 · N2 · N3</span></div><i>→</i><div><small>04</small><b>근거 있는 응답</b><span>주장 → 원출처</span></div></div>
+    <div class="source-article"><span>이번 주 사례글</span><h3>인터뷰로 만든 온톨로지, 한 번 만들고 끝나지 않도록.</h3><p>사례글의 AKM 업데이트는 구축 뒤의 자료 편입·탐색·연결 보완·검수·재개를 15개 역할로 이어갑니다. 한국사 시연에서는 같은 원칙을 실제 출처 조사와 두 결과 폴더로 확인합니다. 역할 15개가 에이전트 15개의 동시 실행을 뜻하지는 않습니다.</p><a class="button" href="https://www.gpters.org/nocode/post/we-have-updated-akm-YipfKMr8XLKtMka" target="_blank" rel="noreferrer">3주차 사례글 읽기 ↗</a><a class="button" href="https://github.com/DECK6/akm/tree/main/skill-suite" target="_blank" rel="noreferrer">공개 AKM 스킬·설치 안내 ↗</a></div>
+  </section>
+
+  <section id="grow" class="section">
+    <div class="section-heading"><div><p class="eyebrow">05 / EXPAND, CONNECT, REVIEW</p><h2>새 사실은, 기존 설명까지 바꿉니다.</h2></div></div>
+    <p class="section-lead">초기 결과는 그대로 두고 별도 폴더에서 자동 확장 한 사이클을 실행했습니다. 두 미답변 질문을 조사하고, 연결을 보완하고, 다시 검토하는 3개 작업입니다. 아래 전환은 저장된 두 상태의 비교입니다.</p>
+    <div class="demo-controls"><div class="segmented" role="group" aria-label="확장 전후 전환"><button data-revision="initial" aria-pressed="true">초기 · 3편</button><button data-revision="expanded" aria-pressed="false">자동 확장 후 · 5편</button></div><span class="revision-label">초기 리비전 1</span></div>
+    <div id="metrics" class="metrics" aria-live="polite"></div>
+    <div class="growth-layout"><div><div class="mini-heading"><h3>위키의 문서 링크 그래프</h3><span>선 = 읽기 위한 참조</span></div><div id="wiki-graph" class="wiki-graph"></div><p class="hint">이 선은 역사적 인과가 아닙니다. 각 노트를 열면 사실·조건·출처가 설명되어 있습니다.</p></div><div id="note-list" class="note-list"></div></div>
+    <div class="growth-steps"><article><span>탐색 → 편입</span><h3>두 질문에 새 근거를 더함</h3><p>우리역사넷의 환도·재천도 설명과 궁능유적본부의 경복궁 연표를 읽었습니다. 새 자료 2개에서 주장 9개를 추가했습니다.</p></article><article><span>연결 → 기존 설명 갱신</span><h3>새 노트의 고립 2건 보완</h3><p>N4·N5로 들어오는 링크가 없다는 지적을 확인해 N1·N3 본문과 연결을 바꿨습니다. N2와 기존 출처 카드는 그대로 보존했습니다.</p></article><article><span>검수 → 다음 상태</span><h3>답변 6개, 보류 2개</h3><p>정상·반례·미확인 응답 18개를 자체 검토했습니다. 국호 월 표기 차이와 사회 전체 영향은 여전히 보류합니다.</p></article></div>
+    <p class="concept-note">구조 검사 지적 0건은 역사 지식 전체가 정확하다는 인증이 아닙니다. 질문의 범위와 원문 의미는 별도로 검토합니다. <strong>새 근거가 없다면 변경 없음으로 끝내는 것</strong>도 운영입니다. 스킬 설치만으로 상시 예약 실행이 시작되지는 않습니다.</p>
+    <div class="actions"><a class="button primary" href="downloads/week3-korean-history.zip" download>초기 + 확장 결과 ZIP ↓</a><a class="button" href="week3-readings/korean-history/02-expanded/operations/cycle-01.html" target="_blank">실제 확장 기록 ↗</a><a class="button" href="week3-readings/korean-history/02-expanded/verification/semantic-review.html" target="_blank">의미 검토와 한계 ↗</a></div>
+  </section>
+
+  <section id="ask" class="section">
+    <div class="section-heading"><div><p class="eyebrow">06 / FOLLOW THE EVIDENCE</p><h2>답을 누르기 전에, 근거의 경로를 봅니다.</h2></div><span class="badge pale">브라우저 규칙 조회 · LLM 호출 없음</span></div>
+    <p class="section-lead">이 화면은 저장된 모델을 읽고 정해진 규칙으로 응답하는 조회 예제입니다. RAG를 구성할 때 LLM에 전달할 근거와 조건을 살펴보는 데 사용할 수 있습니다. LLM의 답변 생성 단계는 실행하지 않습니다. 초기와 확장 상태에서 같은 질문을 눌러 무엇을 답하고 무엇을 보류하는지 비교하세요.</p>
+    <div class="demo-controls"><div class="segmented" role="group" aria-label="조회할 자료 버전"><button data-revision="initial" aria-pressed="true">초기 · 3편</button><button data-revision="expanded" aria-pressed="false">자동 확장 후 · 5편</button></div><span class="revision-label">초기 리비전 1</span></div>
+    <div class="query-buttons" role="group" aria-label="근거 조회 질문"><button data-question="capital" aria-pressed="true">1394년 이후 계속 한양?</button><button data-question="taejo" aria-pressed="false">‘태조’는 누구인가?</button><button data-question="palace" aria-pressed="false">천도와 경복궁 창건은 같은 일?</button><button data-question="date" aria-pressed="false">재천도의 정확한 양력 날짜?</button><button data-question="conflict" aria-pressed="false">국호 날짜가 다른 이유는?</button></div>
+    <div id="query-result" class="history-answer" aria-live="polite"></div>
+    <details class="teaching"><summary>실제 에이전트 응답은 따로 남깁니다</summary><p>같은 질문을 본인의 에이전트에 보내고, 실제로 읽은 파일·주장 ID·출처 위치·답변·보류 이유를 기록합니다. 이 브라우저의 문장을 모델 실행 결과로 복사해 제출하지 않습니다. 아래 요청문으로 직접 실행하세요.</p></details>
+  </section>
+
+  <section id="practice" class="section">
+    <div class="section-heading"><div><p class="eyebrow">07 / BRING YOUR OWN DOMAIN</p><h2>내 지식에 적용하는 세 번의 요청.</h2></div><span class="caption">파일을 읽고 쓰는 본인의 에이전트 사용</span></div>
+    <p class="section-lead">이미 만든 1·2주차 자료가 있으면 처음부터 다시 인터뷰하지 않습니다. 기존 스키마·문서·질문을 연결하는 데서 시작하세요. 새 분야라면 AKM의 시작 인터뷰로 목적과 범위를 먼저 정합니다.</p>
+    <label class="platform-label" for="platform">설치한 환경 <select id="platform"><option value="$akm">Codex · $akm</option><option value="/akm">Claude Code 직접 설치 · /akm</option><option value="/akm:akm">Claude 플러그인 · /akm:akm</option></select></label>
+    <div class="prompt-stack">
+      <article><div class="prompt-heading"><span>01 / 기존 지식 연결</span><button class="button" data-copy="prompt-connect">요청문 복사</button></div><pre id="prompt-connect">$akm 기존 1·2주차 자료와 온톨로지를 읽고 이어서 작업해줘. 같은 개념·주장·출처 ID가 위키와 모델에서 대응하는지 확인하고, 빠진 연결을 근거에 따라 보완해줘. 원문과 이전 질문·답변은 보존해줘. 내 폴더 구조를 먼저 확인하고 필요한 운영층만 사용해줘.</pre></article>
+      <article><div class="prompt-heading"><span>02 / 근거를 따라 답하기</span><button class="button" data-copy="prompt-query">요청문 복사</button></div><pre id="prompt-query">$akm 아래 고정 질문에 지금 지식으로 답해줘: [내 질문]. 관련 위키와 온톨로지 정의를 읽고, 주장 ID·관계의 조건·원출처 위치를 확인해줘. 답과 근거 경로, 반례, 모르는 부분을 나눠 기록해줘. 실제로 읽은 파일과 모델·실행 시각도 남기고 이전 답변을 덮어쓰지 마.</pre></article>
+      <article><div class="prompt-heading"><span>03 / 한 사이클 자동 확장</span><button class="button" data-copy="prompt-grow">요청문 복사</button></div><pre id="prompt-grow">$akm 현재 결과를 별도 폴더에 보존한 뒤, 미답변 질문 최대 2개를 조사해 확장해줘. 공개 자료를 최대 3개 새로 읽고, 기존 설명을 보강하는 것을 우선해줘. 필요한 새 개념·주장·노트를 연결하고 기존 ID와 원문은 보존해줘. 구조 검사와 본문 의미 검토를 모두 수행한 뒤 바뀐 답·보류·다음 작업을 남겨줘. 새 근거가 없으면 변경 없음으로 끝내줘.</pre></article>
+    </div>
+    <details class="teaching"><summary>새로운 분야라면: 시작 인터뷰 요청문</summary><pre id="prompt-start">$akm 온톨로지 구축 시작해줘. 분야는 [내 도메인]이고 목적은 [도움받을 판단]이야. 이미 준 자료를 먼저 읽고, 경험·용어·관계·조건·예외를 관련 질문 묶음으로 깊이 탐색해줘. 내 답에서 새 가지가 나오면 이어 묻고, 내가 정리하거나 중단하자고 할 때까지 함께 살펴보자. 인박스와 지식층·운영층이 얼마나 필요한지도 확인해줘. 정리할 때 온톨로지와 같은 ID·주장·출처를 공유하는 첫 위키 3편을 만들어줘.</pre><button class="button" data-copy="prompt-start">시작 요청문 복사</button></details>
+    <div id="copy-status" role="status" class="hint"></div>
+    <div class="submission"><div><h3>이번 주에 남길 결과</h3><ul><li>위키·문서·메타데이터·링크에 적용한 온톨로지</li><li>실제 에이전트의 출처 포함 답변 1개 이상</li><li>자료 추가 또는 정정 전후의 답·근거 변화</li><li>해결하지 못한 질문과 다음 작업</li><li>실제로 한 일과 한계를 적은 사례글 1편</li></ul></div><div><h3>4주차 비교를 위해 보존할 것</h3><p>1주차의 질문 3개와 원래 답변을 유지합니다. 새 질문은 별도 ID를 붙이고, 개선이 없거나 모르는 답도 남깁니다. 같은 질문·조건에서 정확성·일관성·출처를 비교합니다.</p><a class="button" href="downloads/week3/response-record.md" download>응답·변경 기록 양식 ↓</a></div></div>
+  </section>
+
+  <section class="section references" id="references"><p class="eyebrow">SOURCES / READ FURTHER</p><h2>출처와 읽기 경로</h2><p>역사 주장은 그래프에서 선택하면 해당 출처로 연결됩니다. 인터뷰는 역할극이며 실존 스터디멤버의 답변이 아닙니다. 한국사 전체 중 조선 초기의 질문을 시작 범위로 삼았습니다.</p><div id="source-list" class="source-list"></div><p><a href="https://www.gpters.org/nocode/post/we-have-updated-akm-YipfKMr8XLKtMka" target="_blank" rel="noreferrer">사용자 지정 3주차 AKM 사례글</a> · <a href="https://www.gpters.org/study/llm-ontology" target="_blank" rel="noreferrer">공식 스터디 커리큘럼</a> · <a href="https://www.w3.org/TR/rdf11-concepts/" target="_blank" rel="noreferrer">W3C RDF</a> · <a href="https://www.w3.org/TR/owl2-primer/" target="_blank" rel="noreferrer">OWL</a> · <a href="https://www.w3.org/TR/shacl/" target="_blank" rel="noreferrer">SHACL</a></p><p class="hint">이 웹 비교는 교육용 시각화입니다. 원본 JSON의 개념·주장·출처를 사용하며, 형식 온톨로지 표준 준수나 독립적인 AI 성능 평가를 주장하지 않습니다.</p></section>
+  <footer class="page-footer"><a href="week2.html">← 2주차 · 나를 둘러싼 세계</a><span>GPTers 24 · 3주차 / 2026.10.14</span><a href="./">4주 웹 실습실 ↗</a></footer>
+</main>
+</body></html>

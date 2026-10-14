@@ -1,0 +1,44 @@
+[
+  {
+    "id": "S001",
+    "path": "interview.md",
+    "read": true,
+    "kind": "synthetic-interview",
+    "historical_evidence": false
+  },
+  {
+    "id": "S002",
+    "path": "sources/S002.md",
+    "url": "https://sillok.history.go.kr/id/kaa_10107017_001",
+    "read": true,
+    "kind": "primary-record"
+  },
+  {
+    "id": "S003",
+    "path": "sources/S003.md",
+    "url": "https://sillok.history.go.kr/id/kaa_10202015_001",
+    "read": true,
+    "kind": "primary-record"
+  },
+  {
+    "id": "S004",
+    "path": "sources/S004.md",
+    "url": "https://sillok.history.go.kr/id/kaa_10310025_001",
+    "read": true,
+    "kind": "primary-record"
+  },
+  {
+    "id": "S005",
+    "path": "sources/S005.md",
+    "url": "https://sillok.history.go.kr/popup/haejae.do?id=kaa",
+    "read": true,
+    "kind": "institutional-reference"
+  },
+  {
+    "id": "S006",
+    "path": "sources/S006.md",
+    "url": "https://encykorea.aks.ac.kr/Article/E0059032",
+    "read": true,
+    "kind": "institutional-reference"
+  }
+]

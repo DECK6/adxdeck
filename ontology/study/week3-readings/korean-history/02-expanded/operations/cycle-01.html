@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>자동 확장 실행 기록 — cycle-01 · 한국사 사례</title>
+  <link rel="stylesheet" href="../../../../assets/week3-reader.css">
+</head>
+<body>
+  <a class="skip" href="#document">본문으로 이동</a>
+  <header><a href="../../../../week3.html">← 3주차 교안</a><a href="../../../../downloads/week3/korean-history/02-expanded/operations/cycle-01.md" download>Markdown 원문 다운로드 ↓</a></header>
+  <main id="document"><p class="eyebrow">GPTers 24 · 한국사 사례 자료</p><article><h1 id="cycle-01">자동 확장 실행 기록 — cycle-01</h1>
+<p>수행일 2026-10-14. 실제 마스터의 “자동 확장까지 한 결과물” 요청으로 실행했다. 가상 사용자가 자동화 권한을 부여한 것으로 간주하지 않았다. 초기 완성본을 별도 폴더에 복사한 뒤 이 폴더에서 작업했다.</p>
+<h2 id="_1">범위와 예산</h2>
+<p>Q5 수도의 계속성, Q6 궁궐 창건 구별, 그리고 두 답의 연결·검증까지 3개 작업. 새로 지식에 편입할 기관 자료는 최대 3개, 실제 편입은 2개다. 검색 후보 수와 편입 출처 수는 다르다. 예약 실행은 만들지 않았다.</p>
+<h2 id="_2">실제 작업과 결과</h2>
+<table>
+<thead>
+<tr>
+<th>순서 / 역할</th>
+<th>입력</th>
+<th>수행과 결과</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 · akm-explore</td>
+<td>Q5, A10의 범위</td>
+<td>우리역사넷 본문에서 환도·재천도 두 문단을 읽음. S007 카드와 C17–C21, A19–A24를 추가.</td>
+</tr>
+<tr>
+<td>2 · akm-explore / akm-grow</td>
+<td>Q6</td>
+<td>궁능유적본부 소개 첫 문단과 연표를 읽음. S008 카드, C22–C24, A25–A27, N5를 추가. Q5 답은 N4로 합성.</td>
+</tr>
+<tr>
+<td>3a · akm-lint</td>
+<td>새 노트 직후의 중간 상태</td>
+<td>실제 CLI가 N4·N5에 들어오는 링크가 없음을 보고함. <a href="../../../../downloads/week3/korean-history/02-expanded/operations/connect-before.json">연결 전 출력</a> 보존. 아직 현재 리비전 질의 검토 전이라 question-unverified도 나타남.</td>
+</tr>
+<tr>
+<td>3b · akm-connect</td>
+<td>고립 노트 2개</td>
+<td>N1과 N3의 설명을 갱신하고 N4·N5로 가는 링크 추가. 새 노트끼리도 사건 구별에 유용한 연결을 추가. C03/C07을 재사용하며 인과 사실을 지어내지 않음.</td>
+</tr>
+<tr>
+<td>3c · akm-review / akm-lint</td>
+<td>리비전 2 전체</td>
+<td>기존 4개와 새 2개 질문에 정상·반례·미확인 18개 응답을 작성·검토하고 실제 CLI 재실행. <a href="../../../../downloads/week3/korean-history/02-expanded/verification/lint.json">최종 출력</a>, <a href="../verification/question-checks.html">질문 검토</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>위 역할들은 한 작성 에이전트가 순차 수행했다. 별도 에이전트나 Claude Code를 실행해 평가한 결과가 아니다. 본문을 읽기 위한 페이지 형식 변경은 있었지만 다른 주장·출처로 바꾸어 채택하지 않았다.</p>
+<h2 id="_3">변경 전파</h2>
+<p>N1: 미답변이던 수도·궁궐 설명을 근거 있는 답과 새 노트 링크로 보완.
+N3: 실록 기사의 역일 R04와 기관 해설의 사건 연도 R11을 구별해 설명.
+N2: 새 지식이 인물 구별 내용을 바꾸지 않으므로 바이트 단위로 보존.
+S001–S006: 인터뷰와 기존 출처 카드 그대로 보존.</p>
+<p>1394년 이동 목적지 주장 A10은 틀린 주장이 아니므로 폐기하지 않았다. 그 주장을 영구 수도로 확대할 수 없다는 한계를 새 근거로 구체화했다. 새 N4·N5가 연결된 뒤 초기 3편의 정체성과 ID는 유지된다.</p>
+<h2 id="_4">남은 것과 멈춤</h2>
+<p>Q7과 Q8/CF1은 보류 상태다. 전 시대·전 지역 한국사나 문헌 사이 모든 차이를 해결했다고 선언하지 않는다. 실행 예산의 3작업을 마쳤으므로 멈추며 <a href="resume.html">재개 지점</a>을 남긴다.</p>
+<p><code>connect-before-map.json</code>은 당시 해시를 가진 역사적 검사 입력이다. 이후 파일이 변경되었으므로 현재 상태에 재사용하지 않는다. 지금 검사에는 루트의 knowledge-map.json을 쓴다.</p></article></main>
+  <footer>이 화면은 배포된 Markdown 원문에서 생성했습니다. <a href="../../../../week3.html">교안으로 돌아가기</a></footer>
+</body>
+</html>
