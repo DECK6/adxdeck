@@ -1,5 +1,32 @@
 [
   {
+    "slug": "moon-and-jeon-and-art-after-the-end",
+    "file": "_built/moon-and-jeon-and-art-after-the-end.md",
+    "title": "문경원·전준호가 미래에 묻는 예술의 쓰임",
+    "description": "문경원·전준호의 미지에서 온 소식을 통해 두 화면이 연결하는 과거와 미래, 자유의 마을의 현실과 허구, 예술의 역할을 묻는 협업을 읽는다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "Moon-Kyungwon",
+      "Jeon-Joonho",
+      "video-installation"
+    ],
+    "date": "2026-10-15",
+    "modified": "2026-10-15",
+    "thumbnail": "images/moon-and-jeon-art-after-the-end-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "Moon-Kyungwon",
+      "Jeon-Joonho",
+      "video-installation"
+    ]
+  },
+  {
     "slug": "where-distant-bodies-meet-through-telepresence",
     "file": "_built/where-distant-bodies-meet-through-telepresence.md",
     "title": "멀리 있는 몸은 어디에서 만나는가",
