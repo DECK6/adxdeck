@@ -10,6 +10,8 @@ on:
       - 'blog/media-art-taxonomy.json'
       - 'blog/index.html'
       - 'blog/blog.js'
+      - 'en/**'
+      - 'scripts/english-edition-regression.test.js'
 
 permissions:
   contents: write
@@ -26,7 +28,7 @@ jobs:
       - name: Validate generated SEO artifacts
         run: |
           node scripts/seo-readiness-check.js
-          node --test scripts/ax-seo-regression.test.js scripts/media-art-taxonomy-regression.test.js scripts/shared-shell-regression.test.js
+          node --test scripts/ax-seo-regression.test.js scripts/media-art-taxonomy-regression.test.js scripts/shared-shell-regression.test.js scripts/english-edition-regression.test.js
           git diff --check
 
       - name: Commit if changed

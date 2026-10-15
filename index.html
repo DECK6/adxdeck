@@ -16,6 +16,9 @@
     <title>DEXA | AI 미디어아트·AX 워크플로 스튜디오</title>
     <meta name="description" content="DEXA는 AI 미디어아트, 인터랙티브 전시, 브랜드 경험, 생성형 AI 교육, AX 워크플로·지식관리·자동화 설계를 연결하는 크리에이티브 테크 스튜디오입니다." />
     <link rel="canonical" href="https://dexa.art/" />
+    <link rel="alternate" hreflang="ko" href="https://dexa.art/" />
+    <link rel="alternate" hreflang="en" href="https://dexa.art/en/" />
+    <link rel="alternate" hreflang="x-default" href="https://dexa.art/" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="DEXA | AI 미디어아트·AX 워크플로 스튜디오" />
     <meta property="og:description" content="AI 미디어아트, 인터랙티브 전시, 브랜드 경험, 생성형 AI 교육, AX 워크플로·지식관리·자동화 설계를 연결합니다." />
@@ -63,6 +66,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
     <link rel="stylesheet" href="/dexa-theme.css" />
     <style>
+        .home-language-switch { max-width:1400px; margin:0 auto; padding:14px 40px 0; display:flex; justify-content:flex-end; align-items:center; gap:4px; font-family:var(--font-mono); font-size:12px; font-weight:700; }
+        .home-language-switch a, .home-language-switch span { min-width:44px; min-height:44px; display:inline-flex; align-items:center; justify-content:center; border:1px solid var(--line); border-radius:6px; }
+        .home-language-switch [aria-current="page"] { background:var(--ink); color:var(--paper); }
+        .home-language-switch a:hover { background:var(--orange); color:var(--ink); border-color:var(--orange); }
+        .home-language-switch a:focus-visible { outline:3px solid var(--orange); outline-offset:3px; }
+        @media(max-width:640px) { .home-language-switch { padding-left:20px; padding-right:20px; } }
         .dx-badge, .dx-badge-dark { text-transform: uppercase; }
         .work-card .spec span { text-transform: uppercase; }
         .dx-link { font-family: var(--font-mono); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; color: var(--orange); text-transform: uppercase; display: inline-flex; align-items: center; gap: 6px; }
@@ -148,6 +157,10 @@
         <a href="#contact">CONTACT</a>
     </nav>
     <!-- SHARED_NAV_END -->
+    <nav class="home-language-switch" aria-label="언어 선택">
+        <span lang="ko" aria-current="page" aria-label="한국어, 현재 언어">KR</span>
+        <a href="/en/" lang="en" hreflang="en" aria-label="View the English website">EN</a>
+    </nav>
 
     <header id="hero" class="hero-wrap">
         <div class="hero-panel">
