@@ -1,5 +1,34 @@
 [
   {
+    "slug": "alvin-lucier-and-the-room-inside-a-recording",
+    "file": "_built/alvin-lucier-and-the-room-inside-a-recording.md",
+    "title": "앨빈 루시어가 목소리로 드러낸 방의 소리",
+    "description": "앨빈 루시어의 I am sitting in a room을 통해 재녹음이 말소리를 공간의 공명으로 바꾸는 과정과, 녹음 파일·공연·전시가 서로 다른 경험을 만드는 이유를 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "Alvin-Lucier",
+      "sound-art",
+      "acoustic-space",
+      "recording"
+    ],
+    "date": "2026-10-16",
+    "modified": "2026-10-16",
+    "thumbnail": "images/alvin-lucier-room-recording-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "Alvin-Lucier",
+      "sound-art",
+      "acoustic-space",
+      "recording"
+    ]
+  },
+  {
     "slug": "moon-and-jeon-and-art-after-the-end",
     "file": "_built/moon-and-jeon-and-art-after-the-end.md",
     "title": "문경원·전준호가 미래에 묻는 예술의 쓰임",
