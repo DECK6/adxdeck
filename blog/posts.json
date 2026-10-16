@@ -1,5 +1,34 @@
 [
   {
+    "slug": "rhizome-and-the-histories-rebuilt-through-net-art",
+    "file": "_built/rhizome-and-the-histories-rebuilt-through-net-art.md",
+    "title": "리좀이 다시 연결한 인터넷 예술의 역사",
+    "description": "리좀의 넷아트 선집이 작품 100편을 선별하고 복원한 과정을 통해, 인터넷 예술의 역사가 목록과 설명뿐 아니라 관객이 다시 수행할 수 있는 행위로 만들어지는 방식을 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "Rhizome",
+      "net-art",
+      "digital-preservation",
+      "curating"
+    ],
+    "date": "2026-10-17",
+    "modified": "2026-10-17",
+    "thumbnail": "images/rhizome-net-art-histories-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-art",
+      "Rhizome",
+      "net-art",
+      "digital-preservation",
+      "curating"
+    ]
+  },
+  {
     "slug": "alvin-lucier-and-the-room-inside-a-recording",
     "file": "_built/alvin-lucier-and-the-room-inside-a-recording.md",
     "title": "앨빈 루시어가 목소리로 드러낸 방의 소리",
