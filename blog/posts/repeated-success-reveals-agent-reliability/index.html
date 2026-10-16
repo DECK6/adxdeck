@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 에이전트의 실력은 같은 일을 다시 맡길 때 드러난다 | DEXA Blog</title>
+    <meta name="description" content="τ-bench의 pass@k와 pass^k를 구분하고, 반복 실행·완료 상태·승인 절차·평가 버전을 함께 기록해 AI 에이전트의 업무 신뢰성을 검증하는 방법을 살펴본다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/repeated-success-reveals-agent-reliability/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="AI 에이전트의 실력은 같은 일을 다시 맡길 때 드러난다" />
+    <meta property="og:description" content="τ-bench의 pass@k와 pass^k를 구분하고, 반복 실행·완료 상태·승인 절차·평가 버전을 함께 기록해 AI 에이전트의 업무 신뢰성을 검증하는 방법을 살펴본다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/repeated-success-reveals-agent-reliability/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/repeated-success-reveals-agent-reliability-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-10-15" />
+    <meta property="article:modified_time" content="2026-10-15" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="ai-ax" />
+    <meta property="article:tag" content="agent-evaluation" />
+    <meta property="article:tag" content="reliability" />
+    <meta property="article:tag" content="workflow-design" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI 에이전트의 실력은 같은 일을 다시 맡길 때 드러난다" />
+    <meta name="twitter:description" content="τ-bench의 pass@k와 pass^k를 구분하고, 반복 실행·완료 상태·승인 절차·평가 버전을 함께 기록해 AI 에이전트의 업무 신뢰성을 검증하는 방법을 살펴본다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/repeated-success-reveals-agent-reliability-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"AI 에이전트의 실력은 같은 일을 다시 맡길 때 드러난다","description":"τ-bench의 pass@k와 pass^k를 구분하고, 반복 실행·완료 상태·승인 절차·평가 버전을 함께 기록해 AI 에이전트의 업무 신뢰성을 검증하는 방법을 살펴본다.","image":"https://dexa.art/blog/images/repeated-success-reveals-agent-reliability-cover.png","datePublished":"2026-10-15","dateModified":"2026-10-15","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/repeated-success-reveals-agent-reliability/"},"articleSection":"AI · AX","keywords":"ai-ax, agent-evaluation, reliability, workflow-design"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.10.15</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>AI 에이전트의 실력은 같은 일을 다시 맡길 때 드러난다</h1>
+                <p style="color:var(--muted);font-size:17px;">τ-bench의 pass@k와 pass^k를 구분하고, 반복 실행·완료 상태·승인 절차·평가 버전을 함께 기록해 AI 에이전트의 업무 신뢰성을 검증하는 방법을 살펴본다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">ai-ax</span><span class="dx-tag-chip">agent-evaluation</span><span class="dx-tag-chip">reliability</span><span class="dx-tag-chip">workflow-design</span></div>
+<p><img src="/blog/images/repeated-success-reveals-agent-reliability-cover.png" alt="같은 출발점과 목적지를 연결하는 여러 경로 가운데 한 경로에만 작은 틈이 남아 있는 개념 일러스트" loading="lazy"></p>
+<p><em>표지는 GPT Image 2로 생성한 개념 일러스트다. 실제 제품 화면이나 벤치마크의 측정 결과를 그린 도표가 아니다.</em></p>
+<p>팀의 주간 보고서를 정리하는 에이전트가 시연에서 일을 끝냈다고 하자. 자료를 읽고, 지정한 양식으로 문서를 만들고, 정해진 폴더에 저장했다. 이제 같은 일을 다음 주에도 맡길 수 있을까. 시연 영상을 다시 보는 것으로는 답하기 어렵다. 담당자가 바뀌거나 요청의 순서가 달라졌을 때도 필요한 확인을 거쳐 같은 완료 조건에 도달하는지 살펴야 한다.</p>
+<p>이때 재실행의 목적을 먼저 정해야 한다. 여러 후보를 만들어 그중 좋은 결과 하나를 고르는 일과, 매번 들어오는 업무를 안정적으로 처리하는 일은 서로 다른 평가가 필요하다. 초안 작성에서는 후보를 더 만드는 것이 유용할 수 있다. 이미 공유 폴더에 파일을 올리는 업무에서는 실패한 실행의 흔적과 중복 산출물까지 사람의 일이 된다.</p>
+<p>에이전트 도입을 검토하는 팀에 필요한 것은 성공 사례를 더 모으는 일만이 아니다. 같은 업무를 다시 맡겼을 때 무엇이 달라지고, 그 차이를 누가 감당하는지 확인할 자료다. 반복 실행을 평가하는 <code>pass^k</code>는 이 질문을 구체화하는 출발점이 된다.</p>
+<h2>성공한 결과를 찾는 능력과 매번 성공하는 능력</h2>
+<p>2024년 발표된 τ-bench는 사용자와 대화하고 업무용 도구를 쓰는 에이전트를 평가하면서 <code>pass^k</code>를 제안했다. <code>pass@k</code>는 같은 과제를 독립적으로 k번 시도했을 때 적어도 한 번 성공할 확률을, <code>pass^k</code>는 k번 모두 성공할 확률을 과제별로 구한 뒤 평균한다. 두 지표는 묻는 질문부터 다르다. <a href="https://arxiv.org/html/2406.12045v1#S3">τ-bench 원 논문, 평가 지표 정의</a></p>
+<p>차이를 보기 위해 하나의 과제를 5번 실행해 4번 성공한 가상의 기록을 생각해 보자. 아래 숫자는 특정 모델의 성적이 아니라, 이 기록에서 두 번의 실행을 뽑는 조합을 직접 센 설명용 예시다.</p>
+<div class="table-scroll"><table><thead><tr><th>보는 기준</th><th>이 기록에서 계산한 값</th><th>읽는 방법</th></tr></thead><tbody><tr><td>한 번의 성공 비율</td><td>4/5 = 80%</td><td>관찰한 실행 중 성공이 차지한 비율</td></tr><tr><td>두 번 중 적어도 한 번 성공</td><td>10/10 = 100%</td><td>서로 다른 두 실행을 뽑는 10개 조합 모두 성공을 포함</td></tr><tr><td>두 번 모두 성공</td><td>6/10 = 60%</td><td>성공한 실행끼리 짝을 이룬 조합만 통과</td></tr></tbody></table></div>
+<p>실패가 하나뿐이므로 어떤 두 실행을 골라도 성공은 포함된다. 하지만 두 실행이 모두 성공하려면 실패한 실행을 피해야 한다. 같은 기록에서도 ‘좋은 결과 하나를 얻을 가능성’은 높게 보이고 ‘두 번 모두 제대로 끝낼 가능성’은 낮게 보인다. 이 100% 역시 다음 실행의 성공을 보장하는 값이 아니다. 작은 표본에서 계산한 추정치이며, 관측하지 않은 실패는 남아 있다.</p>
+<p>τ-bench의 추정식도 이 조합을 이용한다. 한 과제를 n번 실행해 c번 성공했다면 <code>pass^k</code>는 <code>C(c,k)/C(n,k)</code>, <code>pass@k</code>는 <code>1-C(n-c,k)/C(n,k)</code>로 추정하고 과제별 값을 평균한다. 여기서 <code>C(n,k)</code>는 n개 중 k개를 고르는 조합의 수다. <code>n &gt;= k</code>여야 하며 성공 횟수가 k보다 적으면 모두 성공하는 조합은 없다. <a href="https://arxiv.org/html/2406.12045v1#S3">τ-bench 원 논문의 추정식</a></p>
+<p>실무에서는 과제별 기록을 보존하는 일이 중요하다. 전체 실행의 성공률을 먼저 합친 뒤 그 수를 거듭제곱하면, 어떤 과제는 항상 성공하고 어떤 과제는 계속 흔들리는 차이가 가려진다. 쉬운 업무에서 얻은 많은 성공이 자주 틀리는 업무를 가려서는 안 된다. 검토 대상은 평균 점수와 함께 남겨 둔 과제별 실패 분포다.</p>
+<h2>무엇을 성공으로 셀지 먼저 정한다</h2>
+<p>반복 횟수를 늘리기 전에 통과 기준부터 확인해야 한다. 보고서가 생성됐다는 것만 성공으로 세면, 잘못된 기간의 자료를 읽거나 다른 팀 폴더에 저장한 실행도 통과할 수 있다. 글의 문장이 자연스러운지, 필요한 자료를 빠뜨리지 않았는지, 저장 위치가 맞는지, 공유 승인을 받았는지는 각각 확인할 대상이다.</p>
+<p>τ-bench는 대화가 끝난 뒤의 데이터베이스 상태를 정답 상태와 비교하고, 필요한 응답 정보도 평가한다. 다만 원 논문은 이 보상이 모든 절차 준수를 보장하지 않는다고 명시한다. 예를 들어 최종 상태가 맞더라도 사용자의 확인 없이 변경했다면 정책을 어겼을 수 있다. <a href="https://arxiv.org/html/2406.12045v1#S3">τ-bench 원 논문, 보상과 한계</a></p>
+<p>이를 팀의 문서 업무에 적용한다면 결과 검사와 절차 검사를 나란히 두는 편이 낫다. 문서의 날짜·대상·근거 링크와 실제 저장된 파일을 확인하면서, 공유 전에 필요한 승인이 있었는지도 따로 본다. 결과는 맞고 승인 절차는 틀린 실행을 평균 점수 하나로 덮으면, 이후 자동화 범위를 결정할 때 필요한 정보가 사라진다. 이는 벤치마크의 공식 평가 규칙을 옮긴 것이 아니라, 그 한계를 고려한 업무 설계 제안이다.</p>
+<p>또한 매번 처음부터 실행하는 시험과 실패한 상태에서 이어가는 시험을 구분해야 한다. <code>pass^k</code>의 독립 반복을 살피려면 각 실행의 초기 자료와 환경을 복원해야 한다. 앞선 실행에서 생성한 파일이나 바뀐 데이터가 남아 있다면 다음 실행은 다른 과제를 수행한다. 반대로 복구 능력을 시험하려면 그런 중간 상태를 의도적으로 남기고, 어디에서 재개해 무엇을 보존했는지 평가해야 한다.</p>
+<p>첫 실행이 실패하자 사람이 경로를 고쳐 주고 다시 실행해 성공했다면, 그것은 사람의 지원을 포함한 복구 결과다. 최초 실행의 실패와 사람의 개입을 함께 기록해야 실제 운영 비용을 알 수 있다. 최종 성공만 남겨 두면 담당자가 지켜봐야 하는 시간을 빠뜨리게 된다.</p>
+<h2>사람과 평가 환경도 결과를 바꾼다</h2>
+<p>같은 모델을 썼다는 사실만으로 같은 시험이 되지는 않는다. 프롬프트, 도구 정의, 업무 정책, 초기 데이터와 실행 예산이 바뀌면 평가 대상도 달라진다. 사용자와 대화하는 업무에서는 상대가 어떤 정보를 언제 알려 주는지도 결과에 영향을 줄 수 있다.</p>
+<p>2025년의 τ²-bench는 이 문제를 사용자가 환경을 바꾸는 상황으로 넓혔다. 통신 지원 영역에서 에이전트와 사용자 모두 도구를 사용하며, 에이전트는 사용자의 행동을 안내하고 조율해야 한다. 연구는 추론 오류와 의사소통·협업 오류를 나눠 살핀다. <a href="https://arxiv.org/abs/2506.07982">τ²-bench 논문</a></p>
+<p>조직에서도 비슷한 구분이 필요하다. 담당자가 빠진 자료를 업로드해야 끝나는 업무라면, 에이전트의 결과에는 요청의 명료함과 인계 방식이 함께 작용한다. 파일을 올려 달라는 말을 했는지뿐 아니라 어떤 파일이 필요한지 정확히 안내했고, 도착한 자료를 다시 확인했는지 살펴야 한다. 사람의 반응이 들어가는 전체 과정을 하나의 업무로 평가하는 것이다.</p>
+<p>평가 도구의 버전도 남겨야 한다. 2026년 10월 15일 확인한 τ-bench 공식 저장소의 기본 브랜치 README는 <code>banking_knowledge</code> 영역의 채점 오류를 고친 v1.0.1 전후 결과를 직접 비교할 수 없다고 안내한다. 이 변경은 해당 영역에 관한 것이며 다른 영역까지 같은 영향을 받는다고 확대할 수는 없다. <a href="https://github.com/sierra-research/tau2-bench/blob/5ade54e282a4555e4d6c52d6b9b861ea8872afa6/README.md">공식 README의 채점 변경 안내</a></p>
+<p>점수가 오른 이유가 모델 개선인지, 과제 수정인지, 채점기 변경인지 구분할 수 있어야 한다. 팀의 평가 사례집도 예외가 아니다. 정답을 고쳤다면 수정 전후 결과를 나눠 두고, 비교하려는 실행들을 같은 기준으로 다시 채점해야 한다. 성공률의 변화가 무엇을 뜻하는지 설명할 수 있을 때 그 숫자가 의사결정에 쓰인다.</p>
+<h2>작은 반복 시험을 업무 인수 자료로 남기기</h2>
+<p>다음은 연구 결과를 바탕으로 제안하는 팀 실험이다. 실제 사내 시스템에 곧바로 반복 쓰기를 시키지 말고, 복원 가능한 시험 환경에서 대표 업무를 고른다. 정상 입력만 모으지 말고 자료 누락, 서로 충돌하는 요청, 사람의 확인이 필요한 경우도 포함한다. 각 사례에 초기 상태와 기대 결과, 반드시 지킬 절차를 적는다.</p>
+<p>같은 사례를 여러 번 실행할 때에는 모델과 도구 설정, 정책·자료 버전, 초기 상태를 고정하고 실제 차이가 난 부분을 남긴다. 공식 τ-bench 제출 가이드도 모델·사용자 시뮬레이터 설정의 일치와 전체 과제 실행을 요구하며, 반복 시험을 권장한다. 다만 이 지침을 사내 업무의 충분한 표본 수나 배포 허가 기준으로 받아들여서는 안 된다. <a href="https://github.com/sierra-research/tau2-bench/blob/5ade54e282a4555e4d6c52d6b9b861ea8872afa6/docs/leaderboard-submission.md">공식 제출 가이드</a></p>
+<p>팀의 인수 자료에는 과제별 성공·실패와 함께 실패 원인, 사람의 개입, 처리 시간을 기록하면 좋다. 독립 반복의 결과와 중간 상태에서 재개한 결과는 별도로 집계한다. 작은 시험은 어떤 조건에서 문제가 생기는지 찾는 데 쓸 수 있지만, 드문 실패가 없다는 증거가 되지는 못한다. 되돌리기 어려운 업무일수록 시험 범위와 사람의 검토 범위를 더 신중하게 정해야 한다.</p>
+<p>이 자료를 지식관리 시스템에 남길 때도 성공한 프롬프트만 보관하지 않는다. 평가에 사용한 입력과 기대 결과, 정책 버전, 실패 조건을 함께 묶어 두어야 다음 사람이 같은 기준으로 재검사할 수 있다. 프롬프트를 개선했다면 원래 실패 사례가 통과하는지 확인하고, 이미 잘되던 사례도 유지되는지 본다. 그렇게 쌓인 기록은 도구를 바꾸거나 업무를 다른 담당자에게 넘길 때 사용할 인수 자료가 된다.</p>
+<p>에이전트의 실력은 다시 맡긴 일에서도 드러난다. 무엇을 성공으로 셌는지, 어떤 조건에서 반복했는지, 실패 뒤 누구의 손이 필요했는지가 남아 있어야 팀은 맡길 업무의 범위를 넓힐 수 있다. 좋은 시연 다음에 필요한 것은 그 판단을 뒷받침할 반복 기록이다.</p>
+            </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/where-distant-bodies-meet-through-telepresence/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>멀리 있는 몸은 어디에서 만나는가</span></a>
+                <a id="next-post" href="/blog/posts/moon-and-jeon-and-art-after-the-end/" class="spec-row" style="text-decoration:none;"><span>문경원·전준호가 미래에 묻는 예술의 쓰임</span><span class="k">NEXT →</span></a>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>

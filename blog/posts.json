@@ -56,6 +56,25 @@
     ]
   },
   {
+    "slug": "repeated-success-reveals-agent-reliability",
+    "file": "_built/repeated-success-reveals-agent-reliability.md",
+    "title": "AI 에이전트의 실력은 같은 일을 다시 맡길 때 드러난다",
+    "description": "τ-bench의 pass@k와 pass^k를 구분하고, 반복 실행·완료 상태·승인 절차·평가 버전을 함께 기록해 AI 에이전트의 업무 신뢰성을 검증하는 방법을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "agent-evaluation",
+      "reliability",
+      "workflow-design"
+    ],
+    "date": "2026-10-15",
+    "modified": "2026-10-15",
+    "thumbnail": "images/repeated-success-reveals-agent-reliability-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "where-distant-bodies-meet-through-telepresence",
     "file": "_built/where-distant-bodies-meet-through-telepresence.md",
     "title": "멀리 있는 몸은 어디에서 만나는가",
