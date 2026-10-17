@@ -18,7 +18,7 @@ tags:
 thumbnail: images/what-small-models-learn-through-distillation.png
 status: completed
 akmLayer: output
-akmType: article
+akmType: output
 trustLevel: reviewed
 sourceType: synthesis
 ---
