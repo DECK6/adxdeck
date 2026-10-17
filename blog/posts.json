@@ -29,6 +29,26 @@
     ]
   },
   {
+    "slug": "what-small-models-learn-through-distillation",
+    "file": "_built/what-small-models-learn-through-distillation.md",
+    "title": "작은 AI 모델에 무엇을 가르칠 것인가: 증류의 업무 설계",
+    "description": "DeepSeek-R1의 출력 기반 증류 사례로 작은 모델에 능력을 전하는 방식을 살펴보고, 업무용 학습 사례의 선별·독립 평가·운영 비용을 함께 설계하는 방법을 제안한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "ai-ax",
+      "model-distillation",
+      "synthetic-data",
+      "model-evaluation",
+      "work-design"
+    ],
+    "date": "2026-10-17",
+    "modified": "2026-10-17",
+    "thumbnail": "images/what-small-models-learn-through-distillation.png",
+    "author": "육대근"
+  },
+  {
     "slug": "alvin-lucier-and-the-room-inside-a-recording",
     "file": "_built/alvin-lucier-and-the-room-inside-a-recording.md",
     "title": "앨빈 루시어가 목소리로 드러낸 방의 소리",
