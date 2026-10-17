@@ -1,5 +1,34 @@
 [
   {
+    "slug": "krauss-and-the-distance-inside-video-feedback",
+    "file": "_built/krauss-and-the-distance-inside-video-feedback.md",
+    "title": "화면 속 나와 관객의 거리",
+    "description": "로잘린드 크라우스의 비디오 비평을 비토 아콘치와 조앤 조너스의 작품에 비추어 읽으며, 자기 모습을 돌려주는 화면이 관객을 붙잡거나 비판적 거리를 만드는 방식을 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "Rosalind-Krauss",
+      "video-art",
+      "feedback",
+      "spectatorship"
+    ],
+    "date": "2026-10-18",
+    "modified": "2026-10-18",
+    "thumbnail": "images/krauss-video-feedback-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-art",
+      "Rosalind-Krauss",
+      "video-art",
+      "feedback",
+      "spectatorship"
+    ]
+  },
+  {
     "slug": "rhizome-and-the-histories-rebuilt-through-net-art",
     "file": "_built/rhizome-and-the-histories-rebuilt-through-net-art.md",
     "title": "리좀이 다시 연결한 인터넷 예술의 역사",
