@@ -1,5 +1,25 @@
 [
   {
+    "slug": "a-planned-date-is-not-proof-of-completion",
+    "file": "_built/a-planned-date-is-not-proof-of-completion.md",
+    "title": "AI 기억에서 계획과 완료를 가르는 선",
+    "description": "예정된 날짜가 지났다는 이유만으로 AI가 일을 완료로 기억해서는 안 된다. Graphiti의 시간 처리 코드를 바탕으로 계획의 성립 시점, 목표일, 상태 종료일과 실제 결과를 구분하는 업무 기록 방법을 살핀다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "knowledge-graph",
+      "agent-memory",
+      "temporal-reasoning",
+      "work-design"
+    ],
+    "date": "2026-10-18",
+    "modified": "2026-10-18",
+    "thumbnail": "images/planned-is-not-completed-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "krauss-and-the-distance-inside-video-feedback",
     "file": "_built/krauss-and-the-distance-inside-video-feedback.md",
     "title": "화면 속 나와 관객의 거리",
