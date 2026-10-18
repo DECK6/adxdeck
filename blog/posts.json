@@ -1,5 +1,34 @@
 [
   {
+    "slug": "stories-formed-between-screens",
+    "file": "_built/stories-formed-between-screens.md",
+    "title": "화면 사이의 이야기",
+    "description": "공간 몽타주의 관점에서 아이작 줄리언의 다채널 영상 설치를 읽으며, 동시에 재생되는 화면과 관객의 시선 이동, 전시장에 맞춘 재구성이 어떻게 이야기의 관계를 바꾸는지 살핀다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "spatial-montage",
+      "multi-channel-installation",
+      "Isaac-Julien",
+      "spectatorship"
+    ],
+    "date": "2026-10-19",
+    "modified": "2026-10-19",
+    "thumbnail": "images/stories-between-screens-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "media-art",
+      "spatial-montage",
+      "multi-channel-installation",
+      "Isaac-Julien",
+      "spectatorship"
+    ]
+  },
+  {
     "slug": "a-planned-date-is-not-proof-of-completion",
     "file": "_built/a-planned-date-is-not-proof-of-completion.md",
     "title": "AI 기억에서 계획과 완료를 가르는 선",
