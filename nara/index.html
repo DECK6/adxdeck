@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DEXA NARA — 입찰 보관함</title>
+    <title>DEXA NARA — AITY 입찰 추천</title>
     <meta name="description" content="나라장터 입찰 즐겨찾기와 제안서 초안 공유 보관함" />
     <meta name="robots" content="noindex" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,6 +13,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="deck.css" />
   </head>
   <body>
     <section class="lock-screen" id="lockScreen">
@@ -35,7 +36,7 @@
       <header class="app-header">
         <div class="brand">
           <span class="brand-name">DEXA<span class="dot">.</span></span>
-          <span class="mono brand-sub">NARA — 나라장터 입찰 보관함</span>
+          <span class="mono brand-sub">NARA — AITY 맞춤 입찰 추천 · 보관함</span>
         </div>
         <div class="header-meta mono">
           <span id="metaCount"></span>
@@ -43,7 +44,12 @@
           <button class="ghost-button mono" id="lockButton" type="button">잠금</button>
         </div>
       </header>
-      <main class="cards" id="cards"></main>
+      <nav class="view-tabs mono" id="viewTabs">
+        <button type="button" data-view="recommend" class="active">AITY 추천</button>
+        <button type="button" data-view="vault">보관함</button>
+      </nav>
+      <main id="recommendView"></main>
+      <main class="cards" id="cards" hidden></main>
       <footer class="app-footer mono">DEXA · shared bid vault · 자료는 내부 검토용입니다</footer>
     </div>
 
@@ -55,6 +61,7 @@
             <div class="viewer-meta mono" id="viewerMeta"></div>
           </div>
           <div class="viewer-actions">
+            <button class="ghost-button mono" id="slidesButton" type="button" hidden>슬라이드</button>
             <button class="ghost-button mono" id="copyButton" type="button">MD 복사</button>
             <button class="ghost-button mono" id="closeViewer" type="button">닫기</button>
           </div>
@@ -64,7 +71,27 @@
       </section>
     </div>
 
+    <div class="viewer-overlay" id="requestOverlay" hidden>
+      <form class="request-panel" id="requestForm">
+        <h2>초안 요청</h2>
+        <p class="request-title" id="requestTitle"></p>
+        <label class="mono">요청자<input id="requestName" maxlength="40" placeholder="이름" required /></label>
+        <label class="mono">메모<textarea id="requestNote" maxlength="500" rows="3" placeholder="강조할 점, 참여 형태 등 (선택)"></textarea></label>
+        <p class="lock-error mono" id="requestError" hidden></p>
+        <div class="request-actions">
+          <button class="ghost-button mono" id="requestCancel" type="button">취소</button>
+          <button class="primary-button" id="requestSubmit" type="submit">요청 보내기</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="deck-overlay" id="deckOverlay" hidden>
+      <button class="ghost-button mono deck-close" id="deckClose" type="button">닫기</button>
+      <div class="deck-host" id="deckHost"></div>
+    </div>
+
     <script src="marked.min.js"></script>
+    <script src="deck.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

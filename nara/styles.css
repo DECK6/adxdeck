@@ -172,3 +172,46 @@ button{font-family:inherit; cursor:pointer;}
   .viewer-panel{height:100vh; border-radius:0;}
   .app-header{flex-direction:column; align-items:flex-start;}
 }
+
+/* ---- recommendations / requests / deck ---- */
+.view-tabs{display:flex; gap:8px; margin-bottom:22px;}
+.view-tabs button{
+  background:transparent; border:1px solid var(--line); border-radius:7px;
+  color:var(--muted); padding:8px 16px; font-size:.74rem; font-family:var(--font-mono);
+}
+.view-tabs button.active{border-color:var(--orange); color:var(--orange); background:#FFFDF7;}
+.batch{margin-bottom:34px;}
+.batch-title{
+  display:flex; align-items:baseline; gap:10px; margin:0 0 14px;
+  font-size:.8rem; letter-spacing:.06em; color:var(--ink);
+}
+.batch-title span{color:var(--muted); font-size:.7rem;}
+.terms{display:flex; flex-wrap:wrap; gap:4px 10px; font-size:.72rem; color:var(--muted);}
+.terms span::before{content:"#"; color:var(--orange);}
+.card-links button{
+  font-family:var(--font-mono); font-size:.68rem; color:var(--muted); background:transparent;
+  border:1px solid var(--line); border-radius:6px; padding:5px 10px;
+}
+.card-links button:hover{border-color:var(--orange); color:var(--orange);}
+.card-links button.request{background:var(--orange); border-color:var(--orange); color:#fff; font-weight:600;}
+.card-links button.request:hover{background:var(--orange-hover); color:#fff;}
+.card-links{flex-wrap:wrap; justify-content:flex-end;}
+.request-panel{
+  width:min(440px,100%); background:#FFFDF7; border:1px solid var(--line); border-radius:14px;
+  padding:22px; display:flex; flex-direction:column; gap:12px; box-shadow:0 30px 80px rgba(23,24,27,.25);
+}
+.request-panel h2{margin:0; font-size:1.1rem;}
+.request-title{margin:0; font-size:.85rem; color:var(--muted); line-height:1.5;}
+.request-panel label{display:flex; flex-direction:column; gap:6px; font-size:.68rem; color:var(--muted);}
+.request-panel input,.request-panel textarea{
+  background:#fff; border:1px solid var(--line); border-radius:8px; padding:10px 12px;
+  font-family:var(--font-sans); font-size:.9rem; color:var(--ink); resize:vertical;
+}
+.request-actions{display:flex; justify-content:flex-end; gap:8px;}
+.primary-button{
+  background:var(--orange); color:#fff; border:0; border-radius:8px; padding:9px 18px; font-weight:700; font-size:.85rem;
+}
+.primary-button:disabled{opacity:.5; cursor:wait;}
+.deck-overlay{position:fixed; inset:0; background:#111; z-index:30; display:flex; flex-direction:column;}
+.deck-host{flex:1; min-height:0;}
+.deck-close{position:absolute; top:12px; right:12px; z-index:2; background:rgba(255,255,255,.9);}
