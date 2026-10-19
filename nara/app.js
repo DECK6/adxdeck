@@ -52,7 +52,8 @@ async function unlock(password) {
     $("app").hidden = false;
     render();
     refreshStatuses();
-    setInterval(refreshStatuses, 60000);
+    setInterval(() => document.visibilityState === "visible" && refreshStatuses(), 60000);
+    document.addEventListener("visibilitychange", () => document.visibilityState === "visible" && refreshStatuses());
     return true;
   } catch {
     $("lockError").hidden = false;
