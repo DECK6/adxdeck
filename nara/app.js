@@ -87,7 +87,7 @@ function render() {
           <h2 class="batch-title mono">${escapeHtml(batch.date)} ${index === 0 ? "· 오늘의 AITY 추천" : ""}<span>${batch.items.length}건</span></h2>
           <div class="cards">${batch.items.map((item) => renderCard(item)).join("")}</div>
         </section>`).join("")
-    : `<div class="empty">아직 추천이 없습니다 — 매일 오전 9시에 적합도 상위 10건이 올라옵니다</div>`;
+    : `<div class="empty">아직 추천이 없습니다 — 매일 오전 9시에 적합도 70점 이상 공고가 올라옵니다</div>`;
 }
 
 const bidKey = (item) => String(item.bidNtceNo || item.id || "");
