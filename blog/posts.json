@@ -29,6 +29,26 @@
     ]
   },
   {
+    "slug": "where-extra-ai-reasoning-earns-its-time",
+    "file": "_built/where-extra-ai-reasoning-earns-its-time.md",
+    "title": "AI에게 더 생각할 시간을 주기 전에",
+    "description": "같은 모델에도 추론 시간을 어디에 쓰느냐에 따라 결과가 달라진다. 순차 추론과 병렬 후보 탐색, s1의 budget forcing과 후속 분석을 바탕으로 업무별 추론 예산과 중단 기준을 설계하는 방법을 살핀다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "inference",
+      "test-time-compute",
+      "evaluation",
+      "work-design"
+    ],
+    "date": "2026-10-19",
+    "modified": "2026-10-19",
+    "thumbnail": "images/where-extra-ai-reasoning-earns-its-time-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "a-planned-date-is-not-proof-of-completion",
     "file": "_built/a-planned-date-is-not-proof-of-completion.md",
     "title": "AI 기억에서 계획과 완료를 가르는 선",
