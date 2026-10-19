@@ -1,5 +1,32 @@
 [
   {
+    "slug": "cha-jeamin-and-the-limits-of-seeing-care",
+    "file": "_built/cha-jeamin-and-the-limits-of-seeing-care.md",
+    "title": "차재민이 묻는 돌봄",
+    "description": "차재민의 사운드 가든과 엘리의 눈을 통해, 타인을 돌보는 시선이 그를 관리하는 시선과 어떻게 만나는지 살펴봅니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "차재민",
+      "영상예술",
+      "돌봄"
+    ],
+    "date": "2026-10-20",
+    "modified": "2026-10-20",
+    "thumbnail": "images/care-and-control-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "차재민",
+      "영상예술",
+      "돌봄"
+    ]
+  },
+  {
     "slug": "stories-formed-between-screens",
     "file": "_built/stories-formed-between-screens.md",
     "title": "화면 사이의 이야기",
