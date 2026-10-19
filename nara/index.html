@@ -12,8 +12,8 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=a9ecb687" />
-    <link rel="stylesheet" href="deck.css?v=a9ecb687" />
+    <link rel="stylesheet" href="styles.css?v=6bda8a37" />
+    <link rel="stylesheet" href="deck.css?v=6bda8a37" />
   </head>
   <body>
     <section class="lock-screen" id="lockScreen">
@@ -75,6 +75,7 @@
       <form class="request-panel" id="requestForm">
         <h2>초안 요청</h2>
         <p class="request-title" id="requestTitle"></p>
+        <p class="request-hint mono">요청하면 초안과 슬라이드가 자동으로 생성됩니다 (보통 20~40분)</p>
         <label class="mono">요청자<input id="requestName" maxlength="40" placeholder="이름" required /></label>
         <label class="mono">메모<textarea id="requestNote" maxlength="500" rows="3" placeholder="강조할 점, 참여 형태 등 (선택)"></textarea></label>
         <p class="lock-error mono" id="requestError" hidden></p>
@@ -90,8 +91,8 @@
       <div class="deck-host" id="deckHost"></div>
     </div>
 
-    <script src="marked.min.js?v=a9ecb687"></script>
-    <script src="deck.js?v=a9ecb687"></script>
-    <script src="app.js?v=a9ecb687"></script>
+    <script src="marked.min.js?v=6bda8a37"></script>
+    <script src="deck.js?v=6bda8a37"></script>
+    <script src="app.js?v=6bda8a37"></script>
   </body>
 </html>

@@ -202,6 +202,7 @@ button{font-family:inherit; cursor:pointer;}
 }
 .request-panel h2{margin:0; font-size:1.1rem;}
 .request-title{margin:0; font-size:.85rem; color:var(--muted); line-height:1.5;}
+.request-hint{margin:0; font-size:.68rem; color:var(--orange);}
 .request-panel label{display:flex; flex-direction:column; gap:6px; font-size:.68rem; color:var(--muted);}
 .request-panel input,.request-panel textarea{
   background:#fff; border:1px solid var(--line); border-radius:8px; padding:10px 12px;
