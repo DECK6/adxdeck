@@ -7,7 +7,7 @@ export const cycleSteps=[
  ['learn · context · maintain','다음 사이클은 달라진 상태에서 시작합니다.','검증된 지식과 수정한 절차, 남은 질문을 저장합니다. 다음에는 같은 정리를 반복하지 않고 이 상태에서 재개합니다. 새 근거가 없으면 멈춥니다.']
 ];
 export function operatingMarkdown(values){
- const fields=[['목적과 도메인','purpose'],['더 잘 답할 질문','question'],['허용 자료와 신뢰 기준','sources'],['자동 수정 범위','autonomy'],['사람 검토 대상','review'],['사이클과 중단 기준','stop']];
+ const fields=[['목적과 도메인','purpose'],['더 잘 답할 질문','question'],['집중 범위와 제외 범위','scope'],['우선순위와 설명의 깊이','priority'],['확장 방식과 방향 점검 주기','growth'],['허용 자료와 신뢰 기준','sources'],['자동 수정 범위','autonomy'],['사람 검토 대상','review'],['사이클과 중단 기준','stop']];
  return '# 내 지식을 계속 관리해 주는 에이전트 · 운영 규칙 초안\n\n운영 인터뷰로 보완한 뒤 기존 지식공간의 규칙과 함께 적용합니다.\n\n'+fields.map(([label,key])=>'## '+label+'\n\n'+String(values[key]||'[인터뷰에서 정하기]').trim()).join('\n\n')+'\n\n## 사이클 결과와 재개\n\n- 시작 상태·실제로 읽은 자료·변경 이유·영향받은 주장과 질문을 기록한다.\n- 원문·기존 ID·이전 답변을 보존한다. 삭제가 필요하면 우선 폐기 후보로 표시하고 검토한다.\n- 근거가 없으면 변경 없음, 충돌이 남으면 보류한다.\n- 같은 질문 3개로 정확성·일관성·출처·미확인·시간을 비교한다.\n- 다음 작업과 재개 위치를 저장한다.\n- 예약 실행은 호스트 스케줄러에 별도로 등록·확인하기 전에는 활성화된 것으로 간주하지 않는다.\n';
 }
 if(typeof document!=='undefined'){

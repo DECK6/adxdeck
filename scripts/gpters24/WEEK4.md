@@ -18,4 +18,8 @@ Do not publish CLI event/stderr logs, machine invocations or thread IDs. `export
 
 Browser acceptance: six compound-loop steps, three host prompt prefixes, clipboard fallback, operating-card download, graph lazy load/search/question selection, 390px and desktop no-overflow, Drive downloads, experiment report interactions. Check both ZIP integrity and 62,604 record counts locally before upload. Ensure the six large-question counts and time medians match the frozen run JSON.
 
+The `#growth` section teaches directional, broad and repeated expansion. Its nine total execution prompts are extracted into the kit. `growth-guide.md` and `coverage-map.md` are authored files included unchanged in the ZIP; the generator owns the other operating templates. Keep the scope, priority and growth fields in the operating-card form and Markdown export aligned. Verify the Drive kit is replaced and read back after regeneration, then restore its observed URL in the manifest.
+
+Link audits distinguish links requiring a local machine from instructions for an optional offline copy. The October 20 follow-up checked 54 HTML pages and 159 public assets: all returned HTTP 200. The only loopback addresses were explicitly offline instructions in the week 2 and noosphere downloadable READMEs; both already give their public page URL first.
+
 Publish only the scoped lesson/resources to main using the existing GitHub Pages workflow. Do not run the broad `build.mjs` merely to update navigation; it regenerates historical bundles and the full offline site ZIP.

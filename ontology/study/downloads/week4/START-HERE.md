@@ -2,8 +2,8 @@
 
 1. 기존 자기 지식공간과 1주차 질문·답변 3개를 준비합니다.
 2. AKM 설치·업데이트: https://github.com/DECK6/akm/tree/main/skill-suite
-3. prompts.md의 운영 인터뷰 → 점검 → 한 사이클 확장 → 평가 요청을 실행합니다.
-4. operating-rules.md, cycle-record.md, evaluation.md를 기존 구조에 맞게 저장합니다.
+3. prompts.md의 운영 인터뷰 → 점검 → 한 사이클 확장 → 평가 요청을 실행합니다. 목적에 맞게 방향 유도·넓은 범위 확장·재개·방향 재점검 요청도 사용합니다.
+4. growth-guide.md로 계속 확장하는 방법을 읽고, coverage-map.md의 범위 점검표·대기 질문을 자기 분야에 맞게 채웁니다. operating-rules.md, cycle-record.md, evaluation.md를 기존 구조에 맞게 저장합니다.
 5. final-presentation.md로 5분 발표를 준비합니다. 새 과제는 없습니다.
 
 Codex는 $akm, Claude Code 직접 설치는 /akm, Claude 플러그인은 /akm:akm으로 요청합니다.

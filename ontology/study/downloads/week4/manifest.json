@@ -105,8 +105,8 @@
   },
   "operating_kit": {
     "file": "week4-agent-kit.zip",
-    "bytes": 8840,
-    "sha256": "9277caa59c490e33c9e3261876f279399f8e1961675bbab5a125bdbd1e3662fb",
+    "bytes": 16081,
+    "sha256": "4cf7c49a5040840bc6fb85565b50070de47c002f3c32c03ee46bebbc39c9ef9a",
     "download_url": "https://drive.google.com/file/d/1QSpF2TetJeFxMml7C30eIAtpYH06AIiE/view?usp=drivesdk"
   },
   "drive_folder_url": "https://drive.google.com/drive/folders/1_GYw-rOalOgQg7uEjZLF159A6cCWoMZT",

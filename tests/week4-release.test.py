@@ -4,6 +4,18 @@ ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / 'ontology/study'
 
 class WeekFourRelease(unittest.TestCase):
+    def test_operating_kit_matches_the_published_templates(self):
+        kit=SITE/'downloads/week4'
+        manifest=json.loads((kit/'manifest.json').read_text())['operating_kit']
+        package=SITE/'downloads'/manifest['file']
+        if not package.exists():
+            self.skipTest('Operating kit is generated locally and hosted on Google Drive.')
+        with zipfile.ZipFile(package) as z:
+            for name in ['growth-guide.md','coverage-map.md','prompts.md','operating-rules.md','cycle-record.md']:
+                self.assertEqual(z.read('week4-agent-kit/'+name),(kit/name).read_bytes(),name)
+        self.assertEqual(package.stat().st_size,manifest['bytes'])
+        self.assertEqual(hashlib.sha256(package.read_bytes()).hexdigest(),manifest['sha256'])
+
     def test_google_drive_downloads_and_metadata(self):
         manifest=json.loads((SITE/'downloads/week4/manifest.json').read_text())
         text=(SITE/'week4.html').read_text()
