@@ -27,6 +27,26 @@
     ]
   },
   {
+    "slug": "whose-permissions-does-rag-use-to-read",
+    "file": "_built/whose-permissions-does-rag-use-to-read.md",
+    "title": "RAG는 누구의 권한으로 문서를 읽는가",
+    "description": "로그인한 사용자가 검색된 모든 문서를 읽을 수 있는 것은 아니다. Azure AI Search의 문서 권한과 벡터 필터를 사례로, RAG의 사용자 식별부터 청크·검색·권한 회수까지 이어지는 접근 통제를 살핀다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "RAG",
+      "access-control",
+      "knowledge-management",
+      "evaluation"
+    ],
+    "date": "2026-10-20",
+    "modified": "2026-10-20",
+    "thumbnail": "images/whose-permissions-does-rag-use-to-read-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "stories-formed-between-screens",
     "file": "_built/stories-formed-between-screens.md",
     "title": "화면 사이의 이야기",
