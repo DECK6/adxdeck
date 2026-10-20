@@ -1,5 +1,32 @@
 [
   {
+    "slug": "walking-with-cardiff-and-miller-through-recorded-time",
+    "file": "_built/walking-with-cardiff-and-miller-through-recorded-time.md",
+    "title": "녹화된 길을 걷는 몸",
+    "description": "재닛 카디프와 조지 뷰레스 밀러의 영상 산책을 통해, 녹화된 과거와 지금 걷는 몸이 같은 장소에서 만나는 방식을 살펴봅니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "재닛-카디프",
+      "조지-뷰레스-밀러",
+      "영상산책"
+    ],
+    "date": "2026-10-21",
+    "modified": "2026-10-21",
+    "thumbnail": "images/walking-through-recorded-time-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "재닛-카디프",
+      "조지-뷰레스-밀러",
+      "영상산책"
+    ]
+  },
+  {
     "slug": "cha-jeamin-and-the-limits-of-seeing-care",
     "file": "_built/cha-jeamin-and-the-limits-of-seeing-care.md",
     "title": "차재민이 묻는 돌봄",
