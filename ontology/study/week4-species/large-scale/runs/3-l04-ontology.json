@@ -1,0 +1,505 @@
+{
+  "started_at": 1792461122.525662,
+  "wall_seconds": 21.315990208000585,
+  "status": "completed",
+  "exit_code": 0,
+  "timed_out": false,
+  "answer": {
+    "kind": "composition",
+    "status": "known",
+    "value": "Chordata",
+    "rank": "phylum",
+    "count": 1586,
+    "unknown_count": 0,
+    "groups": [
+      {
+        "name": "Gobiidae",
+        "count": 87,
+        "genera": 44
+      },
+      {
+        "name": "Cyprinidae",
+        "count": 78,
+        "genera": 38
+      },
+      {
+        "name": "Scorpaenidae",
+        "count": 51,
+        "genera": 19
+      },
+      {
+        "name": "Cottidae",
+        "count": 40,
+        "genera": 20
+      },
+      {
+        "name": "Carangidae",
+        "count": 37,
+        "genera": 18
+      },
+      {
+        "name": "Tetraodontidae",
+        "count": 32,
+        "genera": 5
+      },
+      {
+        "name": "Serranidae",
+        "count": 31,
+        "genera": 12
+      },
+      {
+        "name": "Labridae",
+        "count": 28,
+        "genera": 17
+      },
+      {
+        "name": "Pleuronectidae",
+        "count": 27,
+        "genera": 16
+      },
+      {
+        "name": "Stichaeidae",
+        "count": 26,
+        "genera": 15
+      }
+    ],
+    "answer": "대표국명이 정확히 일치하는 참새·붕어·호랑이의 최하위 공통 상위 분류군은 척삭동물문(Chordata)입니다. 그 아래 2,333항목에서 참새의 조강(Aves)과 호랑이의 포유동물강(Mammalia)에 속한 747항목을 제외하면 1,586항목입니다. 붕어의 조기강(Actinopterygii)은 제외하지 않았습니다. 고유 KTSN 기준으로 집계했으며, 10항목 이상인 44개 과 중 항목 수 내림차순·동률 학명 오름차순으로 상위 10개를 제시했습니다. genera는 과별 서로 다른 속 수이며, 제외 판정 미확정 및 과 미상 항목은 모두 0입니다.",
+    "citations": [
+      "E1",
+      "E2"
+    ],
+    "group_rank": "family"
+  },
+  "raw_answer": {
+    "action": "answer",
+    "result": {
+      "kind": "composition",
+      "scope_name": "Chordata",
+      "scope_rank": "phylum",
+      "group_rank": "family",
+      "total_after_exclusions": 1586,
+      "unknown_count": 0,
+      "groups": [
+        {
+          "name": "Gobiidae",
+          "count": 87,
+          "genera": 44
+        },
+        {
+          "name": "Cyprinidae",
+          "count": 78,
+          "genera": 38
+        },
+        {
+          "name": "Scorpaenidae",
+          "count": 51,
+          "genera": 19
+        },
+        {
+          "name": "Cottidae",
+          "count": 40,
+          "genera": 20
+        },
+        {
+          "name": "Carangidae",
+          "count": 37,
+          "genera": 18
+        },
+        {
+          "name": "Tetraodontidae",
+          "count": 32,
+          "genera": 5
+        },
+        {
+          "name": "Serranidae",
+          "count": 31,
+          "genera": 12
+        },
+        {
+          "name": "Labridae",
+          "count": 28,
+          "genera": 17
+        },
+        {
+          "name": "Pleuronectidae",
+          "count": 27,
+          "genera": 16
+        },
+        {
+          "name": "Stichaeidae",
+          "count": 26,
+          "genera": 15
+        }
+      ],
+      "explanation": "대표국명이 정확히 일치하는 참새·붕어·호랑이의 최하위 공통 상위 분류군은 척삭동물문(Chordata)입니다. 그 아래 2,333항목에서 참새의 조강(Aves)과 호랑이의 포유동물강(Mammalia)에 속한 747항목을 제외하면 1,586항목입니다. 붕어의 조기강(Actinopterygii)은 제외하지 않았습니다. 고유 KTSN 기준으로 집계했으며, 10항목 이상인 44개 과 중 항목 수 내림차순·동률 학명 오름차순으로 상위 10개를 제시했습니다. genera는 과별 서로 다른 속 수이며, 제외 판정 미확정 및 과 미상 항목은 모두 0입니다.",
+      "citations": [
+        "E1",
+        "E2"
+      ]
+    }
+  },
+  "format_error": null,
+  "trace": [
+    {
+      "action": {
+        "action": "search",
+        "offset": 0,
+        "query": "\"참새\" OR \"붕어\" OR \"호랑이\""
+      },
+      "result": {
+        "evidence_id": "E1",
+        "total": 3,
+        "offset": 0,
+        "records": [
+          {
+            "id": "120000212946",
+            "scientific": "Panthera tigris altaica",
+            "korean": "호랑이",
+            "rank": "subspecies",
+            "fields": {
+              "KTSN": "120000212946",
+              "NO": "45641",
+              "관리분류군": "포유류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Mammalia",
+              "Class_ko": "포유동물강",
+              "Order": "Carnivora",
+              "Order_ko": "식육목",
+              "Family": "Felidae",
+              "Family_ko": "고양이과",
+              "Genus": "Panthera",
+              "Genus_ko": "표범속",
+              "Species": "tigris",
+              "Species_ko": "호랑이",
+              "SubSpecies_marker": "subsp.",
+              "SubSpecies_name": "altaica",
+              "SubSpecies_ko": "호랑이",
+              "학명": "Panthera tigris altaica",
+              "대표국명": "호랑이",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000212946"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 45643
+          },
+          {
+            "id": "120000002157",
+            "scientific": "Passer montanus",
+            "korean": "참새",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000002157",
+              "NO": "1136",
+              "관리분류군": "조류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Aves",
+              "Class_ko": "조강",
+              "Order": "Passeriformes",
+              "Order_ko": "참새목",
+              "Family": "Passeridae",
+              "Family_ko": "참새과",
+              "Genus": "Passer",
+              "Genus_ko": "참새속",
+              "Species": "montanus",
+              "Species_ko": "참새",
+              "학명": "Passer montanus",
+              "명명자": "(Linnaeus)",
+              "명명년도": "(1758)",
+              "대표국명": "참새",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000002157"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 1138
+          },
+          {
+            "id": "120000057547",
+            "scientific": "Carassius auratus",
+            "korean": "붕어",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000057547",
+              "NO": "30018",
+              "관리분류군": "어류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Actinopterygii",
+              "Class_ko": "조기강",
+              "Order": "Cypriniformes",
+              "Order_ko": "잉어목",
+              "Family": "Cyprinidae",
+              "Family_ko": "잉어과",
+              "Genus": "Carassius",
+              "Genus_ko": "붕어속",
+              "Species": "auratus",
+              "Species_ko": "붕어",
+              "학명": "Carassius auratus",
+              "명명자": "(Linnaeus)",
+              "명명년도": "(1758)",
+              "대표국명": "붕어",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000057547"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 30020
+          }
+        ],
+        "evidence": {
+          "method": "FTS5",
+          "query": "\"참새\" OR \"붕어\" OR \"호랑이\"",
+          "total_is_exact_text_match": true
+        }
+      },
+      "seconds": 0.0008053749988903292,
+      "at": 1792461129.301346
+    },
+    {
+      "action": {
+        "action": "compose",
+        "ids": [
+          "120000002157",
+          "120000057547",
+          "120000212946"
+        ],
+        "scope_rank": "",
+        "exclusions": [
+          {
+            "anchor_id": "120000002157",
+            "rank": "class"
+          },
+          {
+            "anchor_id": "120000212946",
+            "rank": "class"
+          }
+        ],
+        "group_rank": "family",
+        "min_count": 10,
+        "top_k": 10
+      },
+      "result": {
+        "evidence_id": "E2",
+        "scope": {
+          "rank": "phylum",
+          "node_id": "taxon:7f958a3c98c042af29f3754e",
+          "name": "Chordata",
+          "source_rows": [
+            {
+              "id": "120000002157",
+              "source_row": 1138
+            },
+            {
+              "id": "120000057547",
+              "source_row": 30020
+            },
+            {
+              "id": "120000212946",
+              "source_row": 45643
+            }
+          ]
+        },
+        "scope_count": 2333,
+        "excluded_count": 747,
+        "exclusions": [
+          {
+            "anchor_id": "120000002157",
+            "rank": "class",
+            "node_id": "taxon:5730389e6dc9c95df92f0f88",
+            "name": "Aves",
+            "source_row": 1138
+          },
+          {
+            "anchor_id": "120000212946",
+            "rank": "class",
+            "node_id": "taxon:4ad604de4f3bfbde50b0240d",
+            "name": "Mammalia",
+            "source_row": 45643
+          }
+        ],
+        "total": 1586,
+        "exclusion_unknown_count": 0,
+        "group_unknown_count": 0,
+        "group_rank": "family",
+        "min_count": 10,
+        "top_k": 10,
+        "eligible_groups": 44,
+        "groups": [
+          {
+            "node_id": "taxon:098baab19951d7c785bffc38",
+            "name": "Gobiidae",
+            "count": 87,
+            "genera": 44,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000058988",
+              "scientific": "Acanthogobius elongata",
+              "korean": "왜풀망둑",
+              "source_row": 30816,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000058988"
+            }
+          },
+          {
+            "node_id": "taxon:8f503107f363ca98fe4507ff",
+            "name": "Cyprinidae",
+            "count": 78,
+            "genera": 38,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000057528",
+              "scientific": "Abbottina rivularis",
+              "korean": "버들매치",
+              "source_row": 30008,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000057528"
+            }
+          },
+          {
+            "node_id": "taxon:c876f669828aa6f8aa309c52",
+            "name": "Scorpaenidae",
+            "count": 51,
+            "genera": 19,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000058056",
+              "scientific": "Apistus carinatus",
+              "korean": "벌감펭",
+              "source_row": 30273,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000058056"
+            }
+          },
+          {
+            "node_id": "taxon:be05f60a2bcc0a721ae24e0e",
+            "name": "Cottidae",
+            "count": 40,
+            "genera": 20,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000058177",
+              "scientific": "Alcichthys elongatus",
+              "korean": "빨간횟대",
+              "source_row": 30351,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000058177"
+            }
+          },
+          {
+            "node_id": "taxon:a809bee922e53ce4f20920dc",
+            "name": "Carangidae",
+            "count": 37,
+            "genera": 18,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000058456",
+              "scientific": "Alectis ciliaris",
+              "korean": "실전갱이",
+              "source_row": 30514,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000058456"
+            }
+          },
+          {
+            "node_id": "taxon:5b54792100b70ee5e2598781",
+            "name": "Tetraodontidae",
+            "count": 32,
+            "genera": 5,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000059386",
+              "scientific": "Arothron firmamentum",
+              "korean": "별복",
+              "source_row": 31039,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000059386"
+            }
+          },
+          {
+            "node_id": "taxon:cb566b9b6fcbdffffa6fe413",
+            "name": "Serranidae",
+            "count": 31,
+            "genera": 12,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000058330",
+              "scientific": "Aulacocephalus temminckii",
+              "korean": "황줄바리",
+              "source_row": 30441,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000058330"
+            }
+          },
+          {
+            "node_id": "taxon:943777f9e48cd7a2047ff9af",
+            "name": "Labridae",
+            "count": 28,
+            "genera": 17,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000058759",
+              "scientific": "Bodianus bilunulatus",
+              "korean": "사당놀래기",
+              "source_row": 30686,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000058759"
+            }
+          },
+          {
+            "node_id": "taxon:72438be1f21e0f410b8ae4f9",
+            "name": "Pleuronectidae",
+            "count": 27,
+            "genera": 16,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000059235",
+              "scientific": "Acanthopsetta nadeshnyi",
+              "korean": "가시가자미",
+              "source_row": 30959,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000059235"
+            }
+          },
+          {
+            "node_id": "taxon:6d5eef1628babf49fa617991",
+            "name": "Stichaeidae",
+            "count": 26,
+            "genera": 15,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000058825",
+              "scientific": "Alectrias benjamini",
+              "korean": "벼슬베도라치",
+              "source_row": 30724,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000058825"
+            }
+          }
+        ],
+        "ambiguous_labels": [],
+        "evidence": {
+          "method": "common listed ancestors -> descendant set -> multiple exclusions -> rank-qualified aggregation",
+          "source": "2025 national species list",
+          "count_unit": "unique KTSN source record",
+          "total_scope": "after exclusions; before group threshold/top K",
+          "unknown_rule": "known excluded first, then unresolved exclusions withheld; missing grouping rank separately reported"
+        }
+      },
+      "seconds": 0.16710904100182233,
+      "at": 1792461132.334343
+    }
+  ],
+  "usage": {
+    "input_tokens": 89660,
+    "cached_input_tokens": 64896,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 823,
+    "reasoning_output_tokens": 158
+  },
+  "usage_complete": true,
+  "citation_ids_valid": true,
+  "group_order_valid": true,
+  "unapproved_tools": [],
+  "input_tokens": 89660,
+  "output_tokens": 823,
+  "tool_seconds": 0.16791441600071266,
+  "question_id": "l04",
+  "variant": "ontology",
+  "repeat": 3,
+  "prompt": "참새·붕어·호랑이의 가장 낮은 공통 상위 분류군 아래에서 참새와 같은 강 및 호랑이와 같은 강에 속한 항목을 모두 제외하세요. 붕어의 강은 제외하지 않습니다. 제외 후 전체 목록 항목 수를 구하고, 남은 과 중 항목이 10개 이상인 과를 항목 수 내림차순(동률은 학명 오름차순)으로 상위 10개 골라 과별 항목 수와 서로 다른 속 수를 제시하세요.",
+  "config_sha256": "8ed84236305b25b454e5f8c2517bea42559d55f0cd2a17407ae02ad07d501583",
+  "score": {
+    "factual_exact": true,
+    "correct": true
+  }
+}

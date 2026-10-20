@@ -1,0 +1,300 @@
+{
+  "started_at": 1792459307.509351,
+  "wall_seconds": 20.10314908399596,
+  "status": "completed",
+  "exit_code": 0,
+  "timed_out": false,
+  "answer": {
+    "kind": "composition",
+    "status": "known",
+    "value": "Anura",
+    "rank": "order",
+    "count": 13,
+    "unknown_count": 0,
+    "groups": [
+      {
+        "name": "Rana",
+        "count": 5,
+        "genera": 1
+      },
+      {
+        "name": "Bufo",
+        "count": 3,
+        "genera": 1
+      },
+      {
+        "name": "Pelophylax",
+        "count": 2,
+        "genera": 1
+      }
+    ],
+    "answer": "가장 낮은 공통 상위 분류군은 무미목(Anura)입니다. 전체 17항목에서 무당개구리과(Bombinatoridae)와 청개구리과(Hylidae)의 합계 4항목을 제외하면 13항목입니다. 이 중 항목이 2개 이상인 속은 위의 3속이며, 합계 10항목입니다. 각 그룹의 서로 다른 속 수는 1이고, 미확정 항목은 없습니다.",
+    "citations": [
+      "E1",
+      "E2"
+    ],
+    "group_rank": "genus"
+  },
+  "raw_answer": {
+    "action": "answer",
+    "result": {
+      "kind": "composition",
+      "scope_name": "Anura",
+      "scope_rank": "order",
+      "group_rank": "genus",
+      "total_after_exclusions": 13,
+      "unknown_count": 0,
+      "groups": [
+        {
+          "name": "Rana",
+          "count": 5,
+          "genera": 1
+        },
+        {
+          "name": "Bufo",
+          "count": 3,
+          "genera": 1
+        },
+        {
+          "name": "Pelophylax",
+          "count": 2,
+          "genera": 1
+        }
+      ],
+      "explanation": "가장 낮은 공통 상위 분류군은 무미목(Anura)입니다. 전체 17항목에서 무당개구리과(Bombinatoridae)와 청개구리과(Hylidae)의 합계 4항목을 제외하면 13항목입니다. 이 중 항목이 2개 이상인 속은 위의 3속이며, 합계 10항목입니다. 각 그룹의 서로 다른 속 수는 1이고, 미확정 항목은 없습니다.",
+      "citations": [
+        "E1",
+        "E2"
+      ]
+    }
+  },
+  "format_error": null,
+  "trace": [
+    {
+      "action": {
+        "action": "search",
+        "offset": 0,
+        "query": "\"무당개구리\" OR \"청개구리\""
+      },
+      "result": {
+        "evidence_id": "E1",
+        "total": 2,
+        "offset": 0,
+        "records": [
+          {
+            "id": "120000001372",
+            "scientific": "Bombina orientalis",
+            "korean": "무당개구리",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000001372",
+              "NO": "764",
+              "관리분류군": "양서류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Amphibia",
+              "Class_ko": "양서강",
+              "Order": "Anura",
+              "Order_ko": "무미목",
+              "Family": "Bombinatoridae",
+              "Family_ko": "무당개구리과",
+              "Genus": "Bombina",
+              "Genus_ko": "무당개구리속",
+              "Species": "orientalis",
+              "Species_ko": "무당개구리",
+              "학명": "Bombina orientalis",
+              "명명자": "(Boulenger)",
+              "명명년도": "(1890)",
+              "대표국명": "무당개구리",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000001372"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 766
+          },
+          {
+            "id": "120000474037",
+            "scientific": "Dryophytes japonica",
+            "korean": "청개구리",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000474037",
+              "NO": "55840",
+              "관리분류군": "양서류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Amphibia",
+              "Class_ko": "양서강",
+              "Order": "Anura",
+              "Order_ko": "무미목",
+              "Family": "Hylidae",
+              "Family_ko": "청개구리과",
+              "Genus": "Dryophytes",
+              "Genus_ko": "청개구리속",
+              "Species": "japonica",
+              "Species_ko": "청개구리",
+              "학명": "Dryophytes japonica",
+              "명명자": "Gȕnther",
+              "명명년도": "1859",
+              "대표국명": "청개구리",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000474037"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 55842
+          }
+        ],
+        "evidence": {
+          "method": "FTS5",
+          "query": "\"무당개구리\" OR \"청개구리\"",
+          "total_is_exact_text_match": true
+        }
+      },
+      "seconds": 0.00424458300403785,
+      "at": 1792459315.6651928
+    },
+    {
+      "action": {
+        "action": "compose",
+        "ids": [
+          "120000001372",
+          "120000474037"
+        ],
+        "scope_rank": "",
+        "exclusions": [
+          {
+            "anchor_id": "120000001372",
+            "rank": "family"
+          },
+          {
+            "anchor_id": "120000474037",
+            "rank": "family"
+          }
+        ],
+        "group_rank": "genus",
+        "min_count": 2,
+        "top_k": 0
+      },
+      "result": {
+        "evidence_id": "E2",
+        "scope": {
+          "rank": "order",
+          "node_id": "taxon:a5a2c608bc2de2edbaea74ec",
+          "name": "Anura",
+          "source_rows": [
+            {
+              "id": "120000001372",
+              "source_row": 766
+            },
+            {
+              "id": "120000474037",
+              "source_row": 55842
+            }
+          ]
+        },
+        "scope_count": 17,
+        "excluded_count": 4,
+        "exclusions": [
+          {
+            "anchor_id": "120000001372",
+            "rank": "family",
+            "node_id": "taxon:4b7c8ef998087c3c5f67afea",
+            "name": "Bombinatoridae",
+            "source_row": 766
+          },
+          {
+            "anchor_id": "120000474037",
+            "rank": "family",
+            "node_id": "taxon:d8522cade98175e697dc76ec",
+            "name": "Hylidae",
+            "source_row": 55842
+          }
+        ],
+        "total": 13,
+        "exclusion_unknown_count": 0,
+        "group_unknown_count": 0,
+        "group_rank": "genus",
+        "min_count": 2,
+        "top_k": 0,
+        "eligible_groups": 3,
+        "groups": [
+          {
+            "node_id": "taxon:49bac377d575c9b24e537125",
+            "name": "Rana",
+            "count": 5,
+            "genera": 1,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000001388",
+              "scientific": "Rana amurensis",
+              "korean": "아무르산개구리",
+              "source_row": 771,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000001388"
+            }
+          },
+          {
+            "node_id": "taxon:ca68261dec4cc101c11647dc",
+            "name": "Bufo",
+            "count": 3,
+            "genera": 1,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000001375",
+              "scientific": "Bufo gargarizans",
+              "korean": "두꺼비",
+              "source_row": 767,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000001375"
+            }
+          },
+          {
+            "node_id": "taxon:8b5f5a0102ffad13ee9b49f0",
+            "name": "Pelophylax",
+            "count": 2,
+            "genera": 1,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000164708",
+              "scientific": "Pelophylax nigromaculatus",
+              "korean": "참개구리",
+              "source_row": 40988,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000164708"
+            }
+          }
+        ],
+        "ambiguous_labels": [],
+        "evidence": {
+          "method": "common listed ancestors -> descendant set -> multiple exclusions -> rank-qualified aggregation",
+          "source": "2025 national species list",
+          "count_unit": "unique KTSN source record",
+          "total_scope": "after exclusions; before group threshold/top K",
+          "unknown_rule": "known excluded first, then unresolved exclusions withheld; missing grouping rank separately reported"
+        }
+      },
+      "seconds": 1.02529166599561,
+      "at": 1792459319.672723
+    }
+  ],
+  "usage": {
+    "input_tokens": 88060,
+    "cached_input_tokens": 64512,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 621,
+    "reasoning_output_tokens": 147
+  },
+  "usage_complete": true,
+  "citation_ids_valid": true,
+  "group_order_valid": true,
+  "unapproved_tools": [],
+  "input_tokens": 88060,
+  "output_tokens": 621,
+  "tool_seconds": 1.0295362489996478,
+  "question_id": "c06",
+  "variant": "ontology",
+  "repeat": 1,
+  "prompt": "무당개구리·청개구리의 가장 낮은 공통 상위 분류군 아래에서 두 개구리 각각의 과를 제외하세요. 남은 전체 항목 수와, 항목이 2개 이상인 모든 속의 항목 수·서로 다른 속 수를 제시하세요.",
+  "config_sha256": "42f3c9fbcaebb6dcc6d0c0c7ecf0448bf0b0188bc9b2d9921c3e9f8831d4cc66",
+  "score": {
+    "factual_exact": true,
+    "correct": true
+  }
+}

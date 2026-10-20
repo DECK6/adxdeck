@@ -1,0 +1,121 @@
+{
+  "source_items": 62604,
+  "document_sha256": "1d06a860a0edadad615c18a03a75a05f6347df178dfc29960387e69b8f127de4",
+  "packages": {
+    "plain": {
+      "file": "species-plain-week4.zip",
+      "bytes": 20923231,
+      "sha256": "f72b5f06884e63a2fcb8553672c6191f3c16be19d52a704ce33ba3b589fffb55",
+      "members": {
+        "plain/knowledge.sqlite": {
+          "bytes": 195264512,
+          "sha256": "f35c59ed80780041846ec0f5c4a1fd6e8dc4d5c7d64926cd0dac13373da037b5"
+        },
+        "plain/records.jsonl": {
+          "bytes": 64141018,
+          "sha256": "1d06a860a0edadad615c18a03a75a05f6347df178dfc29960387e69b8f127de4"
+        },
+        "START-HERE.md": {
+          "bytes": 1862,
+          "sha256": "ff33e11582c080e14d09aa5d14a6c5aa1de004fcfded0b34a9d17253651a214e"
+        },
+        "PROVENANCE.md": {
+          "bytes": 1490,
+          "sha256": "e6fa75432186d2285c5661c9ca05022fbd2b998914a90a197e7bd652e0d030d5"
+        },
+        "query_local.py": {
+          "bytes": 967,
+          "sha256": "18b81bf99c52c895e62acc035e4b0b8347151bc81062b0f0406aaa82a77071a8"
+        },
+        "questions.json": {
+          "bytes": 2801,
+          "sha256": "6bc590776bcb02b8d1ae07d240dc2aa12a83877bd27f4fcc0d729672bbd68eab"
+        },
+        "plain/README.md": {
+          "bytes": 1862,
+          "sha256": "ff33e11582c080e14d09aa5d14a6c5aa1de004fcfded0b34a9d17253651a214e"
+        },
+        "tools/retrieve.py": {
+          "bytes": 4776,
+          "sha256": "385086c115892de2081e466ca433e527299160f6c2e452e43dff8f6b6d0a0021"
+        },
+        "tools/complex_retrieve.py": {
+          "bytes": 6178,
+          "sha256": "a742a58ed6095879a589245befdfc0541a0ca24b12ca117ba8c7e7f29cad6d66"
+        }
+      },
+      "download_url": "https://drive.google.com/file/d/1chfP43zmXX6Ncjg1vUlLdAkNSZulB90o/view?usp=drivesdk"
+    },
+    "ontology": {
+      "file": "species-ontology-week4.zip",
+      "bytes": 58223194,
+      "sha256": "4d35c67698a014d1f778f4dc084c8f9b25ac51664738139509f0ce0350b5ea39",
+      "members": {
+        "ontology/model.json": {
+          "bytes": 3000,
+          "sha256": "2adfc53720f703f0906d099914a9ccd54a6dbd2c020f15aae59a3fc8f8d52c48"
+        },
+        "ontology/knowledge.sqlite": {
+          "bytes": 361115648,
+          "sha256": "965519af6b11dbcaddebe5bb8deed571db26118cd8584f4d0b9cfe7d1d142c6c"
+        },
+        "ontology/records.jsonl": {
+          "bytes": 64141018,
+          "sha256": "1d06a860a0edadad615c18a03a75a05f6347df178dfc29960387e69b8f127de4"
+        },
+        "ontology/model-proposal.json": {
+          "bytes": 2255,
+          "sha256": "6dd5a6efd72871c27c5319b872cf3a784e5a33b32e0ab070906969b8e0d07638"
+        },
+        "START-HERE.md": {
+          "bytes": 2004,
+          "sha256": "cb1f2bbf18bddcb33df18e334f21a477cab0d1cc6f3b670424f2a508f19ce000"
+        },
+        "PROVENANCE.md": {
+          "bytes": 1490,
+          "sha256": "e6fa75432186d2285c5661c9ca05022fbd2b998914a90a197e7bd652e0d030d5"
+        },
+        "query_local.py": {
+          "bytes": 979,
+          "sha256": "29bd4cb7e0f1ae34842225efb6fd09587df3a041a34e9a01fdda23369884543b"
+        },
+        "questions.json": {
+          "bytes": 2801,
+          "sha256": "6bc590776bcb02b8d1ae07d240dc2aa12a83877bd27f4fcc0d729672bbd68eab"
+        },
+        "ontology/README.md": {
+          "bytes": 2004,
+          "sha256": "cb1f2bbf18bddcb33df18e334f21a477cab0d1cc6f3b670424f2a508f19ce000"
+        },
+        "tools/retrieve.py": {
+          "bytes": 4776,
+          "sha256": "385086c115892de2081e466ca433e527299160f6c2e452e43dff8f6b6d0a0021"
+        },
+        "tools/complex_retrieve.py": {
+          "bytes": 6178,
+          "sha256": "a742a58ed6095879a589245befdfc0541a0ca24b12ca117ba8c7e7f29cad6d66"
+        },
+        "example-compose.json": {
+          "bytes": 390,
+          "sha256": "b3e2bc9e338e8ad710dafc2651562202c0ffd195834459fab879ca58d58b7b2d"
+        }
+      },
+      "download_url": "https://drive.google.com/file/d/1NQPdFkLcjsEMuxnWw00P2fU2mqCMC-rv/view?usp=drivesdk"
+    }
+  },
+  "operating_kit": {
+    "file": "week4-agent-kit.zip",
+    "bytes": 8840,
+    "sha256": "9277caa59c490e33c9e3261876f279399f8e1961675bbab5a125bdbd1e3662fb",
+    "download_url": "https://drive.google.com/file/d/1QSpF2TetJeFxMml7C30eIAtpYH06AIiE/view?usp=drivesdk"
+  },
+  "drive_folder_url": "https://drive.google.com/drive/folders/1_GYw-rOalOgQg7uEjZLF159A6cCWoMZT",
+  "akm_skills": {
+    "repository": "https://github.com/DECK6/akm",
+    "revision": "fe1b82d5c27fc2223853feec0a684964699337cf",
+    "file": "week4-akm-skills.zip",
+    "bytes": 565152,
+    "sha256": "3bd2c12eb87492169edc54b720387895fd39f810968c9b7acd5a10f861780867",
+    "download_url": "https://drive.google.com/file/d/17FumsQlahq5oyIp3MdHnRYaCcrrYWHCW/view?usp=drivesdk"
+  }
+}

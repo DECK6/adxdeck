@@ -1,0 +1,324 @@
+{
+  "started_at": 1792459328.7001028,
+  "wall_seconds": 16.51317245800601,
+  "status": "completed",
+  "exit_code": 0,
+  "timed_out": false,
+  "answer": {
+    "kind": "composition",
+    "status": "known",
+    "value": "Squamata",
+    "rank": "order",
+    "count": 19,
+    "unknown_count": 0,
+    "groups": [
+      {
+        "name": "Colubridae",
+        "count": 10,
+        "genera": 8
+      },
+      {
+        "name": "Elaphidae",
+        "count": 5,
+        "genera": 3
+      },
+      {
+        "name": "Lacertidae",
+        "count": 3,
+        "genera": 2
+      },
+      {
+        "name": "Gekkonidae",
+        "count": 1,
+        "genera": 1
+      }
+    ],
+    "answer": "대표국명이 정확히 살모사·도마뱀인 항목의 최하위 공통 상위 분류군은 유린목(Squamata)입니다. 전체 26항목에서 살모사과(Viperidae)와 도마뱀과(Scincidae)의 합집합 7항목을 제외하면 19항목입니다. 남은 모든 과 4개의 항목 수와 서로 다른 속 수를 제시했으며, 제외 판정 미확정·과 미상 항목은 0개입니다. 항목 수는 아종·변종을 포함한 고유 KTSN 기준이며, 과 학명은 원자료 표기를 따랐습니다.",
+    "citations": [
+      "E1",
+      "E2"
+    ],
+    "group_rank": "family"
+  },
+  "raw_answer": {
+    "action": "answer",
+    "result": {
+      "kind": "composition",
+      "scope_name": "Squamata",
+      "scope_rank": "order",
+      "group_rank": "family",
+      "total_after_exclusions": 19,
+      "unknown_count": 0,
+      "groups": [
+        {
+          "name": "Colubridae",
+          "count": 10,
+          "genera": 8
+        },
+        {
+          "name": "Elaphidae",
+          "count": 5,
+          "genera": 3
+        },
+        {
+          "name": "Lacertidae",
+          "count": 3,
+          "genera": 2
+        },
+        {
+          "name": "Gekkonidae",
+          "count": 1,
+          "genera": 1
+        }
+      ],
+      "explanation": "대표국명이 정확히 살모사·도마뱀인 항목의 최하위 공통 상위 분류군은 유린목(Squamata)입니다. 전체 26항목에서 살모사과(Viperidae)와 도마뱀과(Scincidae)의 합집합 7항목을 제외하면 19항목입니다. 남은 모든 과 4개의 항목 수와 서로 다른 속 수를 제시했으며, 제외 판정 미확정·과 미상 항목은 0개입니다. 항목 수는 아종·변종을 포함한 고유 KTSN 기준이며, 과 학명은 원자료 표기를 따랐습니다.",
+      "citations": [
+        "E1",
+        "E2"
+      ]
+    }
+  },
+  "format_error": null,
+  "trace": [
+    {
+      "action": {
+        "action": "search",
+        "offset": 0,
+        "query": "\"살모사\" OR \"도마뱀\""
+      },
+      "result": {
+        "evidence_id": "E1",
+        "total": 2,
+        "offset": 0,
+        "records": [
+          {
+            "id": "120000059470",
+            "scientific": "Scincella vandenburghi",
+            "korean": "도마뱀",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000059470",
+              "NO": "31084",
+              "관리분류군": "파충류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Reptilia",
+              "Class_ko": "파충강",
+              "Order": "Squamata",
+              "Order_ko": "유린목",
+              "Family": "Scincidae",
+              "Family_ko": "도마뱀과",
+              "Genus": "Scincella",
+              "Genus_ko": "도마뱀속",
+              "Species": "vandenburghi",
+              "Species_ko": "도마뱀",
+              "학명": "Scincella vandenburghi",
+              "명명자": "(Schmidt)",
+              "명명년도": "(1927)",
+              "대표국명": "도마뱀",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000059470"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 31086
+          },
+          {
+            "id": "120000059504",
+            "scientific": "Gloydius brevicaudus",
+            "korean": "살모사",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000059504",
+              "NO": "31100",
+              "관리분류군": "파충류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Reptilia",
+              "Class_ko": "파충강",
+              "Order": "Squamata",
+              "Order_ko": "유린목",
+              "Family": "Viperidae",
+              "Family_ko": "살모사과",
+              "Genus": "Gloydius",
+              "Genus_ko": "살모사속",
+              "Species": "brevicaudus",
+              "Species_ko": "살모사",
+              "학명": "Gloydius brevicaudus",
+              "명명자": "(Stejneger)",
+              "명명년도": "(1907)",
+              "대표국명": "살모사",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000059504"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 31102
+          }
+        ],
+        "evidence": {
+          "method": "FTS5",
+          "query": "\"살모사\" OR \"도마뱀\"",
+          "total_is_exact_text_match": true
+        }
+      },
+      "seconds": 0.0019027079979423434,
+      "at": 1792459334.927904
+    },
+    {
+      "action": {
+        "action": "compose",
+        "ids": [
+          "120000059504",
+          "120000059470"
+        ],
+        "scope_rank": "",
+        "exclusions": [
+          {
+            "anchor_id": "120000059504",
+            "rank": "family"
+          },
+          {
+            "anchor_id": "120000059470",
+            "rank": "family"
+          }
+        ],
+        "group_rank": "family",
+        "min_count": 1,
+        "top_k": 0
+      },
+      "result": {
+        "evidence_id": "E2",
+        "scope": {
+          "rank": "order",
+          "node_id": "taxon:a14346615c81706660c50c1b",
+          "name": "Squamata",
+          "source_rows": [
+            {
+              "id": "120000059504",
+              "source_row": 31102
+            },
+            {
+              "id": "120000059470",
+              "source_row": 31086
+            }
+          ]
+        },
+        "scope_count": 26,
+        "excluded_count": 7,
+        "exclusions": [
+          {
+            "anchor_id": "120000059504",
+            "rank": "family",
+            "node_id": "taxon:30aa020d5950fd9b2223b6c9",
+            "name": "Viperidae",
+            "source_row": 31102
+          },
+          {
+            "anchor_id": "120000059470",
+            "rank": "family",
+            "node_id": "taxon:0982505c9bc2395e0cf5fe36",
+            "name": "Scincidae",
+            "source_row": 31086
+          }
+        ],
+        "total": 19,
+        "exclusion_unknown_count": 0,
+        "group_unknown_count": 0,
+        "group_rank": "family",
+        "min_count": 1,
+        "top_k": 0,
+        "eligible_groups": 4,
+        "groups": [
+          {
+            "node_id": "taxon:61c4b181ae41bb8cb0b2065e",
+            "name": "Colubridae",
+            "count": 10,
+            "genera": 8,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000059479",
+              "scientific": "Amphiesma vibakari",
+              "korean": "대륙유혈목이",
+              "source_row": 31090,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000059479"
+            }
+          },
+          {
+            "node_id": "taxon:8156f050a6b92ccb81f2f350",
+            "name": "Elaphidae",
+            "count": 5,
+            "genera": 3,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000059498",
+              "scientific": "Hydrophis cyanocinctus",
+              "korean": "얼룩바다뱀",
+              "source_row": 31099,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000059498"
+            }
+          },
+          {
+            "node_id": "taxon:0087c25d0141ae81e67dd0ac",
+            "name": "Lacertidae",
+            "count": 3,
+            "genera": 2,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000059473",
+              "scientific": "Eremias argus",
+              "korean": "표범장지뱀",
+              "source_row": 31087,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000059473"
+            }
+          },
+          {
+            "node_id": "taxon:65082a384fa3265e0fe28e0a",
+            "name": "Gekkonidae",
+            "count": 1,
+            "genera": 1,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000059464",
+              "scientific": "Gekko japonicus",
+              "korean": "도마뱀부치",
+              "source_row": 31083,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000059464"
+            }
+          }
+        ],
+        "ambiguous_labels": [],
+        "evidence": {
+          "method": "common listed ancestors -> descendant set -> multiple exclusions -> rank-qualified aggregation",
+          "source": "2025 national species list",
+          "count_unit": "unique KTSN source record",
+          "total_scope": "after exclusions; before group threshold/top K",
+          "unknown_rule": "known excluded first, then unresolved exclusions withheld; missing grouping rank separately reported"
+        }
+      },
+      "seconds": 0.18417191600019578,
+      "at": 1792459337.553278
+    }
+  ],
+  "usage": {
+    "input_tokens": 88247,
+    "cached_input_tokens": 64512,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 573,
+    "reasoning_output_tokens": 72
+  },
+  "usage_complete": true,
+  "citation_ids_valid": true,
+  "group_order_valid": true,
+  "unapproved_tools": [],
+  "input_tokens": 88247,
+  "output_tokens": 573,
+  "tool_seconds": 0.18607462399813812,
+  "question_id": "c07",
+  "variant": "ontology",
+  "repeat": 1,
+  "prompt": "살모사·도마뱀의 가장 낮은 공통 상위 분류군 아래에서 두 동물 각각의 과를 제외하세요. 남은 전체 항목 수와, 모든 과의 항목 수·서로 다른 속 수를 빠짐없이 제시하세요.",
+  "config_sha256": "42f3c9fbcaebb6dcc6d0c0c7ecf0448bf0b0188bc9b2d9921c3e9f8831d4cc66",
+  "score": {
+    "factual_exact": true,
+    "correct": true
+  }
+}

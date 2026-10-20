@@ -1,0 +1,444 @@
+{
+  "started_at": 1792459529.630662,
+  "wall_seconds": 21.945787582997582,
+  "status": "completed",
+  "exit_code": 0,
+  "timed_out": false,
+  "answer": {
+    "kind": "composition",
+    "status": "known",
+    "value": "Mammalia",
+    "rank": "class",
+    "count": 94,
+    "unknown_count": 0,
+    "groups": [
+      {
+        "name": "Vespertilionidae",
+        "count": 20,
+        "genera": 8
+      },
+      {
+        "name": "Delphinidae",
+        "count": 16,
+        "genera": 12
+      },
+      {
+        "name": "Soricidae",
+        "count": 9,
+        "genera": 3
+      },
+      {
+        "name": "Cricetidae",
+        "count": 8,
+        "genera": 7
+      },
+      {
+        "name": "Muridae",
+        "count": 7,
+        "genera": 4
+      },
+      {
+        "name": "Balaenopteridae",
+        "count": 6,
+        "genera": 2
+      },
+      {
+        "name": "Ziphiidae",
+        "count": 5,
+        "genera": 3
+      }
+    ],
+    "answer": "가장 낮은 공통 상위 분류군은 포유동물강(Mammalia)입니다. 전체 130항목에서 호랑이·수달의 식육목(Carnivora)을 중복 없이 한 번, 고라니의 우제목(Artiodactyla)을 제외하여 총 36항목을 제거했습니다. 남은 전체는 94항목이며, 그중 5항목 이상인 모든 과 7개를 제시했습니다. count는 고유 KTSN 항목 수, genera는 각 과의 서로 다른 속 수입니다. 제외 판정 미확정과 과 미상 항목은 모두 0개입니다.",
+    "citations": [
+      "E1",
+      "E2"
+    ],
+    "group_rank": "family"
+  },
+  "raw_answer": {
+    "action": "answer",
+    "result": {
+      "kind": "composition",
+      "scope_name": "Mammalia",
+      "scope_rank": "class",
+      "group_rank": "family",
+      "total_after_exclusions": 94,
+      "unknown_count": 0,
+      "groups": [
+        {
+          "name": "Vespertilionidae",
+          "count": 20,
+          "genera": 8
+        },
+        {
+          "name": "Delphinidae",
+          "count": 16,
+          "genera": 12
+        },
+        {
+          "name": "Soricidae",
+          "count": 9,
+          "genera": 3
+        },
+        {
+          "name": "Cricetidae",
+          "count": 8,
+          "genera": 7
+        },
+        {
+          "name": "Muridae",
+          "count": 7,
+          "genera": 4
+        },
+        {
+          "name": "Balaenopteridae",
+          "count": 6,
+          "genera": 2
+        },
+        {
+          "name": "Ziphiidae",
+          "count": 5,
+          "genera": 3
+        }
+      ],
+      "explanation": "가장 낮은 공통 상위 분류군은 포유동물강(Mammalia)입니다. 전체 130항목에서 호랑이·수달의 식육목(Carnivora)을 중복 없이 한 번, 고라니의 우제목(Artiodactyla)을 제외하여 총 36항목을 제거했습니다. 남은 전체는 94항목이며, 그중 5항목 이상인 모든 과 7개를 제시했습니다. count는 고유 KTSN 항목 수, genera는 각 과의 서로 다른 속 수입니다. 제외 판정 미확정과 과 미상 항목은 모두 0개입니다.",
+      "citations": [
+        "E1",
+        "E2"
+      ]
+    }
+  },
+  "format_error": null,
+  "trace": [
+    {
+      "action": {
+        "action": "search",
+        "offset": 0,
+        "query": "\"호랑이\" OR \"수달\" OR \"고라니\""
+      },
+      "result": {
+        "evidence_id": "E1",
+        "total": 3,
+        "offset": 0,
+        "records": [
+          {
+            "id": "120000212946",
+            "scientific": "Panthera tigris altaica",
+            "korean": "호랑이",
+            "rank": "subspecies",
+            "fields": {
+              "KTSN": "120000212946",
+              "NO": "45641",
+              "관리분류군": "포유류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Mammalia",
+              "Class_ko": "포유동물강",
+              "Order": "Carnivora",
+              "Order_ko": "식육목",
+              "Family": "Felidae",
+              "Family_ko": "고양이과",
+              "Genus": "Panthera",
+              "Genus_ko": "표범속",
+              "Species": "tigris",
+              "Species_ko": "호랑이",
+              "SubSpecies_marker": "subsp.",
+              "SubSpecies_name": "altaica",
+              "SubSpecies_ko": "호랑이",
+              "학명": "Panthera tigris altaica",
+              "대표국명": "호랑이",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000212946"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 45643
+          },
+          {
+            "id": "120000053328",
+            "scientific": "Lutra lutra",
+            "korean": "수달",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000053328",
+              "NO": "27583",
+              "관리분류군": "포유류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Mammalia",
+              "Class_ko": "포유동물강",
+              "Order": "Carnivora",
+              "Order_ko": "식육목",
+              "Family": "Mustelidae",
+              "Family_ko": "족제비과",
+              "Genus": "Lutra",
+              "Genus_ko": "수달속",
+              "Species": "lutra",
+              "Species_ko": "수달",
+              "학명": "Lutra lutra",
+              "명명자": "(Linnaeus)",
+              "명명년도": "(1758)",
+              "대표국명": "수달",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053328"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 27585
+          },
+          {
+            "id": "120000053353",
+            "scientific": "Hydropotes inermis",
+            "korean": "고라니",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000053353",
+              "NO": "27595",
+              "관리분류군": "포유류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Mammalia",
+              "Class_ko": "포유동물강",
+              "Order": "Artiodactyla",
+              "Order_ko": "우제목",
+              "Family": "Cervidae",
+              "Family_ko": "사슴과",
+              "Genus": "Hydropotes",
+              "Genus_ko": "고라니속",
+              "Species": "inermis",
+              "Species_ko": "고라니",
+              "학명": "Hydropotes inermis",
+              "명명자": "Swinhoe",
+              "명명년도": "1870",
+              "대표국명": "고라니",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053353"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 27597
+          }
+        ],
+        "evidence": {
+          "method": "FTS5",
+          "query": "\"호랑이\" OR \"수달\" OR \"고라니\"",
+          "total_is_exact_text_match": true
+        }
+      },
+      "seconds": 0.003231084003346041,
+      "at": 1792459537.04163
+    },
+    {
+      "action": {
+        "action": "compose",
+        "ids": [
+          "120000212946",
+          "120000053328",
+          "120000053353"
+        ],
+        "scope_rank": "",
+        "exclusions": [
+          {
+            "anchor_id": "120000212946",
+            "rank": "order"
+          },
+          {
+            "anchor_id": "120000053328",
+            "rank": "order"
+          },
+          {
+            "anchor_id": "120000053353",
+            "rank": "order"
+          }
+        ],
+        "group_rank": "family",
+        "min_count": 5,
+        "top_k": 0
+      },
+      "result": {
+        "evidence_id": "E2",
+        "scope": {
+          "rank": "class",
+          "node_id": "taxon:4ad604de4f3bfbde50b0240d",
+          "name": "Mammalia",
+          "source_rows": [
+            {
+              "id": "120000212946",
+              "source_row": 45643
+            },
+            {
+              "id": "120000053328",
+              "source_row": 27585
+            },
+            {
+              "id": "120000053353",
+              "source_row": 27597
+            }
+          ]
+        },
+        "scope_count": 130,
+        "excluded_count": 36,
+        "exclusions": [
+          {
+            "anchor_id": "120000212946",
+            "rank": "order",
+            "node_id": "taxon:209000d8735e8fa06a188a3b",
+            "name": "Carnivora",
+            "source_row": 45643
+          },
+          {
+            "anchor_id": "120000053328",
+            "rank": "order",
+            "node_id": "taxon:209000d8735e8fa06a188a3b",
+            "name": "Carnivora",
+            "source_row": 27585
+          },
+          {
+            "anchor_id": "120000053353",
+            "rank": "order",
+            "node_id": "taxon:153d53f5b40fb66dd3ef5f3d",
+            "name": "Artiodactyla",
+            "source_row": 27597
+          }
+        ],
+        "total": 94,
+        "exclusion_unknown_count": 0,
+        "group_unknown_count": 0,
+        "group_rank": "family",
+        "min_count": 5,
+        "top_k": 0,
+        "eligible_groups": 7,
+        "groups": [
+          {
+            "node_id": "taxon:0a892f8a0c0eac8171019187",
+            "name": "Vespertilionidae",
+            "count": 20,
+            "genera": 8,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000053260",
+              "scientific": "Eptesicus nilssonii",
+              "korean": "생박쥐",
+              "source_row": 27559,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053260"
+            }
+          },
+          {
+            "node_id": "taxon:62d581bf3292cbd6445c1b65",
+            "name": "Delphinidae",
+            "count": 16,
+            "genera": 12,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000053375",
+              "scientific": "Delphinus capensis",
+              "korean": "돌고래",
+              "source_row": 27606,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053375"
+            }
+          },
+          {
+            "node_id": "taxon:11ec824c3fbe2637014ac830",
+            "name": "Soricidae",
+            "count": 9,
+            "genera": 3,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000053235",
+              "scientific": "Crocidura lasiura",
+              "korean": "우수리땃쥐",
+              "source_row": 27548,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053235"
+            }
+          },
+          {
+            "node_id": "taxon:38c9af43bc3ec2b996850464",
+            "name": "Cricetidae",
+            "count": 8,
+            "genera": 7,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000053447",
+              "scientific": "Lasiopodomys mandarinus",
+              "korean": "쇠갈밭쥐",
+              "source_row": 27635,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053447"
+            }
+          },
+          {
+            "node_id": "taxon:bf0b65c26007e64a6eca3330",
+            "name": "Muridae",
+            "count": 7,
+            "genera": 4,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000053462",
+              "scientific": "Apodemus agrarius",
+              "korean": "등줄쥐",
+              "source_row": 27643,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053462"
+            }
+          },
+          {
+            "node_id": "taxon:0067137781ef7be8c494efaa",
+            "name": "Balaenopteridae",
+            "count": 6,
+            "genera": 2,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000053363",
+              "scientific": "Balaenoptera acutorostrata",
+              "korean": "밍크고래",
+              "source_row": 27599,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053363"
+            }
+          },
+          {
+            "node_id": "taxon:640f1a9eb5d69c0c9a9b1b32",
+            "name": "Ziphiidae",
+            "count": 5,
+            "genera": 3,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000053419",
+              "scientific": "Berardius bairdii",
+              "korean": "기름고래",
+              "source_row": 27627,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053419"
+            }
+          }
+        ],
+        "ambiguous_labels": [],
+        "evidence": {
+          "method": "common listed ancestors -> descendant set -> multiple exclusions -> rank-qualified aggregation",
+          "source": "2025 national species list",
+          "count_unit": "unique KTSN source record",
+          "total_scope": "after exclusions; before group threshold/top K",
+          "unknown_rule": "known excluded first, then unresolved exclusions withheld; missing grouping rank separately reported"
+        }
+      },
+      "seconds": 1.1505684579969966,
+      "at": 1792459542.724067
+    }
+  ],
+  "usage": {
+    "input_tokens": 89209,
+    "cached_input_tokens": 64768,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 696,
+    "reasoning_output_tokens": 101
+  },
+  "usage_complete": true,
+  "citation_ids_valid": true,
+  "group_order_valid": true,
+  "unapproved_tools": [],
+  "input_tokens": 89209,
+  "output_tokens": 696,
+  "tool_seconds": 1.1537995420003426,
+  "question_id": "c05",
+  "variant": "ontology",
+  "repeat": 2,
+  "prompt": "호랑이·수달·고라니의 가장 낮은 공통 상위 분류군 아래에서 세 동물 각각의 목을 제외하세요. 중복되는 목은 한 번만 제외합니다. 남은 전체 항목 수와, 그중 항목이 5개 이상인 모든 과의 항목 수·서로 다른 속 수를 제시하세요.",
+  "config_sha256": "42f3c9fbcaebb6dcc6d0c0c7ecf0448bf0b0188bc9b2d9921c3e9f8831d4cc66",
+  "score": {
+    "factual_exact": true,
+    "correct": true
+  }
+}

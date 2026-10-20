@@ -1,0 +1,75 @@
+{
+  "complete": true,
+  "completed_runs": 36,
+  "scheduled_runs": 36,
+  "question_count": 6,
+  "suite": "large-scale",
+  "model": "gpt-6.1-sol",
+  "reasoning": "xhigh",
+  "authentication": "ChatGPT subscription",
+  "decisions_used": false,
+  "api_billing_used": false,
+  "elapsed_seconds": 779.9246563911438,
+  "stats": {
+    "plain": {
+      "all": {
+        "n": 18,
+        "correct": 0,
+        "median_seconds": 41.888254812500236,
+        "completed_median_seconds": 41.888254812500236,
+        "median_tools": 2.5,
+        "input_tokens": 2014154,
+        "output_tokens": 29203,
+        "cached_input_tokens": 1607424,
+        "reasoning_output_tokens": 21448,
+        "failed": 0,
+        "unknown": 18,
+        "usage_complete": true
+      },
+      "complex": {
+        "n": 18,
+        "correct": 0,
+        "median_seconds": 41.888254812500236,
+        "completed_median_seconds": 41.888254812500236,
+        "median_tools": 2.5,
+        "input_tokens": 2014154,
+        "output_tokens": 29203,
+        "cached_input_tokens": 1607424,
+        "reasoning_output_tokens": 21448,
+        "failed": 0,
+        "unknown": 18,
+        "usage_complete": true
+      }
+    },
+    "ontology": {
+      "all": {
+        "n": 18,
+        "correct": 18,
+        "median_seconds": 22.52325770850075,
+        "completed_median_seconds": 22.52325770850075,
+        "median_tools": 2.0,
+        "input_tokens": 1609323,
+        "output_tokens": 14841,
+        "cached_input_tokens": 1303040,
+        "reasoning_output_tokens": 2618,
+        "failed": 0,
+        "unknown": 0,
+        "usage_complete": true
+      },
+      "complex": {
+        "n": 18,
+        "correct": 18,
+        "median_seconds": 22.52325770850075,
+        "completed_median_seconds": 22.52325770850075,
+        "median_tools": 2.0,
+        "input_tokens": 1609323,
+        "output_tokens": 14841,
+        "cached_input_tokens": 1303040,
+        "reasoning_output_tokens": 2618,
+        "failed": 0,
+        "unknown": 0,
+        "usage_complete": true
+      }
+    }
+  }
+}

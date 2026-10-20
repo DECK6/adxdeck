@@ -1,0 +1,110 @@
+{
+  "started_at": 1792459386.704743,
+  "wall_seconds": 13.027678624996042,
+  "status": "completed",
+  "exit_code": 0,
+  "timed_out": false,
+  "answer": {
+    "kind": "value",
+    "status": "known",
+    "value": "Panthera tigris altaica",
+    "rank": "",
+    "count": null,
+    "unknown_count": 0,
+    "groups": [],
+    "answer": "대표국명이 정확히 ‘호랑이’인 항목(KTSN 120000212946)의 아종명까지 포함한 전체 학명입니다.",
+    "citations": [
+      "E1"
+    ]
+  },
+  "raw_answer": {
+    "action": "answer",
+    "result": {
+      "kind": "value",
+      "value": "Panthera tigris altaica",
+      "explanation": "대표국명이 정확히 ‘호랑이’인 항목(KTSN 120000212946)의 아종명까지 포함한 전체 학명입니다.",
+      "citations": [
+        "E1"
+      ]
+    }
+  },
+  "format_error": null,
+  "trace": [
+    {
+      "action": {
+        "action": "search",
+        "offset": 0,
+        "query": "\"호랑이\""
+      },
+      "result": {
+        "evidence_id": "E1",
+        "total": 1,
+        "offset": 0,
+        "records": [
+          {
+            "id": "120000212946",
+            "scientific": "Panthera tigris altaica",
+            "korean": "호랑이",
+            "rank": "subspecies",
+            "fields": {
+              "KTSN": "120000212946",
+              "NO": "45641",
+              "관리분류군": "포유류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Mammalia",
+              "Class_ko": "포유동물강",
+              "Order": "Carnivora",
+              "Order_ko": "식육목",
+              "Family": "Felidae",
+              "Family_ko": "고양이과",
+              "Genus": "Panthera",
+              "Genus_ko": "표범속",
+              "Species": "tigris",
+              "Species_ko": "호랑이",
+              "SubSpecies_marker": "subsp.",
+              "SubSpecies_name": "altaica",
+              "SubSpecies_ko": "호랑이",
+              "학명": "Panthera tigris altaica",
+              "대표국명": "호랑이",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000212946"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 45643
+          }
+        ],
+        "evidence": {
+          "method": "FTS5",
+          "query": "\"호랑이\"",
+          "total_is_exact_text_match": true
+        }
+      },
+      "seconds": 0.0004247499964549206,
+      "at": 1792459395.33295
+    }
+  ],
+  "usage": {
+    "input_tokens": 64576,
+    "cached_input_tokens": 60672,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 271,
+    "reasoning_output_tokens": 77
+  },
+  "usage_complete": true,
+  "citation_ids_valid": true,
+  "group_order_valid": true,
+  "unapproved_tools": [],
+  "input_tokens": 64576,
+  "output_tokens": 271,
+  "tool_seconds": 0.0004247499964549206,
+  "question_id": "c01",
+  "variant": "ontology",
+  "repeat": 2,
+  "prompt": "대표국명이 호랑이인 항목의 전체 학명을 아종명까지 알려주세요.",
+  "config_sha256": "42f3c9fbcaebb6dcc6d0c0c7ecf0448bf0b0188bc9b2d9921c3e9f8831d4cc66",
+  "score": {
+    "factual_exact": true,
+    "correct": true
+  }
+}

@@ -1,0 +1,32 @@
+@prefix ex: <https://dexa.art/ontology/study/example#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+
+<https://dexa.art/ontology/study/example> a owl:Ontology ;
+    rdfs:label "4주차 수업용 소규모 RDF/OWL 예제"@ko ;
+    rdfs:comment "전체 생물종 DB의 RDF 변환본이 아닙니다. 목록 항목과 분류군을 구별합니다. 성능 실험은 SQLite로 실행했습니다."@ko ;
+    dct:source <https://www.kbr.go.kr/content/view.do?menuKey=799&contentKey=174> .
+
+ex:CatalogRecord a owl:Class ; rdfs:label "목록 항목"@ko ; owl:disjointWith ex:Taxon .
+ex:MammalRecord a owl:Class ; rdfs:subClassOf ex:CatalogRecord ; rdfs:label "포유류 목록 항목"@ko .
+ex:Taxon a owl:Class ; rdfs:label "분류군"@ko .
+
+ex:listedUnder a owl:ObjectProperty ; rdfs:range ex:Taxon ;
+    rdfs:label "기재된 상위 분류군"@ko ;
+    rdfs:comment "원자료에 명시된 가장 가까운 상위 분류군. 결측 계급을 보충하지 않으며 생물학적 직접 부모를 뜻하지 않습니다."@ko .
+ex:hasListedChild a owl:ObjectProperty ; owl:inverseOf ex:listedUnder ; rdfs:label "기재된 하위 대상"@ko .
+ex:ktsn a owl:AnnotationProperty .
+ex:sourceRow a owl:AnnotationProperty .
+ex:rank a owl:AnnotationProperty .
+dct:source a owl:AnnotationProperty .
+
+ex:tigerRecord a owl:NamedIndividual, ex:MammalRecord ;
+    rdfs:label "호랑이 · Panthera tigris altaica"@ko ;
+    ex:ktsn "120000212946" ;
+    ex:sourceRow "45643"^^xsd:integer ;
+    dct:source "2025년 국가생물종목록_v1.0 / 62,604종 시트" ;
+    ex:listedUnder ex:Panthera .
+ex:Panthera a owl:NamedIndividual, ex:Taxon ;
+    rdfs:label "표범속 · Panthera"@ko ; ex:rank "genus" .

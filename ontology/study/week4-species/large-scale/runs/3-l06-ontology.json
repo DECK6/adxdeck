@@ -1,0 +1,467 @@
+{
+  "started_at": 1792461190.325432,
+  "wall_seconds": 20.055139750002127,
+  "status": "completed",
+  "exit_code": 0,
+  "timed_out": false,
+  "answer": {
+    "kind": "composition",
+    "status": "known",
+    "value": "Mollusca",
+    "rank": "phylum",
+    "count": 1443,
+    "unknown_count": 0,
+    "groups": [
+      {
+        "name": "Pyramidellidae",
+        "count": 83,
+        "genera": 35
+      },
+      {
+        "name": "Buccinidae",
+        "count": 68,
+        "genera": 15
+      },
+      {
+        "name": "Muricidae",
+        "count": 49,
+        "genera": 24
+      },
+      {
+        "name": "Bradybaenidae",
+        "count": 44,
+        "genera": 14
+      },
+      {
+        "name": "Epitoniidae",
+        "count": 44,
+        "genera": 11
+      },
+      {
+        "name": "Naticidae",
+        "count": 43,
+        "genera": 13
+      },
+      {
+        "name": "Ovulidae",
+        "count": 40,
+        "genera": 17
+      },
+      {
+        "name": "Trochidae",
+        "count": 35,
+        "genera": 15
+      },
+      {
+        "name": "Eulimidae",
+        "count": 28,
+        "genera": 15
+      },
+      {
+        "name": "Nassariidae",
+        "count": 26,
+        "genera": 6
+      }
+    ],
+    "answer": "대표국명이 정확히 일치하는 문어(Enteroctopus dofleini)와 굴(Magallana gigas)의 최하위 공통 상위 분류군은 연체동물문(Mollusca)입니다. 전체 2,071항목에서 문어의 두족강(Cephalopoda)과 굴의 이매패강(Bivalvia)에 속하는 628항목을 제외하면 1,443항목입니다. 이는 최소 항목 수와 상위 10개 제한 적용 전 총계입니다. 남은 과 중 20항목 이상인 18개 과에서 항목 수 내림차순, 동률 학명 오름차순으로 상위 10개를 제시했습니다. count는 고유 KTSN 항목 수, genera는 과별 서로 다른 속 수입니다. 제외 판정 미확정과 과 미상 항목은 모두 0개입니다.",
+    "citations": [
+      "E1",
+      "E2"
+    ],
+    "group_rank": "family"
+  },
+  "raw_answer": {
+    "action": "answer",
+    "result": {
+      "kind": "composition",
+      "scope_name": "Mollusca",
+      "scope_rank": "phylum",
+      "group_rank": "family",
+      "total_after_exclusions": 1443,
+      "unknown_count": 0,
+      "groups": [
+        {
+          "name": "Pyramidellidae",
+          "count": 83,
+          "genera": 35
+        },
+        {
+          "name": "Buccinidae",
+          "count": 68,
+          "genera": 15
+        },
+        {
+          "name": "Muricidae",
+          "count": 49,
+          "genera": 24
+        },
+        {
+          "name": "Bradybaenidae",
+          "count": 44,
+          "genera": 14
+        },
+        {
+          "name": "Epitoniidae",
+          "count": 44,
+          "genera": 11
+        },
+        {
+          "name": "Naticidae",
+          "count": 43,
+          "genera": 13
+        },
+        {
+          "name": "Ovulidae",
+          "count": 40,
+          "genera": 17
+        },
+        {
+          "name": "Trochidae",
+          "count": 35,
+          "genera": 15
+        },
+        {
+          "name": "Eulimidae",
+          "count": 28,
+          "genera": 15
+        },
+        {
+          "name": "Nassariidae",
+          "count": 26,
+          "genera": 6
+        }
+      ],
+      "explanation": "대표국명이 정확히 일치하는 문어(Enteroctopus dofleini)와 굴(Magallana gigas)의 최하위 공통 상위 분류군은 연체동물문(Mollusca)입니다. 전체 2,071항목에서 문어의 두족강(Cephalopoda)과 굴의 이매패강(Bivalvia)에 속하는 628항목을 제외하면 1,443항목입니다. 이는 최소 항목 수와 상위 10개 제한 적용 전 총계입니다. 남은 과 중 20항목 이상인 18개 과에서 항목 수 내림차순, 동률 학명 오름차순으로 상위 10개를 제시했습니다. count는 고유 KTSN 항목 수, genera는 과별 서로 다른 속 수입니다. 제외 판정 미확정과 과 미상 항목은 모두 0개입니다.",
+      "citations": [
+        "E1",
+        "E2"
+      ]
+    }
+  },
+  "format_error": null,
+  "trace": [
+    {
+      "action": {
+        "action": "search",
+        "offset": 0,
+        "query": "\"문어\" OR \"굴\""
+      },
+      "result": {
+        "evidence_id": "E1",
+        "total": 2,
+        "offset": 0,
+        "records": [
+          {
+            "id": "120000237213",
+            "scientific": "Magallana gigas",
+            "korean": "굴",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000237213",
+              "NO": "53894",
+              "관리분류군": "무척추동물류(곤충제외)",
+              "Phylum": "Mollusca",
+              "Phylum_ko": "연체동물문",
+              "Class": "Bivalvia",
+              "Class_ko": "이매패강",
+              "Order": "Ostreoida",
+              "Order_ko": "굴목",
+              "Family": "Ostreidae",
+              "Family_ko": "굴과",
+              "Genus": "Magallana",
+              "Species": "gigas",
+              "Species_ko": "굴",
+              "학명": "Magallana gigas",
+              "명명자": "(Thunberg)",
+              "명명년도": "(1793)",
+              "대표국명": "굴",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000237213"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 53896
+          },
+          {
+            "id": "120000044102",
+            "scientific": "Enteroctopus dofleini",
+            "korean": "문어",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000044102",
+              "NO": "23079",
+              "관리분류군": "무척추동물류(곤충제외)",
+              "Phylum": "Mollusca",
+              "Phylum_ko": "연체동물문",
+              "Class": "Cephalopoda",
+              "Class_ko": "두족강",
+              "Order": "Octopoda",
+              "Order_ko": "문어목",
+              "Family": "Octopodidae",
+              "Family_ko": "문어과",
+              "Genus": "Enteroctopus",
+              "Genus_ko": "진문어속",
+              "Species": "dofleini",
+              "Species_ko": "문어",
+              "학명": "Enteroctopus dofleini",
+              "명명자": "Wülker",
+              "명명년도": "1910",
+              "대표국명": "문어",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000044102"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 23081
+          }
+        ],
+        "evidence": {
+          "method": "FTS5",
+          "query": "\"문어\" OR \"굴\"",
+          "total_is_exact_text_match": true
+        }
+      },
+      "seconds": 0.0010884580042329617,
+      "at": 1792461197.0216541
+    },
+    {
+      "action": {
+        "action": "compose",
+        "ids": [
+          "120000044102",
+          "120000237213"
+        ],
+        "scope_rank": "",
+        "exclusions": [
+          {
+            "anchor_id": "120000044102",
+            "rank": "class"
+          },
+          {
+            "anchor_id": "120000237213",
+            "rank": "class"
+          }
+        ],
+        "group_rank": "family",
+        "min_count": 20,
+        "top_k": 10
+      },
+      "result": {
+        "evidence_id": "E2",
+        "scope": {
+          "rank": "phylum",
+          "node_id": "taxon:8a04b4c16cc696b97d368907",
+          "name": "Mollusca",
+          "source_rows": [
+            {
+              "id": "120000044102",
+              "source_row": 23081
+            },
+            {
+              "id": "120000237213",
+              "source_row": 53896
+            }
+          ]
+        },
+        "scope_count": 2071,
+        "excluded_count": 628,
+        "exclusions": [
+          {
+            "anchor_id": "120000044102",
+            "rank": "class",
+            "node_id": "taxon:21ffafb0290f1b8ca95034f4",
+            "name": "Cephalopoda",
+            "source_row": 23081
+          },
+          {
+            "anchor_id": "120000237213",
+            "rank": "class",
+            "node_id": "taxon:27f38caefbc55c674a3b3e82",
+            "name": "Bivalvia",
+            "source_row": 53896
+          }
+        ],
+        "total": 1443,
+        "exclusion_unknown_count": 0,
+        "group_unknown_count": 0,
+        "group_rank": "family",
+        "min_count": 20,
+        "top_k": 10,
+        "eligible_groups": 18,
+        "groups": [
+          {
+            "node_id": "taxon:d316d6a28c9fd8db310d2815",
+            "name": "Pyramidellidae",
+            "count": 83,
+            "genera": 35,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000043308",
+              "scientific": "Agatha virgo",
+              "korean": "이빨회오리고둥",
+              "source_row": 22924,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000043308"
+            }
+          },
+          {
+            "node_id": "taxon:0212f286bd4e65114e2d8620",
+            "name": "Buccinidae",
+            "count": 68,
+            "genera": 15,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000042387",
+              "scientific": "Siphonalia cassidariaeformis",
+              "korean": "돼지고둥",
+              "source_row": 22739,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000042387"
+            }
+          },
+          {
+            "node_id": "taxon:527c66458fbec52814b04ecf",
+            "name": "Muricidae",
+            "count": 49,
+            "genera": 24,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000042315",
+              "scientific": "Boreotrophon candelabrum",
+              "korean": "지느러미뿔고둥",
+              "source_row": 22723,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000042315"
+            }
+          },
+          {
+            "node_id": "taxon:5e4bc9dd0fec68a637a657e9",
+            "name": "Bradybaenidae",
+            "count": 44,
+            "genera": 14,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000042569",
+              "scientific": "Lepidopisum verrucosum",
+              "korean": "비늘콩달팽이",
+              "source_row": 22783,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000042569"
+            }
+          },
+          {
+            "node_id": "taxon:e91583bd77dc00a5eb1f1fdd",
+            "name": "Epitoniidae",
+            "count": 44,
+            "genera": 11,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000042211",
+              "scientific": "Recluzia lutea",
+              "korean": "노랑떠돌이우렁이",
+              "source_row": 22706,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000042211"
+            }
+          },
+          {
+            "node_id": "taxon:fe9d46b10abbe14938cb5c09",
+            "name": "Naticidae",
+            "count": 43,
+            "genera": 13,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000042094",
+              "scientific": "Mammilla melanostoma",
+              "korean": "날씬한갈색긴배꼽고둥",
+              "source_row": 22677,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000042094"
+            }
+          },
+          {
+            "node_id": "taxon:e58f7c1c694dd3ca6afb23e1",
+            "name": "Ovulidae",
+            "count": 40,
+            "genera": 17,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000041995",
+              "scientific": "Habuprionovolva hervieri",
+              "korean": "구슬개오지붙이",
+              "source_row": 22671,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000041995"
+            }
+          },
+          {
+            "node_id": "taxon:d65d99f3717e25bafe33d4d3",
+            "name": "Trochidae",
+            "count": 35,
+            "genera": 15,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000041781",
+              "scientific": "Cantharidus hirasei",
+              "korean": "꼬마얼룩고둥",
+              "source_row": 22623,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000041781"
+            }
+          },
+          {
+            "node_id": "taxon:e79bb4e6cbd02ed76c213b9c",
+            "name": "Eulimidae",
+            "count": 28,
+            "genera": 15,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000042274",
+              "scientific": "Eulima bifascialis",
+              "korean": "바늘고둥",
+              "source_row": 22709,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000042274"
+            }
+          },
+          {
+            "node_id": "taxon:4ce323e5978eb992b8773a66",
+            "name": "Nassariidae",
+            "count": 26,
+            "genera": 6,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000042461",
+              "scientific": "Cyllene concinna",
+              "korean": "갈색세로줄무늬고둥",
+              "source_row": 22757,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000042461"
+            }
+          }
+        ],
+        "ambiguous_labels": [],
+        "evidence": {
+          "method": "common listed ancestors -> descendant set -> multiple exclusions -> rank-qualified aggregation",
+          "source": "2025 national species list",
+          "count_unit": "unique KTSN source record",
+          "total_scope": "after exclusions; before group threshold/top K",
+          "unknown_rule": "known excluded first, then unresolved exclusions withheld; missing grouping rank separately reported"
+        }
+      },
+      "seconds": 0.15365058399765985,
+      "at": 1792461200.0862951
+    }
+  ],
+  "usage": {
+    "input_tokens": 89104,
+    "cached_input_tokens": 85376,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 834,
+    "reasoning_output_tokens": 83
+  },
+  "usage_complete": true,
+  "citation_ids_valid": true,
+  "group_order_valid": true,
+  "unapproved_tools": [],
+  "input_tokens": 89104,
+  "output_tokens": 834,
+  "tool_seconds": 0.1547390420018928,
+  "question_id": "l06",
+  "variant": "ontology",
+  "repeat": 3,
+  "prompt": "문어·굴의 가장 낮은 공통 상위 분류군 아래에서 두 동물 각각의 강을 제외하세요. 제외 후 전체 목록 항목 수를 구하고, 남은 과 중 항목이 20개 이상인 과를 항목 수 내림차순(동률은 학명 오름차순)으로 상위 10개 골라 과별 항목 수와 서로 다른 속 수를 제시하세요.",
+  "config_sha256": "8ed84236305b25b454e5f8c2517bea42559d55f0cd2a17407ae02ad07d501583",
+  "score": {
+    "factual_exact": true,
+    "correct": true
+  }
+}

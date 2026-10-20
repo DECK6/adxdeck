@@ -1,0 +1,466 @@
+{
+  "started_at": 1792461087.195822,
+  "wall_seconds": 21.81459633399936,
+  "status": "completed",
+  "exit_code": 0,
+  "timed_out": false,
+  "answer": {
+    "kind": "composition",
+    "status": "known",
+    "value": "Magnoliopsida",
+    "rank": "class",
+    "count": 2317,
+    "unknown_count": 0,
+    "groups": [
+      {
+        "name": "Fabaceae",
+        "count": 169,
+        "genera": 52
+      },
+      {
+        "name": "Ranunculaceae",
+        "count": 147,
+        "genera": 21
+      },
+      {
+        "name": "Lamiaceae",
+        "count": 120,
+        "genera": 29
+      },
+      {
+        "name": "Apiaceae",
+        "count": 108,
+        "genera": 43
+      },
+      {
+        "name": "Brassicaceae",
+        "count": 104,
+        "genera": 35
+      },
+      {
+        "name": "Scrophulariaceae",
+        "count": 98,
+        "genera": 29
+      },
+      {
+        "name": "Caryophyllaceae",
+        "count": 96,
+        "genera": 21
+      },
+      {
+        "name": "Polygonaceae",
+        "count": 92,
+        "genera": 10
+      },
+      {
+        "name": "Violaceae",
+        "count": 64,
+        "genera": 1
+      },
+      {
+        "name": "Rubiaceae",
+        "count": 56,
+        "genera": 14
+      }
+    ],
+    "answer": "대표국명이 정확히 일치하는 민들레와 왕벚나무의 최하위 공통 상위 분류군은 목련강(Magnoliopsida)입니다. 그 아래 3,084항목에서 국화목(Asterales)과 장미목(Rosales)의 합집합 767항목을 제외하면 총 2,317항목입니다. 남은 과 중 20항목 이상인 30개 과에서 항목 수 내림차순·동률 학명 오름차순으로 상위 10개를 제시했습니다. count는 아종·변종을 포함한 고유 KTSN 항목 수이며, genera는 각 과의 서로 다른 속 수입니다. 제외 판정 미확정 및 과 미상 항목은 모두 0개입니다.",
+    "citations": [
+      "E1",
+      "E2"
+    ],
+    "group_rank": "family"
+  },
+  "raw_answer": {
+    "action": "answer",
+    "result": {
+      "kind": "composition",
+      "scope_name": "Magnoliopsida",
+      "scope_rank": "class",
+      "group_rank": "family",
+      "total_after_exclusions": 2317,
+      "unknown_count": 0,
+      "groups": [
+        {
+          "name": "Fabaceae",
+          "count": 169,
+          "genera": 52
+        },
+        {
+          "name": "Ranunculaceae",
+          "count": 147,
+          "genera": 21
+        },
+        {
+          "name": "Lamiaceae",
+          "count": 120,
+          "genera": 29
+        },
+        {
+          "name": "Apiaceae",
+          "count": 108,
+          "genera": 43
+        },
+        {
+          "name": "Brassicaceae",
+          "count": 104,
+          "genera": 35
+        },
+        {
+          "name": "Scrophulariaceae",
+          "count": 98,
+          "genera": 29
+        },
+        {
+          "name": "Caryophyllaceae",
+          "count": 96,
+          "genera": 21
+        },
+        {
+          "name": "Polygonaceae",
+          "count": 92,
+          "genera": 10
+        },
+        {
+          "name": "Violaceae",
+          "count": 64,
+          "genera": 1
+        },
+        {
+          "name": "Rubiaceae",
+          "count": 56,
+          "genera": 14
+        }
+      ],
+      "explanation": "대표국명이 정확히 일치하는 민들레와 왕벚나무의 최하위 공통 상위 분류군은 목련강(Magnoliopsida)입니다. 그 아래 3,084항목에서 국화목(Asterales)과 장미목(Rosales)의 합집합 767항목을 제외하면 총 2,317항목입니다. 남은 과 중 20항목 이상인 30개 과에서 항목 수 내림차순·동률 학명 오름차순으로 상위 10개를 제시했습니다. count는 아종·변종을 포함한 고유 KTSN 항목 수이며, genera는 각 과의 서로 다른 속 수입니다. 제외 판정 미확정 및 과 미상 항목은 모두 0개입니다.",
+      "citations": [
+        "E1",
+        "E2"
+      ]
+    }
+  },
+  "format_error": null,
+  "trace": [
+    {
+      "action": {
+        "action": "search",
+        "offset": 0,
+        "query": "\"민들레\" OR \"왕벚나무\""
+      },
+      "result": {
+        "evidence_id": "E1",
+        "total": 2,
+        "offset": 0,
+        "records": [
+          {
+            "id": "120000064184",
+            "scientific": "Taraxacum platycarpum",
+            "korean": "민들레",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000064184",
+              "NO": "33780",
+              "관리분류군": "관속식물류",
+              "Phylum": "Magnoliophyta",
+              "Phylum_ko": "피자식물문",
+              "Class": "Magnoliopsida",
+              "Class_ko": "목련강",
+              "Order": "Asterales",
+              "Order_ko": "국화목",
+              "Family": "Asteraceae",
+              "Family_ko": "국화과",
+              "Genus": "Taraxacum",
+              "Genus_ko": "민들레속",
+              "Species": "platycarpum",
+              "Species_ko": "민들레",
+              "학명": "Taraxacum platycarpum",
+              "명명자": "Dahlst.",
+              "명명년도": "1907",
+              "대표국명": "민들레",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000064184"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 33782
+          },
+          {
+            "id": "120000235635",
+            "scientific": "Prunus × yedoensis",
+            "korean": "왕벚나무",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000235635",
+              "NO": "53285",
+              "관리분류군": "관속식물류",
+              "Phylum": "Magnoliophyta",
+              "Phylum_ko": "피자식물문",
+              "Class": "Magnoliopsida",
+              "Class_ko": "목련강",
+              "Order": "Rosales",
+              "Order_ko": "장미목",
+              "Family": "Rosaceae",
+              "Family_ko": "장미과",
+              "Genus": "Prunus",
+              "Genus_ko": "벚나무속",
+              "학명": "Prunus × yedoensis",
+              "명명자": "Matsum.",
+              "명명년도": "1901",
+              "대표국명": "왕벚나무",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000235635"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 53287
+          }
+        ],
+        "evidence": {
+          "method": "FTS5",
+          "query": "\"민들레\" OR \"왕벚나무\"",
+          "total_is_exact_text_match": true
+        }
+      },
+      "seconds": 0.00110720800148556,
+      "at": 1792461095.378017
+    },
+    {
+      "action": {
+        "action": "compose",
+        "ids": [
+          "120000064184",
+          "120000235635"
+        ],
+        "scope_rank": "",
+        "exclusions": [
+          {
+            "anchor_id": "120000064184",
+            "rank": "order"
+          },
+          {
+            "anchor_id": "120000235635",
+            "rank": "order"
+          }
+        ],
+        "group_rank": "family",
+        "min_count": 20,
+        "top_k": 10
+      },
+      "result": {
+        "evidence_id": "E2",
+        "scope": {
+          "rank": "class",
+          "node_id": "taxon:e584e10a4a3e379136461668",
+          "name": "Magnoliopsida",
+          "source_rows": [
+            {
+              "id": "120000064184",
+              "source_row": 33782
+            },
+            {
+              "id": "120000235635",
+              "source_row": 53287
+            }
+          ]
+        },
+        "scope_count": 3084,
+        "excluded_count": 767,
+        "exclusions": [
+          {
+            "anchor_id": "120000064184",
+            "rank": "order",
+            "node_id": "taxon:cc88c804b53bf4dc890408b0",
+            "name": "Asterales",
+            "source_row": 33782
+          },
+          {
+            "anchor_id": "120000235635",
+            "rank": "order",
+            "node_id": "taxon:07d8a501ba7c0d511a8f4f1c",
+            "name": "Rosales",
+            "source_row": 53287
+          }
+        ],
+        "total": 2317,
+        "exclusion_unknown_count": 0,
+        "group_unknown_count": 0,
+        "group_rank": "family",
+        "min_count": 20,
+        "top_k": 10,
+        "eligible_groups": 30,
+        "groups": [
+          {
+            "node_id": "taxon:e004698cce1eba210012bf1e",
+            "name": "Fabaceae",
+            "count": 169,
+            "genera": 52,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000061991",
+              "scientific": "Aeschynomene indica",
+              "korean": "자귀풀",
+              "source_row": 32540,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000061991"
+            }
+          },
+          {
+            "node_id": "taxon:bfb2eeee659cceb13cae8959",
+            "name": "Ranunculaceae",
+            "count": 147,
+            "genera": 21,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000060135",
+              "scientific": "Aconitum alboviolaceum",
+              "korean": "줄바꽃",
+              "source_row": 31465,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000060135"
+            }
+          },
+          {
+            "node_id": "taxon:827355e94c504ada8c362237",
+            "name": "Lamiaceae",
+            "count": 120,
+            "genera": 29,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000063035",
+              "scientific": "Agastache rugosa",
+              "korean": "배초향",
+              "source_row": 33111,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000063035"
+            }
+          },
+          {
+            "node_id": "taxon:5c6f4da6a78342e8d6ce69ca",
+            "name": "Apiaceae",
+            "count": 108,
+            "genera": 43,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000062665",
+              "scientific": "Aegopodium alpestre",
+              "korean": "왜방풍",
+              "source_row": 32910,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000062665"
+            }
+          },
+          {
+            "node_id": "taxon:a1be1f4bd015d43b94c9e534",
+            "name": "Brassicaceae",
+            "count": 104,
+            "genera": 35,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000061226",
+              "scientific": "Arabidopsis thaliana",
+              "korean": "애기장대",
+              "source_row": 32102,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000061226"
+            }
+          },
+          {
+            "node_id": "taxon:43c17c69067bebc20b872165",
+            "name": "Scrophulariaceae",
+            "count": 98,
+            "genera": 29,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000063169",
+              "scientific": "Nuttallanthus canadensis",
+              "korean": "솔잎해란초",
+              "source_row": 33194,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000063169"
+            }
+          },
+          {
+            "node_id": "taxon:c611347883a1512bdb2482ed",
+            "name": "Caryophyllaceae",
+            "count": 96,
+            "genera": 21,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000060723",
+              "scientific": "Arenaria serpyllifolia",
+              "korean": "벼룩이자리",
+              "source_row": 31818,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000060723"
+            }
+          },
+          {
+            "node_id": "taxon:9ebaa0180dd9306877f2e601",
+            "name": "Polygonaceae",
+            "count": 92,
+            "genera": 10,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000060832",
+              "scientific": "Aconogonon ajanense",
+              "korean": "긴개싱아",
+              "source_row": 31882,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000060832"
+            }
+          },
+          {
+            "node_id": "taxon:32d7d1faa0377efb42c10459",
+            "name": "Violaceae",
+            "count": 64,
+            "genera": 1,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000061056",
+              "scientific": "Viola acuminata",
+              "korean": "졸방제비꽃",
+              "source_row": 32002,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000061056"
+            }
+          },
+          {
+            "node_id": "taxon:c7798b15484d69521ea8c79f",
+            "name": "Rubiaceae",
+            "count": 56,
+            "genera": 14,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000063485",
+              "scientific": "Adina rubella",
+              "korean": "구슬꽃나무",
+              "source_row": 33364,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000063485"
+            }
+          }
+        ],
+        "ambiguous_labels": [],
+        "evidence": {
+          "method": "common listed ancestors -> descendant set -> multiple exclusions -> rank-qualified aggregation",
+          "source": "2025 national species list",
+          "count_unit": "unique KTSN source record",
+          "total_scope": "after exclusions; before group threshold/top K",
+          "unknown_rule": "known excluded first, then unresolved exclusions withheld; missing grouping rank separately reported"
+        }
+      },
+      "seconds": 0.17089924999891082,
+      "at": 1792461098.294699
+    }
+  ],
+  "usage": {
+    "input_tokens": 89042,
+    "cached_input_tokens": 85376,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 814,
+    "reasoning_output_tokens": 160
+  },
+  "usage_complete": true,
+  "citation_ids_valid": true,
+  "group_order_valid": true,
+  "unapproved_tools": [],
+  "input_tokens": 89042,
+  "output_tokens": 814,
+  "tool_seconds": 0.17200645800039638,
+  "question_id": "l03",
+  "variant": "ontology",
+  "repeat": 3,
+  "prompt": "민들레·왕벚나무의 가장 낮은 공통 상위 분류군 아래에서 두 식물 각각의 목을 제외하세요. 제외 후 전체 목록 항목 수를 구하고, 남은 과 중 항목이 20개 이상인 과를 항목 수 내림차순(동률은 학명 오름차순)으로 상위 10개 골라 과별 항목 수와 서로 다른 속 수를 제시하세요.",
+  "config_sha256": "8ed84236305b25b454e5f8c2517bea42559d55f0cd2a17407ae02ad07d501583",
+  "score": {
+    "factual_exact": true,
+    "correct": true
+  }
+}

@@ -1,0 +1,348 @@
+{
+  "started_at": 1792459452.965182,
+  "wall_seconds": 19.7149863750019,
+  "status": "completed",
+  "exit_code": 0,
+  "timed_out": false,
+  "answer": {
+    "kind": "composition",
+    "status": "known",
+    "value": "Passeriformes",
+    "rank": "order",
+    "count": 256,
+    "unknown_count": 0,
+    "groups": [
+      {
+        "name": "Sylviidae",
+        "count": 43,
+        "genera": 8
+      },
+      {
+        "name": "Muscicapidae",
+        "count": 39,
+        "genera": 17
+      },
+      {
+        "name": "Emberizidae",
+        "count": 28,
+        "genera": 5
+      },
+      {
+        "name": "Fringillidae",
+        "count": 21,
+        "genera": 13
+      },
+      {
+        "name": "Motacillidae",
+        "count": 21,
+        "genera": 3
+      }
+    ],
+    "answer": "제외 후 전체는 256항목입니다. 대표국명이 정확히 일치하는 참새·까치의 최하위 공통 상위 분류군은 참새목(Passeriformes)입니다. 참새목 270항목에서 참새과(Passeridae)와 까마귀과(Corvidae)의 합집합 14항목을 제외했습니다. 남은 과 중 10항목 이상인 7개 과에서 항목 수 내림차순, 동률은 학명 오름차순으로 상위 5개를 제시했습니다. 각 count는 고유 KTSN 항목 수이며 genera는 서로 다른 속 수입니다. 제외 판정 미확정 및 과 미상 항목은 모두 0입니다.",
+    "citations": [
+      "E1",
+      "E2"
+    ],
+    "group_rank": "family"
+  },
+  "raw_answer": {
+    "action": "answer",
+    "result": {
+      "kind": "composition",
+      "scope_name": "Passeriformes",
+      "scope_rank": "order",
+      "group_rank": "family",
+      "total_after_exclusions": 256,
+      "unknown_count": 0,
+      "groups": [
+        {
+          "name": "Sylviidae",
+          "count": 43,
+          "genera": 8
+        },
+        {
+          "name": "Muscicapidae",
+          "count": 39,
+          "genera": 17
+        },
+        {
+          "name": "Emberizidae",
+          "count": 28,
+          "genera": 5
+        },
+        {
+          "name": "Fringillidae",
+          "count": 21,
+          "genera": 13
+        },
+        {
+          "name": "Motacillidae",
+          "count": 21,
+          "genera": 3
+        }
+      ],
+      "explanation": "제외 후 전체는 256항목입니다. 대표국명이 정확히 일치하는 참새·까치의 최하위 공통 상위 분류군은 참새목(Passeriformes)입니다. 참새목 270항목에서 참새과(Passeridae)와 까마귀과(Corvidae)의 합집합 14항목을 제외했습니다. 남은 과 중 10항목 이상인 7개 과에서 항목 수 내림차순, 동률은 학명 오름차순으로 상위 5개를 제시했습니다. 각 count는 고유 KTSN 항목 수이며 genera는 서로 다른 속 수입니다. 제외 판정 미확정 및 과 미상 항목은 모두 0입니다.",
+      "citations": [
+        "E1",
+        "E2"
+      ]
+    }
+  },
+  "format_error": null,
+  "trace": [
+    {
+      "action": {
+        "action": "search",
+        "offset": 0,
+        "query": "\"참새\" OR \"까치\""
+      },
+      "result": {
+        "evidence_id": "E1",
+        "total": 2,
+        "offset": 0,
+        "records": [
+          {
+            "id": "120000002157",
+            "scientific": "Passer montanus",
+            "korean": "참새",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000002157",
+              "NO": "1136",
+              "관리분류군": "조류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Aves",
+              "Class_ko": "조강",
+              "Order": "Passeriformes",
+              "Order_ko": "참새목",
+              "Family": "Passeridae",
+              "Family_ko": "참새과",
+              "Genus": "Passer",
+              "Genus_ko": "참새속",
+              "Species": "montanus",
+              "Species_ko": "참새",
+              "학명": "Passer montanus",
+              "명명자": "(Linnaeus)",
+              "명명년도": "(1758)",
+              "대표국명": "참새",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000002157"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 1138
+          },
+          {
+            "id": "120000532854",
+            "scientific": "Pica serica",
+            "korean": "까치",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000532854",
+              "NO": "62544",
+              "관리분류군": "조류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Aves",
+              "Class_ko": "조강",
+              "Order": "Passeriformes",
+              "Order_ko": "참새목",
+              "Family": "Corvidae",
+              "Family_ko": "까마귀과",
+              "Genus": "Pica",
+              "Genus_ko": "까치속",
+              "Species": "serica",
+              "Species_ko": "까치",
+              "학명": "Pica serica",
+              "명명자": "Gould",
+              "명명년도": "1845",
+              "대표국명": "까치",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000532854"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 62546
+          }
+        ],
+        "evidence": {
+          "method": "FTS5",
+          "query": "\"참새\" OR \"까치\"",
+          "total_is_exact_text_match": true
+        }
+      },
+      "seconds": 0.004828832999919541,
+      "at": 1792459459.248296
+    },
+    {
+      "action": {
+        "action": "compose",
+        "ids": [
+          "120000002157",
+          "120000532854"
+        ],
+        "scope_rank": "",
+        "exclusions": [
+          {
+            "anchor_id": "120000002157",
+            "rank": "family"
+          },
+          {
+            "anchor_id": "120000532854",
+            "rank": "family"
+          }
+        ],
+        "group_rank": "family",
+        "min_count": 10,
+        "top_k": 5
+      },
+      "result": {
+        "evidence_id": "E2",
+        "scope": {
+          "rank": "order",
+          "node_id": "taxon:c8c2b02681d1e75c7a7fd222",
+          "name": "Passeriformes",
+          "source_rows": [
+            {
+              "id": "120000002157",
+              "source_row": 1138
+            },
+            {
+              "id": "120000532854",
+              "source_row": 62546
+            }
+          ]
+        },
+        "scope_count": 270,
+        "excluded_count": 14,
+        "exclusions": [
+          {
+            "anchor_id": "120000002157",
+            "rank": "family",
+            "node_id": "taxon:047c54a475758b31fed3021e",
+            "name": "Passeridae",
+            "source_row": 1138
+          },
+          {
+            "anchor_id": "120000532854",
+            "rank": "family",
+            "node_id": "taxon:fc7a48e30c211371a06b8554",
+            "name": "Corvidae",
+            "source_row": 62546
+          }
+        ],
+        "total": 256,
+        "exclusion_unknown_count": 0,
+        "group_unknown_count": 0,
+        "group_rank": "family",
+        "min_count": 10,
+        "top_k": 5,
+        "eligible_groups": 7,
+        "groups": [
+          {
+            "node_id": "taxon:3c63f8244fc7dce0592e62d2",
+            "name": "Sylviidae",
+            "count": 43,
+            "genera": 8,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000002021",
+              "scientific": "Megalurus pryeri",
+              "korean": "큰개개비",
+              "source_row": 1067,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000002021"
+            }
+          },
+          {
+            "node_id": "taxon:451ebdfd6743c85099479c64",
+            "name": "Muscicapidae",
+            "count": 39,
+            "genera": 17,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000002108",
+              "scientific": "Erithacus rubecula",
+              "korean": "꼬까울새",
+              "source_row": 1111,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000002108"
+            }
+          },
+          {
+            "node_id": "taxon:d1123890991451d71070d460",
+            "name": "Emberizidae",
+            "count": 28,
+            "genera": 5,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000002214",
+              "scientific": "Emberiza citrinella",
+              "korean": "노랑멧새",
+              "source_row": 1169,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000002214"
+            }
+          },
+          {
+            "node_id": "taxon:3535301c57bb8ca71220b12f",
+            "name": "Fringillidae",
+            "count": 21,
+            "genera": 13,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000002187",
+              "scientific": "Fringilla montifringilla",
+              "korean": "되새",
+              "source_row": 1157,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000002187"
+            }
+          },
+          {
+            "node_id": "taxon:01591cddb06faef6b4adf30f",
+            "name": "Motacillidae",
+            "count": 21,
+            "genera": 3,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000002167",
+              "scientific": "Dendronanthus indicus",
+              "korean": "물레새",
+              "source_row": 1142,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000002167"
+            }
+          }
+        ],
+        "ambiguous_labels": [],
+        "evidence": {
+          "method": "common listed ancestors -> descendant set -> multiple exclusions -> rank-qualified aggregation",
+          "source": "2025 national species list",
+          "count_unit": "unique KTSN source record",
+          "total_scope": "after exclusions; before group threshold/top K",
+          "unknown_rule": "known excluded first, then unresolved exclusions withheld; missing grouping rank separately reported"
+        }
+      },
+      "seconds": 1.7632835830008844,
+      "at": 1792459463.441212
+    }
+  ],
+  "usage": {
+    "input_tokens": 88320,
+    "cached_input_tokens": 64512,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 656,
+    "reasoning_output_tokens": 104
+  },
+  "usage_complete": true,
+  "citation_ids_valid": true,
+  "group_order_valid": true,
+  "unapproved_tools": [],
+  "input_tokens": 88320,
+  "output_tokens": 656,
+  "tool_seconds": 1.768112416000804,
+  "question_id": "c04",
+  "variant": "ontology",
+  "repeat": 2,
+  "prompt": "참새·까치의 가장 낮은 공통 상위 분류군 아래에서 두 새 각각의 과를 제외하세요. 제외 후 전체 항목 수를 먼저 구하고, 남은 과 중 항목이 10개 이상인 과만 항목 수 내림차순(동률은 학명 오름차순)으로 상위 5개 골라 과별 항목 수·서로 다른 속 수를 제시하세요.",
+  "config_sha256": "42f3c9fbcaebb6dcc6d0c0c7ecf0448bf0b0188bc9b2d9921c3e9f8831d4cc66",
+  "score": {
+    "factual_exact": true,
+    "correct": true
+  }
+}

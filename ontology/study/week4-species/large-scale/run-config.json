@@ -1,0 +1,36 @@
+{
+  "model": "gpt-6.1-sol",
+  "reasoning": "xhigh",
+  "authentication": "ChatGPT subscription; forced_login_method=chatgpt; API env removed",
+  "billing": "subscription quota; no per-request dollar invoice; do not estimate API charges",
+  "decisions": false,
+  "repeats": 3,
+  "questions": 6,
+  "scheduled_runs": 36,
+  "max_workers": 2,
+  "schedule": "paired same question concurrently, rotate submission order by question/repeat; wait for both before next pair",
+  "max_retrieval_calls": 8,
+  "docs_per_call": 16,
+  "timeout_seconds": 300,
+  "retries": 0,
+  "source_manifest": {
+    "rows": 62604,
+    "source_sha256": "737a455386b73ccb9056f9671774b3e7fa7650bb552405a42d89531481444cdc",
+    "document_sha256": "1d06a860a0edadad615c18a03a75a05f6347df178dfc29960387e69b8f127de4",
+    "questions_sha256": "79356b641e8aa6b2989d0f392eab0d879b96d065d663834b4ac3ac7d7aeb9df3"
+  },
+  "code_hashes": {
+    "subscription_benchmark.py": "1b87403cbf981677c401ece7fb74496953f73179314a36fffd70f114d422e7e8",
+    "subscription_mcp.py": "0d6990187b206eefebd55e7b812a0c297cde42ff12776ea7692c681bd2f3749e",
+    "subscription_prompts.py": "dc3bdaf4af973f4be82e98cbb5654c0beebe6463d4f4ebedb1bb6607e7ef0d2d",
+    "sol_contract.py": "388f7b57824dd6854047b978de983412b03817a2d520632d7688310c9b47d7f0",
+    "complex_retrieve.py": "a742a58ed6095879a589245befdfc0541a0ca24b12ca117ba8c7e7f29cad6d66",
+    "retrieve.py": "385086c115892de2081e466ca433e527299160f6c2e452e43dff8f6b6d0a0021",
+    "large_benchmark.py": "387ec1809f7d3f350c68e38c510f0109ea7f697128203e1077952918a4e547c1",
+    "large_prepare.py": "6fdac85581c9becc58366d317010dca3a8fc47572271c8786f5b9dc0b2d3df0e"
+  },
+  "contract_sha256": "e5d7269523af7714100cbe609794186f5827b0704ad3db738b4cb8a18f2e6dc0",
+  "primary_score": "completed; exact full factual fields/group set; valid output; evidence IDs valid; requested group order; allowed tools only; <=8 retrieval calls",
+  "schema_only_smoke": "does not use any frozen question",
+  "suite": "large-scale"
+}

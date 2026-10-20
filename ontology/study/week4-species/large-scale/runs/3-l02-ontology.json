@@ -1,0 +1,515 @@
+{
+  "started_at": 1792461014.76994,
+  "wall_seconds": 25.155072666995693,
+  "status": "completed",
+  "exit_code": 0,
+  "timed_out": false,
+  "answer": {
+    "kind": "composition",
+    "status": "known",
+    "value": "Insecta",
+    "rank": "class",
+    "count": 11411,
+    "unknown_count": 1,
+    "groups": [
+      {
+        "name": "Braconidae",
+        "count": 1361,
+        "genera": 240
+      },
+      {
+        "name": "Ichneumonidae",
+        "count": 1133,
+        "genera": 344
+      },
+      {
+        "name": "Chironomidae",
+        "count": 526,
+        "genera": 113
+      },
+      {
+        "name": "Aphididae",
+        "count": 513,
+        "genera": 159
+      },
+      {
+        "name": "Cicadellidae",
+        "count": 400,
+        "genera": 168
+      },
+      {
+        "name": "Miridae",
+        "count": 329,
+        "genera": 125
+      },
+      {
+        "name": "Tenthredinidae",
+        "count": 288,
+        "genera": 73
+      },
+      {
+        "name": "Syrphidae",
+        "count": 257,
+        "genera": 76
+      },
+      {
+        "name": "Limoniidae",
+        "count": 212,
+        "genera": 47
+      },
+      {
+        "name": "Crabronidae",
+        "count": 198,
+        "genera": 46
+      }
+    ],
+    "answer": "대표국명이 정확히 일치하는 세 항목의 최하위 공통 상위 분류군은 곤충강(Insecta)입니다. 배추흰나비와 호랑나비의 나비목(Lepidoptera)은 한 번만, 무당벌레의 딱정벌레목(Coleoptera)도 제외했습니다. 곤충강 21,071항목에서 두 목의 합집합 9,660항목을 제외하면 11,411항목입니다. 제외 판정 미확정은 0항목이며, 과 미상 1항목은 전체 수에 포함됩니다. 100항목 이상인 20개 과 중 항목 수 내림차순·동률 학명 오름차순으로 상위 10개를 제시했습니다. count는 아종·변종을 포함한 고유 KTSN 항목 수이고, genera는 각 과의 서로 다른 속 수입니다.",
+    "citations": [
+      "E1",
+      "E2"
+    ],
+    "group_rank": "family"
+  },
+  "raw_answer": {
+    "action": "answer",
+    "result": {
+      "kind": "composition",
+      "scope_name": "Insecta",
+      "scope_rank": "class",
+      "group_rank": "family",
+      "total_after_exclusions": 11411,
+      "unknown_count": 1,
+      "groups": [
+        {
+          "name": "Braconidae",
+          "count": 1361,
+          "genera": 240
+        },
+        {
+          "name": "Ichneumonidae",
+          "count": 1133,
+          "genera": 344
+        },
+        {
+          "name": "Chironomidae",
+          "count": 526,
+          "genera": 113
+        },
+        {
+          "name": "Aphididae",
+          "count": 513,
+          "genera": 159
+        },
+        {
+          "name": "Cicadellidae",
+          "count": 400,
+          "genera": 168
+        },
+        {
+          "name": "Miridae",
+          "count": 329,
+          "genera": 125
+        },
+        {
+          "name": "Tenthredinidae",
+          "count": 288,
+          "genera": 73
+        },
+        {
+          "name": "Syrphidae",
+          "count": 257,
+          "genera": 76
+        },
+        {
+          "name": "Limoniidae",
+          "count": 212,
+          "genera": 47
+        },
+        {
+          "name": "Crabronidae",
+          "count": 198,
+          "genera": 46
+        }
+      ],
+      "explanation": "대표국명이 정확히 일치하는 세 항목의 최하위 공통 상위 분류군은 곤충강(Insecta)입니다. 배추흰나비와 호랑나비의 나비목(Lepidoptera)은 한 번만, 무당벌레의 딱정벌레목(Coleoptera)도 제외했습니다. 곤충강 21,071항목에서 두 목의 합집합 9,660항목을 제외하면 11,411항목입니다. 제외 판정 미확정은 0항목이며, 과 미상 1항목은 전체 수에 포함됩니다. 100항목 이상인 20개 과 중 항목 수 내림차순·동률 학명 오름차순으로 상위 10개를 제시했습니다. count는 아종·변종을 포함한 고유 KTSN 항목 수이고, genera는 각 과의 서로 다른 속 수입니다.",
+      "citations": [
+        "E1",
+        "E2"
+      ]
+    }
+  },
+  "format_error": null,
+  "trace": [
+    {
+      "action": {
+        "action": "search",
+        "offset": 0,
+        "query": "\"배추흰나비\" OR \"호랑나비\" OR \"무당벌레\""
+      },
+      "result": {
+        "evidence_id": "E1",
+        "total": 3,
+        "offset": 0,
+        "records": [
+          {
+            "id": "120000015942",
+            "scientific": "Harmonia axyridis",
+            "korean": "무당벌레",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000015942",
+              "NO": "9204",
+              "관리분류군": "곤충류",
+              "Phylum": "Arthropoda",
+              "Phylum_ko": "절지동물문",
+              "Class": "Insecta",
+              "Class_ko": "곤충강",
+              "Order": "Coleoptera",
+              "Order_ko": "딱정벌레목",
+              "Family": "Coccinellidae",
+              "Family_ko": "무당벌레과",
+              "Genus": "Harmonia",
+              "Genus_ko": "무당벌레속",
+              "Species": "axyridis",
+              "Species_ko": "무당벌레",
+              "학명": "Harmonia axyridis",
+              "명명자": "(Pallas)",
+              "명명년도": "(1773)",
+              "대표국명": "무당벌레",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000015942"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 9206
+          },
+          {
+            "id": "120000035920",
+            "scientific": "Papilio xuthus",
+            "korean": "호랑나비",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000035920",
+              "NO": "19762",
+              "관리분류군": "곤충류",
+              "Phylum": "Arthropoda",
+              "Phylum_ko": "절지동물문",
+              "Class": "Insecta",
+              "Class_ko": "곤충강",
+              "Order": "Lepidoptera",
+              "Order_ko": "나비목",
+              "Family": "Papilionidae",
+              "Family_ko": "호랑나비과",
+              "Genus": "Papilio",
+              "Genus_ko": "호랑나비속",
+              "Species": "xuthus",
+              "Species_ko": "호랑나비",
+              "학명": "Papilio xuthus",
+              "명명자": "Linnaeus",
+              "명명년도": "1767",
+              "대표국명": "호랑나비",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000035920"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 19764
+          },
+          {
+            "id": "120000035959",
+            "scientific": "Pieris rapae",
+            "korean": "배추흰나비",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000035959",
+              "NO": "19786",
+              "관리분류군": "곤충류",
+              "Phylum": "Arthropoda",
+              "Phylum_ko": "절지동물문",
+              "Class": "Insecta",
+              "Class_ko": "곤충강",
+              "Order": "Lepidoptera",
+              "Order_ko": "나비목",
+              "Family": "Pieridae",
+              "Family_ko": "흰나비과",
+              "Genus": "Pieris",
+              "Genus_ko": "흰나비속",
+              "Species": "rapae",
+              "Species_ko": "배추흰나비",
+              "학명": "Pieris rapae",
+              "명명자": "(Linnaeus)",
+              "명명년도": "(1758)",
+              "대표국명": "배추흰나비",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000035959"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 19788
+          }
+        ],
+        "evidence": {
+          "method": "FTS5",
+          "query": "\"배추흰나비\" OR \"호랑나비\" OR \"무당벌레\"",
+          "total_is_exact_text_match": true
+        }
+      },
+      "seconds": 0.0009650830033933744,
+      "at": 1792461022.283005
+    },
+    {
+      "action": {
+        "action": "compose",
+        "ids": [
+          "120000035959",
+          "120000035920",
+          "120000015942"
+        ],
+        "scope_rank": "",
+        "exclusions": [
+          {
+            "anchor_id": "120000035959",
+            "rank": "order"
+          },
+          {
+            "anchor_id": "120000035920",
+            "rank": "order"
+          },
+          {
+            "anchor_id": "120000015942",
+            "rank": "order"
+          }
+        ],
+        "group_rank": "family",
+        "min_count": 100,
+        "top_k": 10
+      },
+      "result": {
+        "evidence_id": "E2",
+        "scope": {
+          "rank": "class",
+          "node_id": "taxon:6dd7553dc11fdc1f7d96a290",
+          "name": "Insecta",
+          "source_rows": [
+            {
+              "id": "120000035959",
+              "source_row": 19788
+            },
+            {
+              "id": "120000035920",
+              "source_row": 19764
+            },
+            {
+              "id": "120000015942",
+              "source_row": 9206
+            }
+          ]
+        },
+        "scope_count": 21071,
+        "excluded_count": 9660,
+        "exclusions": [
+          {
+            "anchor_id": "120000035959",
+            "rank": "order",
+            "node_id": "taxon:19a5dc91e677b02d21376489",
+            "name": "Lepidoptera",
+            "source_row": 19788
+          },
+          {
+            "anchor_id": "120000035920",
+            "rank": "order",
+            "node_id": "taxon:19a5dc91e677b02d21376489",
+            "name": "Lepidoptera",
+            "source_row": 19764
+          },
+          {
+            "anchor_id": "120000015942",
+            "rank": "order",
+            "node_id": "taxon:172e0ab7e2ec768876dc534e",
+            "name": "Coleoptera",
+            "source_row": 9206
+          }
+        ],
+        "total": 11411,
+        "exclusion_unknown_count": 0,
+        "group_unknown_count": 1,
+        "group_rank": "family",
+        "min_count": 100,
+        "top_k": 10,
+        "eligible_groups": 20,
+        "groups": [
+          {
+            "node_id": "taxon:886e0f926619017d5f625033",
+            "name": "Braconidae",
+            "count": 1361,
+            "genera": 240,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000027620",
+              "scientific": "Chorebus (Phaenolexis) brevivalvis",
+              "korean": "짧은뿔장승입고치벌",
+              "source_row": 15279,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000027620"
+            }
+          },
+          {
+            "node_id": "taxon:37f97d59003d72ab007b5d5a",
+            "name": "Ichneumonidae",
+            "count": 1133,
+            "genera": 344,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000029747",
+              "scientific": "Acerataspis clavata",
+              "korean": "곤봉뭉툭맵시벌",
+              "source_row": 16505,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000029747"
+            }
+          },
+          {
+            "node_id": "taxon:8cd47bf554b815aa153ce297",
+            "name": "Chironomidae",
+            "count": 526,
+            "genera": 113,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000021476",
+              "scientific": "Ablabesmyia jeongi",
+              "korean": "정알락깔따구",
+              "source_row": 11937,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000021476"
+            }
+          },
+          {
+            "node_id": "taxon:d448f23b0e8b232c8e243fe7",
+            "name": "Aphididae",
+            "count": 513,
+            "genera": 159,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000024188",
+              "scientific": "Acyrthosiphon (Acyrthosiphon) gossypii",
+              "korean": "목화수염진딧물",
+              "source_row": 13465,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000024188"
+            }
+          },
+          {
+            "node_id": "taxon:b0cbb3b39d86ca4f4511704a",
+            "name": "Cicadellidae",
+            "count": 400,
+            "genera": 168,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000024995",
+              "scientific": "Acharis campbelli",
+              "korean": "나도고구려매미충",
+              "source_row": 13932,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000024995"
+            }
+          },
+          {
+            "node_id": "taxon:87b05042b564c2e8f299ea84",
+            "name": "Miridae",
+            "count": 329,
+            "genera": 125,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000026267",
+              "scientific": "Adelphocoris albonotatus",
+              "korean": "네무늬장님노린재",
+              "source_row": 14552,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000026267"
+            }
+          },
+          {
+            "node_id": "taxon:a29df688d8e70181e7de033f",
+            "name": "Tenthredinidae",
+            "count": 288,
+            "genera": 73,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000031110",
+              "scientific": "Aglaostigma sapporonis",
+              "korean": "홍점가슴잎벌",
+              "source_row": 17237,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000031110"
+            }
+          },
+          {
+            "node_id": "taxon:c9868968aab6c985b23b6a66",
+            "name": "Syrphidae",
+            "count": 257,
+            "genera": 76,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000022922",
+              "scientific": "Allobaccha apicalis",
+              "korean": "끝검정알락꽃등에",
+              "source_row": 12714,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000022922"
+            }
+          },
+          {
+            "node_id": "taxon:16e5442d75f9e3b683302f2e",
+            "name": "Limoniidae",
+            "count": 212,
+            "genera": 47,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000022215",
+              "scientific": "Antocha (Antocha) bifida",
+              "korean": "멋애기각다귀",
+              "source_row": 12337,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000022215"
+            }
+          },
+          {
+            "node_id": "taxon:f389bfe33a19fe8f9a1323dd",
+            "name": "Crabronidae",
+            "count": 198,
+            "genera": 46,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000028916",
+              "scientific": "Alysson pertheesi",
+              "korean": "홍가슴어리감탕벌",
+              "source_row": 16011,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000028916"
+            }
+          }
+        ],
+        "ambiguous_labels": [],
+        "evidence": {
+          "method": "common listed ancestors -> descendant set -> multiple exclusions -> rank-qualified aggregation",
+          "source": "2025 national species list",
+          "count_unit": "unique KTSN source record",
+          "total_scope": "after exclusions; before group threshold/top K",
+          "unknown_rule": "known excluded first, then unresolved exclusions withheld; missing grouping rank separately reported"
+        }
+      },
+      "seconds": 0.21078891700017266,
+      "at": 1792461026.473789
+    }
+  ],
+  "usage": {
+    "input_tokens": 89877,
+    "cached_input_tokens": 64896,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 948,
+    "reasoning_output_tokens": 180
+  },
+  "usage_complete": true,
+  "citation_ids_valid": true,
+  "group_order_valid": true,
+  "unapproved_tools": [],
+  "input_tokens": 89877,
+  "output_tokens": 948,
+  "tool_seconds": 0.21175400000356603,
+  "question_id": "l02",
+  "variant": "ontology",
+  "repeat": 3,
+  "prompt": "배추흰나비·호랑나비·무당벌레의 가장 낮은 공통 상위 분류군 아래에서 세 곤충 각각의 목을 제외하세요. 중복되는 목은 한 번만 제외합니다. 제외 후 전체 목록 항목 수를 구하고, 남은 과 중 항목이 100개 이상인 과를 항목 수 내림차순(동률은 학명 오름차순)으로 상위 10개 골라 과별 항목 수와 서로 다른 속 수를 제시하세요.",
+  "config_sha256": "8ed84236305b25b454e5f8c2517bea42559d55f0cd2a17407ae02ad07d501583",
+  "score": {
+    "factual_exact": true,
+    "correct": true
+  }
+}

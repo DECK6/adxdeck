@@ -1,0 +1,420 @@
+{
+  "started_at": 1792460957.246429,
+  "wall_seconds": 27.435844332998386,
+  "status": "completed",
+  "exit_code": 0,
+  "timed_out": false,
+  "answer": {
+    "kind": "composition",
+    "status": "known",
+    "value": "Lepidoptera",
+    "rank": "order",
+    "count": 4535,
+    "unknown_count": 0,
+    "groups": [
+      {
+        "name": "Geometridae",
+        "count": 730,
+        "genera": 288
+      },
+      {
+        "name": "Noctuidae",
+        "count": 670,
+        "genera": 261
+      },
+      {
+        "name": "Erebidae",
+        "count": 533,
+        "genera": 213
+      },
+      {
+        "name": "Tortricidae",
+        "count": 486,
+        "genera": 134
+      },
+      {
+        "name": "Crambidae",
+        "count": 337,
+        "genera": 134
+      },
+      {
+        "name": "Gelechiidae",
+        "count": 221,
+        "genera": 67
+      },
+      {
+        "name": "Pyralidae",
+        "count": 168,
+        "genera": 87
+      },
+      {
+        "name": "Nymphalidae",
+        "count": 132,
+        "genera": 49
+      }
+    ],
+    "answer": "대표국명이 정확히 일치하는 배추흰나비와 호랑나비의 최하위 공통 상위 분류군은 나비목(Lepidoptera)입니다. 나비목 4,574항목에서 흰나비과(Pieridae)와 호랑나비과(Papilionidae)의 합집합 39항목을 제외하면 총 4,535항목입니다. 남은 과 중 50항목 이상인 14개 과를 항목 수 내림차순·동률 학명 오름차순으로 정렬한 상위 8개입니다. count는 고유 KTSN 항목 수, genera는 과별 서로 다른 속 수이며, 제외 판정 미확정과 과 미상 항목은 모두 0입니다.",
+    "citations": [
+      "E1",
+      "E2"
+    ],
+    "group_rank": "family"
+  },
+  "raw_answer": {
+    "action": "answer",
+    "result": {
+      "kind": "composition",
+      "scope_name": "Lepidoptera",
+      "scope_rank": "order",
+      "group_rank": "family",
+      "total_after_exclusions": 4535,
+      "unknown_count": 0,
+      "groups": [
+        {
+          "name": "Geometridae",
+          "count": 730,
+          "genera": 288
+        },
+        {
+          "name": "Noctuidae",
+          "count": 670,
+          "genera": 261
+        },
+        {
+          "name": "Erebidae",
+          "count": 533,
+          "genera": 213
+        },
+        {
+          "name": "Tortricidae",
+          "count": 486,
+          "genera": 134
+        },
+        {
+          "name": "Crambidae",
+          "count": 337,
+          "genera": 134
+        },
+        {
+          "name": "Gelechiidae",
+          "count": 221,
+          "genera": 67
+        },
+        {
+          "name": "Pyralidae",
+          "count": 168,
+          "genera": 87
+        },
+        {
+          "name": "Nymphalidae",
+          "count": 132,
+          "genera": 49
+        }
+      ],
+      "explanation": "대표국명이 정확히 일치하는 배추흰나비와 호랑나비의 최하위 공통 상위 분류군은 나비목(Lepidoptera)입니다. 나비목 4,574항목에서 흰나비과(Pieridae)와 호랑나비과(Papilionidae)의 합집합 39항목을 제외하면 총 4,535항목입니다. 남은 과 중 50항목 이상인 14개 과를 항목 수 내림차순·동률 학명 오름차순으로 정렬한 상위 8개입니다. count는 고유 KTSN 항목 수, genera는 과별 서로 다른 속 수이며, 제외 판정 미확정과 과 미상 항목은 모두 0입니다.",
+      "citations": [
+        "E1",
+        "E2"
+      ]
+    }
+  },
+  "format_error": null,
+  "trace": [
+    {
+      "action": {
+        "action": "search",
+        "offset": 0,
+        "query": "\"배추흰나비\" OR \"호랑나비\""
+      },
+      "result": {
+        "evidence_id": "E1",
+        "total": 2,
+        "offset": 0,
+        "records": [
+          {
+            "id": "120000035920",
+            "scientific": "Papilio xuthus",
+            "korean": "호랑나비",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000035920",
+              "NO": "19762",
+              "관리분류군": "곤충류",
+              "Phylum": "Arthropoda",
+              "Phylum_ko": "절지동물문",
+              "Class": "Insecta",
+              "Class_ko": "곤충강",
+              "Order": "Lepidoptera",
+              "Order_ko": "나비목",
+              "Family": "Papilionidae",
+              "Family_ko": "호랑나비과",
+              "Genus": "Papilio",
+              "Genus_ko": "호랑나비속",
+              "Species": "xuthus",
+              "Species_ko": "호랑나비",
+              "학명": "Papilio xuthus",
+              "명명자": "Linnaeus",
+              "명명년도": "1767",
+              "대표국명": "호랑나비",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000035920"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 19764
+          },
+          {
+            "id": "120000035959",
+            "scientific": "Pieris rapae",
+            "korean": "배추흰나비",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000035959",
+              "NO": "19786",
+              "관리분류군": "곤충류",
+              "Phylum": "Arthropoda",
+              "Phylum_ko": "절지동물문",
+              "Class": "Insecta",
+              "Class_ko": "곤충강",
+              "Order": "Lepidoptera",
+              "Order_ko": "나비목",
+              "Family": "Pieridae",
+              "Family_ko": "흰나비과",
+              "Genus": "Pieris",
+              "Genus_ko": "흰나비속",
+              "Species": "rapae",
+              "Species_ko": "배추흰나비",
+              "학명": "Pieris rapae",
+              "명명자": "(Linnaeus)",
+              "명명년도": "(1758)",
+              "대표국명": "배추흰나비",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000035959"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 19788
+          }
+        ],
+        "evidence": {
+          "method": "FTS5",
+          "query": "\"배추흰나비\" OR \"호랑나비\"",
+          "total_is_exact_text_match": true
+        }
+      },
+      "seconds": 0.0007207500020740554,
+      "at": 1792460966.341069
+    },
+    {
+      "action": {
+        "action": "compose",
+        "ids": [
+          "120000035959",
+          "120000035920"
+        ],
+        "scope_rank": "",
+        "exclusions": [
+          {
+            "anchor_id": "120000035959",
+            "rank": "family"
+          },
+          {
+            "anchor_id": "120000035920",
+            "rank": "family"
+          }
+        ],
+        "group_rank": "family",
+        "min_count": 50,
+        "top_k": 8
+      },
+      "result": {
+        "evidence_id": "E2",
+        "scope": {
+          "rank": "order",
+          "node_id": "taxon:19a5dc91e677b02d21376489",
+          "name": "Lepidoptera",
+          "source_rows": [
+            {
+              "id": "120000035959",
+              "source_row": 19788
+            },
+            {
+              "id": "120000035920",
+              "source_row": 19764
+            }
+          ]
+        },
+        "scope_count": 4574,
+        "excluded_count": 39,
+        "exclusions": [
+          {
+            "anchor_id": "120000035959",
+            "rank": "family",
+            "node_id": "taxon:4622fefb064240a415212309",
+            "name": "Pieridae",
+            "source_row": 19788
+          },
+          {
+            "anchor_id": "120000035920",
+            "rank": "family",
+            "node_id": "taxon:25cc45b14816da5e059eacce",
+            "name": "Papilionidae",
+            "source_row": 19764
+          }
+        ],
+        "total": 4535,
+        "exclusion_unknown_count": 0,
+        "group_unknown_count": 0,
+        "group_rank": "family",
+        "min_count": 50,
+        "top_k": 8,
+        "eligible_groups": 14,
+        "groups": [
+          {
+            "node_id": "taxon:914e06f647c3c7417b41d710",
+            "name": "Geometridae",
+            "count": 730,
+            "genera": 288,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000033212",
+              "scientific": "Abraxas fulvobasalis",
+              "korean": "점얼룩가지나방",
+              "source_row": 18344,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000033212"
+            }
+          },
+          {
+            "node_id": "taxon:66965696c3451ea3bbdcec6b",
+            "name": "Noctuidae",
+            "count": 670,
+            "genera": 261,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000032372",
+              "scientific": "Arcte coerula",
+              "korean": "암청색줄무늬밤나방",
+              "source_row": 17846,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000032372"
+            }
+          },
+          {
+            "node_id": "taxon:397c40b9c7a43843b0bb1ac0",
+            "name": "Erebidae",
+            "count": 533,
+            "genera": 213,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000032333",
+              "scientific": "Achaea janata",
+              "korean": "흰별수중다리나방",
+              "source_row": 17828,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000032333"
+            }
+          },
+          {
+            "node_id": "taxon:b42a1146bad82743446d4361",
+            "name": "Tortricidae",
+            "count": 486,
+            "genera": 134,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000036456",
+              "scientific": "Acleris affinatana",
+              "korean": "상수리잎말이나방",
+              "source_row": 20036,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000036456"
+            }
+          },
+          {
+            "node_id": "taxon:06e1b6b03c5c46a9a9159917",
+            "name": "Crambidae",
+            "count": 337,
+            "genera": 134,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000031832",
+              "scientific": "Agriphila aeneociliella",
+              "korean": "긴날개포충나방",
+              "source_row": 17581,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000031832"
+            }
+          },
+          {
+            "node_id": "taxon:a7d452fd246969b66034a2a9",
+            "name": "Gelechiidae",
+            "count": 221,
+            "genera": 67,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000032976",
+              "scientific": "Altenia inscriptella",
+              "korean": "신나무비늘뿔나방",
+              "source_row": 18181,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000032976"
+            }
+          },
+          {
+            "node_id": "taxon:3319f6b099fac40be8150900",
+            "name": "Pyralidae",
+            "count": 168,
+            "genera": 87,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000036036",
+              "scientific": "Achroia innotata",
+              "korean": "벌집부채명나방",
+              "source_row": 19830,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000036036"
+            }
+          },
+          {
+            "node_id": "taxon:1cc2d84ea1e144b344f32749",
+            "name": "Nymphalidae",
+            "count": 132,
+            "genera": 49,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000035699",
+              "scientific": "Apatura ilia",
+              "korean": "오색나비",
+              "source_row": 19648,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000035699"
+            }
+          }
+        ],
+        "ambiguous_labels": [],
+        "evidence": {
+          "method": "common listed ancestors -> descendant set -> multiple exclusions -> rank-qualified aggregation",
+          "source": "2025 national species list",
+          "count_unit": "unique KTSN source record",
+          "total_scope": "after exclusions; before group threshold/top K",
+          "unknown_rule": "known excluded first, then unresolved exclusions withheld; missing grouping rank separately reported"
+        }
+      },
+      "seconds": 0.17811824999807868,
+      "at": 1792460970.198267
+    }
+  ],
+  "usage": {
+    "input_tokens": 88825,
+    "cached_input_tokens": 82944,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 921,
+    "reasoning_output_tokens": 310
+  },
+  "usage_complete": true,
+  "citation_ids_valid": true,
+  "group_order_valid": true,
+  "unapproved_tools": [],
+  "input_tokens": 88825,
+  "output_tokens": 921,
+  "tool_seconds": 0.17883900000015274,
+  "question_id": "l01",
+  "variant": "ontology",
+  "repeat": 3,
+  "prompt": "배추흰나비·호랑나비의 가장 낮은 공통 상위 분류군 아래에서 두 나비 각각의 과를 제외하세요. 제외 후 전체 목록 항목 수를 구하고, 남은 과 중 항목이 50개 이상인 과를 항목 수 내림차순(동률은 학명 오름차순)으로 상위 8개 골라 과별 항목 수와 서로 다른 속 수를 제시하세요.",
+  "config_sha256": "8ed84236305b25b454e5f8c2517bea42559d55f0cd2a17407ae02ad07d501583",
+  "score": {
+    "factual_exact": true,
+    "correct": true
+  }
+}

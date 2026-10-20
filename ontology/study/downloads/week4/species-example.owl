@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:dct="http://purl.org/dc/terms/"
+   xmlns:ex="https://dexa.art/ontology/study/example#"
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://dexa.art/ontology/study/example#CatalogRecord">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">목록 항목</rdfs:label>
+    <owl:disjointWith rdf:resource="https://dexa.art/ontology/study/example#Taxon"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dexa.art/ontology/study/example#tigerRecord">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://dexa.art/ontology/study/example#MammalRecord"/>
+    <rdfs:label xml:lang="ko">호랑이 · Panthera tigris altaica</rdfs:label>
+    <ex:ktsn>120000212946</ex:ktsn>
+    <ex:sourceRow rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">45643</ex:sourceRow>
+    <dct:source>2025년 국가생물종목록_v1.0 / 62,604종 시트</dct:source>
+    <ex:listedUnder rdf:resource="https://dexa.art/ontology/study/example#Panthera"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dexa.art/ontology/study/example#listedUnder">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://dexa.art/ontology/study/example#Taxon"/>
+    <rdfs:label xml:lang="ko">기재된 상위 분류군</rdfs:label>
+    <rdfs:comment xml:lang="ko">원자료에 명시된 가장 가까운 상위 분류군. 결측 계급을 보충하지 않으며 생물학적 직접 부모를 뜻하지 않습니다.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dexa.art/ontology/study/example">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <rdfs:label xml:lang="ko">4주차 수업용 소규모 RDF/OWL 예제</rdfs:label>
+    <rdfs:comment xml:lang="ko">전체 생물종 DB의 RDF 변환본이 아닙니다. 목록 항목과 분류군을 구별합니다. 성능 실험은 SQLite로 실행했습니다.</rdfs:comment>
+    <dct:source rdf:resource="https://www.kbr.go.kr/content/view.do?menuKey=799&amp;contentKey=174"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dexa.art/ontology/study/example#ktsn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dexa.art/ontology/study/example#Panthera">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://dexa.art/ontology/study/example#Taxon"/>
+    <rdfs:label xml:lang="ko">표범속 · Panthera</rdfs:label>
+    <ex:rank>genus</ex:rank>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dexa.art/ontology/study/example#hasListedChild">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <owl:inverseOf rdf:resource="https://dexa.art/ontology/study/example#listedUnder"/>
+    <rdfs:label xml:lang="ko">기재된 하위 대상</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dexa.art/ontology/study/example#MammalRecord">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://dexa.art/ontology/study/example#CatalogRecord"/>
+    <rdfs:label xml:lang="ko">포유류 목록 항목</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dexa.art/ontology/study/example#rank">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dexa.art/ontology/study/example#Taxon">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="ko">분류군</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://dexa.art/ontology/study/example#sourceRow">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://purl.org/dc/terms/source">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AnnotationProperty"/>
+  </rdf:Description>
+</rdf:RDF>

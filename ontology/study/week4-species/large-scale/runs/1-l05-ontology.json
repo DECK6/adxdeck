@@ -1,0 +1,515 @@
+{
+  "started_at": 1792460627.1350248,
+  "wall_seconds": 23.279938416999357,
+  "status": "completed",
+  "exit_code": 0,
+  "timed_out": false,
+  "answer": {
+    "kind": "composition",
+    "status": "known",
+    "value": "Agaricomycetes",
+    "rank": "class",
+    "count": 1947,
+    "unknown_count": 5,
+    "groups": [
+      {
+        "name": "Russulaceae",
+        "count": 188,
+        "genera": 3
+      },
+      {
+        "name": "Entolomataceae",
+        "count": 119,
+        "genera": 3
+      },
+      {
+        "name": "Agaricaceae",
+        "count": 105,
+        "genera": 19
+      },
+      {
+        "name": "Boletaceae",
+        "count": 102,
+        "genera": 24
+      },
+      {
+        "name": "Polyporaceae",
+        "count": 98,
+        "genera": 36
+      },
+      {
+        "name": "Marasmiaceae",
+        "count": 82,
+        "genera": 18
+      },
+      {
+        "name": "Amanitaceae",
+        "count": 77,
+        "genera": 2
+      },
+      {
+        "name": "Hymenochaetaceae",
+        "count": 70,
+        "genera": 19
+      },
+      {
+        "name": "Psathyrellaceae",
+        "count": 61,
+        "genera": 10
+      },
+      {
+        "name": "Mycenaceae",
+        "count": 55,
+        "genera": 9
+      }
+    ],
+    "answer": "대표국명이 정확히 일치하는 표고·느타리·송이의 공통 강은 주름버섯강(Agaricomycetes)입니다. 강 전체 1,988항목에서 표고속(Lentinula)·느타리속(Pleurotus)·송이속(Tricholoma)의 합집합 41항목을 제외하면 1,947항목입니다. 제외 판정 미확정은 0항목이고, 과 정보 미상 5항목은 전체 총계에 포함하되 과별 집계에서 분리했습니다. 남은 과 중 20항목 이상인 25개 과에서 항목 수 내림차순·동률 학명 오름차순으로 상위 10개를 제시했습니다. count는 고유 KTSN 항목 수이며 genera는 각 과의 서로 다른 속 수입니다.",
+    "citations": [
+      "E1",
+      "E2"
+    ],
+    "group_rank": "family"
+  },
+  "raw_answer": {
+    "action": "answer",
+    "result": {
+      "kind": "composition",
+      "scope_name": "Agaricomycetes",
+      "scope_rank": "class",
+      "group_rank": "family",
+      "total_after_exclusions": 1947,
+      "unknown_count": 5,
+      "groups": [
+        {
+          "name": "Russulaceae",
+          "count": 188,
+          "genera": 3
+        },
+        {
+          "name": "Entolomataceae",
+          "count": 119,
+          "genera": 3
+        },
+        {
+          "name": "Agaricaceae",
+          "count": 105,
+          "genera": 19
+        },
+        {
+          "name": "Boletaceae",
+          "count": 102,
+          "genera": 24
+        },
+        {
+          "name": "Polyporaceae",
+          "count": 98,
+          "genera": 36
+        },
+        {
+          "name": "Marasmiaceae",
+          "count": 82,
+          "genera": 18
+        },
+        {
+          "name": "Amanitaceae",
+          "count": 77,
+          "genera": 2
+        },
+        {
+          "name": "Hymenochaetaceae",
+          "count": 70,
+          "genera": 19
+        },
+        {
+          "name": "Psathyrellaceae",
+          "count": 61,
+          "genera": 10
+        },
+        {
+          "name": "Mycenaceae",
+          "count": 55,
+          "genera": 9
+        }
+      ],
+      "explanation": "대표국명이 정확히 일치하는 표고·느타리·송이의 공통 강은 주름버섯강(Agaricomycetes)입니다. 강 전체 1,988항목에서 표고속(Lentinula)·느타리속(Pleurotus)·송이속(Tricholoma)의 합집합 41항목을 제외하면 1,947항목입니다. 제외 판정 미확정은 0항목이고, 과 정보 미상 5항목은 전체 총계에 포함하되 과별 집계에서 분리했습니다. 남은 과 중 20항목 이상인 25개 과에서 항목 수 내림차순·동률 학명 오름차순으로 상위 10개를 제시했습니다. count는 고유 KTSN 항목 수이며 genera는 각 과의 서로 다른 속 수입니다.",
+      "citations": [
+        "E1",
+        "E2"
+      ]
+    }
+  },
+  "format_error": null,
+  "trace": [
+    {
+      "action": {
+        "action": "search",
+        "offset": 0,
+        "query": "\"표고\" OR \"느타리\" OR \"송이\""
+      },
+      "result": {
+        "evidence_id": "E1",
+        "total": 3,
+        "offset": 0,
+        "records": [
+          {
+            "id": "120000009078",
+            "scientific": "Lentinula edodes",
+            "korean": "표고",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000009078",
+              "NO": "5083",
+              "관리분류군": "균류",
+              "Phylum": "Basidiomycota",
+              "Phylum_ko": "담자균문",
+              "Class": "Agaricomycetes",
+              "Class_ko": "주름버섯강",
+              "Order": "Agaricales",
+              "Order_ko": "주름버섯목",
+              "Family": "Omphalotaceae",
+              "Family_ko": "솔밭버섯과",
+              "Genus": "Lentinula",
+              "Genus_ko": "표고속",
+              "Species": "edodes",
+              "Species_ko": "표고",
+              "학명": "Lentinula edodes",
+              "명명자": "(Berk.) Pegler",
+              "명명년도": "1976",
+              "대표국명": "표고",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000009078"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 5085
+          },
+          {
+            "id": "120000009069",
+            "scientific": "Pleurotus ostreatus",
+            "korean": "느타리",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000009069",
+              "NO": "5077",
+              "관리분류군": "균류",
+              "Phylum": "Basidiomycota",
+              "Phylum_ko": "담자균문",
+              "Class": "Agaricomycetes",
+              "Class_ko": "주름버섯강",
+              "Order": "Agaricales",
+              "Order_ko": "주름버섯목",
+              "Family": "Pleurotaceae",
+              "Family_ko": "느타리과",
+              "Genus": "Pleurotus",
+              "Genus_ko": "느타리속",
+              "Species": "ostreatus",
+              "Species_ko": "느타리",
+              "학명": "Pleurotus ostreatus",
+              "명명자": "(Jacq.) P. Kumm.",
+              "명명년도": "1871",
+              "대표국명": "느타리",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000009069"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 5079
+          },
+          {
+            "id": "120000009173",
+            "scientific": "Tricholoma matsutake",
+            "korean": "송이",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000009173",
+              "NO": "5140",
+              "관리분류군": "균류",
+              "Phylum": "Basidiomycota",
+              "Phylum_ko": "담자균문",
+              "Class": "Agaricomycetes",
+              "Class_ko": "주름버섯강",
+              "Order": "Agaricales",
+              "Order_ko": "주름버섯목",
+              "Family": "Tricholomataceae",
+              "Family_ko": "송이과",
+              "Genus": "Tricholoma",
+              "Genus_ko": "송이속",
+              "Species": "matsutake",
+              "Species_ko": "송이",
+              "학명": "Tricholoma matsutake",
+              "명명자": "(S. Ito & S. Imai) Singer",
+              "명명년도": "1943",
+              "대표국명": "송이",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000009173"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 5142
+          }
+        ],
+        "evidence": {
+          "method": "FTS5",
+          "query": "\"표고\" OR \"느타리\" OR \"송이\"",
+          "total_is_exact_text_match": true
+        }
+      },
+      "seconds": 0.0019790000005741604,
+      "at": 1792460634.478372
+    },
+    {
+      "action": {
+        "action": "compose",
+        "ids": [
+          "120000009078",
+          "120000009069",
+          "120000009173"
+        ],
+        "scope_rank": "class",
+        "exclusions": [
+          {
+            "anchor_id": "120000009078",
+            "rank": "genus"
+          },
+          {
+            "anchor_id": "120000009069",
+            "rank": "genus"
+          },
+          {
+            "anchor_id": "120000009173",
+            "rank": "genus"
+          }
+        ],
+        "group_rank": "family",
+        "min_count": 20,
+        "top_k": 10
+      },
+      "result": {
+        "evidence_id": "E2",
+        "scope": {
+          "rank": "class",
+          "node_id": "taxon:7470e7a471c4e3a738e2d489",
+          "name": "Agaricomycetes",
+          "source_rows": [
+            {
+              "id": "120000009078",
+              "source_row": 5085
+            },
+            {
+              "id": "120000009069",
+              "source_row": 5079
+            },
+            {
+              "id": "120000009173",
+              "source_row": 5142
+            }
+          ]
+        },
+        "scope_count": 1988,
+        "excluded_count": 41,
+        "exclusions": [
+          {
+            "anchor_id": "120000009078",
+            "rank": "genus",
+            "node_id": "taxon:bba97b7c7fce1af790d77a08",
+            "name": "Lentinula",
+            "source_row": 5085
+          },
+          {
+            "anchor_id": "120000009069",
+            "rank": "genus",
+            "node_id": "taxon:cbdd8750d1384950a7189efb",
+            "name": "Pleurotus",
+            "source_row": 5079
+          },
+          {
+            "anchor_id": "120000009173",
+            "rank": "genus",
+            "node_id": "taxon:877fc50f35f83a72106302ee",
+            "name": "Tricholoma",
+            "source_row": 5142
+          }
+        ],
+        "total": 1947,
+        "exclusion_unknown_count": 0,
+        "group_unknown_count": 5,
+        "group_rank": "family",
+        "min_count": 20,
+        "top_k": 10,
+        "eligible_groups": 25,
+        "groups": [
+          {
+            "node_id": "taxon:29513f3027e497359fe7da4e",
+            "name": "Russulaceae",
+            "count": 188,
+            "genera": 3,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000009018",
+              "scientific": "Russula eburneoareolata",
+              "korean": "상아무당버섯",
+              "source_row": 5050,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000009018"
+            }
+          },
+          {
+            "node_id": "taxon:06a32d429e6b1ed25185ff57",
+            "name": "Entolomataceae",
+            "count": 119,
+            "genera": 3,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000009516",
+              "scientific": "Clitopilus lignyotus",
+              "korean": "좀그늘버섯",
+              "source_row": 5383,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000009516"
+            }
+          },
+          {
+            "node_id": "taxon:308b5f5e162f08016b125ada",
+            "name": "Agaricaceae",
+            "count": 105,
+            "genera": 19,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000008179",
+              "scientific": "Agaricus arvensis",
+              "korean": "흰주름버섯",
+              "source_row": 4609,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000008179"
+            }
+          },
+          {
+            "node_id": "taxon:a6b7ab38b9248bcd8055e48b",
+            "name": "Boletaceae",
+            "count": 102,
+            "genera": 24,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000008285",
+              "scientific": "Austroboletus fusisporus",
+              "korean": "방추남방그물버섯",
+              "source_row": 4679,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000008285"
+            }
+          },
+          {
+            "node_id": "taxon:289c3bdaae04d3ce6a6d071c",
+            "name": "Polyporaceae",
+            "count": 98,
+            "genera": 36,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000008175",
+              "scientific": "Abundisporus fuscopurpureus",
+              "korean": "자색구멍버섯",
+              "source_row": 4608,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000008175"
+            }
+          },
+          {
+            "node_id": "taxon:089a4aaf4bf894b7a6d928e0",
+            "name": "Marasmiaceae",
+            "count": 82,
+            "genera": 18,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000008290",
+              "scientific": "Baeospora myosura",
+              "korean": "솔방울버섯",
+              "source_row": 4682,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000008290"
+            }
+          },
+          {
+            "node_id": "taxon:9dfa91346e2e47c48658a07e",
+            "name": "Amanitaceae",
+            "count": 77,
+            "genera": 2,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000008210",
+              "scientific": "Amanita abrupta",
+              "korean": "양파광대버섯",
+              "source_row": 4628,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000008210"
+            }
+          },
+          {
+            "node_id": "taxon:cd7d246b49d15d2ba87c17b5",
+            "name": "Hymenochaetaceae",
+            "count": 70,
+            "genera": 19,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000008407",
+              "scientific": "Coltricia cinnamomea",
+              "korean": "톱니겨우살이버섯",
+              "source_row": 4752,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000008407"
+            }
+          },
+          {
+            "node_id": "taxon:ca0f15999e4987ee0a6ed6ae",
+            "name": "Psathyrellaceae",
+            "count": 61,
+            "genera": 10,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000009345",
+              "scientific": "Cystoagaricus strobilomyces",
+              "korean": "고슴도치버섯",
+              "source_row": 5262,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000009345"
+            }
+          },
+          {
+            "node_id": "taxon:82b87c6a26593b20594d73ae",
+            "name": "Mycenaceae",
+            "count": 55,
+            "genera": 9,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000009101",
+              "scientific": "Panellus serotinus",
+              "korean": "참부채버섯",
+              "source_row": 5097,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000009101"
+            }
+          }
+        ],
+        "ambiguous_labels": [],
+        "evidence": {
+          "method": "common listed ancestors -> descendant set -> multiple exclusions -> rank-qualified aggregation",
+          "source": "2025 national species list",
+          "count_unit": "unique KTSN source record",
+          "total_scope": "after exclusions; before group threshold/top K",
+          "unknown_rule": "known excluded first, then unresolved exclusions withheld; missing grouping rank separately reported"
+        }
+      },
+      "seconds": 0.2571295829984592,
+      "at": 1792460639.6793542
+    }
+  ],
+  "usage": {
+    "input_tokens": 89942,
+    "cached_input_tokens": 85760,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 780,
+    "reasoning_output_tokens": 94
+  },
+  "usage_complete": true,
+  "citation_ids_valid": true,
+  "group_order_valid": true,
+  "unapproved_tools": [],
+  "input_tokens": 89942,
+  "output_tokens": 780,
+  "tool_seconds": 0.2591085829990334,
+  "question_id": "l05",
+  "variant": "ontology",
+  "repeat": 1,
+  "prompt": "표고·느타리·송이가 함께 속한 강을 범위로 삼아, 세 버섯 각각의 속을 제외하세요. 가장 낮은 공통 분류군이 아니라 공통 강 전체가 범위입니다. 제외 후 전체 목록 항목 수를 구하고, 남은 과 중 항목이 20개 이상인 과를 항목 수 내림차순(동률은 학명 오름차순)으로 상위 10개 골라 과별 항목 수와 서로 다른 속 수를 제시하세요. 과 정보가 없는 항목은 전체 총계에는 포함하되 과별 집계에서 분리해 미확정 수로 제시하세요.",
+  "config_sha256": "8ed84236305b25b454e5f8c2517bea42559d55f0cd2a17407ae02ad07d501583",
+  "score": {
+    "factual_exact": true,
+    "correct": true
+  }
+}

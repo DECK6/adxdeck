@@ -1,0 +1,425 @@
+{
+  "note": "Frozen scores, answers and retrieval traces preserved. Machine invocation, thread IDs and CLI event/stderr logs omitted. Original evidence remains local.",
+  "runs": [
+    {
+      "file": "runs/1-c01-ontology.json",
+      "source_sha256": "f35d95b87cab353d86055c372fd5f397090470380310e140d5254704dec39d38",
+      "export_sha256": "ef241f4e07465c2892b9a9a20f777a5f10dff7540549cad788ad350452416f0f"
+    },
+    {
+      "file": "runs/1-c01-plain.json",
+      "source_sha256": "dc6e231ed739cdcfdd4bfd92afb781a38c216d76d552287b71779c7758fc8f6c",
+      "export_sha256": "ab5e2cd7391c14a698a882996d7fdb956f3ebacd173231f434ff59136e075522"
+    },
+    {
+      "file": "runs/1-c02-ontology.json",
+      "source_sha256": "f1e813ca11b034d41462c83aa0d2343c031780c44aab91c72168313fd601fa34",
+      "export_sha256": "a6557dbe9252b8db7bf37de7d629022ecca51908826dd93f0210967d91cb5a57"
+    },
+    {
+      "file": "runs/1-c02-plain.json",
+      "source_sha256": "668ce50a5b4a35cdff80f128b7750653acd6764b04a6518a8ac437116330392a",
+      "export_sha256": "e0c8d7bb9b8f0d6d3a92d190b6c64a21192e7ca942921b92c97770c2282400e4"
+    },
+    {
+      "file": "runs/1-c03-ontology.json",
+      "source_sha256": "deb93017ad9103717e7d594e5f0557c2b26ea7dc55ea01961b207ac9f3d5766f",
+      "export_sha256": "85bd7553e0398a540b23a4fa066544e057107e9ce155e73c377f73de38d68955"
+    },
+    {
+      "file": "runs/1-c03-plain.json",
+      "source_sha256": "d4a828fcbebe5a5e83f514f9a56ac60a872699aff5689b038f1466868a29a320",
+      "export_sha256": "3ef1132c842aa957f90bfebfc7b84fced12a6e7663a1427210eedaa5d2fdeac4"
+    },
+    {
+      "file": "runs/1-c04-ontology.json",
+      "source_sha256": "53f917d67cded86517fe88fdb118bb1d4db28761f243aa517e594c0d89aa09d4",
+      "export_sha256": "47acdb98476df41fc997cb933d0e456015fa8238a846bd6e9f51821e61b41dd0"
+    },
+    {
+      "file": "runs/1-c04-plain.json",
+      "source_sha256": "f9dc3056d0d8e0f368be8fd89422697f7421efbd291d51c53d6fb9d70e6de4dc",
+      "export_sha256": "adbcee11a33840503b0fa9d85c246440b62371a30682c6b73187fa4935de7d84"
+    },
+    {
+      "file": "runs/1-c05-ontology.json",
+      "source_sha256": "937cedeaa7fd4aa7730faa302334d2f69a145813c25d4f823029dd2a138989c8",
+      "export_sha256": "0effa7abb5b163e5ed01b373ff56b453fee4fae3d7ff6de932a7a532b49e646b"
+    },
+    {
+      "file": "runs/1-c05-plain.json",
+      "source_sha256": "be65472ff2e7154ac3d2a52d67840ad58bf45028db4ad60e149549ca1d94df8f",
+      "export_sha256": "3977ae2dbcc3be66196c619f28db56ff86c92243b7572b00aacc67af208a7ce5"
+    },
+    {
+      "file": "runs/1-c06-ontology.json",
+      "source_sha256": "80ccfea27c26e7518cfa94fa20c90feaefe8cc57706309dc3d05f3d221d49115",
+      "export_sha256": "2db4bcd1572658f4d563cc950d714b1b834e6904f0f3729ef9232d59913a8f9e"
+    },
+    {
+      "file": "runs/1-c06-plain.json",
+      "source_sha256": "2df4a0677afbd4bdb8b39a4133ce250decdf853925dfd90e2e5132649e31436c",
+      "export_sha256": "572eac7b50dda9555a99a01055d13bcf1432f9202c2d88c058681eb4bc24cb22"
+    },
+    {
+      "file": "runs/1-c07-ontology.json",
+      "source_sha256": "319d1da761d927d0b12c308a11a66cdc162be259def6de78f8a0d366ac94063c",
+      "export_sha256": "275d026f8400a42aa0d1688355eb78e209031f104fb0bd8e876e204069c28ba8"
+    },
+    {
+      "file": "runs/1-c07-plain.json",
+      "source_sha256": "435fcf8bd1e2fe2e5d656d4084dba9c4009ae88f64f49a9f26babe30c21f6f9e",
+      "export_sha256": "a86f00e84d025dd4e62d3f3d08bf6f5d78045a61585b3d35b98b9518b493f491"
+    },
+    {
+      "file": "runs/1-c08-ontology.json",
+      "source_sha256": "76b88f1f86e35dd1e8ceff41e2adf0d2144d8928041e8bf8a2bec3f4020be371",
+      "export_sha256": "2a8649a6d1a2586539953636cb61395e476ebb42eb9823b8f3a21011d0a5c93d"
+    },
+    {
+      "file": "runs/1-c08-plain.json",
+      "source_sha256": "95ea9e7e6d8684c502dda596e2fc087cb82c7492e60cb28f5e50150634b16f76",
+      "export_sha256": "584a1411cc3e6d72859d8a2b4092882099c7971aa45433491ddf435adc6a994e"
+    },
+    {
+      "file": "runs/2-c01-ontology.json",
+      "source_sha256": "a8b2774d1930d19b5345d5ebee670dfdc1db3704cc8983b11cd7525c8cf8b977",
+      "export_sha256": "b122e2d40bb3b303fff80b3c832311e8a4efae98387b0d1d2f1ca2d1f5df9bf0"
+    },
+    {
+      "file": "runs/2-c01-plain.json",
+      "source_sha256": "79481f3604bf2d62bcd8bf5b7f4e14cb586a0cae4a4006e695aa21c7c04463f4",
+      "export_sha256": "d82aad1ec5eb3d5f15338d42f6c8cfa093d4e50763e59f0f3992c4028b897d4b"
+    },
+    {
+      "file": "runs/2-c02-ontology.json",
+      "source_sha256": "cd79979d50edb32d15b9494871246cfcdefe00d5c15705b49108c14f33f33e74",
+      "export_sha256": "b24ddc2d8b6163e49d31660c06fd65d56644e7448fcca419834226811cfb1d34"
+    },
+    {
+      "file": "runs/2-c02-plain.json",
+      "source_sha256": "302bf0ab6f52cf6e2ef4def378add9a218d2e6b044a8a48a6ada401d849515ae",
+      "export_sha256": "5584791c309eeca210291888540ff95e6c25c3abaa4970cabbee4513beb64950"
+    },
+    {
+      "file": "runs/2-c03-ontology.json",
+      "source_sha256": "2662e239938f3ff4fcf1d955fd144d38cd9bc39c0aae3b3be9ad8b85602f9868",
+      "export_sha256": "e09547f0d41eb813dcda3fce6b4720d059f76fe20e4a16f80ce3200e9c8c5676"
+    },
+    {
+      "file": "runs/2-c03-plain.json",
+      "source_sha256": "789561d21beaa6f83ea3315214bdfe3e214df48858d24021fb8c99b16fa22051",
+      "export_sha256": "067748a716ea69574da8df59c1af2b1a626c4a0a45f8ea86ea457a61aa17a127"
+    },
+    {
+      "file": "runs/2-c04-ontology.json",
+      "source_sha256": "df9f8f4a9494cfda0b84d0f7526b10f94869fde8feac307eea7fa543d69d2652",
+      "export_sha256": "39caf262803761f66dba527586a48cdc613372d67e3440c69c0083da69d44256"
+    },
+    {
+      "file": "runs/2-c04-plain.json",
+      "source_sha256": "5b87bb8983281bdc0f48eb04c723c18ff45d2fa910a01cbfcd6810b95c09a5b0",
+      "export_sha256": "43979e609c312a245fc3fcd6a8efcde88b12f7a31a00930daacd76c56846b684"
+    },
+    {
+      "file": "runs/2-c05-ontology.json",
+      "source_sha256": "040b6700e82f754b78f3f0469c5b673cfeacce4f892c87228e0c3490c62b6ec3",
+      "export_sha256": "f40222d8e95cde0cb4afd101001458a295c4d91b70544f2a10d295351208532f"
+    },
+    {
+      "file": "runs/2-c05-plain.json",
+      "source_sha256": "117e988952a2c0551a3bd662b33814e254deb1cf22723bed6b24f4afb3a6cddc",
+      "export_sha256": "855755e1366c1c379bb589a0810c7177e8d06a5c7cf1d207e778e4da62f00ef4"
+    },
+    {
+      "file": "runs/2-c06-ontology.json",
+      "source_sha256": "09c84ab5d8076298bbb5da56be72203beca8bc82a6c3582b3669f491cb043f69",
+      "export_sha256": "3103a8f98c4d1062ce66f0b767d61bd90ea98343c007eedf27ca3788f97354ca"
+    },
+    {
+      "file": "runs/2-c06-plain.json",
+      "source_sha256": "d7c831ddbee9348437d047f020acc55180475a1a7ce5f8ef44c4ca273389ffe9",
+      "export_sha256": "6918b22f8e79c567683d758014968c2cbd6bca4fea5b2351f47b3e646b09aaf2"
+    },
+    {
+      "file": "runs/2-c07-ontology.json",
+      "source_sha256": "afb327e199bb56d7936b238f64f91ec4565139ebef62ea7d72957422e849729e",
+      "export_sha256": "b7894ce45c236a51d25549c02d387fe5df6d74945527b1a2c9e25e00ee3fdfbb"
+    },
+    {
+      "file": "runs/2-c07-plain.json",
+      "source_sha256": "6195287402fb8ce3134e47c66dc42bcde217cbb523b41ad62cc772dd060cc6d8",
+      "export_sha256": "24cbd6d712eb8dbbf1bd6be3acc2929549ca8b48bb0fbf322ef0eae519a06891"
+    },
+    {
+      "file": "runs/2-c08-ontology.json",
+      "source_sha256": "bdaa8bcef20d59292611a7dd0fd5e2fe73fbeae34692c672fa018ab845d18231",
+      "export_sha256": "a422c1baac1837fe1fe0ccc12b1952805edf7f02d800216e78bdc1e001ee81e9"
+    },
+    {
+      "file": "runs/2-c08-plain.json",
+      "source_sha256": "241c9374e8386b88dbb476c05bc382a0de43e4e7cbe765bcff4172ba04a5a4a9",
+      "export_sha256": "f5de3e5f0aceb197e8722815fe1b76aee8f3151499eb970054883cbe5708b9ef"
+    },
+    {
+      "file": "runs/3-c01-ontology.json",
+      "source_sha256": "e2535345f5d7a43ce2becb24c89308414d53450011696116b258490d62844f2a",
+      "export_sha256": "b6cd34f7da261f847990e45ebd75f67103062a7c09ccc675f4b06e86270baa81"
+    },
+    {
+      "file": "runs/3-c01-plain.json",
+      "source_sha256": "a9585cf67ea1bf7449e26f1a0c633ddabfdff4508b0e61c4595ba9af2824bdfc",
+      "export_sha256": "56726a0d6b1ab2e3222774e8d5b83892d7ad9c5c400e840103e5b0c038d4780f"
+    },
+    {
+      "file": "runs/3-c02-ontology.json",
+      "source_sha256": "5ba765abc0ba62c709d077be974240a9e423d161be4737f863ceb6bb341b94ba",
+      "export_sha256": "bf768c462253c68469df8b8c6b81a74f4496e6e12fd820c92c49c4df88dac236"
+    },
+    {
+      "file": "runs/3-c02-plain.json",
+      "source_sha256": "ce84b78eb18cc37371556d821a8174adea3e0bf4d136ec1e24c305928061af8b",
+      "export_sha256": "54a362353aa2c7a673225f12f7766947fbc44ead4b499cbdac44ab222148b69b"
+    },
+    {
+      "file": "runs/3-c03-ontology.json",
+      "source_sha256": "71a5f79ee0bd89175b4da37dd564b3d5b78c84771768b0edbe40581dda813665",
+      "export_sha256": "b67975733350209f738b9c3f6987b251a05ce581e541b7dbf4702f217b1109b5"
+    },
+    {
+      "file": "runs/3-c03-plain.json",
+      "source_sha256": "9a4013a5fc568a43d10880322bee2b0218c3473b9f2e966b8f74b638afa5a67b",
+      "export_sha256": "d6661c0de54414822b1ac2450b8f37fb0a527b36ba5b0a93fc6576924d6dc01e"
+    },
+    {
+      "file": "runs/3-c04-ontology.json",
+      "source_sha256": "d39f006da6f6ddcd83c93d0a294d9a93030948206d2760602f2ceb3bce11d1b3",
+      "export_sha256": "5873dbb847056f6cd0fa648bca51f1563309d0bd3006a308617974ef63077333"
+    },
+    {
+      "file": "runs/3-c04-plain.json",
+      "source_sha256": "a5877c7ad90383e936becbd590ea3166c2b6a001a74e9666c2178c59fc794be2",
+      "export_sha256": "ad8ee4fac076c457c1c29c2bec4d77a8ee84e7ba5a606d9fbc18ccd01b51e89c"
+    },
+    {
+      "file": "runs/3-c05-ontology.json",
+      "source_sha256": "46d0fa81b9ad8a899e20350d185c0593636dc06d700fed29760cebb79be5e0d2",
+      "export_sha256": "5e2881841614fcb5b652ecd0979c17a41de2bfa41f56902984e413b6446b5b2c"
+    },
+    {
+      "file": "runs/3-c05-plain.json",
+      "source_sha256": "58861fd095a7619ca07cb43e2c8e4dd0722b03d3b4a6d1ba81d731a1e6cd9e97",
+      "export_sha256": "3ba60ccefa9f72dab1e16ed8539b9d0959673049642c8f55a8348465ae941734"
+    },
+    {
+      "file": "runs/3-c06-ontology.json",
+      "source_sha256": "8b1e3c1fb63104f08f146b71c73b47c96e7cad5b144b5000c97849142a482f3e",
+      "export_sha256": "7a45394269a67c08a929826b8f716b10039441b6d81534fa231d5cdb1d9ec54f"
+    },
+    {
+      "file": "runs/3-c06-plain.json",
+      "source_sha256": "4307d2f1aa34468c3fc877cc1634890a24ea206c10463835578ec88f8d013fc3",
+      "export_sha256": "137008ddcbe13c7b8f0d6efc2645face6e9fb693391fc892dc9d58740c79baba"
+    },
+    {
+      "file": "runs/3-c07-ontology.json",
+      "source_sha256": "3c736025ca20af03acacdb2a5b718549c7f739e90d39018905d0f717c8843c4f",
+      "export_sha256": "90fbf7c0b0f8bc07c5164bbc992245af19428e1230f3a4b8e4e43a6afa7c51b7"
+    },
+    {
+      "file": "runs/3-c07-plain.json",
+      "source_sha256": "a6b667e040ce71ebfbbcae14fd8cf4924cf46d96e31de5c79f3a3781475c0820",
+      "export_sha256": "bbedcaf541ba2f1b4c8d2a6f37dd5a4f13907fadfe797d1a13e0aa6d457694d8"
+    },
+    {
+      "file": "runs/3-c08-ontology.json",
+      "source_sha256": "bbaaaf24f0a588f6274706c4c2ce929cb7d5edefc6586536b02e12a1287220fd",
+      "export_sha256": "8fb60aba19d5408a36b53ae29ffdef8ce813e764f9ff50e8d9843580fcb31a6b"
+    },
+    {
+      "file": "runs/3-c08-plain.json",
+      "source_sha256": "9448602035322c607d7c403b7af7af04422f1df248265d0fb755f5ffd8ca558e",
+      "export_sha256": "5d25bea726a897636fc39620014487e9650a9655c66b5461cd247d43f37dcedf"
+    },
+    {
+      "file": "large-scale/runs/1-l01-ontology.json",
+      "source_sha256": "fab64e114c5f232327ecd4aaa256a1c4411d188ac1cf07a41bd51117e91516e6",
+      "export_sha256": "3392682fecf4995d1019ef1fbcf25dcd54a5d1432c1e2933040e188cb64eb4e7"
+    },
+    {
+      "file": "large-scale/runs/1-l01-plain.json",
+      "source_sha256": "3b10616ff9ca93b2499fb9a8906f8bedd1d75a11ce7049232a18d39166ee7d0a",
+      "export_sha256": "60d89dbdfe8cd784b54af144184f182e407a3809a197aa21a61ca06bafe42aa0"
+    },
+    {
+      "file": "large-scale/runs/1-l02-ontology.json",
+      "source_sha256": "a1558cc4df89dfba2d492bfad66f515f4d01b27d0e187571584a58889431f45c",
+      "export_sha256": "5c6269737b89b814fc170f7361bc267ad89bfa468e9d51fb2f61a10838f4389d"
+    },
+    {
+      "file": "large-scale/runs/1-l02-plain.json",
+      "source_sha256": "9db5a228e2046af93c00445b895e1239ff7bed362f1270f678e5a8d73418f6e3",
+      "export_sha256": "da8a39a964769e8cd984dd4128a45873b7b9344b44d7275c1ccd879d2cd3c0a5"
+    },
+    {
+      "file": "large-scale/runs/1-l03-ontology.json",
+      "source_sha256": "063f86cbf524d749e9738902b75a3db3322c1c7c0e5a4c414226ec8dac911a2a",
+      "export_sha256": "de9694bbbdacf9b03deb6096df5bf301c5ae117a66e144bbd6b15bd1a629d869"
+    },
+    {
+      "file": "large-scale/runs/1-l03-plain.json",
+      "source_sha256": "d7f96b53e2afb42248e3037a12195bdea7d346f4b9c6874222fd2a99fc018662",
+      "export_sha256": "738d75a0453d2035d139d80581abb8b434f0417757136991d075a2fbdc9d5274"
+    },
+    {
+      "file": "large-scale/runs/1-l04-ontology.json",
+      "source_sha256": "cefc879f71859f155096b348552187aa66b3947fd741845b6d79938a6b991cc4",
+      "export_sha256": "07b6ff8912d8fb35ba4e631ff5e07dd567b742552817e89ed45430283f95b74d"
+    },
+    {
+      "file": "large-scale/runs/1-l04-plain.json",
+      "source_sha256": "fb85a6c19539aa8b376ece30dcb5d7975a9ea3b9f85f75c4a0d5e00d331a8ab1",
+      "export_sha256": "64887eb408a52cba27450156759764c4a304e6b110ec21d9430d7d58eb2b06b1"
+    },
+    {
+      "file": "large-scale/runs/1-l05-ontology.json",
+      "source_sha256": "3dc92515228926ab4c154f7f8cffa43c08ac39de78946e351d4491a667d5501b",
+      "export_sha256": "77a3d3d1ca33062aead0039c427133f08b70d6af3f348ac197de3ffab870a209"
+    },
+    {
+      "file": "large-scale/runs/1-l05-plain.json",
+      "source_sha256": "1715e7f6a428588a547463715c04976cc7ff5c5ca99fff1e8fd9f33bb43759bd",
+      "export_sha256": "c15809fd2e2f5fa762dcdc7ad6df71bfe20f0e5f9e080e3774f174d0e3cf61eb"
+    },
+    {
+      "file": "large-scale/runs/1-l06-ontology.json",
+      "source_sha256": "b5ae235e453b5f187ce8897f075a3acb4cfeda374a338c6db127548166d7d8c6",
+      "export_sha256": "51ad1cf799cf5622e003dc643b002a3ad9cf6ad91dbe5c3e588f619a9a8939fb"
+    },
+    {
+      "file": "large-scale/runs/1-l06-plain.json",
+      "source_sha256": "2f5363a55cfb51a306da9cdff7d5fd82e68c5fabd46490822c242dd1e05dc1ca",
+      "export_sha256": "1740a4abbaaf2ea714e583f0212029ee0350f464bdb92b07fdfcf13767c5cc4f"
+    },
+    {
+      "file": "large-scale/runs/2-l01-ontology.json",
+      "source_sha256": "44c89f8116c01251f1867b3c6a38afcd2e05077d79ba16d7b9373b6623cc8bb1",
+      "export_sha256": "32c78e6663947a6692c5c7aef717b98e9801c8aaf0478ca287545379bba422d7"
+    },
+    {
+      "file": "large-scale/runs/2-l01-plain.json",
+      "source_sha256": "0b181e8cc080ac25d2c275ec3c11f27a7f0a1111739b160beaa379682e7fd0ce",
+      "export_sha256": "302d2c0f342d5ab094452aec0e37fdff71d172a74f200d641cca7cc82ef71cc2"
+    },
+    {
+      "file": "large-scale/runs/2-l02-ontology.json",
+      "source_sha256": "4535e5c4f06a99618b8c029829bf11e24d54f51822ed7a6fd6f9d7b5c8e2ad3f",
+      "export_sha256": "6ac3ff559aaef7c4d3ac76de21ff57c7781eed4b2eb0d1e7aa2343e4efd94186"
+    },
+    {
+      "file": "large-scale/runs/2-l02-plain.json",
+      "source_sha256": "3441d763a555d0ecc8acc3d229a13da9eaf0215b43ccf8f884ade83047ab7692",
+      "export_sha256": "05ad911e87ce233bf9c725dda4011b87bb07f44fe9e20f83f3ed284be31d2523"
+    },
+    {
+      "file": "large-scale/runs/2-l03-ontology.json",
+      "source_sha256": "d90130ba77626f61921b6e6e9c60d1cbeb114668ce5edf755f26a838553642c9",
+      "export_sha256": "3737ddcfdc173c875fdf181f363d360e09ed894cd833ab5da4f3fa03335b9bac"
+    },
+    {
+      "file": "large-scale/runs/2-l03-plain.json",
+      "source_sha256": "ecccc324b22e3b0a0a15ff5219eea7dcde3b35dd8a7eb4d6c729d32c64b50717",
+      "export_sha256": "0dec9b022ff3f9d2472cc213fab0c9dcf1acf0e4c7239e527263ebac7f8ab4b5"
+    },
+    {
+      "file": "large-scale/runs/2-l04-ontology.json",
+      "source_sha256": "39df9b1ddb86363e939d1feb29ea5d9ef92d443d30d52fdbbf65534ce782e83f",
+      "export_sha256": "b63a720bf6bd3e7ede149bc1f044a82e265d47e6febd734adeddba1132f5cb8f"
+    },
+    {
+      "file": "large-scale/runs/2-l04-plain.json",
+      "source_sha256": "926a4f48d28e884b352d33560ab80cf5065e9e21ec1f39c9801de1792a1bf667",
+      "export_sha256": "a12a1735346e24b4b6a098f93b4b46c78a581da84737ae462f13214cbdb6bc3d"
+    },
+    {
+      "file": "large-scale/runs/2-l05-ontology.json",
+      "source_sha256": "4c527ea2adcf18c5ae561b58f7c96b031b5d54ef16184e20aa4d484cff7de124",
+      "export_sha256": "45dfd83670a0ab7b75d08b9fe7c05bf52a5c6652ff2925666c72f2bf242bb09c"
+    },
+    {
+      "file": "large-scale/runs/2-l05-plain.json",
+      "source_sha256": "54045479103f6c8115e667a5fda37bce5ef760db8daa16364b1401915f77819d",
+      "export_sha256": "36a3ceb16c33b8e9083e9007caacf81f39f5c9c64fde28237332d921040d2b5a"
+    },
+    {
+      "file": "large-scale/runs/2-l06-ontology.json",
+      "source_sha256": "5ed7b973222be5b0db83c255cad548d774dc9f9e7ced89e416e1f2ae2d62c8e2",
+      "export_sha256": "4b4025e7f89b355b9ab921cb420ca2ca7b16eae9f66443fc804240f7489fbb38"
+    },
+    {
+      "file": "large-scale/runs/2-l06-plain.json",
+      "source_sha256": "c787045b2f57e8a8549d0ce58d808a388386aa87781cb9f04d61b9c676ed3a29",
+      "export_sha256": "00bb4e126c8b0508b35e8c9267bf347a075e1e4ddd196dcd92d473df987d93d0"
+    },
+    {
+      "file": "large-scale/runs/3-l01-ontology.json",
+      "source_sha256": "a5ea94b66e1e508a7b72888713d1ac8439f6ffadf81ab8d9f7666d8ab522d4c3",
+      "export_sha256": "d950f31b0eac31bda6172bd8f0a00ad7d604a906bb476ce5b93cbac9d02091c7"
+    },
+    {
+      "file": "large-scale/runs/3-l01-plain.json",
+      "source_sha256": "e2d22ef5f56b6e3c13d3ab608ac2cc534e7defd92a3a3913e2b986997ac15d87",
+      "export_sha256": "e59df7d3ee3c09fe40a62fdd9fa61991b0ea640dd658f9ca6d55e4b6d4c93e7c"
+    },
+    {
+      "file": "large-scale/runs/3-l02-ontology.json",
+      "source_sha256": "7c3898a385cdaf1f9b95e6e96b6dd6740be8b71a74b96f13d39f94b3458832d3",
+      "export_sha256": "9a2f5120f4b36e21a22f0ff1e40c7df956cf7605cbb6ce32c0026c32e556ab3a"
+    },
+    {
+      "file": "large-scale/runs/3-l02-plain.json",
+      "source_sha256": "c0e51a3e9936878a8cfd98d73f89b23f5982512aa13a15e9389b027166d2b79e",
+      "export_sha256": "c242709d9ed23404d14567fb4851cf05ba2ad28ac46569c2619c1fe6e99ca80e"
+    },
+    {
+      "file": "large-scale/runs/3-l03-ontology.json",
+      "source_sha256": "ee24106589e36c49a5c62d620986bb330247e6b8c27c38fcc4ae2b7f1bdb31aa",
+      "export_sha256": "6df9d63b7d0e55cd192178e554cb91eb66625ab00a6a2494db3d92d04387a870"
+    },
+    {
+      "file": "large-scale/runs/3-l03-plain.json",
+      "source_sha256": "08e5220d94b5288951eeb3e46e9ed2d3b042788e2b9432f87cdda2cddbf06560",
+      "export_sha256": "f0c945190797c2d3d16f906822b1c747b3a1f26a59d760d0215325f0df1707c0"
+    },
+    {
+      "file": "large-scale/runs/3-l04-ontology.json",
+      "source_sha256": "d25d0fd128c917388888d3788c3f2f7d92e63aa4c74ab092f9a2d742b231e624",
+      "export_sha256": "d76096f747440cc0cc1b85a59cd33cb2d0249a61d5857372cdd1947d7d4bc2fe"
+    },
+    {
+      "file": "large-scale/runs/3-l04-plain.json",
+      "source_sha256": "e58d751c43a55547a1226300e216b249b427d6c7b9a2e761bbad72a3686373db",
+      "export_sha256": "6e380d1ab14fa49906398687cc9b585ed320933f6915a5993766bb8256a6c9ab"
+    },
+    {
+      "file": "large-scale/runs/3-l05-ontology.json",
+      "source_sha256": "19edd37528dbaeee73eb593afb86d4b1bdd5dd16d331dac8e86e53312f866a2f",
+      "export_sha256": "cecdcd1a1c0cf8504900584bcb7edd874fc7f724d7c597c55ab6d31a5626201b"
+    },
+    {
+      "file": "large-scale/runs/3-l05-plain.json",
+      "source_sha256": "5175896cd7150baf3a056c14d7a220953d380a38648d40ae8888bf7dee0542da",
+      "export_sha256": "76de3e6d597d505b7906b0a13d3787fe3c0495d4dd48c961ffbb647a9e4047b1"
+    },
+    {
+      "file": "large-scale/runs/3-l06-ontology.json",
+      "source_sha256": "569ba900979be49a85f6a3e2c188e322177aae8a1f7bda35ea934a2ad1349bbd",
+      "export_sha256": "edfccfb336fbd9ffad7cc152ab1aeb1e22206f32f7ee3584b34990ece6e2bff5"
+    },
+    {
+      "file": "large-scale/runs/3-l06-plain.json",
+      "source_sha256": "927c235e3f70fa19d24d79f3990499f03347a3517770d948473472681ea6fc1b",
+      "export_sha256": "7e07d4da390b1ff9f6ad767362e707e1fa76d5145c9423bca646690e0b23d674"
+    }
+  ]
+}

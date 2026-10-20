@@ -1,1 +1,4 @@
 clean/windows-codex-cleanup.bat binary
+
+# Generated standalone graph includes upstream GLSL shader whitespace.
+ontology/study/week4-species/graph/index.html -whitespace linguist-generated=true

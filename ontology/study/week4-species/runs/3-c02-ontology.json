@@ -1,0 +1,421 @@
+{
+  "started_at": 1792459673.720528,
+  "wall_seconds": 23.561601500005054,
+  "status": "completed",
+  "exit_code": 0,
+  "timed_out": false,
+  "answer": {
+    "kind": "composition",
+    "status": "known",
+    "value": "Carnivora",
+    "rank": "order",
+    "count": 20,
+    "unknown_count": 0,
+    "groups": [
+      {
+        "name": "Mustelidae",
+        "count": 7,
+        "genera": 3
+      },
+      {
+        "name": "Canidae",
+        "count": 3,
+        "genera": 3
+      },
+      {
+        "name": "Otariidae",
+        "count": 3,
+        "genera": 3
+      },
+      {
+        "name": "Phocidae",
+        "count": 3,
+        "genera": 3
+      },
+      {
+        "name": "Felidae",
+        "count": 2,
+        "genera": 2
+      },
+      {
+        "name": "Ursidae",
+        "count": 2,
+        "genera": 1
+      }
+    ],
+    "answer": "대표국명이 정확히 일치하는 호랑이·수달·늑대의 최하위 공통 상위 분류군은 식육목(Carnivora)입니다. 그 아래 24항목에서 표범속(Panthera)·수달속(Lutra)·개속(Canis)의 모든 항목, 총 4항목을 제외하면 20항목이 남습니다. 아종·변종을 포함한 고유 KTSN을 단위로 집계했으며, 남은 6개 과를 모두 제시했습니다. count는 과별 항목 수, genera는 해당 과의 서로 다른 속 수입니다. 제외 판정 미확정 및 과 미상 항목은 0입니다.",
+    "citations": [
+      "E1",
+      "E2"
+    ],
+    "group_rank": "family"
+  },
+  "raw_answer": {
+    "action": "answer",
+    "result": {
+      "kind": "composition",
+      "scope_name": "Carnivora",
+      "scope_rank": "order",
+      "group_rank": "family",
+      "total_after_exclusions": 20,
+      "unknown_count": 0,
+      "groups": [
+        {
+          "name": "Mustelidae",
+          "count": 7,
+          "genera": 3
+        },
+        {
+          "name": "Canidae",
+          "count": 3,
+          "genera": 3
+        },
+        {
+          "name": "Otariidae",
+          "count": 3,
+          "genera": 3
+        },
+        {
+          "name": "Phocidae",
+          "count": 3,
+          "genera": 3
+        },
+        {
+          "name": "Felidae",
+          "count": 2,
+          "genera": 2
+        },
+        {
+          "name": "Ursidae",
+          "count": 2,
+          "genera": 1
+        }
+      ],
+      "explanation": "대표국명이 정확히 일치하는 호랑이·수달·늑대의 최하위 공통 상위 분류군은 식육목(Carnivora)입니다. 그 아래 24항목에서 표범속(Panthera)·수달속(Lutra)·개속(Canis)의 모든 항목, 총 4항목을 제외하면 20항목이 남습니다. 아종·변종을 포함한 고유 KTSN을 단위로 집계했으며, 남은 6개 과를 모두 제시했습니다. count는 과별 항목 수, genera는 해당 과의 서로 다른 속 수입니다. 제외 판정 미확정 및 과 미상 항목은 0입니다.",
+      "citations": [
+        "E1",
+        "E2"
+      ]
+    }
+  },
+  "format_error": null,
+  "trace": [
+    {
+      "action": {
+        "action": "search",
+        "offset": 0,
+        "query": "\"호랑이\" OR \"수달\" OR \"늑대\""
+      },
+      "result": {
+        "evidence_id": "E1",
+        "total": 3,
+        "offset": 0,
+        "records": [
+          {
+            "id": "120000212787",
+            "scientific": "Canis lupus coreanus",
+            "korean": "늑대",
+            "rank": "subspecies",
+            "fields": {
+              "KTSN": "120000212787",
+              "NO": "45562",
+              "관리분류군": "포유류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Mammalia",
+              "Class_ko": "포유동물강",
+              "Order": "Carnivora",
+              "Order_ko": "식육목",
+              "Family": "Canidae",
+              "Family_ko": "개과",
+              "Genus": "Canis",
+              "Genus_ko": "개속",
+              "Species": "lupus",
+              "Species_ko": "늑대",
+              "SubSpecies_marker": "subsp.",
+              "SubSpecies_name": "coreanus",
+              "SubSpecies_ko": "늑대",
+              "학명": "Canis lupus coreanus",
+              "대표국명": "늑대",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000212787"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 45564
+          },
+          {
+            "id": "120000212946",
+            "scientific": "Panthera tigris altaica",
+            "korean": "호랑이",
+            "rank": "subspecies",
+            "fields": {
+              "KTSN": "120000212946",
+              "NO": "45641",
+              "관리분류군": "포유류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Mammalia",
+              "Class_ko": "포유동물강",
+              "Order": "Carnivora",
+              "Order_ko": "식육목",
+              "Family": "Felidae",
+              "Family_ko": "고양이과",
+              "Genus": "Panthera",
+              "Genus_ko": "표범속",
+              "Species": "tigris",
+              "Species_ko": "호랑이",
+              "SubSpecies_marker": "subsp.",
+              "SubSpecies_name": "altaica",
+              "SubSpecies_ko": "호랑이",
+              "학명": "Panthera tigris altaica",
+              "대표국명": "호랑이",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000212946"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 45643
+          },
+          {
+            "id": "120000053328",
+            "scientific": "Lutra lutra",
+            "korean": "수달",
+            "rank": "species",
+            "fields": {
+              "KTSN": "120000053328",
+              "NO": "27583",
+              "관리분류군": "포유류",
+              "Phylum": "Chordata",
+              "Phylum_ko": "척삭동물문",
+              "Class": "Mammalia",
+              "Class_ko": "포유동물강",
+              "Order": "Carnivora",
+              "Order_ko": "식육목",
+              "Family": "Mustelidae",
+              "Family_ko": "족제비과",
+              "Genus": "Lutra",
+              "Genus_ko": "수달속",
+              "Species": "lutra",
+              "Species_ko": "수달",
+              "학명": "Lutra lutra",
+              "명명자": "(Linnaeus)",
+              "명명년도": "(1758)",
+              "대표국명": "수달",
+              "종 세부정보 URL": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053328"
+            },
+            "source": "2025년 국가생물종목록_v1.0",
+            "source_sheet": "62,604종",
+            "source_row": 27585
+          }
+        ],
+        "evidence": {
+          "method": "FTS5",
+          "query": "\"호랑이\" OR \"수달\" OR \"늑대\"",
+          "total_is_exact_text_match": true
+        }
+      },
+      "seconds": 0.0004171249966020696,
+      "at": 1792459680.497803
+    },
+    {
+      "action": {
+        "action": "compose",
+        "ids": [
+          "120000212946",
+          "120000053328",
+          "120000212787"
+        ],
+        "scope_rank": "",
+        "exclusions": [
+          {
+            "anchor_id": "120000212946",
+            "rank": "genus"
+          },
+          {
+            "anchor_id": "120000053328",
+            "rank": "genus"
+          },
+          {
+            "anchor_id": "120000212787",
+            "rank": "genus"
+          }
+        ],
+        "group_rank": "family",
+        "min_count": 1,
+        "top_k": 0
+      },
+      "result": {
+        "evidence_id": "E2",
+        "scope": {
+          "rank": "order",
+          "node_id": "taxon:209000d8735e8fa06a188a3b",
+          "name": "Carnivora",
+          "source_rows": [
+            {
+              "id": "120000212946",
+              "source_row": 45643
+            },
+            {
+              "id": "120000053328",
+              "source_row": 27585
+            },
+            {
+              "id": "120000212787",
+              "source_row": 45564
+            }
+          ]
+        },
+        "scope_count": 24,
+        "excluded_count": 4,
+        "exclusions": [
+          {
+            "anchor_id": "120000212946",
+            "rank": "genus",
+            "node_id": "taxon:846ae2325cefc6b014826a48",
+            "name": "Panthera",
+            "source_row": 45643
+          },
+          {
+            "anchor_id": "120000053328",
+            "rank": "genus",
+            "node_id": "taxon:64ce9f8203ceef960beafe0d",
+            "name": "Lutra",
+            "source_row": 27585
+          },
+          {
+            "anchor_id": "120000212787",
+            "rank": "genus",
+            "node_id": "taxon:b117e0ad82c03450a47d736a",
+            "name": "Canis",
+            "source_row": 45564
+          }
+        ],
+        "total": 20,
+        "exclusion_unknown_count": 0,
+        "group_unknown_count": 0,
+        "group_rank": "family",
+        "min_count": 1,
+        "top_k": 0,
+        "eligible_groups": 6,
+        "groups": [
+          {
+            "node_id": "taxon:6f349204245d38db8721cf94",
+            "name": "Mustelidae",
+            "count": 7,
+            "genera": 3,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000053330",
+              "scientific": "Martes flavigula",
+              "korean": "담비",
+              "source_row": 27586,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053330"
+            }
+          },
+          {
+            "node_id": "taxon:7b00f7dea511ad1bfb10cc78",
+            "name": "Canidae",
+            "count": 3,
+            "genera": 3,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000053301",
+              "scientific": "Cuon alpinus",
+              "korean": "승냥이",
+              "source_row": 27576,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053301"
+            }
+          },
+          {
+            "node_id": "taxon:a7f3c621ff768c81e3a76a3b",
+            "name": "Otariidae",
+            "count": 3,
+            "genera": 3,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000053312",
+              "scientific": "Callorhinus ursinus",
+              "korean": "물개",
+              "source_row": 27579,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053312"
+            }
+          },
+          {
+            "node_id": "taxon:ad3c9101d1b24de28fbb6806",
+            "name": "Phocidae",
+            "count": 3,
+            "genera": 3,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000053321",
+              "scientific": "Histriophoca fasciata",
+              "korean": "흰띠박이물범",
+              "source_row": 27582,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053321"
+            }
+          },
+          {
+            "node_id": "taxon:9b27a2842813ca813f404c92",
+            "name": "Felidae",
+            "count": 2,
+            "genera": 2,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000053291",
+              "scientific": "Lynx lynx",
+              "korean": "스라소니",
+              "source_row": 27574,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053291"
+            }
+          },
+          {
+            "node_id": "taxon:73dfc3aa5609dd02f94c773b",
+            "name": "Ursidae",
+            "count": 2,
+            "genera": 1,
+            "unknown_genera_count": 0,
+            "example": {
+              "id": "120000053308",
+              "scientific": "Ursus arctos",
+              "korean": "불곰",
+              "source_row": 27578,
+              "url": "https://species.nibr.go.kr/home/mainHome.do?cont_link=009&subMenu=009002&contCd=009002&pageMode=view&ktsn=120000053308"
+            }
+          }
+        ],
+        "ambiguous_labels": [],
+        "evidence": {
+          "method": "common listed ancestors -> descendant set -> multiple exclusions -> rank-qualified aggregation",
+          "source": "2025 national species list",
+          "count_unit": "unique KTSN source record",
+          "total_scope": "after exclusions; before group threshold/top K",
+          "unknown_rule": "known excluded first, then unresolved exclusions withheld; missing grouping rank separately reported"
+        }
+      },
+      "seconds": 0.2778611249959795,
+      "at": 1792459685.2725801
+    }
+  ],
+  "usage": {
+    "input_tokens": 89005,
+    "cached_input_tokens": 64768,
+    "cache_write_input_tokens": 0,
+    "output_tokens": 895,
+    "reasoning_output_tokens": 311
+  },
+  "usage_complete": true,
+  "citation_ids_valid": true,
+  "group_order_valid": true,
+  "unapproved_tools": [],
+  "input_tokens": 89005,
+  "output_tokens": 895,
+  "tool_seconds": 0.27827824999258155,
+  "question_id": "c02",
+  "variant": "ontology",
+  "repeat": 3,
+  "prompt": "호랑이·수달·늑대의 가장 낮은 공통 상위 분류군을 찾고, 그 아래 모든 목록 항목에서 세 동물 각각의 속을 제외하세요. 남은 전체 항목 수와 과별 항목 수·서로 다른 속 수를 모두 제시하세요.",
+  "config_sha256": "42f3c9fbcaebb6dcc6d0c0c7ecf0448bf0b0188bc9b2d9921c3e9f8831d4cc66",
+  "score": {
+    "factual_exact": true,
+    "correct": true
+  }
+}
