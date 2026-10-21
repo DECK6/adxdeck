@@ -27,6 +27,26 @@
     ]
   },
   {
+    "slug": "when-evaluation-questions-become-practice-material",
+    "file": "_built/when-evaluation-questions-become-practice-material.md",
+    "title": "AI가 시험 문제에 익숙해졌을 때",
+    "description": "같은 평가 문항에 맞춰 AI를 계속 고치면 점수는 무엇을 말해 줄까. LiveBench와 LiveCodeBench의 갱신·시간 구간 설계를 바탕으로 평가 오염과 반복 튜닝을 구분하고, 회귀 사례와 최종 시험을 나누는 방법을 살핀다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "evaluation",
+      "benchmark",
+      "data-contamination",
+      "work-design"
+    ],
+    "date": "2026-10-21",
+    "modified": "2026-10-21",
+    "thumbnail": "images/when-evaluation-questions-become-practice-material-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "cha-jeamin-and-the-limits-of-seeing-care",
     "file": "_built/cha-jeamin-and-the-limits-of-seeing-care.md",
     "title": "차재민이 묻는 돌봄",
