@@ -1,5 +1,32 @@
 [
   {
+    "slug": "v2-and-the-art-beyond-the-finished-image",
+    "file": "_built/v2-and-the-art-beyond-the-finished-image.md",
+    "title": "완성작 사진 밖에 남는 예술",
+    "description": "V2_의 Capturing Unstable Media 연구를 통해, 미디어아트의 제작 과정과 협업, 관객의 행동을 기록하는 일이 왜 작품을 이해하는 조건이 되는지 살펴봅니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "V2",
+      "아카이브",
+      "기록"
+    ],
+    "date": "2026-10-22",
+    "modified": "2026-10-22",
+    "thumbnail": "images/art-beyond-the-finished-image-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-art",
+      "V2",
+      "아카이브",
+      "기록"
+    ]
+  },
+  {
     "slug": "walking-with-cardiff-and-miller-through-recorded-time",
     "file": "_built/walking-with-cardiff-and-miller-through-recorded-time.md",
     "title": "녹화된 길을 걷는 몸",
