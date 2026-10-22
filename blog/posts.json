@@ -1,5 +1,25 @@
 [
   {
+    "slug": "moving-search-with-a-new-embedding-model",
+    "file": "_built/moving-search-with-a-new-embedding-model.md",
+    "title": "임베딩 모델을 바꿀 때 검색도 함께 이사한다",
+    "description": "임베딩 모델만 교체하면 기존 문서 벡터도 그대로 쓸 수 있을까. 벡터 공간의 호환성, 질의와 문서의 인코딩, 이전 중 수정·삭제, 검색 전환과 복구 조건을 공식 문서에 근거해 살핀다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "RAG",
+      "embeddings",
+      "search",
+      "knowledge-management"
+    ],
+    "date": "2026-10-22",
+    "modified": "2026-10-22",
+    "thumbnail": "images/moving-search-with-a-new-embedding-model-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "v2-and-the-art-beyond-the-finished-image",
     "file": "_built/v2-and-the-art-beyond-the-finished-image.md",
     "title": "완성작 사진 밖에 남는 예술",
