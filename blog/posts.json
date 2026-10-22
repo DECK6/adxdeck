@@ -1,5 +1,32 @@
 [
   {
+    "slug": "simondon-and-the-concretization-of-technical-objects",
+    "file": "_built/simondon-and-the-concretization-of-technical-objects.md",
+    "title": "시몽동이 본 기계의 진화",
+    "description": "질베르 시몽동의 기술적 구체화를 통해, 기능을 추가하는 개선과 부품들의 관계를 바꾸는 설계를 구분하고 미디어아트의 기술적 완성과 예술적 판단을 함께 살펴봅니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "시몽동",
+      "기술철학",
+      "구체화"
+    ],
+    "date": "2026-10-23",
+    "modified": "2026-10-23",
+    "thumbnail": "images/simondon-technical-concretization-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "media-art",
+      "시몽동",
+      "기술철학",
+      "구체화"
+    ]
+  },
+  {
     "slug": "moving-search-with-a-new-embedding-model",
     "file": "_built/moving-search-with-a-new-embedding-model.md",
     "title": "임베딩 모델을 바꿀 때 검색도 함께 이사한다",
