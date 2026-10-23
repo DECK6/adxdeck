@@ -27,6 +27,26 @@
     ]
   },
   {
+    "slug": "when-stop-does-not-stop-agent-work",
+    "file": "_built/when-stop-does-not-stop-agent-work.md",
+    "title": "에이전트의 중지 버튼은 어디까지 멈추는가",
+    "description": "AI 에이전트에 중지를 요청해도 실행 중인 도구와 외부 작업은 남을 수 있다. Temporal의 취소 전달 방식과 Python의 비동기 작업 관리를 통해 중지 요청, 실행 종료, 외부 상태 확인을 나누는 업무 설계를 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "ai-agent",
+      "workflow",
+      "cancellation",
+      "automation"
+    ],
+    "date": "2026-10-23",
+    "modified": "2026-10-23",
+    "thumbnail": "images/when-stop-does-not-stop-agent-work-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "moving-search-with-a-new-embedding-model",
     "file": "_built/moving-search-with-a-new-embedding-model.md",
     "title": "임베딩 모델을 바꿀 때 검색도 함께 이사한다",
