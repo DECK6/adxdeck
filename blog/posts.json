@@ -1,5 +1,32 @@
 [
   {
+    "slug": "kim-kulim-and-the-city-that-yawns",
+    "file": "_built/kim-kulim-and-the-city-that-yawns.md",
+    "title": "김구림의 영화에서 도시는 왜 하품하는가",
+    "description": "김구림의 《1/24초의 의미》를 통해 빠르게 편집된 도시와 하품하는 몸의 시간 차이를 읽고, 필름의 프레임과 상영 공간이 미디어아트의 재료가 되는 과정을 살펴봅니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "김구림",
+      "실험영화",
+      "몽타주"
+    ],
+    "date": "2026-10-24",
+    "modified": "2026-10-24",
+    "thumbnail": "images/kim-kulim-city-that-yawns-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "김구림",
+      "실험영화",
+      "몽타주"
+    ]
+  },
+  {
     "slug": "simondon-and-the-concretization-of-technical-objects",
     "file": "_built/simondon-and-the-concretization-of-technical-objects.md",
     "title": "시몽동이 본 기계의 진화",
