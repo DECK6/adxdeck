@@ -1,5 +1,32 @@
 [
   {
+    "slug": "daniel-rozin-and-the-image-made-of-wood",
+    "file": "_built/daniel-rozin-and-the-image-made-of-wood.md",
+    "title": "나무 조각은 어떻게 거울이 되는가",
+    "description": "다니엘 로진의 《Wooden Mirror》를 통해 카메라 영상이 나무 조각의 빛과 그림자로 바뀌는 과정을 읽고, 상호작용하는 이미지에서 재료와 관객의 몸이 맡는 역할을 살펴봅니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "다니엘-로진",
+      "인터랙티브-아트",
+      "물질성"
+    ],
+    "date": "2026-10-25",
+    "modified": "2026-10-25",
+    "thumbnail": "images/daniel-rozin-image-made-of-wood-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "다니엘-로진",
+      "인터랙티브-아트",
+      "물질성"
+    ]
+  },
+  {
     "slug": "does-an-ai-generated-graph-query-keep-the-question",
     "file": "_built/does-an-ai-generated-graph-query-keep-the-question.md",
     "title": "AI가 만든 그래프 질의는 원래 질문을 지키는가",
