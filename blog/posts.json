@@ -1,5 +1,25 @@
 [
   {
+    "slug": "does-an-ai-generated-graph-query-keep-the-question",
+    "file": "_built/does-an-ai-generated-graph-query-keep-the-question.md",
+    "title": "AI가 만든 그래프 질의는 원래 질문을 지키는가",
+    "description": "자연어를 Cypher로 바꾸는 AI가 실행 가능한 질의를 만들었어도 집계 단위와 업무 조건은 어긋날 수 있다. Neo4j의 공식 문서와 공개 구현을 바탕으로 질문의 의미, 실행 계획, 결과 범위를 함께 검증하는 방법을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "knowledge-graph",
+      "Cypher",
+      "evaluation",
+      "work-design"
+    ],
+    "date": "2026-10-24",
+    "modified": "2026-10-24",
+    "thumbnail": "images/does-an-ai-generated-graph-query-keep-the-question-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "kim-kulim-and-the-city-that-yawns",
     "file": "_built/kim-kulim-and-the-city-that-yawns.md",
     "title": "김구림의 영화에서 도시는 왜 하품하는가",

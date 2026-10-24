@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI가 만든 그래프 질의는 원래 질문을 지키는가 | DEXA Blog</title>
+    <meta name="description" content="자연어를 Cypher로 바꾸는 AI가 실행 가능한 질의를 만들었어도 집계 단위와 업무 조건은 어긋날 수 있다. Neo4j의 공식 문서와 공개 구현을 바탕으로 질문의 의미, 실행 계획, 결과 범위를 함께 검증하는 방법을 살펴본다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/does-an-ai-generated-graph-query-keep-the-question/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="AI가 만든 그래프 질의는 원래 질문을 지키는가" />
+    <meta property="og:description" content="자연어를 Cypher로 바꾸는 AI가 실행 가능한 질의를 만들었어도 집계 단위와 업무 조건은 어긋날 수 있다. Neo4j의 공식 문서와 공개 구현을 바탕으로 질문의 의미, 실행 계획, 결과 범위를 함께 검증하는 방법을 살펴본다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/does-an-ai-generated-graph-query-keep-the-question/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/does-an-ai-generated-graph-query-keep-the-question-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-10-24" />
+    <meta property="article:modified_time" content="2026-10-24" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="AI" />
+    <meta property="article:tag" content="knowledge-graph" />
+    <meta property="article:tag" content="Cypher" />
+    <meta property="article:tag" content="evaluation" />
+    <meta property="article:tag" content="work-design" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI가 만든 그래프 질의는 원래 질문을 지키는가" />
+    <meta name="twitter:description" content="자연어를 Cypher로 바꾸는 AI가 실행 가능한 질의를 만들었어도 집계 단위와 업무 조건은 어긋날 수 있다. Neo4j의 공식 문서와 공개 구현을 바탕으로 질문의 의미, 실행 계획, 결과 범위를 함께 검증하는 방법을 살펴본다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/does-an-ai-generated-graph-query-keep-the-question-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"AI가 만든 그래프 질의는 원래 질문을 지키는가","description":"자연어를 Cypher로 바꾸는 AI가 실행 가능한 질의를 만들었어도 집계 단위와 업무 조건은 어긋날 수 있다. Neo4j의 공식 문서와 공개 구현을 바탕으로 질문의 의미, 실행 계획, 결과 범위를 함께 검증하는 방법을 살펴본다.","image":"https://dexa.art/blog/images/does-an-ai-generated-graph-query-keep-the-question-cover.png","datePublished":"2026-10-24","dateModified":"2026-10-24","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/does-an-ai-generated-graph-query-keep-the-question/"},"articleSection":"AI · AX","keywords":"AI, knowledge-graph, Cypher, evaluation, work-design"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.10.24</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>AI가 만든 그래프 질의는 원래 질문을 지키는가</h1>
+                <p style="color:var(--muted);font-size:17px;">자연어를 Cypher로 바꾸는 AI가 실행 가능한 질의를 만들었어도 집계 단위와 업무 조건은 어긋날 수 있다. Neo4j의 공식 문서와 공개 구현을 바탕으로 질문의 의미, 실행 계획, 결과 범위를 함께 검증하는 방법을 살펴본다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">AI</span><span class="dx-tag-chip">knowledge-graph</span><span class="dx-tag-chip">Cypher</span><span class="dx-tag-chip">evaluation</span><span class="dx-tag-chip">work-design</span></div>
+<p><img src="/blog/images/does-an-ai-generated-graph-query-keep-the-question-cover.png" alt="하나의 곡선이 렌즈를 지나 여러 연결로 나뉘고, 연결의 끝에서 고유한 대상을 드러내는 종이 그래프 조형" loading="lazy"></p>
+<p><em>GPT Image 2로 생성한 개념 이미지. 질문이 관계를 따라 펼쳐져도 집계할 대상의 정체성은 유지되어야 한다는 뜻을 담았다.</em></p>
+<p>교육 담당자가 AI에게 수료자가 몇 명인지 묻는 장면을 가정해 보자. 직원 한 명은 두 과정을 마쳤고 다른 직원은 한 과정을 마쳤다. AI가 교육 기록을 조회해 수료자는 세 명이라고 답한다. 데이터베이스에는 오류가 없고, 질의도 정상 실행됐다. 다만 담당자가 묻고 싶었던 사람 수와 질의가 센 수료 기록 수가 달랐다. 이는 특정 조직의 사례가 아니라 집계 단위를 설명하기 위한 작은 예다.</p>
+<p>자연어 질문을 그래프 질의 언어인 Cypher로 바꾸면, 사용자가 관계를 따라 자료를 찾는 일이 쉬워질 수 있다. 그러나 문장과 실행 사이에 번역 단계가 하나 생긴다. 그 번역이 원래 질문의 대상, 관계 방향, 기간, 중복 처리 규칙을 유지했는지 확인해야 한다. 문법이 맞고 결과가 나왔다는 사실은 이 확인의 일부다.</p>
+<h2>사람을 세는가, 연결을 세는가</h2>
+<p>앞의 예를 직원 노드와 과정 노드, 둘 사이의 수료 관계로 표현해 보자. 직원 노드는 두 개이고 수료 관계는 세 개다. 이 작은 그래프를 전제로 다음 질의의 두 집계는 서로 다른 것을 센다. 실제 운영 데이터베이스에서 측정한 결과가 아닌 설명용 예제다.</p>
+<pre><code class="language-cypher">MATCH (e:Employee)-[:COMPLETED]-&gt;(c:Course)
+RETURN count(*) AS completion_records,
+       count(DISTINCT e) AS employees</code></pre>
+<p><code>count(*)</code>는 패턴에 맞아 나온 행을 세므로 이 예에서는 3이다. <code>count(DISTINCT e)</code>는 같은 직원 노드의 반복을 제외해 2가 된다. Neo4j의 집계 문서는 기본 집계가 중복을 포함하며, <code>DISTINCT</code>로 중복을 제외한다고 설명한다. 무엇을 중복으로 볼지 정하는 표현식이 달라지면 답도 달라진다. <a href="https://neo4j.com/docs/cypher-manual/current/functions/aggregating/">Cypher 집계 함수 문서</a></p>
+<p>그렇다고 모든 질문에 중복 제거를 붙이면 되는 것은 아니다. 과정별 수료 실적을 물었다면 같은 사람이 여러 번 등장하는 것이 맞을 수 있다. 이름으로 중복을 제거하면 동명이인을 합칠 수도 있다. 반대로 동일 직원이 서로 다른 노드로 중복 등록되어 있다면 노드 기준의 중복 제거만으로는 사람 수를 바로잡을 수 없다. 집계 질의와 개체 식별 품질은 연결되어 있지만 각각 확인해야 한다.</p>
+<p>따라서 자연어를 바로 코드로 옮기기 전에 답의 단위를 정하는 편이 좋다. 수료자 수인지, 수료 건수인지, 특정 기간에 한 번 이상 수료한 현재 재직자 수인지 합의한다. 질문에 생략된 조건을 AI가 관행처럼 채우면, 사용자는 자신이 요청하지 않은 통계를 정확한 답으로 받아들일 수 있다.</p>
+<h2>실행 전 검사는 무엇을 보장하는가</h2>
+<p>Neo4j GraphRAG Python의 공개 <code>Text2CypherRetriever</code>는 질문을 바탕으로 LLM이 만든 Cypher를 추출해 조회에 사용한다. 이번에 확인한 기본 브랜치 구현은 생성 질의 앞에 <code>EXPLAIN</code>을 붙여 계획을 얻고, 결과 요약의 <code>query_type</code>이 읽기 전용을 뜻하는 <code>r</code>인지 확인한 뒤 실제 질의를 실행한다. 읽기 전용이 아니면 거부하도록 작성되어 있다. 이는 조사한 코드 리비전의 동작이며 모든 설치 버전의 보장으로 확대할 수 없다. <a href="https://github.com/neo4j/neo4j-graphrag-python/blob/123964634f213fde8e2a5fd29b45bea4d0391d5d/src/neo4j_graphrag/retrievers/text2cypher.py">확인한 공개 구현</a></p>
+<p>이 검사는 생성한 문장을 곧바로 실행하기 전에 두는 구체적인 경계다. 그러나 읽기 전용 여부는 수료 기록을 직원 수로 잘못 세었는지 알려 주지 않는다. 그래프 스키마에 <code>COMPLETED</code>라는 관계가 있다는 사실도 그 관계가 실제 수료, 출석 완료, 승인된 수료 중 무엇을 뜻하는지 전부 설명하지는 않는다. 이 부분에는 업무 정의와 기대 답이 필요하다.</p>
+<p>실행 계획을 읽는 방식에도 구분이 있다. Neo4j 문서에서 <code>EXPLAIN</code>은 질의를 실행하지 않고 계획과 추정 행 수를 보여 준다. <code>PROFILE</code>은 질의를 실제로 실행하고 DB 접근 횟수 같은 측정치를 보여 준다. 쓰기 질의를 <code>PROFILE</code>로 확인하면 데이터가 바뀔 수 있으며, 프로파일링 자체에도 추가 자원이 든다. 검토용이라는 이름만 보고 운영 데이터에서 자유롭게 실행할 수 있는 도구로 취급해서는 안 된다. <a href="https://neo4j.com/docs/cypher-manual/current/planning-and-tuning/execution-plans/">실행 계획 문서</a></p>
+<p>실행 계획 검토와 업무 의미 검토는 서로 다른 질문을 맡는다. 전자는 어떤 연산을 거쳐 결과를 얻는지 살피고, 후자는 그 결과가 담당자의 질문에 답하는지 살핀다. 같은 검수 화면에 두 결과를 함께 놓더라도 통과 기준을 하나로 합치지 않는 편이 좋다.</p>
+<h2>돌려줄 양과 실행할 범위를 나누어 정한다</h2>
+<p>AI가 만드는 질의에 결과 개수 제한을 붙이는 것은 유용하다. 다만 <code>LIMIT</code>은 반환 행 수를 제한하는 절이다. Neo4j 문서는 <code>LIMIT</code>과 쓰기 연산이 같은 질의 부분에 있으면 반환량을 줄여도 그 쓰기 효과를 막지 못한다고 명시한다. 또한 <code>ORDER BY</code>가 없으면 어떤 행이 반환될지 보장하지 않는다. 따라서 결과를 적게 받는 설정을 변경 방지나 안정적인 표본 선택과 같은 뜻으로 읽을 수는 없다. <a href="https://neo4j.com/docs/cypher-manual/current/clauses/limit/">LIMIT 문서</a></p>
+<p>조회 비용에 대해서도 반환량과 계산량을 따로 보아야 한다. 예를 들어 많은 관계를 따라 후보를 모은 뒤 집계하거나 정렬하는 질의라면, 마지막에 반환되는 몇 행만으로 중간 작업량을 설명하기 어렵다. 반대로 실행 계획에 따라 일찍 멈출 수 있는 질의도 있으므로 모든 <code>LIMIT</code>이 비용 절감에 무효라고 단정할 수도 없다. 실제 계획을 보고 판단할 문제다.</p>
+<p>업무에 적용한다면 결과 행 수와 함께 허용할 탐색 범위, 실행 시간, 조회 대상을 명시하는 설계를 제안한다. 교육 담당자의 질문을 처리하면서 조직 전체의 모든 관계를 제한 없이 따라갈 이유는 드물다. 정해진 업무에는 승인된 질의 틀과 매개변수를 사용하고, 자유로운 질의가 필요한 경우에는 별도 검수 경로를 둘 수 있다. 이는 특정 라이브러리에 이미 갖춰진 기능 목록이 아니라 운영자가 선택해야 할 설계안이다.</p>
+<p>질의가 읽기 전용 검사를 통과했더라도 반환된 내용을 누가 볼 수 있는지는 별도 판단이다. 여기서 필요한 것은 자연어 지시문에 모든 통제를 맡기는 방식보다, 실제 조회 계정과 애플리케이션이 허용하는 범위를 업무 목적에 맞추는 일이다. 구체적인 권한 설정은 사용하는 데이터베이스와 배포 환경의 계약을 따라야 한다.</p>
+<h2>질문과 질의를 함께 인수한다</h2>
+<p><a href="https://dexa.art/blog/posts/ontology-competency-questions-as-a-work-contract/">업무 질문을 온톨로지의 계약으로 삼는 글</a>에서는 질문, 형식 질의, 작은 사례, 기대 답을 연결했다. 자연어 질의 생성에도 이 연결을 이어갈 수 있다. 모델이 만든 질의 문자열을 정답 문자열과 똑같이 맞추는 것만으로 검수를 끝내기 어렵다. 다른 표현의 질의가 같은 답을 낼 수 있고, 같은 질의가 다른 데이터에서는 숨겨진 오해를 드러낼 수도 있기 때문이다.</p>
+<p>교육 조회를 위한 작은 시험 자료라면 다음과 같은 경우를 제안할 수 있다. 아래 표는 측정 결과나 제품의 기본 시험 항목이 아니다.</p>
+<div class="table-scroll"><table><thead><tr><th>시험에 넣을 상황</th><th>확인할 질문</th></tr></thead><tbody><tr><td>한 사람이 여러 과정을 수료함</td><td>사람 수와 수료 건수를 구분하는가</td></tr><tr><td>이름이 같은 서로 다른 직원이 있음</td><td>이름을 사람의 고유 식별자로 간주하지 않는가</td></tr><tr><td>지정 기간 밖의 수료 기록이 있음</td><td>기간 조건이 집계 전에 올바르게 적용되는가</td></tr><tr><td>등록 기록은 있으나 수료 관계가 없음</td><td>등록과 수료를 섞지 않고, 기록 부재의 의미를 설명하는가</td></tr></tbody></table></div>
+<p>특히 결과가 없을 때는 질문이 틀렸는지, 관계가 아직 입력되지 않았는지, 실제로 해당 기록이 없는지 구분해야 한다. 조회 결과가 비었다는 사실만으로 현실의 모든 부재를 입증할 수는 없다. 이 한계는 답변을 작성하는 모델에도 전달되어야 한다.</p>
+<p>업무 인수 기록에는 원래 질문과 합의한 집계 단위, 생성 질의, 적용한 매개변수, 조회 시점과 데이터 범위, 반환 결과를 함께 남기는 방식을 제안한다. 그래야 담당자가 숫자 하나를 다시 묻는 대신 어떤 해석을 고쳐야 하는지 짚을 수 있다. 민감한 결과를 무조건 모두 보관하라는 뜻은 아니며, 보관 범위와 접근 권한은 별도로 정해야 한다.</p>
+<p>자연어로 그래프를 조회하는 경험의 가치는 질의 언어를 감추는 데서 끝나지 않는다. 담당자의 질문이 실행과 결과 해석을 거치는 동안 유지되어야 한다. AI가 만든 질의를 인수할 때에는 그 질의가 어떤 질문에 답했는지까지 함께 확인할 필요가 있다.</p>
+            </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/kim-kulim-and-the-city-that-yawns/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>김구림의 영화에서 도시는 왜 하품하는가</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>
