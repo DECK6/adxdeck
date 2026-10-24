@@ -8,9 +8,9 @@
   <meta name="theme-color" content="#f3f1eb">
   <title>DECK — Media Art / Selected Works</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2320231e'/%3E%3Ctext x='9' y='29' fill='%23f3f1eb' font-size='27' font-family='Georgia'%3ED%3C/text%3E%3C/svg%3E">
-  <link rel="stylesheet" href="styles.css?v=5eb37953ce">
-  <script src="works.js?v=79f9a60976" defer></script>
-  <script src="app.js?v=7e34f33ca7" defer></script>
+  <link rel="stylesheet" href="styles.css?v=57bc499998">
+  <script src="works.js?v=a868281a2b" defer></script>
+  <script src="app.js?v=5146f1577f" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#works">작품 목록으로 건너뛰기</a>
@@ -88,6 +88,7 @@
 
   <dialog id="viewer" aria-labelledby="viewer-title">
     <div class="viewer-bar"><span class="eyebrow">DECK / SELECTED WORKS</span><button class="close-button" id="close-viewer" type="button" aria-label="작품 닫기">닫기 <span aria-hidden="true">×</span></button></div>
+    <div id="viewer-series" class="viewer-series" hidden></div>
     <div class="viewer-video-wrap"><video id="viewer-video" controls playsinline preload="none"></video><p id="video-error" role="status" hidden>영상을 불러오지 못했습니다. 아래 프리뷰 다운로드로 확인해 주세요.</p></div>
     <div class="viewer-body">
       <div class="viewer-heading"><div><p id="viewer-subtitle" class="eyebrow"></p><h2 id="viewer-title"></h2><p id="viewer-english" class="work-english" lang="en"></p></div><div class="viewer-step"><button type="button" id="previous-work" aria-label="이전 작품">←</button><span id="viewer-position" class="mono"></span><button type="button" id="next-work" aria-label="다음 작품">→</button></div></div>

@@ -2,7 +2,8 @@
   'use strict';
   const data = window.PORTFOLIO;
   const byId = new Map(data.works.map(work => [work.id, work]));
-  const works = data.order.map(id => byId.get(id)).filter(Boolean);
+  const seriesByFilm = new Map((data.series || []).flatMap(series => series.works.map(id => [id, series])));
+  const works = data.order.map(id => byId.get(id)).filter(work => work && (!seriesByFilm.has(work.id) || seriesByFilm.get(work.id).id === work.id));
   const $ = selector => document.querySelector(selector);
   const escape = value => String(value).replace(/[&<>"']/g, character => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[character]));
   const number = index => String(index + 1).padStart(2, '0');
@@ -17,7 +18,7 @@
 
   function renderCollection(filter = 'all') {
     visibleWorks = works.filter(work => filter === 'all' || work.group === filter);
-    $('#filter-count').textContent = `${String(visibleWorks.length).padStart(2, '0')} FILMS`;
+    $('#filter-count').textContent = `${String(visibleWorks.length).padStart(2, '0')} WORKS`;
     $('#work-grid').innerHTML = visibleWorks.map(work => `
       <article class="work-card" data-work="${escape(work.id)}">
         <button type="button" class="card-image" data-open="${escape(work.id)}" aria-label="${escape(work.title)} 전체 영상 보기">
@@ -27,7 +28,7 @@
         <div class="card-info"><span class="card-index">${number(works.indexOf(work))}</span><div>
           <h3><button type="button" class="card-title" data-open="${escape(work.id)}">${escape(work.title)}<span class="card-subtitle">${escape(work.subtitle)}</span></button></h3>
           <p class="work-english" lang="en">${escape(work.titleEn)}</p>
-        </div><div class="card-spec">${duration(work.duration)}<br>${work.sound ? 'Sound' : 'Silent'}${work.loop ? ' · Loop' : ''}</div></div>
+        </div><div class="card-spec">${seriesByFilm.has(work.id) ? `연작 · ${seriesByFilm.get(work.id).works.length}편` : duration(work.duration)}<br>${work.sound ? 'Sound' : 'Silent'}${work.loop ? ' · Loop' : ''}</div></div>
       </article>`).join('');
     document.querySelectorAll('[data-filter]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.filter === filter)));
   }
@@ -53,6 +54,16 @@
     document.querySelectorAll('[data-language]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.language === language)));
   }
 
+  function renderSeries(work) {
+    const series = seriesByFilm.get(work.id);
+    const selector = $('#viewer-series');
+    selector.hidden = !series;
+    selector.innerHTML = series ? `<p class="eyebrow">${escape(series.title)} · ${series.works.length}편</p><div class="series-films" role="group" aria-label="${escape(series.title)} 영상 선택">${series.works.map(id => {
+      const film = byId.get(id);
+      return `<button type="button" class="series-film" aria-pressed="${id === work.id}" data-open="${escape(id)}" aria-label="${escape(film.title)} 재생"><img src="${escape(film.poster)}" alt="" width="1920" height="640"><span>${escape(film.title.split(' · ')[0])}</span></button>`;
+    }).join('')}</div>` : '';
+  }
+
   function openWork(id, { autoplay = true, updateUrl = true } = {}) {
     const work = byId.get(id);
     if (!work) return;
@@ -71,7 +82,8 @@
     $('#viewer-title').textContent = work.title;
     $('#viewer-subtitle').textContent = work.subtitle;
     $('#viewer-english').textContent = `${work.titleEn} · ${work.year}`;
-    $('#viewer-position').textContent = `${number(works.indexOf(work))} / ${String(works.length).padStart(2, '0')}`;
+    const entry = byId.get(seriesByFilm.get(work.id)?.id) || work;
+    $('#viewer-position').textContent = `${number(works.indexOf(entry))} / ${String(works.length).padStart(2, '0')}`;
     const fields = [
       ['원본 해상도', work.resolution.join(' × ')], ['프레임', `${work.fps} fps`],
       ['재생 시간', duration(work.duration)], ['사운드', work.sound ? '사운드 포함' : '무음'],
@@ -84,6 +96,7 @@
     $('#download-poster').href = work.poster;
     $('#download-poster').download = `${work.id}-still.jpg`;
     renderDescription();
+    renderSeries(work);
     if (!dialog.open) dialog.showModal();
     document.body.classList.add('viewer-open');
     dialog.scrollTop = 0;
@@ -105,8 +118,9 @@
   $('#close-viewer').addEventListener('click', closeWork);
   function stepWork(direction) {
     if (!currentWork) return;
-    const sequence = visibleWorks.includes(currentWork) ? visibleWorks : works;
-    const next = (sequence.indexOf(currentWork) + direction + sequence.length) % sequence.length;
+    const entry = byId.get(seriesByFilm.get(currentWork.id)?.id) || currentWork;
+    const sequence = visibleWorks.includes(entry) ? visibleWorks : works;
+    const next = (sequence.indexOf(entry) + direction + sequence.length) % sequence.length;
     openWork(sequence[next].id);
   }
   $('#previous-work').addEventListener('click', () => stepWork(-1));
@@ -114,7 +128,11 @@
   video.addEventListener('error', () => { if (currentWork) $('#video-error').hidden = false; });
   document.addEventListener('click', event => {
     const open = event.target.closest('[data-open]');
-    if (open) openWork(open.dataset.open);
+    if (open) {
+      const fromSeries = event.target.closest('#viewer-series');
+      openWork(open.dataset.open);
+      if (fromSeries) $('#viewer-series [aria-pressed="true"]').focus();
+    }
     const filter = event.target.closest('[data-filter]');
     if (filter) renderCollection(filter.dataset.filter);
     const languageButton = event.target.closest('[data-language]');

@@ -55,3 +55,62 @@ test('existing portfolios remain directly visible below the featured films in bo
     assert.ok(english.includes(title), `English portfolio retains ${title}`);
   }
 });
+
+function galleryHarness(hash = '') {
+  const elements = new Map();
+  const handlers = new Map();
+  const element = selector => {
+    if (!elements.has(selector)) elements.set(selector, {
+      innerHTML: '', textContent: '', hidden: false, open: false, playCount: 0,
+      setAttribute() {}, removeAttribute() {}, pause() {}, load() {},
+      play() { this.playCount++; return Promise.resolve(); },
+      showModal() { this.open = true; },
+      addEventListener(name, callback) { handlers.set(`${selector}:${name}`, callback); }
+    });
+    return elements.get(selector);
+  };
+  const location = { hash, search: '', pathname: '/works/' };
+  const sandbox = {
+    window: { PORTFOLIO: catalog, addEventListener() {} }, URLSearchParams, location,
+    history: { replaceState(_state, _title, url) { location.hash = url.startsWith('#') ? url : ''; } },
+    document: {
+      querySelector: element, querySelectorAll: () => [], activeElement: null,
+      body: { classList: { add() {}, remove() {} } },
+      addEventListener(name, callback) { handlers.set(`document:${name}`, callback); }
+    }
+  };
+  vm.runInNewContext(read('works/app.js'), sandbox);
+  return {
+    element, location,
+    open(id) { handlers.get('document:click')({ target: { closest: selector => selector === '[data-open]' ? { dataset: { open: id } } : null } }); },
+    next() { handlers.get('#next-work:click')(); }
+  };
+}
+
+test('Four Seasons is one collection entry with all five films selectable inside', () => {
+  const page = galleryHarness();
+  const cards = [...page.element('#work-grid').innerHTML.matchAll(/data-work="([^"]+)"/g)].map(m => m[1]);
+  assert.equal(cards.length, 8);
+  assert.ok(cards.includes('four-seasons'));
+  for (const id of ['spring', 'summer', 'autumn', 'winter']) assert.ok(!cards.includes(id));
+  page.open('four-seasons');
+  const choices = [...page.element('#viewer-series').innerHTML.matchAll(/data-open="([^"]+)"/g)].map(m => m[1]);
+  assert.deepEqual(choices, ['four-seasons', 'spring', 'summer', 'autumn', 'winter']);
+  for (const id of choices) {
+    page.open(id);
+    assert.ok(page.element('#viewer-video').src.endsWith(`/${id}.mp4`));
+    assert.equal(page.element('#viewer-series').hidden, false);
+    assert.equal(page.location.hash, `#work=${id}`);
+  }
+  page.next();
+  assert.equal(page.element('#viewer-title').textContent, '결구');
+  assert.equal(page.element('#viewer-series').hidden, true);
+});
+
+test('direct links to a season retain its series selector and pause until the user plays', () => {
+  const page = galleryHarness('#work=summer');
+  assert.ok(page.element('#viewer-video').src.endsWith('/summer.mp4'));
+  assert.equal(page.element('#viewer-series').hidden, false);
+  assert.match(page.element('#viewer-series').innerHTML, /aria-pressed="true"[^>]*data-open="summer"/);
+  assert.equal(page.element('#viewer-video').playCount, 0);
+});

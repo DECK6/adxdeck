@@ -319,5 +319,18 @@ window.PORTFOLIO = {
     "ink-breath",
     "gyeol",
     "sand-pendulum"
+  ],
+  "series": [
+    {
+      "id": "four-seasons",
+      "title": "흔적의 사계",
+      "works": [
+        "four-seasons",
+        "spring",
+        "summer",
+        "autumn",
+        "winter"
+      ]
+    }
   ]
 };

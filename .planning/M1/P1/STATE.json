@@ -6,10 +6,11 @@
   "status": "in_progress",
   "owner_runtime": "codex",
   "acceptance_criteria": [
-    "Homepage exactly Ink Breath, Gyeol, Harmonograph in that order",
+    "Homepage features Ink Breath, Gyeol, Harmonograph in that order",
+    "Existing Korean 8 and English 5 projects remain directly visible",
+    "Collection shows Four Seasons once, with all five films selectable inside",
     "All 12 films playable with correct sound and loop",
     "No LED.ART partnership/acceptance claims",
-    "Legacy projects retained",
     "Public Pages commit and media verified"
   ],
   "evidence": [
@@ -31,7 +32,30 @@
     },
     {
       "check": "Public deployment",
-      "result": "pending"
+      "result": "Pages built fe96c81198cf84924cca42f08c875da30ebb4644; Pages 40070628222 and Build Blog Index 40070628270 success; 23 public HTML/JS/CSS/poster/sitemap files byte-identical"
+    },
+    {
+      "check": "Public browser navigation from homepage into Ink Breath",
+      "result": {
+        "url": "https://dexa.art/works/#work=ink-breath",
+        "films": 12,
+        "title": "먹의 호흡",
+        "time": 30.137063,
+        "width": 1920,
+        "height": 640,
+        "muted": false,
+        "audioBytes": 116354,
+        "loop": false,
+        "error": null
+      }
+    },
+    {
+      "check": "Portfolio restoration 667bced",
+      "result": "Pages built; local browser shows Korean 8 and English 5 without collapsed ancestors"
+    },
+    {
+      "check": "Series grouping",
+      "result": "22 relevant tests pass; 5/5 browser playback, correct titles, hashes, selected thumbnail and keyboard focus; 320/390px no overflow; desktop/mobile screenshots inspected"
     }
   ],
   "updated_at": "2026-10-24"
