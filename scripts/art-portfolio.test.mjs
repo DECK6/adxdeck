@@ -40,3 +40,18 @@ test('public pages present artwork without an LED.ART association or private del
   assert.match(read('works/index.html'), /rel="canonical" href="https:\/\/dexa.art\/works\/"/);
   assert.match(read('index.html'), /id="project-archive-grid"/);
 });
+
+
+test('existing portfolios remain directly visible below the featured films in both languages', () => {
+  for (const file of ['index.html', 'en/index.html']) {
+    const html = read(file);
+    const portfolio = html.match(/<section[^>]*id="portfolio"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+    assert.ok(portfolio, `${file}: existing portfolio must remain a visible section`);
+    assert.doesNotMatch(portfolio, /<details\b|<[^>]*\shidden(?:\s|=|>)/);
+    assert.ok(html.indexOf('id="portfolio"') > html.lastIndexOf('data-home-film='));
+  }
+  const english = read('en/index.html');
+  for (const title of ['Ultraviolet', 'Afterimage of the Hand', 'Breath of Chaos', 'Christmas at the Incinerator', 'PRECTXE']) {
+    assert.ok(english.includes(title), `English portfolio retains ${title}`);
+  }
+});

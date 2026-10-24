@@ -44,7 +44,7 @@ test('language switches and content remain accessible without JavaScript', () =>
     const href = attr(a, 'href');
     if (href?.startsWith('#')) assert.ok(ids.includes(href.slice(1)), `anchor ${href}`);
   }
-  assert.equal((english.match(/<article class="work-card/g) || []).length, 3);
+  assert.equal((english.match(/<article class="work-card/g) || []).length, 8);
   for (const title of ['Ink Breath', 'Gyeol — Wind over the Grass', 'Harmonograph']) assert.ok(english.includes(title));
   assert.match(english, /AI agent and MCP/);
   assert.match(english, /knowledge-management/);
