@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "milestone": "M1",
+  "phase": "P1",
+  "gate": "release",
+  "status": "in_progress",
+  "owner_runtime": "codex",
+  "acceptance_criteria": [
+    "Homepage exactly Ink Breath, Gyeol, Harmonograph in that order",
+    "All 12 films playable with correct sound and loop",
+    "No LED.ART partnership/acceptance claims",
+    "Legacy projects retained",
+    "Public Pages commit and media verified"
+  ],
+  "evidence": [
+    {
+      "check": "node --test art portfolio / English / AX / taxonomy / shared shell",
+      "result": "35 passed, 0 failed; exit 0"
+    },
+    {
+      "check": "node blog/build.js; SEO readiness; sync --check; git diff --check",
+      "result": "exit 0; six pre-existing unregistered sitemap routes unchanged"
+    },
+    {
+      "check": "Browser media playback from public release assets",
+      "result": "12/12 H264 decoded at 1920x640; AAC bytes positive; muted false; seek beyond 35 seconds; no errors"
+    },
+    {
+      "check": "Responsive CSS viewport 320,390,768,1440 for KO home, EN home, gallery",
+      "result": "all 12 cases: scrollWidth <= viewport; home 3 films, gallery 12"
+    },
+    {
+      "check": "Public deployment",
+      "result": "pending"
+    }
+  ],
+  "updated_at": "2026-10-24"
+}

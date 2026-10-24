@@ -853,7 +853,8 @@ fs.writeFileSync(path.join(mediaArtDir, 'index.html'), mediaArtGuideHtml(postsPu
 // Write sitemap.xml at repo root
 const staticUrls = [
     { loc: `${SITE_URL}/`, priority: '1.0' },
-    { loc: `${SITE_URL}/en/`, lastmod: '2026-10-15', priority: '0.9' },
+    { loc: `${SITE_URL}/en/`, lastmod: '2026-10-24', priority: '0.9' },
+    { loc: `${SITE_URL}/works/`, lastmod: '2026-10-24', priority: '0.9' },
     { loc: `${SITE_URL}/blog/`, priority: '0.9' },
     { loc: `${SITE_URL}/blog/media-art/`, lastmod: '2026-09-12', priority: '0.9' },
     { loc: `${SITE_URL}/blog/ax/`, lastmod: '2026-09-09', priority: '0.9' },

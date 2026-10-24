@@ -509,7 +509,7 @@ async function loadProjects() {
 }
 
 function renderProjects(projects) {
-    const workGrid = document.getElementById('project-grid');
+    const workGrid = document.getElementById('project-archive-grid');
     const academyGrid = document.getElementById('academy-grid');
 
     // reset grids

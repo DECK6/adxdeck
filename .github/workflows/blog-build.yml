@@ -11,6 +11,9 @@ on:
       - 'blog/index.html'
       - 'blog/blog.js'
       - 'en/**'
+      - 'works/**'
+      - 'scripts/art-portfolio.test.mjs'
+      - 'scripts/sync-art-portfolio.mjs'
       - 'scripts/english-edition-regression.test.js'
 
 permissions:
@@ -27,6 +30,8 @@ jobs:
 
       - name: Validate generated SEO artifacts
         run: |
+          node scripts/sync-art-portfolio.mjs --check
+          node --test scripts/art-portfolio.test.mjs
           node scripts/seo-readiness-check.js
           node --test scripts/ax-seo-regression.test.js scripts/media-art-taxonomy-regression.test.js scripts/shared-shell-regression.test.js scripts/english-edition-regression.test.js
           git diff --check

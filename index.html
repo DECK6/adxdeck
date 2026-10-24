@@ -65,6 +65,7 @@
         rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
     <link rel="stylesheet" href="/dexa-theme.css" />
+    <link rel="stylesheet" href="/works/home.css?v=b3d01ff242" />
     <style>
         .home-language-switch { max-width:1400px; margin:0 auto; padding:14px 40px 0; display:flex; justify-content:flex-end; align-items:center; gap:4px; font-family:var(--font-mono); font-size:12px; font-weight:700; }
         .home-language-switch a, .home-language-switch span { min-width:44px; min-height:44px; display:inline-flex; align-items:center; justify-content:center; border:1px solid var(--line); border-radius:6px; }
@@ -260,18 +261,22 @@
             <div class="works-head">
                 <div style="display:flex;align-items:baseline;gap:16px;">
                     <span class="dx-section-num">03</span>
-                    <h2>Selected Projects<span style="color:var(--cyan);">.</span></h2>
+                    <h2>Selected Works<span style="color:var(--cyan);">.</span></h2>
                 </div>
                 <span class="side">/// LATEST WORKS</span>
             </div>
-            <!-- Dynamic Project Grid Container -->
-            <div id="project-grid" class="works-grid">
-                <!-- Data will be loaded from projects.json -->
-                <div style="grid-column:1/-1;text-align:center;padding:80px 0;">
-                    <div style="display:inline-block;width:32px;height:32px;border-radius:50%;border:2px solid var(--ink-key);border-top-color:var(--cyan);border-bottom-color:var(--cyan);animation:dexa-spin 0.8s linear infinite;"></div>
-                    <p class="mono" style="margin-top:16px;color:var(--ink-text-dim);font-size:12px;">Loading Projects...</p>
-                </div>
+            <div id="project-grid" class="works-grid home-film-grid">
+                <!-- HOME_FILMS:START -->
+        <a class="work-card film-card" data-home-film="ink-breath" href="/works/#work=ink-breath" aria-label="먹의 호흡 전체 영상 보기"><div class="frame"><img src="/works/assets/posters/ink-breath.jpg" alt="먹의 호흡" width="1920" height="640" loading="lazy"></div><div class="caption"><span class="title">먹의 호흡</span><span class="spec"><span>두 폭의 산수, 한 호흡</span><span>59.5s · Sound</span></span><p class="desc">거문고 한 음마다 먹 알갱이가 모여 산수가 되고, 바람처럼 쓸려 다른 산수로 내려앉는다.</p></div></a>
+        <a class="work-card film-card" data-home-film="gyeol" href="/works/#work=gyeol" aria-label="결 전체 영상 보기"><div class="frame"><img src="/works/assets/posters/gyeol.jpg" alt="결" width="1920" height="640" loading="lazy"></div><div class="caption"><span class="title">결</span><span class="spec"><span>바람이 지나간 들</span><span>60s · Sound</span></span><p class="desc">음악이 바람이 되어 빽빽한 들판을 지난다. 은빛 억새와 핑크뮬리, 달빛의 갈대 사이로 보이지 않는 힘이 빛과 그늘의 결을 남긴다.</p></div></a>
+        <a class="work-card film-card" data-home-film="sand-pendulum" href="/works/#work=sand-pendulum" aria-label="하모노그래프 전체 영상 보기"><div class="frame"><img src="/works/assets/posters/sand-pendulum.jpg" alt="하모노그래프" width="1920" height="640" loading="lazy"></div><div class="caption"><span class="title">하모노그래프</span><span class="spec"><span>움직임이 남긴 시간</span><span>60s · Sound</span></span><p class="desc">두 강철 구가 겹쳐 그린 곡선이 모래 위에 쌓이며, 반복되는 운동이 시간의 지형으로 남는다.</p></div></a>
+        <!-- HOME_FILMS:END -->
             </div>
+            <a class="film-collection-link" href="/works/">전체 작품 보기 <span aria-hidden="true">↗</span></a>
+            <details class="project-archive">
+                <summary>전시·프로젝트 아카이브</summary>
+                <div id="project-archive-grid" class="works-grid"></div>
+            </details>
         </div>
 
         <!-- Upcoming Works Section -->
@@ -503,7 +508,7 @@
         </p>
     </footer>
     <!-- SHARED_FOOTER_END -->
-    <script src="script.js"></script>
+    <script src="script.js?v=3e741fb83f"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js" defer></script>
     <script src="hero-art.js" defer></script>
 </body>

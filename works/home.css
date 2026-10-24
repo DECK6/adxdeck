@@ -1,0 +1,15 @@
+/* The three selected films preserve their original panoramic framing. */
+.home-film-grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+.home-film-grid .work-card{min-width:0;}
+.home-film-grid .film-card{color:inherit;text-decoration:none;}
+.home-film-grid .frame{aspect-ratio:3/1;flex:none;}
+.home-film-grid .frame img,.home-film-grid .work-image img{display:block;aspect-ratio:3/1;object-fit:contain;}
+.home-film-grid .work-copy{flex:1;}
+.home-film-grid .title{font-family:inherit;font-size:19px;letter-spacing:0;}
+.home-film-grid a:focus-visible{outline:3px solid var(--cyan);outline-offset:4px;}
+.film-collection-link{display:inline-block;margin-top:28px;color:var(--cyan);font-size:14px;}
+.project-archive{margin-top:40px;border-top:1px solid var(--ink-key);padding-top:22px;}
+.project-archive summary{cursor:pointer;color:var(--ink-text-dim);font-size:14px;}
+.project-archive .works-grid{margin-top:24px;}
+.home-film-grid + .portfolio-link{margin-right:24px;}
+@media(max-width:760px){.home-film-grid{grid-template-columns:1fr;}}

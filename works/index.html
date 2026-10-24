@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="canonical" href="https://dexa.art/works/">
+  <meta name="description" content="육대근(DECK)의 미디어아트 작품 모음. 빛, 소리, 움직임이 공간에 남기는 흔적.">
+  <meta name="theme-color" content="#f3f1eb">
+  <title>DECK — Media Art / Selected Works</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%2320231e'/%3E%3Ctext x='9' y='29' fill='%23f3f1eb' font-size='27' font-family='Georgia'%3ED%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css?v=5eb37953ce">
+  <script src="works.js?v=79f9a60976" defer></script>
+  <script src="app.js?v=7e34f33ca7" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#works">작품 목록으로 건너뛰기</a>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="DEXA 홈페이지">DECK<span>MEDIA ART</span></a>
+      <nav aria-label="주요 메뉴">
+        <a href="#works">작품</a><a href="#artist">작가</a><a href="#collaboration">협업</a>
+      </nav>
+      <a class="contact-link" href="mailto:deck@dexa.art">Contact <span aria-hidden="true">↗</span></a>
+    </header>
+
+    <main id="top">
+      <section class="opening" aria-labelledby="opening-title">
+        <div class="opening-copy">
+          <p class="eyebrow">SELECTED WORKS <span class="little-rule"></span> 2026</p>
+          <h1 id="opening-title">빛과 소리로<br>남은 움직임.</h1>
+        </div>
+        <div class="opening-aside">
+          <p>보이지 않는 힘이<br>하나의 장면이 되는 순간.</p>
+          <div class="opening-signature"><span>육대근 <span class="muted">(DECK)</span></span><span>MEDIA ART / DEXA</span></div>
+        </div>
+      </section>
+
+      <section id="featured" class="featured" aria-label="대표 작품"></section>
+
+      <section id="works" class="works-section" aria-labelledby="works-title">
+        <div class="section-heading">
+          <div><p class="eyebrow">THE COLLECTION</p><h2 id="works-title">작품 모음 <sup id="work-count"></sup></h2></div>
+          <p class="section-note">장면을 선택해 전체 영상을 감상하세요.</p>
+        </div>
+        <div class="collection-toolbar">
+          <div class="filters" role="group" aria-label="작품 분류">
+            <button type="button" data-filter="all" aria-pressed="true">전체</button>
+            <button type="button" data-filter="confluence" aria-pressed="false">합류</button>
+            <button type="button" data-filter="seasons" aria-pressed="false">흔적의 사계</button>
+            <button type="button" data-filter="individual" aria-pressed="false">개별 작품</button>
+          </div>
+          <span id="filter-count" class="mono" aria-live="polite"></span>
+        </div>
+        <div id="work-grid" class="work-grid"></div>
+        <noscript><p>작품 목록과 영상 재생을 위해 브라우저에서 JavaScript를 켜주세요.</p></noscript>
+      </section>
+
+      <section id="artist" class="artist-section" aria-labelledby="artist-title">
+        <div class="artist-picture"><img src="assets/images/artist.jpg" width="640" height="640" alt="육대근(DECK) 작가 프로필" loading="lazy"></div>
+        <div class="artist-copy">
+          <p class="eyebrow">THE ARTIST</p>
+          <h2 id="artist-title">육대근 <span>DECK</span></h2>
+          <p class="artist-question" id="artist-question"></p>
+          <p class="body-copy" id="artist-bio"></p>
+          <details class="english-bio"><summary>Artist bio in English</summary><p id="artist-bio-en" lang="en"></p></details>
+          <a class="text-link" href="https://dexa.art/" target="_blank" rel="noopener noreferrer">DEXA 방문 <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section id="collaboration" class="collaboration-section" aria-labelledby="collaboration-title">
+        <div class="collaboration-copy">
+          <p class="eyebrow">TOOLS & COLLABORATION</p>
+          <h2 id="collaboration-title">화면 너머의 공간으로.</h2>
+          <h3>Anamorphic Sim</h3>
+          <p>AI를 활용한 아나모픽 영상 제작과 커브드 스크린에 맞춘 출력을 돕는 제작 도구입니다. 미디어월 파일럿, 아티스트 워크숍, 스크린 사양에 맞춘 작품 제작을 함께 논의합니다.</p>
+          <a class="text-link" href="https://dexa.art/anamorphic-sim/" target="_blank" rel="noopener noreferrer">소개와 데모 보기 <span aria-hidden="true">↗</span></a>
+        </div>
+        <a class="collaboration-image" href="https://dexa.art/anamorphic-sim/" target="_blank" rel="noopener noreferrer" aria-label="Anamorphic Sim 소개와 데모 새 창에서 보기"><img src="assets/images/anamorphic.jpg" alt="Anamorphic Sim의 아나모픽 제작 화면" loading="lazy" width="1280" height="720"></a>
+      </section>
+
+      <section class="submission-section" aria-labelledby="submission-title">
+        <div><p class="eyebrow">LET’S CONNECT</p><h2 id="submission-title">작품과 공간이 만날 때.</h2><p>작품 검토와 전시·제작 협업 문의</p></div>
+        <div class="submission-actions"><a class="button button-dark" href="mailto:deck@dexa.art">deck@dexa.art <span aria-hidden="true">↗</span></a><a class="text-link" id="materials-link">전시·상영 자료 문의 <span aria-hidden="true">↗</span></a></div>
+      </section>
+    </main>
+    <footer><a class="footer-logo" href="#top">DECK</a><span>© 2026 Yuk Daekeun. All rights reserved.</span><a href="#top">Back to top ↑</a></footer>
+  </div>
+
+  <dialog id="viewer" aria-labelledby="viewer-title">
+    <div class="viewer-bar"><span class="eyebrow">DECK / SELECTED WORKS</span><button class="close-button" id="close-viewer" type="button" aria-label="작품 닫기">닫기 <span aria-hidden="true">×</span></button></div>
+    <div class="viewer-video-wrap"><video id="viewer-video" controls playsinline preload="none"></video><p id="video-error" role="status" hidden>영상을 불러오지 못했습니다. 아래 프리뷰 다운로드로 확인해 주세요.</p></div>
+    <div class="viewer-body">
+      <div class="viewer-heading"><div><p id="viewer-subtitle" class="eyebrow"></p><h2 id="viewer-title"></h2><p id="viewer-english" class="work-english" lang="en"></p></div><div class="viewer-step"><button type="button" id="previous-work" aria-label="이전 작품">←</button><span id="viewer-position" class="mono"></span><button type="button" id="next-work" aria-label="다음 작품">→</button></div></div>
+      <dl id="viewer-specs" class="specs"></dl>
+      <div class="viewer-description"><div><div class="language-switch" role="group" aria-label="작품 설명 언어"><button type="button" data-language="ko" aria-pressed="true">한국어</button><button type="button" data-language="en" aria-pressed="false">English</button></div><p id="viewer-description"></p><p class="credits" id="viewer-credits"></p></div><div class="viewer-downloads"><a id="download-preview" class="text-link" download>프리뷰 다운로드 <span aria-hidden="true">↓</span></a><a id="download-poster" class="text-link" download>작품 이미지 다운로드 <span aria-hidden="true">↓</span></a></div></div>
+    </div>
+  </dialog>
+</body>
+</html>
