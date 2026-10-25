@@ -1,5 +1,32 @@
 [
   {
+    "slug": "experimental-television-center-and-the-right-to-shape-a-signal",
+    "file": "_built/experimental-television-center-and-the-right-to-shape-a-signal.md",
+    "title": "영상의 손잡이를 작가에게 돌려준 작업실",
+    "description": "실험 텔레비전 센터의 공동 장비와 신호 매뉴얼을 통해, 기계를 사용할 기회와 이미지의 생성 원리를 바꿀 권한이 어떻게 예술의 형식을 만드는지 살펴봅니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "비디오아트",
+      "실험-텔레비전-센터",
+      "예술-인프라"
+    ],
+    "date": "2026-10-26",
+    "modified": "2026-10-26",
+    "thumbnail": "images/experimental-television-center-shaping-a-signal-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "제도·인프라",
+    "mediaArtCategorySlug": "institutions-infrastructure",
+    "mediaArtTags": [
+      "media-art",
+      "비디오아트",
+      "실험-텔레비전-센터",
+      "예술-인프라"
+    ]
+  },
+  {
     "slug": "daniel-rozin-and-the-image-made-of-wood",
     "file": "_built/daniel-rozin-and-the-image-made-of-wood.md",
     "title": "나무 조각은 어떻게 거울이 되는가",
