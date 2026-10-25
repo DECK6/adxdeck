@@ -27,6 +27,26 @@
     ]
   },
   {
+    "slug": "keeping-the-source-in-ai-document-conversion",
+    "file": "_built/keeping-the-source-in-ai-document-conversion.md",
+    "title": "AI가 읽은 표에서 원문의 자리를 지키는 법",
+    "description": "PDF를 AI용 문서로 바꿀 때 표의 병합 구조와 원문 위치를 어떻게 보존할까. Docling의 문서 모델을 바탕으로 읽기용 텍스트, 구조화 자료, 페이지 근거를 연결하는 업무 설계를 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "AX",
+      "RAG",
+      "Docling",
+      "문서변환"
+    ],
+    "date": "2026-10-25",
+    "modified": "2026-10-25",
+    "thumbnail": "images/keeping-the-source-in-ai-document-conversion-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "does-an-ai-generated-graph-query-keep-the-question",
     "file": "_built/does-an-ai-generated-graph-query-keep-the-question.md",
     "title": "AI가 만든 그래프 질의는 원래 질문을 지키는가",
