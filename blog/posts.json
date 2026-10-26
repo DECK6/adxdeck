@@ -1,5 +1,32 @@
 [
   {
+    "slug": "chance-and-the-decisions-left-open-in-art",
+    "file": "_built/chance-and-the-decisions-left-open-in-art.md",
+    "title": "우연을 쓰는 일과 결정을 열어 두는 일",
+    "description": "존 케이지의 우연 작법과 불확정성을 구분해 읽고, 생성형 영상의 시드와 실시간 입력을 통해 작품의 어떤 결정이 언제 누구에게 열려 있는지 살펴봅니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "불확정성",
+      "우연성",
+      "생성예술"
+    ],
+    "date": "2026-10-27",
+    "modified": "2026-10-27",
+    "thumbnail": "images/chance-and-decisions-left-open-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "media-art",
+      "불확정성",
+      "우연성",
+      "생성예술"
+    ]
+  },
+  {
     "slug": "experimental-television-center-and-the-right-to-shape-a-signal",
     "file": "_built/experimental-television-center-and-the-right-to-shape-a-signal.md",
     "title": "영상의 손잡이를 작가에게 돌려준 작업실",
