@@ -27,6 +27,26 @@
     ]
   },
   {
+    "slug": "making-room-for-kv-cache-in-shared-ai-services",
+    "file": "_built/making-room-for-kv-cache-in-shared-ai-services.md",
+    "title": "긴 대화가 늘어날 때 AI 서버에 남겨야 할 메모리",
+    "description": "모델을 GPU에 올리는 데 성공해도 긴 요청을 동시에 처리할 여유는 따로 필요하다. KV 캐시의 용량을 계산하고 문맥 길이, 동시 요청, 저장 정밀도를 업무 응답 기준과 연결하는 방법을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "AX",
+      "inference",
+      "KV-cache",
+      "model-serving"
+    ],
+    "date": "2026-10-26",
+    "modified": "2026-10-26",
+    "thumbnail": "images/making-room-for-kv-cache-in-shared-ai-services-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "daniel-rozin-and-the-image-made-of-wood",
     "file": "_built/daniel-rozin-and-the-image-made-of-wood.md",
     "title": "나무 조각은 어떻게 거울이 되는가",
