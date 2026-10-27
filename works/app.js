@@ -10,6 +10,7 @@
   const duration = seconds => `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
   const dialog = $('#viewer');
   const video = $('#viewer-video');
+  const videoSource = $('#viewer-video-source');
   let visibleWorks = works;
   let currentWork = null;
   let language = new URLSearchParams(location.search).get('lang') === 'en' ? 'en' : 'ko';
@@ -75,7 +76,9 @@
     currentWork = work;
     $('#video-error').hidden = true;
     video.poster = work.poster;
-    video.src = work.video;
+    // Explicit MP4 type lets Safari select media served through download redirects.
+    videoSource.src = work.video;
+    video.load();
     video.loop = work.loop;
     video.muted = false;
     video.setAttribute('aria-label', `${work.title} 전체 영상${work.sound ? ', 사운드 포함' : ', 무음'}`);
@@ -107,7 +110,7 @@
   function closeWork() { if (dialog.open) dialog.close(); }
   dialog.addEventListener('close', () => {
     video.pause();
-    video.removeAttribute('src');
+    videoSource.removeAttribute('src');
     video.load();
     currentWork = null;
     document.body.classList.remove('viewer-open');
@@ -125,7 +128,9 @@
   }
   $('#previous-work').addEventListener('click', () => stepWork(-1));
   $('#next-work').addEventListener('click', () => stepWork(1));
-  video.addEventListener('error', () => { if (currentWork) $('#video-error').hidden = false; });
+  const showVideoError = () => { if (currentWork) $('#video-error').hidden = false; };
+  video.addEventListener('error', showVideoError);
+  videoSource.addEventListener('error', showVideoError);
   document.addEventListener('click', event => {
     const open = event.target.closest('[data-open]');
     if (open) {

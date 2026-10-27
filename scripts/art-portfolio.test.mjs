@@ -98,7 +98,7 @@ test('Four Seasons is one collection entry with all five films selectable inside
   assert.deepEqual(choices, ['four-seasons', 'spring', 'summer', 'autumn', 'winter']);
   for (const id of choices) {
     page.open(id);
-    assert.ok(page.element('#viewer-video').src.endsWith(`/${id}.mp4`));
+    assert.ok(page.element('#viewer-video-source').src.endsWith(`/${id}.mp4`));
     assert.equal(page.element('#viewer-series').hidden, false);
     assert.equal(page.location.hash, `#work=${id}`);
   }
@@ -109,7 +109,7 @@ test('Four Seasons is one collection entry with all five films selectable inside
 
 test('direct links to a season retain its series selector and pause until the user plays', () => {
   const page = galleryHarness('#work=summer');
-  assert.ok(page.element('#viewer-video').src.endsWith('/summer.mp4'));
+  assert.ok(page.element('#viewer-video-source').src.endsWith('/summer.mp4'));
   assert.equal(page.element('#viewer-series').hidden, false);
   assert.match(page.element('#viewer-series').innerHTML, /aria-pressed="true"[^>]*data-open="summer"/);
   assert.equal(page.element('#viewer-video').playCount, 0);
