@@ -27,6 +27,26 @@
     ]
   },
   {
+    "slug": "where-the-time-saved-by-ai-goes",
+    "file": "_built/where-the-time-saved-by-ai-goes.md",
+    "title": "AI가 아낀 시간은 어디로 가는가",
+    "description": "AI로 개인의 작업 시간이 줄어도 팀의 일이 끝나는 시간은 그대로일 수 있다. 66개 기업의 현장 실험을 바탕으로 시간 절감, 업무량, 품질을 구분하고 절감한 시간을 업무 설계에 연결하는 방법을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "AX",
+      "work-design",
+      "productivity",
+      "organizational-change"
+    ],
+    "date": "2026-10-27",
+    "modified": "2026-10-27",
+    "thumbnail": "images/where-the-time-saved-by-ai-goes-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "experimental-television-center-and-the-right-to-shape-a-signal",
     "file": "_built/experimental-television-center-and-the-right-to-shape-a-signal.md",
     "title": "영상의 손잡이를 작가에게 돌려준 작업실",
