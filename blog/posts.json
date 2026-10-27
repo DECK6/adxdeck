@@ -1,5 +1,32 @@
 [
   {
+    "slug": "jonathan-sterne-and-the-listener-inside-mp3",
+    "file": "_built/jonathan-sterne-and-the-listener-inside-mp3.md",
+    "title": "MP3 안에 미리 들어간 청취자",
+    "description": "조너선 스턴의 MP3 연구를 통해 압축에 담긴 청취 모델을 읽고, 전시 음향에서 파일의 손실과 관객의 경험을 어떻게 구분해 판단할지 살펴봅니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "사운드아트",
+      "조너선스턴",
+      "매체이론"
+    ],
+    "date": "2026-10-28",
+    "modified": "2026-10-28",
+    "thumbnail": "images/sterne-mp3-imagined-listener-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "media-art",
+      "사운드아트",
+      "조너선스턴",
+      "매체이론"
+    ]
+  },
+  {
     "slug": "chance-and-the-decisions-left-open-in-art",
     "file": "_built/chance-and-the-decisions-left-open-in-art.md",
     "title": "우연을 쓰는 일과 결정을 열어 두는 일",

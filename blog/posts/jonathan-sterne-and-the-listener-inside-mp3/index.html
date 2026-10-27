@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MP3 안에 미리 들어간 청취자 | DEXA Blog</title>
+    <meta name="description" content="조너선 스턴의 MP3 연구를 통해 압축에 담긴 청취 모델을 읽고, 전시 음향에서 파일의 손실과 관객의 경험을 어떻게 구분해 판단할지 살펴봅니다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/jonathan-sterne-and-the-listener-inside-mp3/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="MP3 안에 미리 들어간 청취자" />
+    <meta property="og:description" content="조너선 스턴의 MP3 연구를 통해 압축에 담긴 청취 모델을 읽고, 전시 음향에서 파일의 손실과 관객의 경험을 어떻게 구분해 판단할지 살펴봅니다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/jonathan-sterne-and-the-listener-inside-mp3/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/sterne-mp3-imagined-listener-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-10-28" />
+    <meta property="article:modified_time" content="2026-10-28" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="사운드아트" />
+    <meta property="article:tag" content="조너선스턴" />
+    <meta property="article:tag" content="매체이론" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MP3 안에 미리 들어간 청취자" />
+    <meta name="twitter:description" content="조너선 스턴의 MP3 연구를 통해 압축에 담긴 청취 모델을 읽고, 전시 음향에서 파일의 손실과 관객의 경험을 어떻게 구분해 판단할지 살펴봅니다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/sterne-mp3-imagined-listener-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"MP3 안에 미리 들어간 청취자","description":"조너선 스턴의 MP3 연구를 통해 압축에 담긴 청취 모델을 읽고, 전시 음향에서 파일의 손실과 관객의 경험을 어떻게 구분해 판단할지 살펴봅니다.","image":"https://dexa.art/blog/images/sterne-mp3-imagined-listener-cover.png","datePublished":"2026-10-28","dateModified":"2026-10-28","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/jonathan-sterne-and-the-listener-inside-mp3/"},"articleSection":"Media Art","keywords":"media-art, 사운드아트, 조너선스턴, 매체이론"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">Media Art</span>
+                    <span class="dx-date">Article · 2026.10.28</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>MP3 안에 미리 들어간 청취자</h1>
+                <p style="color:var(--muted);font-size:17px;">조너선 스턴의 MP3 연구를 통해 압축에 담긴 청취 모델을 읽고, 전시 음향에서 파일의 손실과 관객의 경험을 어떻게 구분해 판단할지 살펴봅니다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">media-art</span><span class="dx-tag-chip">사운드아트</span><span class="dx-tag-chip">조너선스턴</span><span class="dx-tag-chip">매체이론</span></div>
+<p><img src="/blog/images/sterne-mp3-imagined-listener-cover.png" alt="겹쳐 흐르는 가느다란 음향의 선들이 귀를 연상시키는 반투명 구조를 지나 일부만 이어지는 개념 이미지" loading="lazy"></p>
+<p><em>표지는 글의 주제를 표현한 AI 생성 개념 이미지입니다. 실제 작품이나 MP3의 내부 구조를 재현한 도해가 아닙니다.</em></p>
+<p>전시용 음원을 내보낼 때 우리는 파일 형식을 마지막 문제로 미루기 쉽다. 소리를 만들고, 길이를 정하고, 공간에 놓을 위치를 결정한 뒤 남은 것은 저장 방식이라고 생각한다. 같은 곡이 재생되고 파일도 잘 열리면, 형식은 내용을 무사히 전달한 것으로 보인다. 하지만 무엇을 무사히 전달했다는 것일까. 원래의 데이터일까, 귀에 비슷하게 들리는 인상일까, 작품이 관객에게 요구하는 경험일까.</p>
+<p>조너선 스턴(Jonathan Sterne)의 MP3 연구는 이 세 가지를 나누어 보게 한다. 압축 파일에는 소리만 들어 있는 것이 아니다. 사람이 어떤 차이를 알아차릴지, 무엇은 잘 듣지 못할지에 대한 가정도 들어 있다. 관객이 재생 버튼을 누르기 전에, 이미 어떤 청취자의 모델이 파일을 만드는 과정에 참여한 셈이다. 이 관점에서 음향의 저장 형식은 전시의 바깥에 있는 사소한 기술 설정으로 남기 어렵다.</p>
+<h2>작아진 파일에 들어 있는 몸</h2>
+<p>스턴은 2006년 논문 「The mp3 as cultural artifact」에서 MP3를 파일 공유와 저작권 논쟁의 대상으로만 다루는 관점을 넓힌다. 그는 파일이 만들어지는 기술과 듣기의 관계를 함께 살피며, MP3를 산업과 신체, 청취 관습이 얽혀 만들어 낸 문화적 산물로 읽는다. 논문의 초점은 압축된 소리가 무조건 나쁘다는 판정에 있지 않다. 작은 파일이 가능해진 조건 속에서 청취가 어떤 방식으로 상정되는지를 묻는 데 있다. <a href="https://sterneworks.org/mp3.pdf">스턴의 논문, 2006</a></p>
+<p>그가 주목하는 지각 부호화는 소리를 듣는 사람에 대한 모델을 압축에 사용한다. 어떤 성분이 다른 소리에 가려져 잘 들리지 않을 것으로 예상된다면, 그 차이를 그대로 보존하는 데 필요한 데이터를 줄일 여지가 생긴다. 스턴은 논문의 832~835쪽에서 이런 심리음향적 가정과 인코딩을 연결해 설명한다. 여기서 핵심은 단순히 조용한 소리를 모두 지운다는 규칙이 아니다. 함께 놓인 소리의 관계와 예상되는 지각을 바탕으로, 어느 차이가 덜 드러날지 판단한다는 점이다.</p>
+<p>이때 데이터가 줄었다는 사실과 모든 사람이 손상을 똑같이 느낀다는 주장은 구분해야 한다. 파일의 차이가 청취 경험에서 어떤 차이로 나타날지는 별도의 문제다. 따라서 이 논의를 “귀가 둔하므로 대충 저장해도 된다”는 말로 바꾸면 중요한 질문을 잃는다. 어떤 조건에서, 어떤 차이를, 누가 알아차릴 것이라고 예상했는가. 스턴의 논의가 열어 주는 자리는 바로 그 가정을 살피는 일이다.</p>
+<p>디지털 파일은 흔히 몸에서 멀어진 대상으로 여겨진다. 그러나 이 경우에는 몸에 관한 지식이 파일을 작게 만드는 데 동원된다. 귀는 완성된 데이터를 받아들이는 종착지에만 있지 않다. 청각을 설명하는 모델의 형태로 제작 과정에도 들어와 있다. 저장 장치 속 파일을 몸과 무관한 정보 덩어리로 보는 대신, 특정한 듣기의 가능성을 전제한 결과로 읽으면 형식에 대한 질문이 달라진다.</p>
+<h2>충실도와 함께 움직임을 설계하다</h2>
+<p>2012년 책 《MP3: The Meaning of a Format》은 이 문제를 더 긴 매체사 안에 놓는다. 듀크대학교 출판사의 책 소개는 전화 산업의 청각 연구에서 지각 부호화와 MP3의 유통에 이르는 계보를 설명한다. 매체의 역사를 더 많은 세부와 더 높은 충실도로 나아가는 과정으로만 읽는 대신, 압축이 근대의 소리 문화에서 맡은 역할을 전면에 둔다. 형식과 표준, 인프라 역시 매체를 이해하는 데 중요하다는 관점이다. <a href="https://www.dukeupress.edu/MP3">책 소개와 목차</a></p>
+<p>스턴의 2006년 논문에서도 작은 용량과 호환성은 부차적인 장점이 아니다. 파일이 제한된 저장 공간과 통신 환경에서 이동하고 교환되기 위한 중요한 조건이다. 소리의 형식을 고른다는 것은 무엇을 남길지 정하는 일이면서, 그 소리가 어떤 경로로 사람에게 도달할 수 있을지 정하는 일이기도 하다. 두 측면을 함께 살피면 압축의 역사를 단순한 훼손의 역사로 설명하기 어려워진다. <a href="https://sterneworks.org/mp3.pdf">스턴의 논문, 828~829쪽</a></p>
+<p>여기서부터는 이 관점을 전시 제작에 적용해 볼 수 있다. 작가가 음원 원본을 보존하고, 전시장 재생본을 따로 만들고, 온라인 소개를 위한 짧은 소리 파일을 준비한다고 가정하자. 세 파일은 같은 작업에서 나왔지만 맡은 일이 다르다. 나중의 재편집을 위한 파일과 현장의 재생을 위한 파일, 먼 곳의 관객이 작업에 접근하도록 만드는 파일을 하나의 기준으로만 평가할 필요는 없다.</p>
+<p>문제는 목적의 차이를 숨긴 채 모두를 같은 원본처럼 취급할 때 생긴다. 소개용 파일이 작품 전체의 음향을 대표한다고 설명되거나, 재생이 가능하다는 이유만으로 보존까지 끝났다고 판단할 수 있다. 반대로 가장 큰 파일만 있으면 작품의 경험이 보장된다고 생각할 수도 있다. 스턴의 형식 연구에서 끌어낼 수 있는 실무적 질문은 어느 확장자가 절대적으로 우월한가보다, 이 파일이 누구에게 무엇을 전달하도록 만들어졌는가에 가깝다.</p>
+<h2>전시장은 예상된 귀와 만나는 자리다</h2>
+<p>아주 짧은 타격음 뒤에 긴 잔향이 남는 가상의 사운드 설치를 생각해 보자. 작가는 관객이 타격의 순간보다 그 뒤의 사라짐에 오래 머물기를 원한다. 이때 파일을 확인하는 사람이 도입부만 듣고 “소리가 나온다”고 판단했다면, 재생 여부는 확인했어도 작품의 중심은 충분히 살피지 못했다. 실제 작품을 측정한 사례가 아니라, 무엇을 들어야 하는지 구체화하기 위한 가정이다.</p>
+<p>이 작업에서는 잔향이 어떻게 끝나는지, 작은 소리를 기다리는 시간이 어떻게 느껴지는지를 들어야 한다. 다만 차이가 생겼다고 곧바로 압축 때문이라고 단정해서도 안 된다. 원본과 재생본, 음량, 스피커, 공간의 울림, 주변 소리를 함께 살펴야 한다. 파일 형식에 관한 비평은 모든 문제의 원인을 파일에 돌리는 태도와 다르다. 오히려 여러 조건 중 어느 조건이 관객의 경험을 바꾸는지 더 정확히 묻게 한다.</p>
+<p>비교의 목적도 차이를 발견한 사람의 귀를 평가하는 데 있지 않다. 작가가 중요하게 여긴 사건이 재생 과정에서 여전히 성립하는지 확인하는 데 있다. 어떤 관객은 잔향의 세부를 듣고, 다른 관객은 소리가 멎은 뒤의 대기나 공간의 진동에 더 주목할 수 있다. 한 사람의 청취 결과를 모든 사람의 경험으로 확대하지 않는 태도는, 제작자가 설정한 관객의 모델과 실제 관객을 구별하는 출발점이 된다.</p>
+<p>이 구별은 청취 차이를 무조건 코덱의 결함으로 설명하지 않게 한다. 동시에 “대부분 알아차리지 못할 것”이라는 말로 작품이 요구하는 집중을 미리 낮추는 일도 막는다. 전시의 목표가 일상적으로 지나치는 차이를 드러내는 데 있다면, 평소에는 중요하지 않다고 여겼던 소리의 자리가 달라질 수 있다. 듣기의 목적을 먼저 정하고 그 목적에 맞추어 형식과 공간을 확인해야 하는 이유다.</p>
+<h2>손실을 금지하기보다 선택을 드러내기</h2>
+<p>이런 관점이 모든 미디어아트에 무압축 파일만 쓰라는 명령으로 이어질 필요는 없다. 거친 압축의 흔적이나 낡은 음원의 질감을 작품의 재료로 삼을 수도 있다. 중요한 것은 그 성질이 작업에서 어떤 역할을 하는지 설명할 수 있는가다. 보존해야 할 차이를 놓친 것인지, 특정한 매개 과정을 관객에게 들려주려는 선택인지에 따라 같은 결과도 다르게 읽힌다.</p>
+<p>온라인에서 접하는 소리와 전시장에서 듣는 소리의 관계 역시 명확하게 표현할 수 있다. 짧은 웹 음원은 작품에 다가가는 입구일 수 있지만, 현장의 동선과 공간 전체를 대신한다고 약속할 필요는 없다. 소개 자료가 무엇을 전달하고 무엇을 전달하지 못하는지 밝히는 일은 기술적 결함을 고백하는 절차가 아니다. 서로 다른 매체에서 작품을 만나는 사람에게 경험의 범위를 알려 주는 편집 행위다.</p>
+<p>스턴이 MP3를 통해 제기한 질문을 오늘의 제작 현장으로 가져오면, 파일 형식은 저장 메뉴에서 사라지는 순간에도 계속 작품에 관여한다. 무엇을 남기고 어떤 차이는 덜 중요하게 볼지, 얼마나 쉽게 이동하게 할지에 대한 결정이 관객보다 먼저 들어가 있기 때문이다. 그 결정은 피할 수 없는 조건일 수 있지만, 설명하거나 다시 선택할 수 없는 운명은 아니다.</p>
+<p>좋은 소리를 전달한다는 말만으로는 부족하다. 어떤 소리를 누구의 어떤 듣기에 맡기려는지 구체적으로 말할 수 있어야 한다. MP3 안에 가정된 청취자를 발견하는 일은 실제 관객을 그 가정에 맞추려는 일이 아니다. 파일을 만들며 상정했던 귀와 전시장에서 만나는 몸 사이의 차이를, 작품을 다시 생각할 자리로 남겨 두는 일이다.</p>
+            </div>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/chance-and-the-decisions-left-open-in-art/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>우연을 쓰는 일과 결정을 열어 두는 일</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>
