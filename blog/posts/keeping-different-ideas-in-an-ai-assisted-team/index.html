@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI가 다듬은 아이디어들 사이에 차이를 남기는 법 | DEXA Blog</title>
+    <meta name="description" content="AI로 개별 제안의 완성도가 높아져도 팀이 검토하는 선택지는 비슷해질 수 있다. 창의성 실험을 바탕으로 개별 품질과 집단 다양성을 구분하고, 초안과 평가의 순서를 설계하는 방법을 살펴본다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/keeping-different-ideas-in-an-ai-assisted-team/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="AI가 다듬은 아이디어들 사이에 차이를 남기는 법" />
+    <meta property="og:description" content="AI로 개별 제안의 완성도가 높아져도 팀이 검토하는 선택지는 비슷해질 수 있다. 창의성 실험을 바탕으로 개별 품질과 집단 다양성을 구분하고, 초안과 평가의 순서를 설계하는 방법을 살펴본다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/keeping-different-ideas-in-an-ai-assisted-team/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/keeping-different-ideas-in-an-ai-assisted-team-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-10-28" />
+    <meta property="article:modified_time" content="2026-10-28" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="AI" />
+    <meta property="article:tag" content="AX" />
+    <meta property="article:tag" content="creativity" />
+    <meta property="article:tag" content="team-learning" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI가 다듬은 아이디어들 사이에 차이를 남기는 법" />
+    <meta name="twitter:description" content="AI로 개별 제안의 완성도가 높아져도 팀이 검토하는 선택지는 비슷해질 수 있다. 창의성 실험을 바탕으로 개별 품질과 집단 다양성을 구분하고, 초안과 평가의 순서를 설계하는 방법을 살펴본다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/keeping-different-ideas-in-an-ai-assisted-team-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"AI가 다듬은 아이디어들 사이에 차이를 남기는 법","description":"AI로 개별 제안의 완성도가 높아져도 팀이 검토하는 선택지는 비슷해질 수 있다. 창의성 실험을 바탕으로 개별 품질과 집단 다양성을 구분하고, 초안과 평가의 순서를 설계하는 방법을 살펴본다.","image":"https://dexa.art/blog/images/keeping-different-ideas-in-an-ai-assisted-team-cover.png","datePublished":"2026-10-28","dateModified":"2026-10-28","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/keeping-different-ideas-in-an-ai-assisted-team/"},"articleSection":"AI · AX","keywords":"AI, AX, creativity, team-learning"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.10.28</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>AI가 다듬은 아이디어들 사이에 차이를 남기는 법</h1>
+                <p style="color:var(--muted);font-size:17px;">AI로 개별 제안의 완성도가 높아져도 팀이 검토하는 선택지는 비슷해질 수 있다. 창의성 실험을 바탕으로 개별 품질과 집단 다양성을 구분하고, 초안과 평가의 순서를 설계하는 방법을 살펴본다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">AI</span><span class="dx-tag-chip">AX</span><span class="dx-tag-chip">creativity</span><span class="dx-tag-chip">team-learning</span></div>
+<p><img src="/blog/images/keeping-different-ideas-in-an-ai-assisted-team-cover.png" alt="서로 닮은 푸른 종이 조형물과 각기 다른 구조의 조형물을 함께 놓은 개념 이미지" loading="lazy"></p>
+<p><em>GPT Image 2로 생성한 개념 이미지입니다. 연구의 실험 장면이나 결과를 재현한 사진이 아닙니다.</em></p>
+<p>팀원들이 AI의 도움을 받아 기획안을 준비했다고 해 보자. 문장은 매끄럽고 구성도 탄탄하다. 그런데 회의에서 안을 나란히 펼치자, 제목과 표현은 달라도 같은 고객을 같은 방식으로 설득하고 있다는 사실이 드러난다. 개별 문서를 잘 만드는 일과 팀이 서로 다른 가능성을 확보하는 일이 어긋나는 순간이다.</p>
+<p>이 장면은 가상의 업무 사례지만, 두 수준을 나눠 볼 근거는 있다. 생성형 AI의 도움을 받은 글이 개별 평가에서는 더 높은 점수를 얻으면서도, 글 전체를 모아 보면 서로 더 비슷해질 수 있다는 실험 결과다. 팀이 AI를 아이디어 발상에 사용한다면 제안서 한 장의 점수와 후보 묶음의 폭을 함께 살펴야 한다.</p>
+<h2>한 편의 평가와 여러 편 사이의 거리</h2>
+<p>아닐 도쉬와 올리버 하우저가 2024년 발표한 연구는 최종 분석에 포함된 293명의 참여자가 쓴 영어 이야기를 다뤘다. 과제는 여덟 문장으로 제한됐고, 참여자는 AI 없이 쓰는 조건, GPT-4가 만든 이야기 아이디어 하나를 요청할 수 있는 조건, 최대 다섯 개를 요청할 수 있는 조건에 무작위로 배정됐다. AI는 시작 아이디어를 제공했고 이야기는 사람이 썼다. 요청 여부는 참여자가 선택했으며 프롬프트를 바꾸거나 자유롭게 대화를 이어 갈 수는 없었다. <a href="https://www.science.org/doi/10.1126/sciadv.adn5290">연구 원문</a></p>
+<p>최대 다섯 개의 아이디어에 접근할 수 있었던 조건은 무보조 조건보다 외부 평가자의 새로움 평가가 8.1%, 유용성 평가가 9.0% 높았다. 여기서 유용성은 이야기라는 과제에 맞춘 평가다. 매출이나 회사의 생산성 향상률로 옮겨 쓸 수치는 아니다. 효과도 실제로 아이디어를 요청한 사람만 따로 비교한 것이 아니라, 접근 기회를 배정받은 조건을 기준으로 추정했다. <a href="https://www.science.org/doi/10.1126/sciadv.adn5290#sec-2-1">연구의 결과 절</a></p>
+<p>그러나 같은 연구에서 AI 아이디어에 접근한 조건의 이야기들은 서로 더 비슷했다. 연구진은 이야기의 임베딩을 만들고, 각 이야기와 같은 조건에 속한 나머지 이야기들의 평균 임베딩 사이 코사인 유사성을 계산했다. 이것은 글의 내용이 한곳으로 모이는 정도를 살펴본 측정이다. 표절을 판정하거나 인간의 창의성 전체를 하나의 숫자로 재는 검사는 아니다. <a href="https://www.science.org/doi/10.1126/sciadv.adn5290#sec-2-4">유사성 분석</a></p>
+<p>읽을 만한 이야기인지 판단하는 눈과, 여러 이야기가 얼마나 다른 방향을 탐색했는지 보는 눈은 서로 다른 질문을 던진다. 팀의 AI 활용에서도 두 질문을 나눠 볼 필요가 있다. 후보마다 점수가 높더라도, 선택지를 바꿨을 때 달라지는 것이 거의 없다면 회의는 좁은 범위를 반복해서 검토하게 된다.</p>
+<h2>첫 아이디어를 보여 주는 순서도 업무 설계다</h2>
+<p>이 연구만으로 모든 AI가 팀의 창의성을 낮춘다고 결론 내릴 수는 없다. 비전문가의 짧은 영어 이야기, 고정된 요청, 당시의 GPT-4라는 조건이 있었다. 긴 협업 프로젝트나 최신 모델과의 반복 대화까지 같은 결과가 난다고 확인한 실험은 아니다. 연구자들도 이러한 일반화의 한계를 명시한다. <a href="https://www.science.org/doi/10.1126/sciadv.adn5290#sec-3">연구의 논의 절</a></p>
+<p>다만 업무를 설계할 때는 유용한 질문이 남는다. 사람은 자기 문제를 정리하기 전에 완성도 높은 AI의 첫 제안을 보는가. 팀원들은 서로의 경험을 꺼내기 전에 같은 예시와 같은 초안을 공유하는가. 초안이 언제 누구에게 공개되는지를 바꾸는 일은 모델을 교체하지 않고도 시도할 수 있다.</p>
+<p>가령 지역 행사 홍보안을 준비하는 팀이라면, 먼저 각자가 현장에서 본 관객의 어려움을 짧게 기록할 수 있다. 처음 방문하는 사람은 장소를 찾기 어렵고, 아이를 데려온 사람은 대기 시간을 예측하기 어렵고, 동네 상인은 행사가 일상 동선에 미칠 영향을 궁금해할 수 있다. 여기서 출발한 안은 같은 행사를 다뤄도 서로 다른 문제를 풀게 된다.</p>
+<p>그 다음 AI에 각 문제의 해결 방향과 반례를 요청한다. 관객 경험을 먼저 보존해 두면, AI가 만든 매끄러운 표현 때문에 원래 문제까지 바뀌었는지 되짚을 수 있다. 한 사람은 장소 안내를, 다른 사람은 대기 경험을, 또 다른 사람은 지역 상인의 참여 방식을 탐색하도록 역할을 구체화하는 방법도 가능하다. 단순히 모두에게 “독창적인 아이디어”를 요구하는 것보다 무엇을 다르게 탐색하는지 확인하기 쉽다.</p>
+<p>이는 연구 결과에서 도출한 실무 제안이며, 해당 실험이 검증한 개선책은 아니다. 팀에서는 독립 초안의 유무나 AI 제안을 공개하는 순서 중 하나를 바꿔 보고, 실제 후보가 달라졌는지 확인해야 한다. 역할을 나누는 방식도 너무 엄격하면 뜻밖의 연결을 막을 수 있으므로, 마지막에는 서로의 관점을 넘나들 여지를 남겨야 한다.</p>
+<h2>후보를 더 만들기 전에 차이를 읽는다</h2>
+<p>팀이 열 개의 안을 받았다는 사실만으로 선택의 폭을 알기는 어렵다. 표현을 달리한 열 개의 문서가 같은 전제를 공유할 수 있다. 반대로 문장은 비슷해 보여도 누구의 문제를 어떻게 해결하느냐가 다른 두 안은 별개의 선택지가 된다.</p>
+<p>다음 표는 앞의 가상 홍보 사례에서 후보를 비교하기 위한 질문이다. 연구의 측정 도구를 복제한 것이 아니라, 회의에서 확인할 차이를 구체화한 예시다.</p>
+<div class="table-scroll"><table><thead><tr><th>살필 대상</th><th>회의에서 물을 질문</th><th>남길 기록</th></tr></thead><tbody><tr><td>개별 안의 품질</td><td>실제 관객의 어려움을 해결하고 실행 조건을 충족하는가</td><td>근거, 필요한 자원, 확인되지 않은 가정</td></tr><tr><td>안들 사이의 차이</td><td>대상 관객과 해결 방식 중 무엇이 다른가</td><td>문구를 제외하고도 남는 선택의 차이</td></tr><tr><td>빠진 관점</td><td>모든 안이 함께 놓친 관객이나 제약은 무엇인가</td><td>아직 탐색하지 않은 문제</td></tr><tr><td>최종 선택</td><td>이 안을 고르면서 어떤 가능성을 포기하는가</td><td>선택 이유와 다시 검토할 조건</td></tr></tbody></table></div>
+<p>여기서 임베딩 유사도는 후보를 묶어 보는 보조 도구가 될 수 있다. 하지만 같은 단어를 쓰는 안을 곧바로 중복으로 버리면 중요한 차이를 놓친다. 행사장 안내를 개선한다는 두 안도 하나는 표지판을 바꾸고 다른 하나는 이동이 불편한 관객을 위한 동행 서비스를 제안할 수 있다. 숫자는 함께 읽을 후보를 찾는 데 쓰고, 업무상 같은 선택인지의 판단은 해결 방식과 제약으로 확인하는 편이 좋다.</p>
+<p>품질과 다양성을 한 점수로 섞는 일도 신중해야 한다. 실행할 수 없는 안이 낯설다는 이유만으로 우수해지는 것은 아니다. 우선 필요한 품질 기준을 확인한 뒤, 기준을 충족한 후보들이 얼마나 다른 가능성을 남기는지 별도로 살핀다. 이렇게 해야 평범하지만 쓸 수 있는 안을 지키면서도 새로운 방향을 탐색할 공간이 생긴다.</p>
+<h2>AI가 보태고 사람이 지켜야 할 차이</h2>
+<p>한 번의 회의에서 더 다양한 후보가 나왔다고 팀의 창의성이 지속적으로 높아졌다고 말할 수는 없다. 다음 업무에서도 같은 변화가 나타나는지, 소수 의견이 최종 결정에 반영되는지, 선택한 안이 현장에서 작동하는지를 이어서 봐야 한다. 초안 작성 시간이 줄었는지와 이 판단들은 따로 기록할 수 있다.</p>
+<p>이전 글에서 다룬 <a href="https://dexa.art/blog/posts/ai-assisted-performance-is-not-skill-formation/">AI를 활용한 업무 수행과 팀의 실력</a>이 시간에 걸친 학습을 물었다면, 여기서는 같은 회의에 모인 결과물 사이의 차이를 묻는다. 각자가 더 잘 쓰게 된 다음에도 팀이 어떤 문제를 새로 볼 수 있게 되었는지는 남는 질문이다.</p>
+<p>AI가 빈 종이 앞의 막막함을 줄여 주는 가치를 살리면서, 사람마다 다른 경험이 초안으로 남고 서로 비교될 순서를 만들 수 있다. 잘 다듬어진 문서들을 모은 뒤에는 한 번 더 펼쳐 볼 필요가 있다. 이 안들 중 무엇을 선택하느냐에 따라 실제로 달라지는 일은 무엇인가.</p>
+            </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/chance-and-the-decisions-left-open-in-art/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>우연을 쓰는 일과 결정을 열어 두는 일</span></a>
+                <a id="next-post" href="/blog/posts/jonathan-sterne-and-the-listener-inside-mp3/" class="spec-row" style="text-decoration:none;"><span>MP3 안에 미리 들어간 청취자</span><span class="k">NEXT →</span></a>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>
