@@ -1,5 +1,32 @@
 [
   {
+    "slug": "sung-hwan-kim-and-the-house-recast-as-a-stage",
+    "file": "_built/sung-hwan-kim-and-the-house-recast-as-a-stage.md",
+    "title": "김성환이 집을 다시 쓰는 방법",
+    "description": "김성환의 영상 《Temper Clay》에서 집과 가족의 관계가 어떻게 다시 배치되는지 살피고, 영상이 전시장과 건물 외벽으로 옮겨 갈 때 관객의 자리가 어떻게 달라지는지 읽습니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "김성환",
+      "영상설치",
+      "TemperClay"
+    ],
+    "date": "2026-10-29",
+    "modified": "2026-10-29",
+    "thumbnail": "images/sung-hwan-kim-house-as-stage-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "김성환",
+      "영상설치",
+      "TemperClay"
+    ]
+  },
+  {
     "slug": "jonathan-sterne-and-the-listener-inside-mp3",
     "file": "_built/jonathan-sterne-and-the-listener-inside-mp3.md",
     "title": "MP3 안에 미리 들어간 청취자",
