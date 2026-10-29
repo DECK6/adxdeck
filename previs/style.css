@@ -6,3 +6,5 @@
 @media print{.nav,.topbar,.bar,.skip,button,.actions,.chapter-buttons,.controls,iframe{display:none!important}.shell{width:100%}.hero{background:white;color:var(--ink);padding:20px 0}.hero .shell{display:block}.hero p,.hero em,.hero .eyebrow{color:var(--ink)}.hero figure{display:none}section{padding:26px 0}h2{font-size:25px}h3{font-size:18px}.card,.step,figure,details{break-inside:avoid}.grid3{grid-template-columns:1fr 1fr}.prompt{background:#eee;color:#111}.prompt .prompt-title{color:#111}.sheet textarea{min-height:70px}.print-only{display:block}a{color:inherit}video{max-height:240px}.hero .tags span{border-color:#aaa}}
 
 .range-row label{white-space:nowrap;flex-shrink:0}
+
+.media-card img,.reference-photo{height:auto}
