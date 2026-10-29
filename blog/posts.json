@@ -1,5 +1,32 @@
 [
   {
+    "slug": "rokeby-and-the-sound-that-moves-the-body-back",
+    "file": "_built/rokeby-and-the-sound-that-moves-the-body-back.md",
+    "title": "로크비의 소리는 몸을 다시 움직이게 한다",
+    "description": "데이비드 로크비의 《Very Nervous System》에서 몸의 움직임이 소리로 바뀌고 다시 다음 몸짓을 이끄는 과정을 살피며, 상호작용을 조작의 성공보다 감각적 관계의 형식으로 읽습니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "DavidRokeby",
+      "사운드아트",
+      "상호작용"
+    ],
+    "date": "2026-10-30",
+    "modified": "2026-10-30",
+    "thumbnail": "images/rokeby-body-sound-feedback-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "DavidRokeby",
+      "사운드아트",
+      "상호작용"
+    ]
+  },
+  {
     "slug": "sung-hwan-kim-and-the-house-recast-as-a-stage",
     "file": "_built/sung-hwan-kim-and-the-house-recast-as-a-stage.md",
     "title": "김성환이 집을 다시 쓰는 방법",
