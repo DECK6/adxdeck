@@ -27,6 +27,25 @@
     ]
   },
   {
+    "slug": "what-human-ai-collaboration-is-compared-against",
+    "file": "_built/what-human-ai-collaboration-is-compared-against.md",
+    "title": "사람과 AI의 협업은 무엇과 비교해야 하는가",
+    "description": "AI를 쓴 사람이 이전보다 잘했다고 해서 협업의 이점이 모두 확인된 것은 아니다. 인간-AI 협업 메타분석을 바탕으로 사람 단독, AI 단독, 결합 조건을 구분하고 업무 평가의 비교 기준을 설계한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "AX",
+      "evaluation",
+      "human-ai-collaboration"
+    ],
+    "date": "2026-10-29",
+    "modified": "2026-10-29",
+    "thumbnail": "images/what-human-ai-collaboration-is-compared-against-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "jonathan-sterne-and-the-listener-inside-mp3",
     "file": "_built/jonathan-sterne-and-the-listener-inside-mp3.md",
     "title": "MP3 안에 미리 들어간 청취자",
