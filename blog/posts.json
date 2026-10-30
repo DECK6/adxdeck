@@ -1,5 +1,25 @@
 [
   {
+    "slug": "checking-ai-tool-permissions-beyond-the-label",
+    "file": "_built/checking-ai-tool-permissions-beyond-the-label.md",
+    "title": "AI 도구의 권한을 설명 밖에서 확인하는 법",
+    "description": "MCP의 읽기 전용·파괴적 변경·멱등성·외부 상호작용 힌트가 뜻하는 바를 살피고, 도구 설명을 실제 접근 통제와 연결해 업무 자동화를 검증하는 방법을 설명한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "AX",
+      "MCP",
+      "automation",
+      "authorization"
+    ],
+    "date": "2026-10-30",
+    "modified": "2026-10-30",
+    "thumbnail": "images/checking-ai-tool-permissions-beyond-the-label-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "rokeby-and-the-sound-that-moves-the-body-back",
     "file": "_built/rokeby-and-the-sound-that-moves-the-body-back.md",
     "title": "로크비의 소리는 몸을 다시 움직이게 한다",
