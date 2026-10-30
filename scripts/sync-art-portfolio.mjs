@@ -39,7 +39,7 @@ function filmSchema(work) {
 
 function galleryMetadata() {
   const title = '미디어아트 작품 | 육대근(DECK) · DEXA';
-  const description = `육대근(DECK)의 미디어아트 ${collection.length}개 작품, ${catalog.works.length}편의 영상. 먹의 호흡, 결, 하모노그래프와 사계 연작을 감상하고 전시·상영·제작 협업을 문의하세요.`;
+  const description = `육대근(DECK)의 미디어아트 ${collection.length}개 작품, ${catalog.works.length}편의 영상. 먹의 호흡, 결, 하모노그래프와 수면의 호흡을 감상하고 전시·상영·제작 협업을 문의하세요.`;
   const image = new URL(featured.poster, canonical).href;
   const schema = {
     '@context': 'https://schema.org',

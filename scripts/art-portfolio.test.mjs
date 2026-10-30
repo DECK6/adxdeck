@@ -18,13 +18,13 @@ test('both homepages show exactly the requested three films in order', () => {
   }
 });
 
-test('the twelve-film catalog has valid stills, public media, sound and individual loop settings', () => {
-  assert.equal(catalog.works.length, 12);
-  assert.equal(new Set(catalog.order).size, 12);
+test('the seven-film catalog has valid stills, public media, sound and individual loop settings', () => {
+  assert.equal(catalog.works.length, 7);
+  assert.equal(new Set(catalog.order).size, 7);
   for (const work of catalog.works) {
     assert.ok(catalog.order.includes(work.id));
     assert.ok(fs.existsSync(path.join(root, work.poster)), work.poster);
-    assert.match(work.video, /^https:\/\/github.com\/DECK6\/adxdeck\/releases\/download\/art-films-20261024\/[\w-]+\.mp4$/);
+    assert.match(work.video, /^https:\/\/github.com\/DECK6\/adxdeck\/releases\/download\/art-films-\d{8}\/[\w-]+\.mp4$/);
     assert.equal(work.sound, true);
     assert.ok(work.description.ko && work.description.en);
   }
@@ -87,30 +87,31 @@ function galleryHarness(hash = '') {
   };
 }
 
-test('Four Seasons is one collection entry with all five films selectable inside', () => {
+test('the gallery replaces Yunseul and the whole seasonal series with the new ocean artwork', () => {
   const page = galleryHarness();
   const cards = [...page.element('#work-grid').innerHTML.matchAll(/data-work="([^"]+)"/g)].map(m => m[1]);
-  assert.equal(cards.length, 8);
-  assert.ok(cards.includes('four-seasons'));
-  for (const id of ['spring', 'summer', 'autumn', 'winter']) assert.ok(!cards.includes(id));
-  page.open('four-seasons');
-  const choices = [...page.element('#viewer-series').innerHTML.matchAll(/data-open="([^"]+)"/g)].map(m => m[1]);
-  assert.deepEqual(choices, ['four-seasons', 'spring', 'summer', 'autumn', 'winter']);
-  for (const id of choices) {
-    page.open(id);
-    assert.ok(page.element('#viewer-video-source').src.endsWith(`/${id}.mp4`));
-    assert.equal(page.element('#viewer-series').hidden, false);
-    assert.equal(page.location.hash, `#work=${id}`);
+  assert.deepEqual(cards, ['ink-breath','gyeol','sand-pendulum','breath-beneath-the-tide','nakhwa','gyeong','joinery']);
+  for (const id of ['yunseul','four-seasons','spring','summer','autumn','winter']) {
+    assert.ok(!catalog.works.some(w=>w.id===id));
+    assert.doesNotMatch(read('works/index.html'), new RegExp('data-work="'+id+'"'));
   }
-  page.next();
-  assert.equal(page.element('#viewer-title').textContent, '결구');
+  assert.doesNotMatch(read('works/index.html'), /data-filter="seasons"/);
+  page.open('breath-beneath-the-tide');
+  assert.equal(page.element('#viewer-title').textContent, '수면의 호흡');
   assert.equal(page.element('#viewer-series').hidden, true);
+  assert.match(page.element('#viewer-specs').innerHTML, /6144 × 2048/);
+  assert.match(page.element('#viewer-specs').innerHTML, /01:30/);
+  assert.equal(page.element('#viewer-video').loop, false);
+  page.next();
+  assert.equal(page.element('#viewer-title').textContent, '낙화');
 });
 
-test('direct links to a season retain its series selector and pause until the user plays', () => {
-  const page = galleryHarness('#work=summer');
-  assert.ok(page.element('#viewer-video-source').src.endsWith('/summer.mp4'));
-  assert.equal(page.element('#viewer-series').hidden, false);
-  assert.match(page.element('#viewer-series').innerHTML, /aria-pressed="true"[^>]*data-open="summer"/);
+test('ocean direct link waits for play and removed artwork direct links do not reopen retired films', () => {
+  const page = galleryHarness('#work=breath-beneath-the-tide');
+  assert.ok(page.element('#viewer-video-source').src.endsWith('/breath-beneath-the-tide.mp4'));
   assert.equal(page.element('#viewer-video').playCount, 0);
+  for (const id of ['yunseul','four-seasons','summer']) {
+    const retired=galleryHarness('#work='+id);
+    assert.equal(retired.element('#viewer').open, false);
+  }
 });

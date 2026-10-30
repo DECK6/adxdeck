@@ -58,12 +58,12 @@ try {
   }
 
   // A link from the homepage opens a paused player; the native Play action must work.
-  await page.goto(`${base}/works/#work=summer`, { waitUntil: 'domcontentloaded' });
+  await page.goto(`${base}/works/#work=breath-beneath-the-tide`, { waitUntil: 'domcontentloaded' });
   assert.equal(await page.locator('#viewer-video').evaluate(video => video.paused), true);
   // Tap the native central Play control, as on an iPhone without a keyboard.
   await page.locator('#viewer-video').tap();
   await page.waitForFunction(() => document.querySelector('#viewer-video').currentTime > 0.3, null, { timeout: 25000 });
-  report.push({ directLink: 'summer', manualPlay: true });
+  report.push({ directLink: 'breath-beneath-the-tide', manualPlay: true });
   console.log('PASS direct link: manual playback');
 
   await page.locator('#close-viewer').click();

@@ -5,14 +5,9 @@ window.PORTFOLIO = {
     "ink-breath",
     "gyeol",
     "sand-pendulum",
-    "yunseul",
+    "breath-beneath-the-tide",
     "nakhwa",
     "gyeong",
-    "four-seasons",
-    "spring",
-    "summer",
-    "autumn",
-    "winter",
     "joinery"
   ],
   "materialsUrl": "mailto:deck@dexa.art?subject=Media%20art%20screening%20inquiry",
@@ -27,126 +22,6 @@ window.PORTFOLIO = {
   },
   "works": [
     {
-      "id": "spring",
-      "title": "봄 · 감응",
-      "subtitle": "흔적의 사계",
-      "titleEn": "Traces of Four Seasons — Spring",
-      "year": 2026,
-      "group": "seasons",
-      "caption": "살풀이의 궤적을 희미하게 따라가는 봄빛 마블링. 춤추는 사람은 보이지 않고, 움직임이 남긴 흔적만 색으로 깨어난다.",
-      "description": {
-        "ko": "안개 속에서 색이 먼저 깨어난다. 벚꽃의 연분홍, 연두, 개나리 노랑, 봄 하늘의 옅은 파랑, 라일락이 맑은 글레이즈 아래에서 서로를 밀어내며 마블링으로 번진다. 유체가 희미하게 따라가는 길은 살풀이춤 영상에서 포즈 추정으로 뽑아낸 손목과 발목, 머리의 궤적이다. 춤추는 사람은 보이지 않고, 춤이 지나간 자리에 산호빛 띠가 번진다. 작가가 Suno로 만든 펠트 피아노의 음이 놓일 때마다 그 길 가까이에서 여린 불씨가 깨어난다. 보이지 않던 것이 감각의 문턱에 처음 닿는, 세계관 '누스피어 레이어'의 첫 역학 감응이다.",
-        "en": "In the mist, colour wakes first: cherry-blossom pink, fresh green, forsythia yellow, pale sky blue and lilac spread into marbling beneath a clear glaze. The fluid faintly follows paths of the wrists, ankles and head, extracted by pose estimation from a salpuri dance. The dancer never appears; a coral band spreads where the dance passed. With each note of a felt-piano piece the artist made with Suno, small sparks wake nearby. This is resonance, the first dynamic of the artist's Noosphere Layer, when something unseen first touches the threshold of the senses."
-      },
-      "poster": "/works/assets/posters/spring.jpg",
-      "video": "https://github.com/DECK6/adxdeck/releases/download/art-films-20261024/spring.mp4",
-      "resolution": [
-        6144,
-        2048
-      ],
-      "fps": 30,
-      "duration": 60.0,
-      "sound": true,
-      "loop": true,
-      "credit": "구상·연출·프로그래밍 육대근(DECK) · 음악: 작가가 Suno로 제작"
-    },
-    {
-      "id": "summer",
-      "title": "여름 · 융해",
-      "subtitle": "흔적의 사계",
-      "titleEn": "Traces of Four Seasons — Summer",
-      "year": 2026,
-      "group": "seasons",
-      "caption": "태평무의 둥근 궤적 위에서 석호와 하늘의 색이 녹아 합류했다가 다시 갈라진다. 저음이 차오를 때마다 경계가 녹는 여름의 글레이즈 마블링.",
-      "description": {
-        "ko": "석호의 청록과 물빛, 민트, 맑은 하늘의 파랑, 연보라. 여름의 다섯 색은 물줄기처럼 합류해 경계를 녹이며 한 흐름이 되려다 이내 다시 갈라진다. 흐름 밑에는 태평무의 궤적이 깔려 있다. 한삼을 끼고 크게 휘도는 팔과 잦은 걸음을 늦춰 유체에 스며들게 했고, 그 길을 따라 금빛 띠가 흐른다. 무용수의 모습은 끝까지 성립하지 않는다. 작가가 Suno로 만든 앰비언트 덥의 저음이 차오르면 색의 경계가 녹아 섞이고, 소리가 가라앉으면 경계가 되살아난다. 이질적인 것이 한 흐름으로 녹아드는 '누스피어 레이어'의 융해다.",
-        "en": "Lagoon teal and aqua, mint, clear-sky blue, periwinkle. Summer's five colours converge like streams, melting their borders as if to become one current, then part again. Beneath the flow lies a taepyeongmu trajectory: wide arcs of hansam sleeves and quick steps, slowed into the fluid, with a band of sunlit gold along the path. The dancer never takes shape. When the bass of the artist's ambient dub, made with Suno, swells, the borders melt and mix; when it quiets, they return. This is melting in the Noosphere Layer, disparate things dissolving into one current."
-      },
-      "poster": "/works/assets/posters/summer.jpg",
-      "video": "https://github.com/DECK6/adxdeck/releases/download/art-films-20261024/summer.mp4",
-      "resolution": [
-        6144,
-        2048
-      ],
-      "fps": 30,
-      "duration": 60.0,
-      "sound": true,
-      "loop": true,
-      "credit": "구상·연출·프로그래밍 육대근(DECK) · 음악: 작가가 Suno로 제작"
-    },
-    {
-      "id": "autumn",
-      "title": "가을 · 결정",
-      "subtitle": "흔적의 사계",
-      "titleEn": "Traces of Four Seasons — Autumn",
-      "year": 2026,
-      "group": "seasons",
-      "caption": "승무의 장삼 소매가 그린 호를 따라 흐르던 감빛과 금빛의 유체가, 음악의 정점에서 큐브로 결정을 이루었다가 다시 녹는다.",
-      "description": {
-        "ko": "감빛 주홍, 은행잎의 금빛 노랑, 밀빛 크림, 살구색이 맑은 글레이즈 아래에서 천천히, 무겁게 움직인다. 궤적은 승무에서 왔다. 오래 멈춰 있다가 한순간 머리 위로 던져지는 장삼 소매의 호가 유체를 끌고 가고, 춤이 지나간 길에는 보랏빛 띠가 흐른다. 작가가 Suno로 만든 드론 위에 뜯는 현이 쌓이며 곡이 고조되고, 그 정점에서 흐름이 멎어 색과 유약이 크고 작은 큐브의 격자로 굳는다. 연작에서 흔적이 형태가 되는 유일한 순간, 형체 없던 앎이 구조를 얻는 '누스피어 레이어'의 결정이다. 격자는 음이 잦아들면 차례로 녹는다.",
-        "en": "Persimmon coral, ginkgo gold, wheat-cream and apricot move slowly, heavily beneath a clear glaze. The trajectory comes from a seungmu: robe sleeves hang still, then are flung overhead in one wide arc that pulls the fluid, and a band of twilight violet follows the path. Over a drone the artist made with Suno, plucked strings gather and the piece builds. At its peak the flow stills and the glazed colour hardens into cubes. It is the only moment in the series when the trace becomes form, crystallization in the Noosphere Layer. Then the cubes melt away."
-      },
-      "poster": "/works/assets/posters/autumn.jpg",
-      "video": "https://github.com/DECK6/adxdeck/releases/download/art-films-20261024/autumn.mp4",
-      "resolution": [
-        6144,
-        2048
-      ],
-      "fps": 30,
-      "duration": 60.0,
-      "sound": true,
-      "loop": true,
-      "credit": "구상·연출·프로그래밍 육대근(DECK) · 음악: 작가가 Suno로 제작"
-    },
-    {
-      "id": "winter",
-      "title": "겨울 · 잔향",
-      "subtitle": "흔적의 사계",
-      "titleEn": "Traces of Four Seasons — Winter",
-      "year": 2026,
-      "group": "seasons",
-      "caption": "춘앵전의 정지에 가까운 궤적이 파란 띠와 차가운 반짝임, 오래 머무는 잔광으로 남는 겨울의 글레이즈 마블링. 루프가 끝나기 직전, 봄의 연분홍 빛 하나가 켜진다.",
-      "description": {
-        "ko": "눈의 흰빛, 얼음의 푸른 기운, 은빛 라벤더, 새벽의 연보라. 겨울의 유체는 거의 움직이지 않는다. 궤적은 화문석 한 장 위에서 혼자 추는 궁중무용 춘앵전에서 가져왔다. 정지에 가까운 작은 걸음이 맑은 파랑의 띠와 차가운 반짝임으로 남고, 그 잔광은 연작 가운데 가장 오래 머문다. 작가가 Suno로 만든 가사 없는 합창이 끊기지 않고 흐르며, 힘 있는 음마다 표면에 동그란 물결이 번진다. 퍼져 나가 울림으로 남는 '누스피어 레이어'의 발산이다. 57초 무렵 봄의 연분홍 빛 하나가 켜져 다음 루프로 스며든다.",
-        "en": "Snow white, the blue cast of ice, silver-lavender, dawn periwinkle. Winter's fluid barely moves. The trajectory comes from chunaengjeon, a court dance performed solo on one flower-patterned mat; its near-still steps survive as a band of clear blue and cold glints, and their afterglow lingers longest in the series. Wordless voices the artist made with Suno run unbroken, and each strong note sends a ring across the surface. This is dispersion in the Noosphere Layer, spreading out and remaining as reverberation. Near 57 seconds, a spring-pink light comes on."
-      },
-      "poster": "/works/assets/posters/winter.jpg",
-      "video": "https://github.com/DECK6/adxdeck/releases/download/art-films-20261024/winter.mp4",
-      "resolution": [
-        6144,
-        2048
-      ],
-      "fps": 30,
-      "duration": 60.0,
-      "sound": true,
-      "loop": true,
-      "credit": "구상·연출·프로그래밍 육대근(DECK) · 음악: 작가가 Suno로 제작"
-    },
-    {
-      "id": "four-seasons",
-      "title": "사계",
-      "subtitle": "흔적의 사계",
-      "titleEn": "Traces of Four Seasons",
-      "year": 2026,
-      "group": "seasons",
-      "caption": "네 편의 계절을 컷 없이 이은 60초. 봄에서 겨울로 흐르고, 겨울의 마지막 연분홍 빛이 다시 봄을 깨운다.",
-      "description": {
-        "ko": "네 계절을 컷 없는 60초 한 줄기로 이은 작품이다. 네 편을 붙인 편집본이 아니라 하나의 시뮬레이션으로 흐른다. 계절마다 15초가 주어지고, 넘어가는 5초 동안 앞 계절의 색이 다음 팔레트로 남김없이 녹아든다. 살풀이춤의 수건, 태평무의 한삼, 승무의 소매, 춘앵전의 작은 걸음을 따라 띠의 빛깔은 산호빛에서 금빛, 보랏빛, 맑은 파랑으로 이어지고, 음악도 작가가 Suno로 만든 네 곡을 한 시간축에서 겹쳐 넘긴다. 감응, 융해, 결정, 발산이라는 '누스피어 레이어'의 네 역학이 한 바퀴 돌고, 겨울 끝의 연분홍 빛이 다시 봄을 깨운다.",
-        "en": "The four seasons joined into one uncut sixty-second current: not an edit but a single simulation. Each season has fifteen seconds; over each five-second handover the previous colours dissolve into the next palette. Following the scarf of salpuri, the sleeves of taepyeongmu and seungmu and the small steps of chunaengjeon, the band runs from coral to gold, violet and clear blue, while four tracks the artist made with Suno crossfade on one timeline. The Noosphere Layer's four dynamics turn one full cycle, and winter's last pink light wakes the spring."
-      },
-      "poster": "/works/assets/posters/four-seasons.jpg",
-      "video": "https://github.com/DECK6/adxdeck/releases/download/art-films-20261024/four-seasons.mp4",
-      "resolution": [
-        6144,
-        2048
-      ],
-      "fps": 30,
-      "duration": 60.0,
-      "sound": true,
-      "loop": true,
-      "credit": "구상·연출·프로그래밍 육대근(DECK) · 음악: 작가가 Suno로 제작"
-    },
-    {
       "id": "gyeong",
       "title": "경(磬)",
       "subtitle": "소리가 앉는 자리",
@@ -160,30 +35,6 @@ window.PORTFOLIO = {
       },
       "poster": "/works/assets/posters/gyeong.jpg",
       "video": "https://github.com/DECK6/adxdeck/releases/download/art-films-20261024/gyeong.mp4",
-      "resolution": [
-        6144,
-        2048
-      ],
-      "fps": 30,
-      "duration": 60.0,
-      "sound": true,
-      "loop": true,
-      "credit": "구상·연출·프로그래밍 육대근(DECK) · 음악: 작가가 Suno로 제작"
-    },
-    {
-      "id": "yunseul",
-      "title": "윤슬",
-      "subtitle": "한 강의 세 저녁",
-      "titleEn": "Yunseul — Three Evenings on One River",
-      "year": 2026,
-      "group": "confluence",
-      "caption": "서울의 강가 저녁, 세 저녁의 빛이 한 수면에 함께 비치는 윤슬. 음악의 악절마다 빛이 차가워졌다 따뜻해지고, 겹친 자리에는 어느 저녁에도 없던 색이 생긴다.",
-      "description": {
-        "ko": "서울의 강가, 저녁. 화면에는 물만 있고 하늘도 다리도 도시도 보이지 않는다. 물결은 빛과 눈 사이의 각이 맞는 순간에만 반짝이고, 초점을 물에서 떼면 반짝임 하나하나가 동그란 빛무리가 된다. 촬영한 장면은 없고, 파도와 반사와 초점을 계산해 그렸다. 지는 해의 금과 살구, 해 진 뒤의 라벤더와 청록, 도시 불빛의 마젠타와 시안, 세 저녁이 한 수면에 함께 선다. 작가가 Suno로 만든 음악의 악절마다 빛이 차가워졌다 따뜻해지고, 빛무리가 겹친 자리에는 어느 저녁에도 없던 색이 생긴다. 다른 시간의 빛이 녹아드는 '누스피어 레이어'의 융해다.",
-        "en": "A riverside evening in Seoul, and only water: no sky, no bridges, no city. Each ripple glints only when it meets the angle between light and eye, and out of focus every glint becomes a round disc of light. Nothing is filmed; all is computed. Three evenings share one surface, light of different times melting together as in the Noosphere Layer: the gold of sunset, the lavender and teal after it, the magenta and cyan of city lights. With each phrase of music the artist made with Suno, the light turns cool or warm, and overlaps make colours none of the evenings had."
-      },
-      "poster": "/works/assets/posters/yunseul.jpg",
-      "video": "https://github.com/DECK6/adxdeck/releases/download/art-films-20261024/yunseul.mp4",
       "resolution": [
         6144,
         2048
@@ -313,6 +164,30 @@ window.PORTFOLIO = {
       "sound": true,
       "loop": false,
       "credit": "구상·연출·프로그래밍 육대근(DECK) · GPU 입자 군집(먹 알갱이 100만) · 산수 밑그림 2장은 작가가 AI(Nano Banana Pro)로 생성해 입자 배치 지도로만 사용 · 음악: 작가가 Suno로 제작한 거문고 곡"
+    },
+    {
+      "id": "breath-beneath-the-tide",
+      "title": "수면의 호흡",
+      "subtitle": "파도와 빛의 안쪽",
+      "titleEn": "Breath Beneath the Tide",
+      "year": 2026,
+      "group": "individual",
+      "caption": "파란 하늘 아래 음악이 큰 너울을 밀어 올린다. 수면을 통과해 굴절된 빛을 바라보고, 다시 열린 바다로 돌아오는 90초의 여정.",
+      "description": {
+        "ko": "쨍한 파란 하늘 아래, 음악의 낮은 울림이 바다를 밀어 올린다. 넓은 수평선에서 시작한 시선은 커다란 너울에 다가가고, 파도의 능선을 따라 빛과 흰 포말이 흩어진다. 수면을 통과하면 하늘은 물결 사이로 굴절되고, 소리가 만든 움직임은 머리 위의 푸른 천장이 된다. 깊이를 지나 다시 열린 바다로 돌아오는 90초의 여정. 실제 음원의 저음과 고음이 파도의 변위와 미세한 표면 변화에 연결되어, 듣는 힘이 바라보는 풍경으로 드러난다. 수면은 바다를 나누는 선이면서, 같은 세계를 다른 감각으로 만나게 하는 경계다.",
+        "en": "Beneath a vivid blue sky, low musical pulses lift the ocean. The view approaches broad swells, follows bright crests and white foam, then passes through the surface. Underwater, the sky bends into a shifting window of light. This ninety-second journey returns to the open sea, linking measured musical energy to wave displacement and fine surface changes. The waterline becomes a threshold between two ways of sensing the same world: sound takes shape, and a landscape becomes an experience of depth."
+      },
+      "poster": "/works/assets/posters/breath-beneath-the-tide.jpg",
+      "video": "https://github.com/DECK6/adxdeck/releases/download/art-films-20261030/breath-beneath-the-tide.mp4",
+      "resolution": [
+        6144,
+        2048
+      ],
+      "fps": 30,
+      "duration": 90,
+      "sound": true,
+      "loop": false,
+      "credit": "구상·연출 육대근(DECK) · Three.js/Poseidon 기반 바다 렌더링 · 하늘: 생성형 AI · 음악: 작가가 Suno로 제작"
     }
   ],
   "homeFeatured": [
@@ -320,17 +195,5 @@ window.PORTFOLIO = {
     "gyeol",
     "sand-pendulum"
   ],
-  "series": [
-    {
-      "id": "four-seasons",
-      "title": "흔적의 사계",
-      "works": [
-        "four-seasons",
-        "spring",
-        "summer",
-        "autumn",
-        "winter"
-      ]
-    }
-  ]
+  "series": []
 };

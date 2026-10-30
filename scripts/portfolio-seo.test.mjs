@@ -9,9 +9,9 @@ const html = fs.readFileSync(path.join(root, 'works/index.html'), 'utf8');
 const catalogContext = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'works/works.js'), 'utf8'), catalogContext);
 const videos = new Map(catalogContext.window.PORTFOLIO.works.map(work => [work.id, work.video]));
-const entries = ['ink-breath', 'gyeol', 'sand-pendulum', 'yunseul', 'nakhwa', 'gyeong', 'four-seasons', 'joinery'];
+const entries = ['ink-breath', 'gyeol', 'sand-pendulum', 'breath-beneath-the-tide', 'nakhwa', 'gyeong', 'joinery'];
 
-test('a crawler receives all eight collection entries and usable video links without running JavaScript', () => {
+test('a crawler receives all seven collection entries and usable video links without running JavaScript', () => {
   const collection = html.match(/<div id="work-grid"[^>]*>([\s\S]*?)<\/section>/)?.[1] || '';
   assert.deepEqual([...collection.matchAll(/data-work="([^"]+)"/g)].map(match => match[1]), entries);
   for (const id of entries) {
@@ -40,18 +40,18 @@ test('search and social metadata describe the real gallery and its canonical pre
   assert.ok(fs.existsSync(path.join(root, new URL(content('og:image')).pathname)));
 });
 
-test('collection structured data preserves eight entries and all twelve distinct films without a self-referencing series', () => {
+test('collection structured data preserves seven entries and seven distinct films without a self-referencing series', () => {
   const scripts = [...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
   const graph = scripts.flatMap(value => value['@graph'] || [value]);
   const collection = graph.find(value => value['@type'] === 'CollectionPage');
   assert.ok(collection, 'gallery must have CollectionPage structured data');
   assert.equal(collection.url, 'https://dexa.art/works/');
   assert.equal(collection.inLanguage, 'ko-KR');
-  assert.equal(collection.mainEntity.numberOfItems, 8);
+  assert.equal(collection.mainEntity.numberOfItems, 7);
   const items = collection.mainEntity.itemListElement;
-  assert.deepEqual(items.map(value => value.position), [1, 2, 3, 4, 5, 6, 7, 8]);
+  assert.deepEqual(items.map(value => value.position), [1, 2, 3, 4, 5, 6, 7]);
   const films = items.flatMap(value => [value.item, ...(value.item.hasPart || [])]);
-  assert.equal(new Set(films.map(film => film.url)).size, 12);
+  assert.equal(new Set(films.map(film => film.url)).size, 7);
   assert.ok(films.every(film => film.image.startsWith('https://dexa.art/works/assets/posters/')));
   assert.ok(films.every(film => film.creator['@id'] === 'https://dexa.art/works/#artist'));
   assert.ok(films.every(film => !film.hasPart?.some(part => part['@id'] === film['@id'])));
