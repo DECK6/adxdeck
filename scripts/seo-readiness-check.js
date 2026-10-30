@@ -46,6 +46,11 @@ for (const page of osmuPages) {
     continue;
   }
   const html = read(page.rel);
+  if (count(html, /<link\b[^>]*rel="canonical"/g) === 1 && html.includes(`<link rel="canonical" href="${page.url}"`)) {
+    pass(`${page.rel} has its unique canonical URL`);
+  } else {
+    fail(`${page.rel} is missing its unique canonical URL`);
+  }
   if (/<html\s+lang="ko"/i.test(html) && /<title>[^<]+<\/title>/i.test(html)) {
     pass(`${page.rel} has Korean language metadata and a title`);
   } else {

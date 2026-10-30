@@ -13,8 +13,11 @@ on:
       - 'en/**'
       - 'works/**'
       - 'scripts/art-portfolio.test.mjs'
+      - 'scripts/portfolio-seo.test.mjs'
+      - 'scripts/seo-readiness-check.js'
       - 'scripts/sync-art-portfolio.mjs'
       - 'scripts/english-edition-regression.test.js'
+      - 'osmu/**'
 
 permissions:
   contents: write
@@ -31,7 +34,7 @@ jobs:
       - name: Validate generated SEO artifacts
         run: |
           node scripts/sync-art-portfolio.mjs --check
-          node --test scripts/art-portfolio.test.mjs
+          node --test scripts/art-portfolio.test.mjs scripts/portfolio-seo.test.mjs
           node scripts/seo-readiness-check.js
           node --test scripts/ax-seo-regression.test.js scripts/media-art-taxonomy-regression.test.js scripts/shared-shell-regression.test.js scripts/english-edition-regression.test.js
           git diff --check
@@ -40,6 +43,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add blog/ax/ blog/media-art/ blog/posts.json blog/posts/_built/ blog/posts/*/index.html sitemap.xml robots.txt blog/index.html index.html
+          git add blog/ax/ blog/media-art/ blog/posts.json blog/posts/_built/ blog/posts/*/index.html sitemap.xml robots.txt blog/index.html index.html en/index.html works/index.html
           git diff --cached --quiet || git commit -m "chore: auto-generate blog index and built posts"
           git push
