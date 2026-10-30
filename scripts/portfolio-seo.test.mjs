@@ -2,16 +2,20 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import vm from 'node:vm';
 
 const root = path.resolve(import.meta.dirname, '..');
 const html = fs.readFileSync(path.join(root, 'works/index.html'), 'utf8');
+const catalogContext = { window: {} };
+vm.runInNewContext(fs.readFileSync(path.join(root, 'works/works.js'), 'utf8'), catalogContext);
+const videos = new Map(catalogContext.window.PORTFOLIO.works.map(work => [work.id, work.video]));
 const entries = ['ink-breath', 'gyeol', 'sand-pendulum', 'yunseul', 'nakhwa', 'gyeong', 'four-seasons', 'joinery'];
 
 test('a crawler receives all eight collection entries and usable video links without running JavaScript', () => {
   const collection = html.match(/<div id="work-grid"[^>]*>([\s\S]*?)<\/section>/)?.[1] || '';
   assert.deepEqual([...collection.matchAll(/data-work="([^"]+)"/g)].map(match => match[1]), entries);
   for (const id of entries) {
-    assert.ok(collection.includes(`href="https://github.com/DECK6/adxdeck/releases/download/art-films-20261024/${id}.mp4"`), id);
+    assert.ok(collection.includes(`href="${videos.get(id)}"`), id);
   }
   assert.match(collection, /먹의 호흡/);
   assert.match(collection, /하모노그래프/);

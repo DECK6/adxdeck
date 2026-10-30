@@ -279,7 +279,7 @@ window.PORTFOLIO = {
         "en": "Two steel spheres of different sizes move slowly across a wide sand field. Their distinct rhythms trace overlapping Lissajous curves in one shared space. Each passage leaves a groove, and later movements cross the marks already there. Low light reveals ridges and grains while reflections shift across the polished steel. A slightly tilted overhead camera moves in one direction. With music made by the artist using Suno, this sixty-second 3D work turns recurring motion into a landscape that remembers time."
       },
       "poster": "/works/assets/posters/sand-pendulum.jpg",
-      "video": "https://github.com/DECK6/adxdeck/releases/download/art-films-20261024/sand-pendulum.mp4",
+      "video": "https://github.com/DECK6/adxdeck/releases/download/art-films-20261024/Harmonograph_3x_60s_review_1920x640.mp4",
       "resolution": [
         6144,
         2048
