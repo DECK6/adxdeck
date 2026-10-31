@@ -1,5 +1,25 @@
 [
   {
+    "slug": "finding-evidence-when-the-words-and-position-change",
+    "file": "_built/finding-evidence-when-the-words-and-position-change.md",
+    "title": "긴 문서 속 근거를 AI가 정말 찾았는지 확인하는 법",
+    "description": "긴 문서의 답을 잘 찾았다는 시연은 무엇을 검증했을까. NoLiMa와 Lost in the Middle을 바탕으로 근거 위치, 질문 표현, 입력 길이를 분리해 업무용 AI를 점검하는 방법을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "AX",
+      "context",
+      "evaluation",
+      "RAG"
+    ],
+    "date": "2026-10-31",
+    "modified": "2026-10-31",
+    "thumbnail": "images/finding-evidence-when-the-words-and-position-change-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "lima-preserving-the-conditions-to-run-art-again",
     "file": "_built/lima-preserving-the-conditions-to-run-art-again.md",
     "title": "LiMA는 작품을 다시 켤 조건을 보존한다",
