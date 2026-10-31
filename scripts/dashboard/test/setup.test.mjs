@@ -1,0 +1,20 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {execFileSync} from 'node:child_process';
+import path from 'node:path';
+import os from 'node:os';
+import fs from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {encryptDashboard} from '../lib.mjs';
+import {readKeyConfig} from '../build.mjs';
+import {decryptDashboard} from '../../../dash/core.mjs';
+const script=fileURLToPath(new URL('../setup-key.py',import.meta.url));
+test('Terminal derivation is browser-compatible, owner-only and refuses overwrite',async()=>{
+ const dir=fs.mkdtempSync(path.join(os.tmpdir(),'dexa-dash-setup-')),out=path.join(dir,'private/key.json');
+ const code=`import importlib.util\ns=importlib.util.spec_from_file_location('setup',${JSON.stringify(script)})\nm=importlib.util.module_from_spec(s);s.loader.exec_module(m)\nm.save_key(${JSON.stringify(out)},m.derive_key('fixture-terminal-비밀번호'))\n`;
+ execFileSync('python3',['-c',code]);
+ const cfg=readKeyConfig(out);assert.equal(fs.statSync(path.dirname(out)).mode&0o777,0o700);
+ const radar={schemaVersion:'radar.v1',id:'lectures',title:'Lectures',updatedAt:'2026-10-31T00:00:00Z',occurrenceId:'1',runStatus:'HOLD',summary:'',items:[]};
+ const enc=await encryptDashboard([radar],cfg);assert.equal((await decryptDashboard(enc,'fixture-terminal-비밀번호')).radars[0].id,'lectures');
+ assert.throws(()=>execFileSync('python3',['-c',code],{stdio:'pipe'}));
+});

@@ -2,6 +2,9 @@
 **/.DS_Store
 /graphify-out/
 /hsg/
+/.planning/M20261031/
+/.dashboard-artifacts/
+/scripts/dashboard/__pycache__/
 
 # Week 4 large packages are distributed through Google Drive.
 /ontology/study/downloads/species-plain-week4.zip

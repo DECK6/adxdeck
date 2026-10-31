@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dexa.art/dash/schema/radar.v1.schema.json",
+  "title": "DEXA dashboard radar adapter v1",
+  "type": "object",
+  "required": ["schemaVersion", "id", "title", "updatedAt", "occurrenceId", "runStatus", "summary", "items"],
+  "properties": {
+    "schemaVersion": {"enum": ["radar.v1", "lecture-radar.v1", "open-call-radar.v1"]},
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9-]{0,39}$"},
+    "title": {"type": "string"},
+    "updatedAt": {"type": "string", "format": "date-time"},
+    "occurrenceId": {"type": "string"},
+    "runStatus": {"enum": ["VERIFIED", "HOLD", "BLOCKED_HUMAN_REQUIRED", "REPAIR_PENDING", "CRON_FAILURE"]},
+    "summary": {"type": "string"},
+    "limitations": {"type": "array", "items": {"type": "string"}},
+    "reportMarkdown": {"type": "string"},
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "status", "applicationStatus"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string"},
+          "organization": {"type": "string"},
+          "track": {"type": ["string", "null"]},
+          "grade": {"enum": ["A", "B", "C", null]},
+          "status": {"enum": ["recommended", "conditional", "hold", "waiting", "excluded", "closed", "information"]},
+          "applicationStatus": {"enum": ["not_applied", "preparing", "submitted", "on_hold", "cancelled", "unknown"]},
+          "applicationStatusLabel": {"type": "string"},
+          "deadlineAt": {"type": ["string", "null"], "format": "date-time"},
+          "deadlineDate": {"type": ["string", "null"], "format": "date"},
+          "deadlineLabel": {"type": "string"},
+          "checkedAt": {"type": ["string", "null"]},
+          "officialUrl": {"type": ["string", "null"]},
+          "summary": {"type": "string"},
+          "nextAction": {"type": "string"},
+          "fields": {"type": "array", "items": {"type": "object", "required": ["label", "value"], "properties": {"label": {"type": "string"}, "value": {"type": "string"}}}}
+        }
+      }
+    }
+  }
+}

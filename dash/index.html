@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta name="theme-color" content="#121512">
+  <title>DEXA · Radar</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <a class="skip" href="#workspace">본문으로</a>
+  <main id="gate" class="gate">
+    <div class="gate-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><span class="orbit-dot"></span><span class="crosshair">+</span></div>
+    <div class="gate-content">
+      <a class="wordmark" href="/">DEXA<span> / PRIVATE WORKSPACE</span></a>
+      <p class="eyebrow">OPPORTUNITY RADAR</p>
+      <h1>다음 기회를<br>한곳에서.</h1>
+      <p class="gate-description">공모부터 강의처까지.<br>확인한 기회와 진행 상황을 이어 봅니다.</p>
+      <form id="unlock-form">
+        <label for="password">대시보드 비밀번호</label>
+        <div class="password-row"><input id="password" type="password" required autocomplete="current-password" placeholder="비밀번호 입력"><button id="unlock" type="submit">열기 <span aria-hidden="true">↗</span></button></div>
+        <p id="gate-message" class="gate-message" role="status" aria-live="polite">한 번 열면 모든 레이더를 볼 수 있습니다.</p>
+      </form>
+      <p class="gate-footnote">DEXA RADAR <span>개인 작업 공간</span></p>
+    </div>
+  </main>
+  <div id="workspace" class="workspace" hidden>
+    <header class="topbar"><a class="wordmark" href="/">DEXA<span> / RADAR</span></a><div class="top-actions"><span class="private-label"><i></i> 개인 대시보드</span><button id="lock" class="button-quiet">잠그기 <span aria-hidden="true">↗</span></button></div></header>
+    <main class="dashboard">
+      <div class="page-heading"><div><p class="eyebrow">YOUR NEXT OPPORTUNITY</p><h1>기회 레이더<span>.</span></h1><p>확인한 근거와 현재 상태를 함께 봅니다.</p></div><p id="today" class="today"></p></div>
+      <nav id="tabs" class="tabs" role="tablist" aria-label="레이더 선택"></nav>
+      <section id="radar-panel" role="tabpanel" tabindex="0">
+        <div class="radar-heading"><div><h2 id="radar-title"></h2><p id="radar-summary"></p></div><div class="run-meta"><span id="run-status" class="badge"></span><time id="updated"></time></div></div>
+        <div id="limitations" class="limitations" hidden></div>
+        <div id="stats" class="stats" aria-label="현재 항목 집계"></div>
+        <div id="urgent" class="urgent" hidden></div>
+        <div class="list-toolbar"><div id="filters" class="filters" role="group" aria-label="상태 필터"></div><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" aria-label="항목 검색" placeholder="이름·기관·내용 검색"></label></div>
+        <div class="result-heading"><p id="result-count" role="status" aria-live="polite"></p><button id="report-button" class="button-quiet" hidden>전체 보고서 ↗</button></div>
+        <div id="cards" class="cards"></div>
+        <p id="empty" class="empty" hidden>이 조건에 맞는 항목이 없습니다.</p>
+        <footer class="dashboard-footer"><span>확인 시점의 정보입니다. 세부 조건은 공식 공고와 함께 확인해 주세요.</span><span id="occurrence"></span></footer>
+      </section>
+    </main>
+  </div>
+  <dialog id="detail"><div class="dialog-head"><span id="dialog-label" class="eyebrow"></span><button id="close-detail" class="button-quiet" aria-label="상세 닫기">닫기 ×</button></div><div id="detail-content"></div></dialog>
+</body>
+</html>
