@@ -1,5 +1,34 @@
 [
   {
+    "slug": "moire-and-the-image-between-patterns",
+    "file": "_built/moire-and-the-image-between-patterns.md",
+    "title": "모아레는 무늬 사이에서 움직인다",
+    "description": "겹친 선 사이에 생기는 모아레는 어디에 있는 이미지일까. 헤수스 라파엘 소토의 투명한 작품과 무늬의 중첩을 통해 관객의 위치가 이미지에 참여하는 방식을 살펴봅니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "모아레",
+      "지각",
+      "키네틱아트",
+      "소토"
+    ],
+    "date": "2026-11-01",
+    "modified": "2026-11-01",
+    "thumbnail": "images/moire-between-patterns-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "감각·형식",
+    "mediaArtCategorySlug": "senses-forms",
+    "mediaArtTags": [
+      "media-art",
+      "모아레",
+      "지각",
+      "키네틱아트",
+      "소토"
+    ]
+  },
+  {
     "slug": "finding-evidence-when-the-words-and-position-change",
     "file": "_built/finding-evidence-when-the-words-and-position-change.md",
     "title": "긴 문서 속 근거를 AI가 정말 찾았는지 확인하는 법",
