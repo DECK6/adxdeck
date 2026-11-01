@@ -8,7 +8,8 @@ window.PORTFOLIO = {
     "breath-beneath-the-tide",
     "nakhwa",
     "gyeong",
-    "joinery"
+    "joinery",
+    "weave"
   ],
   "materialsUrl": "mailto:deck@dexa.art?subject=Media%20art%20screening%20inquiry",
   "artist": {
@@ -188,6 +189,30 @@ window.PORTFOLIO = {
       "sound": true,
       "loop": false,
       "credit": "구상·연출 육대근(DECK) · Three.js/Poseidon 기반 바다 렌더링 · 하늘: 생성형 AI · 음악: 작가가 Suno로 제작"
+    },
+    {
+      "id": "weave",
+      "title": "직조",
+      "subtitle": "탄성의 결",
+      "titleEn": "Weave — Elastic Relief",
+      "year": 2026,
+      "group": "individual",
+      "caption": "음악을 따라 변하는 천 아래의 형태. 빛과 그림자가 깊은 골과 주름을 드러내며, 보이지 않는 힘을 표면의 움직임으로 전한다.",
+      "description": {
+        "ko": "얇은 천 아래에서 묵직한 형태들이 음악을 따라 늘어나고 기울며 서로 다른 방향으로 흐른다. 천은 솟은 면을 감싸고 그 사이로 깊게 내려가며, 팽팽한 능선과 접힌 주름을 번갈아 드러낸다. 색을 걷어낸 화면에서는 빛과 그림자, 촘촘한 직물의 결이 변화의 깊이를 보여준다. 몸체는 가려져 있지만 그 움직임은 표면에 남는다. 소리가 형태를 움직이고 형태가 다시 빛을 바꾸는, 보이지 않는 힘의 전달을 바라보는 작업이다.",
+        "en": "A thin sheet of woven fabric rests over weighty, yielding forms. As the music unfolds, the forms stretch, tilt and shift in different directions. The cloth rises over them and falls into deep channels between them. With color removed, light, shadow and the fine weave reveal each change. The bodies remain hidden; their motion is read through the surface they move. Sound becomes shape, and shape changes the light."
+      },
+      "poster": "/works/assets/posters/weave.jpg",
+      "video": "https://github.com/DECK6/adxdeck/releases/download/art-films-20261101/weave.mp4",
+      "resolution": [
+        1920,
+        640
+      ],
+      "fps": 30,
+      "duration": 70.033333,
+      "sound": true,
+      "loop": false,
+      "credit": "구상·연출·프로그래밍 육대근(DECK) · Three.js 기반 천 시뮬레이션·절차적 렌더링 · 음악: 작가가 Suno로 제작"
     }
   ],
   "homeFeatured": [

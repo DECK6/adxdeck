@@ -18,9 +18,9 @@ test('both homepages show exactly the requested three films in order', () => {
   }
 });
 
-test('the seven-film catalog has valid stills, public media, sound and individual loop settings', () => {
-  assert.equal(catalog.works.length, 7);
-  assert.equal(new Set(catalog.order).size, 7);
+test('the eight-film catalog has valid stills, public media, sound and individual loop settings', () => {
+  assert.equal(catalog.works.length, 8);
+  assert.equal(new Set(catalog.order).size, 8);
   for (const work of catalog.works) {
     assert.ok(catalog.order.includes(work.id));
     assert.ok(fs.existsSync(path.join(root, work.poster)), work.poster);
@@ -90,7 +90,7 @@ function galleryHarness(hash = '') {
 test('the gallery replaces Yunseul and the whole seasonal series with the new ocean artwork', () => {
   const page = galleryHarness();
   const cards = [...page.element('#work-grid').innerHTML.matchAll(/data-work="([^"]+)"/g)].map(m => m[1]);
-  assert.deepEqual(cards, ['ink-breath','gyeol','sand-pendulum','breath-beneath-the-tide','nakhwa','gyeong','joinery']);
+  assert.deepEqual(cards, ['ink-breath','gyeol','sand-pendulum','breath-beneath-the-tide','nakhwa','gyeong','joinery','weave']);
   for (const id of ['yunseul','four-seasons','spring','summer','autumn','winter']) {
     assert.ok(!catalog.works.some(w=>w.id===id));
     assert.doesNotMatch(read('works/index.html'), new RegExp('data-work="'+id+'"'));
@@ -114,4 +114,18 @@ test('ocean direct link waits for play and removed artwork direct links do not r
     const retired=galleryHarness('#work='+id);
     assert.equal(retired.element('#viewer').open, false);
   }
+});
+
+test('Weave publishes the actual monochrome preview without inventing a 6K master', () => {
+  const work = catalog.works.find(work => work.id === 'weave');
+  assert.ok(work, 'Weave must be in the public catalog');
+  assert.deepEqual(Array.from(work.resolution), [1920, 640]);
+  assert.equal(work.loop, false);
+  assert.equal(work.sound, true);
+  assert.ok(Math.abs(work.duration - 70.033333) < 0.001);
+  assert.match(work.description.ko, /빛과 그림자/);
+  const page = galleryHarness('#work=weave');
+  assert.equal(page.element('#viewer-title').textContent, '직조');
+  assert.equal(page.element('#viewer-video').playCount, 0);
+  assert.match(page.element('#viewer-specs').innerHTML, /1920 × 640/);
 });
