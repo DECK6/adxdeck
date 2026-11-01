@@ -44,7 +44,9 @@ test('submitted, cancelled and held items never become deadline application remi
   const now=new Date('2026-10-31T22:00:00+09:00');
   const item={status:'conditional',applicationStatus:'not_applied',deadlineAt:'2026-10-31T23:59:00+09:00'};
   assert.equal(core.isUrgent(item,now),true);
-  for(const patch of [{applicationStatus:'submitted'},{applicationStatus:'cancelled'},{status:'hold'},{status:'excluded'},{status:'waiting'}])assert.equal(core.isUrgent({...item,...patch},now),false);
+  for(const patch of [{applicationStatus:'submitted'},{applicationStatus:'cancelled'},{status:'hold',nextAction:'해외 체류 의무 확인 전 보류'},{status:'excluded'},{status:'waiting'}])assert.equal(core.isUrgent({...item,...patch},now),false);
+  // An unconfirmed-pay hold with a live deadline is still a reminder: it is reviewable, not blocked.
+  assert.equal(core.isUrgent({...item,status:'hold',nextAction:'내부 강사료 액수 확인 전 우선순위 보류'},now),true);
   assert.equal(core.itemBucket({...item,applicationStatus:'submitted'},new Date('2026-11-01T01:00:00+09:00')),'submitted');
   assert.equal(core.itemBucket(item,new Date('2026-11-01T01:00:00+09:00')),'closed');
 });
@@ -90,4 +92,18 @@ test('verified personal submissions and onboarding replies stay distinct from si
  assert.equal(out.items.length,2);assert.ok(out.items.every(i=>i.applicationStatus==='submitted'&&i.resultStatus==='awaiting'));
  assert.match(out.items.find(i=>i.id==='led-art-onboarding').summary,/계약.*미확정/);
  assert.equal(out.items.some(i=>/Ocean/.test(i.title)),false);
+});
+
+test('unconfirmed pay or schedule keeps an item reviewable while confirmed blockers and user holds stay held',()=>{
+ const base={status:'hold',applicationStatus:'not_applied',deadlineDate:'2026-11-06',fields:[{label:'보수',value:'내부 규정 · 액수 미공개'}]};
+ const now=new Date('2026-11-01T12:00:00+09:00');
+ const pay={...base,nextAction:'내부 강사료 액수 확인 전 방문·서류 제작 우선순위 보류.'};
+ assert.equal(core.holdKind(pay),'check');assert.equal(core.itemBucket(pay,now),'review');assert.deepEqual(core.bucketLabel(pay,now),{label:'확인 필요',cls:'check'});
+ assert.equal(core.reasonOf(pay),'내부 강사료 액수 확인 전 방문·서류 제작 우선순위 보류.');
+ for(const reason of ['주 5일의 실제 투입 범위 확인','저작재산권·2차적저작물작성권 양도 협의 문구','네덜란드에서 활동하거나 기반을 둔 지원자 조건','해외 체류 의무를 먼저 확인']){const i={...base,nextAction:reason};assert.equal(core.holdKind(i),'blocker',reason);assert.equal(core.itemBucket(i,now),'hold');}
+ const eu={...base,nextAction:'국가 자격 미확인',fields:[{label:'지원 자격',value:'EU/Creative Europe 참여국 기반 조건'}]};assert.equal(core.holdKind(eu),'blocker');
+ const user={...base,applicationStatus:'on_hold',nextAction:'보수 확인'};assert.equal(core.holdKind(user),'user');assert.equal(core.itemBucket(user,now),'hold');assert.equal(core.bucketLabel(user,now).label,'지원 보류');
+ const explicit={...base,holdKind:'blocker',nextAction:'보수 미공개'};assert.equal(core.holdKind(explicit),'blocker');
+ const reviewed={...base,reason:'명시 사유',highlights:[{label:'검토 의견',value:'검토 의견 문구'}],nextAction:'다음 확인'};assert.equal(core.reasonOf(reviewed),'명시 사유');assert.equal(core.reasonOf({...reviewed,reason:''}),'검토 의견 문구');
+ const expired={...pay,deadlineDate:'2026-10-30'};assert.equal(core.itemBucket(expired,now),'closed');
 });

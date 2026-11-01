@@ -20,7 +20,7 @@ test('an explicit user submission overrides old source status, but not an offici
 test('comparison has aligned fields, preserves missing values, and escapes source markup',()=>{
  assert.ok(state,'comparison renderer missing');
  const html=state.comparisonTable([item('a',{title:'<script>bad</script>',fields:[{label:'보수',value:'협의'},{label:'장소',value:'서울'}]}),item('b',{fields:[{label:'보수',value:'미공개'}]})]);
- assert.ok(!html.includes('<script>'));assert.match(html,/&lt;script&gt;/);assert.match(html,/협의/);assert.match(html,/미공개/);assert.match(html,/미확인/);
+ assert.ok(!html.includes('<script>'));assert.match(html,/&lt;script&gt;/);assert.match(html,/협의/);assert.match(html,/미공개/);assert.match(html,/미확인/);assert.match(html,/확인·보류 사유/);
 });
 test('comparison selections toggle without duplicates and stop at three',()=>{
  assert.ok(state,'comparison selector missing');

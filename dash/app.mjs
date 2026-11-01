@@ -1,9 +1,11 @@
-import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate} from './core.mjs';
+import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel} from './core.mjs';
 import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs';
 
 const $=id=>document.getElementById(id);
 const labels={review:'검토 가능',submitted:'지원 완료',hold:'보류',waiting:'대기',excluded:'제외',closed:'마감',information:'참고'};
-const filters=[['review','검토 가능'],['awaiting','발표 대기'],['submitted','지원 완료'],['hold','보류'],['waiting','모집 대기'],['excluded','제외'],['all','전체']];
+const filters=[['review','검토 가능'],['check','확인 필요'],['awaiting','발표 대기'],['submitted','지원 완료'],['hold','보류'],['waiting','모집 대기'],['excluded','제외'],['all','전체']];
+// Reason line on cards: open-call cards already show 검토 의견 in highlights, so only add it where it is hidden.
+const reasonLine=i=>{const r=reasonOf(i);if(!r||i.applicationStatus==='submitted'||i.highlights?.some(h=>h.label==='검토 의견'))return '';return `<p class="card-reason"><span>${holdKind(i)?'확인·보류 사유':'검토 메모'}</span>${e(r)}</p>`;};
 // Non-radar tabs render into their own panels; radar tabs share #radar-panel.
 const panels={overview:'overview-panel',applications:'applications-panel',revenue:'revenue-panel',nara:'nara-panel'};
 let payload=null,activeId=null,envelope=null,epoch=0,authKey=null,apiUrl=null,records=[],ready=false;
@@ -120,8 +122,8 @@ function timelineEntries(now){
  for(const i of workingItems(now)){
   if(i.applicationStatus==='submitted')continue;
   const date=deadlineDate(i);if(!date)continue;const days=daysUntil(date,now);if(days<0||days>60)continue;
-  const b=itemBucket(i,now);if(b==='excluded')continue;
-  out.push({kind:'radar',radarId:i.radarId,itemId:i.id,date,days,when:i.deadlineAt?deadlineText(i,now):dayText(date)+' · 시각 미확인',title:i.title,sub:i.organization||'',source:i.radarTitle,bucket:b,status:b==='review'?(i.status==='recommended'?'추천':'조건부 검토'):b==='hold'?'조건 확인 필요':labels[b],grade:i.grade,track:i.track});
+  const b=itemBucket(i,now);if(b==='excluded')continue;const {label,cls}=bucketLabel(i,now);
+  out.push({kind:'radar',radarId:i.radarId,itemId:i.id,date,days,when:i.deadlineAt?deadlineText(i,now):dayText(date)+' · 시각 미확인',title:i.title,sub:i.organization||'',reason:holdKind(i)||i.status==='conditional'?reasonOf(i):'',source:i.radarTitle,bucket:cls,status:label,grade:i.grade,track:i.track});
  }
  for(const m of payload.revenue?.milestones||[]){const days=daysUntil(m.date,now);if(days<-1||days>60)continue;out.push({kind:'plan',radarId:'revenue',date:m.date,days,when:dayText(m.date),title:m.label,sub:m.note,source:'수익 계획',bucket:'plan',status:'결정 지점'});}
  for(const n of naraEntries()){
@@ -148,7 +150,7 @@ function renderTimeline(now=new Date()){
  const all=timelineEntries(now),sources=[...new Set(all.map(t=>t.source))];
  $('timeline-sources').innerHTML=sources.map(src=>`<button type="button" data-source="${e(src)}" aria-pressed="${!hiddenSources.has(src)}">${e(src)} ${all.filter(t=>t.source===src).length}</button>`).join('');
  const entries=all.filter(t=>!hiddenSources.has(t.source));
- $('timeline').innerHTML=entries.length?entries.map(t=>`<li class="tl-row kind-${t.kind}${t.days<=7?' tl-soon':''}" data-jump="${e(t.radarId)}"${t.itemId?` data-item="${e(t.itemId)}"`:''} tabindex="0"><span class="tl-day">${ddayText(t.days)}</span><span class="tl-date">${e(t.when)}</span><span class="tl-body"><strong>${e(t.title)}</strong>${t.sub?`<small>${e(t.sub)}</small>`:''}</span><span class="tl-tags"><span class="tag">${e(t.source)}</span><span class="tag ${e(t.bucket)}">${e(t.status)}</span>${t.grade?`<span class="tag">${e(t.grade)}등급</span>`:''}${t.track?`<span class="tag">트랙 ${e(t.track)}</span>`:''}</span></li>`).join(''):'<li class="empty">선택한 출처에 60일 이내 마감이나 결정 지점이 없습니다.</li>';
+ $('timeline').innerHTML=entries.length?entries.map(t=>`<li class="tl-row kind-${t.kind}${t.days<=7?' tl-soon':''}" data-jump="${e(t.radarId)}"${t.itemId?` data-item="${e(t.itemId)}"`:''} tabindex="0"><span class="tl-day">${ddayText(t.days)}</span><span class="tl-date">${e(t.when)}</span><span class="tl-body"><strong>${e(t.title)}</strong>${t.sub?`<small>${e(t.sub)}</small>`:''}${t.reason?`<small class="tl-reason">${e(t.reason)}</small>`:''}</span><span class="tl-tags"><span class="tag">${e(t.source)}</span><span class="tag ${e(t.bucket)}">${e(t.status)}</span>${t.grade?`<span class="tag">${e(t.grade)}등급</span>`:''}${t.track?`<span class="tag">트랙 ${e(t.track)}</span>`:''}</span></li>`).join(''):'<li class="empty">선택한 출처에 60일 이내 마감이나 결정 지점이 없습니다.</li>';
 }
 $('timeline-sources').addEventListener('click',event=>{const b=event.target.closest('[data-source]');if(!b)return;const src=b.dataset.source;if(hiddenSources.has(src))hiddenSources.delete(src);else hiddenSources.add(src);renderTimeline();});
 function renderApplications(){
@@ -188,7 +190,7 @@ function renderCards(){
  const r=radar();if(!r)return;const now=new Date();$('browse').append($('inspector'));
  visibleItems=r.items.filter(i=>{
   if((filter==='archive')!==isArchived(i,now))return false;
-  if(filter!=='archive'&&filter!=='all'&&(filter==='awaiting'?! (i.applicationStatus==='submitted'&&i.resultStatus==='awaiting'):itemBucket(i,now)!==filter))return false;
+  if(filter!=='archive'&&filter!=='all'&&(filter==='awaiting'?! (i.applicationStatus==='submitted'&&i.resultStatus==='awaiting'):filter==='check'?!(itemBucket(i,now)==='review'&&holdKind(i)==='check'):itemBucket(i,now)!==filter))return false;
   return !search||[i.title,i.organization,i.summary,i.nextAction,...(i.fields||[]).map(f=>f.value)].join(' ').toLocaleLowerCase().includes(search);
  });
  visibleItems.sort((a,b)=>Number(isUrgent(b,now))-Number(isUrgent(a,now))||(a.deadlineAt||a.deadlineDate||'9999').localeCompare(b.deadlineAt||b.deadlineDate||'9999'));
@@ -196,8 +198,8 @@ function renderCards(){
  $('result-count').textContent=`${filter==='archive'?'미지원 마감 보관함':filters.find(([k])=>k===filter)?.[1]} ${visibleItems.length}건`;
  $('empty').hidden=visibleItems.length>0;
  $('cards').innerHTML=visibleItems.map(i=>{
-  const b=itemBucket(i,now),urgent=isUrgent(i,now),status=b==='review'?(i.status==='recommended'?'추천':'조건부 검토'):labels[b];
-  return `<article class="card${selectedId===i.id?' selected-card':''}${urgent?' urgent-card':''}" data-row="${e(i.id)}"><div class="card-tags"><span class="tag ${b}">${e(status)}</span>${i.grade?`<span class="tag">${e(i.grade)}등급</span>`:''}${i.track?`<span class="tag">트랙 ${e(i.track)}</span>`:''}${urgent?'<span class="tag urgent-tag">7일 이내</span>':''}<label class="compare-check"><input type="checkbox" data-compare="${e(i.id)}" aria-label="${e(i.title)} 비교" ${compareIds.includes(i.id)?'checked':''}><span>비교</span></label></div>${i.organization?`<p class="card-organization">${e(i.organization)}</p>`:''}<h3><button class="card-title" data-item="${e(i.id)}" aria-label="${e(i.title)} 상세 보기" aria-controls="inspector" aria-expanded="${selectedId===i.id&&mode==='detail'}">${e(i.title)}</button></h3><p class="card-deadline"><span>마감</span><span>${e(deadlineText(i))}</span></p><p class="card-summary">${e(i.summary)}</p>${highlightList(i)}<div class="card-bottom">${submittedControl(i)}<span class="application">${e(applicationLabel(i))}</span></div></article>`;
+  const b=itemBucket(i,now),urgent=isUrgent(i,now),{label:status,cls}=bucketLabel(i,now);
+  return `<article class="card${selectedId===i.id?' selected-card':''}${urgent?' urgent-card':''}" data-row="${e(i.id)}"><div class="card-tags"><span class="tag ${cls}">${e(status)}</span>${i.grade?`<span class="tag">${e(i.grade)}등급</span>`:''}${i.track?`<span class="tag">트랙 ${e(i.track)}</span>`:''}${urgent?'<span class="tag urgent-tag">7일 이내</span>':''}<label class="compare-check"><input type="checkbox" data-compare="${e(i.id)}" aria-label="${e(i.title)} 비교" ${compareIds.includes(i.id)?'checked':''}><span>비교</span></label></div>${i.organization?`<p class="card-organization">${e(i.organization)}</p>`:''}<h3><button class="card-title" data-item="${e(i.id)}" aria-label="${e(i.title)} 상세 보기" aria-controls="inspector" aria-expanded="${selectedId===i.id&&mode==='detail'}">${e(i.title)}</button></h3><p class="card-deadline"><span>마감</span><span>${e(deadlineText(i))}</span></p><p class="card-summary">${e(i.summary)}</p>${reasonLine(i)}${highlightList(i)}<div class="card-bottom">${submittedControl(i)}<span class="application">${e(applicationLabel(i))}</span></div></article>`;
  }).join('');renderComparisonBar();renderInspector();
 }
 function renderComparisonBar(){
@@ -214,7 +216,7 @@ function renderInspector(){
  }else if(i){
   const idx=visibleItems.findIndex(x=>x.id===i.id),href=safeUrl(i.officialUrl);
   $('inspector-tools').innerHTML=`<span>상세 · ${idx>=0?idx+1+'/'+visibleItems.length:'선택한 항목'}</span><div><button data-step="-1" ${idx<=0?'disabled':''} aria-label="이전 항목">← 이전</button><button data-step="1" ${idx<0||idx>=visibleItems.length-1?'disabled':''} aria-label="다음 항목">다음 →</button></div>`;
-  $('inspector-content').innerHTML=`<div class="inspector-heading"><p class="eyebrow">${e(i.organization||r.title)}</p><h2>${e(i.title)}</h2></div><div class="application-control">${submittedControl(i)}<strong>${e(applicationLabel(i))}</strong>${i.stateSource==='dashboard-user'?'<small>마스터가 직접 확인한 지원 상태</small>':''}</div><p>${e(i.summary)}</p>${href?`<a class="official-link" href="${e(href)}" target="_blank" rel="noopener noreferrer">공식 공고 열기 ↗</a>`:''}<dl><dt>마감</dt><dd>${e(deadlineText(i))}${i.deadlineLabel?'<br>'+e(i.deadlineLabel):''}</dd>${(i.fields||[]).map(f=>`<dt>${e(f.label)}</dt><dd>${e(f.value)}</dd>`).join('')}${i.checkedAt&&Number.isFinite(Date.parse(i.checkedAt))?`<dt>근거 확인 시점</dt><dd>${e(i.checkedAt.includes('T')?dateTime(i.checkedAt):i.checkedAt+' · 시각 미확인')}</dd>`:''}</dl><div class="next-action"><span class="eyebrow">다음 확인</span><p>${e(i.applicationStatus==='submitted'?(i.resultStatus==='awaiting'?'재지원하지 않고 발표·회신을 기다립니다.':resultLabels[i.resultStatus]+' 결과 확인'):i.nextAction||'공식 조건을 확인해 주세요.')}</p></div>`;
+  $('inspector-content').innerHTML=`<div class="inspector-heading"><p class="eyebrow">${e(i.organization||r.title)}</p><h2>${e(i.title)}</h2></div><div class="application-control">${submittedControl(i)}<strong>${e(applicationLabel(i))}</strong>${i.stateSource==='dashboard-user'?'<small>마스터가 직접 확인한 지원 상태</small>':''}</div>${i.applicationStatus!=='submitted'&&reasonOf(i)?`<div class="reason-box ${holdKind(i)==='blocker'||holdKind(i)==='user'?'reason-hold':''}"><span class="eyebrow">${bucketLabel(i,new Date()).label} · 사유</span><p>${e(reasonOf(i))}</p></div>`:''}<p>${e(i.summary)}</p>${href?`<a class="official-link" href="${e(href)}" target="_blank" rel="noopener noreferrer">공식 공고 열기 ↗</a>`:''}<dl><dt>마감</dt><dd>${e(deadlineText(i))}${i.deadlineLabel?'<br>'+e(i.deadlineLabel):''}</dd>${(i.fields||[]).map(f=>`<dt>${e(f.label)}</dt><dd>${e(f.value)}</dd>`).join('')}${i.checkedAt&&Number.isFinite(Date.parse(i.checkedAt))?`<dt>근거 확인 시점</dt><dd>${e(i.checkedAt.includes('T')?dateTime(i.checkedAt):i.checkedAt+' · 시각 미확인')}</dd>`:''}</dl><div class="next-action"><span class="eyebrow">다음 확인</span><p>${e(i.applicationStatus==='submitted'?(i.resultStatus==='awaiting'?'재지원하지 않고 발표·회신을 기다립니다.':resultLabels[i.resultStatus]+' 결과 확인'):i.nextAction||'공식 조건을 확인해 주세요.')}</p></div>`;
  }
  placeInspector();
 }

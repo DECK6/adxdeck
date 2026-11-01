@@ -27,16 +27,40 @@ export function kstDate(now=new Date()) {
   return new Date(now.getTime()+9*3600000).toISOString().slice(0,10);
 }
 
+// 2026-11-01 master rule: 보류 is only for confirmed blockers (overseas residency, eligibility failure,
+// rights assignment, full-time weekday roles) or the master's own hold. Unconfirmed pay, schedule,
+// fees or rights clauses keep an item reviewable as '확인 필요' with its reason shown.
+// '양도' counts only as a stated condition, not a negated one ("양도로 단정하지 않음", "비양도").
+const HARD_HOLD=/해외 체류|현지 체류|거주.{0,6}(?:필요|필수)|거점.{0,4}(?:필요|필수|조건)|기반(?:을)? ?(?:둔|조건)|(?<!비)양도(?!.{0,8}(?:단정|아님|없음|하지 않|여부|미확인))|주 ?5일|상근|정규직|자격.{0,6}(?:미달|불충족|없)|불충족|기준 미달|미충족|재개 금지/;
+export function reasonOf(item) {
+  if(item.reason)return item.reason;
+  const review=[...(item.highlights||[]),...(item.fields||[])].find(f=>f.label==='검토 의견')?.value;
+  return review||item.nextAction||'';
+}
+export function holdKind(item) {
+  if(['on_hold','cancelled'].includes(item.applicationStatus))return 'user';
+  if(item.status!=='hold')return null;
+  if(['blocker','check'].includes(item.holdKind))return item.holdKind;
+  const scan=[reasonOf(item),...(item.fields||[]).filter(f=>['지원 자격','요건','권리 확인','권리·활용 조건'].includes(f.label)).map(f=>f.value)].join(' ');
+  return HARD_HOLD.test(scan)?'blocker':'check';
+}
 export function itemBucket(item,now=new Date()) {
   if(item.applicationStatus==='submitted')return 'submitted';
   if(item.status==='excluded')return 'excluded';
   if(item.status==='closed')return 'closed';
-  if(item.applicationStatus==='cancelled' || item.applicationStatus==='on_hold')return 'hold';
+  const kind=holdKind(item);
+  if(kind==='user')return 'hold';
   if(item.deadlineAt && new Date(item.deadlineAt)<=now)return 'closed';
   if(!item.deadlineAt && item.deadlineDate && item.deadlineDate<kstDate(now))return 'closed';
-  if(item.status==='hold')return 'hold';
+  if(kind==='blocker')return 'hold';
   if(item.status==='waiting')return 'waiting';
-  return ['recommended','conditional'].includes(item.status)?'review':'information';
+  return ['recommended','conditional','hold'].includes(item.status)?'review':'information';
+}
+export function bucketLabel(item,now=new Date()) {
+  const b=itemBucket(item,now);
+  if(b==='review')return item.status==='recommended'?{label:'추천',cls:'review'}:item.status==='hold'?{label:'확인 필요',cls:'check'}:{label:'조건부 검토',cls:'review'};
+  if(b==='hold')return holdKind(item)==='user'?{label:'지원 보류',cls:'hold'}:{label:'보류 · 결격',cls:'hold'};
+  return {label:{submitted:'지원 완료',waiting:'모집 대기',excluded:'제외',closed:'마감',information:'참고'}[b],cls:b};
 }
 
 export function isUrgent(item,now=new Date()) {

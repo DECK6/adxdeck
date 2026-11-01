@@ -34,6 +34,8 @@
           "checkedAt": {"type": ["string", "null"]},
           "officialUrl": {"type": ["string", "null"]},
           "summary": {"type": "string"},
+          "reason": {"type": "string", "maxLength": 400, "description": "확인·보류 사유 한 줄. 카드·타임라인·비교표에 그대로 노출된다."},
+          "holdKind": {"enum": ["blocker", "check", null], "description": "status=hold일 때 blocker(확정 결격·보류)인지 check(단순 미확인·검토 가능)인지. 없으면 사유 문구로 추정한다."},
           "nextAction": {"type": "string"},
           "resultStatus": {"enum": [null, "awaiting", "selected", "not_selected", "withdrawn"]},
           "stateUpdatedAt": {"type": ["string", "null"], "format": "date-time"},

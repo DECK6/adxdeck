@@ -1,4 +1,4 @@
-import {escapeHtml as e,deadlineText,kstDate} from './core.mjs';
+import {escapeHtml as e,deadlineText,kstDate,reasonOf} from './core.mjs';
 
 export const resultLabels={awaiting:'발표 대기',selected:'선정',not_selected:'미선정',withdrawn:'취소'};
 export function applicationLabel(item){
@@ -29,7 +29,7 @@ export function applyState(radar,records){
 export function visibleSelection(selectedId,items){return items.some(i=>i.id===selectedId)?selectedId:items[0]?.id||null;}
 export function toggleComparison(ids,id){return ids.includes(id)?ids.filter(x=>x!==id):ids.length<3?[...ids,id]:ids;}
 export function comparisonTable(items){
-  const common=[['마감',i=>deadlineText(i)+(i.deadlineLabel?' · '+i.deadlineLabel:'')],['지원·발표',applicationLabel],['요약',i=>i.summary],['다음 확인',i=>i.applicationStatus==='submitted'?'재지원 없이 발표·회신 확인':i.nextAction]];
+  const common=[['마감',i=>deadlineText(i)+(i.deadlineLabel?' · '+i.deadlineLabel:'')],['지원·발표',applicationLabel],['확인·보류 사유',i=>i.applicationStatus==='submitted'?'—':reasonOf(i)],['요약',i=>i.summary],['다음 확인',i=>i.applicationStatus==='submitted'?'재지원 없이 발표·회신 확인':i.nextAction]];
   const labels=[...new Set(items.flatMap(i=>(i.fields||[]).map(f=>f.label)))];
   const rows=[...common,...labels.map(label=>[label,i=>i.fields?.find(f=>f.label===label)?.value])];
   return `<div class="comparison-scroll" tabindex="0" aria-label="선택 항목 비교표"><table class="comparison-table"><thead><tr><th scope="col">비교 기준</th>${items.map(i=>`<th scope="col">${e(i.organization||'')}<strong>${e(i.title)}</strong></th>`).join('')}</tr></thead><tbody>${rows.map(([label,value])=>`<tr><th scope="row">${e(label)}</th>${items.map(i=>`<td>${e(value(i)||'미확인')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
