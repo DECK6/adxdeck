@@ -1,7 +1,7 @@
 import {verifySignedRequest} from '../../../dash/state.mjs';
 const fields="radar_id AS radarId,item_id AS itemId,application_status AS applicationStatus,result_status AS resultStatus,updated_at AS updatedAt,revision,CASE WHEN mutation_id LIKE 'audit:%' THEN 'verified-record' ELSE 'dashboard-user' END AS source";
 const runFields="id AS requestId,radar_id AS radarId,status,requested_at AS requestedAt,updated_at AS updatedAt,note";
-const RUN_TARGETS=['open-calls','lectures','gangsaya','grants'];
+const RUN_TARGETS=['open-calls','lectures','gangsaya','grants','commissions'];
 const json=(value,status=200,cors={})=>new Response(JSON.stringify(value),{status,headers:{'content-type':'application/json; charset=utf-8','cache-control':'no-store',...cors}});
 
 export default {async fetch(request,env){

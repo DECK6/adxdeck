@@ -1,5 +1,5 @@
-import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel,orgKey,busyOn} from './core.mjs?v=38290eb4';
-import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=38290eb4';
+import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel,orgKey,busyOn} from './core.mjs?v=35a8ff4a';
+import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=35a8ff4a';
 
 const $=id=>document.getElementById(id);
 const filters=[['review','검토 가능'],['check','확인 필요'],['awaiting','발표 대기'],['submitted','지원 완료'],['hold','보류'],['waiting','모집 대기'],['excluded','제외'],['all','전체']];
@@ -8,7 +8,7 @@ const panels={overview:'overview-panel',applications:'applications-panel',receiv
 const REPLY_LABELS={none:'회신 없음',acknowledged:'접수 확인',meeting:'미팅 제안',documents:'추가 서류 요청',selected:'선정',not_selected:'미선정',withdrawn:'취소',paid:'지급 확인'};
 const RECV_LABELS={pending:['입금 대기','check'],invoiced:['청구 완료','check'],paid:['수령','review'],blocked:['처리 필요','hold'],unknown:['확인 필요','information'],dropped:['제외','closed']};
 const won=n=>Number.isFinite(n)?n.toLocaleString('ko-KR')+'원':'';
-const RUN_TARGETS={'open-calls':'공모 레이더',lectures:'강의처 레이더',gangsaya:'강사야 스캔',grants:'지원금 레이더'};
+const RUN_TARGETS={'open-calls':'공모 레이더',lectures:'강의처 레이더',gangsaya:'강사야 스캔',grants:'지원금 레이더',commissions:'의뢰·입점 레이더'};
 let orgFilter=null;
 // Theme: light chrome by default, dark on request or system preference; the choice is not secret.
 const THEME_KEY='dexa-dash-theme';

@@ -40,3 +40,11 @@ test('the real build CLI adds the commissions tab from its own run root',async()
  const plain=await decryptDashboard(JSON.parse(fs.readFileSync(out)),'fixture-commissions');
  const tab=plain.radars.find(r=>r.id==='commissions');assert.equal(tab.title,'의뢰·입점');assert.equal(tab.items[0].track,'개발 의뢰');
 });
+
+test('a manual commissions run is marked done once the commissions radar publishes newer data',async()=>{
+ const {completedRequests}=await import('../run-requests.mjs');
+ const worker=fs.readFileSync(new URL('../worker/index.mjs',import.meta.url),'utf8');
+ assert.match(worker,/RUN_TARGETS=\[[^\]]*'commissions'/);
+ const req={requestId:'r1',radarId:'commissions',status:'started',requestedAt:'2026-11-01T07:00:00Z'};
+ assert.deepEqual(completedRequests([req],[radar('commissions',[])],new Date('2026-11-01T08:10:00Z')).map(r=>r.requestId),['r1']);
+});
