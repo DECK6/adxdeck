@@ -83,6 +83,13 @@ export function readLinkOverrides(vault=DEFAULT_VAULT){
   return fs.existsSync(file)?json(file):null;
 }
 
+// Commissions were split out of open calls; one opportunity listed in both tabs invites a duplicate application.
+export function assertSingleHome(radars) {
+  const calls=new Set(radars.find(r=>r.id==='open-calls')?.items.map(i=>i.id)||[]);
+  const both=(radars.find(r=>r.id==='commissions')?.items||[]).filter(i=>calls.has(i.id)).map(i=>i.id);
+  if(both.length)throw Error('Listed in both open-calls and commissions: '+both.join(', '));
+}
+
 export function assertPrivateExport(radars) {
   const text=JSON.stringify(radars);
   if(/\/(?:Users|Volumes|home)\/|[\w.+-]+@[\w.-]+\.[a-z]{2,}|(?:010|011)[ -]?\d{3,4}[ -]?\d{4}|BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY/i.test(text))throw Error('Private path/contact/credential found in export');
@@ -97,8 +104,9 @@ export async function build({vault=DEFAULT_VAULT,keyFile=DEFAULT_KEY,out=path.jo
   const key=readKeyConfig(keyFile);
   const {syncState}=await import('./sync-state.mjs');
   const state=await syncState({vault,keyConfig:key});
-  const sources=[latestOpenCalls(vault),findLatestAdapter(path.join(vault,'60-actions/runs/lecture-opportunity-radar'),'lecture-radar.v1.json'),optionalAdapter(path.join(vault,'60-actions/runs/grant-radar'),'grant-radar.v1.json')].filter(Boolean);
+  const sources=[latestOpenCalls(vault),findLatestAdapter(path.join(vault,'60-actions/runs/lecture-opportunity-radar'),'lecture-radar.v1.json'),optionalAdapter(path.join(vault,'60-actions/runs/grant-radar'),'grant-radar.v1.json'),optionalAdapter(path.join(vault,'60-actions/runs/commission-opportunity-radar'),'commission-radar.v1.json')].filter(Boolean);
   const radars=applyReplies(applyLinkOverrides(sources.map(s=>sanitizeRadar(applyState(s.data,state.records))),readLinkOverrides(vault)),readVaultJson(vault,'60-actions/runs/radar-dashboard/replies/latest.json')).map(sanitizeRadar);
+  assertSingleHome(radars);
   const receivablesRaw=readVaultJson(vault,'60-actions/runs/radar-dashboard/receivables/latest.json'),receivables=receivablesRaw?sanitizeReceivables(receivablesRaw):null;
   const calendarRaw=readVaultJson(vault,'60-actions/runs/radar-dashboard/calendar/latest.json'),calendar=calendarRaw?sanitizeCalendar(calendarRaw):null;
   const revenueSource=latestRevenuePlan(vault),revenue=revenueSource?sanitizeRevenue(revenueSource.data):null;

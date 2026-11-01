@@ -15,7 +15,8 @@ export function applyReplies(radars,ledger){
  if(!ledger)return radars;
  if(ledger.schemaVersion!=='radar-reply-ledger.v1'||!Array.isArray(ledger.records))throw Error('Invalid reply ledger');
  return radars.map(radar=>({...radar,items:radar.items.map(item=>{
-  const r=ledger.records.find(x=>x.radarId===radar.id&&x.itemId===item.id);
+  // Replies recorded before an item moved from open calls to commissions still belong to it.
+  const r=ledger.records.find(x=>x.itemId===item.id&&(x.radarId===radar.id||(radar.id==='commissions'&&x.radarId==='open-calls')));
   if(!r||!REPLY_STATUSES.includes(r.replyStatus))return item;
   const next={...item,replyStatus:r.replyStatus,replyAt:iso(r.replyAt)||dateOnly(r.replyAt)?r.replyAt:null,replyNote:text(r.replyNote,300)};
   // An institution's final answer outranks the producer's awaiting state, but never turns a non-submission into a result.
