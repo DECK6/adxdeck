@@ -15,11 +15,11 @@ const raw={schemaVersion:'calendar-busy.v1',updatedAt:'2026-11-01T06:47:51.316Z'
   {start:'2026-11-04T23:00:00+09:00',end:'2026-11-05T01:00:00+09:00',calendarId:'fixture@example.org',allDay:false},
   {start:'2026-11-06T00:00:00+09:00',end:'2026-11-07T00:00:00+09:00',calendarId:'abc123@group.calendar.google.com',allDay:true}]};
 
-test('the calendar block keeps only busy intervals and calendar names, never ids, titles or attendees',()=>{
+test('the calendar block keeps only busy intervals and a calendar count, never ids, names, titles or attendees',()=>{
  assert.ok(calendar,'calendar sanitizer is not implemented');
  const clean=calendar.sanitizeCalendar(raw);
  assert.equal(clean.schemaVersion,'calendar-busy.v1');assert.equal(clean.updatedAt,raw.updatedAt);assert.equal(clean.from,'2026-11-01');assert.equal(clean.to,'2026-12-31');
- assert.deepEqual(clean.calendars,[{summary:'개인'},{summary:'DEXA'}]);
+ assert.equal(clean.calendarCount,2);assert.equal('calendars' in clean,false);assert.ok(!JSON.stringify(clean).includes('DEXA'));
  assert.deepEqual(clean.busy[0],{start:'2026-11-04T15:00:00+09:00',end:'2026-11-04T17:30:00+09:00',allDay:false});
  assert.ok(!JSON.stringify(clean).includes('fixture@example.org'));assert.ok(!JSON.stringify(clean).includes('비밀 미팅'));
  assert.throws(()=>calendar.sanitizeCalendar({...raw,schemaVersion:'other'}),/calendar/i);
