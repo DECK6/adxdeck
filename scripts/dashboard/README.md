@@ -76,7 +76,7 @@ Clicking anywhere on a card (except its controls) opens the detail popup (`<dial
 
 The 보류로 button writes `applicationStatus: on_hold` (no result) as a `dashboard-user` record; 보류 해제 writes `not_applied`. Producers inherit a user hold like 탤런트뱅크 (no recommendation, no reminders) until it is released.
 
-지금 찾기 buttons (종합 and radar headers; 강의처 also offers 강사야 스캔) POST `/v1/run {radarId}` to the Worker. The Worker stores the request in `run_requests`, relays it once to the T3 webhook in the `RUN_WEBHOOK_URL` secret (scheduled task "대시보드 지금 찾기 · 레이더 수동 실행 웹훅" in the owning Claude thread, which forwards a manual-occurrence message to the pinned radar thread) and answers `started`; a second request within 45 minutes gets 409. `publish.mjs` marks a request `done` when the targeted radar's `updatedAt` is newer than the request (`run-requests.mjs`). The UI polls `/v1/run` every minute while a request is open; a finished run needs a page reload to show new items.
+지금 찾기 buttons (종합 and radar headers; 강의처 also offers 강사야 스캔) POST `/v1/run {radarId}` to the Worker. The Worker stores the request in `run_requests`, relays it once to that radar's own T3 webhook from the `RUN_WEBHOOKS` secret (a webhook task bound directly to the pinned radar thread) and answers `started`; a second request within 45 minutes gets 409. `publish.mjs` marks a request `done` when the targeted radar's `updatedAt` is newer than the request (`run-requests.mjs`). The UI polls `/v1/run` every minute while a request is open; a finished run needs a page reload to show new items.
 
 강사야 (gangsaya.co.kr) items carry a pink `강사야` tag and are covered, with universities, major institutions and NCA 4기, by the lecture runs (full review Sun 09:00, checks Mon/Wed/Fri 11:00 KST); the 강사야 스캔 button runs a one-off check. The former daily job `lecture-radar-gangsaya-daily` is disabled and kept for history.
 
@@ -85,11 +85,11 @@ The 보류로 button writes `applicationStatus: on_hold` (no result) as a `dashb
 ```sh
 cd scripts/dashboard/worker
 bunx wrangler d1 execute dexa-radar-state --remote --file schema.sql   # idempotent CREATE TABLE IF NOT EXISTS
-bunx wrangler secret put RUN_WEBHOOK_URL                               # T3 webhook URL, never committed
+bunx wrangler secret put RUN_WEBHOOKS                                  # JSON {radarId: T3 webhook URL}, never committed
 bunx wrangler deploy
 ```
 
-Secrets: `AUTH_KEY` (HMAC signing key derived from the dashboard key) and `RUN_WEBHOOK_URL`. Both stay out of Git and the vault.
+Secrets: `AUTH_KEY` (HMAC signing key derived from the dashboard key) and `RUN_WEBHOOKS`. Both stay out of Git and the vault.
 
 A submission checkbox writes to the dedicated `dexa-radar-state` Worker/D1 store. Successful writes enter result-awaiting; network failures stay visibly unsaved. Revisions reject conflicting writes. Timestamped, nonce-bound HMAC requests use a domain-derived key; the Worker never receives the dashboard password or AES key. Browser keys live in memory only. Official final results are retained. The `verified-record` source is an audit mirror; only `dashboard-user` corrections override producer application state.
 

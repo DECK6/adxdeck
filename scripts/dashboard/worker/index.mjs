@@ -69,10 +69,12 @@ async function runRoute(request,env,body,cors){
  if(open)return json({error:'이미 요청한 실행이 진행 중입니다.',request:open},409,cors);
  const id=crypto.randomUUID();
  await env.DB.prepare('INSERT INTO run_requests(id,radar_id,status,requested_at,updated_at,note) VALUES(?,?,?,?,?,?)').bind(id,radarId,'pending',at,at,null).run();
- let status='failed',note='웹훅 미설정';
- if(env.RUN_WEBHOOK_URL){
+ // Each radar has its own webhook bound to its pinned thread (JSON secret: {radarId:url}).
+ let status='failed',note='웹훅 미설정',webhook=null;
+ try{webhook=JSON.parse(env.RUN_WEBHOOKS||'{}')[radarId]||null;}catch{note='웹훅 설정 오류';}
+ if(webhook){
   try{
-   const relay=await fetch(env.RUN_WEBHOOK_URL,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({radarId,requestId:id,requestedAt:at}),signal:AbortSignal.timeout(8000)});
+   const relay=await fetch(webhook,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({radarId,requestId:id,requestedAt:at}),signal:AbortSignal.timeout(8000)});
    if(relay.ok){status='started';note=null;}else note='relay '+relay.status;
   }catch(error){note='relay '+String(error?.name||'error').slice(0,40);}
  }

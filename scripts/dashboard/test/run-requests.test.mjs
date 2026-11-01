@@ -7,7 +7,7 @@ class D1{
  prepare(sql){const make=values=>({sql,values,bind:(...v)=>make(v),all:async()=>({results:this.db.prepare(sql).all(...values)}),first:async()=>this.db.prepare(sql).get(...values)??null,run:async()=>{this.db.prepare(sql).run(...values);return {success:true};}});return make([]);}
  async batch(statements){this.db.exec('BEGIN');try{const results=statements.map(s=>({results:this.db.prepare(s.sql).all(...s.values)}));this.db.exec('COMMIT');return results;}catch(error){this.db.exec('ROLLBACK');throw error;}}
 }
-async function setup(){const key=await deriveSigningKey(new Uint8Array(32).fill(5));return {key,env:{DB:new D1(),AUTH_KEY:Buffer.from(key).toString('base64'),ALLOWED_ORIGINS:'https://dexa.art',RUN_WEBHOOK_URL:'https://relay.example/hook'}};}
+async function setup(){const key=await deriveSigningKey(new Uint8Array(32).fill(5));return {key,env:{DB:new D1(),AUTH_KEY:Buffer.from(key).toString('base64'),ALLOWED_ORIGINS:'https://dexa.art',RUN_WEBHOOKS:JSON.stringify({'open-calls':'https://relay.example/hook',lectures:'https://relay.example/hook',gangsaya:'https://relay.example/hook',grants:'https://relay.example/hook',commissions:'https://relay.example/hook'})}};}
 async function request(ctx,method,path,value){const body=value?JSON.stringify(value):'';return new Request('https://state.example'+path,{method,body:body||undefined,headers:{...await signedHeaders(ctx.key,method,path,body),origin:'https://dexa.art'}});}
 test('a run request is stored, relayed to the T3 webhook once, and deduplicated while in flight',async()=>{
  const ctx=await setup(),calls=[];const realFetch=globalThis.fetch;globalThis.fetch=async(url,init)=>{calls.push({url,body:JSON.parse(init.body)});return new Response('ok',{status:200});};
