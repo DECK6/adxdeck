@@ -1,5 +1,6 @@
 import {withKoreanAnalysis} from './analysis.mjs';
 import {sanitizeRevenue} from './revenue.mjs';
+import {sanitizeReceivables,REPLY_STATUSES} from './ledgers.mjs';
 import {webcrypto, pbkdf2Sync, randomBytes} from 'node:crypto';
 import {safeUrl} from '../../dash/core.mjs';
 
@@ -27,7 +28,7 @@ export function sanitizeRadar(input) {
     if(item.officialUrl&&!safeUrl(item.officialUrl))throw Error('Invalid official URL');
     if(item.resultStatus!=null&&!['awaiting','selected','not_selected','withdrawn'].includes(item.resultStatus))throw Error('Invalid resultStatus');
     if(item.stateUpdatedAt!=null&&!iso(item.stateUpdatedAt))throw Error('Invalid stateUpdatedAt');
-    return {id:text(item.id,120),reason:text(item.reason,400),holdKind:['blocker','check'].includes(item.holdKind)?item.holdKind:null,title:text(item.title,500),organization:text(item.organization,500),track:item.track==null?null:text(item.track,100),grade:['A','B','C'].includes(item.grade)?item.grade:null,status:item.status,applicationStatus:item.applicationStatus,applicationStatusLabel:text(item.applicationStatusLabel,500),resultStatus:item.resultStatus??(item.applicationStatus==='submitted'?'awaiting':null),stateUpdatedAt:item.stateUpdatedAt??null,stateSource:text(item.stateSource,100),stateRevision:Number.isSafeInteger(item.stateRevision)&&item.stateRevision>=0?item.stateRevision:0,deadlineAt:item.deadlineAt??null,deadlineDate:item.deadlineDate??null,deadlineLabel:text(item.deadlineLabel,500),checkedAt:item.checkedAt==null?null:text(item.checkedAt,100),officialUrl:safeUrl(item.officialUrl),summary:text(item.summary),highlights:Array.isArray(item.highlights)?item.highlights.filter(f=>typeof f?.label==='string'&&typeof f?.value==='string').map(f=>({label:text(f.label,100),value:text(f.value)})):[],nextAction:text(item.nextAction),fields:Array.isArray(item.fields)?item.fields.filter(f=>typeof f?.label==='string'&&typeof f?.value==='string').map(f=>({label:text(f.label,100),value:text(f.value)})):[]};
+    return {id:text(item.id,120),reason:text(item.reason,400),holdKind:['blocker','check'].includes(item.holdKind)?item.holdKind:null,replyStatus:REPLY_STATUSES.includes(item.replyStatus)?item.replyStatus:null,replyAt:item.replyAt==null?null:text(item.replyAt,40),replyNote:text(item.replyNote,300),title:text(item.title,500),organization:text(item.organization,500),track:item.track==null?null:text(item.track,100),grade:['A','B','C'].includes(item.grade)?item.grade:null,status:item.status,applicationStatus:item.applicationStatus,applicationStatusLabel:text(item.applicationStatusLabel,500),resultStatus:item.resultStatus??(item.applicationStatus==='submitted'?'awaiting':null),stateUpdatedAt:item.stateUpdatedAt??null,stateSource:text(item.stateSource,100),stateRevision:Number.isSafeInteger(item.stateRevision)&&item.stateRevision>=0?item.stateRevision:0,deadlineAt:item.deadlineAt??null,deadlineDate:item.deadlineDate??null,deadlineLabel:text(item.deadlineLabel,500),checkedAt:item.checkedAt==null?null:text(item.checkedAt,100),officialUrl:safeUrl(item.officialUrl),summary:text(item.summary),highlights:Array.isArray(item.highlights)?item.highlights.filter(f=>typeof f?.label==='string'&&typeof f?.value==='string').map(f=>({label:text(f.label,100),value:text(f.value)})):[],nextAction:text(item.nextAction),fields:Array.isArray(item.fields)?item.fields.filter(f=>typeof f?.label==='string'&&typeof f?.value==='string').map(f=>({label:text(f.label,100),value:text(f.value)})):[]};
   });
   return {schemaVersion:'radar.v1',id:input.id,title:text(input.title,100),updatedAt:input.updatedAt,occurrenceId:text(input.occurrenceId,300),runStatus:input.runStatus,summary:text(input.summary),limitations:Array.isArray(input.limitations)?input.limitations.map(x=>text(x,3000)):[],reportMarkdown:text(input.reportMarkdown,300000),items};
 }
@@ -51,7 +52,8 @@ export async function encryptDashboard(radars,keyConfig,extras={}) {
   const iv=randomBytes(12);
   if(extras.nara&&(extras.nara.v!==2||!Array.isArray(extras.nara.items)||!Array.isArray(extras.nara.recommendations)))throw Error('Invalid NARA snapshot');
   const revenue=extras.revenue?sanitizeRevenue(extras.revenue):null;
-  const payload={schemaVersion:'dexa-dash.v1',generatedAt:new Date().toISOString(),radars:cleaned,...extras.nara?{nara:extras.nara}:{},...revenue?{revenue}:{}};
+  const receivables=extras.receivables?sanitizeReceivables(extras.receivables):null;
+  const payload={schemaVersion:'dexa-dash.v1',generatedAt:new Date().toISOString(),radars:cleaned,...extras.nara?{nara:extras.nara}:{},...revenue?{revenue}:{},...receivables?{receivables}:{}};
   const ct=await webcrypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(JSON.stringify(payload)));
   return {v:1,kdf:{...keyConfig.kdf},cipher:{name:'AES-GCM',iv:iv.toString('base64')},ct:Buffer.from(ct).toString('base64')};
 }

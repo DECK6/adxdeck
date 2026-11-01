@@ -8,8 +8,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' https://dexa-radar-state.dexa-art.workers.dev; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'self'">
   <meta name="theme-color" content="#F5F1E6">
   <title>DEXA · Radar</title>
-  <link rel="stylesheet" href="./styles.css?v=90613390">
-  <script type="module" src="./app.mjs?v=90613390"></script>
+  <link rel="stylesheet" href="./styles.css?v=87fe1a71">
+  <script type="module" src="./app.mjs?v=87fe1a71"></script>
 </head>
 <body>
   <a class="skip" href="#workspace">본문으로</a>
@@ -48,7 +48,12 @@
         <div id="applications-stats" class="stats" aria-label="지원 상태 집계"></div>
         <div id="applications-groups"></div>
       </section>
-      <section id="revenue-panel" role="tabpanel" aria-labelledby="tab-revenue" hidden>
+      <section id="receivables-panel" role="tabpanel" aria-labelledby="tab-receivables" hidden>
+        <div class="radar-heading"><div><h2>회수 원장</h2><p id="receivables-summary"></p></div><div class="run-meta"><time id="receivables-updated"></time></div></div>
+        <div id="receivables-stats" class="stats" aria-label="회수 집계"></div>
+        <div id="receivables-table"></div>
+      </section>
+      <section id="revenue-panel role="tabpanel" aria-labelledby="tab-revenue" hidden>
         <div class="radar-heading"><div><h2 id="revenue-title"></h2><p id="revenue-summary"></p></div><div class="run-meta"><time id="revenue-updated"></time><button id="revenue-full" class="button-quiet" type="button">전문 보기 ↗</button></div></div>
         <div id="revenue-content"></div>
       </section>

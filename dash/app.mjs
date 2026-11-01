@@ -1,10 +1,13 @@
-import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel,orgKey} from './core.mjs?v=90613390';
-import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=90613390';
+import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel,orgKey} from './core.mjs?v=87fe1a71';
+import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=87fe1a71';
 
 const $=id=>document.getElementById(id);
 const filters=[['review','검토 가능'],['check','확인 필요'],['awaiting','발표 대기'],['submitted','지원 완료'],['hold','보류'],['waiting','모집 대기'],['excluded','제외'],['all','전체']];
 // Non-radar tabs render into their own panels; radar tabs share #radar-panel.
-const panels={overview:'overview-panel',applications:'applications-panel',revenue:'revenue-panel',nara:'nara-panel'};
+const panels={overview:'overview-panel',applications:'applications-panel',receivables:'receivables-panel',revenue:'revenue-panel',nara:'nara-panel'};
+const REPLY_LABELS={none:'회신 없음',acknowledged:'접수 확인',meeting:'미팅 제안',documents:'추가 서류 요청',selected:'선정',not_selected:'미선정',withdrawn:'취소',paid:'지급 확인'};
+const RECV_LABELS={pending:['입금 대기','check'],invoiced:['청구 완료','check'],paid:['수령','review'],blocked:['처리 필요','hold'],unknown:['확인 필요','information'],dropped:['제외','closed']};
+const won=n=>Number.isFinite(n)?n.toLocaleString('ko-KR')+'원':'';
 const RUN_TARGETS={'open-calls':'공모 레이더',lectures:'강의처 레이더',gangsaya:'강사야 스캔',grants:'지원금 레이더'};
 let orgFilter=null;
 // Theme: light chrome by default, dark on request or system preference; the choice is not secret.
@@ -30,6 +33,7 @@ const isGangsaya=i=>i.organization==='강사야'||/gangsaya\.co\.kr/.test(i.offi
 const choices=()=>{
  if(!payload)return [];
  const list=[{id:'overview',title:'종합'},...payload.radars,{id:'applications',title:'지원'}];
+ if(payload.receivables)list.push({id:'receivables',title:'회수'});
  if(payload.revenue)list.push({id:'revenue',title:'수익 설계'});
  if(payload.nara)list.push({id:'nara',title:'나라장터 파인더'});
  return list;
@@ -80,7 +84,7 @@ function lock(){
  $('nara-host').replaceChildren();closeDialog();
  epoch++;authKey?.fill(0);authKey=null;payload=null;activeId=null;envelope=null;apiUrl=null;records=[];ready=false;runs=[];runsAt=0;
  filter='review';search='';selectedId=null;compareIds=[];visibleItems=[];tabStates.clear();saving.clear();hiddenSources.clear();orgFilter=null;
- for(const id of ['tabs','cards','stats','urgent','limitations','radar-title','radar-summary','run-status','updated','occurrence','detail-content','detail-nav','dialog-label','filters','result-count','today','comparison-bar','sync-message','radar-run','overview-run','overview-summary','overview-updated','overview-stats','timeline','timeline-sources','timeline-org','overview-kpis','overview-actions','applications-stats','applications-groups','revenue-title','revenue-summary','revenue-updated','revenue-content'])$(id).replaceChildren();
+ for(const id of ['tabs','cards','stats','urgent','limitations','radar-title','radar-summary','run-status','updated','occurrence','detail-content','detail-nav','dialog-label','filters','result-count','today','comparison-bar','sync-message','radar-run','overview-run','overview-summary','overview-updated','overview-stats','timeline','timeline-sources','timeline-org','overview-kpis','overview-actions','applications-stats','applications-groups','receivables-summary','receivables-updated','receivables-stats','receivables-table','revenue-title','revenue-summary','revenue-updated','revenue-content'])$(id).replaceChildren();
  for(const panel of Object.values(panels))$(panel).hidden=true;$('radar-panel').hidden=false;
  $('search').value='';$('workspace').hidden=true;$('gate').hidden=false;$('password').value='';$('gate-message').classList.remove('error');$('gate-message').textContent='대시보드가 잠겼습니다.';$('password').focus();
 }
@@ -89,7 +93,7 @@ $('retry-sync').addEventListener('click',()=>loadState());
 window.addEventListener('hashchange',()=>{if(payload&&choices().some(r=>r.id===location.hash.slice(1)))selectRadar(location.hash.slice(1));});
 function renderTabs(){
  const now=new Date(),working=workingItems(now);
- const counts={overview:timelineEntries(now).filter(t=>t.kind!=='nara'&&t.days<=7).length,applications:working.filter(i=>i.applicationStatus==='submitted'&&i.resultStatus==='awaiting').length,revenue:payload.revenue?.items.length||0,nara:naraEntries().length};
+ const counts={overview:timelineEntries(now).filter(t=>t.kind!=='nara'&&t.days<=7).length,applications:working.filter(i=>i.applicationStatus==='submitted'&&i.resultStatus==='awaiting').length,receivables:payload.receivables?payload.receivables.records.filter(r=>['pending','invoiced','blocked','unknown'].includes(r.status)).length:0,revenue:payload.revenue?.items.length||0,nara:naraEntries().length};
  $('tabs').innerHTML=choices().map(t=>{const count=t.id in counts?counts[t.id]:working.filter(i=>i.radarId===t.id).length;return `<button id="tab-${e(t.id)}" role="tab" type="button" aria-controls="${t.id in panels?panels[t.id]:'radar-panel'}" aria-selected="${t.id===activeId}" tabindex="${t.id===activeId?0:-1}" data-radar="${e(t.id)}">${e(t.title)}<span class="tab-count">${count}</span></button>`;}).join('');
 }
 function selectRadar(id){
@@ -117,7 +121,7 @@ function renderRadar(){
  const now=new Date();
  $('today').textContent=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',year:'numeric',month:'long',day:'numeric',weekday:'short'}).format(now);
  for(const [id,panel] of Object.entries(panels))$(panel).hidden=activeId!==id;$('radar-panel').hidden=!isRadar(activeId);
- if(activeId==='nara'){mountNara();return;}if(activeId==='overview'){renderOverview();return;}if(activeId==='applications'){renderApplications();return;}if(activeId==='revenue'){renderRevenue();return;}
+ if(activeId==='nara'){mountNara();return;}if(activeId==='overview'){renderOverview();return;}if(activeId==='applications'){renderApplications();return;}if(activeId==='receivables'){renderReceivables();return;}if(activeId==='revenue'){renderRevenue();return;}
  const r=radar();if(!r)return;$('radar-panel').setAttribute('aria-labelledby','tab-'+r.id);
  $('radar-title').textContent=r.title;$('radar-summary').textContent=r.summary;
  $('run-status').textContent=r.runStatus==='VERIFIED'?'검증 완료':r.runStatus==='HOLD'?'일부 확인 보류':r.runStatus;
@@ -182,7 +186,19 @@ function renderApplications(){
  const groups=[['발표·회신 대기',i=>i.applicationStatus==='submitted'&&i.resultStatus==='awaiting'],['결과 확정',i=>i.applicationStatus==='submitted'&&i.resultStatus!=='awaiting'],['준비 중',i=>i.applicationStatus==='preparing'],['보류·취소',i=>['on_hold','cancelled'].includes(i.applicationStatus)]]
   .map(([label,fn])=>({label,items:rows.filter(fn).sort((a,b)=>(deadlineDate(a)||'9999').localeCompare(deadlineDate(b)||'9999')||a.title.localeCompare(b.title))}));
  $('applications-stats').innerHTML=groups.map(g=>`<div class="stat"><span>${g.label}</span><strong>${g.items.length}</strong></div>`).join('');
- $('applications-groups').innerHTML=groups.filter(g=>g.items.length).map(g=>`<section class="app-group"><h3>${g.label}<span>${g.items.length}</span></h3><div class="table-scroll"><table class="app-table"><thead><tr><th>출처</th><th>기관 · 제목</th><th>지원 근거 · 상태</th><th>마감</th><th>상태 확인</th><th>다음 확인 · 사유</th></tr></thead><tbody>${g.items.map(i=>`<tr data-jump="${e(i.radarId)}" data-item="${e(i.id)}" tabindex="0"><td><span class="tag">${e(i.radarTitle)}</span>${isGangsaya(i)?'<br><span class="tag gangsaya">강사야</span>':''}</td><td><strong>${e(i.title)}</strong>${i.organization?`<br><small>${e(i.organization)}</small>`:''}</td><td>${e(i.applicationStatusLabel||applicationLabel(i))}${['selected','not_selected','withdrawn'].includes(i.resultStatus)?` <span class="tag ${i.resultStatus==='selected'?'review':'hold'}">${e(resultLabels[i.resultStatus])}</span>`:''}</td><td>${e(deadlineText(i,now))}</td><td>${i.stateUpdatedAt?e(dateTime(i.stateUpdatedAt)):'—'}${i.stateSource==='dashboard-user'?'<br><small>마스터 직접 확인</small>':''}</td><td>${e(i.applicationStatus==='on_hold'?reasonOf(i):i.nextAction||'')}</td></tr>`).join('')}</tbody></table></div></section>`).join('')||'<p class="empty">지원·준비 중인 항목이 없습니다.</p>';
+ $('applications-groups').innerHTML=groups.filter(g=>g.items.length).map(g=>`<section class="app-group"><h3>${g.label}<span>${g.items.length}</span></h3><div class="table-scroll"><table class="app-table"><thead><tr><th>출처</th><th>기관 · 제목</th><th>지원 근거 · 상태</th><th>회신</th><th>마감</th><th>상태 확인</th><th>다음 확인 · 사유</th></tr></thead><tbody>${g.items.map(i=>`<tr data-jump="${e(i.radarId)}" data-item="${e(i.id)}" tabindex="0"><td><span class="tag">${e(i.radarTitle)}</span>${isGangsaya(i)?'<br><span class="tag gangsaya">강사야</span>':''}</td><td><strong>${e(i.title)}</strong>${i.organization?`<br><small>${e(i.organization)}</small>`:''}</td><td>${e(i.applicationStatusLabel||applicationLabel(i))}${['selected','not_selected','withdrawn'].includes(i.resultStatus)?` <span class="tag ${i.resultStatus==='selected'?'review':'hold'}">${e(resultLabels[i.resultStatus])}</span>`:''}</td><td>${replyCell(i)}</td><td>${e(deadlineText(i,now))}</td><td>${i.stateUpdatedAt?e(dateTime(i.stateUpdatedAt)):'—'}${i.stateSource==='dashboard-user'?'<br><small>마스터 직접 확인</small>':''}</td><td>${e(i.applicationStatus==='on_hold'?reasonOf(i):i.nextAction||'')}</td></tr>`).join('')}</tbody></table></div></section>`).join('')||'<p class="empty">지원·준비 중인 항목이 없습니다.</p>';
+}
+const replyDate=at=>!at?'':at.includes('T')?dateTime(at):at.slice(5).replace('-','/');
+function replyCell(i){if(!i.replyStatus||i.replyStatus==='none')return '<span class="muted">—</span>';const cls={selected:'review',paid:'review',not_selected:'hold',withdrawn:'hold'}[i.replyStatus]||'check';return `<span class="tag ${cls}">${e(REPLY_LABELS[i.replyStatus]||i.replyStatus)}</span>${i.replyAt?`<br><small>${e(replyDate(i.replyAt))}</small>`:''}${i.replyNote?`<br><small>${e(i.replyNote)}</small>`:''}`;}
+function renderReceivables(){
+ const p=payload.receivables;if(!p)return;const recs=p.records,open=recs.filter(r=>['pending','invoiced','blocked','unknown'].includes(r.status));
+ const paid=recs.filter(r=>r.status==='paid').reduce((s,r)=>s+(r.amountKrw||0),0),openKnown=open.reduce((s,r)=>s+(r.amountKrw||0),0),unknownCount=open.filter(r=>!Number.isFinite(r.amountKrw)).length;
+ $('receivables-summary').textContent='이미 발생한 수입 중 아직 못 받은 돈을 추적합니다. 원장은 AKM radar-dashboard/receivables/latest.json이며 회신 레이더가 지급 메일을 감지하면 갱신됩니다.';
+ $('receivables-updated').textContent=p.updatedAt?dateTime(p.updatedAt)+' 갱신':'';
+ $('receivables-stats').innerHTML=[['미수·처리 필요',open.length+'건'],['금액 확인된 미수',won(openKnown)||'0원'],['금액 미기재',unknownCount+'건'],['수령 완료',won(paid)||'0원']].map(([l,v])=>`<div class="stat"><span>${l}</span><strong>${e(v)}</strong></div>`).join('');
+ const order={blocked:0,pending:1,invoiced:2,unknown:3,paid:4,dropped:5};
+ const rows=[...recs].sort((a,b)=>order[a.status]-order[b.status]||(a.expectedAt||'9999').localeCompare(b.expectedAt||'9999')).map(r=>{const [label,cls]=RECV_LABELS[r.status]||[r.status,'information'];return `<tr><td><strong>${e(r.counterparty)}</strong><br><small>${e(r.item)}</small></td><td class="n">${e(won(r.amountKrw)||r.amountLabel||'미기재')}</td><td><span class="tag ${cls}">${e(label)}</span></td><td>${e(r.expectedAt?r.expectedAt.slice(5).replace('-','/'):'—')}</td><td>${e(r.basis)}</td><td>${e(r.nextAction)}${r.note?`<br><small>${e(r.note)}</small>`:''}</td><td>${e(r.lastCheckedAt?replyDate(r.lastCheckedAt):'—')}</td></tr>`;}).join('');
+ $('receivables-table').innerHTML=`<div class="table-scroll"><table class="app-table"><thead><tr><th>상대 · 항목</th><th>금액</th><th>상태</th><th>예정일</th><th>근거</th><th>다음 행동</th><th>확인일</th></tr></thead><tbody>${rows}</tbody></table></div>`;
 }
 function renderRevenue(){
  const p=payload.revenue;if(!p)return;const now=new Date(),rs=radars();
@@ -267,7 +283,7 @@ function openDialog(label,html,wide=false){$('dialog-label').textContent=label;$
 function closeDialog(){if($('detail').open)$('detail').close();}
 function itemDetail(i,r){
  const href=safeUrl(i.officialUrl),kind=holdKind(i),{label}=bucketLabel(i);
- return `<div class="inspector-heading"><p class="eyebrow">${e(i.organization||r.title)}</p><h2>${e(i.title)}</h2></div><div class="card-tags">${tagsOf(i)}</div><div class="application-control">${submittedControl(i)}${holdControl(i)}<strong>${e(applicationLabel(i))}</strong>${i.stateSource==='dashboard-user'?'<small>마스터가 직접 확인한 지원 상태</small>':''}</div>${i.applicationStatus!=='submitted'&&reasonOf(i)?`<div class="reason-box ${kind==='blocker'||kind==='user'?'reason-hold':''}"><span class="eyebrow">${e(label)} · 사유</span><p>${e(reasonOf(i))}</p></div>`:''}<p>${e(i.summary)}</p>${href?`<a class="official-link" href="${e(href)}" target="_blank" rel="noopener noreferrer">공식 공고 열기 ↗</a>`:''}<dl><dt>마감</dt><dd>${e(deadlineText(i))}${i.deadlineLabel?'<br>'+e(i.deadlineLabel):''}</dd>${(i.fields||[]).map(f=>`<dt>${e(f.label)}</dt><dd>${e(f.value)}</dd>`).join('')}${i.checkedAt&&Number.isFinite(Date.parse(i.checkedAt))?`<dt>근거 확인 시점</dt><dd>${e(i.checkedAt.includes('T')?dateTime(i.checkedAt):i.checkedAt+' · 시각 미확인')}</dd>`:''}</dl><div class="next-action"><span class="eyebrow">다음 확인</span><p>${e(i.applicationStatus==='submitted'?(i.resultStatus==='awaiting'?'재지원하지 않고 발표·회신을 기다립니다.':resultLabels[i.resultStatus]+' 결과 확인'):i.nextAction||'공식 조건을 확인해 주세요.')}</p></div>`;
+ return `<div class="inspector-heading"><p class="eyebrow">${e(i.organization||r.title)}</p><h2>${e(i.title)}</h2></div><div class="card-tags">${tagsOf(i)}</div><div class="application-control">${submittedControl(i)}${holdControl(i)}<strong>${e(applicationLabel(i))}</strong>${i.stateSource==='dashboard-user'?'<small>마스터가 직접 확인한 지원 상태</small>':''}${i.replyStatus&&i.replyStatus!=='none'?`<small>회신: ${e(REPLY_LABELS[i.replyStatus]||i.replyStatus)}${i.replyAt?' · '+e(replyDate(i.replyAt)):''}${i.replyNote?' · '+e(i.replyNote):''}</small>`:''}</div>${i.applicationStatus!=='submitted'&&reasonOf(i)?`<div class="reason-box ${kind==='blocker'||kind==='user'?'reason-hold':''}"><span class="eyebrow">${e(label)} · 사유</span><p>${e(reasonOf(i))}</p></div>`:''}<p>${e(i.summary)}</p>${href?`<a class="official-link" href="${e(href)}" target="_blank" rel="noopener noreferrer">공식 공고 열기 ↗</a>`:''}<dl><dt>마감</dt><dd>${e(deadlineText(i))}${i.deadlineLabel?'<br>'+e(i.deadlineLabel):''}</dd>${(i.fields||[]).map(f=>`<dt>${e(f.label)}</dt><dd>${e(f.value)}</dd>`).join('')}${i.checkedAt&&Number.isFinite(Date.parse(i.checkedAt))?`<dt>근거 확인 시점</dt><dd>${e(i.checkedAt.includes('T')?dateTime(i.checkedAt):i.checkedAt+' · 시각 미확인')}</dd>`:''}</dl><div class="next-action"><span class="eyebrow">다음 확인</span><p>${e(i.applicationStatus==='submitted'?(i.resultStatus==='awaiting'?'재지원하지 않고 발표·회신을 기다립니다.':resultLabels[i.resultStatus]+' 결과 확인'):i.nextAction||'공식 조건을 확인해 주세요.')}</p></div>`;
 }
 function renderDetail(){
  if(!dialogKind||!['item','compare'].includes(dialogKind))return;const r=radar();if(!r){closeDialog();return;}

@@ -1,4 +1,4 @@
-import {escapeHtml as e,deadlineText,kstDate,reasonOf} from './core.mjs?v=90613390';
+import {escapeHtml as e,deadlineText,kstDate,reasonOf} from './core.mjs?v=87fe1a71';
 
 export const resultLabels={awaiting:'발표 대기',selected:'선정',not_selected:'미선정',withdrawn:'취소'};
 export function applicationLabel(item){

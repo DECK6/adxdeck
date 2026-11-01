@@ -50,6 +50,10 @@ Hold rule (2026-11-01): `status=hold` only counts as 보류 when it is a confirm
 
 Every item must link to its official notice. When a radar cannot supply `officialUrl`, add a record to the vault ledger `60-actions/runs/radar-dashboard/link-overrides/latest.json` (`schemaVersion: radar-link-overrides.v1`, `records: [{radarId, itemId, officialUrl, verifiedAt, note, force?}]`); `build.mjs` applies it to items without a link (or with `force: true`) and records the note as a `링크 출처` field. Ask the radar owner to backfill the source so the ledger entry becomes redundant.
 
+## Replies and receivables ledgers
+
+Two vault ledgers enrich the payload at build time (`scripts/dashboard/ledgers.mjs`): `60-actions/runs/radar-dashboard/replies/latest.json` (`radar-reply-ledger.v1`, records `{radarId,itemId,replyStatus,replyAt,replyNote,evidence,detectedAt,source}`) adds a 회신 column to 지원 and settles `resultStatus` when a reply is `selected`/`not_selected`/`withdrawn`; `60-actions/runs/radar-dashboard/receivables/latest.json` (`receivables.v1`, statuses pending/invoiced/paid/blocked/unknown/dropped) feeds the 회수 tab. The daily reply radar (`scheduled-work/reply-radar.md`, pinned thread, 09:40 KST) maintains both from Gmail and the morning digest; the master can edit the JSON directly. Optional radars (`grant-radar`, `exhibition-lead-radar`) appear as tabs as soon as their first adapter exists.
+
 ## Before pushing dashboard code
 
 Run `node scripts/dashboard/stamp.mjs`. It writes one content hash into `dash/index.html` (`app.mjs?v=…`, `styles.css?v=…`) and into the module imports of `app.mjs` and `state.mjs`. GitHub Pages caches each file for 10 minutes independently, so unversioned URLs let a fresh `index.html` load a stale `app.mjs` (symptom: no popup, `null` text where the old panel was). `stamp.test.mjs` fails when the stamp is missing or stale.

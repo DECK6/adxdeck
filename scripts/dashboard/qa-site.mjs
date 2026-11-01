@@ -9,6 +9,7 @@ import http from 'node:http';
 import {makeKeyConfig} from './lib.mjs';
 import {latestRevenuePlan,sanitizeRevenue} from './revenue.mjs';
 import {writeEncryptedDashboard,latestOpenCalls,findLatestAdapter,optionalAdapter,applyLinkOverrides,readLinkOverrides,assertPrivateExport,DEFAULT_VAULT,ROOT} from './build.mjs';
+import {readVaultJson,applyReplies,sanitizeReceivables} from './ledgers.mjs';
 import {applyState} from '../../dash/state.mjs';
 
 const args=process.argv.slice(2),opt=(name,fallback)=>{const i=args.indexOf('--'+name);return i>=0&&args[i+1]?args[i+1]:fallback;};
@@ -17,15 +18,16 @@ if(password.length<8)throw Error('Usage: node scripts/dashboard/qa-site.mjs --pa
 const vault=DEFAULT_VAULT,json=file=>JSON.parse(fs.readFileSync(file,'utf8'));
 const state=json(path.join(vault,'60-actions/runs/radar-dashboard/application-state/latest.json'));
 let records=state.records,requests=[];
-const sources=[latestOpenCalls(vault),findLatestAdapter(path.join(vault,'60-actions/runs/lecture-opportunity-radar'),'lecture-radar.v1.json'),optionalAdapter(path.join(vault,'60-actions/runs/grant-radar'),'grant-radar.v1.json')].filter(Boolean);
-const radars=applyLinkOverrides(sources.map(s=>applyState(s.data,records)),readLinkOverrides(vault));
+const sources=[latestOpenCalls(vault),findLatestAdapter(path.join(vault,'60-actions/runs/lecture-opportunity-radar'),'lecture-radar.v1.json'),optionalAdapter(path.join(vault,'60-actions/runs/grant-radar'),'grant-radar.v1.json'),optionalAdapter(path.join(vault,'60-actions/runs/exhibition-lead-radar'),'exhibition-lead-radar.v1.json')].filter(Boolean);
+const radars=applyReplies(applyLinkOverrides(sources.map(s=>applyState(s.data,records)),readLinkOverrides(vault)),readVaultJson(vault,'60-actions/runs/radar-dashboard/replies/latest.json'));
+const receivablesRaw=readVaultJson(vault,'60-actions/runs/radar-dashboard/receivables/latest.json'),receivables=receivablesRaw?sanitizeReceivables(receivablesRaw):null;
 const revenueSource=latestRevenuePlan(vault),revenue=revenueSource?sanitizeRevenue(revenueSource.data):null;
 assertPrivateExport([...radars,...(revenue?[revenue]:[])]);
 const naraFile='/Volumes/data/Dev/nara-bid-finder/.data/dashboard-payload.json',nara=fs.existsSync(naraFile)?json(naraFile):null;
 const site=path.join(out,'dash');fs.mkdirSync(site,{recursive:true});
 for(const name of fs.readdirSync(path.join(ROOT,'dash'))){const src=path.join(ROOT,'dash',name);if(fs.statSync(src).isFile()&&name!=='data.enc.json')fs.copyFileSync(src,path.join(site,name));}
 fs.writeFileSync(path.join(site,'config.json'),JSON.stringify({stateApiUrl:`http://127.0.0.1:${port}`}));
-const result=await writeEncryptedDashboard(radars,await makeKeyConfig(password),path.join(site,'data.enc.json'),{nara,revenue});
+const result=await writeEncryptedDashboard(radars,await makeKeyConfig(password),path.join(site,'data.enc.json'),{nara,revenue,receivables});
 const types={'.html':'text/html; charset=utf-8','.mjs':'text/javascript','.js':'text/javascript','.css':'text/css','.json':'application/json'};
 const send=(res,status,body,type='application/json')=>{res.writeHead(status,{'content-type':type,'cache-control':'no-store'});res.end(body);};
 http.createServer((req,res)=>{
