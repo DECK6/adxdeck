@@ -51,3 +51,12 @@ test('a late user submission no longer claims it is an unsubmitted expired call'
  const out=state.applyState({id:'open-calls',items:[i]},[{radarId:'open-calls',itemId:'late',source:'dashboard-user',applicationStatus:'submitted',resultStatus:'awaiting'}]).items[0];
  assert.match(out.highlights[0].value,/발표·회신 대기/);assert.ok(!out.fields[0].value.startsWith('미지원'));
 });
+
+test('a master hold from the dashboard overrides the producer state and clears any result',async()=>{
+ const r={id:'lectures',items:[item('one',{resultStatus:null}),item('two',{applicationStatus:'submitted',resultStatus:'awaiting'})]};
+ const out=state.applyState(r,[{radarId:'lectures',itemId:'one',applicationStatus:'on_hold',resultStatus:null,updatedAt:'2026-11-01T04:00:00Z',revision:1,source:'dashboard-user'}]);
+ assert.equal(out.items[0].applicationStatus,'on_hold');assert.equal(out.items[0].resultStatus,null);assert.match(out.items[0].applicationStatusLabel,/보류/);
+ const {validateRecords}=await import('../sync-state.mjs');
+ assert.equal(validateRecords([{radarId:'lectures',itemId:'one',applicationStatus:'on_hold',resultStatus:null,updatedAt:'2026-11-01T04:00:00Z',revision:1,source:'dashboard-user'}])[0].applicationStatus,'on_hold');
+ assert.throws(()=>validateRecords([{radarId:'lectures',itemId:'one',applicationStatus:'on_hold',resultStatus:'awaiting',updatedAt:'2026-11-01T04:00:00Z',revision:1,source:'dashboard-user'}]));
+});

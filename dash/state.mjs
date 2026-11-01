@@ -23,6 +23,7 @@ export function applyState(radar,records){
       next.fields=next.fields?.map(current);next.highlights=next.highlights?.map(current);
     }
     if(change?.source==='dashboard-user'&&next.applicationStatus==='not_applied'&&item.applicationStatus==='submitted')next.summary='기존 제출 기록을 마스터가 미지원으로 수정했습니다. 아래 설명은 이전 확인 기록입니다. '+item.summary;
+    if(change?.source==='dashboard-user'&&next.applicationStatus==='on_hold'){next.resultStatus=null;next.applicationStatusLabel='마스터 보류';}
     next.applicationStatusLabel=applicationLabel(next);return next;
   })};
 }
@@ -55,8 +56,8 @@ export async function verifySignedRequest(raw,method,path,body,headers,now=Math.
   const key=await crypto.subtle.importKey('raw',raw,{name:'HMAC',hash:'SHA-256'},false,['verify']);
   return crypto.subtle.verify('HMAC',key,fromHex(signature),utf8(await canonical(method,path,body,timestamp,nonce)));
 }
-export async function stateRequest(base,key,method='GET',value){
-  const url=new URL('/v1/state',base),body=value?JSON.stringify(value):'';
+export async function stateRequest(base,key,method='GET',value,path='/v1/state'){
+  const url=new URL(path,base),body=value?JSON.stringify(value):'';
   const response=await fetch(url,{method,body:body||undefined,headers:await signedHeaders(key,method,url.pathname,body),cache:'no-store',credentials:'omit',signal:AbortSignal.timeout(15000)});
   const data=await response.json();if(!response.ok){const error=Error(data.error||'상태를 저장하지 못했습니다.');error.status=response.status;throw error;}return data;
 }

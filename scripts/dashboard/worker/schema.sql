@@ -10,3 +10,7 @@ CREATE TABLE IF NOT EXISTS state_events (
   application_status TEXT NOT NULL, result_status TEXT,
   updated_at TEXT NOT NULL, revision INTEGER NOT NULL
 );
+CREATE TABLE IF NOT EXISTS run_requests (
+  id TEXT PRIMARY KEY, radar_id TEXT NOT NULL, status TEXT NOT NULL,
+  requested_at TEXT NOT NULL, updated_at TEXT NOT NULL, note TEXT
+);

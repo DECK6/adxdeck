@@ -3,7 +3,8 @@ import os from 'node:os';
 import path from 'node:path';
 import {execFileSync} from 'node:child_process';
 import {createHash} from 'node:crypto';
-import {build,ROOT,DEFAULT_VAULT,atomicWrite} from './build.mjs';
+import {build,ROOT,DEFAULT_VAULT,atomicWrite,readKeyConfig} from './build.mjs';
+import {markRunsPublished} from './run-requests.mjs';
 
 const args=process.argv.slice(2);
 if(args.some(a=>!['--check'].includes(a)))throw Error('Usage: python3 scripts/dashboard/publish.py [--check]');
@@ -39,6 +40,8 @@ try{
     const remote=git(target,'ls-remote','origin','refs/heads/main').split(/\s/)[0];
     if(commit!==remote)throw Error('Remote revision changed; verify the published ciphertext before retrying');
     evidence.push({commit,remote,sha256:hash(out),url:'https://dexa.art/dash/'});
+    // Dashboard '지금 찾기' requests older than the radars just published are now complete.
+    try{const apiUrl=JSON.parse(fs.readFileSync(path.join(ROOT,'dash/config.json'),'utf8')).stateApiUrl;evidence.push({runRequestsMarkedDone:await markRunsPublished({apiUrl,keyConfig:readKeyConfig(),radars:result.radars})});}catch(error){evidence.push({runRequestsMarkedDone:null,error:String(error.message).slice(0,200)});}
   }
   const receipt={occurrence_id:'radar-dashboard:'+now,purpose_status:check?'VERIFIED':'PUBLISHED',mode:check?'build-check':'publish',verified_at:new Date().toISOString(),evidence,limits:check?['Local build only; no remote publication']:['Git push verified; Pages propagation and browser unlock are separate checks']};
   atomicWrite(receiptFile,JSON.stringify(receipt,null,2)+'\n',0o600);

@@ -36,7 +36,7 @@
       <p id="sync-message" class="sync-message" role="status" aria-live="polite"></p>
       <button id="retry-sync" class="button-quiet" hidden>지원 기록 다시 확인</button>
       <section id="overview-panel" role="tabpanel" aria-labelledby="tab-overview" hidden>
-        <div class="radar-heading"><div><h2>종합 기회 레이더</h2><p id="overview-summary"></p></div><div class="run-meta"><time id="overview-updated"></time></div></div>
+        <div class="radar-heading"><div><h2>종합 기회 레이더</h2><p id="overview-summary"></p></div><div class="run-meta"><time id="overview-updated"></time><div id="overview-run" class="run-controls"></div></div></div>
         <div id="overview-stats" class="stats" aria-label="전체 레이더 집계"></div>
         <div class="overview-grid">
           <section class="panel-block"><h3>다가오는 마감·결정 지점</h3><p class="block-note">검토·확인 중인 기회의 마감과 수익 계획의 결정 지점을 날짜순으로 봅니다. 지원 완료 건은 지원 탭에 있습니다. 항목을 누르면 해당 레이더의 상세로 이동합니다.</p><div id="timeline-sources" class="filters timeline-sources" role="group" aria-label="출처 필터"></div><ol id="timeline" class="timeline" aria-label="마감·결정 지점 타임라인"></ol></section>
@@ -54,21 +54,18 @@
       </section>
       <section id="nara-panel" role="tabpanel" aria-labelledby="tab-nara" hidden><p class="nara-note">NARA의 추천·보관함·초안·슬라이드를 함께 봅니다.</p><div id="nara-host"></div></section>
       <section id="radar-panel" role="tabpanel" tabindex="0">
-        <div class="radar-heading"><div><h2 id="radar-title"></h2><p id="radar-summary"></p></div><div class="run-meta"><span id="run-status" class="badge"></span><time id="updated"></time></div></div>
+        <div class="radar-heading"><div><h2 id="radar-title"></h2><p id="radar-summary"></p></div><div class="run-meta"><span id="run-status" class="badge"></span><time id="updated"></time><div id="radar-run" class="run-controls"></div></div></div>
         <div id="limitations" class="limitations" hidden></div>
         <div id="stats" class="stats" aria-label="현재 항목 집계"></div>
         <div id="urgent" class="urgent" hidden></div>
         <div class="list-toolbar"><div id="filters" class="filters" role="group" aria-label="상태 필터"></div><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" aria-label="항목 검색" placeholder="이름·기관·내용 검색"></label></div>
         <div class="result-heading"><p id="result-count" role="status" aria-live="polite"></p><div><button id="archive-toggle" class="button-quiet" aria-pressed="false">보관함</button><button id="report-button" class="button-quiet" hidden>전체 보고서 ↗</button></div></div>
         <div id="comparison-bar" class="comparison-bar"></div>
-        <div id="browse" class="browse">
-          <div id="list-column"><div id="cards" class="cards"></div><p id="empty" class="empty" hidden>이 조건에 맞는 항목이 없습니다.</p></div>
-          <aside id="inspector" class="inspector" aria-label="항목 상세 및 비교" tabindex="-1" hidden><div id="inspector-tools" class="inspector-tools"></div><div id="inspector-content"></div></aside>
-        </div>
+        <div id="browse" class="browse"><div id="cards" class="cards"></div><p id="empty" class="empty" hidden>이 조건에 맞는 항목이 없습니다.</p></div>
         <footer class="dashboard-footer"><span>확인 시점의 정보입니다. 세부 조건은 공식 공고와 함께 확인해 주세요.</span><span id="occurrence"></span></footer>
       </section>
     </main>
   </div>
-  <dialog id="detail"><div class="dialog-head"><span id="dialog-label" class="eyebrow"></span><button id="close-detail" class="button-quiet" aria-label="보고서 닫기">닫기 ×</button></div><div id="detail-content"></div></dialog>
+  <dialog id="detail"><div class="dialog-head"><span id="dialog-label" class="eyebrow"></span><div id="detail-nav" class="detail-nav"></div><button id="close-detail" class="button-quiet" aria-label="닫기">닫기 ×</button></div><div id="detail-content"></div></dialog>
 </body>
 </html>

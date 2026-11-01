@@ -8,7 +8,7 @@ export function validateRecords(records){
  for(const r of records){
   const id=r.radarId+':'+r.itemId;
   const results=r.source==='verified-record'?['awaiting','selected','not_selected','withdrawn']:['awaiting'];
-  if(!['verified-record','dashboard-user'].includes(r.source)||!/^[a-z][a-z0-9-]{0,39}$/.test(r.radarId)||typeof r.itemId!=='string'||!r.itemId||r.itemId.length>120||ids.has(id)||!['submitted','not_applied'].includes(r.applicationStatus)||(r.applicationStatus==='submitted'?!results.includes(r.resultStatus):r.resultStatus!==null)||!Number.isSafeInteger(r.revision)||r.revision<1||!Number.isFinite(Date.parse(r.updatedAt)))throw Error('Invalid application state record');ids.add(id);
+  if(!['verified-record','dashboard-user'].includes(r.source)||!/^[a-z][a-z0-9-]{0,39}$/.test(r.radarId)||typeof r.itemId!=='string'||!r.itemId||r.itemId.length>120||ids.has(id)||!['submitted','not_applied','on_hold'].includes(r.applicationStatus)||(r.applicationStatus==='submitted'?!results.includes(r.resultStatus):r.resultStatus!==null)||!Number.isSafeInteger(r.revision)||r.revision<1||!Number.isFinite(Date.parse(r.updatedAt)))throw Error('Invalid application state record');ids.add(id);
  }
  return records.map(r=>({radarId:r.radarId,itemId:r.itemId,applicationStatus:r.applicationStatus,resultStatus:r.resultStatus,updatedAt:r.updatedAt,revision:r.revision,source:r.source==='verified-record'?'verified-record':'dashboard-user'}));
 }
