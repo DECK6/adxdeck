@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LoRA 파일을 넘길 때 함께 넘겨야 할 것들 | DEXA Blog</title>
+    <meta name="description" content="작은 LoRA 어댑터를 전달했다고 업무 모델의 인수가 끝나는 것은 아니다. PEFT의 저장 형식과 병합 동작을 바탕으로 기본 모델, 입력 구성, 실행 설정과 복구 기록을 함께 관리하는 방법을 살펴본다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/a-lora-adapter-needs-its-base-and-release-record/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="LoRA 파일을 넘길 때 함께 넘겨야 할 것들" />
+    <meta property="og:description" content="작은 LoRA 어댑터를 전달했다고 업무 모델의 인수가 끝나는 것은 아니다. PEFT의 저장 형식과 병합 동작을 바탕으로 기본 모델, 입력 구성, 실행 설정과 복구 기록을 함께 관리하는 방법을 살펴본다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/a-lora-adapter-needs-its-base-and-release-record/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/a-lora-adapter-needs-its-base-and-release-record-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-11-01" />
+    <meta property="article:modified_time" content="2026-11-01" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="AI" />
+    <meta property="article:tag" content="AX" />
+    <meta property="article:tag" content="LoRA" />
+    <meta property="article:tag" content="model-deployment" />
+    <meta property="article:tag" content="reproducibility" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="LoRA 파일을 넘길 때 함께 넘겨야 할 것들" />
+    <meta name="twitter:description" content="작은 LoRA 어댑터를 전달했다고 업무 모델의 인수가 끝나는 것은 아니다. PEFT의 저장 형식과 병합 동작을 바탕으로 기본 모델, 입력 구성, 실행 설정과 복구 기록을 함께 관리하는 방법을 살펴본다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/a-lora-adapter-needs-its-base-and-release-record-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"LoRA 파일을 넘길 때 함께 넘겨야 할 것들","description":"작은 LoRA 어댑터를 전달했다고 업무 모델의 인수가 끝나는 것은 아니다. PEFT의 저장 형식과 병합 동작을 바탕으로 기본 모델, 입력 구성, 실행 설정과 복구 기록을 함께 관리하는 방법을 살펴본다.","image":"https://dexa.art/blog/images/a-lora-adapter-needs-its-base-and-release-record-cover.png","datePublished":"2026-11-01","dateModified":"2026-11-01","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/a-lora-adapter-needs-its-base-and-release-record/"},"articleSection":"AI · AX","keywords":"AI, AX, LoRA, model-deployment, reproducibility"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.11.01</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>LoRA 파일을 넘길 때 함께 넘겨야 할 것들</h1>
+                <p style="color:var(--muted);font-size:17px;">작은 LoRA 어댑터를 전달했다고 업무 모델의 인수가 끝나는 것은 아니다. PEFT의 저장 형식과 병합 동작을 바탕으로 기본 모델, 입력 구성, 실행 설정과 복구 기록을 함께 관리하는 방법을 살펴본다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">AI</span><span class="dx-tag-chip">AX</span><span class="dx-tag-chip">LoRA</span><span class="dx-tag-chip">model-deployment</span><span class="dx-tag-chip">reproducibility</span></div>
+<p><img src="/blog/images/a-lora-adapter-needs-its-base-and-release-record-cover.png" alt="큰 기본 구조에 맞춰 놓은 작은 호박색 삽입물과 곁에 정리된 구성 기록을 표현한 조형물" loading="lazy"></p>
+<p><em>GPT Image 2로 생성한 개념 이미지.</em></p>
+<p>한 팀이 반복되는 상담 기록을 일정한 형식으로 정리하도록 모델을 조정했다고 하자. 담당자는 좋은 결과를 냈던 LoRA 파일을 동료에게 건넨다. 파일은 작고 전송도 빨리 끝난다. 그런데 동료가 불러온 결과에서는 항목이 빠지거나 문체가 달라진다. 무엇을 같은 모델로 보아야 할까.</p>
+<p>이것은 인수 과정을 설명하기 위한 가상의 사례다. 실제 서비스의 실패나 측정 결과를 옮긴 것이 아니다. 문제는 파일을 받았는지보다, 그 파일이 어떤 기본 모델과 입력 방식 위에서 검증됐는지를 아는 데 있다. 학습 담당자가 사용한 환경을 동료의 컴퓨터가 자동으로 이어받지는 않는다.</p>
+<p>LoRA를 업무에 적용하는 팀은 작은 어댑터를 보관하는 일과 실행 가능한 모델 구성을 보관하는 일을 연결해야 한다. 나중에 같은 업무를 다시 맡기거나 이전 배포로 돌아갈 수 있으려면 그 연결이 인수 기록에 남아야 한다.</p>
+<h2>작은 파일에는 무엇이 빠져 있는가</h2>
+<p>LoRA는 모델을 조정할 때 저랭크 행렬로 표현한 추가 가중치를 활용하는 방법이다. 여기서는 학습 수학보다 저장과 재사용의 경계에 주목한다. Hugging Face PEFT의 체크포인트 안내는 어댑터 가중치를 기본 모델 전체와 구분하며, PEFT 모델을 불러오려면 원래 모델도 필요하다고 설명한다.[1]</p>
+<p>따라서 작은 어댑터 파일의 크기를 곧바로 서비스 전체의 모델 크기나 메모리 요구량으로 읽으면 안 된다. 실행 시 기본 모델과 그 밖의 런타임 자원이 필요하다. 여러 업무용 어댑터를 운영할 때 어떤 자원을 공유할 수 있는지는 사용하는 서빙 구성에서 따로 확인할 문제다. 작은 파일 하나가 메모리 절감의 모든 조건을 증명하지는 않는다.</p>
+<p>PEFT는 어댑터 가중치와 함께 <code>adapter_config.json</code>을 저장한다. 이 설정에는 어댑터 방식과 적용 대상 등의 정보가 들어간다. 공식 LoRA 설정 소스에서 <code>target_modules</code>는 어댑터를 적용할 모듈을, <code>r</code>은 rank를, <code>lora_alpha</code>는 스케일링에 쓰는 계수를 설명한다.[2] 값의 의미와 조합이 있으므로 파일명에 붙은 업무 이름만으로 구성을 판단하기 어렵다.</p>
+<p>저장되는 내용도 모든 LoRA에서 같다고 가정해서는 안 된다. 같은 설정 소스의 <code>modules_to_save</code>는 어댑터 층 이외에 학습하고 최종 체크포인트에 저장할 모듈을 지정한다.[2] “어댑터니까 추가 행렬만 있을 것”이라는 예상 대신 실제 설정과 저장된 가중치 구성을 확인해야 한다. 파일이 작다는 관찰과 무엇이 저장됐는지에 대한 설명은 서로 다른 증거다.</p>
+<h2>기본 모델의 이름을 넘어 같은 출발점을 남기기</h2>
+<p>체크포인트 안내에는 <code>base_model_name_or_path</code>와 <code>revision</code>이 나온다. 문서 예시의 <code>revision</code> 값은 <code>null</code>일 수도 있다.[1] 이 필드가 존재한다는 사실만으로 어느 시점의 기본 모델을 썼는지 고정됐다고 판단할 수는 없다. 저장된 설정을 실제로 읽어 확인해야 한다.</p>
+<p>운영팀이 고정하려는 것은 사람들이 알아보는 모델 이름만이 아니다. 검증할 때 불러온 기본 가중치와 설정의 정확한 버전, 그 위에 올린 어댑터의 버전을 짝지어 남겨야 한다. 저장소의 움직이는 브랜치 이름을 쓰는 경우에는 실제로 해석된 커밋도 기록하는 편이 좋다. 파일 해시는 받았던 바이트가 같은지 확인하는 데 도움이 된다.</p>
+<p>이 기록은 호환성을 자동 보증하지 않는다. 기본 모델이 달라져도 어떤 어댑터는 불러와질 수 있지만, 로딩 성공이 업무 결과의 동일성을 뜻하지는 않는다. 반대로 필요한 모듈이나 크기가 맞지 않아 로딩 단계에서 문제가 드러날 수도 있다. 인수 검사는 구성의 정체성, 로딩 결과, 업무 사례의 통과 여부를 나누어 보는 편이 설명하기 쉽다.</p>
+<p>아래는 업무 모델을 넘길 때 필자가 제안하는 인수표다. PEFT가 자동으로 작성해 주는 표준이나 모든 프로젝트에 동일하게 요구되는 목록은 아니다.</p>
+<div class="table-scroll"><table><thead><tr><th>함께 남길 항목</th><th>인수자가 확인할 내용</th><th>이 기록이 답하지 못하는 것</th></tr></thead><tbody><tr><td>기본 모델</td><td>저장소, 고정 revision, 설정과 가중치 식별 정보</td><td>새 업무에서도 적합한지</td></tr><tr><td>어댑터</td><td>파일 해시, 실제 설정, 적용할 어댑터 식별자</td><td>기본 모델을 바꿔도 결과가 유지되는지</td></tr><tr><td>입력 구성</td><td>tokenizer 버전, 대화 형식, 전처리와 입력 예시</td><td>사용자의 새 질문이 같은 분포인지</td></tr><tr><td>실행 구성</td><td>라이브러리 버전, 정밀도·양자화, 생성 설정</td><td>다른 하드웨어에서 출력이 완전히 같은지</td></tr><tr><td>검증·복구 자료</td><td>승인 사례, 실패 사례, 직전 배포 구성과 복구 경로</td><td>아직 관찰하지 않은 상황의 성공</td></tr></tbody></table></div>
+<p>표의 뒤쪽 항목은 어댑터 파일 밖에 남기기 쉬운 정보다. 같은 상담 기록이라도 어떤 지시문과 구분자를 붙였는지, 어느 길이에서 잘랐는지에 따라 모델에 들어가는 입력이 달라진다. 그래서 인수자가 원시 업무 자료에서 실제 입력까지 만들어 볼 수 있는 예시가 필요하다. 파일 몇 개를 다운로드한 것으로 인수 검사를 끝내지 않는 이유다.</p>
+<p>버전과 설정을 모두 기록해도 모든 환경에서 출력 문장이 완전히 같아진다고 약속할 수는 없다. 재현 요구가 바이트 단위의 동일성인지, 필수 항목과 사실을 지키는 업무 품질인지 먼저 정해야 한다. 운영 기록은 이 차이를 검토할 수 있게 하는 수단이다.</p>
+<h2>병합한 모델은 다른 방식으로 보관해야 한다</h2>
+<p>어댑터와 기본 모델을 나누어 저장하는 대신, 가중치를 병합해 전체 모델로 저장할 수도 있다. PEFT 안내는 <code>merge_and_unload()</code>를 호출한 뒤 저장하는 방법을 제시한다. 동시에 반환된 모델에는 PEFT 전용 기능이 남아 있지 않으며, 그 모델에서 어댑터를 다시 분리하거나 끄는 등의 작업을 할 수 없다고 설명한다.[1]</p>
+<p>이것을 어떤 경우에도 과거 상태를 복구할 수 없다는 뜻으로 확대할 필요는 없다. 별도로 보관한 기본 모델과 어댑터를 다시 불러오는 복구 경로는 설계할 수 있다. 다만 병합한 파일 하나에서 이전 어댑터 구성을 자유롭게 되살릴 수 있다고 기대해서는 안 된다. 복구는 보존해 둔 산출물과 구성 기록에 의존한다.</p>
+<p>병합은 저장 단위를 바꾼다. 병합한 전체 가중치는 기본 모델을 포함하므로 어댑터만 저장한 것보다 커진다. 또한 모든 PEFT 방법이나 모든 설정이 병합을 지원하는 것은 아니다. 공식 안내는 일부 양자화 설정 등에서 제약이 있을 수 있다고 밝힌다.[1] 따라서 “병합하면 배포가 간단해진다”는 한 문장만으로 방식을 결정하기 어렵다.</p>
+<p>어댑터를 나누어 관리해야 하는 팀과 고정된 모델 하나를 배포하는 팀은 다른 선택을 할 수 있다. 전자는 어댑터 선택과 교체 이력을 중요하게 보고, 후자는 병합 전후의 산출물 대응을 중요하게 볼 수 있다. 어느 쪽이든 승인한 구성이 무엇인지 식별해야 한다. 여러 어댑터를 동시에 적용하는 방식은 단일 어댑터 배포와 별도로 검증하는 편이 낫다.</p>
+<p>병합 전후를 비교할 때도 파일 생성 성공으로 끝내지 않는다. 같은 입력과 생성 설정으로 대표 업무 사례를 확인하고, 필수 항목과 사실 보존이 유지되는지 본다. 수치 정밀도나 실행 경로가 달라진 조건에서는 차이가 생겼을 때 원인을 추적할 기록을 남긴다. 이 글은 특정 모델을 병합해 성능이나 속도를 측정한 실험 보고가 아니다.</p>
+<h2>인수의 끝을 업무와 복구에서 확인하기</h2>
+<p>가상의 상담 정리 팀으로 돌아가 보자. 담당자는 어댑터 파일과 함께 승인에 쓴 기본 모델의 버전, 입력 예시, 실행 설정을 넘긴다. 동료는 그 구성으로 짧은 사례를 불러와 결과를 확인한다. 그다음 예외 표현이 있거나 내용이 긴 사례에서 필수 항목과 근거 없는 추가 문장을 점검한다. 이는 필자가 제안하는 인수 순서다.</p>
+<p>새 구성이 좋아 보이더라도 비교의 기준을 남겨야 한다. 같은 기본 모델에 어댑터를 적용하지 않은 조건과 적용한 조건을 비교하면, 조정의 기여를 살펴볼 수 있다. 동시에 기존에 잘 처리하던 업무가 나빠지지 않았는지도 확인한다. 학습에 쓴 예시만 반복해서 보여 주면 실제 인수 범위를 과대평가하기 쉽다.</p>
+<p>기본 모델이나 tokenizer, 전처리, 양자화 설정을 바꿨다면 이미 승인된 구성을 그대로 이어받았다고 취급하지 않는 편이 좋다. 변경한 항목과 영향받는 검사를 연결해 다시 확인한다. 모든 변경마다 전체 학습을 반복하자는 뜻은 아니다. 무엇을 바꿨고 어느 결과를 다시 확인해야 하는지 구분하자는 것이다.</p>
+<p>모델 조정에 대한 기대도 정리할 필요가 있다. 문체나 출력 양식을 학습시키는 일과 오늘 갱신된 정책 문서의 사실을 전달하는 일은 운영 방식이 다르다. 어댑터에 무엇을 맡기고 외부 자료 조회에 무엇을 맡길지 나누면, 정책이 바뀔 때마다 모델 파일을 갈아야 하는지부터 다시 고민하는 일을 줄일 수 있다. 이것은 특정 학습 방법이 사실을 전혀 학습하지 못한다는 주장이 아니라 갱신 책임을 배치하는 제안이다.</p>
+<p>업무 모델의 자산은 한 번 잘된 파일에만 있지 않다. 승인했던 구성으로 다시 시작하고, 실패하면 이전 구성으로 돌아가며, 동료가 그 과정을 확인할 수 있는 연결에 있다. LoRA 파일이 작아질수록 그 파일 밖에 남겨야 할 설명을 더 선명하게 정할 필요가 있다.</p>
+<hr>
+<p>[1] Hugging Face PEFT, <a href="https://huggingface.co/docs/peft/developer_guides/checkpoint">PEFT checkpoint format</a>. 2026년 11월 1일 공식 문서를 읽고 기본 브랜치 <code>main</code>의 커밋 <code>03412afcf1e96f74a014e467a313b22baeb74498</code>에서 <a href="https://github.com/huggingface/peft/blob/03412afcf1e96f74a014e467a313b22baeb74498/docs/source/developer_guides/checkpoint.md">문서 원본</a>을 확인했다.</p>
+<p>[2] Hugging Face PEFT, <a href="https://github.com/huggingface/peft/blob/03412afcf1e96f74a014e467a313b22baeb74498/src/peft/tuners/lora/config.py">LoRA 설정 소스</a>. 같은 커밋의 필드 설명을 근거로 했다. 개별 설치 버전의 동작은 해당 버전과 대조해야 한다.</p>
+<p>함께 읽기: <a href="https://dexa.art/blog/posts/a-new-pipeline-object-is-not-an-independent-copy/">새 파이프라인 객체는 독립 복제본이 아니다</a> · <a href="https://dexa.art/blog/posts/what-small-models-learn-through-distillation/">작은 AI 모델에 무엇을 가르칠 것인가: 증류의 업무 설계</a></p>
+            </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/moire-and-the-image-between-patterns/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>모아레는 무늬 사이에서 움직인다</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>

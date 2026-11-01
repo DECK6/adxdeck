@@ -1,5 +1,25 @@
 [
   {
+    "slug": "a-lora-adapter-needs-its-base-and-release-record",
+    "file": "_built/a-lora-adapter-needs-its-base-and-release-record.md",
+    "title": "LoRA 파일을 넘길 때 함께 넘겨야 할 것들",
+    "description": "작은 LoRA 어댑터를 전달했다고 업무 모델의 인수가 끝나는 것은 아니다. PEFT의 저장 형식과 병합 동작을 바탕으로 기본 모델, 입력 구성, 실행 설정과 복구 기록을 함께 관리하는 방법을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "AX",
+      "LoRA",
+      "model-deployment",
+      "reproducibility"
+    ],
+    "date": "2026-11-01",
+    "modified": "2026-11-01",
+    "thumbnail": "images/a-lora-adapter-needs-its-base-and-release-record-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "moire-and-the-image-between-patterns",
     "file": "_built/moire-and-the-image-between-patterns.md",
     "title": "모아레는 무늬 사이에서 움직인다",
