@@ -96,7 +96,7 @@ export async function build({vault=DEFAULT_VAULT,keyFile=DEFAULT_KEY,out=path.jo
   const key=readKeyConfig(keyFile);
   const {syncState}=await import('./sync-state.mjs');
   const state=await syncState({vault,keyConfig:key});
-  const sources=[latestOpenCalls(vault),findLatestAdapter(path.join(vault,'60-actions/runs/lecture-opportunity-radar'),'lecture-radar.v1.json'),optionalAdapter(path.join(vault,'60-actions/runs/grant-radar'),'grant-radar.v1.json'),optionalAdapter(path.join(vault,'60-actions/runs/exhibition-lead-radar'),'exhibition-lead-radar.v1.json')].filter(Boolean);
+  const sources=[latestOpenCalls(vault),findLatestAdapter(path.join(vault,'60-actions/runs/lecture-opportunity-radar'),'lecture-radar.v1.json'),optionalAdapter(path.join(vault,'60-actions/runs/grant-radar'),'grant-radar.v1.json')].filter(Boolean);
   const radars=applyReplies(applyLinkOverrides(sources.map(s=>sanitizeRadar(applyState(s.data,state.records))),readLinkOverrides(vault)),readVaultJson(vault,'60-actions/runs/radar-dashboard/replies/latest.json')).map(sanitizeRadar);
   const receivablesRaw=readVaultJson(vault,'60-actions/runs/radar-dashboard/receivables/latest.json'),receivables=receivablesRaw?sanitizeReceivables(receivablesRaw):null;
   const revenueSource=latestRevenuePlan(vault),revenue=revenueSource?sanitizeRevenue(revenueSource.data):null;

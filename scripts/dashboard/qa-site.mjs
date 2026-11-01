@@ -18,7 +18,7 @@ if(password.length<8)throw Error('Usage: node scripts/dashboard/qa-site.mjs --pa
 const vault=DEFAULT_VAULT,json=file=>JSON.parse(fs.readFileSync(file,'utf8'));
 const state=json(path.join(vault,'60-actions/runs/radar-dashboard/application-state/latest.json'));
 let records=state.records,requests=[];
-const sources=[latestOpenCalls(vault),findLatestAdapter(path.join(vault,'60-actions/runs/lecture-opportunity-radar'),'lecture-radar.v1.json'),optionalAdapter(path.join(vault,'60-actions/runs/grant-radar'),'grant-radar.v1.json'),optionalAdapter(path.join(vault,'60-actions/runs/exhibition-lead-radar'),'exhibition-lead-radar.v1.json')].filter(Boolean);
+const sources=[latestOpenCalls(vault),findLatestAdapter(path.join(vault,'60-actions/runs/lecture-opportunity-radar'),'lecture-radar.v1.json'),optionalAdapter(path.join(vault,'60-actions/runs/grant-radar'),'grant-radar.v1.json')].filter(Boolean);
 const radars=applyReplies(applyLinkOverrides(sources.map(s=>applyState(s.data,records)),readLinkOverrides(vault)),readVaultJson(vault,'60-actions/runs/radar-dashboard/replies/latest.json'));
 const receivablesRaw=readVaultJson(vault,'60-actions/runs/radar-dashboard/receivables/latest.json'),receivables=receivablesRaw?sanitizeReceivables(receivablesRaw):null;
 const revenueSource=latestRevenuePlan(vault),revenue=revenueSource?sanitizeRevenue(revenueSource.data):null;
