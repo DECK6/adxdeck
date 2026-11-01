@@ -1,5 +1,5 @@
-import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel,orgKey,busyOn} from './core.mjs?v=3dfcb1ac';
-import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=3dfcb1ac';
+import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel,orgKey,busyOn} from './core.mjs?v=aa4f0da7';
+import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=aa4f0da7';
 
 const $=id=>document.getElementById(id);
 const filters=[['review','검토 가능'],['check','확인 필요'],['awaiting','발표 대기'],['submitted','지원 완료'],['hold','보류'],['waiting','모집 대기'],['excluded','제외'],['all','전체']];
@@ -271,7 +271,8 @@ function renderCards(){
   return !search||[i.title,i.organization,i.summary,i.nextAction,...(i.fields||[]).map(f=>f.value)].join(' ').toLocaleLowerCase().includes(search);
  });
  visibleItems.sort((a,b)=>Number(isUrgent(b,now))-Number(isUrgent(a,now))||(a.deadlineAt||a.deadlineDate||'9999').localeCompare(b.deadlineAt||b.deadlineDate||'9999'));
- selectedId=visibleSelection(selectedId,visibleItems);
+ // An open popup keeps its item even after a hold/submit moved it out of the current list, so the change can be undone there.
+ selectedId=dialogKind==='item'&&r.items.some(i=>i.id===selectedId)?selectedId:visibleSelection(selectedId,visibleItems);
  $('result-count').textContent=`${filter==='archive'?'미지원 마감 보관함':filters.find(([k])=>k===filter)?.[1]} ${visibleItems.length}건`;
  $('empty').hidden=visibleItems.length>0;
  $('cards').innerHTML=visibleItems.map(i=>`<article class="card${isUrgent(i,now)?' urgent-card':''}" data-row="${e(i.id)}"><div class="card-tags">${tagsOf(i,now)}<label class="compare-check"><input type="checkbox" data-compare="${e(i.id)}" aria-label="${e(i.title)} 비교" ${compareIds.includes(i.id)?'checked':''}><span>비교</span></label></div>${i.organization?`<p class="card-organization">${e(i.organization)}</p>`:''}<h3><button class="card-title" data-item="${e(i.id)}" aria-haspopup="dialog" aria-label="${e(i.title)} 상세 보기">${e(i.title)}</button></h3><p class="card-deadline"><span>마감</span><span>${e(deadlineText(i))}</span></p><p class="card-summary">${e(i.summary)}</p>${reasonLine(i)}${highlightList(i)}<div class="card-bottom"><div class="card-actions">${submittedControl(i)}${holdControl(i)}</div><span class="application">${e(applicationLabel(i))}</span></div></article>`).join('');
@@ -319,8 +320,8 @@ async function saveState(id,applicationStatus,resultStatus){
   const data=await stateRequest(apiUrl,authKey,'PUT',{radarId,itemId:id,applicationStatus,resultStatus,expectedRevision:previous?.revision||0});
   if(!payload||attempt!==epoch)return;records=records.filter(x=>!(x.radarId===radarId&&x.itemId===id));records.push(data.record);
   const finalResult=['selected','not_selected','withdrawn'].includes(r.items.find(i=>i.id===id)?.resultStatus);
-  if(activeId===radarId){selectedId=id;search='';$('search').value='';filter=applicationStatus==='submitted'?(finalResult?'submitted':'awaiting'):applicationStatus==='on_hold'?'hold':isArchived({...r.items.find(i=>i.id===id),applicationStatus:'not_applied'})?'archive':'all';}
-  message(applicationStatus==='submitted'?(finalResult?'지원 완료로 저장했습니다. 확인된 결과는 유지합니다.':'지원 완료 · 발표 대기로 저장했습니다.'):applicationStatus==='on_hold'?'마스터 보류로 저장했습니다. 보류 필터에서 볼 수 있고 알림에서는 빠집니다.':'미지원으로 저장했습니다. 마감 건은 보관함에 보관됩니다.');
+  // The item moves to its new bucket; the list the master is working in stays exactly where it is.
+  message(applicationStatus==='submitted'?(finalResult?'지원 완료로 저장했습니다. 확인된 결과는 유지합니다.':'지원 완료 · 발표 대기로 저장했습니다.'):applicationStatus==='on_hold'?'마스터 보류로 저장했습니다. 보류 필터로 옮겨졌고 알림에서는 빠집니다.':'미지원으로 저장했습니다. 마감 건은 보관함에 보관됩니다.');
  }catch(error){
   if(!payload||attempt!==epoch)return;
   if(error.status===409)await loadState(attempt);
