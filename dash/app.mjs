@@ -1,5 +1,5 @@
-import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel,orgKey,busyOn} from './core.mjs?v=aa4f0da7';
-import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=aa4f0da7';
+import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel,orgKey,busyOn} from './core.mjs?v=607cc05c';
+import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=607cc05c';
 
 const $=id=>document.getElementById(id);
 const filters=[['review','검토 가능'],['check','확인 필요'],['awaiting','발표 대기'],['submitted','지원 완료'],['hold','보류'],['waiting','모집 대기'],['excluded','제외'],['all','전체']];
@@ -335,6 +335,11 @@ $('search').addEventListener('input',event=>{search=event.target.value.trim().to
 $('report-button').addEventListener('click',()=>{dialogKind='report';$('detail-nav').innerHTML='';openDialog(radar().title+' / 전체 보고서',renderMarkdown(radar().reportMarkdown));});
 $('revenue-full').addEventListener('click',()=>{if(!payload?.revenue)return;dialogKind='revenue';$('detail-nav').innerHTML='';openDialog(payload.revenue.title+' / 전문',renderMarkdown(payload.revenue.markdown));});
 $('close-detail').addEventListener('click',closeDialog);
+// Backdrop clicks close the popup; a press that starts inside (e.g. dragging a text selection out) does not.
+const outsideDetail=event=>{const b=$('detail').getBoundingClientRect();return event.clientX<b.left||event.clientX>b.right||event.clientY<b.top||event.clientY>b.bottom;};
+let pressedOutside=false;
+$('detail').addEventListener('pointerdown',event=>{pressedOutside=outsideDetail(event);});
+$('detail').addEventListener('click',event=>{if(pressedOutside&&event.target===$('detail')&&outsideDetail(event))closeDialog();pressedOutside=false;});
 $('detail').addEventListener('close',()=>{dialogKind=null;$('detail-content').replaceChildren();$('detail-nav').replaceChildren();$('detail').classList.remove('wide');});
 
 function mountNara(){
