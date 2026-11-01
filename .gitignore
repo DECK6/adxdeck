@@ -5,6 +5,9 @@
 /.planning/M20261031/
 /.dashboard-artifacts/
 /scripts/dashboard/__pycache__/
+/.planning/M20261101/
+/scripts/dashboard/worker/.wrangler/
+/scripts/dashboard/worker/.dev.vars
 
 # Week 4 large packages are distributed through Google Drive.
 /ontology/study/downloads/species-plain-week4.zip

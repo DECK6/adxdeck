@@ -1,0 +1,13 @@
+name = "dexa-radar-state"
+main = "index.mjs"
+compatibility_date = "2026-11-01"
+account_id = "ec022cc57ac7c87928c70f94d6400013"
+workers_dev = true
+
+[vars]
+ALLOWED_ORIGINS = "https://dexa.art"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "dexa-radar-state"
+database_id = "b0e0c2dc-07bd-4403-8682-ffcdddb2a15a"

@@ -48,3 +48,27 @@ Browser QA uses a separate temporary fixture site with a known synthetic passwor
 ## Password changes
 
 The initializer refuses to overwrite an existing key. For an intentional rotation, move the old configuration to a private backup outside Git, rerun Terminal setup, then rebuild and publish both radars. Preserve the old key until the new page unlock has been confirmed. Do not automate a rotation during an ordinary radar run.
+
+## Compare and track applications
+
+The list and inspector stay open together. Click any non-control part of an item; comparison and submission checkboxes keep their own actions. Select up to three items for aligned comparison. Unsubmitted expired items leave all working views and remain in the archive. Submitted items remain in result tracking after the deadline.
+
+A submission checkbox writes to the dedicated `dexa-radar-state` Worker/D1 store. Successful writes enter result-awaiting; network failures stay visibly unsaved. Revisions reject conflicting writes. Timestamped, nonce-bound HMAC requests use a domain-derived key; the Worker never receives the dashboard password or AES key. Browser keys live in memory only. Official final results are retained. The `verified-record` source is an audit mirror; only `dashboard-user` corrections override producer application state.
+
+Before either radar investigation, run:
+
+```sh
+node /Volumes/data/Dev/adxdeck-worktrees/radar-dash-20261031/scripts/dashboard/sync-state.mjs
+```
+
+It atomically saves and re-reads AKM `60-actions/runs/radar-dashboard/application-state/latest.json`. The shared publisher performs this sync again before encrypting; unavailable state stops publication. Optional adapter fields `resultStatus`, `stateUpdatedAt`, `stateSource`, `stateRevision` keep provenance separate from public-announcement check time.
+
+## Korean media-art analysis
+
+Private Korean analysis lives in AKM `60-actions/runs/radar-dashboard/open-call-analysis/latest.json`; each item has a fingerprint of material source facts. A changed fact invalidates the prior analysis instead of silently reusing prize or travel conditions. Refresh the Korean analysis during each media-art investigation. Summaries, reviews, application format, prize versus production budget, attendance, travel/living support, fees, deliverables, eligibility and rights must be explicit; unknown is never treated as free or optional. The exported `highlights` fields appear on cards and in the comparison table. Do not commit plaintext analysis or source data.
+
+## NARA tab
+
+The common encrypted envelope also carries the existing NARA v2 payload. After unlock, a same-origin `/nara/?embedded=dashboard` frame receives it from its exact parent window. It has no second password and writes no common credentials to browser storage. Main lock removes the frame and its data. Recommendations, vault, draft versions, copy, slides and request status use the same NARA renderer and backend as `/nara/`.
+
+NARA writes its exact rescored payload to private `.data/dashboard-payload.json` before publication. The common builder reads it and encrypts it with both radars. Existing NARA publications then call the same shared publisher, under its existing local lock. A missing snapshot fails before ciphertext replacement. Draft requests persist `fable` or `astra-xhigh`; the local poller resolves that selected line and reports unavailability instead of silently switching providers. Automatic requests without a selected model keep the existing Sol engine. Additional “아스트라로 생성” and “페이블로 생성” buttons explicitly select the manual engine; they do not change the automatic default. No draft is generated merely by opening this tab.

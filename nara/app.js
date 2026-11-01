@@ -2,7 +2,8 @@
 // recommendations, saved bids, drafts and slide decks; send draft requests to the inbox worker.
 
 const $ = (id) => document.getElementById(id);
-const state = { payload: null, viewerItem: null, viewerIndex: 0, view: "recommend", statuses: new Map(), requestBid: null, deck: null };
+const state = { payload: null, viewerItem: null, viewerIndex: 0, view: "recommend", statuses: new Map(), requestBid: null, requestModel:null, deck: null };
+const EMBEDDED=window.parent!==window&&new URLSearchParams(location.search).get("embedded")==="dashboard";
 const NAME_KEY = "dexa-nara-requester";
 const STATUS_LABELS = {
   requested: ["요청됨", "orange"], queued: ["생성 대기", "orange"], drafting: ["초안 작성 중", "orange"],
@@ -111,7 +112,7 @@ function renderCard(item) {
     item.contractMethod ? `<span class="tag">${escapeHtml(item.contractMethod)}</span>` : "",
     item.noticeKind ? `<span class="tag">${escapeHtml(item.noticeKind)}</span>` : "",
     drafts.length ? `<span class="tag good">초안 ${drafts.length}</span>` : "",
-    statusLabel ? `<span class="tag ${statusCls}" title="${escapeHtml(status.message || "")}">${statusLabel}</span>` : "",
+    statusLabel ? `<span class="tag ${statusCls}" title="${escapeHtml(status.message || "")}">${statusLabel}${status?.draftModel?" · "+(status.draftModel==="fable"?"페이블":"아스트라"):""}</span>` : "",
   ].filter(Boolean).join("");
   const terms = (item.match?.matchedTerms || []).slice(0, 6).map((term) => `<span>${escapeHtml(term)}</span>`).join("");
   const canRequest = state.payload?.requestApi && (!status || ["done", "rejected", "error"].includes(status.status));
@@ -127,7 +128,7 @@ function renderCard(item) {
           ${item.detailUrl ? `<a href="${escapeHtml(item.detailUrl)}" target="_blank" rel="noopener">나라장터 ↗</a>` : ""}
           ${drafts.length ? `<button type="button" data-action="draft">초안 보기</button>` : ""}
           ${drafts[0]?.slides ? `<button type="button" data-action="slides">슬라이드</button>` : ""}
-          ${canRequest ? `<button type="button" class="request" data-action="request">${drafts.length ? "재요청" : "초안 요청"}</button>` : ""}
+          ${canRequest ? `<button type="button" class="request" data-action="request">${drafts.length ? "자동 재요청" : "초안 자동 요청"} · Sol</button><button type="button" data-action="astra">아스트라로 생성</button><button type="button" data-action="fable">페이블로 생성</button>` : ""}
         </span>
       </div>
     </article>`;
@@ -153,9 +154,9 @@ async function refreshStatuses() {
 }
 
 function openRequest(item) {
-  state.requestBid = item;
+  state.requestBid = item;state.requestModel=null;
   $("requestTitle").textContent = item.title;
-  $("requestName").value = localStorage.getItem(NAME_KEY) || "";
+  $("requestName").value = EMBEDDED?"":localStorage.getItem(NAME_KEY) || "";
   $("requestNote").value = "";
   $("requestError").hidden = true;
   $("requestOverlay").hidden = false;
@@ -172,15 +173,16 @@ async function submitRequest() {
     const response = await fetch(`${api.url.replace(/\/$/, "")}/requests`, {
       method: "POST",
       headers: { "Content-Type": "application/json", "X-Nara-Token": api.token },
-      body: JSON.stringify({ bidNo: bidKey(item), bid, requester: $("requestName").value.trim(), note: $("requestNote").value.trim() }),
+      body: JSON.stringify({ bidNo: bidKey(item), bid, draftModel: state.requestModel, requester: $("requestName").value.trim(), note: $("requestNote").value.trim() }),
     });
     const data = await response.json().catch(() => ({}));
     if (!response.ok || !data.ok) throw new Error(data.message || "요청을 보내지 못했습니다");
-    localStorage.setItem(NAME_KEY, $("requestName").value.trim());
+    if(!EMBEDDED)localStorage.setItem(NAME_KEY, $("requestName").value.trim());
     state.statuses.set(bidKey(item), data.request);
     $("requestOverlay").hidden = true;
     render();
   } catch (error) {
+    $("requestOverlay").hidden=false;$("requestTitle").textContent=item.title;
     $("requestError").textContent = error.message;
     $("requestError").hidden = false;
   } finally {
@@ -216,7 +218,12 @@ function openViewer(item, index = 0) {
         `<button type="button" data-version="${i}" class="${i === index ? "active" : ""}">v${item.drafts.length - i} · ${escapeHtml((entry.generatedAt || "").slice(0, 10))}</button>`).join("")
     : "";
   $("slidesButton").hidden = !draft.slides;
-  $("draftBody").innerHTML = marked.parse(draft.markdown);
+  const rendered=new DOMParser().parseFromString(marked.parse(escapeHtml(draft.markdown)),"text/html");
+  for(const link of rendered.querySelectorAll("a")){
+    try{if(!["https:","http:"].includes(new URL(link.getAttribute("href"),location.href).protocol))link.removeAttribute("href");}catch{link.removeAttribute("href");}
+    link.target="_blank";link.rel="noopener noreferrer";
+  }
+  $("draftBody").replaceChildren(...rendered.body.childNodes);
   $("draftBody").scrollTop = 0;
   $("viewerOverlay").hidden = false;
 }
@@ -232,6 +239,7 @@ $("lockForm").addEventListener("submit", (event) => {
 });
 
 $("lockButton").addEventListener("click", () => {
+  if(EMBEDDED){window.parent.postMessage({type:"nara:lock"},location.origin);return;}
   sessionStorage.removeItem(PW_KEY);
   location.reload();
 });
@@ -244,6 +252,12 @@ function onCardClick(event) {
   if (!item) return;
   const drafts = draftsFor(item);
   if (button.dataset.action === "request") openRequest(item);
+  if(["astra","fable"].includes(button.dataset.action)){
+    state.requestBid=item;state.requestModel=button.dataset.action==="astra"?"astra-xhigh":"fable";
+    $("requestName").value="마스터";$("requestNote").value="";
+    button.disabled=true;
+    submitRequest().finally(()=>{button.disabled=false;});
+  }
   if (button.dataset.action === "draft") openViewer({ ...item, drafts });
   if (button.dataset.action === "slides") openDeck(drafts[0].slides);
 }
@@ -292,5 +306,16 @@ $("copyButton").addEventListener("click", async () => {
   setTimeout(() => { $("copyButton").textContent = "MD 복사"; }, 1500);
 });
 
-const savedPassword = sessionStorage.getItem(PW_KEY);
-if (savedPassword) unlock(savedPassword);
+if(EMBEDDED){
+ document.body.classList.add("embedded");
+ $("lockForm").hidden=true;
+ document.querySelector(".lock-sub").textContent="대시보드 연결 중…";
+ window.addEventListener("message",event=>{
+  if(event.source!==window.parent||event.origin!==location.origin||event.data?.type!=="dexa:nara-payload"||event.data.payload?.v!==2)return;
+  state.payload=event.data.payload;$("lockScreen").hidden=true;$("app").hidden=false;render();refreshStatuses();
+ });
+ window.parent.postMessage({type:"nara:ready"},location.origin);
+ setInterval(()=>document.visibilityState==="visible"&&state.payload&&refreshStatuses(),60000);
+}else{
+ const savedPassword=sessionStorage.getItem(PW_KEY);if(savedPassword)unlock(savedPassword);
+}

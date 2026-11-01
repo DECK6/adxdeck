@@ -35,6 +35,11 @@
           "officialUrl": {"type": ["string", "null"]},
           "summary": {"type": "string"},
           "nextAction": {"type": "string"},
+          "resultStatus": {"enum": [null, "awaiting", "selected", "not_selected", "withdrawn"]},
+          "stateUpdatedAt": {"type": ["string", "null"], "format": "date-time"},
+          "stateSource": {"type": "string"},
+          "stateRevision": {"type": "integer", "minimum": 0},
+          "highlights": {"type": "array", "items": {"type": "object", "required": ["label", "value"], "properties": {"label": {"type": "string"}, "value": {"type": "string"}}}},
           "fields": {"type": "array", "items": {"type": "object", "required": ["label", "value"], "properties": {"label": {"type": "string"}, "value": {"type": "string"}}}}
         }
       }

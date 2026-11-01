@@ -1,34 +1,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import os from 'node:os';
-import {createHash,randomBytes} from 'node:crypto';
-import {fileURLToPath,pathToFileURL} from 'node:url';
-import {encryptDashboard,openCallsAdapter,sanitizeRadar,validateKeyConfig} from './lib.mjs';
+import {createHash} from 'node:crypto';
+import {pathToFileURL} from 'node:url';
+import {encryptDashboard,openCallsAdapter,sanitizeRadar} from './lib.mjs';
+import {applyState} from '../../dash/state.mjs';
 
-export const DEFAULT_VAULT='/Volumes/data/Obsidian/akm';
-export const DEFAULT_KEY=path.join(os.homedir(),'.config/dexa-dash/key.json');
-export const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'../..');
+import {DEFAULT_VAULT,DEFAULT_KEY,ROOT,readKeyConfig,atomicWrite} from './io.mjs';
+export {DEFAULT_VAULT,DEFAULT_KEY,ROOT,readKeyConfig,atomicWrite};
 const json=file=>JSON.parse(fs.readFileSync(file,'utf8'));
 
-export function readKeyConfig(file=DEFAULT_KEY) {
-  const st=fs.lstatSync(file);
-  if(st.isSymbolicLink())throw Error('Local key must not be a symbolic link');
-  if(!st.isFile()||(st.mode&0o077)!==0||st.uid!==process.getuid())throw Error('Local key requires owner-only permissions (0600)');
-  return validateKeyConfig(json(file));
-}
-
-export function atomicWrite(file,content,mode=0o644) {
-  fs.mkdirSync(path.dirname(file),{recursive:true});
-  const temp=file+'.tmp-'+randomBytes(8).toString('hex');
-  const fd=fs.openSync(temp,'wx',mode);
-  try{fs.writeFileSync(fd,content);fs.fsyncSync(fd);}finally{fs.closeSync(fd);}
-  fs.renameSync(temp,file);
-  const dir=fs.openSync(path.dirname(file),'r');try{fs.fsyncSync(dir);}finally{fs.closeSync(dir);}
-}
-
-export async function writeEncryptedDashboard(radars,config,out) {
+export async function writeEncryptedDashboard(radars,config,out,extras={}) {
   // Validate and encrypt everything before touching the previous export.
-  const envelope=await encryptDashboard(radars,config);
+  const envelope=await encryptDashboard(radars,config,extras);
   const data=JSON.stringify(envelope)+'\n';
   atomicWrite(out,data);
   return {output:out,bytes:Buffer.byteLength(data),sha256:createHash('sha256').update(data).digest('hex'),radars:radars.map(r=>({id:r.id,updatedAt:r.updatedAt,occurrenceId:r.occurrenceId,runStatus:r.runStatus,items:r.items.length}))};
@@ -67,7 +50,9 @@ export function latestOpenCalls(vault=DEFAULT_VAULT) {
   if(!found.length)throw Error('No completed open-call source');
   const current=found[0];
   // Detailed allowlisted fields provide the report without exporting raw vault prose.
-  const data=openCallsAdapter(current.state,current.receipt,'');
+  const analysisFile=path.join(vault,'60-actions/runs/radar-dashboard/open-call-analysis/latest.json');
+  const analysis=fs.existsSync(analysisFile)?json(analysisFile):null;
+  const data=openCallsAdapter(current.state,current.receipt,'',analysis);
   const adapterPath=path.join(current.dir,'open-call-radar.v1.json');
   atomicWrite(adapterPath,JSON.stringify(data,null,2)+'\n',0o600);
   return {path:adapterPath,data};
@@ -85,10 +70,14 @@ export function assertPrivateExport(radars) {
 
 export async function build({vault=DEFAULT_VAULT,keyFile=DEFAULT_KEY,out=path.join(ROOT,'dash/data.enc.json')}={}) {
   const key=readKeyConfig(keyFile);
+  const {syncState}=await import('./sync-state.mjs');
+  const state=await syncState({vault,keyConfig:key});
   const sources=[latestOpenCalls(vault),findLatestAdapter(path.join(vault,'60-actions/runs/lecture-opportunity-radar'),'lecture-radar.v1.json')];
-  const radars=sources.map(s=>sanitizeRadar(s.data));assertPrivateExport(radars);
-  const result=await writeEncryptedDashboard(radars,key,out);
-  return {...result,sources:sources.map(s=>s.path)};
+  const radars=sources.map(s=>sanitizeRadar(applyState(s.data,state.records)));assertPrivateExport(radars);
+  const snapshot='/Volumes/data/Dev/nara-bid-finder/.data/dashboard-payload.json';
+  const nara=vault===DEFAULT_VAULT?json(snapshot):null;
+  const result=await writeEncryptedDashboard(radars,key,out,{nara});
+  return {...result,nara:nara?{source:snapshot,generatedAt:nara.generatedAt,items:nara.items.length,recommendations:nara.recommendations.length,drafts:nara.items.reduce((n,i)=>n+(i.drafts?.length||0),0)}:null,sources:sources.map(s=>s.path),applicationState:{path:state.path,syncedAt:state.syncedAt,records:state.records.length,userOverrides:state.records.filter(r=>r.source==='dashboard-user').length}};
 }
 
 if(process.argv[1]&&pathToFileURL(path.resolve(process.argv[1])).href===import.meta.url){

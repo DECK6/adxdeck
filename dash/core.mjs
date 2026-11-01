@@ -7,16 +7,21 @@ export function safeUrl(value) {
 
 const bytes = value => Uint8Array.from(atob(value), c=>c.charCodeAt(0));
 
-export async function decryptDashboard(envelope,password) {
+export async function unlockDashboard(envelope,password) {
   const k=envelope?.kdf, c=envelope?.cipher;
   if(envelope?.v!==1 || k?.name!=='PBKDF2' || k.hash!=='SHA-256' || !Number.isInteger(k.iterations) || k.iterations<100000 || k.iterations>2000000 || c?.name!=='AES-GCM' || bytes(k.salt).length!==16 || bytes(c.iv).length!==12) throw Error('Invalid encrypted dashboard');
-  const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveKey']);
-  const key=await crypto.subtle.deriveKey({name:'PBKDF2',hash:'SHA-256',salt:bytes(k.salt),iterations:k.iterations},base,{name:'AES-GCM',length:256},false,['decrypt']);
+  const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveBits']);
+  const keyBytes=new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:bytes(k.salt),iterations:k.iterations},base,256));
+  try{
+  const key=await crypto.subtle.importKey('raw',keyBytes,{name:'AES-GCM'},false,['decrypt']);
   const raw=await crypto.subtle.decrypt({name:'AES-GCM',iv:bytes(c.iv)},key,bytes(envelope.ct));
   const payload=JSON.parse(new TextDecoder().decode(raw));
   if(payload.schemaVersion!=='dexa-dash.v1' || !Array.isArray(payload.radars) || !payload.radars.length)throw Error('Invalid dashboard data');
-  return payload;
+  return {payload,keyBytes};
+  }catch(error){keyBytes.fill(0);throw error;}
 }
+
+export async function decryptDashboard(envelope,password){const result=await unlockDashboard(envelope,password);result.keyBytes.fill(0);return result.payload;}
 
 export function kstDate(now=new Date()) {
   return new Date(now.getTime()+9*3600000).toISOString().slice(0,10);

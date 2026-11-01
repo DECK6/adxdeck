@@ -83,3 +83,11 @@ test('invalid calendar dates are rejected instead of silently rolling into anoth
  const input={schemaVersion:'radar.v1',id:'lectures',title:'Lectures',updatedAt:'2026-10-31T12:00:00Z',occurrenceId:'one',runStatus:'HOLD',summary:'',items:[item]};
  assert.throws(()=>lib.sanitizeRadar(input),/deadlineDate/);
 });
+
+test('verified personal submissions and onboarding replies stay distinct from signed contracts',()=>{
+ const input={occurrence_id:'audit:one',generated_at:'2026-11-01T03:00:00Z',candidates:[],participation_context:[{project:'CTxAI / C2 Project',state:'two personal works consents and email submitted',recorded_time:'2026-10-21T11:56:00+09:00'},{project:'LED.ART',state:'reply-sent-contract-pending',recorded_time:'2026-10-27T19:53:00+09:00'},{project:'Ocean',state:'seoullo-application-cancelled'}]};
+ const out=lib.openCallsAdapter(input,{purpose_status:'VERIFIED'},'');
+ assert.equal(out.items.length,2);assert.ok(out.items.every(i=>i.applicationStatus==='submitted'&&i.resultStatus==='awaiting'));
+ assert.match(out.items.find(i=>i.id==='led-art-onboarding').summary,/계약.*미확정/);
+ assert.equal(out.items.some(i=>/Ocean/.test(i.title)),false);
+});
