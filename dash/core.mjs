@@ -74,6 +74,7 @@ export function renderMarkdown(input) {
     const line=lines[i];
     if(!line.trim()){i++;continue;}
     if(/^```/.test(line)){const block=[];i++;while(i<lines.length&&!/^```/.test(lines[i]))block.push(lines[i++]);i++;out.push(`<pre><code>${escapeHtml(block.join('\n'))}</code></pre>`);continue;}
+    if(/^>\s?/.test(line)){const quote=[];while(i<lines.length&&/^>\s?/.test(lines[i]))quote.push(lines[i++].replace(/^>\s?/,''));out.push(`<blockquote>${quote.map(q=>`<p>${inlineMarkdown(q)}</p>`).join('')}</blockquote>`);continue;}
     const h=line.match(/^(#{1,6})\s+(.+)/);
     if(h){const n=Math.min(h[1].length+1,6);out.push(`<h${n}>${inlineMarkdown(h[2])}</h${n}>`);i++;continue;}
     if(line.startsWith('|') && /^\|?[\s:|\-]+\|?$/.test(lines[i+1]||'')){

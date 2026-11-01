@@ -1,6 +1,6 @@
 # DEXA radar dashboard
 
-`https://dexa.art/dash/` has one password gate for every radar tab. GitHub Pages serves a static shell and an AES-GCM encrypted payload. Opening a direct tab hash does not decrypt it. The password and decrypted content are not written to browser storage; locking or leaving the page clears the in-memory view.
+`https://dexa.art/dash/` has one password gate for every tab: 종합 (cross-radar overview), the radar tabs, 지원 (application ledger), 수익 설계 (revenue plan) and NARA. GitHub Pages serves a static shell and an AES-GCM encrypted payload. Opening a direct tab hash does not decrypt it. The password and decrypted content are not written to browser storage; locking or leaving the page clears the in-memory view.
 
 ## Initial setup
 
@@ -32,10 +32,15 @@ node scripts/dashboard/build.mjs
 
 - Open calls: completed `60-actions/runs/media-art-open-call-radar/*/{candidate-state,checkpoint,receipt}.json` with matching occurrence IDs. The adapter is written back to that private occurrence as `open-call-radar.v1.json`.
 - Lectures: `60-actions/runs/lecture-opportunity-radar/*/lecture-radar.v1.json`, maintained by the lecture owner.
+- Revenue plan: the newest `*revenue-plan*.md` note (by frontmatter `date modified`) under AKM `00-inbox`, `30-context/projects[/revenue-plan]` or `80-outputs/revenue`. `scripts/dashboard/revenue.mjs` parses its numbered sections (0 결론, 1-1 단가, 1-2 청중, 2 아이템 A–E + F 회수, 3 기간별 합계, 4 상충, 5 이번 주 행동, 6 준비물, 7 가정, 9 정정, 10 결정 지점) into the `revenue` block. Section 8 (근거 경로: local paths, session ids) is never exported; the same privacy check runs over the block. A vault without the note simply omits the tab.
 
 Only allowlisted fields enter encryption. Paths, contacts, authentication links and raw calendars are excluded. Raw vault Markdown is not copied. Missing keys, invalid adapters and privacy violations stop before replacing the encrypted export. Each publish uses a fresh random 12-byte AES-GCM IV.
 
 Recommendation status, application status and source run status remain separate. Submitted/cancelled/on-hold items cannot become urgent application reminders. Lecture A/B/C is `track`, not `grade`. Date-only deadlines remain date-only; the UI compares their calendar dates in KST. `HOLD` stays visible. Adding another radar requires its adapter to be included in the builder; tabs render from the shared payload.
+
+## Overview, applications and revenue tabs
+
+종합 merges every non-submitted working item with a deadline (any bucket, next 60 days), the plan's 결정 지점 and NARA bid closes into one dated timeline; clicking a row opens that item in its radar tab (filter 전체). 지원 lists submitted / preparing / on-hold items of all radars grouped by result state; checkboxes stay in the radar tabs. 수익 설계 shows conclusions, period totals, the 13 items with live radar counts (B1→강의처, C2→공모, D1→나라장터), milestones, recoveries, conflicts, preparations, audience and the full note text (minus section 8). Correct the plan in the AKM note; the next publish re-parses it.
 
 ## Verification
 
@@ -43,7 +48,7 @@ Recommendation status, application status and source run status remain separate.
 node --test scripts/dashboard/test/*.test.mjs scripts/shared-shell-regression.test.js
 ```
 
-Browser QA uses a separate temporary fixture site with a known synthetic password. Never replace production encryption with fixture data. Test wrong/correct passwords, both tabs, filters, search, detail, lock, deep links, keyboard navigation and mobile overflow. Live verification checks the locked gate and the published ciphertext hash; the initial real password is entered by the owner only.
+Browser QA uses a separate temporary fixture site with a known synthetic password: `node scripts/dashboard/qa-site.mjs --password '<fixture>' [--port 8765]` copies `dash/`, encrypts the current vault data under that password and serves a same-origin mock of the state API seeded from the synced ledger (writes stay in memory). Never replace production encryption with fixture data. Test wrong/correct passwords, both tabs, filters, search, detail, lock, deep links, keyboard navigation and mobile overflow. Live verification checks the locked gate and the published ciphertext hash; the initial real password is entered by the owner only.
 
 ## Password changes
 

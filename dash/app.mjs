@@ -1,15 +1,38 @@
-import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown} from './core.mjs';
+import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate} from './core.mjs';
 import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs';
 
 const $=id=>document.getElementById(id);
 const labels={review:'검토 가능',submitted:'지원 완료',hold:'보류',waiting:'대기',excluded:'제외',closed:'마감',information:'참고'};
 const filters=[['review','검토 가능'],['awaiting','발표 대기'],['submitted','지원 완료'],['hold','보류'],['waiting','모집 대기'],['excluded','제외'],['all','전체']];
+// Non-radar tabs render into their own panels; radar tabs share #radar-panel.
+const panels={overview:'overview-panel',applications:'applications-panel',revenue:'revenue-panel',nara:'nara-panel'};
 let payload=null,activeId=null,envelope=null,epoch=0,authKey=null,apiUrl=null,records=[],ready=false;
 let filter='review',search='',selectedId=null,compareIds=[],mode='detail',visibleItems=[];
+const hiddenSources=new Set();
 const tabStates=new Map(),saving=new Set();
 const dateTime=at=>new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(at))+' KST';
-const choices=()=>payload?[...payload.radars,...(payload.nara?[{id:'nara',title:'나라장터 파인더',items:[]}]:[])]:[];
+const dayText=date=>new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',month:'numeric',day:'numeric',weekday:'short'}).format(new Date(date+'T12:00:00+09:00'));
+const kstOf=at=>new Date(new Date(at).getTime()+9*3600000).toISOString().slice(0,10);
+const deadlineDate=item=>item.deadlineAt?kstOf(item.deadlineAt):item.deadlineDate||null;
+const daysUntil=(date,now)=>Math.round((Date.parse(date)-Date.parse(kstDate(now)))/86400000);
+const ddayText=days=>days===0?'D-day':days>0?`D-${days}`:`D+${-days}`;
+const choices=()=>{
+ if(!payload)return [];
+ const list=[{id:'overview',title:'종합'},...payload.radars,{id:'applications',title:'지원'}];
+ if(payload.revenue)list.push({id:'revenue',title:'수익 설계'});
+ if(payload.nara)list.push({id:'nara',title:'나라장터 파인더'});
+ return list;
+};
+const isRadar=id=>Boolean(payload?.radars.some(r=>r.id===id));
+const radars=()=>payload?payload.radars.map(r=>applyState(r,records)):[];
 const radar=()=>{const base=payload?.radars.find(r=>r.id===activeId);return base?applyState(base,records):null;};
+const workingItems=now=>radars().flatMap(r=>r.items.filter(i=>!isArchived(i,now)).map(i=>({...i,radarId:r.id,radarTitle:r.title})));
+function naraEntries(){
+ if(!payload?.nara)return [];
+ const seen=new Map();
+ for(const i of [...payload.nara.items,...payload.nara.recommendations.flatMap(b=>b.items)]){const key=i.bidNtceNo||i.id;if(key&&!seen.has(key))seen.set(key,i);}
+ return [...seen.values()];
+}
 function message(text,error=false){$('sync-message').textContent=text;$('sync-message').classList.toggle('error',error);$('retry-sync').hidden=!error||ready;}
 
 $('unlock-form').addEventListener('submit',async event=>{
@@ -20,7 +43,7 @@ $('unlock-form').addEventListener('submit',async event=>{
   const decoded=await unlockDashboard(envelope,password);
   if(attempt!==epoch){decoded.keyBytes.fill(0);return;}
   authKey=await deriveSigningKey(decoded.keyBytes);decoded.keyBytes.fill(0);if(attempt!==epoch){authKey.fill(0);authKey=null;return;}payload=decoded.payload;
-  const requested=location.hash.slice(1);activeId=choices().some(r=>r.id===requested)?requested:payload.radars[0].id;
+  const requested=location.hash.slice(1);activeId=choices().some(r=>r.id===requested)?requested:'overview';
   $('gate').hidden=true;$('workspace').hidden=false;renderTabs();renderRadar();$('tabs').querySelector('[aria-selected=true]').focus();
   await loadState(attempt);
  }catch{
@@ -40,19 +63,28 @@ function lock(){
  epoch++;authKey?.fill(0);authKey=null;payload=null;activeId=null;envelope=null;apiUrl=null;records=[];ready=false;
  filter='review';search='';selectedId=null;compareIds=[];mode='detail';visibleItems=[];tabStates.clear();saving.clear();
  if($('detail').open)$('detail').close();$('browse').append($('inspector'));
- for(const id of ['tabs','cards','stats','urgent','limitations','radar-title','radar-summary','run-status','updated','occurrence','detail-content','dialog-label','filters','result-count','today','comparison-bar','inspector-tools','inspector-content','sync-message'])$(id).replaceChildren();
+ for(const id of ['tabs','cards','stats','urgent','limitations','radar-title','radar-summary','run-status','updated','occurrence','detail-content','dialog-label','filters','result-count','today','comparison-bar','inspector-tools','inspector-content','sync-message','overview-summary','overview-updated','overview-stats','timeline','overview-kpis','overview-actions','applications-stats','applications-groups','revenue-title','revenue-summary','revenue-updated','revenue-content'])$(id).replaceChildren();
+ for(const panel of Object.values(panels))$(panel).hidden=true;$('radar-panel').hidden=false;
  $('inspector').hidden=true;$('search').value='';$('workspace').hidden=true;$('gate').hidden=false;$('password').value='';$('gate-message').classList.remove('error');$('gate-message').textContent='대시보드가 잠겼습니다.';$('password').focus();
 }
 $('lock').addEventListener('click',lock);window.addEventListener('pagehide',lock);
 $('retry-sync').addEventListener('click',()=>loadState());
 window.addEventListener('hashchange',()=>{if(payload&&choices().some(r=>r.id===location.hash.slice(1)))selectRadar(location.hash.slice(1));});
 function renderTabs(){
- $('tabs').innerHTML=choices().map(base=>{const r=applyState(base,records),count=r.id==='nara'?new Set([...payload.nara.items,...payload.nara.recommendations.flatMap(b=>b.items)].map(i=>i.bidNtceNo||i.id)).size:r.items.filter(i=>!isArchived(i)).length;return `<button id="tab-${e(r.id)}" role="tab" type="button" aria-controls="radar-panel" aria-selected="${r.id===activeId}" tabindex="${r.id===activeId?0:-1}" data-radar="${e(r.id)}">${e(r.title)}<span class="tab-count">${count}</span></button>`;}).join('');
+ const now=new Date(),working=workingItems(now);
+ const counts={overview:timelineEntries(now).filter(t=>t.kind!=='nara'&&t.days<=7).length,applications:working.filter(i=>i.applicationStatus==='submitted'&&i.resultStatus==='awaiting').length,revenue:payload.revenue?.items.length||0,nara:naraEntries().length};
+ $('tabs').innerHTML=choices().map(t=>{const count=t.id in counts?counts[t.id]:working.filter(i=>i.radarId===t.id).length;return `<button id="tab-${e(t.id)}" role="tab" type="button" aria-controls="${t.id in panels?panels[t.id]:'radar-panel'}" aria-selected="${t.id===activeId}" tabindex="${t.id===activeId?0:-1}" data-radar="${e(t.id)}">${e(t.title)}<span class="tab-count">${count}</span></button>`;}).join('');
 }
 function selectRadar(id){
  if(activeId)tabStates.set(activeId,{filter,search,selectedId,compareIds:[...compareIds],mode});activeId=id;
  const saved=tabStates.get(id)||{filter:'review',search:'',selectedId:null,compareIds:[],mode:'detail'};({filter,search,selectedId,compareIds,mode}=saved);
  $('search').value=search;history.replaceState(null,'','#'+id);renderTabs();renderRadar();
+}
+// Overview, application and revenue rows jump to the source radar with the item selected.
+function jumpTo(radarId,itemId){
+ if(!isRadar(radarId)){if(choices().some(t=>t.id===radarId))selectRadar(radarId);return;}
+ tabStates.set(radarId,{filter:'all',search:'',selectedId:itemId||null,compareIds:[],mode:'detail'});selectRadar(radarId);
+ if(itemId)$('inspector').scrollIntoView({block:'nearest'});
 }
 $('tabs').addEventListener('click',event=>{const t=event.target.closest('[data-radar]');if(t)selectRadar(t.dataset.radar);});
 $('tabs').addEventListener('keydown',event=>{
@@ -60,11 +92,16 @@ $('tabs').addEventListener('keydown',event=>{
  if(event.key==='ArrowRight')idx=(idx+1)%tabs.length;else if(event.key==='ArrowLeft')idx=(idx+tabs.length-1)%tabs.length;else if(event.key==='Home')idx=0;else if(event.key==='End')idx=tabs.length-1;else return;
  event.preventDefault();selectRadar(tabs[idx].dataset.radar);$('tabs').querySelector('[aria-selected=true]').focus();
 });
+for(const id of ['timeline','applications-groups','revenue-content']){
+ $(id).addEventListener('click',event=>{if(event.target.closest('a'))return;const t=event.target.closest('[data-jump]');if(t)jumpTo(t.dataset.jump,t.dataset.item);});
+ $(id).addEventListener('keydown',event=>{if(event.key!=='Enter'||event.target.closest('button,a'))return;const t=event.target.closest('[data-jump]');if(t){event.preventDefault();jumpTo(t.dataset.jump,t.dataset.item);}});
+}
 function renderRadar(){
- $('radar-panel').hidden=activeId==='nara';$('nara-panel').hidden=activeId!=='nara';
- if(activeId==='nara'){mountNara();return;}
- const r=radar(),now=new Date();if(!r)return;$('radar-panel').setAttribute('aria-labelledby','tab-'+r.id);
+ const now=new Date();
  $('today').textContent=new Intl.DateTimeFormat('ko-KR',{timeZone:'Asia/Seoul',year:'numeric',month:'long',day:'numeric',weekday:'short'}).format(now);
+ for(const [id,panel] of Object.entries(panels))$(panel).hidden=activeId!==id;$('radar-panel').hidden=!isRadar(activeId);
+ if(activeId==='nara'){mountNara();return;}if(activeId==='overview'){renderOverview();return;}if(activeId==='applications'){renderApplications();return;}if(activeId==='revenue'){renderRevenue();return;}
+ const r=radar();if(!r)return;$('radar-panel').setAttribute('aria-labelledby','tab-'+r.id);
  $('radar-title').textContent=r.title;$('radar-summary').textContent=r.summary;
  $('run-status').textContent=r.runStatus==='VERIFIED'?'검증 완료':r.runStatus==='HOLD'?'일부 확인 보류':r.runStatus;
  $('run-status').className='badge'+(r.runStatus==='VERIFIED'?'':' hold');$('updated').textContent=dateTime(r.updatedAt)+' 조사';$('updated').dateTime=r.updatedAt;
@@ -78,6 +115,73 @@ function renderRadar(){
  $('archive-toggle').textContent=`보관함 · ${r.items.length-working.length}`;$('archive-toggle').setAttribute('aria-pressed',String(filter==='archive'));
  $('report-button').hidden=!r.reportMarkdown;$('occurrence').textContent=r.occurrenceId;renderCards();
 }
+function timelineEntries(now){
+ const out=[];
+ for(const i of workingItems(now)){
+  if(i.applicationStatus==='submitted')continue;
+  const date=deadlineDate(i);if(!date)continue;const days=daysUntil(date,now);if(days<0||days>60)continue;
+  const b=itemBucket(i,now);if(b==='excluded')continue;
+  out.push({kind:'radar',radarId:i.radarId,itemId:i.id,date,days,when:i.deadlineAt?deadlineText(i,now):dayText(date)+' · 시각 미확인',title:i.title,sub:i.organization||'',source:i.radarTitle,bucket:b,status:b==='review'?(i.status==='recommended'?'추천':'조건부 검토'):b==='hold'?'조건 확인 필요':labels[b],grade:i.grade,track:i.track});
+ }
+ for(const m of payload.revenue?.milestones||[]){const days=daysUntil(m.date,now);if(days<-1||days>60)continue;out.push({kind:'plan',radarId:'revenue',date:m.date,days,when:dayText(m.date),title:m.label,sub:m.note,source:'수익 계획',bucket:'plan',status:'결정 지점'});}
+ for(const n of naraEntries()){
+  if(!n.bidCloseAt||!Number.isFinite(Date.parse(n.bidCloseAt)))continue;
+  const date=kstOf(n.bidCloseAt),days=daysUntil(date,now);if(days<0||days>14)continue;
+  out.push({kind:'nara',radarId:'nara',date,days,when:dateTime(n.bidCloseAt),title:n.title,sub:[n.agency,n.budgetLabel].filter(Boolean).join(' · '),source:'나라장터',bucket:'information',status:n.drafts?.length?`초안 ${n.drafts.length}건`:'추천'});
+ }
+ return out.sort((a,b)=>a.date.localeCompare(b.date)||a.kind.localeCompare(b.kind));
+}
+const kpiCards=kpis=>kpis.map(k=>`<div class="kpi"><span>${e(k.label)}</span><strong>${e(k.base)}</strong><small>보수 ${e(k.conservative)} · 확장 ${e(k.stretch)}</small></div>`).join('');
+const actionList=actions=>actions.map(a=>`<li>${a.label?`<strong>${e(a.label)}</strong> `:''}${e(a.text)}</li>`).join('');
+function renderOverview(){
+ const now=new Date(),rs=radars(),working=workingItems(now),p=payload.revenue;
+ const review=working.filter(i=>itemBucket(i,now)==='review'),urgent=working.filter(i=>isUrgent(i,now)),awaiting=working.filter(i=>i.applicationStatus==='submitted'&&i.resultStatus==='awaiting'),preparing=working.filter(i=>i.applicationStatus==='preparing');
+ const latest=rs.map(r=>r.updatedAt).sort().at(-1);
+ $('overview-summary').textContent=[...rs.map(r=>`${r.title} ${r.items.filter(i=>!isArchived(i,now)).length}건`),...(payload.nara?[`나라장터 ${naraEntries().length}건`]:[]),...(p?[`수익 아이템 ${p.items.length}종`]:[])].join(' · ')+'을 한 화면에서 봅니다.';
+ $('overview-updated').textContent=latest?dateTime(latest)+' 최근 조사':'';
+ $('overview-stats').innerHTML=[['검토 가능',review.length],['7일 이내 마감',urgent.length],['발표 대기',awaiting.length],['준비 중',preparing.length]].map(([label,count])=>`<div class="stat"><span>${label}</span><strong>${count}</strong></div>`).join('');
+ renderTimeline(now);
+ $('overview-kpis').innerHTML=p?kpiCards(p.kpis):'<p class="block-note">수익 계획 데이터가 없습니다.</p>';
+ $('overview-actions').innerHTML=p?actionList(p.actions):'';
+}
+function renderTimeline(now=new Date()){
+ const all=timelineEntries(now),sources=[...new Set(all.map(t=>t.source))];
+ $('timeline-sources').innerHTML=sources.map(src=>`<button type="button" data-source="${e(src)}" aria-pressed="${!hiddenSources.has(src)}">${e(src)} ${all.filter(t=>t.source===src).length}</button>`).join('');
+ const entries=all.filter(t=>!hiddenSources.has(t.source));
+ $('timeline').innerHTML=entries.length?entries.map(t=>`<li class="tl-row kind-${t.kind}${t.days<=7?' tl-soon':''}" data-jump="${e(t.radarId)}"${t.itemId?` data-item="${e(t.itemId)}"`:''} tabindex="0"><span class="tl-day">${ddayText(t.days)}</span><span class="tl-date">${e(t.when)}</span><span class="tl-body"><strong>${e(t.title)}</strong>${t.sub?`<small>${e(t.sub)}</small>`:''}</span><span class="tl-tags"><span class="tag">${e(t.source)}</span><span class="tag ${e(t.bucket)}">${e(t.status)}</span>${t.grade?`<span class="tag">${e(t.grade)}등급</span>`:''}${t.track?`<span class="tag">트랙 ${e(t.track)}</span>`:''}</span></li>`).join(''):'<li class="empty">선택한 출처에 60일 이내 마감이나 결정 지점이 없습니다.</li>';
+}
+$('timeline-sources').addEventListener('click',event=>{const b=event.target.closest('[data-source]');if(!b)return;const src=b.dataset.source;if(hiddenSources.has(src))hiddenSources.delete(src);else hiddenSources.add(src);renderTimeline();});
+function renderApplications(){
+ const now=new Date();
+ const rows=radars().flatMap(r=>r.items.filter(i=>['submitted','preparing','on_hold','cancelled'].includes(i.applicationStatus)).map(i=>({...i,radarId:r.id,radarTitle:r.title})));
+ const groups=[['발표·회신 대기',i=>i.applicationStatus==='submitted'&&i.resultStatus==='awaiting'],['결과 확정',i=>i.applicationStatus==='submitted'&&i.resultStatus!=='awaiting'],['준비 중',i=>i.applicationStatus==='preparing'],['보류·취소',i=>['on_hold','cancelled'].includes(i.applicationStatus)]]
+  .map(([label,fn])=>({label,items:rows.filter(fn).sort((a,b)=>(deadlineDate(a)||'9999').localeCompare(deadlineDate(b)||'9999')||a.title.localeCompare(b.title))}));
+ $('applications-stats').innerHTML=groups.map(g=>`<div class="stat"><span>${g.label}</span><strong>${g.items.length}</strong></div>`).join('');
+ $('applications-groups').innerHTML=groups.filter(g=>g.items.length).map(g=>`<section class="app-group"><h3>${g.label}<span>${g.items.length}</span></h3><div class="table-scroll"><table class="app-table"><thead><tr><th>출처</th><th>기관 · 제목</th><th>지원 근거 · 상태</th><th>마감</th><th>상태 확인</th><th>다음 확인</th></tr></thead><tbody>${g.items.map(i=>`<tr data-jump="${e(i.radarId)}" data-item="${e(i.id)}" tabindex="0"><td><span class="tag">${e(i.radarTitle)}</span></td><td><strong>${e(i.title)}</strong>${i.organization?`<br><small>${e(i.organization)}</small>`:''}</td><td>${e(i.applicationStatusLabel||applicationLabel(i))}${['selected','not_selected','withdrawn'].includes(i.resultStatus)?` <span class="tag ${i.resultStatus==='selected'?'review':'hold'}">${e(resultLabels[i.resultStatus])}</span>`:''}</td><td>${e(deadlineText(i,now))}</td><td>${i.stateUpdatedAt?e(dateTime(i.stateUpdatedAt)):'—'}${i.stateSource==='dashboard-user'?'<br><small>마스터 직접 확인</small>':''}</td><td>${e(i.nextAction||'')}</td></tr>`).join('')}</tbody></table></div></section>`).join('')||'<p class="empty">지원·준비 중인 항목이 없습니다.</p>';
+}
+function renderRevenue(){
+ const p=payload.revenue;if(!p)return;const now=new Date(),rs=radars();
+ $('revenue-title').textContent=p.title;$('revenue-summary').textContent=`기준일 ${p.baseDate||'미표기'} · 세전 · 확인값과 가정값을 구분한 계획이며 정본은 AKM 수익 계획 노트입니다.`;
+ $('revenue-updated').textContent=p.noteModified?'정본 수정 '+p.noteModified.replace('T',' ').slice(0,16):'';
+ const live=id=>{
+  if(id==='nara')return payload.nara?`나라장터 추천 ${naraEntries().length}건`:'';
+  const r=rs.find(x=>x.id===id);if(!r)return '';const w=r.items.filter(i=>!isArchived(i,now)),n=f=>w.filter(f).length;
+  return `${r.title} 현재: 검토 ${n(i=>itemBucket(i,now)==='review')} · 지원 ${n(i=>i.applicationStatus==='submitted')} · 발표 대기 ${n(i=>i.applicationStatus==='submitted'&&i.resultStatus==='awaiting')} · 준비 ${n(i=>i.applicationStatus==='preparing')}`;
+ };
+ const table=(cls,head,body)=>`<div class="table-scroll"><table class="${cls}"><thead><tr>${head.map(h=>`<th>${h}</th>`).join('')}</tr></thead><tbody>${body}</tbody></table></div>`;
+ const details=(title,inner)=>`<details class="revenue-details"><summary>${title}</summary>${inner}</details>`;
+ const groups=[...new Map(p.items.map(i=>[i.category,i.categoryLabel])).entries()];
+ const itemRows=groups.map(([cat,label])=>`<tr class="grp"><td colspan="7">${e(cat)} · ${e(label)}</td></tr>`+p.items.filter(i=>i.category===cat).map(i=>`<tr><td><strong>${e(i.code)}</strong> ${e(i.name)}${i.tag?`<span class="tag hold">${e(i.tag)}</span>`:''}</td><td>${e(i.status)}${i.radar?`<span class="live">${e(live(i.radar))}<button type="button" data-jump="${e(i.radar)}">탭 열기 ↗</button></span>`:''}</td><td class="n">${e(i.short)}</td><td class="n">${e(i.h1)}</td><td class="n">${e(i.h2)}</td><td class="n">${e(i.longTerm)}</td><td>${e(i.prep)}</td></tr>`).join('')).join('');
+ const milestoneRows=p.milestones.map(m=>`<tr><td class="n"><strong>${e(ddayText(daysUntil(m.date,now)))}</strong> ${e(dayText(m.date))}</td><td>${e(m.label)}</td><td>${e(m.note)}</td></tr>`).join('');
+ $('revenue-content').innerHTML=`<section class="revenue-block"><h3>결론 먼저</h3><ol class="conclusions">${p.conclusions.map(c=>`<li>${e(c)}</li>`).join('')}</ol></section>
+<section class="revenue-block"><h3>기간별 기대수익</h3><div class="kpis">${p.kpis.map(k=>`<div class="kpi"><span>${e(k.label)}</span><strong>${e(k.base)}</strong><small>보수 ${e(k.conservative)} · 확장 ${e(k.stretch)}</small><small>${e(k.premise)}</small></div>`).join('')}</div></section>
+<section class="revenue-block"><h3>수익 아이템 ${p.items.length}종 · 현재 상태와 기간별 기대</h3><p>단기 = ~12/31 입금 · H1 = 2027 상반기 · H2 = 2027 하반기 · 장기 = 2028~ 연 단위. 레이더와 연결된 아이템은 현재 조사 수치를 함께 표시합니다.</p>${table('plan-table',['아이템','현재 상태','단기','2027 H1','2027 H2','장기(연)','준비물'],itemRows)}</section>
+<section class="revenue-block"><h3>결정 지점</h3>${milestoneRows?table('plan-table plan-compact',['날짜','결정 지점','비고'],milestoneRows):'<p>등록된 결정 지점이 없습니다.</p>'}</section>
+<section class="revenue-block"><h3>이번 주 행동</h3><ol class="actions">${actionList(p.actions)}</ol></section>
+<section class="revenue-block"><h3>즉시 회수 (기발생 현금)</h3>${table('plan-table plan-compact',['항목','금액','상태','행동'],p.recoveries.map(r=>`<tr><td>${e(r.item)}</td><td class="n">${e(r.amount)}</td><td>${e(r.status)}</td><td>${e(r.action)}</td></tr>`).join(''))}</section>
+<section class="revenue-block">${details(`상충·충돌 ${p.conflicts.length}건과 해소안`,table('plan-table plan-compact',['#','충돌','내용','해소안'],p.conflicts.map(c=>`<tr><td class="n">${c.n}</td><td><strong>${e(c.title)}</strong></td><td>${e(c.text)}</td><td>${e(c.resolution)}</td></tr>`).join('')))}${details(`준비물 총괄 ${p.preparations.length}건`,table('plan-table plan-compact',['분류','항목','상태'],p.preparations.map(r=>`<tr><td>${e(r.category)}</td><td>${e(r.item)}</td><td>${e(r.status)}</td></tr>`).join('')))}${details('확인된 단가 · 청중·자산',table('plan-table plan-compact',['항목','값','출처'],p.rates.map(r=>`<tr><td>${e(r.item)}</td><td>${e(r.value)}</td><td>${e(r.source)}</td></tr>`).join(''))+table('plan-table plan-compact',['채널','값'],p.audience.map(r=>`<tr><td>${e(r.channel)}</td><td>${e(r.value)}</td></tr>`).join('')))}${details('가정과 한계 · 정정 이력',`<ul>${[...p.assumptions,...p.corrections].map(c=>`<li>${e(c)}</li>`).join('')}</ul>`)}</section>`;
+}
+$('revenue-full').addEventListener('click',()=>{if(!payload?.revenue)return;$('dialog-label').textContent=payload.revenue.title+' / 전문';$('detail-content').innerHTML=renderMarkdown(payload.revenue.markdown);$('detail').showModal();});
 function highlightList(i){return i.highlights?.length?`<dl class="highlights">${i.highlights.map(f=>`<div><dt>${e(f.label)}</dt><dd>${e(f.value)}</dd></div>`).join('')}</dl>`:'';}
 function submittedControl(i){return `<label class="submission-check"><input type="checkbox" data-submit="${e(i.id)}" aria-label="${e(i.title)} 지원 완료" ${i.applicationStatus==='submitted'?'checked':''} ${!ready||saving.has(activeId+':'+i.id)?'disabled':''}><span>${saving.has(activeId+':'+i.id)?'저장 중…':'지원 완료'}</span></label>`;}
 function renderCards(){
