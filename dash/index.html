@@ -8,8 +8,8 @@
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src 'self' https://dexa-radar-state.dexa-art.workers.dev; img-src 'self' data:; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'self'">
   <meta name="theme-color" content="#F5F1E6">
   <title>DEXA · Radar</title>
-  <link rel="stylesheet" href="./styles.css?v=05fd6488">
-  <script type="module" src="./app.mjs?v=05fd6488"></script>
+  <link rel="stylesheet" href="./styles.css?v=90613390">
+  <script type="module" src="./app.mjs?v=90613390"></script>
 </head>
 <body>
   <a class="skip" href="#workspace">본문으로</a>
@@ -39,7 +39,7 @@
         <div class="radar-heading"><div><h2>종합 기회 레이더</h2><p id="overview-summary"></p></div><div class="run-meta"><time id="overview-updated"></time><div id="overview-run" class="run-controls"></div></div></div>
         <div id="overview-stats" class="stats" aria-label="전체 레이더 집계"></div>
         <div class="overview-grid">
-          <section class="panel-block"><h3>다가오는 마감·결정 지점</h3><p class="block-note">검토·확인 중인 기회의 마감과 수익 계획의 결정 지점을 날짜순으로 봅니다. 지원 완료 건은 지원 탭에 있습니다. 항목을 누르면 해당 레이더의 상세로 이동합니다.</p><div id="timeline-sources" class="filters timeline-sources" role="group" aria-label="출처 필터"></div><ol id="timeline" class="timeline" aria-label="마감·결정 지점 타임라인"></ol></section>
+          <section class="panel-block"><h3>다가오는 마감·결정 지점</h3><p class="block-note">검토·확인 중인 기회의 마감과 수익 계획의 결정 지점을 날짜순으로 봅니다. 지원 완료 건은 지원 탭에 있습니다. 항목을 누르면 해당 레이더의 상세로 이동합니다.</p><div id="timeline-sources" class="filters timeline-sources" role="group" aria-label="출처 필터"></div><div id="timeline-org" class="timeline-org"></div><ol id="timeline" class="timeline" aria-label="마감·결정 지점 타임라인"></ol></section>
           <section class="panel-block"><h3>기간별 기대수익</h3><div id="overview-kpis" class="kpis"></div><h3>이번 주 행동</h3><ol id="overview-actions" class="actions"></ol></section>
         </div>
       </section>

@@ -8,7 +8,7 @@ import path from 'node:path';
 import http from 'node:http';
 import {makeKeyConfig} from './lib.mjs';
 import {latestRevenuePlan,sanitizeRevenue} from './revenue.mjs';
-import {writeEncryptedDashboard,latestOpenCalls,findLatestAdapter,assertPrivateExport,DEFAULT_VAULT,ROOT} from './build.mjs';
+import {writeEncryptedDashboard,latestOpenCalls,findLatestAdapter,optionalAdapter,applyLinkOverrides,readLinkOverrides,assertPrivateExport,DEFAULT_VAULT,ROOT} from './build.mjs';
 import {applyState} from '../../dash/state.mjs';
 
 const args=process.argv.slice(2),opt=(name,fallback)=>{const i=args.indexOf('--'+name);return i>=0&&args[i+1]?args[i+1]:fallback;};
@@ -17,8 +17,8 @@ if(password.length<8)throw Error('Usage: node scripts/dashboard/qa-site.mjs --pa
 const vault=DEFAULT_VAULT,json=file=>JSON.parse(fs.readFileSync(file,'utf8'));
 const state=json(path.join(vault,'60-actions/runs/radar-dashboard/application-state/latest.json'));
 let records=state.records,requests=[];
-const sources=[latestOpenCalls(vault),findLatestAdapter(path.join(vault,'60-actions/runs/lecture-opportunity-radar'),'lecture-radar.v1.json')];
-const radars=sources.map(s=>applyState(s.data,records));
+const sources=[latestOpenCalls(vault),findLatestAdapter(path.join(vault,'60-actions/runs/lecture-opportunity-radar'),'lecture-radar.v1.json'),optionalAdapter(path.join(vault,'60-actions/runs/grant-radar'),'grant-radar.v1.json')].filter(Boolean);
+const radars=applyLinkOverrides(sources.map(s=>applyState(s.data,records)),readLinkOverrides(vault));
 const revenueSource=latestRevenuePlan(vault),revenue=revenueSource?sanitizeRevenue(revenueSource.data):null;
 assertPrivateExport([...radars,...(revenue?[revenue]:[])]);
 const naraFile='/Volumes/data/Dev/nara-bid-finder/.data/dashboard-payload.json',nara=fs.existsSync(naraFile)?json(naraFile):null;

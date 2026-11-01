@@ -1,6 +1,6 @@
 import {deriveSigningKey,stateRequest} from '../../dash/state.mjs';
 // A dashboard run request is done once the radar it targeted has a newer published updatedAt.
-export const ADAPTER_FOR={'open-calls':'open-calls',lectures:'lectures',gangsaya:'lectures'};
+export const ADAPTER_FOR={'open-calls':'open-calls',lectures:'lectures',gangsaya:'lectures',grants:'grants'};
 export function completedRequests(requests,radars,now=new Date()){
  return requests.filter(r=>['pending','started'].includes(r.status)).filter(r=>{const radar=radars.find(x=>x.id===ADAPTER_FOR[r.radarId]);return radar&&Date.parse(radar.updatedAt)>Date.parse(r.requestedAt)&&Date.parse(r.requestedAt)<=now.getTime();});
 }

@@ -32,6 +32,14 @@ export function kstDate(now=new Date()) {
 // fees or rights clauses keep an item reviewable as '확인 필요' with its reason shown.
 // '양도' counts only as a stated condition, not a negated one ("양도로 단정하지 않음", "비양도").
 const HARD_HOLD=/해외 체류|현지 체류|거주.{0,6}(?:필요|필수)|거점.{0,4}(?:필요|필수|조건)|기반(?:을)? ?(?:둔|조건)|(?<!비)양도(?!.{0,8}(?:단정|아님|없음|하지 않|여부|미확인))|주 ?5일|상근|정규직|자격.{0,6}(?:미달|불충족|없)|불충족|기준 미달|미충족|재개 금지/;
+// Cross-radar organization grouping: the same host often appears as an open call and a lecture lead.
+const ORG_ALIASES=[[/^(arko|아르코|한국문화예술위원회)/i,'arko'],[/서울로미디어캔버스|서울로 /,'seoullo'],[/아트코리아랩/,'artkorealab'],[/서울문화재단/,'sfac'],[/경기문화재단|경기콘텐츠진흥원/,'ggcf'],[/한국콘텐츠진흥원|kocca|nca /i,'kocca'],[/code:?art/i,'codeart'],[/강사야/,'gangsaya']];
+export function orgKey(item) {
+  const raw=String(item.organization||item.title||'').trim();
+  for(const [re,key] of ORG_ALIASES)if(re.test(raw))return key;
+  const first=(raw.split(/[\s·:/(,]/)[0]||'').toLowerCase().replace(/[^0-9a-z가-힣]/g,'');
+  return first.length>=2&&!/^\d+$/.test(first)?first:null;
+}
 export function reasonOf(item) {
   if(item.reason)return item.reason;
   const review=[...(item.highlights||[]),...(item.fields||[])].find(f=>f.label==='검토 의견')?.value;

@@ -35,6 +35,12 @@ export function findLatestAdapter(root,filename) {
   return found[0];
 }
 
+// A radar that has not produced its first run yet simply has no tab.
+export function optionalAdapter(root,filename) {
+  if(!fs.existsSync(root)||!runFolders(root).some(dir=>fs.existsSync(path.join(dir,filename))))return null;
+  return findLatestAdapter(root,filename);
+}
+
 export function latestOpenCalls(vault=DEFAULT_VAULT) {
   const root=path.join(vault,'60-actions/runs/media-art-open-call-radar');
   const found=[];
@@ -89,7 +95,7 @@ export async function build({vault=DEFAULT_VAULT,keyFile=DEFAULT_KEY,out=path.jo
   const key=readKeyConfig(keyFile);
   const {syncState}=await import('./sync-state.mjs');
   const state=await syncState({vault,keyConfig:key});
-  const sources=[latestOpenCalls(vault),findLatestAdapter(path.join(vault,'60-actions/runs/lecture-opportunity-radar'),'lecture-radar.v1.json')];
+  const sources=[latestOpenCalls(vault),findLatestAdapter(path.join(vault,'60-actions/runs/lecture-opportunity-radar'),'lecture-radar.v1.json'),optionalAdapter(path.join(vault,'60-actions/runs/grant-radar'),'grant-radar.v1.json')].filter(Boolean);
   const radars=applyLinkOverrides(sources.map(s=>sanitizeRadar(applyState(s.data,state.records))),readLinkOverrides(vault)).map(sanitizeRadar);
   const revenueSource=latestRevenuePlan(vault),revenue=revenueSource?sanitizeRevenue(revenueSource.data):null;
   assertPrivateExport([...radars,...(revenue?[revenue]:[])]);

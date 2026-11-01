@@ -107,3 +107,10 @@ test('unconfirmed pay or schedule keeps an item reviewable while confirmed block
  const reviewed={...base,reason:'명시 사유',highlights:[{label:'검토 의견',value:'검토 의견 문구'}],nextAction:'다음 확인'};assert.equal(core.reasonOf(reviewed),'명시 사유');assert.equal(core.reasonOf({...reviewed,reason:''}),'검토 의견 문구');
  const expired={...pay,deadlineDate:'2026-10-30'};assert.equal(core.itemBucket(expired,now),'closed');
 });
+
+test('organization keys group the same host across radars without grouping unrelated titles',()=>{
+ assert.equal(core.orgKey({organization:'한국문화예술위원회',title:'x'}),'arko');assert.equal(core.orgKey({title:'ARKO 다원예술창작기반'}),'arko');
+ assert.equal(core.orgKey({title:'CODE:ART2027 Lytton Plaza Installation'}),core.orgKey({title:'CODE:ART2027 Interactive Media Installations'}));
+ assert.equal(core.orgKey({organization:'강사야',title:'현역 부사관 워크숍'}),'gangsaya');
+ assert.equal(core.orgKey({title:'2026 서울영상공모전 서울 밤로그'}),null);assert.equal(core.orgKey({title:'x'}),null);
+});
