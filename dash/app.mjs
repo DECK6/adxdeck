@@ -1,5 +1,5 @@
-import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel,orgKey,busyOn} from './core.mjs?v=35a8ff4a';
-import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=35a8ff4a';
+import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel,orgKey,busyOn} from './core.mjs?v=6638e307';
+import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=6638e307';
 
 const $=id=>document.getElementById(id);
 const filters=[['review','검토 가능'],['check','확인 필요'],['awaiting','발표 대기'],['submitted','지원 완료'],['hold','보류'],['waiting','모집 대기'],['excluded','제외'],['all','전체']];
@@ -29,7 +29,7 @@ const kstOf=at=>new Date(new Date(at).getTime()+9*3600000).toISOString().slice(0
 const deadlineDate=item=>item.deadlineAt?kstOf(item.deadlineAt):item.deadlineDate||null;
 const daysUntil=(date,now)=>Math.round((Date.parse(date)-Date.parse(kstDate(now)))/86400000);
 const ddayText=days=>days===0?'D-day':days>0?`D-${days}`:`D+${-days}`;
-const LEAD_TRACKS=new Set(['의뢰','개발 의뢰','제작 의뢰','입점','협력사']);
+const LEAD_TRACKS=new Set(['의뢰','개발 의뢰','제작 의뢰','입점','협력사','AI·AX 대회']);
 const isGangsaya=i=>i.organization==='강사야'||/gangsaya\.co\.kr/.test(i.officialUrl||'');
 const choices=()=>{
  if(!payload)return [];
