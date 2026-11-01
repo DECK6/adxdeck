@@ -42,6 +42,10 @@ Hold rule (2026-11-01): `status=hold` only counts as 보류 when it is a confirm
 
 종합 merges every non-submitted working item with a deadline (any bucket, next 60 days), the plan's 결정 지점 and NARA bid closes into one dated timeline; clicking a row opens that item in its radar tab (filter 전체). 지원 lists submitted / preparing / on-hold items of all radars grouped by result state; checkboxes stay in the radar tabs. 수익 설계 shows conclusions, period totals, the 13 items with live radar counts (B1→강의처, C2→공모, D1→나라장터), milestones, recoveries, conflicts, preparations, audience and the full note text (minus section 8). Correct the plan in the AKM note; the next publish re-parses it.
 
+## Before pushing dashboard code
+
+Run `node scripts/dashboard/stamp.mjs`. It writes one content hash into `dash/index.html` (`app.mjs?v=…`, `styles.css?v=…`) and into the module imports of `app.mjs` and `state.mjs`. GitHub Pages caches each file for 10 minutes independently, so unversioned URLs let a fresh `index.html` load a stale `app.mjs` (symptom: no popup, `null` text where the old panel was). `stamp.test.mjs` fails when the stamp is missing or stale.
+
 ## Verification
 
 ```sh
