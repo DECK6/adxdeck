@@ -114,3 +114,12 @@ test('organization keys group the same host across radars without grouping unrel
  assert.equal(core.orgKey({organization:'강사야',title:'현역 부사관 워크숍'}),'gangsaya');
  assert.equal(core.orgKey({title:'2026 서울영상공모전 서울 밤로그'}),null);assert.equal(core.orgKey({title:'x'}),null);
 });
+
+test('open-call adapter carries the lead track and organization of widened-scope candidates',()=>{
+ const state={occurrence_id:'fixture:track',generated_at:'2026-11-01T07:00:00Z',candidates:[
+  {id:'envision-museum-led',title:'박물관 LED 실시간 작품 제작',status:'conditional-review',track:'의뢰',organization:'Envision Creates',official_url:'https://derivative.ca/job-post/75445'},
+  {id:'plain-open-call',title:'상금형 공모',status:'conditional-review',official_url:'https://example.org/call'}]};
+ const out=lib.sanitizeRadar(lib.openCallsAdapter(state,{purpose_status:'VERIFIED'},''));
+ assert.equal(out.items[0].track,'의뢰');assert.equal(out.items[0].organization,'Envision Creates');
+ assert.equal(out.items[1].track,null);assert.equal(out.items[1].organization,'');
+});

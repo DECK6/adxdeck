@@ -68,7 +68,7 @@ export function openCallsAdapter(state,receipt,reportMarkdown,analysis) {
     const submittedSummary=applicationStatus==='submitted'?`${c.sent_at_kst?c.sent_at_kst.slice(0,16).replace('T',' ')+' KST · ':''}제출 완료${/sent-verified/.test(p)?' · 보낸 메일 확인':''}. 주최 측 회신·결과 확인을 기다립니다.`:null;
     const fields=detailFields.filter(([key])=>typeof c[key]==='string'&&!(submittedSummary&&key==='work_fit')).map(([key,label])=>({label,value:c[key]}));
     if(submittedSummary)fields.unshift({label:'제출 확인',value:submittedSummary});
-    return {id:c.id,title:c.title,status:normalized,applicationStatus,applicationStatusLabel:labels[applicationStatus],grade:c.grade??null,deadlineAt:c.deadline_kst??null,deadlineDate:c.deadline_date??c.deadline_kst?.slice(0,10)??null,deadlineLabel:c.deadline_source_text||c.discovery_deadline||'',checkedAt:c.checked_at_this_occurrence?.at(-1)||c.last_official_check||null,officialUrl:c.official_url||null,summary:submittedSummary||c.work_fit||c.qualification||c.change||'',nextAction:c.next_action||'',fields};
+    return {id:c.id,title:c.title,organization:c.organization||null,track:c.track??null,status:normalized,applicationStatus,applicationStatusLabel:labels[applicationStatus],grade:c.grade??null,deadlineAt:c.deadline_kst??null,deadlineDate:c.deadline_date??c.deadline_kst?.slice(0,10)??null,deadlineLabel:c.deadline_source_text||c.discovery_deadline||'',checkedAt:c.checked_at_this_occurrence?.at(-1)||c.last_official_check||null,officialUrl:c.official_url||null,summary:submittedSummary||c.work_fit||c.qualification||c.change||'',nextAction:c.next_action||'',fields};
   });
   for(const p of state.participation_context||[]){
     let entry;

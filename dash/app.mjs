@@ -1,5 +1,5 @@
-import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel,orgKey} from './core.mjs?v=87fe1a71';
-import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=87fe1a71';
+import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel,orgKey} from './core.mjs?v=b58c10be';
+import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=b58c10be';
 
 const $=id=>document.getElementById(id);
 const filters=[['review','검토 가능'],['check','확인 필요'],['awaiting','발표 대기'],['submitted','지원 완료'],['hold','보류'],['waiting','모집 대기'],['excluded','제외'],['all','전체']];
@@ -29,6 +29,7 @@ const kstOf=at=>new Date(new Date(at).getTime()+9*3600000).toISOString().slice(0
 const deadlineDate=item=>item.deadlineAt?kstOf(item.deadlineAt):item.deadlineDate||null;
 const daysUntil=(date,now)=>Math.round((Date.parse(date)-Date.parse(kstDate(now)))/86400000);
 const ddayText=days=>days===0?'D-day':days>0?`D-${days}`:`D+${-days}`;
+const LEAD_TRACKS=new Set(['의뢰','입점','협력사']);
 const isGangsaya=i=>i.organization==='강사야'||/gangsaya\.co\.kr/.test(i.officialUrl||'');
 const choices=()=>{
  if(!payload)return [];
@@ -175,7 +176,7 @@ function renderTimeline(now=new Date()){
  if(orgFilter&&!all.some(t=>t.org===orgFilter))orgFilter=null;
  const entries=all.filter(t=>!hiddenSources.has(t.source)&&(!orgFilter||t.org===orgFilter));
  $('timeline-org').innerHTML=orgFilter?`<span>기관 묶음: <strong>${e(all.find(t=>t.org===orgFilter)?.orgLabel||orgFilter)}</strong> ${entries.length}건</span><button type="button" class="button-quiet" data-org-clear>전체 보기 ×</button>`:'';
- $('timeline').innerHTML=entries.length?entries.map(t=>`<li class="tl-row kind-${t.kind}${t.days<=7?' tl-soon':''}" data-jump="${e(t.radarId)}"${t.itemId?` data-item="${e(t.itemId)}"`:''} tabindex="0"><span class="tl-day">${ddayText(t.days)}</span><span class="tl-date">${e(t.when)}</span><span class="tl-body"><strong>${e(t.title)}</strong>${t.sub?`<small>${e(t.sub)}</small>`:''}${t.reason?`<small class="tl-reason">${e(t.reason)}</small>`:''}</span><span class="tl-tags"><span class="tag">${e(t.source)}</span>${t.orgCount>1&&t.org!==orgFilter?`<button type="button" class="tag org-chip${t.orgRadars>1?' org-cross':''}" data-org="${e(t.org)}" title="같은 기관의 다른 공고 보기">같은 기관 ×${t.orgCount}${t.orgRadars>1?' · 교차':''}</button>`:''}${t.gangsaya?'<span class="tag gangsaya">강사야</span>':''}<span class="tag ${e(t.bucket)}">${e(t.status)}</span>${t.grade?`<span class="tag">${e(t.grade)}등급</span>`:''}${t.track?`<span class="tag">트랙 ${e(t.track)}</span>`:''}</span></li>`).join(''):'<li class="empty">선택한 출처에 60일 이내 마감이나 결정 지점이 없습니다.</li>';
+ $('timeline').innerHTML=entries.length?entries.map(t=>`<li class="tl-row kind-${t.kind}${t.days<=7?' tl-soon':''}" data-jump="${e(t.radarId)}"${t.itemId?` data-item="${e(t.itemId)}"`:''} tabindex="0"><span class="tl-day">${ddayText(t.days)}</span><span class="tl-date">${e(t.when)}</span><span class="tl-body"><strong>${e(t.title)}</strong>${t.sub?`<small>${e(t.sub)}</small>`:''}${t.reason?`<small class="tl-reason">${e(t.reason)}</small>`:''}</span><span class="tl-tags"><span class="tag">${e(t.source)}</span>${t.orgCount>1&&t.org!==orgFilter?`<button type="button" class="tag org-chip${t.orgRadars>1?' org-cross':''}" data-org="${e(t.org)}" title="같은 기관의 다른 공고 보기">같은 기관 ×${t.orgCount}${t.orgRadars>1?' · 교차':''}</button>`:''}${t.gangsaya?'<span class="tag gangsaya">강사야</span>':''}<span class="tag ${e(t.bucket)}">${e(t.status)}</span>${t.grade?`<span class="tag">${e(t.grade)}등급</span>`:''}${t.track?`<span class="tag${LEAD_TRACKS.has(t.track)?' track-lead':''}">트랙 ${e(t.track)}</span>`:''}</span></li>`).join(''):'<li class="empty">선택한 출처에 60일 이내 마감이나 결정 지점이 없습니다.</li>';
 }
 $('timeline-sources').addEventListener('click',event=>{const b=event.target.closest('[data-source]');if(!b)return;const src=b.dataset.source;if(hiddenSources.has(src))hiddenSources.delete(src);else hiddenSources.add(src);renderTimeline();});
 $('timeline').addEventListener('click',event=>{const b=event.target.closest('[data-org]');if(!b)return;event.stopPropagation();orgFilter=b.dataset.org;renderTimeline();},true);
@@ -252,7 +253,7 @@ $('workspace').addEventListener('click',event=>{const b=event.target.closest('[d
 // ---- radar list, popup detail, comparison
 function tagsOf(i,now=new Date()){
  const {label,cls}=bucketLabel(i,now),urgent=isUrgent(i,now);
- return `<span class="tag ${cls}">${e(label)}</span>${isGangsaya(i)?'<span class="tag gangsaya">강사야</span>':''}${i.grade?`<span class="tag">${e(i.grade)}등급</span>`:''}${i.track?`<span class="tag">트랙 ${e(i.track)}</span>`:''}${urgent?'<span class="tag urgent-tag">7일 이내</span>':''}`;
+ return `<span class="tag ${cls}">${e(label)}</span>${isGangsaya(i)?'<span class="tag gangsaya">강사야</span>':''}${i.grade?`<span class="tag">${e(i.grade)}등급</span>`:''}${i.track?`<span class="tag${LEAD_TRACKS.has(i.track)?' track-lead':''}">트랙 ${e(i.track)}</span>`:''}${urgent?'<span class="tag urgent-tag">7일 이내</span>':''}`;
 }
 function highlightList(i){return i.highlights?.length?`<dl class="highlights">${i.highlights.map(f=>`<div><dt>${e(f.label)}</dt><dd>${e(f.value)}</dd></div>`).join('')}</dl>`:'';}
 // Open-call cards already show 검토 의견 in highlights; add the reason line only where it is hidden.
