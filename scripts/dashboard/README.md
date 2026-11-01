@@ -78,7 +78,7 @@ The 보류로 button writes `applicationStatus: on_hold` (no result) as a `dashb
 
 지금 찾기 buttons (종합 and radar headers; 강의처 also offers 강사야 스캔) POST `/v1/run {radarId}` to the Worker. The Worker stores the request in `run_requests`, relays it once to the T3 webhook in the `RUN_WEBHOOK_URL` secret (scheduled task "대시보드 지금 찾기 · 레이더 수동 실행 웹훅" in the owning Claude thread, which forwards a manual-occurrence message to the pinned radar thread) and answers `started`; a second request within 45 minutes gets 409. `publish.mjs` marks a request `done` when the targeted radar's `updatedAt` is newer than the request (`run-requests.mjs`). The UI polls `/v1/run` every minute while a request is open; a finished run needs a page reload to show new items.
 
-강사야 (gangsaya.co.kr) items carry a pink `강사야` tag; a daily scan (`lecture-radar-gangsaya-daily`, 10:30 KST, gpt-6.1-sol) is registered in the system scheduler alongside the other radar jobs.
+강사야 (gangsaya.co.kr) items carry a pink `강사야` tag and are covered by the weekly lecture runs (Sun 09:00, Wed 18:00 KST); the 강사야 스캔 button runs a one-off check. The daily 10:30 KST job tracks NCA 4기 only (점검 모드=nca); its id `lecture-radar-gangsaya-daily` is kept for occurrence continuity.
 
 ### Worker deploy
 
