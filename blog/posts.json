@@ -1,5 +1,34 @@
 [
   {
+    "slug": "raymond-williams-and-the-choices-inside-television",
+    "file": "_built/raymond-williams-and-the-choices-inside-television.md",
+    "title": "레이먼드 윌리엄스가 텔레비전에서 찾은 선택들",
+    "description": "레이먼드 윌리엄스의 텔레비전론을 읽으며 기술의 발명과 사회적 선택을 함께 살피고, 미디어아트의 장치와 관람 방식이 어떻게 구체적인 결정 속에서 만들어지는지 생각합니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "레이먼드윌리엄스",
+      "기술결정론",
+      "텔레비전",
+      "매체이론"
+    ],
+    "date": "2026-11-02",
+    "modified": "2026-11-02",
+    "thumbnail": "images/williams-television-social-choices-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "입문·개념",
+    "mediaArtCategorySlug": "intro-concepts",
+    "mediaArtTags": [
+      "media-art",
+      "레이먼드윌리엄스",
+      "기술결정론",
+      "텔레비전",
+      "매체이론"
+    ]
+  },
+  {
     "slug": "a-lora-adapter-needs-its-base-and-release-record",
     "file": "_built/a-lora-adapter-needs-its-base-and-release-record.md",
     "title": "LoRA 파일을 넘길 때 함께 넘겨야 할 것들",
