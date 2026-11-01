@@ -59,6 +59,22 @@ export function latestOpenCalls(vault=DEFAULT_VAULT) {
   return {path:adapterPath,data};
 }
 
+// Official links the radars could not supply are kept in a small vault ledger and applied at build time.
+export function applyLinkOverrides(radars,overrides){
+  if(!overrides)return radars;
+  if(overrides.schemaVersion!=='radar-link-overrides.v1'||!Array.isArray(overrides.records))throw Error('Invalid link override ledger');
+  return radars.map(radar=>({...radar,items:radar.items.map(item=>{
+    const o=overrides.records.find(r=>r.radarId===radar.id&&r.itemId===item.id);
+    if(!o||!o.officialUrl||(item.officialUrl&&!o.force))return item;
+    const fields=[...(item.fields||[])];if(o.note)fields.push({label:'링크 출처',value:o.note});
+    return {...item,officialUrl:o.officialUrl,fields};
+  })}));
+}
+export function readLinkOverrides(vault=DEFAULT_VAULT){
+  const file=path.join(vault,'60-actions/runs/radar-dashboard/link-overrides/latest.json');
+  return fs.existsSync(file)?json(file):null;
+}
+
 export function assertPrivateExport(radars) {
   const text=JSON.stringify(radars);
   if(/\/(?:Users|Volumes|home)\/|[\w.+-]+@[\w.-]+\.[a-z]{2,}|(?:010|011)[ -]?\d{3,4}[ -]?\d{4}|BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY/i.test(text))throw Error('Private path/contact/credential found in export');
@@ -74,7 +90,7 @@ export async function build({vault=DEFAULT_VAULT,keyFile=DEFAULT_KEY,out=path.jo
   const {syncState}=await import('./sync-state.mjs');
   const state=await syncState({vault,keyConfig:key});
   const sources=[latestOpenCalls(vault),findLatestAdapter(path.join(vault,'60-actions/runs/lecture-opportunity-radar'),'lecture-radar.v1.json')];
-  const radars=sources.map(s=>sanitizeRadar(applyState(s.data,state.records)));
+  const radars=applyLinkOverrides(sources.map(s=>sanitizeRadar(applyState(s.data,state.records))),readLinkOverrides(vault)).map(sanitizeRadar);
   const revenueSource=latestRevenuePlan(vault),revenue=revenueSource?sanitizeRevenue(revenueSource.data):null;
   assertPrivateExport([...radars,...(revenue?[revenue]:[])]);
   const snapshot='/Volumes/data/Dev/nara-bid-finder/.data/dashboard-payload.json';

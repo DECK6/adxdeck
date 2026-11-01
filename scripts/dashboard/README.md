@@ -42,6 +42,14 @@ Hold rule (2026-11-01): `status=hold` only counts as 보류 when it is a confirm
 
 종합 merges every non-submitted working item with a deadline (any bucket, next 60 days), the plan's 결정 지점 and NARA bid closes into one dated timeline; clicking a row opens that item in its radar tab (filter 전체). 지원 lists submitted / preparing / on-hold items of all radars grouped by result state; checkboxes stay in the radar tabs. 수익 설계 shows conclusions, period totals, the 13 items with live radar counts (B1→강의처, C2→공모, D1→나라장터), milestones, recoveries, conflicts, preparations, audience and the full note text (minus section 8). Correct the plan in the AKM note; the next publish re-parses it.
 
+## Theme and NARA embed
+
+`dash/styles.css` defines every colour once as tokens: the light set (Paper + Signal Orange, default) and the dark set (Ink + Dexa Cyan) on `:root[data-theme=dark]` and under `prefers-color-scheme: dark`. Components never use raw hex. The toggle (gate and top bar) stores the choice in `localStorage` (`dexa-dash-theme`, not secret) and the dashboard passes the theme to the NARA frame via `?theme=` and a `dexa:theme` message; `nara/styles.css` carries the matching dark token set, so the embedded NARA matches the dashboard. NARA's source of truth is `/Volumes/data/Dev/nara-bid-finder/share-page/`; change both copies together.
+
+## Official links
+
+Every item must link to its official notice. When a radar cannot supply `officialUrl`, add a record to the vault ledger `60-actions/runs/radar-dashboard/link-overrides/latest.json` (`schemaVersion: radar-link-overrides.v1`, `records: [{radarId, itemId, officialUrl, verifiedAt, note, force?}]`); `build.mjs` applies it to items without a link (or with `force: true`) and records the note as a `링크 출처` field. Ask the radar owner to backfill the source so the ledger entry becomes redundant.
+
 ## Before pushing dashboard code
 
 Run `node scripts/dashboard/stamp.mjs`. It writes one content hash into `dash/index.html` (`app.mjs?v=…`, `styles.css?v=…`) and into the module imports of `app.mjs` and `state.mjs`. GitHub Pages caches each file for 10 minutes independently, so unversioned URLs let a fresh `index.html` load a stale `app.mjs` (symptom: no popup, `null` text where the old panel was). `stamp.test.mjs` fails when the stamp is missing or stale.

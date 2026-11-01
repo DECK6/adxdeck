@@ -306,8 +306,11 @@ $("copyButton").addEventListener("click", async () => {
   setTimeout(() => { $("copyButton").textContent = "MD 복사"; }, 1500);
 });
 
+const THEME_PARAM=new URLSearchParams(location.search).get("theme");
+if(["light","dark"].includes(THEME_PARAM))document.documentElement.dataset.theme=THEME_PARAM;
 if(EMBEDDED){
  document.body.classList.add("embedded");
+ window.addEventListener("message",event=>{if(event.source===window.parent&&event.origin===location.origin&&event.data?.type==="dexa:theme"&&["light","dark"].includes(event.data.theme))document.documentElement.dataset.theme=event.data.theme;});
  $("lockForm").hidden=true;
  document.querySelector(".lock-sub").textContent="대시보드 연결 중…";
  window.addEventListener("message",event=>{

@@ -1,11 +1,21 @@
-import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel} from './core.mjs?v=0f1a5d46';
-import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=0f1a5d46';
+import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel} from './core.mjs?v=05fd6488';
+import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=05fd6488';
 
 const $=id=>document.getElementById(id);
 const filters=[['review','검토 가능'],['check','확인 필요'],['awaiting','발표 대기'],['submitted','지원 완료'],['hold','보류'],['waiting','모집 대기'],['excluded','제외'],['all','전체']];
 // Non-radar tabs render into their own panels; radar tabs share #radar-panel.
 const panels={overview:'overview-panel',applications:'applications-panel',revenue:'revenue-panel',nara:'nara-panel'};
 const RUN_TARGETS={'open-calls':'공모 레이더',lectures:'강의처 레이더',gangsaya:'강사야 스캔'};
+// Theme: light chrome by default, dark on request or system preference; the choice is not secret.
+const THEME_KEY='dexa-dash-theme';
+const currentTheme=()=>document.documentElement.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');
+function applyTheme(theme){
+ document.documentElement.dataset.theme=theme;document.querySelector('meta[name=theme-color]').content=theme==='dark'?'#0D0E10':'#F5F1E6';
+ for(const b of document.querySelectorAll('[data-theme-toggle]')){b.textContent=theme==='dark'?'☀ 라이트 모드':'☾ 다크 모드';b.setAttribute('aria-pressed',String(theme==='dark'));}
+ const frame=document.getElementById('nara-host').firstChild;frame?.contentWindow?.postMessage({type:'dexa:theme',theme},location.origin);
+}
+(()=>{let theme=null;try{theme=localStorage.getItem(THEME_KEY);}catch{}applyTheme(['light','dark'].includes(theme)?theme:currentTheme());})();
+document.addEventListener('click',event=>{const b=event.target.closest('[data-theme-toggle]');if(!b)return;const next=currentTheme()==='dark'?'light':'dark';try{localStorage.setItem(THEME_KEY,next);}catch{}applyTheme(next);});
 let payload=null,activeId=null,envelope=null,epoch=0,authKey=null,apiUrl=null,records=[],ready=false,runs=[],runsAt=0;
 let filter='review',search='',selectedId=null,compareIds=[],visibleItems=[],dialogKind=null;
 const hiddenSources=new Set(),tabStates=new Map(),saving=new Set();
@@ -300,12 +310,12 @@ $('detail').addEventListener('close',()=>{dialogKind=null;$('detail-content').re
 
 function mountNara(){
  if(!payload?.nara||$('nara-host').firstChild)return;
- const frame=document.createElement('iframe');frame.src='../nara/?embedded=dashboard';frame.title='나라장터 파인더';frame.className='nara-frame';
+ const frame=document.createElement('iframe');frame.src='../nara/?embedded=dashboard&theme='+currentTheme();frame.title='나라장터 파인더';frame.className='nara-frame';
  $('nara-host').append(frame);
 }
 window.addEventListener('message',event=>{
  const frame=$('nara-host').firstChild;
  if(!payload?.nara||!frame||event.origin!==location.origin||event.source!==frame.contentWindow)return;
- if(event.data?.type==='nara:ready')frame.contentWindow.postMessage({type:'dexa:nara-payload',payload:payload.nara},location.origin);
+ if(event.data?.type==='nara:ready'){frame.contentWindow.postMessage({type:'dexa:theme',theme:currentTheme()},location.origin);frame.contentWindow.postMessage({type:'dexa:nara-payload',payload:payload.nara},location.origin);}
  if(event.data?.type==='nara:lock')lock();
 });
