@@ -44,6 +44,7 @@ export function validateKeyConfig(config) {
   return config;
 }
 
+import {sanitizeCalendar} from './calendar.mjs';
 export async function encryptDashboard(radars,keyConfig,extras={}) {
   validateKeyConfig(keyConfig);
   const cleaned=radars.map(sanitizeRadar);
@@ -53,7 +54,8 @@ export async function encryptDashboard(radars,keyConfig,extras={}) {
   if(extras.nara&&(extras.nara.v!==2||!Array.isArray(extras.nara.items)||!Array.isArray(extras.nara.recommendations)))throw Error('Invalid NARA snapshot');
   const revenue=extras.revenue?sanitizeRevenue(extras.revenue):null;
   const receivables=extras.receivables?sanitizeReceivables(extras.receivables):null;
-  const payload={schemaVersion:'dexa-dash.v1',generatedAt:new Date().toISOString(),radars:cleaned,...extras.nara?{nara:extras.nara}:{},...revenue?{revenue}:{},...receivables?{receivables}:{}};
+  const calendar=extras.calendar?sanitizeCalendar(extras.calendar):null;
+  const payload={schemaVersion:'dexa-dash.v1',generatedAt:new Date().toISOString(),radars:cleaned,...extras.nara?{nara:extras.nara}:{},...revenue?{revenue}:{},...receivables?{receivables}:{},...calendar?{calendar}:{}};
   const ct=await webcrypto.subtle.encrypt({name:'AES-GCM',iv},key,new TextEncoder().encode(JSON.stringify(payload)));
   return {v:1,kdf:{...keyConfig.kdf},cipher:{name:'AES-GCM',iv:iv.toString('base64')},ct:Buffer.from(ct).toString('base64')};
 }

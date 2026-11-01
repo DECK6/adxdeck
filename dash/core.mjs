@@ -34,6 +34,12 @@ export function kstDate(now=new Date()) {
 const HARD_HOLD=/해외 체류|현지 체류|거주.{0,6}(?:필요|필수)|거점.{0,4}(?:필요|필수|조건)|기반(?:을)? ?(?:둔|조건)|(?<!비)양도(?!.{0,8}(?:단정|아님|없음|하지 않|여부|미확인))|주 ?5일|상근|정규직|자격.{0,6}(?:미달|불충족|없)|불충족|기준 미달|미충족|재개 금지/;
 // Cross-radar organization grouping: the same host often appears as an open call and a lecture lead.
 const ORG_ALIASES=[[/^(arko|아르코|한국문화예술위원회)/i,'arko'],[/서울로미디어캔버스|서울로 /,'seoullo'],[/아트코리아랩/,'artkorealab'],[/서울문화재단/,'sfac'],[/경기문화재단|경기콘텐츠진흥원/,'ggcf'],[/한국콘텐츠진흥원|kocca|nca /i,'kocca'],[/code:?art/i,'codeart'],[/강사야/,'gangsaya']];
+// Busy intervals ([start,end), KST RFC3339) that touch one KST day: count, timed hours inside the day, any all-day block.
+export function busyOn(date,busy=[]) {
+ const dayStart=Date.parse(date+'T00:00:00+09:00'),dayEnd=dayStart+864e5;let count=0,hours=0,allDay=false;
+ for(const b of busy){const s=Date.parse(b.start),e=Date.parse(b.end);if(!(s<dayEnd&&e>dayStart))continue;count++;if(b.allDay)allDay=true;else hours+=(Math.min(e,dayEnd)-Math.max(s,dayStart))/36e5;}
+ return {count,hours:Math.round(hours*10)/10,allDay};
+}
 export function orgKey(item) {
   const raw=String(item.organization||item.title||'').trim();
   for(const [re,key] of ORG_ALIASES)if(re.test(raw))return key;

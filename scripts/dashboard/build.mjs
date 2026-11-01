@@ -5,6 +5,7 @@ import {pathToFileURL} from 'node:url';
 import {encryptDashboard,openCallsAdapter,sanitizeRadar} from './lib.mjs';
 import {latestRevenuePlan,sanitizeRevenue} from './revenue.mjs';
 import {readVaultJson,applyReplies,sanitizeReceivables} from './ledgers.mjs';
+import {sanitizeCalendar} from './calendar.mjs';
 import {applyState} from '../../dash/state.mjs';
 
 import {DEFAULT_VAULT,DEFAULT_KEY,ROOT,readKeyConfig,atomicWrite} from './io.mjs';
@@ -99,12 +100,13 @@ export async function build({vault=DEFAULT_VAULT,keyFile=DEFAULT_KEY,out=path.jo
   const sources=[latestOpenCalls(vault),findLatestAdapter(path.join(vault,'60-actions/runs/lecture-opportunity-radar'),'lecture-radar.v1.json'),optionalAdapter(path.join(vault,'60-actions/runs/grant-radar'),'grant-radar.v1.json')].filter(Boolean);
   const radars=applyReplies(applyLinkOverrides(sources.map(s=>sanitizeRadar(applyState(s.data,state.records))),readLinkOverrides(vault)),readVaultJson(vault,'60-actions/runs/radar-dashboard/replies/latest.json')).map(sanitizeRadar);
   const receivablesRaw=readVaultJson(vault,'60-actions/runs/radar-dashboard/receivables/latest.json'),receivables=receivablesRaw?sanitizeReceivables(receivablesRaw):null;
+  const calendarRaw=readVaultJson(vault,'60-actions/runs/radar-dashboard/calendar/latest.json'),calendar=calendarRaw?sanitizeCalendar(calendarRaw):null;
   const revenueSource=latestRevenuePlan(vault),revenue=revenueSource?sanitizeRevenue(revenueSource.data):null;
-  assertPrivateExport([...radars,...(revenue?[revenue]:[]),...(receivables?[{...receivables,items:[]}]:[])]);
+  assertPrivateExport([...radars,...(revenue?[revenue]:[]),...(receivables?[{...receivables,items:[]}]:[]),...(calendar?[{...calendar,items:[]}]:[])]);
   const snapshot='/Volumes/data/Dev/nara-bid-finder/.data/dashboard-payload.json';
   const nara=vault===DEFAULT_VAULT?json(snapshot):null;
-  const result=await writeEncryptedDashboard(radars,key,out,{nara,revenue,receivables});
-  return {...result,receivables:receivables?{records:receivables.records.length,open:receivables.records.filter(r=>['pending','invoiced','blocked','unknown'].includes(r.status)).length}:null,revenue:revenue?{source:revenueSource.path,noteModified:revenue.noteModified,baseDate:revenue.baseDate,items:revenue.items.length,milestones:revenue.milestones.length,actions:revenue.actions.length}:null,nara:nara?{source:snapshot,generatedAt:nara.generatedAt,items:nara.items.length,recommendations:nara.recommendations.length,drafts:nara.items.reduce((n,i)=>n+(i.drafts?.length||0),0)}:null,sources:sources.map(s=>s.path),applicationState:{path:state.path,syncedAt:state.syncedAt,records:state.records.length,userOverrides:state.records.filter(r=>r.source==='dashboard-user').length}};
+  const result=await writeEncryptedDashboard(radars,key,out,{nara,revenue,receivables,calendar});
+  return {...result,calendar:calendar?{busy:calendar.busy.length,from:calendar.from,to:calendar.to,updatedAt:calendar.updatedAt}:null,receivables:receivables?{records:receivables.records.length,open:receivables.records.filter(r=>['pending','invoiced','blocked','unknown'].includes(r.status)).length}:null,revenue:revenue?{source:revenueSource.path,noteModified:revenue.noteModified,baseDate:revenue.baseDate,items:revenue.items.length,milestones:revenue.milestones.length,actions:revenue.actions.length}:null,nara:nara?{source:snapshot,generatedAt:nara.generatedAt,items:nara.items.length,recommendations:nara.recommendations.length,drafts:nara.items.reduce((n,i)=>n+(i.drafts?.length||0),0)}:null,sources:sources.map(s=>s.path),applicationState:{path:state.path,syncedAt:state.syncedAt,records:state.records.length,userOverrides:state.records.filter(r=>r.source==='dashboard-user').length}};
 }
 
 if(process.argv[1]&&pathToFileURL(path.resolve(process.argv[1])).href===import.meta.url){
