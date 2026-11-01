@@ -123,3 +123,18 @@ test('open-call adapter carries the lead track and organization of widened-scope
  assert.equal(out.items[0].track,'의뢰');assert.equal(out.items[0].organization,'Envision Creates');
  assert.equal(out.items[1].track,null);assert.equal(out.items[1].organization,'');
 });
+
+test('open-call adapter keeps explicit application state, reason, hold kind and custom fields from candidates and participation records',()=>{
+ const state={occurrence_id:'fixture:explicit',generated_at:'2026-11-01T07:00:00Z',candidates:[
+  {id:'fivestone-lead',title:'몰입형 룸 TD 리드 계약',status:'hold-onsite-required',track:'의뢰',applicationStatus:'not_applied',reason:'11/16~24 유럽 현장 참여 필수',holdKind:'blocker',fields:[{label:'결제 주체',value:'Fivestone · 미확인'}],official_url:'https://derivative.ca/job-post/75335'},
+  {id:'inferred',title:'추론 항목',status:'conditional-review',participation_status:'draft-prepared',official_url:'https://example.org/x'}],
+  participation_context:[{project:'LED.ART',state:'reply-sent-contract-pending',recorded_time:'2026-10-27T09:00:00+09:00',fields:[{label:'큐레이션 경로',value:'K-POP SQUARE 큐레이션은 LED.ART 작가 공급 경로로 이어집니다.'}]}]};
+ const out=lib.sanitizeRadar(lib.openCallsAdapter(state,{purpose_status:'VERIFIED'},''));
+ const lead=out.items.find(i=>i.id==='fivestone-lead');
+ assert.equal('customFields' in lead,false);assert.equal(lead.status,'hold');assert.equal(lead.applicationStatus,'not_applied');assert.equal(lead.reason,'11/16~24 유럽 현장 참여 필수');assert.equal(lead.holdKind,'blocker');
+ assert.ok(lead.fields.some(f=>f.label==='결제 주체'&&f.value==='Fivestone · 미확인'));
+ const inferred=out.items.find(i=>i.id==='inferred');
+ assert.equal(inferred.applicationStatus,'preparing');assert.equal(inferred.reason,'');assert.equal(inferred.holdKind,null);
+ const led=out.items.find(i=>i.id==='led-art-onboarding');
+ assert.equal(led.applicationStatus,'submitted');assert.ok(led.fields.some(f=>f.label==='진행 구분'));assert.ok(led.fields.some(f=>f.label==='큐레이션 경로'));
+});

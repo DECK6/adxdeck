@@ -11,5 +11,6 @@ export function withKoreanAnalysis(item,candidate,overlay){
  const fields=[...highlights,{label:'제출물·규격',value:a.requirements||unknown},{label:'지원 자격',value:a.eligibility||unknown},{label:'권리·활용 조건',value:a.rights||unknown},{label:'장소',value:a.location||unknown},{label:'행사·발표 일정',value:a.schedule||unknown},{label:'분석 근거',value:valid?`${a.basis||'기존 공식 확인 기록을 한국어로 정리'} · 분석 ${a.verifiedAt} · 원문 확인 ${candidate.last_official_check||'시점 미확인'}`:'공식 확인 후 한국어 분석 갱신 필요'}];
  // A submitted item keeps its authoritative submission proof and follow-up, not a fresh application recommendation.
  if(item.applicationStatus==='submitted')fields.unshift(...item.fields.filter(f=>['제출 확인','제출 근거','확인 범위','진행 구분'].includes(f.label)));
+ fields.push(...(item.customFields||[]));
  return {...item,summary:item.applicationStatus==='submitted'?item.summary+' '+a.summary:a.summary,highlights,fields,nextAction:item.applicationStatus==='submitted'?'중복 지원하지 않고 발표·회신 및 확정 계약 조건을 확인합니다.':a.nextAction||a.review,deadlineLabel:item.deadlineAt?'':item.deadlineDate?'공식 날짜만 확인 · 정확한 마감 시각 미확인':'마감 시각 미확인'};
 }
