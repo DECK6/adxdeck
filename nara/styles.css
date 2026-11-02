@@ -110,6 +110,7 @@ button{font-family:inherit; cursor:pointer;}
   border:1px solid var(--line); border-radius:6px; padding:5px 10px; text-decoration:none;
 }
 .card-links a:hover{border-color:var(--orange); color:var(--orange);}
+.request-note{margin:0 0 12px; color:var(--muted); font-size:.78rem; line-height:1.5; white-space:pre-wrap;}
 .empty{grid-column:1/-1; text-align:center; color:var(--muted); padding:60px 0; font-family:var(--font-mono); font-size:.8rem;}
 .app-footer{
   margin-top:48px; padding-top:18px; border-top:1px solid var(--line);

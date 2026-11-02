@@ -12,8 +12,8 @@
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&family=Noto+Sans+KR:wght@400;500;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=49adc91d" />
-    <link rel="stylesheet" href="deck.css?v=49adc91d" />
+    <link rel="stylesheet" href="styles.css?v=a615d23a" />
+    <link rel="stylesheet" href="deck.css?v=a615d23a" />
   </head>
   <body>
     <section class="lock-screen" id="lockScreen">
@@ -47,9 +47,11 @@
       <nav class="view-tabs mono" id="viewTabs">
         <button type="button" data-view="recommend" class="active">AITY 추천</button>
         <button type="button" data-view="vault">보관함</button>
+        <button type="button" data-view="requests" id="requestsTab" hidden>요청함</button>
       </nav>
       <main id="recommendView"></main>
       <main class="cards" id="cards" hidden></main>
+      <main class="cards" id="requestView" hidden></main>
       <footer class="app-footer mono">DEXA · shared bid vault · 자료는 내부 검토용입니다</footer>
     </div>
 
@@ -91,8 +93,8 @@
       <div class="deck-host" id="deckHost"></div>
     </div>
 
-    <script src="marked.min.js?v=49adc91d"></script>
-    <script src="deck.js?v=49adc91d"></script>
-    <script src="app.js?v=49adc91d"></script>
+    <script src="marked.min.js?v=a615d23a"></script>
+    <script src="deck.js?v=a615d23a"></script>
+    <script src="app.js?v=a615d23a"></script>
   </body>
 </html>

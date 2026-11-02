@@ -82,6 +82,16 @@ function render() {
   $("viewTabs").querySelectorAll("button").forEach((button) => button.classList.toggle("active", button.dataset.view === state.view));
   $("recommendView").hidden = state.view !== "recommend";
   $("cards").hidden = state.view !== "vault";
+  // Inbox of shared-page requests, visible only in the master's dashboard (owner status carries bid + note).
+  const inbox = EMBEDDED ? [...state.statuses.values()].filter((entry) => !entry.auto) : [];
+  const pending = inbox.filter((entry) => entry.status === "requested").length;
+  $("requestsTab").hidden = !EMBEDDED;
+  $("requestsTab").textContent = pending ? `요청함 ${pending}` : "요청함";
+  $("requestView").hidden = state.view !== "requests";
+  $("requestView").innerHTML = inbox.length
+    ? inbox.sort((a, b) => (b.status === "requested") - (a.status === "requested") || String(b.createdAt).localeCompare(String(a.createdAt)))
+        .map((entry) => findItem(entry.bidNo)).filter(Boolean).map((item) => renderCard(item)).join("")
+    : `<div class="empty">nara에서 들어온 초안 요청이 없습니다</div>`;
   $("cards").innerHTML = items.length ? items.map((item) => renderCard(item)).join("") : `<div class="empty">공유된 공고가 없습니다</div>`;
   $("recommendView").innerHTML = batches.length
     ? batches.map((batch, index) => `
@@ -124,6 +134,7 @@ function renderCard(item) {
       <div class="card-agency">${escapeHtml(item.agency || "")}</div>
       <div class="tag-row">${tags}</div>
       ${terms ? `<div class="terms">${terms}</div>` : ""}
+      ${EMBEDDED && status && !status.auto && (status.requester || status.note) ? `<p class="request-note">요청 · ${escapeHtml(status.requester || "이름 없음")} · ${escapeHtml((status.createdAt || "").slice(0, 10))}${status.note ? ` — ${escapeHtml(status.note)}` : ""}</p>` : ""}
       <div class="card-foot">
         <span class="budget">${escapeHtml(item.budgetLabel || "")}</span>
         <span class="card-links">
@@ -138,7 +149,10 @@ function renderCard(item) {
 
 function findItem(key) {
   const all = [...(state.payload?.recommendations || []).flatMap((batch) => batch.items), ...(state.payload?.items || [])];
-  return all.find((item) => bidKey(item) === key);
+  const found = all.find((item) => bidKey(item) === key);
+  if (found) return found;
+  const bid = state.statuses.get(key)?.bid;
+  return bid ? { ...bid, bidNtceNo: key } : undefined;
 }
 
 async function refreshStatuses() {
@@ -266,6 +280,7 @@ function onCardClick(event) {
 }
 $("cards").addEventListener("click", onCardClick);
 $("recommendView").addEventListener("click", onCardClick);
+$("requestView").addEventListener("click", onCardClick);
 
 $("viewTabs").addEventListener("click", (event) => {
   const button = event.target.closest("[data-view]");
