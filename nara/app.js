@@ -116,6 +116,8 @@ function renderCard(item) {
   ].filter(Boolean).join("");
   const terms = (item.match?.matchedTerms || []).slice(0, 6).map((term) => `<span>${escapeHtml(term)}</span>`).join("");
   const canRequest = state.payload?.requestApi && (!status || ["done", "rejected", "error"].includes(status.status));
+  // Generation controls exist only inside the master's dashboard; the shared page just files a request.
+  const canGenerate = EMBEDDED && state.payload?.requestApi && (canRequest || (status.status === "requested" && !status.auto));
   return `
     <article class="card" data-key="${escapeHtml(key)}">
       <h3 class="card-title">${escapeHtml(item.title)}</h3>
@@ -128,7 +130,7 @@ function renderCard(item) {
           ${item.detailUrl ? `<a href="${escapeHtml(item.detailUrl)}" target="_blank" rel="noopener">나라장터 ↗</a>` : ""}
           ${drafts.length ? `<button type="button" data-action="draft">초안 보기</button>` : ""}
           ${drafts[0]?.slides ? `<button type="button" data-action="slides">슬라이드</button>` : ""}
-          ${canRequest ? `<button type="button" class="request" data-action="request">${drafts.length ? "자동 재요청" : "초안 자동 요청"} · Sol</button><button type="button" data-action="astra">아스트라로 생성</button><button type="button" data-action="fable">페이블로 생성</button>` : ""}
+          ${canGenerate ? `<button type="button" class="request" data-action="request">${drafts.length ? "자동 재요청" : "초안 자동 요청"} · Sol</button><button type="button" data-action="astra">아스트라로 생성</button><button type="button" data-action="fable">페이블로 생성</button>` : !EMBEDDED && canRequest ? `<button type="button" class="request" data-action="request">${drafts.length ? "초안 재요청" : "초안 요청"}</button>` : ""}
         </span>
       </div>
     </article>`;
@@ -157,6 +159,7 @@ function openRequest(item) {
   state.requestBid = item;state.requestModel=null;
   $("requestTitle").textContent = item.title;
   $("requestName").value = EMBEDDED?"":localStorage.getItem(NAME_KEY) || "";
+  $("requestHint").textContent = EMBEDDED ? "자동 요청은 Sol · Extra High로 초안과 슬라이드를 생성합니다 · 로컬 생성기가 실행 중일 때 진행됩니다" : "요청이 접수되면 담당자가 확인한 뒤 초안을 생성합니다";
   $("requestNote").value = "";
   $("requestError").hidden = true;
   $("requestOverlay").hidden = false;
