@@ -52,6 +52,7 @@ pre{overflow-x:auto;background:var(--surface-2);padding:15px;border-radius:6px}c
 .gate h1{font-size:clamp(44px,7vw,62px);letter-spacing:-2.5px;line-height:1.12;font-weight:650;margin:16px 0 22px}
 .gate-description{color:var(--muted);font-size:15px;line-height:1.85}
 .gate form{margin-top:40px}.gate label{font-size:12px;display:block;margin-bottom:10px;color:var(--text-2)}
+.gate label.remember{display:flex;align-items:center;gap:8px;margin:12px 0 0;cursor:pointer}.remember input{accent-color:var(--accent);margin:0}
 .password-row{display:flex;border:1px solid var(--line-strong);border-radius:10px;background:var(--surface);padding:5px;box-shadow:var(--shadow)}
 .password-row input{min-width:0;width:100%;color:var(--text);border:0;background:none;padding:11px 13px;outline:none;font-family:var(--font-mono)}
 .password-row:focus-within{border-color:var(--accent)}

@@ -6,6 +6,8 @@
 
 Open `scripts/dashboard/setup.command` in macOS Terminal. Enter the password twice using hidden input. PBKDF2-SHA256 (600,000 iterations, a random 16-byte salt) derives a 256-bit AES key. Only the derived key and KDF parameters are stored in `~/.config/dexa-dash/key.json` with owner-only permissions. The password itself is discarded. Treat this local file as a secret: it can decrypt and update the dashboard. It must never enter Git, a vault note, a log or a message.
 
+The gate's opt-in checkbox keeps the derived key (never the password) in that browser's `localStorage` so it reopens without asking. 잠그기 deletes it; a key rotation (new salt) invalidates it. Anyone with access to that browser profile can open the dashboard, so leave it off on shared devices.
+
 ## Update after either radar run
 
 ```sh

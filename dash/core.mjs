@@ -7,11 +7,20 @@ export function safeUrl(value) {
 
 const bytes = value => Uint8Array.from(atob(value), c=>c.charCodeAt(0));
 
-export async function unlockDashboard(envelope,password) {
+function assertEnvelope(envelope) {
   const k=envelope?.kdf, c=envelope?.cipher;
   if(envelope?.v!==1 || k?.name!=='PBKDF2' || k.hash!=='SHA-256' || !Number.isInteger(k.iterations) || k.iterations<100000 || k.iterations>2000000 || c?.name!=='AES-GCM' || bytes(k.salt).length!==16 || bytes(c.iv).length!==12) throw Error('Invalid encrypted dashboard');
+}
+
+export async function unlockDashboard(envelope,password) {
+  assertEnvelope(envelope);const k=envelope.kdf;
   const base=await crypto.subtle.importKey('raw',new TextEncoder().encode(password),'PBKDF2',false,['deriveBits']);
   const keyBytes=new Uint8Array(await crypto.subtle.deriveBits({name:'PBKDF2',hash:'SHA-256',salt:bytes(k.salt),iterations:k.iterations},base,256));
+  return openWithKey(envelope,keyBytes);
+}
+
+export async function openWithKey(envelope,keyBytes) {
+  assertEnvelope(envelope);const c=envelope.cipher;
   try{
   const key=await crypto.subtle.importKey('raw',keyBytes,{name:'AES-GCM'},false,['decrypt']);
   const raw=await crypto.subtle.decrypt({name:'AES-GCM',iv:bytes(c.iv)},key,bytes(envelope.ct));

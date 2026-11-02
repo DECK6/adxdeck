@@ -138,3 +138,13 @@ test('open-call adapter keeps explicit application state, reason, hold kind and 
  const led=out.items.find(i=>i.id==='led-art-onboarding');
  assert.equal(led.applicationStatus,'submitted');assert.ok(led.fields.some(f=>f.label==='진행 구분'));assert.ok(led.fields.some(f=>f.label==='큐레이션 경로'));
 });
+
+test('a remembered key reopens the dashboard without the password and a wrong one fails', async () => {
+  const cfg=await lib.makeKeyConfig('fixture-remember-key');
+  const enc=await lib.encryptDashboard([radar('open-calls')],cfg);
+  const {payload,keyBytes}=await core.unlockDashboard(enc,'fixture-remember-key');
+  const saved=keyBytes.slice();
+  const again=await core.openWithKey(enc,saved);
+  assert.deepEqual(again.payload,payload);
+  await assert.rejects(core.openWithKey(enc,new Uint8Array(32)));
+});

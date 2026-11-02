@@ -1,5 +1,5 @@
-import {unlockDashboard,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel,orgKey,busyOn} from './core.mjs?v=6638e307';
-import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=6638e307';
+import {unlockDashboard,openWithKey,escapeHtml as e,safeUrl,itemBucket,isUrgent,deadlineText,renderMarkdown,kstDate,reasonOf,holdKind,bucketLabel,orgKey,busyOn} from './core.mjs?v=189d0a30';
+import {deriveSigningKey,stateRequest,applyState,isArchived,applicationLabel,resultLabels,toggleComparison,comparisonTable,visibleSelection} from './state.mjs?v=189d0a30';
 
 const $=id=>document.getElementById(id);
 const filters=[['review','검토 가능'],['check','확인 필요'],['awaiting','발표 대기'],['submitted','지원 완료'],['hold','보류'],['waiting','모집 대기'],['excluded','제외'],['all','전체']];
@@ -51,13 +51,19 @@ function naraEntries(){
 }
 function message(text,error=false){$('sync-message').textContent=text;$('sync-message').classList.toggle('error',error);$('retry-sync').hidden=!error||ready;}
 
-$('unlock-form').addEventListener('submit',async event=>{
- event.preventDefault();const attempt=++epoch,password=$('password').value;$('password').value='';$('unlock').disabled=true;
+// Opt-in: keeps the derived key (never the password) in this browser until 잠그기.
+const KEY_STORE='dexa-dash-key';
+function saveKey(keyBytes,salt){try{localStorage.setItem(KEY_STORE,JSON.stringify({salt,key:btoa(String.fromCharCode(...keyBytes))}));}catch{}}
+function forgetKey(){try{localStorage.removeItem(KEY_STORE);}catch{}}
+function savedKey(){try{const saved=JSON.parse(localStorage.getItem(KEY_STORE));return saved?.salt&&saved?.key?saved:null;}catch{return null;}}
+async function enter(open,remember){
+ const attempt=++epoch;$('unlock').disabled=true;
  $('gate-message').classList.remove('error');$('gate-message').textContent='대시보드를 여는 중입니다…';let fetching=false;
  try{
   if(!envelope){fetching=true;const response=await fetch('./data.enc.json',{cache:'no-store',credentials:'omit'});if(!response.ok)throw Error('fetch');envelope=await response.json();fetching=false;}
-  const decoded=await unlockDashboard(envelope,password);
+  const decoded=await open(envelope);
   if(attempt!==epoch){decoded.keyBytes.fill(0);return;}
+  if(remember)saveKey(decoded.keyBytes,envelope.kdf.salt);else forgetKey();
   authKey=await deriveSigningKey(decoded.keyBytes);decoded.keyBytes.fill(0);if(attempt!==epoch){authKey.fill(0);authKey=null;return;}payload=decoded.payload;
   const requested=location.hash.slice(1);activeId=choices().some(r=>r.id===requested)?requested:'overview';
   $('gate').hidden=true;$('workspace').hidden=false;renderTabs();renderRadar();$('tabs').querySelector('[aria-selected=true]').focus();
@@ -65,7 +71,18 @@ $('unlock-form').addEventListener('submit',async event=>{
  }catch{
   if(!payload){authKey?.fill(0);authKey=null;$('gate-message').classList.add('error');$('gate-message').textContent=fetching?'데이터를 불러오지 못했습니다. 잠시 후 다시 열어 주세요.':'비밀번호가 맞지 않거나 데이터를 열 수 없습니다. 다시 입력해 주세요.';$('password').focus();}
  }finally{$('unlock').disabled=false;}
+}
+$('unlock-form').addEventListener('submit',event=>{
+ event.preventDefault();const password=$('password').value;$('password').value='';
+ enter(data=>unlockDashboard(data,password),$('remember').checked);
 });
+function resume(){
+ const saved=savedKey();if(!saved||payload)return;
+ enter(async data=>{
+  try{if(data.kdf.salt!==saved.salt)throw Error('stale');return await openWithKey(data,Uint8Array.from(atob(saved.key),c=>c.charCodeAt(0)));}
+  catch(error){forgetKey();throw error;}
+ },true);
+}
 async function loadState(attempt=epoch){
  ready=false;message('지원 기록 확인 중…');
  try{
@@ -87,9 +104,11 @@ function lock(){
  filter='review';search='';selectedId=null;compareIds=[];visibleItems=[];tabStates.clear();saving.clear();hiddenSources.clear();orgFilter=null;
  for(const id of ['tabs','cards','stats','urgent','limitations','radar-title','radar-summary','run-status','updated','occurrence','detail-content','detail-nav','dialog-label','filters','result-count','today','comparison-bar','sync-message','radar-run','overview-run','overview-summary','overview-updated','overview-stats','timeline','timeline-sources','timeline-org','overview-kpis','overview-actions','applications-stats','applications-groups','receivables-summary','receivables-updated','receivables-stats','receivables-table','revenue-title','revenue-summary','revenue-updated','revenue-content'])$(id).replaceChildren();
  for(const panel of Object.values(panels))$(panel).hidden=true;$('radar-panel').hidden=false;
- $('search').value='';$('workspace').hidden=true;$('gate').hidden=false;$('password').value='';$('gate-message').classList.remove('error');$('gate-message').textContent='대시보드가 잠겼습니다.';$('password').focus();
+ $('search').value='';$('workspace').hidden=true;$('gate').hidden=false;$('password').value='';$('remember').checked=false;$('gate-message').classList.remove('error');$('gate-message').textContent='대시보드가 잠겼습니다.';$('password').focus();
 }
-$('lock').addEventListener('click',lock);window.addEventListener('pagehide',lock);
+function lockAndForget(){forgetKey();lock();}
+$('lock').addEventListener('click',lockAndForget);window.addEventListener('pagehide',lock);
+window.addEventListener('pageshow',event=>{if(event.persisted)resume();});
 $('retry-sync').addEventListener('click',()=>loadState());
 window.addEventListener('hashchange',()=>{if(payload&&choices().some(r=>r.id===location.hash.slice(1)))selectRadar(location.hash.slice(1));});
 function renderTabs(){
@@ -351,5 +370,6 @@ window.addEventListener('message',event=>{
  const frame=$('nara-host').firstChild;
  if(!payload?.nara||!frame||event.origin!==location.origin||event.source!==frame.contentWindow)return;
  if(event.data?.type==='nara:ready'){frame.contentWindow.postMessage({type:'dexa:theme',theme:currentTheme()},location.origin);frame.contentWindow.postMessage({type:'dexa:nara-payload',payload:payload.nara},location.origin);}
- if(event.data?.type==='nara:lock')lock();
+ if(event.data?.type==='nara:lock')lockAndForget();
 });
+resume();
