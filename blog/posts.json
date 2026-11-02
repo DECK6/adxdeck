@@ -1,5 +1,34 @@
 [
   {
+    "slug": "park-chan-kyong-and-disaster-between-images",
+    "file": "_built/park-chan-kyong-and-disaster-between-images.md",
+    "title": "박찬경의 이미지 사이에 남은 재난",
+    "description": "박찬경의 《Fukushima, Autoradiography》와 《작은 미술관》을 통해 사진이 재난을 기록하는 범위와 미술관이 그 기록을 배열하는 방식을 살펴본다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "박찬경",
+      "사진",
+      "재난",
+      "미술관"
+    ],
+    "date": "2026-11-03",
+    "modified": "2026-11-03",
+    "thumbnail": "images/park-images-between-disaster-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "작가·작품",
+    "mediaArtCategorySlug": "artists-artworks",
+    "mediaArtTags": [
+      "media-art",
+      "박찬경",
+      "사진",
+      "재난",
+      "미술관"
+    ]
+  },
+  {
     "slug": "raymond-williams-and-the-choices-inside-television",
     "file": "_built/raymond-williams-and-the-choices-inside-television.md",
     "title": "레이먼드 윌리엄스가 텔레비전에서 찾은 선택들",
