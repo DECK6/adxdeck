@@ -76,6 +76,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dexa.art/blog/posts/reranking-starts-with-the-retrieved-candidates/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dexa.art/blog/posts/a-lora-adapter-needs-its-base-and-release-record/</loc>
     <lastmod>2026-11-01</lastmod>
     <priority>0.8</priority>

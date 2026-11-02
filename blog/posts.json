@@ -29,6 +29,26 @@
     ]
   },
   {
+    "slug": "reranking-starts-with-the-retrieved-candidates",
+    "file": "_built/reranking-starts-with-the-retrieved-candidates.md",
+    "title": "RAG 재정렬의 성능은 후보 목록에서 시작된다",
+    "description": "검색 결과를 재정렬하는 모델을 붙여도 처음부터 빠진 근거가 돌아오지는 않는다. Sentence Transformers의 공식 문서와 예제를 바탕으로 후보 회수, 순위 개선, 답변 검증을 나누어 RAG를 점검하는 방법을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "AX",
+      "RAG",
+      "retrieval",
+      "reranking"
+    ],
+    "date": "2026-11-02",
+    "modified": "2026-11-02",
+    "thumbnail": "images/reranking-starts-with-the-retrieved-candidates-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "a-lora-adapter-needs-its-base-and-release-record",
     "file": "_built/a-lora-adapter-needs-its-base-and-release-record.md",
     "title": "LoRA 파일을 넘길 때 함께 넘겨야 할 것들",
