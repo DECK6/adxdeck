@@ -1,0 +1,12 @@
+{
+  "vision_wasm_nosimd_internal.wasm": "ed5e5e5812490bd90d6a440290845ff9e4c516f696847a28a0c0e0573470d469",
+  "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+  "vision_bundle.js": "97fc2ec9c4d5d7809274881528b99675c7f4d63d55cddd14988877de2025ac24",
+  "vision_wasm_nosimd_internal.js": "e9b2b799e0f1078f5538b300a57835b823742c37e2646308a03f0f25b39fdcdc",
+  "hand_landmarker.task": "fbc2a30080c3c557093b5ddfc334698132eb341044ccee322ccf8bcf3607cde1",
+  "vision_wasm_module_internal.wasm": "2e326b9d9584ac22e230c263f47e6fe694a7df1ce22a8546c72df0e5c0fc1066",
+  "vision_wasm_internal.wasm": "bcc13df22d3d69ec8cbe8e280989356d844ae00f4523eb82072d2484f44134dc",
+  "vision_wasm_module_internal.js": "60384c9014750321c0fc1d489b3329e5eaed0fcf3c328d404ecb1a6c75e89d17",
+  "NOTICE.md": "20855b0feb545a968a1c9215820306cb007cb70b2488007c65a242fe1721a785",
+  "vision_wasm_internal.js": "85c1a342be70427987f900969a5f26e17557351111364e6585e97fb03e93e108"
+}

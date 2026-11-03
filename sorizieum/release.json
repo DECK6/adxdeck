@@ -1,9 +1,11 @@
 {
-  "version": "20261103-web-v2-silhouette-regions",
+  "version": "20261103-web-v3-students",
   "artworks": [
     "a01",
     "a02",
-    "a03"
+    "a03",
+    "trace",
+    "melroot"
   ],
   "files": {
     "assets/index-Bob30Jr4.js": {
@@ -14,6 +16,10 @@
       "bytes": 589986,
       "sha256": "8b26bcdd3813c251e405c90fe203b14b0e46c2f15ac5a9733abcd3de1a397e55"
     },
+    "assets/index-Dnxyro3l.js": {
+      "bytes": 586086,
+      "sha256": "9d42dc17cc34faad35565c29406e5c5ab9fe9034f292b5d84ec5bb44b373472f"
+    },
     "assets/index-DvmRRUAN.css": {
       "bytes": 7220,
       "sha256": "55756ac0d2b697075854d61bb75411699d9615ab26af5da5ce39205df64a525d"
@@ -22,9 +28,13 @@
       "bytes": 7499,
       "sha256": "7679fb690381937886e22f36fce95eade927d3714f1ddf5b8e8916872e506a97"
     },
+    "assets/index-kYQ7t335.css": {
+      "bytes": 7892,
+      "sha256": "78f3a93cb4b5aab9ab27cbb2d7379a678f12211d334bf8a8f809b6cbcb4d4a33"
+    },
     "index.html": {
-      "bytes": 3574,
-      "sha256": "c747dee808d96e7d3bc4b81b30032da8d5182277b9349f83047a68e883e61b86"
+      "bytes": 3636,
+      "sha256": "18da7ebdc9abad3681f0f44c9d226c04ce032483556db29d770b530f04f116e0"
     },
     "licenses/MediaPipe-LICENSE.txt": {
       "bytes": 12331,
@@ -34,6 +44,226 @@
       "bytes": 1081,
       "sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc"
     },
+    "melroot/THIRD_PARTY.md": {
+      "bytes": 1847,
+      "sha256": "9d5dac01dd3921c765e319d73beef22662245a386f0d1370329df830eccc65c0"
+    },
+    "melroot/assets/melroot-optimized-v3.glb": {
+      "bytes": 6283516,
+      "sha256": "2fc0070b70813c172c77a6f4f0ecad2a4de04f56b902b985c087159066500218"
+    },
+    "melroot/index.html": {
+      "bytes": 2327,
+      "sha256": "735489a6e1d6f396a4ced61b254df68d39dea9c9cd1b4ef3092d662fd1e88b85"
+    },
+    "melroot/lib/DEXA-CRT-LICENSE": {
+      "bytes": 1065,
+      "sha256": "15183bfbec774052a5817a28eb03730c40ec941a642097b597f0c50092594adb"
+    },
+    "melroot/lib/app.mjs": {
+      "bytes": 8646,
+      "sha256": "9cf4626e8f9672041339429d64de4f29f765fee84bccb1683e90901749a53712"
+    },
+    "melroot/lib/body-tracking.js": {
+      "bytes": 12873,
+      "sha256": "a66be0407ceb3aaa4431a545c53fd9730b616f289e17a3eee88c6a9e04dd6e9e"
+    },
+    "melroot/lib/camera.mjs": {
+      "bytes": 737,
+      "sha256": "c9f38c7871f92955d3c2a7635ca6513e613d03f273019da44d69ac44f48b02a7"
+    },
+    "melroot/lib/character-rig.mjs": {
+      "bytes": 1934,
+      "sha256": "1afb84ce5dad084f48ec0615fb12af51bfa8e766e2d4f2fd99291582749c5518"
+    },
+    "melroot/lib/face-features.js": {
+      "bytes": 10372,
+      "sha256": "7b2c1f4c6e65ccefc681269ae0c9df998843b21c16f0267e0c68ec6a12b29bd0"
+    },
+    "melroot/lib/hand-features.mjs": {
+      "bytes": 2849,
+      "sha256": "a4860d01220a80cbe2d8dc307cde8a93755a8d010c369e0da9ee05e9c43cd861"
+    },
+    "melroot/lib/hand-tracking.mjs": {
+      "bytes": 1909,
+      "sha256": "c324f5f396166a8f0971edf0a388e05173f63f41a1326eba0dfcbd18ce7fd75c"
+    },
+    "melroot/lib/hand-worker.js": {
+      "bytes": 917,
+      "sha256": "930211f8384896a3a98ec478242bba455c573e4bb518528bf8d4f29f31f33116"
+    },
+    "melroot/lib/motion.mjs": {
+      "bytes": 3908,
+      "sha256": "fabde9ac506098dec106bed5dd9a7f0cf29474683c1c36ee55b9a2369ab11624"
+    },
+    "melroot/lib/renderer.mjs": {
+      "bytes": 8495,
+      "sha256": "e828c3ba6e2d9a5805a4863bc64430f85160414f1bf77c862760626537ad8b65"
+    },
+    "melroot/lib/screen-axis.mjs": {
+      "bytes": 1023,
+      "sha256": "edd0a2eae3b006210a4803a8e68b16d90a7b17653da2aa6909b57cf37ea6ee3f"
+    },
+    "melroot/lib/vendor/face_mesh/LICENSE": {
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "melroot/lib/vendor/face_mesh/NOTICE.md": {
+      "bytes": 483,
+      "sha256": "7994cb8fcae1f681b9c6fb14146f595b9cdb6078493f2d0b56d1b64c35ec4a90"
+    },
+    "melroot/lib/vendor/face_mesh/face_mesh.binarypb": {
+      "bytes": 939,
+      "sha256": "139546bf05aebb33e2611b6b945f3a1629c316ca924e33cec1547c85ddef9f53"
+    },
+    "melroot/lib/vendor/face_mesh/face_mesh.js": {
+      "bytes": 64913,
+      "sha256": "5db8555ac80ca2ad7366fbb3ea53c0d0959609fc9abb7b8be37a74ec1ac4ba9c"
+    },
+    "melroot/lib/vendor/face_mesh/face_mesh_solution_packed_assets.data": {
+      "bytes": 3986256,
+      "sha256": "dbe5905c582c0462cdaea17e7e6ecea92edaa8cccc515c5e2e7291f2cbb5fb99"
+    },
+    "melroot/lib/vendor/face_mesh/face_mesh_solution_packed_assets_loader.js": {
+      "bytes": 8928,
+      "sha256": "e5de8685b299184813f7cec668e499023937ae521b70f60cd0fc4832930446e0"
+    },
+    "melroot/lib/vendor/face_mesh/face_mesh_solution_simd_wasm_bin.js": {
+      "bytes": 330166,
+      "sha256": "ca291877afb9c13308cf6be42f23cd39f1adf0036bb63ecad2ce16073bcf07c7"
+    },
+    "melroot/lib/vendor/face_mesh/face_mesh_solution_simd_wasm_bin.wasm": {
+      "bytes": 6161697,
+      "sha256": "fb9e9cfe8b83a914e40eab2efd3b0d92a61f82a7c968589f223ab2a7e331d314"
+    },
+    "melroot/lib/vendor/hand/LICENSE": {
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "melroot/lib/vendor/hand/NOTICE.md": {
+      "bytes": 381,
+      "sha256": "20855b0feb545a968a1c9215820306cb007cb70b2488007c65a242fe1721a785"
+    },
+    "melroot/lib/vendor/hand/hand_landmarker.task": {
+      "bytes": 7819105,
+      "sha256": "fbc2a30080c3c557093b5ddfc334698132eb341044ccee322ccf8bcf3607cde1"
+    },
+    "melroot/lib/vendor/hand/provenance.json": {
+      "bytes": 966,
+      "sha256": "58f74713bd771aeca7088c4da060f707524fbd5095f751c3a5a40b51e86962d0"
+    },
+    "melroot/lib/vendor/hand/vision_bundle.js": {
+      "bytes": 156370,
+      "sha256": "97fc2ec9c4d5d7809274881528b99675c7f4d63d55cddd14988877de2025ac24"
+    },
+    "melroot/lib/vendor/hand/vision_wasm_internal.js": {
+      "bytes": 334128,
+      "sha256": "85c1a342be70427987f900969a5f26e17557351111364e6585e97fb03e93e108"
+    },
+    "melroot/lib/vendor/hand/vision_wasm_internal.wasm": {
+      "bytes": 14466654,
+      "sha256": "bcc13df22d3d69ec8cbe8e280989356d844ae00f4523eb82072d2484f44134dc"
+    },
+    "melroot/lib/vendor/hand/vision_wasm_module_internal.js": {
+      "bytes": 334166,
+      "sha256": "60384c9014750321c0fc1d489b3329e5eaed0fcf3c328d404ecb1a6c75e89d17"
+    },
+    "melroot/lib/vendor/hand/vision_wasm_module_internal.wasm": {
+      "bytes": 14466676,
+      "sha256": "2e326b9d9584ac22e230c263f47e6fe694a7df1ce22a8546c72df0e5c0fc1066"
+    },
+    "melroot/lib/vendor/hand/vision_wasm_nosimd_internal.js": {
+      "bytes": 333931,
+      "sha256": "e9b2b799e0f1078f5538b300a57835b823742c37e2646308a03f0f25b39fdcdc"
+    },
+    "melroot/lib/vendor/hand/vision_wasm_nosimd_internal.wasm": {
+      "bytes": 12915401,
+      "sha256": "ed5e5e5812490bd90d6a440290845ff9e4c516f696847a28a0c0e0573470d469"
+    },
+    "melroot/lib/vendor/pose/LICENSE": {
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    },
+    "melroot/lib/vendor/pose/NOTICE.md": {
+      "bytes": 4915,
+      "sha256": "245063888a6f9a5d88c2ee4c6749ff5d4c0fc908387031ff837d1661b508d623"
+    },
+    "melroot/lib/vendor/pose/pose.js": {
+      "bytes": 47089,
+      "sha256": "fcb703afcce65d0a1c540f6a70c3bb45fc84521498c21a9d4160265dde648ab4"
+    },
+    "melroot/lib/vendor/pose/pose_landmark_full.tflite": {
+      "bytes": 6440512,
+      "sha256": "e9a5c5cb17f736fafd4c2ec1da3b3d331d6edbe8a0d32395855aeb2cdfd64b9f"
+    },
+    "melroot/lib/vendor/pose/pose_landmark_lite.tflite": {
+      "bytes": 2819824,
+      "sha256": "f17bfbecadb61c3be1baa8b8d851cc6619c870a87167b32848ad20db306b9d61"
+    },
+    "melroot/lib/vendor/pose/pose_solution_packed_assets.data": {
+      "bytes": 2962288,
+      "sha256": "a63c614bef30d35947f13be361820b1e4e3bec9cfeebf4d11216a18373108e85"
+    },
+    "melroot/lib/vendor/pose/pose_solution_packed_assets_loader.js": {
+      "bytes": 8002,
+      "sha256": "d7aa29b7d8e11b5c97a58d719e982dd15c2de72995d95112d60492b854840a36"
+    },
+    "melroot/lib/vendor/pose/pose_solution_simd_wasm_bin.data": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "melroot/lib/vendor/pose/pose_solution_simd_wasm_bin.js": {
+      "bytes": 276478,
+      "sha256": "3983d1dca31d945d81abb70b18dd61f28ef4736e112463d7cfb1cbadef588127"
+    },
+    "melroot/lib/vendor/pose/pose_solution_simd_wasm_bin.wasm": {
+      "bytes": 6104372,
+      "sha256": "195a929430e2ce130b3efb82e64ba27c8e68cb0f6bad870b715688060ea6f7e2"
+    },
+    "melroot/lib/vendor/pose/pose_solution_wasm_bin.js": {
+      "bytes": 276473,
+      "sha256": "3fcfd9574a04fcf4a0b9271b9b4429c6b9a70278300a5e54c45ddf2001e41422"
+    },
+    "melroot/lib/vendor/pose/pose_solution_wasm_bin.wasm": {
+      "bytes": 5994571,
+      "sha256": "a5589369289e1f1e007c106e8ffb26e85a5be762c6db9551ed36213f8f58378d"
+    },
+    "melroot/lib/vendor/pose/pose_web.binarypb": {
+      "bytes": 1007,
+      "sha256": "dc8efd1c2d62007b34278467407fda5f70847f41310e0e39f0f59fc17b1d01f7"
+    },
+    "melroot/lib/vendor/three/BufferGeometryUtils.js": {
+      "bytes": 37712,
+      "sha256": "9fb63427ce6641fa14fd0baff9cc4d1b5f9c3d85fd084bf2e90e803c44ec1797"
+    },
+    "melroot/lib/vendor/three/GLTFLoader.js": {
+      "bytes": 117556,
+      "sha256": "200cb5621236d83d241662078878de25800b152d091ac63678d74179abb0df6b"
+    },
+    "melroot/lib/vendor/three/LICENSE": {
+      "bytes": 1081,
+      "sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc"
+    },
+    "melroot/lib/vendor/three/SkeletonUtils.js": {
+      "bytes": 11535,
+      "sha256": "b1632a703206c3d830de9fcbe515696770d04b71a15ee6b50afa6d2c3298c86f"
+    },
+    "melroot/lib/vendor/three/provenance.json": {
+      "bytes": 587,
+      "sha256": "b065c17f1de410d8a55fa85064306eec5256c2b334345ade6581a9344df60c94"
+    },
+    "melroot/lib/vendor/three/three.core.js": {
+      "bytes": 1458113,
+      "sha256": "9edde002b066a9a05676a6127f67735b62baf399bdea529f2f7e31657da769e6"
+    },
+    "melroot/lib/vendor/three/three.module.js": {
+      "bytes": 662772,
+      "sha256": "9052042d676cb0fdc1ddfefe193053f34b7ac0513a616fdac4535d49987812ea"
+    },
+    "melroot/style.css": {
+      "bytes": 4853,
+      "sha256": "caffbb3ce564e7a0cb05f0d359c2bb0b864bd921d68681adf8256782cbca183b"
+    },
     "models/hand_landmarker.task": {
       "bytes": 7819105,
       "sha256": "fbc2a30080c3c557093b5ddfc334698132eb341044ccee322ccf8bcf3607cde1"
@@ -41,6 +271,90 @@
     "models/selfie_segmenter_landscape.tflite": {
       "bytes": 250177,
       "sha256": "490e9ea734313e0de10fa0cd9e3c6133e36ea4db2b7a49bde9ef019f72796b8e"
+    },
+    "trace/app.js": {
+      "bytes": 29244,
+      "sha256": "8d777d6f3e33ba18181ff6708430d809bb3fd010a9a03b49ef90540fbdc240eb"
+    },
+    "trace/assets/MAKEHUMAN_LICENSE.md": {
+      "bytes": 3598,
+      "sha256": "edd99571ca62698f78c943fd4fffb159a413c315fa0d4819d3cec5cadaf8b4f1"
+    },
+    "trace/assets/MEDIAPIPE_LICENSE.txt": {
+      "bytes": 12331,
+      "sha256": "8707eef0533987efc5b155d64761eeb6e20793f50b9bd1a68dad1cf4719d0ed8"
+    },
+    "trace/assets/MEDIAPIPE_README.md": {
+      "bytes": 9259,
+      "sha256": "8326ed0beb1983b69cccb190937c2e368388969cb3ade06010fe51e0d5339308"
+    },
+    "trace/assets/SOURCES.md": {
+      "bytes": 2733,
+      "sha256": "2177c3a6ce91df04bc3479befc6a82bf65f02822c3dc1cc06c92544898cb30e0"
+    },
+    "trace/assets/four-textures.mp3": {
+      "bytes": 4802066,
+      "sha256": "490e3d877ec6a15ed462db70e90d04d1b5b47f937006c382af18b8484461c145"
+    },
+    "trace/assets/human-rig.json": {
+      "bytes": 1236690,
+      "sha256": "cc58b1d2bb3ebc53f0a1508376489854532950429cca70ad97decaccf361d658"
+    },
+    "trace/assets/pose_landmarker_lite.task": {
+      "bytes": 5777746,
+      "sha256": "59929e1d1ee95287735ddd833b19cf4ac46d29bc7afddbbf6753c459690d574a"
+    },
+    "trace/assets/three/LICENSE.txt": {
+      "bytes": 1081,
+      "sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc"
+    },
+    "trace/assets/three/MeshSurfaceSampler.js": {
+      "bytes": 8173,
+      "sha256": "151e93147f27d9452d54750ab0622b0a53233168c6ac4d48d85df621080fb481"
+    },
+    "trace/assets/three/three.core.js": {
+      "bytes": 1474799,
+      "sha256": "613e370f76638fdef83926642bf256dc9615684922de1ce1f63a8583e5d78578"
+    },
+    "trace/assets/three/three.module.js": {
+      "bytes": 658900,
+      "sha256": "104f56145899722094556490d787aae0617cc2fc3382f31df02d724ea1aee341"
+    },
+    "trace/assets/vision_bundle.js": {
+      "bytes": 156370,
+      "sha256": "97fc2ec9c4d5d7809274881528b99675c7f4d63d55cddd14988877de2025ac24"
+    },
+    "trace/assets/wasm/vision_wasm_internal.js": {
+      "bytes": 334128,
+      "sha256": "85c1a342be70427987f900969a5f26e17557351111364e6585e97fb03e93e108"
+    },
+    "trace/assets/wasm/vision_wasm_internal.wasm": {
+      "bytes": 14466654,
+      "sha256": "bcc13df22d3d69ec8cbe8e280989356d844ae00f4523eb82072d2484f44134dc"
+    },
+    "trace/assets/wasm/vision_wasm_nosimd_internal.js": {
+      "bytes": 333931,
+      "sha256": "e9b2b799e0f1078f5538b300a57835b823742c37e2646308a03f0f25b39fdcdc"
+    },
+    "trace/assets/wasm/vision_wasm_nosimd_internal.wasm": {
+      "bytes": 12915401,
+      "sha256": "ed5e5e5812490bd90d6a440290845ff9e4c516f696847a28a0c0e0573470d469"
+    },
+    "trace/avatar.js": {
+      "bytes": 18427,
+      "sha256": "30486b3cd7075fb070a975b2377c841279f67f1830f81eb251cef31da8f7cd3c"
+    },
+    "trace/index.html": {
+      "bytes": 11337,
+      "sha256": "6707445999fa42a4bf9058cab99b8fc008565839315df4bde5d0f91e5f225927"
+    },
+    "trace/pose-worker.js": {
+      "bytes": 1064,
+      "sha256": "c447913b868b032b5fc3c2cea5c6e29cd322e2dbc123e536df7ead4607a1d2b7"
+    },
+    "trace/style.css": {
+      "bytes": 18381,
+      "sha256": "506e0ebc2ea4af81a39dc255c3eef03ee6d3f9b31a78c90018e8fb2c1f5d3936"
     },
     "vision/hand-worker.js": {
       "bytes": 2423,

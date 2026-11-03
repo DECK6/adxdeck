@@ -1,0 +1,15 @@
+{
+  "name": "three",
+  "version": "0.186.1",
+  "tarball_sha1": "6d50f70c2c437f844179bbb56d6f5b774e1ca38a",
+  "source": "https://registry.npmjs.org/three/-/three-0.186.1.tgz",
+  "files": {
+    "build/three.module.js": "three.module.js",
+    "build/three.core.js": "three.core.js",
+    "examples/jsm/loaders/GLTFLoader.js": "GLTFLoader.js",
+    "examples/jsm/utils/BufferGeometryUtils.js": "BufferGeometryUtils.js",
+    "LICENSE": "LICENSE",
+    "examples/jsm/utils/SkeletonUtils.js": "SkeletonUtils.js"
+  },
+  "modification": "GLTFLoader utility imports changed to local sibling files"
+}

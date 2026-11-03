@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#080b0c">
+<meta name="description" content="TRACE — 몸이 남긴 잔상. Four Textures의 2분 사운드와 신체 움직임이 만나는 인터랙티브 퍼포먼스.">
+<title>TRACE — 몸이 남긴 잔상</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23080b0c'/%3E%3Cpath d='M32 8v48M8 32h48' stroke='%23bbffdd' stroke-width='2'/%3E%3Ccircle cx='32' cy='32' r='15' stroke='%23bbffdd' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="experience" aria-label="TRACE 인터랙티브 미디어아트">
+<canvas id="art" aria-label="움직임과 음악에 반응하는 입자 인체"></canvas>
+<canvas id="overlay" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+<header class="topbar ui">
+ <a class="wordmark" href="./" aria-label="TRACE 처음으로"><svg width="27" height="27" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="9" stroke="currentColor"/><path d="M16 0v10m0 12v10M0 16h10m12 0h10" stroke="currentColor"/></svg><span>TRACE<span class="wordmark-dot">®</span></span></a>
+ <div class="top-caption">AN EXPERIMENT IN<br>BODY, SOUND & AFTERIMAGE</div>
+ <div class="top-right"><span class="live-indicator"></span><span id="sessionLabel">LIVE GENERATIVE ART</span><span class="edition">VOL. 01 / 2026</span><button class="icon-button" id="helpButton" aria-label="작품 안내 열기" title="작품 안내">?</button></div>
+</header>
+<section class="left-info ui">
+ <div class="micro-label"><span class="tiny-cross">+</span> INTERACTIVE PERFORMANCE</div>
+ <h1>몸이 남긴<br><span>잔상.</span></h1>
+ <p class="intro">소리가 몸이 되고,<br>움직임은 빛으로 남습니다.</p>
+ <div class="chapter-label"><span id="chapterIndex">01</span><span class="chapter-line"></span><span id="chapterName">EMERGENCE</span></div>
+ <div class="chapter-description" id="chapterDescription">고요 속에서 형태가 태어납니다.</div>
+</section>
+<div class="stage-label ui"><span id="inputDot" class="status-dot"></span><span id="trackingStatus">DEMO · CHOREOGRAPHED MOTION</span></div>
+<div class="stage-index ui"><span id="frameLabel">X 0.000 / Y 0.000</span><span>BODY AS A LIVING INSTRUMENT</span></div>
+<aside class="controls ui" aria-label="퍼포먼스 조절">
+ <div class="panel-heading"><span>PERFORMANCE</span><span class="panel-number">/ 01</span></div>
+ <div class="control-label"><span>INPUT SOURCE</span><span id="inputTag">DEMO</span></div>
+ <div class="segmented input-modes" role="group" aria-label="입력 방식">
+  <button data-input="demo" aria-pressed="true" class="selected">자동</button><button data-input="pointer" aria-pressed="false">포인터</button><button data-input="camera" aria-pressed="false"><svg viewBox="0 0 20 20" width="13" height="13" fill="none"><rect x="2" y="5" width="11" height="10" rx="2" stroke="currentColor"/><path d="m13 8 5-3v10l-5-3" stroke="currentColor"/></svg>카메라</button>
+ </div>
+ <p id="inputHint" class="control-hint">안무가 생성되는 자동 퍼포먼스입니다.</p>
+ <div class="control-label separated"><span>VISUAL LANGUAGE</span><span id="visualTag">01</span></div>
+ <div class="visual-modes" role="group" aria-label="시각 표현">
+  <button data-mode="flow" class="selected" aria-pressed="true"><span>01</span><strong>Flow</strong><span class="mode-mark">↗</span></button>
+  <button data-mode="echo" aria-pressed="false"><span>02</span><strong>Echo</strong><span class="mode-mark">≋</span></button>
+  <button data-mode="field" aria-pressed="false"><span>03</span><strong>Field</strong><span class="mode-mark">⊹</span></button>
+ </div>
+ <div class="drive-control"><div class="slider-head"><label for="drive">음악 → 신체 강도</label><output id="driveValue" for="drive">165%</output></div><input id="drive" type="range" min="0" max="240" value="165" aria-label="음악에 따른 신체 움직임 강도"></div>
+ <div class="internal-control"><div class="slider-head"><label for="internal">내부 구조</label><output id="internalValue" for="internal">65%</output></div><input id="internal" type="range" min="0" max="100" value="65" aria-label="골격과 장기 표시 강도"></div>
+ <div class="slider-head"><label for="intensity">흩어짐</label><output id="intensityValue" for="intensity">45%</output></div>
+ <input id="intensity" type="range" min="0" max="100" value="45" aria-label="입자 흩어짐">
+ <div class="slider-head"><label for="trail">잔상의 길이</label><output id="trailValue" for="trail">60%</output></div>
+ <input id="trail" type="range" min="0" max="100" value="60" aria-label="잔상의 길이">
+ <div class="palette-row"><span class="micro-label">SPECTRUM</span><div role="group" aria-label="색상 팔레트"><button class="swatch selected" data-palette="mint" style="--swatch:#bfffe5" aria-label="민트" aria-pressed="true"></button><button class="swatch" data-palette="ember" style="--swatch:#ffad71" aria-label="앰버" aria-pressed="false"></button><button class="swatch" data-palette="violet" style="--swatch:#c5a6ff" aria-label="바이올렛" aria-pressed="false"></button></div></div>
+ <div class="signal-row"><span class="micro-label">AUDIO RESPONSE</span><div id="meter" aria-hidden="true"></div></div>
+ <div class="utility-row"><button id="snapshotButton" title="PNG 이미지 저장">프레임 저장 <span>↗</span></button><button id="fullscreenButton" title="전체 화면 (F)" aria-label="전체 화면">⛶</button></div>
+</aside>
+<section class="bottom-area ui" aria-label="오디오 재생">
+ <div class="title-lockup"><span class="micro-label">A MOVEMENT STUDY</span><div class="art-title">TRACE<span> / </span><span class="light-title" id="workName">Four Textures</span><sup id="workDuration">02:00</sup></div><div class="credit">FOUR FOUND SOUNDS. ONE CONTINUOUS BODY.</div></div>
+ <div class="transport">
+  <div class="music-source-row"><span id="musicFileName" title="Four Textures · 원곡">Four Textures · 원곡</span><div><button id="restoreMusic" disabled title="기존 2분 오디오로 돌아가기">원곡</button><button id="uploadMusic">음악 업로드 <span>↑</span></button></div></div>
+  <input id="musicFile" type="file" accept="audio/*,.mp3,.wav,.m4a,.ogg,.flac,.aac,.webm" hidden>
+  <p id="uploadStatus" class="upload-status" role="status">파일은 브라우저 안에서만 재생됩니다.</p>
+  <div class="transport-main"><button id="playButton" class="play-button" aria-label="오디오 재생" title="재생 / 일시정지 (Space)"><svg id="playIcon" viewBox="0 0 24 24" fill="currentColor"><path d="m8 5 11 7-11 7z"/></svg></button><div class="track-info"><span id="playLabel">퍼포먼스 시작</span><span class="track-subtitle" id="trackSubtitle">FOUR TEXTURES · ORIGINAL SOUNDTRACK</span></div><button id="loopButton" class="loop-button selected" aria-label="반복 재생 켜짐 — 끄기" aria-pressed="true"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M19 7H7a4 4 0 0 0-4 4v2m2 4h12a4 4 0 0 0 4-4v-2"/><path d="m16 4 3 3-3 3M8 14l-3 3 3 3"/></svg><span>LOOP</span></button><button id="restartButton" class="icon-button" aria-label="처음부터 재생" title="처음부터 (R)">↺</button><span class="timecode"><span id="elapsed">00:00</span><span class="duration" id="totalDuration"> / 02:00</span></span></div>
+  <div class="timeline-wrap"><div class="timeline-ticks" aria-hidden="true"><span>Ⅰ</span><span>Ⅱ</span><span>Ⅲ</span><span>Ⅳ</span></div><input id="seek" type="range" min="0" max="120" step="0.1" value="0" aria-label="오디오 재생 위치 (초)"></div>
+  <div class="transport-foot"><span id="soundStatus"><span class="mini-dot"></span> SOUND READY</span><div class="volume-control"><button id="muteButton" aria-label="음소거" title="음소거">◖))</button><input id="volume" type="range" min="0" max="100" value="75" aria-label="음량"></div></div>
+ </div>
+</section>
+<footer class="footer ui"><span>MOVE TO LEAVE A TRACE.</span><span class="keyboard-hint">SPACE 재생 <i>·</i> F 전체 화면 <i>·</i> H 인터페이스</span><button id="hideButton" aria-label="인터페이스 숨기기">몰입 모드 <span>↗</span></button></footer>
+<button id="showButton" class="show-button" aria-label="인터페이스 표시">컨트롤 표시 <span>H</span></button>
+<div id="dropOverlay" aria-hidden="true"><span>DROP YOUR SOUND</span><strong>음악을 여기에 놓으세요</strong><p>소리가 새로운 몸짓이 됩니다.</p></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<dialog id="helpDialog"><button class="dialog-close icon-button" id="closeHelp" aria-label="안내 닫기">×</button><span class="micro-label">ABOUT THE PERFORMANCE</span><h2>움직임은 사라져도,<br>흔적은 남습니다.</h2><p>TRACE는 네 개의 소리에서 시작된 2분 사운드트랙을 빛과 신체의 언어로 옮긴 작품입니다. 저음은 몸통과 다리를 밀어 올리고, 중음은 팔과 머리를 흔들며, 강한 박자는 전신에 충격과 잔상을 남깁니다. 흉부의 빛 코어도 음악에 맞춰 맥동합니다. 음악 → 신체 강도로 반응을 조절하세요.</p><p><b>음악 업로드</b>로 MP3·WAV·M4A 등 브라우저가 재생하는 음악을 선택하거나 화면에 끌어 놓으세요. 파일은 서버로 전송되지 않으며, 길이에 맞춰 타임라인이 바뀝니다. 원곡 버튼으로 기존 2분 오디오를 복원합니다.</p><dl><dt>자동</dt><dd>생성된 안무를 감상합니다. 실제 추적 데이터가 아닙니다.</dd><dt>포인터</dt><dd>화면 위에서 마우스나 손가락을 움직여 형태를 지휘합니다.</dd><dt>카메라</dt><dd>카메라를 허용하고 몸이 보이도록 뒤로 이동하세요. 33개 전신 관절을 추적합니다. 영상은 기기 안에서만 처리되며 저장하거나 전송하지 않습니다.</dd></dl><p class="help-note">카메라에는 HTTPS 또는 localhost가 필요합니다. 추적이 어려울 때는 밝은 공간에서 전신을 보여주세요. 카메라 종료는 자동·포인터 모드로 전환하면 됩니다.</p><p class="help-note">반복 재생은 기본 ON입니다. 곡이 반복되어도 몸과 잔상은 이어집니다. 내부 구조로 골격·심장·폐의 밝기를 조절하세요. 손가락 움직임은 음악 기반으로 생성됩니다.</p><div class="dialog-credits">SOUND · FOUR TEXTURES / TONE.JS<br>BODY TRACKING · MEDIAPIPE POSE LANDMARKER<br>PARTICLE FORM · MAKEHUMAN HM08 RIG / CC0<br>VISUALS · GPU SKINNING + PARTICLES ONLY<br><a href="assets/SOURCES.md" target="_blank" rel="noopener">모델·해부학 자료 및 라이선스 ↗</a></div></dialog>
+<video id="cameraVideo" playsinline muted aria-hidden="true"></video>
+<audio id="soundtrack" src="assets/four-textures.mp3" preload="metadata"></audio>
+<noscript>이 작품을 감상하려면 브라우저에서 JavaScript를 활성화해 주세요.</noscript>
+</main>
+<script type="module" src="app.js"></script>
+</body></html>
