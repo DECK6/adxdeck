@@ -3,6 +3,7 @@ import {screenRollQuaternion,palmQuaternion} from './screen-axis.mjs?v=3.4';
 import {GLTFLoader} from './vendor/three/GLTFLoader.js';
 import {rootOffsets,fingerOffsets,lensExpression} from './character-rig.mjs?v=3.4';
 import {createGarden} from './garden.mjs?v=3.6';
+import {repairHandSkin} from './hand-skin.mjs?v=3.7';
 export async function createRenderer(container,options={}){
  const renderer=new THREE.WebGLRenderer({alpha:true,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.3;container.append(renderer.domElement);
  const scene=new THREE.Scene(),camera=new THREE.OrthographicCamera();camera.position.set(0,.54,3);camera.lookAt(0,.51,0);
@@ -12,6 +13,7 @@ export async function createRenderer(container,options={}){
  const garden=createGarden();scene.add(garden.group);
  const bones=new Map(),roots=[];
  model.traverse(o=>{
+  if(o.isSkinnedMesh)repairHandSkin(o.geometry,o.skeleton);
   if(o.isBone){const world=o.getWorldQuaternion(new THREE.Quaternion());bones.set(o.name,{bone:o,rest:o.quaternion.clone(),restWorld:world.clone(),smoothed:o.quaternion.clone(),axes:['x','y','z'].map((_,i)=>new THREE.Vector3(i===0?1:0,i===1?1:0,i===2?1:0).applyQuaternion(world.clone().invert()))});}
   if(o.isMesh){o.frustumCulled=false;const positions=o.geometry.attributes.position.array,offsets=rootOffsets(positions);o.geometry.morphTargetsRelative=true;o.geometry.morphAttributes.position=[offsets.left,offsets.right,...fingerOffsets(positions)].map(a=>new THREE.Float32BufferAttribute(a,3));o.updateMorphTargets();roots.push(o);}
  });

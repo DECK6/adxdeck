@@ -1,4 +1,4 @@
-import {createCamera} from './camera.mjs?v=3.4';import {createMotion} from './motion.mjs?v=3.6';import {createRenderer} from './renderer.mjs?v=3.6';
+import {createCamera} from './camera.mjs?v=3.4';import {createMotion} from './motion.mjs?v=3.6';import {createRenderer} from './renderer.mjs?v=3.7';
 import {createHandTracking} from './hand-tracking.mjs?v=3.4';
 const $=id=>document.getElementById(id),video=$('camera'),button=$('camera-toggle'),status=$('status'),motion=createMotion(),camera=createCamera();
 let token=0,session=null,view=null,ready=false,active=false,lastStatus=0,calibrationTimer=0;
