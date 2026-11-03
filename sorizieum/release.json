@@ -1,22 +1,30 @@
 {
-  "version": "20261103-web-v1",
+  "version": "20261103-web-v2-silhouette-regions",
   "artworks": [
     "a01",
     "a02",
     "a03"
   ],
   "files": {
+    "assets/index-Bob30Jr4.js": {
+      "bytes": 586086,
+      "sha256": "9d42dc17cc34faad35565c29406e5c5ab9fe9034f292b5d84ec5bb44b373472f"
+    },
     "assets/index-DdFTROKH.js": {
       "bytes": 589986,
       "sha256": "8b26bcdd3813c251e405c90fe203b14b0e46c2f15ac5a9733abcd3de1a397e55"
+    },
+    "assets/index-DvmRRUAN.css": {
+      "bytes": 7220,
+      "sha256": "55756ac0d2b697075854d61bb75411699d9615ab26af5da5ce39205df64a525d"
     },
     "assets/index-SF-Z15t5.css": {
       "bytes": 7499,
       "sha256": "7679fb690381937886e22f36fce95eade927d3714f1ddf5b8e8916872e506a97"
     },
     "index.html": {
-      "bytes": 3609,
-      "sha256": "98946079bd8b212488b7186ddf73cfa79ebbef22695e06240733b227e1a508ce"
+      "bytes": 3574,
+      "sha256": "c747dee808d96e7d3bc4b81b30032da8d5182277b9349f83047a68e883e61b86"
     },
     "licenses/MediaPipe-LICENSE.txt": {
       "bytes": 12331,
@@ -30,9 +38,13 @@
       "bytes": 7819105,
       "sha256": "fbc2a30080c3c557093b5ddfc334698132eb341044ccee322ccf8bcf3607cde1"
     },
+    "models/selfie_segmenter_landscape.tflite": {
+      "bytes": 250177,
+      "sha256": "490e9ea734313e0de10fa0cd9e3c6133e36ea4db2b7a49bde9ef019f72796b8e"
+    },
     "vision/hand-worker.js": {
-      "bytes": 1344,
-      "sha256": "c4e2c3a58ea66069554e272dd06809e5887095f3bfbd1ca8be6b897039b10ad6"
+      "bytes": 2423,
+      "sha256": "b9974fc600e658cbf9fdff64e90ae8987b4f952c29239eab2e91392825bdaf66"
     },
     "vision/vision_bundle.js": {
       "bytes": 156370,
