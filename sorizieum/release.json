@@ -1,5 +1,5 @@
 {
-  "version": "20261103-web-v6-a03-onset",
+  "version": "20261103-web-v7-a03-idle-noise",
   "artworks": [
     "a01",
     "a02",
@@ -11,6 +11,10 @@
     "AUDIO-LICENSES.txt": {
       "bytes": 5155,
       "sha256": "ab8cbe7e8096b0a688183dfebe6d973a0c7f3c6df6e10a8aa74b974734068040"
+    },
+    "assets/index-BVELA4nR.js": {
+      "bytes": 831397,
+      "sha256": "eb6b8668442f90287466f41e8d6950a82dda355914aa8423a54dda6b23a334e1"
     },
     "assets/index-BdB5cnr4.js": {
       "bytes": 829988,
@@ -49,8 +53,8 @@
       "sha256": "59d2cd9465dc4a82c29f7293903036494f7c5fcf860c2227e3a43603e877642b"
     },
     "index.html": {
-      "bytes": 3853,
-      "sha256": "52c2bd436b2255b7ff94d821178d09d576a78f7ff26bd79022d4f49207ca3e1d"
+      "bytes": 3855,
+      "sha256": "cea84614e7717160c14a95a88b7487626efd4441a826da4d06d3d250b247e8aa"
     },
     "licenses/MediaPipe-LICENSE.txt": {
       "bytes": 12331,
@@ -70,7 +74,7 @@
     },
     "melroot/index.html": {
       "bytes": 2361,
-      "sha256": "a10c1b2cd6af56676d2d8ddc276d2382d2dea7c207821b73a00c7743dc0c5d43"
+      "sha256": "671952324f3bf519beac09e67f8e194e73aff3353fa4768509990e5861653246"
     },
     "melroot/lib/DEXA-CRT-LICENSE": {
       "bytes": 1065,
@@ -78,7 +82,7 @@
     },
     "melroot/lib/app.mjs": {
       "bytes": 8655,
-      "sha256": "9ed1efeac3458d5200bd15b1aac19ccd95c7767163fc20f1e10d5a42cf0f4717"
+      "sha256": "5879a6417b1d097415e86c87f4d1ee8359f79932ef28c87f6ccdf6433ad47845"
     },
     "melroot/lib/body-tracking.js": {
       "bytes": 12873,
@@ -108,6 +112,10 @@
       "bytes": 2849,
       "sha256": "a4860d01220a80cbe2d8dc307cde8a93755a8d010c369e0da9ee05e9c43cd861"
     },
+    "melroot/lib/hand-skin.mjs": {
+      "bytes": 1901,
+      "sha256": "2adc8bb57f2f9381e39d2dee79af3a367402f9aa597ffd6fdd826e72309c6b7f"
+    },
     "melroot/lib/hand-tracking.mjs": {
       "bytes": 1909,
       "sha256": "c324f5f396166a8f0971edf0a388e05173f63f41a1326eba0dfcbd18ce7fd75c"
@@ -121,8 +129,8 @@
       "sha256": "e4ed11a94b54a298c46f7fee99053b0f7c351768430aab127e59a623e49b7451"
     },
     "melroot/lib/renderer.mjs": {
-      "bytes": 8647,
-      "sha256": "10f1539684e1499b2764356752fb9b8651a39410129ef537a57a63034c7be6ca"
+      "bytes": 8761,
+      "sha256": "5b4d243d4aae32b1bf48ac0409735471a15c84ae3bb2e72f238fc4043b93d9d2"
     },
     "melroot/lib/screen-axis.mjs": {
       "bytes": 1023,
