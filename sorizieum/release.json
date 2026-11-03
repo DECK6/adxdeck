@@ -1,5 +1,5 @@
 {
-  "version": "20261103-web-v4-tone",
+  "version": "20261103-web-v5-a03-response",
   "artworks": [
     "a01",
     "a02",
@@ -8,9 +8,17 @@
     "melroot"
   ],
   "files": {
+    "AUDIO-LICENSES.txt": {
+      "bytes": 5155,
+      "sha256": "ab8cbe7e8096b0a688183dfebe6d973a0c7f3c6df6e10a8aa74b974734068040"
+    },
     "assets/index-Bob30Jr4.js": {
       "bytes": 586086,
       "sha256": "9d42dc17cc34faad35565c29406e5c5ab9fe9034f292b5d84ec5bb44b373472f"
+    },
+    "assets/index-DWnKn3Js.js": {
+      "bytes": 829298,
+      "sha256": "161bf1798d830606279e8d12bdb7ff2013456195f1ffeec8f6e80178c75ac840"
     },
     "assets/index-DdFTROKH.js": {
       "bytes": 589986,
@@ -37,8 +45,8 @@
       "sha256": "59d2cd9465dc4a82c29f7293903036494f7c5fcf860c2227e3a43603e877642b"
     },
     "index.html": {
-      "bytes": 3636,
-      "sha256": "8aa4df4752e9ed7fb59753b21184b796dfa7eb6389a20e84e419ffe1187eabbb"
+      "bytes": 3853,
+      "sha256": "dc4c4d2d4c4378f274c8eda67a59f4fdbe012c1e24b73e959590cd28e1eb5162"
     },
     "licenses/MediaPipe-LICENSE.txt": {
       "bytes": 12331,
@@ -57,16 +65,16 @@
       "sha256": "2fc0070b70813c172c77a6f4f0ecad2a4de04f56b902b985c087159066500218"
     },
     "melroot/index.html": {
-      "bytes": 2327,
-      "sha256": "735489a6e1d6f396a4ced61b254df68d39dea9c9cd1b4ef3092d662fd1e88b85"
+      "bytes": 2361,
+      "sha256": "a10c1b2cd6af56676d2d8ddc276d2382d2dea7c207821b73a00c7743dc0c5d43"
     },
     "melroot/lib/DEXA-CRT-LICENSE": {
       "bytes": 1065,
       "sha256": "15183bfbec774052a5817a28eb03730c40ec941a642097b597f0c50092594adb"
     },
     "melroot/lib/app.mjs": {
-      "bytes": 8646,
-      "sha256": "9cf4626e8f9672041339429d64de4f29f765fee84bccb1683e90901749a53712"
+      "bytes": 8655,
+      "sha256": "9ed1efeac3458d5200bd15b1aac19ccd95c7767163fc20f1e10d5a42cf0f4717"
     },
     "melroot/lib/body-tracking.js": {
       "bytes": 12873,
@@ -84,6 +92,14 @@
       "bytes": 10372,
       "sha256": "7b2c1f4c6e65ccefc681269ae0c9df998843b21c16f0267e0c68ec6a12b29bd0"
     },
+    "melroot/lib/garden-growth.mjs": {
+      "bytes": 2359,
+      "sha256": "da6136a9e0f7dc849646817dc493150ed7e9c9b3e1f8edcc32b8fb26e1f20a70"
+    },
+    "melroot/lib/garden.mjs": {
+      "bytes": 4169,
+      "sha256": "25553ffd64675927bb1f3497602feac49ba9411da847e19480794ac8cc3cfc8a"
+    },
     "melroot/lib/hand-features.mjs": {
       "bytes": 2849,
       "sha256": "a4860d01220a80cbe2d8dc307cde8a93755a8d010c369e0da9ee05e9c43cd861"
@@ -97,12 +113,12 @@
       "sha256": "930211f8384896a3a98ec478242bba455c573e4bb518528bf8d4f29f31f33116"
     },
     "melroot/lib/motion.mjs": {
-      "bytes": 3908,
-      "sha256": "fabde9ac506098dec106bed5dd9a7f0cf29474683c1c36ee55b9a2369ab11624"
+      "bytes": 4114,
+      "sha256": "e4ed11a94b54a298c46f7fee99053b0f7c351768430aab127e59a623e49b7451"
     },
     "melroot/lib/renderer.mjs": {
-      "bytes": 8495,
-      "sha256": "e828c3ba6e2d9a5805a4863bc64430f85160414f1bf77c862760626537ad8b65"
+      "bytes": 8647,
+      "sha256": "10f1539684e1499b2764356752fb9b8651a39410129ef537a57a63034c7be6ca"
     },
     "melroot/lib/screen-axis.mjs": {
       "bytes": 1023,
@@ -391,10 +407,6 @@
     "vision/vision_wasm_nosimd_internal.wasm": {
       "bytes": 12915401,
       "sha256": "ed5e5e5812490bd90d6a440290845ff9e4c516f696847a28a0c0e0573470d469"
-    },
-    "AUDIO-LICENSES.txt": {
-      "bytes": 5155,
-      "sha256": "ab8cbe7e8096b0a688183dfebe6d973a0c7f3c6df6e10a8aa74b974734068040"
     }
   },
   "audio_engine": "Tone.js 15.1.22"
