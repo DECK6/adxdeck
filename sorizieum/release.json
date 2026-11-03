@@ -1,5 +1,5 @@
 {
-  "version": "20261103-web-v8-a01-bright",
+  "version": "20261103-web-v9-a01-water-touch",
   "artworks": [
     "a01",
     "a02",
@@ -12,6 +12,14 @@
       "bytes": 5155,
       "sha256": "ab8cbe7e8096b0a688183dfebe6d973a0c7f3c6df6e10a8aa74b974734068040"
     },
+    "assets/guide-BKxXubOV.js": {
+      "bytes": 69077,
+      "sha256": "d55984b9afa2f24f93840bb81b9f7d77edd1bdbd904f2007a478c893af75d9c2"
+    },
+    "assets/guide-Bbtpo46G.js": {
+      "bytes": 69276,
+      "sha256": "eb0609cb1e5686ae4d0a6abfe1dec68ffbd90b684db417c6a568c3fbaf0f06dd"
+    },
     "assets/guide-DQVtDcf3.js": {
       "bytes": 68046,
       "sha256": "d0baf78d4bdaa677d2dc7336e1e472f9960136d33b8f0c3af9fd749d5252d02f"
@@ -19,6 +27,10 @@
     "assets/guide-DUX7WCxj.css": {
       "bytes": 7917,
       "sha256": "cc176de3462f12f6d48b1e2d3ce957e4a9dd33775b609839854f43f5ea74e0bc"
+    },
+    "assets/guide-DiOBq2_f.css": {
+      "bytes": 8255,
+      "sha256": "4a0927a81087f3071b083916ae203e4cb0b970dead3b5ecc126f7c7950744414"
     },
     "assets/index-BVELA4nR.js": {
       "bytes": 831397,
@@ -60,6 +72,10 @@
       "bytes": 7892,
       "sha256": "78f3a93cb4b5aab9ab27cbb2d7379a678f12211d334bf8a8f809b6cbcb4d4a33"
     },
+    "assets/index-rMjS5Xvq.js": {
+      "bytes": 834312,
+      "sha256": "6330ce64763328e5afa11f2c5e97fab39ca67e287885ba3809c4e1f963a4ac44"
+    },
     "assets/index-xX3458JX.js": {
       "bytes": 828878,
       "sha256": "59d2cd9465dc4a82c29f7293903036494f7c5fcf860c2227e3a43603e877642b"
@@ -94,7 +110,7 @@
     },
     "guide/index.html": {
       "bytes": 708,
-      "sha256": "86485ac82da6f28529c179d8e2c0052ec33a2fec9ea17a345513c9b1f7dde0cb"
+      "sha256": "c10554c817e80860633f64e5c88e57b3c9f794ef179410eedd468ea1c64ddcf9"
     },
     "guide/melroot.webp": {
       "bytes": 76848,
@@ -109,8 +125,8 @@
       "sha256": "3ea0e7c999fb4d824875be455b4faf39376962beb3446d04ede4c5ec91a59e1f"
     },
     "guide/space-poster.webp": {
-      "bytes": 29632,
-      "sha256": "7d7f96d50615a960c87a42493de357d66ad558f36d99038ad5751c10e2095f18"
+      "bytes": 92498,
+      "sha256": "52c5bd078fc2e4587f3797cba37af52b1998ba4526b7e5144bbe2d6bb04926c8"
     },
     "guide/tomorrow.webp": {
       "bytes": 78970,
@@ -122,7 +138,7 @@
     },
     "index.html": {
       "bytes": 4059,
-      "sha256": "cb01fa468aeb8131f98579ad30b838b5296347d0f286b861c3dc8cacb2917521"
+      "sha256": "87e22f4336894fece0830d251e7ee20688eec767ee6d4368d53f2a64d8364fac"
     },
     "licenses/MediaPipe-LICENSE.txt": {
       "bytes": 12331,
