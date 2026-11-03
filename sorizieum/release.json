@@ -1,5 +1,5 @@
 {
-  "version": "20261103-web-v5-a03-response",
+  "version": "20261103-web-v6-a03-onset",
   "artworks": [
     "a01",
     "a02",
@@ -11,6 +11,10 @@
     "AUDIO-LICENSES.txt": {
       "bytes": 5155,
       "sha256": "ab8cbe7e8096b0a688183dfebe6d973a0c7f3c6df6e10a8aa74b974734068040"
+    },
+    "assets/index-BdB5cnr4.js": {
+      "bytes": 829988,
+      "sha256": "472ccd82a1169dd6e2ad885d907fd02a960b536782b2cfd019eae733ddf11edc"
     },
     "assets/index-Bob30Jr4.js": {
       "bytes": 586086,
@@ -46,7 +50,7 @@
     },
     "index.html": {
       "bytes": 3853,
-      "sha256": "dc4c4d2d4c4378f274c8eda67a59f4fdbe012c1e24b73e959590cd28e1eb5162"
+      "sha256": "52c2bd436b2255b7ff94d821178d09d576a78f7ff26bd79022d4f49207ca3e1d"
     },
     "licenses/MediaPipe-LICENSE.txt": {
       "bytes": 12331,
