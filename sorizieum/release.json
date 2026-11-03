@@ -1,5 +1,5 @@
 {
-  "version": "20261103-web-v7-a03-idle-noise",
+  "version": "20261103-web-v8-a01-bright",
   "artworks": [
     "a01",
     "a02",
@@ -11,6 +11,14 @@
     "AUDIO-LICENSES.txt": {
       "bytes": 5155,
       "sha256": "ab8cbe7e8096b0a688183dfebe6d973a0c7f3c6df6e10a8aa74b974734068040"
+    },
+    "assets/guide-DQVtDcf3.js": {
+      "bytes": 68046,
+      "sha256": "d0baf78d4bdaa677d2dc7336e1e472f9960136d33b8f0c3af9fd749d5252d02f"
+    },
+    "assets/guide-DUX7WCxj.css": {
+      "bytes": 7917,
+      "sha256": "cc176de3462f12f6d48b1e2d3ce957e4a9dd33775b609839854f43f5ea74e0bc"
     },
     "assets/index-BVELA4nR.js": {
       "bytes": 831397,
@@ -27,6 +35,10 @@
     "assets/index-DWnKn3Js.js": {
       "bytes": 829298,
       "sha256": "161bf1798d830606279e8d12bdb7ff2013456195f1ffeec8f6e80178c75ac840"
+    },
+    "assets/index-DY_XLW2o.js": {
+      "bytes": 831536,
+      "sha256": "6184cf1a3ed18c9ae1079e5481941db43833bef059dbff7f6759891fd299bd23"
     },
     "assets/index-DdFTROKH.js": {
       "bytes": 589986,
@@ -52,9 +64,65 @@
       "bytes": 828878,
       "sha256": "59d2cd9465dc4a82c29f7293903036494f7c5fcf860c2227e3a43603e877642b"
     },
+    "assets/three.module-CF3RCscT.js": {
+      "bytes": 568458,
+      "sha256": "96ffa6655e586565e467e691f6c99c703b42671e2258cce0c8be5676e801bcb0"
+    },
+    "guide/a01.webp": {
+      "bytes": 55084,
+      "sha256": "25528c1dc2cbd76e11beff2864f2d346a4655d799909fdd94c8b3834f6a19f12"
+    },
+    "guide/a02.webp": {
+      "bytes": 37272,
+      "sha256": "347d4a8ed9850c30bd5e9640a3b9813f63ac34403758eded89edb3604347a4ca"
+    },
+    "guide/a03.webp": {
+      "bytes": 78912,
+      "sha256": "c8ffba975eff16df6754677bc6ee24cb56ee2d2a6a1038ce3451dc60b98a963b"
+    },
+    "guide/dream.webp": {
+      "bytes": 44652,
+      "sha256": "46d0db99b6207a1627cdc373f3edcd44759fc50fe33b3d61000acfc00eddd914"
+    },
+    "guide/earth.webp": {
+      "bytes": 69342,
+      "sha256": "daeccec7b8fe555c9fc2f40a668b0157b8bb3754ed2a31efbdabade3160afd1a"
+    },
+    "guide/highlight.webp": {
+      "bytes": 17182,
+      "sha256": "ec9f9a2e96f3b6cb41b99db5b904d5a4baa25700d0c8e23624b396e422c565c8"
+    },
+    "guide/index.html": {
+      "bytes": 708,
+      "sha256": "86485ac82da6f28529c179d8e2c0052ec33a2fec9ea17a345513c9b1f7dde0cb"
+    },
+    "guide/melroot.webp": {
+      "bytes": 76848,
+      "sha256": "34f7f96f6e4c4647620948b76f415e9974564ba10c81ecc4615dd23af3d6b27d"
+    },
+    "guide/ppyojok.webp": {
+      "bytes": 49176,
+      "sha256": "7c770dc6e43b32082d7e2fd40679aa809a4a40d395d6f1015c0bbfa9a9e67af9"
+    },
+    "guide/sorizieum-v17.glb": {
+      "bytes": 2577716,
+      "sha256": "3ea0e7c999fb4d824875be455b4faf39376962beb3446d04ede4c5ec91a59e1f"
+    },
+    "guide/space-poster.webp": {
+      "bytes": 29632,
+      "sha256": "7d7f96d50615a960c87a42493de357d66ad558f36d99038ad5751c10e2095f18"
+    },
+    "guide/tomorrow.webp": {
+      "bytes": 78970,
+      "sha256": "486f9ecadc64a3aa38b408791de0a783da42e6468d803d7f99bea7432606fce9"
+    },
+    "guide/trace.webp": {
+      "bytes": 10790,
+      "sha256": "2e9a78cfc6ca2f706fed870706ba247f244cb5ef23fe017da948aa222166696e"
+    },
     "index.html": {
-      "bytes": 3855,
-      "sha256": "cea84614e7717160c14a95a88b7487626efd4441a826da4d06d3d250b247e8aa"
+      "bytes": 4059,
+      "sha256": "cb01fa468aeb8131f98579ad30b838b5296347d0f286b861c3dc8cacb2917521"
     },
     "licenses/MediaPipe-LICENSE.txt": {
       "bytes": 12331,
