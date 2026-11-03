@@ -51,6 +51,9 @@ export function createMotion(){
     p[side+'Fingers']=Array.from({length:5},(_,i)=>clamp(number(hands[side].curls?.[i]),0,1)*h);
     if(h>0)p.handsTracked=true;
    }
+   // Environment growth must ignore the ease back to rest after tracking loss.
+   p.bodyFresh=p.bodyTracked&&b===1;
+   for(const side of ['left','right'])p[side+'HandFresh']=!!hands?.[side]?.valid&&h===1;
    p.tracked=p.faceTracked||p.bodyTracked||p.handsTracked;return p;
   }
  };

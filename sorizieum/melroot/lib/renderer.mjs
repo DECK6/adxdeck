@@ -2,12 +2,14 @@ import * as THREE from 'three';
 import {screenRollQuaternion,palmQuaternion} from './screen-axis.mjs?v=3.4';
 import {GLTFLoader} from './vendor/three/GLTFLoader.js';
 import {rootOffsets,fingerOffsets,lensExpression} from './character-rig.mjs?v=3.4';
+import {createGarden} from './garden.mjs?v=3.6';
 export async function createRenderer(container,options={}){
  const renderer=new THREE.WebGLRenderer({alpha:true,antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.3;container.append(renderer.domElement);
  const scene=new THREE.Scene(),camera=new THREE.OrthographicCamera();camera.position.set(0,.54,3);camera.lookAt(0,.51,0);
  scene.add(new THREE.HemisphereLight(0xfff8e6,0x78735e,2.2));
  for(const [color,intensity,pos] of [[0xffedd2,3,[-2,3,4]],[0xedf5ff,1.3,[3,1,2]],[0xffffff,1.5,[0,2,-3]]]){const l=new THREE.DirectionalLight(color,intensity);l.position.set(...pos);scene.add(l);}
  const gltf=await new GLTFLoader().loadAsync(options.modelUrl||'assets/melroot-optimized-v3.glb?v=3.4');const model=gltf.scene;scene.add(model);model.updateMatrixWorld(true);
+ const garden=createGarden();scene.add(garden.group);
  const bones=new Map(),roots=[];
  model.traverse(o=>{
   if(o.isBone){const world=o.getWorldQuaternion(new THREE.Quaternion());bones.set(o.name,{bone:o,rest:o.quaternion.clone(),restWorld:world.clone(),smoothed:o.quaternion.clone(),axes:['x','y','z'].map((_,i)=>new THREE.Vector3(i===0?1:0,i===1?1:0,i===2?1:0).applyQuaternion(world.clone().invert()))});}
@@ -60,8 +62,8 @@ export async function createRenderer(container,options={}){
    for(const m of roots){m.morphTargetInfluences[0]=Math.min(1,current.leftLift+current.leftKnee*.35);m.morphTargetInfluences[1]=Math.min(1,current.rightLift+current.rightKnee*.35);for(let i=0;i<5;i++){m.morphTargetInfluences[2+i]=fingers.left[i];m.morphTargetInfluences[7+i]=fingers.right[i];}}
    model.position.set(current.rootX,current.float-current.crouch*.045,0);model.scale.y=1-current.crouch*.07;shadow.position.x=current.rootX;
    const expression=lensExpression(current);for(const k of Object.keys(expression))lensMaterial.uniforms[k].value=expression[k];
-   renderer.render(scene,camera);rendered++;
+   garden.update(p,now);renderer.render(scene,camera);rendered++;
   },
-  diagnostics(){return {renderedFrames:rendered,boneNames:[...bones.keys()],triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,averageFps:rendered/((performance.now()-start)/1000),canvas:{width:renderer.domElement.width,height:renderer.domElement.height},mode,armQuaternions:Object.fromEntries(chains.flatMap(([,u,f])=>[u,f]).map(n=>[n,bones.get(n)?.bone.quaternion.toArray()])),motion:{...current},fingers:{left:[...fingers.left],right:[...fingers.right]},expression:lensExpression(current),rootMorphs:roots.map(m=>[...m.morphTargetInfluences]),modelLoaded:true};}
+  diagnostics(){return {renderedFrames:rendered,boneNames:[...bones.keys()],triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls,averageFps:rendered/((performance.now()-start)/1000),canvas:{width:renderer.domElement.width,height:renderer.domElement.height},mode,armQuaternions:Object.fromEntries(chains.flatMap(([,u,f])=>[u,f]).map(n=>[n,bones.get(n)?.bone.quaternion.toArray()])),motion:{...current},fingers:{left:[...fingers.left],right:[...fingers.right]},expression:lensExpression(current),rootMorphs:roots.map(m=>[...m.morphTargetInfluences]),modelLoaded:true,garden:garden.diagnostics()};}
  };
 }

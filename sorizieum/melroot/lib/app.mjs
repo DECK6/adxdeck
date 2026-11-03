@@ -1,10 +1,10 @@
-import {createCamera} from './camera.mjs?v=3.4';import {createMotion} from './motion.mjs?v=3.4';import {createRenderer} from './renderer.mjs?v=3.4';
+import {createCamera} from './camera.mjs?v=3.4';import {createMotion} from './motion.mjs?v=3.6';import {createRenderer} from './renderer.mjs?v=3.6';
 import {createHandTracking} from './hand-tracking.mjs?v=3.4';
 const $=id=>document.getElementById(id),video=$('camera'),button=$('camera-toggle'),status=$('status'),motion=createMotion(),camera=createCamera();
 let token=0,session=null,view=null,ready=false,active=false,lastStatus=0,calibrationTimer=0;
 function say(s){status.textContent=s;}
 function modeInstruction(){return motion.mode==='full'?'머리부터 발끝까지 보이도록 한 걸음 물러서 주세요.':'얼굴과 양팔이 화면에 보이도록 서 주세요.';}
-function setMode(mode){motion.setMode(mode);view?.setMode(mode);$('mode-upper').setAttribute('aria-pressed',String(mode==='upper'));$('mode-full').setAttribute('aria-pressed',String(mode==='full'));$('camera-panel').dataset.mode=mode;$('instruction').innerHTML=mode==='full'?'머리부터 발끝까지 보이도록 서 주세요.<br>몸을 낮추고, 한쪽 발을 들어 보세요.':'얼굴과 양팔이 보이도록 서 주세요.<br>눈을 깜박이고, 웃고, 입을 열어 보세요.';say(modeInstruction());}
+function setMode(mode){motion.setMode(mode);view?.setMode(mode);$('mode-upper').setAttribute('aria-pressed',String(mode==='upper'));$('mode-full').setAttribute('aria-pressed',String(mode==='full'));$('camera-panel').dataset.mode=mode;$('instruction').innerHTML=mode==='full'?'머리부터 발끝까지 보이도록 서 주세요.<br>온몸을 움직여 작은 숲을 키워 보세요.':'얼굴과 양팔이 보이도록 서 주세요.<br>몸과 손을 움직이면 주변에 식물이 자라나요.';say(modeInstruction());}
 $('mode-upper').addEventListener('click',()=>setMode('upper'));$('mode-full').addEventListener('click',()=>setMode('full'));
 function closeFace(s){if(!s||s.closing)return;s.closing=true;Promise.resolve(s.pending).catch(()=>{}).then(()=>s.face?.close()).catch(()=>{});}
 function stop(message='카메라가 꺼져 있습니다. 편하게 감상해 주세요.'){
