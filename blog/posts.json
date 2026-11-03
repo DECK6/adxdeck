@@ -1,5 +1,25 @@
 [
   {
+    "slug": "a-causal-graph-makes-ai-adoption-assumptions-visible",
+    "file": "_built/a-causal-graph-makes-ai-adoption-assumptions-visible.md",
+    "title": "AI 도입 효과를 묻기 전에 인과 그래프에 적어야 할 가정",
+    "description": "AI를 도입한 팀이 더 빨랐다는 관찰만으로 도입 효과를 알 수는 없다. DoWhy의 그래프 가정, 효과 식별, 추정, 반증 검사를 구분해 업무 평가를 설계한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "AX",
+      "causal-inference",
+      "knowledge-graph",
+      "work-design"
+    ],
+    "date": "2026-11-03",
+    "modified": "2026-11-03",
+    "thumbnail": "images/a-causal-graph-makes-ai-adoption-assumptions-visible-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "park-chan-kyong-and-disaster-between-images",
     "file": "_built/park-chan-kyong-and-disaster-between-images.md",
     "title": "박찬경의 이미지 사이에 남은 재난",
