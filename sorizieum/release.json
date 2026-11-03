@@ -1,5 +1,5 @@
 {
-  "version": "20261103-web-v3-students",
+  "version": "20261103-web-v4-tone",
   "artworks": [
     "a01",
     "a02",
@@ -32,9 +32,13 @@
       "bytes": 7892,
       "sha256": "78f3a93cb4b5aab9ab27cbb2d7379a678f12211d334bf8a8f809b6cbcb4d4a33"
     },
+    "assets/index-xX3458JX.js": {
+      "bytes": 828878,
+      "sha256": "59d2cd9465dc4a82c29f7293903036494f7c5fcf860c2227e3a43603e877642b"
+    },
     "index.html": {
       "bytes": 3636,
-      "sha256": "18da7ebdc9abad3681f0f44c9d226c04ce032483556db29d770b530f04f116e0"
+      "sha256": "8aa4df4752e9ed7fb59753b21184b796dfa7eb6389a20e84e419ffe1187eabbb"
     },
     "licenses/MediaPipe-LICENSE.txt": {
       "bytes": 12331,
@@ -387,6 +391,11 @@
     "vision/vision_wasm_nosimd_internal.wasm": {
       "bytes": 12915401,
       "sha256": "ed5e5e5812490bd90d6a440290845ff9e4c516f696847a28a0c0e0573470d469"
+    },
+    "AUDIO-LICENSES.txt": {
+      "bytes": 5155,
+      "sha256": "ab8cbe7e8096b0a688183dfebe6d973a0c7f3c6df6e10a8aa74b974734068040"
     }
-  }
+  },
+  "audio_engine": "Tone.js 15.1.22"
 }
