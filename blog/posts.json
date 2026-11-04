@@ -29,6 +29,26 @@
     ]
   },
   {
+    "slug": "where-ai-automation-retries-should-begin",
+    "file": "_built/where-ai-automation-retries-should-begin.md",
+    "title": "AI 자동화는 실패한 단계부터 다시 시작할 수 있는가",
+    "description": "자료 조회·공지 게시·결과 저장을 한 실행 단위로 묶으면 마지막 단계의 실패가 앞선 게시까지 반복시킬 수 있다. Temporal의 Activity 경계와 완료 기록을 통해 AI 자동화의 재시도 범위를 설계한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "automation",
+      "agents",
+      "workflow",
+      "reliability"
+    ],
+    "date": "2026-11-04",
+    "modified": "2026-11-04",
+    "thumbnail": "images/retrying-ai-work-needs-a-stable-operation-identity-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "a-causal-graph-makes-ai-adoption-assumptions-visible",
     "file": "_built/a-causal-graph-makes-ai-adoption-assumptions-visible.md",
     "title": "AI 도입 효과를 묻기 전에 인과 그래프에 적어야 할 가정",
