@@ -29,6 +29,26 @@
     ]
   },
   {
+    "slug": "the-same-seed-is-only-one-part-of-reproducibility",
+    "file": "_built/the-same-seed-is-only-one-part-of-reproducibility.md",
+    "title": "같은 시드로도 AI 결과가 달라지는 이유",
+    "description": "시드를 고정해도 모델 실행의 모든 조건이 같아지는 것은 아니다. PyTorch의 난수 상태와 결정적 알고리즘, 수치 계산의 경계를 살피고 팀에서 AI 결과를 비교하고 인수하는 기준을 정한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "AX",
+      "reproducibility",
+      "PyTorch",
+      "evaluation"
+    ],
+    "date": "2026-11-05",
+    "modified": "2026-11-05",
+    "thumbnail": "images/the-same-seed-is-only-one-part-of-reproducibility-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "making-a-seamless-generative-loop-with-ai",
     "file": "_built/making-a-seamless-generative-loop-with-ai.md",
     "title": "AI와 함께 만드는 끊김 없는 제너러티브 루프",
