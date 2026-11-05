@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI와 만드는 명암 하프톤, 밝기를 점의 면적으로 옮기기 | DEXA Blog</title>
+    <meta name="description" content="AI에게 명암 변환 규칙을 전달하고 p5.js로 하프톤 화면을 만든다. 실제 실행한 코드로 점의 지름과 면적의 차이, 격자 크기와 감마가 작품의 질감을 바꾸는 과정을 살핀다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/making-area-based-halftones-with-ai/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="AI와 만드는 명암 하프톤, 밝기를 점의 면적으로 옮기기" />
+    <meta property="og:description" content="AI에게 명암 변환 규칙을 전달하고 p5.js로 하프톤 화면을 만든다. 실제 실행한 코드로 점의 지름과 면적의 차이, 격자 크기와 감마가 작품의 질감을 바꾸는 과정을 살핀다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/making-area-based-halftones-with-ai/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/halftone-area-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-11-06" />
+    <meta property="article:modified_time" content="2026-11-06" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="generative-art" />
+    <meta property="article:tag" content="creative-coding" />
+    <meta property="article:tag" content="p5js" />
+    <meta property="article:tag" content="AI" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI와 만드는 명암 하프톤, 밝기를 점의 면적으로 옮기기" />
+    <meta name="twitter:description" content="AI에게 명암 변환 규칙을 전달하고 p5.js로 하프톤 화면을 만든다. 실제 실행한 코드로 점의 지름과 면적의 차이, 격자 크기와 감마가 작품의 질감을 바꾸는 과정을 살핀다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/halftone-area-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"AI와 만드는 명암 하프톤, 밝기를 점의 면적으로 옮기기","description":"AI에게 명암 변환 규칙을 전달하고 p5.js로 하프톤 화면을 만든다. 실제 실행한 코드로 점의 지름과 면적의 차이, 격자 크기와 감마가 작품의 질감을 바꾸는 과정을 살핀다.","image":"https://dexa.art/blog/images/halftone-area-cover.png","datePublished":"2026-11-06","dateModified":"2026-11-06","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/making-area-based-halftones-with-ai/"},"articleSection":"Media Art","keywords":"media-art, generative-art, creative-coding, p5js, AI"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">Media Art</span>
+                    <span class="dx-date">Article · 2026.11.06</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>AI와 만드는 명암 하프톤, 밝기를 점의 면적으로 옮기기</h1>
+                <p style="color:var(--muted);font-size:17px;">AI에게 명암 변환 규칙을 전달하고 p5.js로 하프톤 화면을 만든다. 실제 실행한 코드로 점의 지름과 면적의 차이, 격자 크기와 감마가 작품의 질감을 바꾸는 과정을 살핀다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">media-art</span><span class="dx-tag-chip">generative-art</span><span class="dx-tag-chip">creative-coding</span><span class="dx-tag-chip">p5js</span><span class="dx-tag-chip">AI</span></div>
+<p><img src="/blog/images/halftone-area-cover.png" alt="연속적인 명암이 크기가 다른 원형 점으로 바뀌는 모습을 표현한 개념 표지" loading="lazy"></p>
+<p>위 표지는 생성형 AI로 만든 개념 이미지다. 본문에 실은 흑백 비교 화면은 아래 코드를 실제 실행한 결과다.</p>
+<p>부드러운 회색 이미지를 검은 점만으로 다시 그려 보자. 멀리서는 밝고 어두운 덩어리가 보이고, 가까이에서는 같은 간격으로 놓인 원들이 드러난다. 이번 제작의 목표는 이 두 가지 읽기가 함께 가능한 하프톤 화면이다. 원의 위치는 고정하고, 원이 차지하는 면적만 원본의 명암에 따라 바꾼다.</p>
+<p>AI는 명암을 숫자로 읽는 코드와 변환 규칙을 작성하는 데 활용한다. 그림을 그릴 때마다 이미지 생성 모델을 호출하지는 않는다. 코드가 만든 회색 참조 이미지를 p5.js가 규칙에 따라 점으로 바꾼다. 생성형 AI의 코드 작성 보조와 알고리즘 기반 제너러티브 아트가 만나는 작은 제작 과정이다.</p>
+<p>외부 사진 없이 시작하면 비교가 쉬워진다. 원본의 세부 묘사나 이미지 파일을 불러오는 문제를 잠시 덜어 내면, 밝기와 점 크기의 관계를 바로 비교할 수 있다. 먼저 명암 고리가 있는 참조 화면을 만들고, 같은 모양을 점으로 옮긴 뒤 변수를 조정한다.</p>
+<h2>어두운 정도를 지름에 바로 곱하면 생기는 일</h2>
+<p>한 칸의 원을 두 배로 크게 만든다고 할 때, 지름과 면적은 같은 비율로 늘어나지 않는다. 원의 면적은 반지름의 제곱에 비례한다. 지름이 절반인 원은 최대 크기 원의 면적 중 4분의 1만 차지한다. 어두운 정도가 절반이라는 이유로 지름도 절반으로 줄이면, 중간 명암에서 검은 면적이 예상보다 적어진다.</p>
+<p>그래서 이 예제는 원의 면적이 어두운 정도에 비례하도록 만든다. 회색값은 0을 검정, 255를 흰색으로 둔다. <code>darkness = 1 - gray / 255</code>로 변환하면 검정은 1, 흰색은 0이 된다. 한 칸의 크기를 <code>cell</code>이라고 할 때 지름은 <code>cell * Math.sqrt(darkness)</code>다. 제곱근을 사용하므로 지름을 제곱해 얻는 상대 면적이 다시 어두운 정도와 대응한다.</p>
+<p>여기서 비례의 기준은 한 칸에 들어갈 수 있는 가장 큰 원이다. 원의 지름을 칸의 한 변 이하로 제한하면, 가장 큰 원도 정사각형 전체를 채우지는 못한다. 최대 검은 면적은 한 칸의 약 78.5%다. 따라서 가장 어두운 영역에도 작은 흰 틈이 남는다. 이 코드는 원본의 밝기를 물리적으로 정확히 복제하는 인쇄 보정기가 아니다. 점이 서로 겹치지 않는 명암 패턴을 만드는 규칙이다.</p>
+<p>이 차이는 화면에서도 확인할 수 있다. 원본의 검은 고리는 오른쪽에서 검은 원들의 고리로 바뀌고, 그 사이에 흰 공간이 보인다. 그 여백을 지울지 남길지는 작품의 선택이다. 지름을 무작정 키워 원들을 겹치게 하면 더 어두워질 수 있지만, 겹친 면적 때문에 앞서 정한 비례 관계는 더 이상 그대로 유지되지 않는다.</p>
+<h2>AI에게 요청할 것은 그림보다 변환 조건이다</h2>
+<p><a href="https://p5js.org/download/">p5.js 공식 다운로드 페이지</a>가 안내하는 2.3.3으로 예제를 실행했다. 같은 버전의 <a href="https://editor.p5js.org/?version=2.3.3">p5.js 웹 에디터</a>에서 <code>sketch.js</code>를 아래 코드로 바꾸고 실행하면 된다. 별도 이미지 파일과 API 키는 필요하지 않다.</p>
+<p>코드를 함께 발전시킬 AI에게는 다음처럼 요청할 수 있다. 이는 특정 모델의 답변을 그대로 재현한 기록이 아니라, 제작 조건을 전달하기 위한 프롬프트 예시다.</p>
+<pre><code class="language-text">p5.js 2.3.3으로 960×540 크기의 흑백 비교 화면을 만들어 줘.
+왼쪽 480×540에는 부드러운 명암 고리를 직접 생성해 줘.
+오른쪽에는 각 정사각형 칸의 중심 밝기를 읽어 검은 원을 그려 줘.
+점의 면적이 어두운 정도에 비례하도록 지름에 제곱근을 사용해 줘.
+최대 지름은 칸 크기와 같게 하고 테두리 선은 없애 줘.
+변수는 cell과 gamma로 모으고, gamma는 0보다 큰 값으로 써 줘.
+사진 로딩이나 이미지 생성 API는 추가하지 마.
+원이 정사각형을 완전히 채우지 못한다는 한계도 설명해 줘.</code></pre>
+<p>이 요청에는 화면 크기와 변환 규칙, 바꿀 변수와 유지할 제한을 함께 담았다. AI가 지름에 어두운 정도를 그대로 곱했다면 제곱근이 빠진 부분을 확인하면 된다. 원이 예상보다 커졌다면 반지름과 지름을 혼동했는지 살핀다. <a href="https://p5js.org/reference/p5/circle/">공식 <code>circle()</code> 문서</a>에서 세 번째 인수는 지름이다.</p>
+<p>AI에게 코드를 수정하게 할 때는 먼저 현재 결과와 바꿀 조건 하나를 전달한다. &quot;점이 너무 작아 보인다&quot;는 관찰에 칸 크기와 감마를 동시에 바꾸면 어느 수정의 효과인지 알기 어렵다. 원본과 격자를 유지한 채 감마만 비교하고, 다음에 격자 크기를 비교하는 순서가 판단하기 쉽다.</p>
+<h2>회색 참조 이미지와 점 화면을 나란히 그린다</h2>
+<p>아래 코드의 <code>tone</code>은 화면과 별도로 만든 그래픽 버퍼다. <a href="https://p5js.org/reference/p5/createGraphics/">공식 <code>createGraphics()</code> 문서</a>가 설명하는 이 버퍼에 원본 명암을 한 번 저장한 뒤, 왼쪽에는 이미지로 표시하고 오른쪽에는 점 크기를 정하는 자료로 사용한다.</p>
+<pre><code class="language-javascript">const cfg = { cell: 20, gamma: 1 };
+let tone;
+
+function setup() {
+  createCanvas(960, 540);
+  pixelDensity(1);
+  tone = createGraphics(480, 540);
+  tone.pixelDensity(1);
+  tone.loadPixels();
+  for (let y = 0; y &lt; tone.height; y++) {
+    for (let x = 0; x &lt; tone.width; x++) {
+      const distance = Math.hypot(x - 240, y - 270);
+      const gray = Math.round(255 * (0.5 + 0.5 * Math.cos(distance * 0.025)));
+      const i = 4 * (y * tone.width + x);
+      tone.pixels[i] = gray;
+      tone.pixels[i + 1] = gray;
+      tone.pixels[i + 2] = gray;
+      tone.pixels[i + 3] = 255;
+    }
+  }
+  tone.updatePixels();
+  noLoop();
+}
+
+function draw() {
+  background(255);
+  image(tone, 0, 0);
+  noStroke();
+  fill(0);
+  for (let y = cfg.cell / 2; y &lt; 540; y += cfg.cell) {
+    for (let x = cfg.cell / 2; x &lt; 480; x += cfg.cell) {
+      const i = 4 * (Math.floor(y) * tone.width + Math.floor(x));
+      const darkness = 1 - tone.pixels[i] / 255;
+      const ink = Math.pow(darkness, cfg.gamma);
+      const diameter = cfg.cell * Math.sqrt(ink);
+      circle(480 + x, y, diameter);
+    }
+  }
+}</code></pre>
+<p><img src="/blog/images/halftone-area-frame.png" alt="왼쪽의 연속 명암 고리와 오른쪽의 원형 점 하프톤을 비교한 실제 p5.js 실행 화면" loading="lazy"></p>
+<p>기본 설정은 <code>cell: 20</code>, <code>gamma: 1</code>이다. 오른쪽 480×540 영역에 가로 24칸, 세로 27칸이 생겨 총 648개 위치에 원을 그린다. 흰 영역의 원은 지름이 0이므로 보이지 않을 수 있다. 위 화면은 이 설정을 실제로 실행해 얻었다.</p>
+<p>원본을 만드는 <code>setup()</code>에서는 중심에서의 거리를 코사인 함수에 넣어 밝고 어두운 고리를 만든다. 이 명암은 사진의 조명을 분석한 값이 아니라, 코드로 만든 참조 무늬다. <code>draw()</code>는 각 칸의 중심에서 회색값을 한 개 읽는다. 칸 전체의 평균 밝기를 계산하는 방식은 아니다. 원본에 아주 가는 선이 있으면 중심 표본 사이에서 놓칠 수 있다.</p>
+<p><a href="https://p5js.org/reference/p5/pixels/">p5.js의 <code>pixels</code> 문서</a>에 따르면 픽셀 배열은 빨강, 초록, 파랑, 알파 값을 순서대로 담는다. 이 예제는 세 색상 값을 같게 써 회색을 만들고 알파를 255로 고정한다. 따라서 오른쪽에서는 빨강 값 하나만 읽어도 같은 회색값을 얻는다. 이 코드를 컬러 사진에 그대로 적용하면 빨강 채널만 읽게 된다. 컬러 재료를 쓰려면 먼저 어떤 명도 변환을 할지 따로 정해야 한다.</p>
+<p>캔버스와 버퍼의 픽셀 밀도는 모두 1로 맞췄다. <a href="https://p5js.org/reference/p5/pixelDensity/">공식 <code>pixelDensity()</code> 문서</a>에서 설명하는 밀도 차이가 배열 인덱스에 영향을 주기 때문이다. 배열을 읽기 전에 <code>loadPixels()</code>를 호출하고, 값을 쓴 뒤에는 <code>updatePixels()</code>로 버퍼에 반영한다. 이 순서를 빼면 배열과 표시된 그림이 서로 다른 상태일 수 있다.</p>
+<p>실행 검증에서는 같은 설정의 원 좌표와 지름이 다시 그려도 같은지 확인했다. 모든 원이 자기 영역 안에 있고 지름이 칸 크기를 넘지 않는지도 검사했다. 입력을 검정, 회색값 128, 흰색으로 각각 바꿨을 때 지름은 20, 약 14.11, 0이었다. 원 면적의 비율도 입력의 어두운 정도와 대응했다. 확인 범위는 p5.js 2.3.3과 이번 데스크톱 브라우저 실행이며, 다른 기기의 가장자리 픽셀까지 같다고 검증한 것은 아니다.</p>
+<h2>점의 개수와 감마로 보는 거리를 바꾼다</h2>
+<p>첫 비교에서는 <code>cell</code>을 20에서 10으로 바꾸고 다시 실행한다. 실제 실행에서 원의 위치가 648개에서 2,592개로 늘었다. 칸의 가로와 세로가 각각 절반이 되므로 위치의 수는 네 배가 된다. 작은 점은 멀리서 명암 덩어리로 합쳐지기 쉽고, 큰 점은 가까이에서 개별 도형으로 읽힌다. 같은 고리를 보여 주더라도 관객이 무엇을 먼저 알아차리는지가 달라진다.</p>
+<p>이 비교에 사용한 10과 20은 원본의 가로 480, 세로 540을 모두 나누어떨어지게 한다. 다른 크기도 쓸 수 있지만, 화면 끝의 칸이 잘리거나 빈 띠가 남을 수 있다. 입력 크기와 칸 크기를 함께 정하는 이유다. 점을 촘촘하게 하는 것이 언제나 원본에 충실한 결과를 보장하지는 않는다. 이 예제처럼 한 점만 읽는 방식에서는 원본의 세부 크기와 표본 위치도 영향을 준다.</p>
+<p>다음에는 <code>cell</code>을 20으로 되돌리고 <code>gamma</code>만 2로 바꾼다. 코드에서 어두운 정도는 제곱된 뒤 면적으로 옮겨진다. 0과 1 사이의 값은 제곱하면 작아지므로 중간 명암의 점들이 줄어든다. 실제 실행에서도 원래보다 커진 점 없이 중간값의 점들이 작아지는 것을 확인했다. 여기서 감마는 작품의 점 크기 분포를 조절하는 지수다. 디스플레이의 색 관리나 출력 장치의 감마 보정을 수행한다는 뜻은 아니다.</p>
+<p>어두운 고리를 가볍게 보이게 하고 싶다면 감마를 높인 화면을 비교해 볼 수 있다. 반대로 0과 1 사이의 감마는 중간 명암의 검은 면적을 늘리는 방향이다. 후자는 수식에 따른 예상이며 이 글의 실행 비교는 1과 2를 사용했다. 검정과 흰색의 양 끝을 유지하면서 중간 부분만 조절할 수 있다는 점이 이 변수의 역할이다.</p>
+<p>다음 재료로 AI가 만든 이미지를 쓰는 것도 가능하다. 다만 이 글에서는 생성 이미지의 파일 로딩과 컬러 변환을 실행하지 않았다. 확장할 때는 재료의 구도를 먼저 고정하고, 흑백 변환과 크기 맞춤을 거친 뒤 같은 표본 규칙을 적용하는 순서가 좋다. 프롬프트를 다시 바꿔 원본까지 달라지면, 점의 규칙을 고친 효과와 재료가 바뀐 효과가 섞인다.</p>
+<p>이 화면을 작품으로 고를 때는 원본과 얼마나 닮았는지에 더해 점이 언제 보이는지를 살펴보자. 모니터에서 작게 축소해 본 결과와 크게 띄운 결과를 비교하면 그 차이가 드러난다. 인쇄나 전시장 투사는 이번 검증에 포함하지 않았다. 실제 출력에서는 원의 크기와 흰 틈이 관람 거리에서 어떻게 읽히는지 다시 확인해야 한다. AI가 제안한 변형 중 무엇을 남길지는 그 화면을 볼 사람과 거리를 기준으로 결정할 수 있다.</p>
+            </div>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/making-truchet-tile-patterns-with-ai/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>AI와 만드는 트뤼셰 타일 제너러티브 패턴</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>
