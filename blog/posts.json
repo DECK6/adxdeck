@@ -1,5 +1,24 @@
 [
   {
+    "slug": "data-drift-is-a-signal-not-a-performance-verdict",
+    "file": "_built/data-drift-is-a-signal-not-a-performance-verdict.md",
+    "title": "데이터가 달라졌다고 AI 성능이 떨어진 것은 아니다",
+    "description": "데이터 드리프트 경고는 입력 분포의 변화를 알려 주지만 성능 저하를 직접 입증하지는 않는다. Evidently의 공식 문서를 바탕으로 비교 집합, 결측값, 정답 확인의 경계를 살피고 경고 이후의 업무 판단을 설계한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "AX",
+      "data-drift",
+      "evaluation"
+    ],
+    "date": "2026-11-06",
+    "modified": "2026-11-06",
+    "thumbnail": "images/data-drift-is-a-signal-not-a-performance-verdict-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "making-area-based-halftones-with-ai",
     "file": "_built/making-area-based-halftones-with-ai.md",
     "title": "AI와 만드는 명암 하프톤, 밝기를 점의 면적으로 옮기기",
