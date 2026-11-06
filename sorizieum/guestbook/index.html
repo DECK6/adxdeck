@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f5f2e9">
+  <meta name="description" content="문화예술로 방명록 · 소리지음에서 함께한 순간을 남겨주세요.">
+  <title>문화예술로 방명록 · 소리지음</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./config.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <main class="kiosk" aria-labelledby="page-title">
+    <header class="topline"><span class="exhibition"><i aria-hidden="true"></i> 소리를 보다, 마음을 잇다</span><time id="today"></time></header>
+    <section class="intro">
+      <p class="eyebrow">A MOMENT TO REMEMBER</p>
+      <h1 id="page-title">문화예술로<br><span>방명록</span><span class="title-dot" aria-hidden="true">.</span></h1>
+      <p class="welcome">오늘, 이곳에서 만난 우리.<br>함께한 순간을 남겨주세요.</p>
+      <svg class="resonance" viewBox="0 0 180 200" fill="none" aria-hidden="true"><path d="M88 15C88 58 156 40 156 92s-68 34-68 80" stroke="#b4bb9b" stroke-width="1"/><path d="M77 15c0 43 68 25 68 77s-68 34-68 80M66 15c0 43 68 25 68 77s-68 34-68 80M55 15c0 43 68 25 68 77s-68 34-68 80M44 15c0 43 68 25 68 77s-68 34-68 80M33 15c0 43 68 25 68 77s-68 34-68 80M22 15c0 43 68 25 68 77s-68 34-68 80" stroke="#b4bb9b" stroke-width="1"/><circle cx="134" cy="152" r="21" fill="#cc6c48"/><path d="M112 152h44M134 130v44" stroke="#f5f2e9" stroke-width=".7"/></svg>
+    </section>
+    <form id="guestbook" novalidate>
+      <fieldset>
+        <legend><span class="step">01</span> 성별을 선택해주세요 <span class="required">필수</span></legend>
+        <div class="choices two">
+          <label class="choice"><input type="radio" name="gender" value="남" required><span>남성 <b aria-hidden="true">↗</b></span></label>
+          <label class="choice"><input type="radio" name="gender" value="여" required><span>여성 <b aria-hidden="true">↗</b></span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend><span class="step">02</span> 연령대를 선택해주세요 <span class="required">필수</span></legend>
+        <div class="choices three">
+          <label class="choice"><input type="radio" name="ageGroup" value="유아" required><span>유아<small>미취학</small></span></label>
+          <label class="choice"><input type="radio" name="ageGroup" value="초등" required><span>초등<small>초등학생</small></span></label>
+          <label class="choice"><input type="radio" name="ageGroup" value="중등" required><span>중등<small>중학생</small></span></label>
+          <label class="choice"><input type="radio" name="ageGroup" value="고등" required><span>고등<small>고등학생</small></span></label>
+          <label class="choice"><input type="radio" name="ageGroup" value="대학" required><span>대학<small>대학생</small></span></label>
+          <label class="choice"><input type="radio" name="ageGroup" value="성인" required><span>성인<small>일반</small></span></label>
+        </div>
+      </fieldset>
+      <fieldset class="consent-field">
+        <legend><span class="step">03</span> 초상권 및 개인정보 사용 동의</legend>
+        <button class="details-button" id="open-consent" type="button">동의 내용을 확인해주세요 <span aria-hidden="true">＋</span></button>
+        <div class="choices two consent-choices">
+          <label class="choice"><input type="radio" name="consent" value="동의" required><span><i class="radio-dot" aria-hidden="true"></i> 동의합니다</span></label>
+          <label class="choice"><input type="radio" name="consent" value="비동의" required><span><i class="radio-dot" aria-hidden="true"></i> 동의하지 않습니다</span></label>
+        </div>
+        <p class="consent-note">동의하지 않으셔도 방문 기록을 남길 수 있습니다.</p>
+      </fieldset>
+      <button class="submit" id="submit" type="submit"><span>방문 기록 남기기</span><span aria-hidden="true">↗</span></button>
+      <p class="form-status" id="form-status" role="status" aria-live="polite">세 가지 항목을 선택하면 기록할 수 있어요.</p>
+    </form>
+    <footer class="footer"><div class="wordmark">SORIZIEUM<span>시립청소년음악센터 소리지음</span></div><div class="footer-right">당신의 발걸음이<br>문화예술의 길이 됩니다.</div></footer>
+    <section class="success" id="success" aria-labelledby="success-title" hidden>
+      <span class="success-mark" aria-hidden="true">✓</span><p class="eyebrow">THANK YOU FOR BEING HERE</p><h2 id="success-title" tabindex="-1">함께해 주셔서<br>감사합니다<span>.</span></h2><p>오늘의 만남이 기록되었습니다.<br>소리지음에서 좋은 시간 보내세요.</p><button id="next-guest" type="button">다음 방문객 <span aria-hidden="true">↗</span></button><p class="countdown"><span id="countdown">6</span>초 후 처음 화면으로 돌아갑니다.</p>
+    </section>
+    <dialog id="consent-dialog" aria-labelledby="consent-title"><div class="dialog-content"><p class="eyebrow">BEFORE YOU LEAVE YOUR MARK</p><h2 id="consent-title">초상권 및<br>개인정보 사용 안내</h2><p>문화예술로 방문 현황을 기록하기 위해 성별, 연령대, 방문 일시 및 동의 여부를 수집합니다. 이름과 연락처는 받지 않습니다.</p><p>현장 촬영물의 사용 목적과 활용 범위, 수집 정보의 보유 기간에 관한 자세한 내용은 현장 운영 담당자에게 확인해주세요.</p><p>동의 여부는 자유롭게 선택할 수 있습니다. 동의하지 않으셔도 방명록을 남길 수 있으며, 이 화면은 사진·영상·음성을 촬영하거나 녹음하지 않습니다.</p><button id="close-consent" type="button">확인했어요 <span aria-hidden="true">✓</span></button></div></dialog>
+  </main>
+</body>
+</html>
