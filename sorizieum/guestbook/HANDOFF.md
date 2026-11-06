@@ -1,5 +1,18 @@
 # 맥 이어하기 · 문화예술로 방명록
 
+## 2026-11-06 맥 연결 결과
+
+- Aside로 기존 시트와 `방문기록` 탭을 확인하고, 시트에 연결된 Apps Script 프로젝트 `문화예술로 방명록 저장`을 만들었다.
+- 프로젝트: https://script.google.com/u/0/home/projects/1AHcDg31ziDvDlCnwfUbrxLPn7N6zwqQIoxZJ2rXpUGWFaTzkeNoOG2S3/edit
+- 사용자가 Google 권한 승인을 직접 완료했다. 웹 앱 실행 계정은 `deck@dexa.art`, 액세스 범위는 `모든 사용자`다. 시트 자체는 비공개다.
+- 발급된 `/exec` 주소를 `config.js`에 반영하고, 기존 전시 메뉴에 `방명록` 링크를 추가했다.
+- 실제 브라우저에서 인증정보 없이 보낸 POST가 CORS 리다이렉트 후 접수 ID가 일치하는 JSON을 반환했다. 시트 새 행도 직접 확인했다. 동일 ID 재전송은 행을 추가하지 않았고, 미동의·비동의·이전 동의문 버전은 `invalid_fields`로 거부됐다.
+- 실제 폼 제출 후 감사 화면을 확인했다. 1080×1920 및 390×844에서 가로 넘침 없이 표시되고, 전시 메뉴에서 방명록으로 이동한다.
+- 연결 검증용 접수 ID는 `cb6f1417-e344-4b8c-90da-3460d2fb2457`, `4379a270-9f07-482c-bf6c-2ebe3fba4b5f`다. 두 기록은 테스트용 `남 / 성인`이며 실제 방문 집계에서 제외한다.
+- 공개 주소는 https://dexa.art/sorizieum/guestbook/ 이다. GitHub Pages는 `main`의 루트를 배포하므로 이 브랜치를 `main`에 병합하면 연결 설정과 메뉴가 배포된다.
+
+아래는 맥 연결 전 인계 이력이다.
+
 ## 사용자 요청
 
 - 첨부한 종이 방명록을 예쁜 별도 웹 폼으로 제작. Google Forms UI는 사용하지 않음.
