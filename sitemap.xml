@@ -71,6 +71,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dexa.art/blog/posts/growing-cellular-automaton-patterns-with-ai/</loc>
+    <lastmod>2026-11-07</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dexa.art/blog/posts/data-drift-is-a-signal-not-a-performance-verdict/</loc>
     <lastmod>2026-11-06</lastmod>
     <priority>0.8</priority>

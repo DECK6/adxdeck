@@ -1,5 +1,34 @@
 [
   {
+    "slug": "growing-cellular-automaton-patterns-with-ai",
+    "file": "_built/growing-cellular-automaton-patterns-with-ai.md",
+    "title": "AI와 만드는 셀룰러 오토마타, 한 줄의 규칙으로 무늬 키우기",
+    "description": "AI의 도움으로 p5.js 셀룰러 오토마타를 만들고, 규칙 30과 90·경계 조건·셀 크기를 바꾸며 무늬의 구조를 비교한다. 실행한 코드와 실제 출력으로 제작 과정을 설명한다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "p5js",
+      "AI"
+    ],
+    "date": "2026-11-07",
+    "modified": "2026-11-07",
+    "thumbnail": "images/cellular-automaton-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "p5js",
+      "AI"
+    ]
+  },
+  {
     "slug": "data-drift-is-a-signal-not-a-performance-verdict",
     "file": "_built/data-drift-is-a-signal-not-a-performance-verdict.md",
     "title": "데이터가 달라졌다고 AI 성능이 떨어진 것은 아니다",
