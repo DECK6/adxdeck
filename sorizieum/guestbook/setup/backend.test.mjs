@@ -23,17 +23,17 @@ function setup({ busy = false, broken = false } = {}) {
   vm.runInContext(source, context);
   return { send: data => context.doPost({ parameter: data }), rows, releases: () => releases };
 }
-const valid = { requestId: '0cbfabfc-03de-4e3b-9f5d-65bfc5070182', gender: '남', ageGroup: '성인', consent: '비동의', consentVersion: '2026-11-06-v1' };
-test('비동의 방문을 서버 시간으로 저장하며 재전송은 중복 기록하지 않는다', () => {
+const valid = { requestId: '0cbfabfc-03de-4e3b-9f5d-65bfc5070182', gender: '남', ageGroup: '성인', consent: '동의', consentVersion: '2026-11-06-v2' };
+test('동의한 방문을 서버 시간으로 저장하며 재전송은 중복 기록하지 않는다', () => {
   const env = setup();
   assert.deepEqual(env.send(valid), { ok: true, requestId: valid.requestId });
-  assert.deepEqual([...env.rows[1]], [valid.requestId, '2026-11-06 12:00:00', '남', '성인', '비동의', '2026-11-06-v1']);
+  assert.deepEqual([...env.rows[1]], [valid.requestId, '2026-11-06 12:00:00', '남', '성인', '동의', '2026-11-06-v2']);
   assert.equal(env.send(valid).ok, true);
   assert.equal(env.rows.length, 2);
   assert.equal(env.releases(), 2);
 });
 test('누락·임의 값·수식 주입·이전 동의문 버전을 거부한다', () => {
-  for (const patch of [{ gender: '' }, { ageGroup: '=IMPORTXML("https://example.com")' }, { consent: 'yes' }, { requestId: 'abc' }, { consentVersion: 'old' }]) {
+  for (const patch of [{ gender: '' }, { ageGroup: '=IMPORTXML("https://example.com")' }, { consent: 'yes' }, { consent: '' }, { consent: '비동의' }, { requestId: 'abc' }, { consentVersion: 'old' }]) {
     const env = setup();
     assert.equal(env.send({ ...valid, ...patch }).ok, false);
     assert.equal(env.rows.length, 1);

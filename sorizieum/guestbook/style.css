@@ -12,3 +12,5 @@ form{margin:0}fieldset{margin:0 0 5.5cqw;padding:0;border:0;min-width:0}legend{p
 .kiosk>.topline{margin-top:5.5cqw}.intro{margin-top:4cqw;margin-bottom:4cqw}.welcome{margin-top:2cqw}fieldset{margin-bottom:3.8cqw}legend{margin-bottom:2.3cqw}.three .choice>span{min-height:12cqw}.kiosk>.footer{margin-bottom:3cqw;padding-top:2.7cqw}@media(max-width:500px){.kiosk{aspect-ratio:auto;min-height:177.778cqw;overflow:visible}.three .choice>span{min-height:13cqw}}
 
 h1{font-size:9.6cqw}.intro{margin-bottom:3cqw}fieldset{margin-bottom:3cqw}legend{margin-bottom:2cqw}.details-button{margin-bottom:1.8cqw}.welcome{line-height:1.6}.eyebrow{margin-bottom:2cqw}.consent-field{margin-bottom:3cqw}.form-status{min-height:4cqw}
+
+.consent-choices .radio-dot{border-radius:.4cqw}.submit:disabled{cursor:not-allowed;background:#737f70;border-color:#737f70}

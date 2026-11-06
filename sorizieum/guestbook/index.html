@@ -41,11 +41,10 @@
       <fieldset class="consent-field">
         <legend><span class="step">03</span> 초상권 및 개인정보 사용 동의</legend>
         <button class="details-button" id="open-consent" type="button">동의 내용을 확인해주세요 <span aria-hidden="true">＋</span></button>
-        <div class="choices two consent-choices">
-          <label class="choice"><input type="radio" name="consent" value="동의" required><span><i class="radio-dot" aria-hidden="true"></i> 동의합니다</span></label>
-          <label class="choice"><input type="radio" name="consent" value="비동의" required><span><i class="radio-dot" aria-hidden="true"></i> 동의하지 않습니다</span></label>
+        <div class="choices consent-choices">
+          <label class="choice"><input type="checkbox" name="consent" value="동의" required><span><i class="radio-dot" aria-hidden="true"></i> 내용을 확인했으며 동의합니다</span></label>
         </div>
-        <p class="consent-note">동의하지 않으셔도 방문 기록을 남길 수 있습니다.</p>
+        <p class="consent-note">동의에 체크하셔야 방문 기록을 저장할 수 있습니다.</p>
       </fieldset>
       <button class="submit" id="submit" type="submit"><span>방문 기록 남기기</span><span aria-hidden="true">↗</span></button>
       <p class="form-status" id="form-status" role="status" aria-live="polite">세 가지 항목을 선택하면 기록할 수 있어요.</p>
@@ -54,7 +53,7 @@
     <section class="success" id="success" aria-labelledby="success-title" hidden>
       <span class="success-mark" aria-hidden="true">✓</span><p class="eyebrow">THANK YOU FOR BEING HERE</p><h2 id="success-title" tabindex="-1">함께해 주셔서<br>감사합니다<span>.</span></h2><p>오늘의 만남이 기록되었습니다.<br>소리지음에서 좋은 시간 보내세요.</p><button id="next-guest" type="button">다음 방문객 <span aria-hidden="true">↗</span></button><p class="countdown"><span id="countdown">6</span>초 후 처음 화면으로 돌아갑니다.</p>
     </section>
-    <dialog id="consent-dialog" aria-labelledby="consent-title"><div class="dialog-content"><p class="eyebrow">BEFORE YOU LEAVE YOUR MARK</p><h2 id="consent-title">초상권 및<br>개인정보 사용 안내</h2><p>문화예술로 방문 현황을 기록하기 위해 성별, 연령대, 방문 일시 및 동의 여부를 수집합니다. 이름과 연락처는 받지 않습니다.</p><p>현장 촬영물의 사용 목적과 활용 범위, 수집 정보의 보유 기간에 관한 자세한 내용은 현장 운영 담당자에게 확인해주세요.</p><p>동의 여부는 자유롭게 선택할 수 있습니다. 동의하지 않으셔도 방명록을 남길 수 있으며, 이 화면은 사진·영상·음성을 촬영하거나 녹음하지 않습니다.</p><button id="close-consent" type="button">확인했어요 <span aria-hidden="true">✓</span></button></div></dialog>
+    <dialog id="consent-dialog" aria-labelledby="consent-title"><div class="dialog-content"><p class="eyebrow">BEFORE YOU LEAVE YOUR MARK</p><h2 id="consent-title">초상권 및<br>개인정보 사용 안내</h2><p>문화예술로 방문 현황을 기록하기 위해 성별, 연령대, 방문 일시 및 동의 여부를 수집합니다. 이름과 연락처는 받지 않습니다.</p><p>현장 촬영물의 사용 목적과 활용 범위, 수집 정보의 보유 기간에 관한 자세한 내용은 현장 운영 담당자에게 확인해주세요.</p><p>방명록은 위 내용에 동의하신 경우에만 저장됩니다. 동의하지 않으시면 저장되지 않습니다. 이 화면은 사진·영상·음성을 촬영하거나 녹음하지 않습니다.</p><button id="close-consent" type="button">확인했어요 <span aria-hidden="true">✓</span></button></div></dialog>
   </main>
 </body>
 </html>

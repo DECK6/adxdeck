@@ -7,6 +7,9 @@
   const success = document.querySelector('#success');
   const dialog = document.querySelector('#consent-dialog');
   const fields = ['gender', 'ageGroup', 'consent'];
+  function updateSubmit() {
+    submit.disabled = pending || form.elements.consent.checked !== true;
+  }
   let pending = false;
   let requestId = null;
   let requestFingerprint = null;
@@ -29,6 +32,7 @@
     clearTimeout(resetTimer);
     clearInterval(countdownTimer);
     form.reset();
+    updateSubmit();
     success.hidden = true;
     requestId = requestFingerprint = null;
     dialog.close();
@@ -77,6 +81,7 @@
   }
 
   form.addEventListener('change', () => {
+    updateSubmit();
     const values = new FormData(form);
     const count = fields.filter(field => values.has(field)).length;
     message(count === fields.length ? '선택이 끝났어요. 아래 버튼을 눌러주세요.' : `${count} / 3 선택했어요. 나머지 항목도 선택해주세요.`);
@@ -85,6 +90,11 @@
     event.preventDefault();
     if (pending) return;
     const values = new FormData(form);
+    if (values.get('consent') !== '동의') {
+      message('동의에 체크하셔야 방문 기록을 저장할 수 있습니다.', true);
+      form.elements.consent.focus({ preventScroll: true });
+      return;
+    }
     const missing = fields.find(field => !values.has(field));
     if (missing) {
       const labels = { gender: '성별', ageGroup: '연령대', consent: '동의 여부' };
@@ -119,6 +129,7 @@
       pending = false;
       form.removeAttribute('aria-busy');
       form.querySelectorAll('input, button').forEach(control => { control.disabled = false; });
+      updateSubmit();
       submit.firstElementChild.textContent = '방문 기록 남기기';
       if (success.hidden) scheduleIdle();
     }
@@ -132,5 +143,6 @@
   ['pointerdown', 'keydown'].forEach(type => document.addEventListener(type, scheduleIdle, { passive: true }));
   document.addEventListener('visibilitychange', () => { if (!document.hidden) reset(); });
   updateDate();
+  updateSubmit();
   scheduleIdle();
 })();

@@ -2,7 +2,7 @@
 // Public endpoint only appends validated rows. It never exposes existing rows.
 const SPREADSHEET_ID = '1IVHY-T-V3bAufjfqIraudFr3TKCHAnbVc9NjDWihd98';
 const SHEET_NAME = '방문기록';
-const CONSENT_VERSION = '2026-11-06-v1';
+const CONSENT_VERSION = '2026-11-06-v2';
 
 function doGet() {
   return json_({ ok: true, service: 'sorizieum-guestbook' });
@@ -13,7 +13,7 @@ function doPost(event) {
   if (!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(data.requestId || '') ||
       !['남', '여'].includes(data.gender) ||
       !['유아', '초등', '중등', '고등', '대학', '성인'].includes(data.ageGroup) ||
-      !['동의', '비동의'].includes(data.consent) ||
+      data.consent !== '동의' ||
       data.consentVersion !== CONSENT_VERSION) {
     return json_({ ok: false, error: 'invalid_fields' });
   }
