@@ -18,8 +18,8 @@ tags:
   - AI
 thumbnail: images/cellular-automaton-cover.png
 status: completed
-akmLayer: outputs
-akmType: article
+akmLayer: output
+akmType: output
 akmRole: deliverable
 trustLevel: reviewed
 sourceType: synthesis
