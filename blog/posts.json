@@ -29,6 +29,25 @@
     ]
   },
   {
+    "slug": "korean-document-length-depends-on-the-tokenizer",
+    "file": "_built/korean-document-length-depends-on-the-tokenizer.md",
+    "title": "AI에 넣을 한국어 문서는 글자 수만으로 잴 수 없다",
+    "description": "한국어 문서의 글자 수와 토큰 수가 다른 이유를 공개 토크나이저의 실측으로 살펴본다. 입력 길이 계산, 잘림으로 사라지는 조건, RAG와 대화 입력의 예산을 구분한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "tokenization",
+      "context-engineering",
+      "RAG"
+    ],
+    "date": "2026-11-07",
+    "modified": "2026-11-07",
+    "thumbnail": "images/korean-document-length-depends-on-the-tokenizer-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "data-drift-is-a-signal-not-a-performance-verdict",
     "file": "_built/data-drift-is-a-signal-not-a-performance-verdict.md",
     "title": "데이터가 달라졌다고 AI 성능이 떨어진 것은 아니다",
