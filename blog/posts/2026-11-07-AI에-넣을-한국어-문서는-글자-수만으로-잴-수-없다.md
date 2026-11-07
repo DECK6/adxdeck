@@ -19,7 +19,7 @@ status: completed
 publishReady: true
 akmLayer: output
 akmRole: deliverable
-akmType: article
+akmType: output
 trustLevel: reviewed
 sourceType: synthesis
 ---
