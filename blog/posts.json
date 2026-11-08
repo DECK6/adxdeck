@@ -29,6 +29,25 @@
     ]
   },
   {
+    "slug": "what-an-ai-explanation-can-and-cannot-show",
+    "file": "_built/what-an-ai-explanation-can-and-cannot-show.md",
+    "title": "AI의 설명에서 확인할 수 있는 것과 없는 것",
+    "description": "AI의 설명이 읽기 쉽다는 것과 실제 판단 요인을 충실하게 드러낸다는 것을 구분한다. 추론 충실성과 모니터링 연구를 바탕으로 설명·근거·실행 결과를 업무에서 어떻게 확인할지 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "reasoning",
+      "evaluation",
+      "governance"
+    ],
+    "date": "2026-11-08",
+    "modified": "2026-11-08",
+    "thumbnail": "images/what-an-ai-explanation-can-and-cannot-show-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "growing-cellular-automaton-patterns-with-ai",
     "file": "_built/growing-cellular-automaton-patterns-with-ai.md",
     "title": "AI와 만드는 셀룰러 오토마타, 한 줄의 규칙으로 무늬 키우기",
