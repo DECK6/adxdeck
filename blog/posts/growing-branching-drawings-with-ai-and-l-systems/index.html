@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI와 만드는 L-system, 짧은 규칙으로 가지 그리기 | DEXA Blog</title>
+    <meta name="description" content="AI와 함께 p5.js의 L-system으로 가지 형태를 만들고, 치환 규칙과 좌표 복원을 확인합니다. 실제 실행한 코드로 반복 횟수와 각도가 선의 밀도와 윤곽을 바꾸는 과정을 설명합니다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/growing-branching-drawings-with-ai-and-l-systems/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="AI와 만드는 L-system, 짧은 규칙으로 가지 그리기" />
+    <meta property="og:description" content="AI와 함께 p5.js의 L-system으로 가지 형태를 만들고, 치환 규칙과 좌표 복원을 확인합니다. 실제 실행한 코드로 반복 횟수와 각도가 선의 밀도와 윤곽을 바꾸는 과정을 설명합니다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/growing-branching-drawings-with-ai-and-l-systems/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/lsystem-branching-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-11-09" />
+    <meta property="article:modified_time" content="2026-11-09" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="generative-art" />
+    <meta property="article:tag" content="creative-coding" />
+    <meta property="article:tag" content="p5js" />
+    <meta property="article:tag" content="AI" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI와 만드는 L-system, 짧은 규칙으로 가지 그리기" />
+    <meta name="twitter:description" content="AI와 함께 p5.js의 L-system으로 가지 형태를 만들고, 치환 규칙과 좌표 복원을 확인합니다. 실제 실행한 코드로 반복 횟수와 각도가 선의 밀도와 윤곽을 바꾸는 과정을 설명합니다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/lsystem-branching-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"AI와 만드는 L-system, 짧은 규칙으로 가지 그리기","description":"AI와 함께 p5.js의 L-system으로 가지 형태를 만들고, 치환 규칙과 좌표 복원을 확인합니다. 실제 실행한 코드로 반복 횟수와 각도가 선의 밀도와 윤곽을 바꾸는 과정을 설명합니다.","image":"https://dexa.art/blog/images/lsystem-branching-cover.png","datePublished":"2026-11-09","dateModified":"2026-11-09","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/growing-branching-drawings-with-ai-and-l-systems/"},"articleSection":"Media Art","keywords":"media-art, generative-art, creative-coding, p5js, AI"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">Media Art</span>
+                    <span class="dx-date">Article · 2026.11.09</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>AI와 만드는 L-system, 짧은 규칙으로 가지 그리기</h1>
+                <p style="color:var(--muted);font-size:17px;">AI와 함께 p5.js의 L-system으로 가지 형태를 만들고, 치환 규칙과 좌표 복원을 확인합니다. 실제 실행한 코드로 반복 횟수와 각도가 선의 밀도와 윤곽을 바꾸는 과정을 설명합니다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">media-art</span><span class="dx-tag-chip">generative-art</span><span class="dx-tag-chip">creative-coding</span><span class="dx-tag-chip">p5js</span><span class="dx-tag-chip">AI</span></div>
+<p><img src="/blog/images/lsystem-branching-cover.png" alt="짧은 직선과 분기가 반복되며 나무 형태를 이루는 개념 이미지" loading="lazy"></p>
+<p><em>표지는 GPT Image 2로 생성한 개념 이미지입니다. 아래 코드의 실제 출력은 본문에 따로 실었습니다.</em></p>
+<p>가지가 갈라지는 그림을 만들 때, 가지 하나하나의 좌표를 정할 필요는 없습니다. 앞으로 선을 긋고, 방향을 바꾸고, 갈라졌던 위치로 돌아오는 규칙을 정하면 작은 구조가 반복되며 큰 형태를 만듭니다. 이번에는 짧은 문자열을 여러 차례 바꾸는 L-system으로 가느다란 가지 그림을 만듭니다.</p>
+<p>AI는 이 규칙을 코드로 옮기고 오류를 찾는 데 사용합니다. 화면의 가지를 만드는 것은 실행 중인 규칙입니다. 생성형 AI가 매번 그림을 만들어 주는 과정과 구분하면, 무엇을 고정하고 무엇을 바꿔야 하는지 분명해집니다. 같은 코드와 설정을 다시 실행해 형태를 비교할 수 있습니다.</p>
+<h2>그림을 부탁하기 전에 규칙을 적기</h2>
+<p>L-system은 시작 문자열과 치환 규칙을 정한 뒤, 현재 문자열을 다음 세대의 문자열로 바꾸는 방식입니다. Daniel Shiffman의 《The Nature of Code》는 이 문자열을 이동·회전·상태 저장 명령으로 해석하는 제작 방법을 설명합니다. 여기서는 그 원리를 작은 규칙 하나로 실습합니다. <a href="https://natureofcode.com/fractals/#l-systems">L-system 설명</a></p>
+<p>시작 문자열은 <code>F</code>입니다. 한 세대를 만들 때마다 현재 문자열의 모든 <code>F</code>를 <code>F[+F]F[-F]F</code>로 바꿉니다. 나머지 기호는 그대로 남깁니다. 새로 생긴 <code>F</code>는 다음 세대에서 바뀝니다. 같은 세대 안에서 계속 치환하면 의도한 반복 횟수로 끝나지 않습니다.</p>
+<p>그릴 때 <code>F</code>는 현재 방향으로 선을 긋고 전진하라는 뜻입니다. <code>+</code>와 <code>-</code>는 각각 정한 각도만큼 오른쪽과 왼쪽으로 돕니다. <code>[</code>에서는 위치와 방향을 저장하고, <code>]</code>에서는 가장 최근에 저장한 상태로 돌아갑니다. 시작 방향은 화면 위쪽으로 정합니다.</p>
+<p>첫 치환을 천천히 따라가면 구조가 보입니다. 앞으로 한 번 간 뒤 오른쪽 가지를 그립니다. 갈라진 곳으로 돌아와 줄기를 더 진행하고, 왼쪽 가지를 그립니다. 다시 돌아와 줄기를 이어 갑니다. 좌우 가지의 출발 높이가 다르므로 이 규칙의 결과는 완전한 좌우 대칭이 아닙니다.</p>
+<p>AI 코딩 도구에는 아래처럼 요청할 수 있습니다. 특정 모델의 전용 기능을 요구하지 않는 작업 지시입니다.</p>
+<pre><code class="language-text">p5.js 2.3.1로 정적인 가지 그림을 만들어 주세요.
+캔버스는 960×540, 시작 문자열은 F입니다.
+한 세대마다 F를 F[+F]F[-F]F로 동시에 치환하세요.
+F는 선을 긋고 전진, +와 -는 각도만큼 회전합니다.
+[와 ]는 현재 위치와 방향을 저장하고 복원합니다.
+반복 횟수는 4, 각도는 25도, 줄기 높이는 400으로 시작합니다.
+세대마다 주 줄기가 3배 길어지므로 한 선의 길이를 보정하세요.
+설정은 cfg에 모으고, 난수와 외부 이미지는 사용하지 마세요.
+1세대에 선 5개, 4세대에 선 625개가 나오는지 설명하세요.</code></pre>
+<p>AI가 반환한 코드는 먼저 치환과 그리기를 따로 살핍니다. 치환 결과가 맞아도 괄호에서 좌표를 복원하지 않으면 가지들이 계속 이어지는 선이 됩니다. <code>push()</code>와 <code>pop()</code>은 p5.js의 좌표 변환과 그리기 상태를 한 쌍으로 보관·복원합니다. 안쪽에 여러 쌍을 중첩할 수도 있습니다. <a href="https://p5js.org/reference/p5/push/">push 공식 문서</a>, <a href="https://p5js.org/reference/p5/pop/">pop 공식 문서</a></p>
+<h2>두 파일로 실제 가지를 그리기</h2>
+<p>같은 폴더에 <code>index.html</code>과 <code>sketch.js</code>를 만듭니다. 인터넷에 연결된 데스크톱 브라우저에서 아래 <code>index.html</code>을 열면 됩니다. 라이브러리를 CDN에서 읽으므로 최초 실행에는 네트워크 연결이 필요합니다. 이 글의 예제는 p5.js 2.3.1을 불러온 브라우저에서 직접 실행했습니다.</p>
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html lang=&quot;ko&quot;&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;title&gt;L-system branching demo&lt;/title&gt;
+&lt;style&gt;
+  body { margin: 0; background: #f5f0e6; }
+  canvas { display: block; }
+&lt;/style&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@2.3.1/lib/p5.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;sketch.js&quot;&gt;&lt;/script&gt;
+&lt;/html&gt;</code></pre>
+<p><code>sketch.js</code>에는 다음 코드를 넣습니다.</p>
+<pre><code class="language-javascript">const cfg = { generations: 4, angle: 25, height: 400 };
+let word = 'F';
+
+function setup() {
+  createCanvas(960, 540);
+  pixelDensity(1);
+  angleMode(DEGREES);
+  for (let g = 0; g &lt; cfg.generations; g++) {
+    word = [...word].map(c =&gt; c === 'F' ? 'F[+F]F[-F]F' : c).join('');
+  }
+  noLoop();
+}
+
+function draw() {
+  background('#f5f0e6');
+  stroke('#284743');
+  strokeWeight(1.2);
+  const step = cfg.height / (3 ** cfg.generations);
+  push();
+  translate(width / 2, height - 40);
+  for (const c of word) {
+    if (c === 'F') {
+      line(0, 0, 0, -step);
+      translate(0, -step);
+    } else if (c === '+') {
+      rotate(cfg.angle);
+    } else if (c === '-') {
+      rotate(-cfg.angle);
+    } else if (c === '[') {
+      push();
+    } else if (c === ']') {
+      pop();
+    }
+  }
+  pop();
+}</code></pre>
+<p>크림색 바탕의 아래쪽 가운데에서 짙은 녹색 가지가 위로 자랍니다. 애니메이션은 없으며, <code>noLoop()</code>로 한 번만 그립니다. 색과 선 굵기는 뒤에서 바꿔도 됩니다. 처음에는 치환 규칙과 각도를 그대로 두고 같은 형태가 나오는지 확인합니다.</p>
+<p><img src="/blog/images/lsystem-branching-frame.png" alt="4세대와 25도 설정으로 직접 실행한 짙은 녹색 가지 그림" loading="lazy"></p>
+<p><em>위 코드를 p5.js 2.3.1에서 실행한 960×540 출력입니다. 표지와 달리 이 이미지는 코드로 그린 결과입니다.</em></p>
+<p><code>translate(0, -step)</code>은 현재 방향으로 좌표의 원점을 옮깁니다. 회전한 좌표계에서는 화면의 수직 위쪽과 현재의 전진 방향이 다를 수 있습니다. 그래서 선을 그린 다음 같은 거리만큼 이동해야 다음 선이 끝점에서 이어집니다. 회전과 이동은 누적되지만, 괄호의 <code>pop()</code>을 만나면 저장했던 좌표계로 돌아옵니다. <a href="https://p5js.org/reference/p5/translate/">translate 공식 문서</a>, <a href="https://p5js.org/reference/p5/rotate/">rotate 공식 문서</a></p>
+<p>각도 단위도 명시했습니다. <code>angleMode(DEGREES)</code>가 있어야 설정의 <code>25</code>가 25도로 해석됩니다. 기본 단위인 라디안과 혼동하면 가지 방향이 크게 달라집니다. <a href="https://p5js.org/reference/p5/angleMode/">angleMode 공식 문서</a></p>
+<h2>반복 횟수와 각도를 따로 바꾸기</h2>
+<p>먼저 <code>generations</code>를 <code>4</code>에서 <code>3</code>으로 바꾸고 페이지를 새로 엽니다. 선 개수는 625개에서 125개로 줄어듭니다. 다시 <code>4</code>로 되돌리면 잔가지가 촘촘해집니다. 이번 규칙은 <code>F</code> 하나가 <code>F</code> 다섯 개로 바뀌므로, 세대를 한 번 늘릴 때 그리는 선도 5배로 늘어납니다. 처음에는 0부터 4 사이에서 비교하세요. 반복 수를 크게 올리면 문자열과 그리기 작업도 급격히 커집니다.</p>
+<p>선 개수가 바뀌어도 주 줄기의 높이는 400으로 유지됩니다. 갈라진 가지에서 돌아오는 동작을 제외하면 주 줄기는 한 세대마다 세 구간으로 늘어납니다. 코드의 <code>400 / (3 ** generations)</code>는 그 증가를 상쇄하는 한 선의 길이입니다. 이 보정 덕분에 반복 횟수를 바꿀 때 전체 크기보다 잔가지의 밀도를 비교할 수 있습니다. 다른 치환 규칙으로 바꾼다면 이 식도 다시 확인해야 합니다.</p>
+<p>다음에는 <code>generations</code>를 <code>4</code>로 두고 <code>angle</code>만 <code>25</code>에서 <code>40</code>으로 바꿉니다. 실제 실행에서 선 개수는 둘 다 625개였지만, 전체 가로 폭은 약 131픽셀에서 약 187픽셀로 넓어졌습니다. 이는 선의 중심 좌표로 계산한 범위이며 선 굵기는 제외했습니다. 이 두 설정에서는 각도가 큰 쪽이 옆으로 더 펼쳐집니다. 모든 각도에서 폭이 계속 증가한다는 뜻은 아닙니다.</p>
+<p>여백을 많이 남기면 작은 갈래 사이의 빈틈과 세로 방향이 먼저 보입니다. 가지를 촘촘하게 만들면 어두운 덩어리로 읽히는 부분이 늘어납니다. 작품을 고를 때는 선을 더 넣는 것만 보지 말고, 관객이 볼 거리에서 갈래가 얼마나 구분되는지 함께 살펴보세요. 작은 모니터에서 보이는 세부가 큰 화면에서도 같은 인상을 주는지는 출력 조건에 따라 달라집니다.</p>
+<h2>AI에게 수정 범위를 좁혀 맡기기</h2>
+<p>첫 결과가 나온 뒤에는 &quot;더 자연스럽게&quot;라는 요청보다 바꿀 변수와 유지할 조건을 함께 적는 편이 비교하기 좋습니다. &quot;치환 규칙과 반복 횟수는 유지하고 각도만 25도와 40도로 비교할 수 있게 해 달라&quot;고 요청하면, 형태 변화의 원인을 추적할 수 있습니다. 색까지 함께 바꾸면 어느 변화가 인상을 바꿨는지 판단하기 어려워집니다.</p>
+<p>이 예제는 0·1·3·4세대의 25도 설정과 4세대의 40도 설정을 실행했습니다. 선 개수, 괄호의 짝, 좌표 복원, 화면 안의 좌표를 검사했고, 별도로 재귀 계산한 선 좌표와 실제 p5.js의 좌표 변환 결과도 대조했습니다. 기본 설정의 문자열 길이는 1,561자이고 선은 625개였습니다. 문자열 전체 길이에는 회전과 괄호 기호가 들어가므로 선 개수와 같지 않습니다.</p>
+<p>규칙을 바꾸고 싶다면 이 구분을 AI에게도 지켜 달라고 요청하세요. 먼저 1세대의 문자열과 선 개수를 손으로 확인하고, 괄호가 중간에 닫히거나 남지 않는지 살핍니다. 그다음 낮은 반복 횟수에서 그림을 비교합니다. 이 글에서 확인한 수치와 크기 보정은 제시한 규칙에 대한 결과이며, 새 규칙의 실행을 보증하지 않습니다.</p>
+<p>지금의 가지는 난수 없이 같은 결정을 반복합니다. 이 규칙성을 남긴 채 각도·밀도·여백을 고르면 도식적인 식물 드로잉이 됩니다. 이후 흔들림이나 색 변화를 더할 때에도, 먼저 마음에 드는 기본 구조를 저장해 두세요. AI에 맡길 다음 작업이 구체적일수록 작가는 결과를 비교하며 원하는 형태를 고를 수 있습니다.</p>
+            </div>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/drawing-flow-field-lines-with-ai/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>AI와 만드는 흐름장, 방향을 따라 선을 쌓기</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>
