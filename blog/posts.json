@@ -1,5 +1,34 @@
 [
   {
+    "slug": "making-voronoi-color-fields-with-ai",
+    "file": "_built/making-voronoi-color-fields-with-ai.md",
+    "title": "AI와 만드는 보로노이, 가까운 점으로 색면 나누기",
+    "description": "AI와 함께 p5.js로 가까운 기준점의 색을 칠하는 보로노이 패턴을 만듭니다. 직접 실행한 코드로 시드와 점의 수, 격자 크기를 바꾸며 색면의 구도와 경계를 조절합니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "p5js",
+      "AI"
+    ],
+    "date": "2026-11-10",
+    "modified": "2026-11-10",
+    "thumbnail": "images/voronoi-color-field-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "p5js",
+      "AI"
+    ]
+  },
+  {
     "slug": "before-using-the-shortest-graph-path-as-an-answer",
     "file": "_built/before-using-the-shortest-graph-path-as-an-answer.md",
     "title": "지식 그래프에서 짧은 경로를 답으로 쓰기 전에",
