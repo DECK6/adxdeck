@@ -1,5 +1,25 @@
 [
   {
+    "slug": "before-using-the-shortest-graph-path-as-an-answer",
+    "file": "_built/before-using-the-shortest-graph-path-as-an-answer.md",
+    "title": "지식 그래프에서 짧은 경로를 답으로 쓰기 전에",
+    "description": "지식 그래프의 최단 경로를 업무 답변에 쓰려면 관계의 종류와 방향, 제외 조건, 거리의 의미를 먼저 정해야 한다. Neo4j의 공식 문서를 바탕으로 조건을 거는 순서가 검색 결과를 어떻게 바꾸는지 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "knowledge-graph",
+      "retrieval",
+      "RAG",
+      "work-design"
+    ],
+    "date": "2026-11-09",
+    "modified": "2026-11-09",
+    "thumbnail": "images/before-using-the-shortest-graph-path-as-an-answer-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "growing-branching-drawings-with-ai-and-l-systems",
     "file": "_built/growing-branching-drawings-with-ai-and-l-systems.md",
     "title": "AI와 만드는 L-system, 짧은 규칙으로 가지 그리기",
