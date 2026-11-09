@@ -14,12 +14,14 @@ window.PORTFOLIO = {
   "materialsUrl": "mailto:deck@dexa.art?subject=Media%20art%20screening%20inquiry",
   "artist": {
     "name": "육대근",
+    "nameEn": "Deck",
     "alias": "DECK",
     "email": "deck@dexa.art",
     "website": "https://dexa.art/",
     "intro": "인간의 앎은 공간, 빛, 소리로 물질화될 수 있는가.",
+    "introEn": "Can human knowing be materialized in space, light and sound?",
     "bio": "육대근(DECK)은 「누스피어 레이어」라는 세계관 아래 실시간 시뮬레이션과 절차적 렌더링으로 작업하는 미디어 아티스트입니다. 직접 만든 시스템으로 움직임을 짓고, 소리와 빛이 서로에게 남기는 흔적을 바라봅니다.",
-    "bioEn": "Yuk Daekeun (DECK) is a media artist working with real-time simulation and procedural rendering. Within his Noosphere Layer, he asks whether human knowing can be materialized in space, light and sound."
+    "bioEn": "Deck is a media artist working with real-time simulation and procedural rendering. Within his Noosphere Layer, he asks whether human knowing can be materialized in space, light and sound."
   },
   "works": [
     {
@@ -44,7 +46,10 @@ window.PORTFOLIO = {
       "duration": 60.0,
       "sound": true,
       "loop": true,
-      "credit": "구상·연출·프로그래밍 육대근(DECK) · 음악: 작가가 Suno로 제작"
+      "credit": "구상·연출·프로그래밍 육대근(DECK) · 음악: 작가가 Suno로 제작",
+      "subtitleEn": "Where sound settles",
+      "captionEn": "On a jade-coloured stone plate, sound gathers powder into ridges and waterways.",
+      "creditEn": "Concept, direction and programming by Deck · Music made by the artist using Suno"
     },
     {
       "id": "nakhwa",
@@ -68,7 +73,10 @@ window.PORTFOLIO = {
       "duration": 60.0,
       "sound": true,
       "loop": true,
-      "credit": "구상·연출·프로그래밍 육대근(DECK) · 음악: 작가가 Suno로 제작"
+      "credit": "구상·연출·프로그래밍 육대근(DECK) · 음악: 작가가 Suno로 제작",
+      "subtitleEn": "Confluence",
+      "captionEn": "Embers fall as slow fire rain, their light held once more on the night water.",
+      "creditEn": "Concept, direction and programming by Deck · Music made by the artist using Suno"
     },
     {
       "id": "gyeol",
@@ -80,7 +88,7 @@ window.PORTFOLIO = {
       "caption": "음악이 바람이 되어 빽빽한 들판을 지난다. 은빛 억새와 핑크뮬리, 달빛의 갈대 사이로 보이지 않는 힘이 빛과 그늘의 결을 남긴다.",
       "description": {
         "ko": "하늘과 지평선 없이, 빽빽한 들판을 바로 위에서 바라본다. 음악의 낮은 울림이 차오르면 풀이 기울고, 이삭의 방향을 따라 빛과 그늘의 결이 달라진다. 바람은 여러 방향으로 스며들고 겹치며 풀밭에 흐름을 남긴다. 억새의 은빛에서 핑크뮬리, 달빛을 머금은 갈대로 이어지는 동안 들판의 색과 시간이 천천히 바뀐다. 풀과 바람의 움직임은 음악에 반응하는 자체 시뮬레이션으로 만들어졌다. 보이지 않는 힘이 풀의 몸을 빌려 모습을 얻는 60초. 소리가 움직임으로, 움직임이 빛으로 번지는 '누스피어 레이어'의 감응과 발산을 담는다.",
-        "en": "Seen from directly above, a dense field fills the frame. Music becomes wind, bending the grass in shifting directions and turning its surface into bands of light and shade. Silver grass gives way to pink muhly and moonlit reeds as the field moves through changing light. Built with a custom simulation, this sixty-second loop makes an unseen force visible through the bodies it moves. Sound becomes motion, and motion becomes light: resonance and dispersion within the artist's Noosphere Layer."
+        "en": "Seen from directly above, a dense field fills the frame. Music becomes wind, bending the grass in shifting directions and turning its surface into bands of light and shade. Silver grass gives way to pink muhly and moonlit reeds as the field moves through changing light. Built with a custom simulation, this work makes an unseen force visible through the bodies it moves. Sound becomes motion, and motion becomes light: resonance and dispersion within the artist's Noosphere Layer."
       },
       "poster": "/works/assets/posters/gyeol.jpg",
       "video": "https://github.com/DECK6/adxdeck/releases/download/art-films-20261024/gyeol.mp4",
@@ -92,7 +100,10 @@ window.PORTFOLIO = {
       "duration": 60.0,
       "sound": true,
       "loop": true,
-      "credit": "구상·연출·프로그래밍 육대근(DECK) · 음악: 작가가 Suno로 제작"
+      "credit": "구상·연출·프로그래밍 육대근(DECK) · 음악: 작가가 Suno로 제작",
+      "subtitleEn": "Wind over the grass",
+      "captionEn": "Music becomes wind across a dense field. Silver grass, pink muhly and moonlit reeds reveal an unseen force in bands of light and shade.",
+      "creditEn": "Concept, direction and programming by Deck · Music made by the artist using Suno"
     },
     {
       "id": "joinery",
@@ -104,7 +115,7 @@ window.PORTFOLIO = {
       "caption": "단청 부재가 천천히 맞물리고 벌어지는 동안, 틈 너머 지붕과 실내의 깊이가 드러난다.",
       "description": {
         "ko": "한옥의 처마 아래를 바짝 올려다본다. 화면을 가로지르는 단청 부재가 천천히 미끄러지고, 서로의 자리를 찾아 맞물린 뒤 다시 간격을 벌린다. 주홍과 옥빛의 문양은 목재의 옆면과 아랫면을 따라 이어지고, 부재 사이로 서까래와 천장, 뒤쪽 구조가 겹쳐 보인다. 한 부재의 표면에서는 안료가 작은 점으로 잠시 흩어졌다 돌아오지만, 건물의 공간은 계속 남아 있다. 카메라가 한 방향으로 이동하는 동안 가려졌던 면과 틈의 깊이가 드러난다. 구조를 지탱하는 결합과 여백의 관계를, 느린 조립과 분리의 움직임으로 바라보는 60초의 3D 영상이다.",
-        "en": "Seen from beneath the eaves of a Korean timber building, painted beams fill the frame. They slide, align and settle into one another, then slowly part. Vermilion and jade patterns follow their sides and undersides; rafters and ceilings remain visible through the gaps. Pigment briefly loosens into points on one beam while the surrounding architecture stays intact. A camera moving in one direction reveals hidden faces and depth. This sixty-second 3D work explores how joints and spaces hold a structure together."
+        "en": "Seen from beneath the eaves of a Korean timber building, painted beams fill the frame. They slide, align and settle into one another, then slowly part. Vermilion and jade patterns follow their sides and undersides; rafters and ceilings remain visible through the gaps. Pigment briefly loosens into points on one beam while the surrounding architecture stays intact. A camera moving in one direction reveals hidden faces and depth. This 3D work explores how joints and spaces hold a structure together."
       },
       "poster": "/works/assets/posters/joinery.jpg",
       "video": "https://github.com/DECK6/adxdeck/releases/download/art-films-20261024/joinery.mp4",
@@ -116,7 +127,10 @@ window.PORTFOLIO = {
       "duration": 60.0,
       "sound": true,
       "loop": false,
-      "credit": "구상·연출·프로그래밍 육대근(DECK) · 절차적 3D 애니메이션 · 음악: 작가가 Suno로 제작"
+      "credit": "구상·연출·프로그래밍 육대근(DECK) · 절차적 3D 애니메이션 · 음악: 작가가 Suno로 제작",
+      "subtitleEn": "Structure and space",
+      "captionEn": "Painted timber beams slowly join and part, revealing the roof and interior through their gaps.",
+      "creditEn": "Concept, direction and programming by Deck · Procedural 3D animation · Music made by the artist using Suno"
     },
     {
       "id": "sand-pendulum",
@@ -128,7 +142,7 @@ window.PORTFOLIO = {
       "caption": "두 강철 구가 겹쳐 그린 곡선이 모래 위에 쌓이며, 반복되는 운동이 시간의 지형으로 남는다.",
       "description": {
         "ko": "크기가 다른 두 강철 구가 넓은 모래 위를 천천히 오간다. 서로 다른 주기와 위상으로 움직이는 구는 하나의 영역에 리사주 곡선을 겹쳐 그린다. 지나간 자리는 지워지지 않고 홈으로 쌓이며, 뒤따르는 움직임이 앞선 흔적을 다시 가로지른다. 낮게 들어오는 빛은 모래의 작은 굴곡과 밀려난 가장자리에 긴 그림자를 드리우고, 구의 표면에는 주변의 빛이 비친다. 살짝 기울인 탑뷰가 한 방향으로 이동하는 동안 두 궤적은 하나의 그림으로 이어진다. 작가가 Suno로 만든 음악 위에서, 반복되는 운동이 되돌릴 수 없는 지형과 시간의 기록으로 남는 60초의 3D 영상이다.",
-        "en": "Two steel spheres of different sizes move slowly across a wide sand field. Their distinct rhythms trace overlapping Lissajous curves in one shared space. Each passage leaves a groove, and later movements cross the marks already there. Low light reveals ridges and grains while reflections shift across the polished steel. A slightly tilted overhead camera moves in one direction. With music made by the artist using Suno, this sixty-second 3D work turns recurring motion into a landscape that remembers time."
+        "en": "Two steel spheres of different sizes move slowly across a wide sand field. Their distinct rhythms trace overlapping Lissajous curves in one shared space. Each passage leaves a groove, and later movements cross the marks already there. Low light reveals ridges and grains while reflections shift across the polished steel. A slightly tilted overhead camera moves in one direction. With music made by the artist using Suno, this 3D work turns recurring motion into a landscape that remembers time."
       },
       "poster": "/works/assets/posters/sand-pendulum.jpg",
       "video": "https://github.com/DECK6/adxdeck/releases/download/art-films-20261024/Harmonograph_3x_60s_review_1920x640.mp4",
@@ -140,7 +154,10 @@ window.PORTFOLIO = {
       "duration": 60.0,
       "sound": true,
       "loop": false,
-      "credit": "구상·연출·프로그래밍 육대근(DECK) · 절차적 3D 시뮬레이션 · 음악: 작가가 Suno로 제작"
+      "credit": "구상·연출·프로그래밍 육대근(DECK) · 절차적 3D 시뮬레이션 · 음악: 작가가 Suno로 제작",
+      "subtitleEn": "Time left by motion",
+      "captionEn": "Two steel spheres trace overlapping curves in sand, leaving recurring motion as a terrain of time.",
+      "creditEn": "Concept, direction and programming by Deck · Procedural 3D simulation · Music made by the artist using Suno"
     },
     {
       "id": "ink-breath",
@@ -164,7 +181,10 @@ window.PORTFOLIO = {
       "duration": 59.5,
       "sound": true,
       "loop": false,
-      "credit": "구상·연출·프로그래밍 육대근(DECK) · GPU 입자 군집(먹 알갱이 100만) · 산수 밑그림 2장은 작가가 AI(Nano Banana Pro)로 생성해 입자 배치 지도로만 사용 · 음악: 작가가 Suno로 제작한 거문고 곡"
+      "credit": "구상·연출·프로그래밍 육대근(DECK) · GPU 입자 군집(먹 알갱이 100만) · 산수 밑그림 2장은 작가가 AI(Nano Banana Pro)로 생성해 입자 배치 지도로만 사용 · 음악: 작가가 Suno로 제작한 거문고 곡",
+      "subtitleEn": "Two landscapes, one breath",
+      "captionEn": "With each geomungo note, grains of ink gather into a landscape, then sweep away like wind and settle into another.",
+      "creditEn": "Concept, direction and programming by Deck · GPU particle system with one million ink grains · Two landscape underdrawings generated by the artist using AI (Nano Banana Pro), used only as particle placement maps · Geomungo music made by the artist using Suno"
     },
     {
       "id": "breath-beneath-the-tide",
@@ -176,7 +196,7 @@ window.PORTFOLIO = {
       "caption": "파란 하늘 아래 음악이 큰 너울을 밀어 올린다. 수면을 통과해 굴절된 빛을 바라보고, 다시 열린 바다로 돌아오는 90초의 여정.",
       "description": {
         "ko": "쨍한 파란 하늘 아래, 음악의 낮은 울림이 바다를 밀어 올린다. 넓은 수평선에서 시작한 시선은 커다란 너울에 다가가고, 파도의 능선을 따라 빛과 흰 포말이 흩어진다. 수면을 통과하면 하늘은 물결 사이로 굴절되고, 소리가 만든 움직임은 머리 위의 푸른 천장이 된다. 깊이를 지나 다시 열린 바다로 돌아오는 90초의 여정. 실제 음원의 저음과 고음이 파도의 변위와 미세한 표면 변화에 연결되어, 듣는 힘이 바라보는 풍경으로 드러난다. 수면은 바다를 나누는 선이면서, 같은 세계를 다른 감각으로 만나게 하는 경계다.",
-        "en": "Beneath a vivid blue sky, low musical pulses lift the ocean. The view approaches broad swells, follows bright crests and white foam, then passes through the surface. Underwater, the sky bends into a shifting window of light. This ninety-second journey returns to the open sea, linking measured musical energy to wave displacement and fine surface changes. The waterline becomes a threshold between two ways of sensing the same world: sound takes shape, and a landscape becomes an experience of depth."
+        "en": "Beneath a vivid blue sky, low musical pulses lift the ocean. The view approaches broad swells, follows bright crests and white foam, then passes through the surface. Underwater, the sky bends into a shifting window of light. The journey returns to the open sea, linking measured musical energy to wave displacement and fine surface changes. The waterline becomes a threshold between two ways of sensing the same world: sound takes shape, and a landscape becomes an experience of depth."
       },
       "poster": "/works/assets/posters/breath-beneath-the-tide.jpg",
       "video": "https://github.com/DECK6/adxdeck/releases/download/art-films-20261030/breath-beneath-the-tide.mp4",
@@ -188,7 +208,10 @@ window.PORTFOLIO = {
       "duration": 90,
       "sound": true,
       "loop": false,
-      "credit": "구상·연출 육대근(DECK) · Three.js/Poseidon 기반 바다 렌더링 · 하늘: 생성형 AI · 음악: 작가가 Suno로 제작"
+      "credit": "구상·연출 육대근(DECK) · Three.js/Poseidon 기반 바다 렌더링 · 하늘: 생성형 AI · 음악: 작가가 Suno로 제작",
+      "subtitleEn": "Inside waves and light",
+      "captionEn": "Music lifts broad swells beneath a blue sky. The view passes through refracted light below the surface and returns to the open sea.",
+      "creditEn": "Concept and direction by Deck · Ocean rendering based on Three.js/Poseidon · Sky made with generative AI · Music made by the artist using Suno"
     },
     {
       "id": "weave",
@@ -212,7 +235,10 @@ window.PORTFOLIO = {
       "duration": 70.033333,
       "sound": true,
       "loop": false,
-      "credit": "구상·연출·프로그래밍 육대근(DECK) · Three.js 기반 천 시뮬레이션·절차적 렌더링 · 음악: 작가가 Suno로 제작"
+      "credit": "구상·연출·프로그래밍 육대근(DECK) · Three.js 기반 천 시뮬레이션·절차적 렌더링 · 음악: 작가가 Suno로 제작",
+      "subtitleEn": "Elastic relief",
+      "captionEn": "Forms shift beneath woven cloth in response to music. Light and shadow reveal deep channels and folds, making an unseen force visible through the moving surface.",
+      "creditEn": "Concept, direction and programming by Deck · Cloth simulation and procedural rendering based on Three.js · Music made by the artist using Suno"
     }
   ],
   "homeFeatured": [

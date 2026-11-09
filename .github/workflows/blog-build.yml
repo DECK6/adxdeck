@@ -12,6 +12,7 @@ on:
       - 'blog/blog.js'
       - 'en/**'
       - 'works/**'
+      - 'projects.json'
       - 'scripts/art-portfolio.test.mjs'
       - 'scripts/portfolio-seo.test.mjs'
       - 'scripts/seo-readiness-check.js'
