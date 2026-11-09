@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import { createHash } from 'node:crypto';
 const root = path.resolve(import.meta.dirname, '..');
 const context = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, 'works/works.js'), 'utf8'), context);
@@ -70,6 +71,9 @@ function galleryMetadata() {
   };
   return `<title>${esc(title)}</title>
   <link rel="canonical" href="${canonical}">
+  <link rel="alternate" hreflang="ko" href="${canonical}">
+  <link rel="alternate" hreflang="en" href="${canonical}?lang=en">
+  <link rel="alternate" hreflang="x-default" href="${canonical}">
   <meta name="description" content="${esc(description)}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="DEXA">
@@ -110,7 +114,7 @@ function replaceBlock(html, name, content) {
 
 function galleryPage(html) {
   html = replaceBlock(html, 'PORTFOLIO_SEO', galleryMetadata());
-  html = replaceBlock(html, 'PORTFOLIO_FEATURED', `<section id="featured" class="featured" aria-label="대표 작품">
+  html = replaceBlock(html, 'PORTFOLIO_FEATURED', `<section id="featured" class="featured" aria-label="대표 작품" data-copy-aria="featured">
         <a class="featured-image" href="${esc(featured.video)}" aria-label="${esc(featured.title)} 전체 영상 재생">
           <img src="${esc(featured.poster)}" width="1920" height="640" alt="${esc(featured.title)} 작품 장면" fetchpriority="high">
           <span class="featured-play"><span class="play-icon" aria-hidden="true">▶</span> 전체 영상 보기</span>
@@ -124,7 +128,12 @@ function galleryPage(html) {
     if (!element.test(html)) throw new Error(`Missing gallery field: ${id}`);
     html = html.replace(element, (_match, open, close) => `${open}${esc(value)}${close}`);
   }
-  return html.replace(/<a\b[^>]*\bid="materials-link"[^>]*>/, () => `<a class="text-link" href="${esc(catalog.materialsUrl)}" id="materials-link">`);
+  html = html.replace(/<a\b[^>]*\bid="materials-link"[^>]*>/, tag => tag.replace(/href="[^"]*"/, `href="${esc(catalog.materialsUrl)}"`));
+  for (const file of ['styles.css', 'works.js', 'app.js']) {
+    const hash = createHash('sha256').update(fs.readFileSync(path.join(root, 'works', file))).digest('hex').slice(0, 10);
+    html = html.replace(new RegExp(`((?:src|href)="${file.replace('.', '\\.')}\\?v=)[^"]+`), `$1${hash}`);
+  }
+  return html;
 }
 function card(work, index, en) {
   const title = esc(en ? work.titleEn : work.title);
@@ -133,7 +142,7 @@ function card(work, index, en) {
   const seconds = Math.round(work.duration * 10) / 10;
   if (en) {
     const description = work.description.en.match(/^.*?[.!?](?:\s|$)/)?.[0].trim() || work.description.en;
-    return `<article class="work-card" data-home-film="${esc(work.id)}"><a class="work-image" href="${href}" aria-label="Watch ${title}">${still}</a><div class="work-copy"><p class="eyebrow">${String(index + 1).padStart(2, '0')} / Media art · ${work.year}</p><h3><a href="${href}">${title}</a></h3><p>${esc(description)}</p><p class="credit">${seconds} seconds · Sound · 6K original</p></div></article>`;
+    return `<article class="work-card" data-home-film="${esc(work.id)}"><a class="work-image" href="${href}" aria-label="Watch ${title}">${still}</a><div class="work-copy"><p class="eyebrow">${String(index + 1).padStart(2, '0')} / Media art · ${work.year}</p><h3><a href="${href}">${title}</a></h3><p>${esc(description)}</p><p class="credit">Preview ${seconds} seconds · Sound · 6K original</p></div></article>`;
   }
   return `<a class="work-card film-card" data-home-film="${esc(work.id)}" href="${href}" aria-label="${title} 전체 영상 보기"><div class="frame">${still}</div><div class="caption"><span class="title">${title}</span><span class="spec"><span>${esc(work.subtitle)}</span><span>${seconds}s · Sound</span></span><p class="desc">${esc(work.caption)}</p></div></a>`;
 }
@@ -143,7 +152,12 @@ for (const [file, en] of [['index.html', false], ['en/index.html', true], ['work
   const old = fs.readFileSync(target, 'utf8');
   const pattern = /<!-- HOME_FILMS:START -->[\s\S]*?<!-- HOME_FILMS:END -->/;
   if (file !== 'works/index.html' && !pattern.test(old)) throw new Error(`Missing homepage markers: ${file}`);
-  const updated = file === 'works/index.html' ? galleryPage(old) : old.replace(pattern, () => `<!-- HOME_FILMS:START -->\n        ${selected.map((work, index) => card(work, index, en)).join('\n        ')}\n        <!-- HOME_FILMS:END -->`);
+  let updated = file === 'works/index.html' ? galleryPage(old) : old.replace(pattern, () => `<!-- HOME_FILMS:START -->\n        ${selected.map((work, index) => card(work, index, en)).join('\n        ')}\n        <!-- HOME_FILMS:END -->`);
+  if (en) {
+    const allWorks = /<a class="text-link portfolio-link" href="[^"]*">[\s\S]*?<\/a>/;
+    if (!allWorks.test(updated)) throw new Error(`Missing all-works link: ${file}`);
+    updated = updated.replace(allWorks, `<a class="text-link portfolio-link" href="/works/?lang=en">View all ${catalog.works.length} films <span aria-hidden="true">↗</span></a>`);
+  }
   if (updated === old) continue;
   if (process.argv.includes('--check')) { console.error(`Stale portfolio content: ${file}`); stale = true; }
   else fs.writeFileSync(target, updated);
