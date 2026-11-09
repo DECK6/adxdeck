@@ -9,6 +9,7 @@ const context = { window: {} };
 vm.runInNewContext(read('works/works.js'), context);
 const catalog = context.window.PORTFOLIO;
 const ids = ['ink-breath', 'gyeol', 'sand-pendulum'];
+const projectIds = ['project-08', 'project-01', 'project-02', 'project-04', 'project-05', 'project-06', 'project-07', 'project-03'];
 
 test('both homepages show exactly the requested three films in order', () => {
   for (const file of ['index.html', 'en/index.html']) {
@@ -51,7 +52,8 @@ test('existing portfolios remain directly visible below the featured films in bo
     assert.ok(html.indexOf('id="portfolio"') > html.lastIndexOf('data-home-film='));
   }
   const english = read('en/index.html');
-  for (const title of ['Ultraviolet', 'Afterimage of the Hand', 'Breath of Chaos', 'Christmas at the Incinerator', 'PRECTXE']) {
+  assert.deepEqual([...english.matchAll(/data-project="([^"]+)"/g)].map(match => match[1]), projectIds);
+  for (const title of ['Ultraviolet', 'le voyage dans l&#39;imagenation', 'PRECTXE', 'Afterimage of the Hand', 'Breath of Chaos', 'Christmas at the Incinerator', 'Afterglow', 'Zandari Festa']) {
     assert.ok(english.includes(title), `English portfolio retains ${title}`);
   }
 });
@@ -76,7 +78,7 @@ function galleryHarness(hash = '', search = '') {
     return elements.get(selector);
   };
   const html = read('works/index.html');
-  for (const match of html.matchAll(/<[a-z][\w-]*\b([^>]*\bdata-(?:copy|page-language|language|filter)[^>]*)>/g)) {
+  for (const match of html.matchAll(/<[a-z][\w-]*\b([^>]*\bdata-(?:copy|page-language|language|filter|project-count)[^>]*)>/g)) {
     const attributes = Object.fromEntries([...match[1].matchAll(/([\w-]+)="([^"]*)"/g)].map(m => [m[1], m[2]]));
     const key = attributes.id ? `#${attributes.id}` : match[0];
     const node = element(key);
@@ -84,6 +86,8 @@ function galleryHarness(hash = '', search = '') {
     node.dataset = Object.fromEntries(Object.entries(attributes).filter(([name]) => name.startsWith('data-')).map(([name, value]) => [name.slice(5).replace(/-([a-z])/g, (_, letter) => letter.toUpperCase()), value]));
     nodes.push(node);
   }
+  element('#project-grid').innerHTML = html.match(/<div id="project-grid"[^>]*>([\s\S]*?)<\/div>\s*<template id="projects-en">/)[1];
+  element('#projects-en').innerHTML = html.match(/<template id="projects-en">([\s\S]*?)<\/template>/)[1];
   element('script[type="application/ld+json"]').textContent = html.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/)[1];
   const location = { hash, search, pathname: '/works/' };
   const document = {
@@ -201,6 +205,8 @@ test('page language links retain the current work and other query parameters thr
   assert.equal(page.languageLink('en').href, '/works/?lang=en&source=review');
   page.hash('#artist');
   assert.equal(page.languageLink('ko').href, '/works/?source=review#artist');
+  page.hash('#projects');
+  assert.equal(page.languageLink('ko').href, '/works/?source=review#projects');
 });
 
 test('description-only language changes preserve playback and the page language', () => {
@@ -208,6 +214,7 @@ test('description-only language changes preserve playback and the page language'
     const page = galleryHarness('#work=ink-breath', search);
     const video = page.element('#viewer-video');
     const source = page.element('#viewer-video-source').src;
+    const projects = page.element('#project-grid').innerHTML;
     video.currentTime = 17;
     const loads = video.loadCount;
     const pauses = video.pauseCount;
@@ -219,6 +226,7 @@ test('description-only language changes preserve playback and the page language'
     assert.equal(video.loadCount, loads);
     assert.equal(video.pauseCount, pauses);
     assert.equal(page.element('#viewer-video-source').src, source);
+    assert.equal(page.element('#project-grid').innerHTML, projects);
   }
 });
 
@@ -231,13 +239,46 @@ test('Korean remains the default and English filters keep the eight-work order a
   english.filter('confluence');
   const cards = [...english.element('#work-grid').innerHTML.matchAll(/data-work="([^"]+)"/g)].map(match => match[1]);
   assert.deepEqual(cards, ['gyeol', 'nakhwa']);
-  assert.equal(english.element('#filter-count').textContent, '02 WORKS');
+  assert.equal(english.element('#filter-count').textContent, '02 FILMS');
   assert.deepEqual(Array.from(catalog.order, id => {
     const work = catalog.works.find(work => work.id === id);
     return [id, work.duration];
   }), [['ink-breath',59.5],['gyeol',60],['sand-pendulum',60],['breath-beneath-the-tide',90],['nakhwa',60],['gyeong',60],['joinery',60],['weave',70.033333]]);
   assert.match(english.copy('collectionContext').innerHTML, /current preview files/);
   assert.match(read('works/index.html'), /<source id="viewer-video-source" type="video\/mp4">/);
+});
+
+test('both gallery languages display all eight homepage projects separately from the eight films', () => {
+  for (const search of ['', '?lang=en']) {
+    const page = galleryHarness('', search);
+    const projects = page.element('#project-grid').innerHTML;
+    assert.deepEqual([...projects.matchAll(/data-project="([^"]+)"/g)].map(match => match[1]), projectIds);
+    assert.doesNotMatch(projects, /<details\b|<[^>]*\shidden(?:\s|=|>)/);
+    assert.equal(page.element('#filter-count').textContent, '08 FILMS');
+    assert.equal((page.element('#work-grid').innerHTML.match(/data-work=/g) || []).length, 8);
+    const beforeFilter = projects;
+    page.filter('confluence');
+    assert.equal(page.element('#project-grid').innerHTML, beforeFilter);
+    if (search) {
+      assert.equal(page.copy('projects').innerHTML, 'Exhibitions & Projects');
+      assert.match(projects, /le voyage dans l&#39;imagenation/);
+      assert.match(projects, /single-channel pilot exhibition at 458 Gallery/);
+      assert.match(projects, /Afterglow/);
+      assert.match(projects, /permanent installation at Bucheon Art Bunker B39/);
+      assert.match(projects, /Zandari Festa/);
+      assert.match(projects, /Role: Creative direction/);
+      assert.doesNotMatch(projects, /[가-힣]/);
+      assert.match(page.element('meta[name="description"]').getAttribute('content'), /8 films and 8 exhibitions and projects/);
+    } else {
+      assert.equal(page.copy('projects').innerHTML, '전시·프로젝트');
+      assert.match(projects, /상상유랑/);
+      assert.match(projects, /잔광/);
+      assert.match(projects, /잔다리페스타/);
+    }
+  }
+  const html = read('works/index.html');
+  assert.match(html, /<a href="#projects"><span data-copy="projects">/);
+  assert.match(html, /미디어아트 영상 8편과 전시·프로젝트 8개/);
 });
 
 test('English titles retain existing artist wording without repeating their subtitles', () => {

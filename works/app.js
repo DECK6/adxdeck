@@ -13,8 +13,10 @@
     ko: {
       skip: '작품 목록으로 건너뛰기', home: 'DEXA 홈페이지', navigation: '주요 메뉴',
       works: '작품', artist: '작가', collaboration: '협업', pageLanguage: '페이지 언어',
+      portfolioSections: '포트폴리오 섹션', films: '영상 작품', projects: '전시·프로젝트',
+      projectsHint: '전시, 설치, 페스티벌과 오디오비주얼 작업.',
       openingTitle: '빛과 소리로<br>남은 움직임.', openingAside: '보이지 않는 힘이<br>하나의 장면이 되는 순간.',
-      featured: '대표 작품', watch: '전체 영상 보기', collection: '작품 모음',
+      featured: '대표 작품', watch: '전체 영상 보기', collection: '영상 작품',
       collectionHint: '장면을 선택해 전체 영상을 감상하세요.', filters: '작품 분류',
       all: '전체', confluence: '합류', individual: '개별 작품',
       collectionContext: '표기된 재생 시간은 현재 감상용 파일 기준입니다. 작품은 전시·상영 환경에 맞춰 조정하거나 확장할 수 있습니다.',
@@ -36,10 +38,12 @@
     en: {
       skip: 'Skip to works', home: 'DEXA home', navigation: 'Main navigation',
       works: 'Works', artist: 'Artist', collaboration: 'Collaboration', pageLanguage: 'Page language',
+      portfolioSections: 'Portfolio sections', films: 'Films', projects: 'Exhibitions & Projects',
+      projectsHint: 'Exhibitions, installations, festivals and audiovisual work.',
       openingTitle: 'Motion held<br>in light and sound.', openingAside: 'When invisible forces<br>become a scene.',
-      featured: 'Featured work', watch: 'Watch full film', collection: 'Works',
-      collectionHint: 'Select a scene to watch the full film.', filters: 'Filter works',
-      all: 'All', confluence: 'Confluence', individual: 'Individual works',
+      featured: 'Featured work', watch: 'Watch full film', collection: 'Films',
+      collectionHint: 'Select a scene to watch the full film.', filters: 'Filter films',
+      all: 'All', confluence: 'Confluence', individual: 'Individual films',
       collectionContext: 'Durations describe the current preview files. Works can be adapted or extended for exhibition and screening environments.',
       alternateBio: 'Artist bio in Korean', visit: 'Visit DEXA <span aria-hidden="true">↗</span>',
       collaborationTitle: 'Beyond the screen.',
@@ -87,9 +91,10 @@
   }
 
   if (pageLocale === 'en') {
+    $('#project-grid').innerHTML = $('#projects-en').innerHTML;
     const canonical = 'https://dexa.art/works/?lang=en';
     const title = `Media art works | ${data.artist.nameEn} · DEXA`;
-    const description = `Explore ${works.length} media artworks and ${data.works.length} films by ${data.artist.nameEn}, including Ink Breath, Gyeol and Harmonograph. Contact the artist about exhibitions, screenings and production collaborations.`;
+    const description = `Explore ${data.works.length} films and ${$('#projects').dataset.projectCount} exhibitions and projects by ${data.artist.nameEn}, including Ink Breath, Gyeol and Harmonograph. Contact the artist about exhibitions, screenings and production collaborations.`;
     document.title = title;
     $('link[rel="canonical"]').href = canonical;
     for (const selector of ['meta[property="og:title"]', 'meta[name="twitter:title"]']) $(selector).setAttribute('content', title);
@@ -113,7 +118,7 @@
 
   function renderCollection(filter = 'all') {
     visibleWorks = works.filter(work => filter === 'all' || work.group === filter);
-    $('#filter-count').textContent = `${String(visibleWorks.length).padStart(2, '0')} WORKS`;
+    $('#filter-count').textContent = `${String(visibleWorks.length).padStart(2, '0')} FILMS`;
     $('#work-grid').innerHTML = visibleWorks.map(work => `
       <article class="work-card" data-work="${escape(work.id)}">
         <button type="button" class="card-image" data-open="${escape(work.id)}" aria-label="${escape(copy.view(localized(work, 'title')))}">

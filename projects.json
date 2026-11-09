@@ -6,6 +6,12 @@
     "englishTitle": "Rosalyn Song — Ultraviolet",
     "category": "Music Video Audiovisual",
     "description": "로잘린송 첫 정규앨범 ‘Psytechnography’ 타이틀곡 MV 오디오비주얼 참여 — Audio Visual: Deck (Yook Dae Geun).",
+    "en": {
+      "title": "Ultraviolet",
+      "description": "Audiovisual contribution to the title-track music video for Rosalyn Song's album Psytechnography.",
+      "credit": "Credit: Audio Visual, Deck (Yook Dae Geun)",
+      "imageAlt": "Audiovisual imagery for Rosalyn Song's Ultraviolet music video"
+    },
     "tags": [
       "Audiovisual",
       "Music Video",
@@ -33,6 +39,12 @@
     "englishTitle": "le voyage dans l'imagenation",
     "category": "Immersive Exhibition",
     "description": "1채널 파일럿 전시, 458 갤러리 — 텍스트가 공간으로 확장되는 이머시브 전시",
+    "en": {
+      "title": "le voyage dans l'imagenation",
+      "description": "A single-channel pilot exhibition at 458 Gallery where text expands into an immersive space.",
+      "credit": "Practice: Immersive exhibition",
+      "imageAlt": "le voyage dans l'imagenation immersive exhibition"
+    },
     "tags": [
       "Media Art",
       "Interactive"
@@ -49,6 +61,12 @@
     "englishTitle": "",
     "category": "Festival Production",
     "description": "Digital Media Art Festival General Production",
+    "en": {
+      "title": "PRECTXE",
+      "description": "General production for a digital media art festival.",
+      "credit": "Role: General production",
+      "imageAlt": "PRECTXE digital media art festival"
+    },
     "tags": [
       "Directing",
       "Production"
@@ -65,6 +83,12 @@
     "englishTitle": "Afterimage of the Hand",
     "category": "Generative Data Visualization",
     "description": "회화적 선의 축적과 표면 — Rokkaku 작가의 핸드페인팅 감각을 전시 데이터 기반 520개 스트로크 시스템으로 복원. 토탈미술관 AI해커톤 선정작, 베를린 P61갤러리 전시",
+    "en": {
+      "title": "Afterimage of the Hand",
+      "description": "An exhibition-data-driven stroke system exploring the accumulation of painterly lines and the sensation of Rokkaku's hand painting. Selected at the Total Museum AI Hackathon and exhibited at P61 Gallery, Berlin.",
+      "credit": "Practice: Generative data visualization / Canvas 2D",
+      "imageAlt": "Layered painterly marks in Afterimage of the Hand"
+    },
     "tags": [
       "Data Visualization",
       "Canvas 2D",
@@ -83,6 +107,12 @@
     "englishTitle": "Breath of Chaos",
     "category": "Generative Data Visualization",
     "description": "입자 군집의 구성과 순환 — 108점의 작품 색채, 서울 겨울 기후, 관람객 통계를 9,000개 큐브 입자로 재구성. 토탈미술관 AI해커톤 선정작, 베를린 P61갤러리 전시",
+    "en": {
+      "title": "Breath of Chaos",
+      "description": "Artwork colors, Seoul's winter climate and visitor statistics are reconfigured as a circulating field of cube particles. Selected at the Total Museum AI Hackathon and exhibited at P61 Gallery, Berlin.",
+      "credit": "Practice: Generative data visualization / Three.js",
+      "imageAlt": "A field of colored cube particles in Breath of Chaos"
+    },
     "tags": [
       "Data Visualization",
       "Three.js",
@@ -101,6 +131,12 @@
     "englishTitle": "Christmas at the Incinerator",
     "category": "Interactive Exhibition",
     "description": "장소특정적 인터랙티브 체험 전시 — 부천아트벙커 B39",
+    "en": {
+      "title": "Christmas at the Incinerator",
+      "description": "A site-specific interactive exhibition at Bucheon Art Bunker B39.",
+      "credit": "Practice: Site-specific interactive experience",
+      "imageAlt": "Christmas at the Incinerator exhibition at Bucheon Art Bunker B39"
+    },
     "tags": [
       "Site-Specific",
       "Interactive"
@@ -117,6 +153,12 @@
     "englishTitle": "Afterglow",
     "category": "Permanent Installation",
     "description": "장소특정적 상설 인스톨레이션 — 부천아트벙커 B39",
+    "en": {
+      "title": "Afterglow",
+      "description": "A site-specific permanent installation at Bucheon Art Bunker B39.",
+      "credit": "Practice: Site-specific installation",
+      "imageAlt": "Afterglow installation at Bucheon Art Bunker B39"
+    },
     "tags": [
       "Site-Specific",
       "Installation"
@@ -133,6 +175,12 @@
     "englishTitle": "Zandari Festa",
     "category": "Creative Direction",
     "description": "Global Music Festival Creative Direction",
+    "en": {
+      "title": "Zandari Festa",
+      "description": "Creative direction for a global music festival.",
+      "credit": "Role: Creative direction",
+      "imageAlt": "Zandari Festa music festival"
+    },
     "tags": [
       "Creative Direction",
       "Music Festival"
