@@ -1,5 +1,24 @@
 [
   {
+    "slug": "batched-llm-generation-needs-a-padding-check",
+    "file": "_built/batched-llm-generation-needs-a-padding-check.md",
+    "title": "LLM 요청을 묶을 때 패딩 방향도 검증해야 한다",
+    "description": "길이가 다른 요청을 묶어 LLM에 보낼 때 패딩 방향은 생성 결과에 영향을 줄 수 있다. Transformers의 디코더 전용 생성 경로를 살펴보고, 단건 처리와 배치 처리의 품질을 비교하는 업무 인수 기준을 제안한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "inference",
+      "evaluation",
+      "work-design"
+    ],
+    "date": "2026-11-10",
+    "modified": "2026-11-10",
+    "thumbnail": "images/batched-llm-generation-needs-a-padding-check-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "making-voronoi-color-fields-with-ai",
     "file": "_built/making-voronoi-color-fields-with-ai.md",
     "title": "AI와 만드는 보로노이, 가까운 점으로 색면 나누기",
