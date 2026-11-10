@@ -1,5 +1,34 @@
 [
   {
+    "slug": "making-circle-packing-with-ai",
+    "file": "_built/making-circle-packing-with-ai.md",
+    "title": "AI와 만드는 서클 패킹, 원 사이의 여백 설계하기",
+    "description": "AI와 함께 p5.js로 겹치지 않는 원을 배치합니다. 실제 실행한 코드로 원 사이 간격과 크기, 시드를 바꾸며 제너러티브 패턴의 밀도와 여백을 조절하는 방법을 설명합니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "p5js",
+      "AI"
+    ],
+    "date": "2026-11-11",
+    "modified": "2026-11-11",
+    "thumbnail": "images/circle-packing-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "p5js",
+      "AI"
+    ]
+  },
+  {
     "slug": "batched-llm-generation-needs-a-padding-check",
     "file": "_built/batched-llm-generation-needs-a-padding-check.md",
     "title": "LLM 요청을 묶을 때 패딩 방향도 검증해야 한다",
