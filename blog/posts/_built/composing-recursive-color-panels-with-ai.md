@@ -20,7 +20,7 @@ thumbnail: images/recursive-panels-cover.png
 status: completed
 akmLayer: output
 akmType: output
-akmRole: publication
+akmRole: deliverable
 trustLevel: reviewed
 sourceType: synthesis
 ---
