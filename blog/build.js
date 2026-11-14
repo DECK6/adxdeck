@@ -282,10 +282,22 @@ function escapeAttr(str) {
 // marked.js will still render the interactive view on post.html.
 
 function cleanWikiLinks(md) {
-    md = md.replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, '$2');
-    md = md.replace(/\[\[([^\]]+)\]\]/g, '$1');
-    md = md.replace(/^> \[!(\w+)\]\s*(.*)$/gm, '> **$2**');
-    return md;
+    // Match the renderer's fence/inline-code grammar before cleaning prose.
+    // Array literals such as [[0, 1]] must remain valid copyable code.
+    let inCode = false;
+    return md.split('\n').map(line => {
+        if (/^```/.test(line)) {
+            inCode = !inCode;
+            return line;
+        }
+        if (inCode) return line;
+        return line.split(/(`[^`]+`)/g).map((part, index) => {
+            if (index % 2) return part;
+            return part
+                .replace(/\[\[([^\]|]+)\|([^\]]+)\]\]/g, '$2')
+                .replace(/\[\[([^\]]+)\]\]/g, '$1');
+        }).join('').replace(/^> \[!(\w+)\]\s*(.*)$/g, '> **$2**');
+    }).join('\n');
 }
 
 function normalizeContentUrl(url) {

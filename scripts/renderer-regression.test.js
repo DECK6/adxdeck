@@ -66,3 +66,18 @@ test('code stays literal and labels retain formatting without unsafe markup', ()
         assert.ok(elements(renderInline(`[x](${url})`))[0].attrs.href.startsWith('/blog/'));
     }
 });
+
+test('wiki cleanup preserves array syntax and callouts inside fenced code', () => {
+    const code = 'const stack = [[0, points.length - 1]];\n[[target|literal]]\n> [!NOTE] literal <value>';
+    const md = '```javascript\n' + code + '\n```\n\n[[target|label]] and [[plain]]';
+    assert.equal(renderMarkdown(md), '<pre><code class="language-javascript">const stack = [[0, points.length - 1]];\n[[target|literal]]\n&gt; [!NOTE] literal &lt;value&gt;</code></pre>\n<p>label and plain</p>');
+});
+test('wiki cleanup preserves inline code while converting surrounding prose and callouts', () => {
+    assert.equal(renderMarkdown('`[[0, 1]]` and [[target|label]]\n\n> [!NOTE] Title'), '<p><code>[[0, 1]]</code> and label</p>\n<blockquote><strong>Title</strong></blockquote>');
+});
+test('an unclosed code fence keeps literal wiki syntax through EOF', () => {
+    assert.equal(renderMarkdown('```\n[[target]]'), '<pre><code>[[target]]</code></pre>');
+});
+test('a callout title keeps its inline code within the title formatting', () => {
+    assert.equal(renderMarkdown('> [!NOTE] Title `x` end'), '<blockquote><strong>Title <code>x</code> end</strong></blockquote>');
+});
