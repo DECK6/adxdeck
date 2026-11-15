@@ -1,5 +1,34 @@
 [
   {
+    "slug": "drawing-noise-contours-with-ai-and-marching-squares",
+    "file": "_built/drawing-noise-contours-with-ai-and-marching-squares.md",
+    "title": "AI와 그리는 노이즈 등고선, 마칭 스퀘어로 높이를 선으로 바꾸기",
+    "description": "AI와 함께 마칭 스퀘어를 구현해 노이즈의 같은 높이를 선으로 그립니다. p5.js 실행 예제로 보간과 모호한 셀 처리, 격자 크기와 등고선 간격의 차이를 확인합니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "p5js",
+      "AI"
+    ],
+    "date": "2026-11-16",
+    "modified": "2026-11-16",
+    "thumbnail": "images/contours-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "p5js",
+      "AI"
+    ]
+  },
+  {
     "slug": "simplifying-generative-curves-with-ai-and-rdp",
     "file": "_built/simplifying-generative-curves-with-ai-and-rdp.md",
     "title": "AI와 줄이는 곡선, 남길 점을 고르는 RDP",
