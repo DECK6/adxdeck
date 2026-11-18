@@ -111,6 +111,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://dexa.art/blog/posts/split-ai-evaluation-data-by-the-question-you-ask/</loc>
+    <lastmod>2026-11-11</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://dexa.art/blog/posts/batched-llm-generation-needs-a-padding-check/</loc>
     <lastmod>2026-11-10</lastmod>
     <priority>0.8</priority>

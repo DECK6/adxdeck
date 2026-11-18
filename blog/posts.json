@@ -232,6 +232,26 @@
     ]
   },
   {
+    "slug": "split-ai-evaluation-data-by-the-question-you-ask",
+    "file": "_built/split-ai-evaluation-data-by-the-question-you-ask.md",
+    "title": "AI 평가 데이터, 같은 고객의 기록을 어디에 둘 것인가",
+    "description": "같은 고객의 반복 기록이나 미래 정보가 학습과 평가에 섞이면 AI 성능을 잘못 해석할 수 있다. 그룹별 분할과 시간순 분할의 차이를 살펴보고, 실제 업무에서 알고 싶은 성능에 맞춰 평가 데이터를 나누는 방법을 제안한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "AX",
+      "evaluation",
+      "data-leakage",
+      "work-design"
+    ],
+    "date": "2026-11-11",
+    "modified": "2026-11-11",
+    "thumbnail": "images/split-ai-evaluation-data-by-the-question-you-ask-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "batched-llm-generation-needs-a-padding-check",
     "file": "_built/batched-llm-generation-needs-a-padding-check.md",
     "title": "LLM 요청을 묶을 때 패딩 방향도 검증해야 한다",
