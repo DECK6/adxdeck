@@ -2,7 +2,7 @@
 // recommendations, saved bids, drafts and slide decks; send draft requests to the inbox worker.
 
 const $ = (id) => document.getElementById(id);
-const state = { payload: null, viewerItem: null, viewerIndex: 0, view: "recommend", statuses: new Map(), requestBid: null, requestModel:null, deck: null };
+const state = { payload: null, viewerItem: null, viewerIndex: 0, view: "recommend", statuses: new Map(), bookmarks: new Map(), requestBid: null, requestModel:null, deck: null };
 const EMBEDDED=window.parent!==window&&new URLSearchParams(location.search).get("embedded")==="dashboard";
 const NAME_KEY = "dexa-nara-requester";
 const STATUS_LABELS = {
@@ -74,32 +74,60 @@ function dday(bidCloseAt) {
   return { label: `D-${days}`, cls: days <= 3 ? "red" : "orange" };
 }
 
+function workflowViews(payload, statuses, bookmarks, owner) {
+  const saved = new Map((payload.items || []).map(item => [bidKey(item), item]));
+  const vault = new Map(owner ? bookmarks : []);
+  for (const [key, item] of saved) vault.set(key, item);
+  const batches = payload.recommendations || [];
+  const recommended = new Map(batches.slice().reverse().flatMap(batch => batch.items.map(item => [bidKey(item), item])));
+  const inbox = [];
+  const assigned = new Set(vault.keys());
+  if (owner) {
+    const entries = [...statuses.values()].sort((a,b) =>
+      Number(b.status === "requested" && !b.auto) - Number(a.status === "requested" && !a.auto)
+      || String(b.updatedAt || "").localeCompare(String(a.updatedAt || "")));
+    for (const entry of entries) {
+      const key = entry.bidNo;
+      const draft = saved.get(key)?.drafts?.[0];
+      if (entry.status === "done" && draft && (!entry.createdAt || !draft.generatedAt || Date.parse(draft.generatedAt) >= Date.parse(entry.createdAt))) continue;
+      const item = vault.get(key) || recommended.get(key) || { ...entry.bid, bidNtceNo:key, title:entry.bid?.title || key };
+      inbox.push(item);
+      assigned.add(key);
+      vault.delete(key);
+    }
+  }
+  const remaining = batches.map(batch => ({ ...batch, items: batch.items.filter(item => {
+    const key = bidKey(item);
+    if (assigned.has(key)) return false;
+    assigned.add(key);
+    return true;
+  }) })).filter(batch => batch.items.length);
+  return { batches:remaining, vault:[...vault.values()].sort((a,b) =>
+    String(b.savedAt || b.drafts?.[0]?.generatedAt || "").localeCompare(String(a.savedAt || a.drafts?.[0]?.generatedAt || ""))), inbox };
+}
+
 function render() {
-  const items = state.payload?.items || [];
-  const batches = state.payload?.recommendations || [];
-  $("metaCount").textContent = `오늘 추천 ${batches[0]?.items.length || 0}건 · 보관 ${items.length}건 · 초안 ${items.reduce((sum, item) => sum + (item.drafts?.length || 0), 0)}건`;
+  const { batches, vault, inbox } = workflowViews(state.payload, state.statuses, state.bookmarks, EMBEDDED);
+  const counts = { recommend:batches.reduce((n,batch) => n + batch.items.length, 0), vault:vault.length, requests:inbox.length };
+  const labels = { recommend:"AITY 추천", vault:"보관함", requests:"요청함" };
+  $("metaCount").textContent = "";
   $("metaUpdated").textContent = state.payload?.generatedAt ? `업데이트 ${state.payload.generatedAt.slice(0, 10)}` : "";
-  $("viewTabs").querySelectorAll("button").forEach((button) => button.classList.toggle("active", button.dataset.view === state.view));
+  $("viewTabs").querySelectorAll("button").forEach(button => {
+    const view = button.dataset.view;
+    button.textContent = `${labels[view]} ${counts[view]}`;
+    button.classList.toggle("active", view === state.view);
+    button.setAttribute("aria-current", view === state.view ? "page" : "false");
+  });
   $("recommendView").hidden = state.view !== "recommend";
   $("cards").hidden = state.view !== "vault";
-  // Inbox of shared-page requests, visible only in the master's dashboard (owner status carries bid + note).
-  const inbox = EMBEDDED ? [...state.statuses.values()].filter((entry) => !entry.auto) : [];
-  const pending = inbox.filter((entry) => entry.status === "requested").length;
   $("requestsTab").hidden = !EMBEDDED;
-  $("requestsTab").textContent = pending ? `요청함 ${pending}` : "요청함";
   $("requestView").hidden = state.view !== "requests";
-  $("requestView").innerHTML = inbox.length
-    ? inbox.sort((a, b) => (b.status === "requested") - (a.status === "requested") || String(b.createdAt).localeCompare(String(a.createdAt)))
-        .map((entry) => findItem(entry.bidNo)).filter(Boolean).map((item) => renderCard(item)).join("")
-    : `<div class="empty">nara에서 들어온 초안 요청이 없습니다</div>`;
-  $("cards").innerHTML = items.length ? items.map((item) => renderCard(item)).join("") : `<div class="empty">공유된 공고가 없습니다</div>`;
-  $("recommendView").innerHTML = batches.length
-    ? batches.map((batch, index) => `
-        <section class="batch">
-          <h2 class="batch-title mono">${escapeHtml(batch.date)} ${index === 0 ? "· 오늘의 AITY 추천" : ""}<span>${batch.items.length}건</span></h2>
-          <div class="cards">${batch.items.map((item) => renderCard(item)).join("")}</div>
-        </section>`).join("")
-    : `<div class="empty">아직 추천이 없습니다 — 매일 오전 9시에 적합도 75점 이상 공고가 올라옵니다</div>`;
+  $("requestView").innerHTML = inbox.length ? inbox.map(renderCard).join("") : '<div class="empty">진행 중인 초안 요청이 없습니다.</div>';
+  $("cards").innerHTML = vault.length ? vault.map(renderCard).join("") : '<div class="empty">보관한 공고와 완성된 초안이 여기에 표시됩니다.</div>';
+  $("recommendView").innerHTML = batches.length ? batches.map(batch => `
+    <section class="batch"><h2 class="batch-title mono">${escapeHtml(batch.date)} 추천<span>${batch.items.length}건</span></h2>
+    <div class="cards">${batch.items.map(renderCard).join("")}</div></section>`).join("")
+    : '<div class="empty">새로 검토할 추천 공고가 없습니다.</div>';
 }
 
 const bidKey = (item) => String(item.bidNtceNo || item.id || "");
@@ -113,6 +141,7 @@ function draftsFor(item) {
 function renderCard(item) {
   const key = bidKey(item);
   const deadline = dday(item.bidCloseAt);
+  const detailUrl = /^https?:\/\//i.test(item.detailUrl || "") ? item.detailUrl : "";
   const drafts = draftsFor(item);
   const status = state.statuses.get(key);
   const [statusLabel, statusCls] = STATUS_LABELS[status?.status] || [];
@@ -133,16 +162,18 @@ function renderCard(item) {
       <h3 class="card-title">${escapeHtml(item.title)}</h3>
       <div class="card-agency">${escapeHtml(item.agency || "")}</div>
       <div class="tag-row">${tags}</div>
+      ${state.view === "requests" && status?.status === "done" ? '<p class="request-note">새 초안이 게시되면 보관함에서 열 수 있습니다. <button type="button" data-action="reload">게시 결과 새로고침</button></p>' : ""}
       ${terms ? `<div class="terms">${terms}</div>` : ""}
       ${EMBEDDED && status && !status.auto && (status.requester || status.note) ? `<p class="request-note">요청 · ${escapeHtml(status.requester || "이름 없음")} · ${escapeHtml((status.createdAt || "").slice(0, 10))}${status.note ? ` — ${escapeHtml(status.note)}` : ""}</p>` : ""}
       <div class="card-foot">
         <span class="budget">${escapeHtml(item.budgetLabel || "")}</span>
-        <span class="card-links">
-          ${item.detailUrl ? `<a href="${escapeHtml(item.detailUrl)}" target="_blank" rel="noopener">나라장터 ↗</a>` : ""}
+        <div class="card-links">
+          ${EMBEDDED && state.view === "recommend" && state.payload?.requestApi ? '<button type="button" data-action="save">보관함에 담기</button>' : ""}
+          ${detailUrl ? `<a href="${escapeHtml(detailUrl)}" target="_blank" rel="noopener">나라장터 ↗</a>` : ""}
           ${drafts.length ? `<button type="button" data-action="draft">초안 보기</button>` : ""}
           ${drafts[0]?.slides ? `<button type="button" data-action="slides">슬라이드</button>` : ""}
-          ${canGenerate ? `<button type="button" class="request" data-action="request">${drafts.length ? "자동 재요청" : "초안 자동 생성"}</button><button type="button" data-action="opus">오푸스 5.5로 생성</button><button type="button" data-action="sol">Sol 6.2로 생성</button><button type="button" data-action="astra">아스트라 6.2로 생성</button><button type="button" data-action="fable">페이블 5.2로 생성</button>` : !EMBEDDED && canRequest ? `<button type="button" class="request" data-action="request">${drafts.length ? "초안 재요청" : "초안 요청"}</button>` : ""}
-        </span>
+          ${canGenerate ? `<button type="button" class="request" data-action="request">${drafts.length ? "자동 재요청" : "초안 자동 생성"}</button><details class="model-choices"><summary>모델 선택</summary><div><button type="button" data-action="opus">오푸스 5.5로 생성</button><button type="button" data-action="sol">Sol 6.2로 생성</button><button type="button" data-action="astra">아스트라 6.2로 생성</button><button type="button" data-action="fable">페이블 5.2로 생성</button></div></details>` : !EMBEDDED && canRequest ? `<button type="button" class="request" data-action="request">${drafts.length ? "초안 재요청" : "초안 요청"}</button>` : ""}
+        </div>
       </div>
     </article>`;
 }
@@ -151,18 +182,66 @@ function findItem(key) {
   const all = [...(state.payload?.recommendations || []).flatMap((batch) => batch.items), ...(state.payload?.items || [])];
   const found = all.find((item) => bidKey(item) === key);
   if (found) return found;
+  if (state.bookmarks.has(key)) return state.bookmarks.get(key);
   const bid = state.statuses.get(key)?.bid;
   return bid ? { ...bid, bidNtceNo: key } : undefined;
+}
+
+async function loadBookmarks() {
+  const api = state.payload?.requestApi;
+  if (!api || !EMBEDDED) return;
+  try {
+    const url = new URL(api.url.replace(/\/$/, "") + "/bookmarks");
+    let cursor;
+    do {
+      if (cursor) url.searchParams.set("cursor", cursor);
+      const response = await fetch(url, { headers: { "X-Nara-Token":api.token }, cache:"no-store" });
+      const data = await response.json();
+      if (!data.ok) throw new Error();
+      for (const item of data.items) state.bookmarks.set(bidKey(item), item);
+      cursor = data.cursor;
+    } while (cursor);
+    render();
+  } catch {
+    $("workflowMessage").textContent = "보관 목록을 불러오지 못했습니다. 보관함을 다시 열어 주세요.";
+  }
+}
+
+async function saveBookmark(item, button) {
+  const api = state.payload.requestApi;
+  button.disabled = true;
+  try {
+    const response = await fetch(api.url.replace(/\/$/, "") + "/bookmarks", {
+      method:"POST", headers:{ "Content-Type":"application/json", "X-Nara-Token":api.token },
+      body:JSON.stringify({ bidNo:bidKey(item), bid:item })
+    });
+    const data = await response.json();
+    if (!data.ok) throw new Error();
+    state.bookmarks.set(bidKey(item), data.item);
+    state.view = "vault";
+    $("workflowMessage").textContent = "";
+    render();
+  } catch {
+    $("workflowMessage").textContent = "공고를 보관하지 못했습니다. 다시 시도해 주세요.";
+  } finally {
+    button.disabled = false;
+  }
 }
 
 async function refreshStatuses() {
   const api = state.payload?.requestApi;
   if (!api) return;
+  const previous = state.statuses;
   try {
     const response = await fetch(`${api.url.replace(/\/$/, "")}/status`, { headers: { "X-Nara-Token": api.token }, cache: "no-store" });
     const data = await response.json();
     if (!data.ok) return;
-    state.statuses = new Map(data.items.map((item) => [item.bidNo, item]));
+    if (previous !== state.statuses) return;
+    const next = new Map(data.items.map(item => [item.bidNo, item]));
+    for (const [key, local] of previous) {
+      if (next.has(key) && String(local.updatedAt) > String(next.get(key).updatedAt)) next.set(key, local);
+    }
+    state.statuses = next;
     render();
   } catch {
     // inbox unreachable — keep the last known statuses
@@ -195,7 +274,8 @@ async function submitRequest() {
     const data = await response.json().catch(() => ({}));
     if (!response.ok || !data.ok) throw new Error(data.message || "요청을 보내지 못했습니다");
     if(!EMBEDDED)localStorage.setItem(NAME_KEY, $("requestName").value.trim());
-    state.statuses.set(bidKey(item), data.request);
+    state.statuses = new Map(state.statuses).set(bidKey(item), data.request);
+    if (EMBEDDED) state.view = "requests";
     $("requestOverlay").hidden = true;
     render();
   } catch (error) {
@@ -268,6 +348,11 @@ function onCardClick(event) {
   const item = findItem(card.dataset.key);
   if (!item) return;
   const drafts = draftsFor(item);
+  if (button.dataset.action === "reload") { window.parent.location.reload(); return; }
+  if (button.dataset.action === "save") {
+    saveBookmark(item, button);
+    return;
+  }
   if (button.dataset.action === "request") openRequest(item);
   if(["opus","sol","astra","fable"].includes(button.dataset.action)){
     state.requestBid=item;state.requestModel={opus:"opus",sol:"sol",astra:"astra-xhigh",fable:"fable"}[button.dataset.action];
@@ -286,6 +371,8 @@ $("viewTabs").addEventListener("click", (event) => {
   const button = event.target.closest("[data-view]");
   if (!button) return;
   state.view = button.dataset.view;
+  $("workflowMessage").textContent = "";
+  if (state.view === "vault") loadBookmarks();
   render();
 });
 
@@ -333,7 +420,7 @@ if(EMBEDDED){
  document.querySelector(".lock-sub").textContent="대시보드 연결 중…";
  window.addEventListener("message",event=>{
   if(event.source!==window.parent||event.origin!==location.origin||event.data?.type!=="dexa:nara-payload"||event.data.payload?.v!==2)return;
-  state.payload=event.data.payload;$("lockScreen").hidden=true;$("app").hidden=false;render();refreshStatuses();
+  state.payload=event.data.payload;$("lockScreen").hidden=true;$("app").hidden=false;render();refreshStatuses();loadBookmarks();
  });
  window.parent.postMessage({type:"nara:ready"},location.origin);
  setInterval(()=>document.visibilityState==="visible"&&state.payload&&refreshStatuses(),60000);

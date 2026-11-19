@@ -226,3 +226,9 @@ button{font-family:inherit; cursor:pointer;}
 
 .request-panel select{background:var(--surface-2);color:var(--ink);border:1px solid var(--line);border-radius:4px;padding:10px;width:100%;font:inherit}.embedded .app-header{padding-top:12px}.embedded .brand{display:none}.embedded .app{max-width:none}.embedded{background:var(--paper)}
 @media(max-width:640px){.cards{grid-template-columns:minmax(0,1fr)}.app{padding-left:12px;padding-right:12px}.header-meta{flex-wrap:wrap;gap:8px}.batch-title{flex-wrap:wrap}.viewer-header{flex-wrap:wrap;gap:10px}.card-foot{flex-wrap:wrap;gap:10px}}
+
+.view-tabs{flex-wrap:wrap}
+.card-foot,.card-links,.model-choices>div{flex-wrap:wrap}
+.model-choices summary{cursor:pointer;color:var(--muted);padding:5px 8px;font-size:.74rem}
+.model-choices>div{display:flex;gap:6px;margin-top:6px}
+#workflowMessage:not(:empty){margin-bottom:16px;color:var(--muted)}
