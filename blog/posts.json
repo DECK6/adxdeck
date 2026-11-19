@@ -1,5 +1,34 @@
 [
   {
+    "slug": "drawing-damped-lissajous-curves-with-ai",
+    "file": "_built/drawing-damped-lissajous-curves-with-ai.md",
+    "title": "진동이 잦아들 때 남는 선, AI와 만드는 감쇠 리사주 곡선",
+    "description": "두 사인 진동에 감쇠를 더해 리사주 곡선이 안쪽으로 모이는 과정을 p5.js로 그립니다. AI에 계산 규칙과 검사를 전달하고, 진동 비율·위상·감쇠·표본 간격을 바꾸며 선의 밀도와 여백을 설계합니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "p5js",
+      "AI"
+    ],
+    "date": "2026-11-20",
+    "modified": "2026-11-20",
+    "thumbnail": "images/damped-lissajous-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "p5js",
+      "AI"
+    ]
+  },
+  {
     "slug": "arranging-generative-dots-with-ai-and-the-golden-angle",
     "file": "_built/arranging-generative-dots-with-ai-and-the-golden-angle.md",
     "title": "회전각 하나로 달라지는 점의 무늬, AI와 만드는 황금각 배열",
