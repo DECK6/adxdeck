@@ -141,7 +141,7 @@ function renderCard(item) {
           ${item.detailUrl ? `<a href="${escapeHtml(item.detailUrl)}" target="_blank" rel="noopener">나라장터 ↗</a>` : ""}
           ${drafts.length ? `<button type="button" data-action="draft">초안 보기</button>` : ""}
           ${drafts[0]?.slides ? `<button type="button" data-action="slides">슬라이드</button>` : ""}
-          ${canGenerate ? `<button type="button" class="request" data-action="request">${drafts.length ? "자동 재요청" : "초안 자동 요청"} · 오푸스 5.5</button><button type="button" data-action="sol">Sol 6.2로 생성</button><button type="button" data-action="astra">아스트라 6.2로 생성</button><button type="button" data-action="fable">페이블 5.2로 생성</button>` : !EMBEDDED && canRequest ? `<button type="button" class="request" data-action="request">${drafts.length ? "초안 재요청" : "초안 요청"}</button>` : ""}
+          ${canGenerate ? `<button type="button" class="request" data-action="request">${drafts.length ? "자동 재요청" : "초안 자동 생성"}</button><button type="button" data-action="opus">오푸스 5.5로 생성</button><button type="button" data-action="sol">Sol 6.2로 생성</button><button type="button" data-action="astra">아스트라 6.2로 생성</button><button type="button" data-action="fable">페이블 5.2로 생성</button>` : !EMBEDDED && canRequest ? `<button type="button" class="request" data-action="request">${drafts.length ? "초안 재요청" : "초안 요청"}</button>` : ""}
         </span>
       </div>
     </article>`;
@@ -170,10 +170,10 @@ async function refreshStatuses() {
 }
 
 function openRequest(item) {
-  state.requestBid = item;state.requestModel=EMBEDDED?"opus":null;
+  state.requestBid = item;state.requestModel=null;
   $("requestTitle").textContent = item.title;
   $("requestName").value = EMBEDDED?"":localStorage.getItem(NAME_KEY) || "";
-  $("requestHint").textContent = EMBEDDED ? "자동 요청은 오푸스 5.5로 초안과 슬라이드를 생성합니다 · 로컬 생성기가 실행 중일 때 진행됩니다" : "요청이 접수되면 담당자가 확인한 뒤 초안을 생성합니다";
+  $("requestHint").textContent = EMBEDDED ? "오푸스 구독 → 오푸스 API → Sol 구독 → Sol API 순서로 시도합니다 · 초안과 슬라이드 자동 생성" : "요청이 접수되면 담당자가 확인한 뒤 초안을 생성합니다";
   $("requestNote").value = "";
   $("requestError").hidden = true;
   $("requestOverlay").hidden = false;
@@ -269,8 +269,8 @@ function onCardClick(event) {
   if (!item) return;
   const drafts = draftsFor(item);
   if (button.dataset.action === "request") openRequest(item);
-  if(["sol","astra","fable"].includes(button.dataset.action)){
-    state.requestBid=item;state.requestModel={sol:"sol",astra:"astra-xhigh",fable:"fable"}[button.dataset.action];
+  if(["opus","sol","astra","fable"].includes(button.dataset.action)){
+    state.requestBid=item;state.requestModel={opus:"opus",sol:"sol",astra:"astra-xhigh",fable:"fable"}[button.dataset.action];
     $("requestName").value="마스터";$("requestNote").value="";
     button.disabled=true;
     submitRequest().finally(()=>{button.disabled=false;});
