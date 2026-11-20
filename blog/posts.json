@@ -1,5 +1,34 @@
 [
   {
+    "slug": "shaping-generative-contours-with-ai-and-the-superformula",
+    "file": "_built/shaping-generative-contours-with-ai-and-the-superformula.md",
+    "title": "윤곽의 오목함을 고르는 일, AI와 만드는 슈퍼포뮬러",
+    "description": "슈퍼포뮬러의 지수 하나를 바꾸며 여섯 방향의 윤곽을 비교합니다. AI에 맡길 코드와 직접 확인할 수학을 나누고, p5.js로 반복 윤곽을 그려 PNG로 저장하는 제작 과정을 다룹니다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "p5js",
+      "AI"
+    ],
+    "date": "2026-11-21",
+    "modified": "2026-11-21",
+    "thumbnail": "images/superformula-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "p5js",
+      "AI"
+    ]
+  },
+  {
     "slug": "a-dependency-order-is-not-an-executable-schedule",
     "file": "_built/a-dependency-order-is-not-an-executable-schedule.md",
     "title": "AI가 정한 작업 순서만으로는 일정이 완성되지 않는다",
