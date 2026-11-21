@@ -1,5 +1,24 @@
 [
   {
+    "slug": "keeping-reviewer-disagreement-in-ai-feedback",
+    "file": "_built/keeping-reviewer-disagreement-in-ai-feedback.md",
+    "title": "AI 답변의 평가가 갈릴 때 팀이 남겨야 할 것",
+    "description": "AI 답변에 대한 평가가 엇갈릴 때 개별 점수와 이유를 보존하고, 기준의 모호함·근거 부족·사용 맥락의 차이를 나눠 다음 개선으로 연결하는 방법을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "evaluation",
+      "human-feedback",
+      "team-learning"
+    ],
+    "date": "2026-11-21",
+    "modified": "2026-11-21",
+    "thumbnail": "images/keeping-reviewer-disagreement-in-ai-feedback-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "shaping-generative-contours-with-ai-and-the-superformula",
     "file": "_built/shaping-generative-contours-with-ai-and-the-superformula.md",
     "title": "윤곽의 오목함을 고르는 일, AI와 만드는 슈퍼포뮬러",
