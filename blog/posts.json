@@ -1,5 +1,24 @@
 [
   {
+    "slug": "checking-who-spoke-before-sharing-ai-meeting-notes",
+    "file": "_built/checking-who-spoke-before-sharing-ai-meeting-notes.md",
+    "title": "AI 회의록의 발언자를 확인하는 순서",
+    "description": "AI 회의록의 화자 번호와 실제 발언자, 업무 담당자를 구분하고 시간 구간·겹친 발화·확인 이력을 보존해 팀이 다시 확인할 수 있는 기록으로 만드는 방법을 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "speech",
+      "meeting-notes",
+      "work-design"
+    ],
+    "date": "2026-11-22",
+    "modified": "2026-11-22",
+    "thumbnail": "images/checking-who-spoke-before-sharing-ai-meeting-notes-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "making-monochrome-tones-with-ai-and-ordered-dithering",
     "file": "_built/making-monochrome-tones-with-ai-and-ordered-dithering.md",
     "title": "흑백 두 색으로 남기는 명암, AI와 만드는 순서 디더링",
