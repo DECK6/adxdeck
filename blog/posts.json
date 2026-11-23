@@ -1,5 +1,24 @@
 [
   {
+    "slug": "checking-row-grain-before-ai-joins-tables",
+    "file": "_built/checking-row-grain-before-ai-joins-tables.md",
+    "title": "AI가 표를 합칠 때 한 행의 뜻을 지키는 법",
+    "description": "AI가 작성한 표 결합 코드에서 중복 키가 행과 합계를 늘리는 과정을 pandas 예제로 확인하고, 한 행의 단위·키의 유일성·미연결 기록을 검사하는 업무 기준을 제안한다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "data-analysis",
+      "automation",
+      "data-quality"
+    ],
+    "date": "2026-11-23",
+    "modified": "2026-11-23",
+    "thumbnail": "images/checking-row-grain-before-ai-joins-tables-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "rounding-generative-polygons-with-ai-and-chaikin",
     "file": "_built/rounding-generative-polygons-with-ai-and-chaikin.md",
     "title": "모서리를 얼마나 남길까, AI와 만드는 차이킨 곡선",

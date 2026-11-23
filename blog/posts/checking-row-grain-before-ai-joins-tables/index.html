@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI가 표를 합칠 때 한 행의 뜻을 지키는 법 | DEXA Blog</title>
+    <meta name="description" content="AI가 작성한 표 결합 코드에서 중복 키가 행과 합계를 늘리는 과정을 pandas 예제로 확인하고, 한 행의 단위·키의 유일성·미연결 기록을 검사하는 업무 기준을 제안한다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/checking-row-grain-before-ai-joins-tables/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="AI가 표를 합칠 때 한 행의 뜻을 지키는 법" />
+    <meta property="og:description" content="AI가 작성한 표 결합 코드에서 중복 키가 행과 합계를 늘리는 과정을 pandas 예제로 확인하고, 한 행의 단위·키의 유일성·미연결 기록을 검사하는 업무 기준을 제안한다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/checking-row-grain-before-ai-joins-tables/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/checking-row-grain-before-ai-joins-tables-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-11-23" />
+    <meta property="article:modified_time" content="2026-11-23" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="AI" />
+    <meta property="article:tag" content="data-analysis" />
+    <meta property="article:tag" content="automation" />
+    <meta property="article:tag" content="data-quality" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="AI가 표를 합칠 때 한 행의 뜻을 지키는 법" />
+    <meta name="twitter:description" content="AI가 작성한 표 결합 코드에서 중복 키가 행과 합계를 늘리는 과정을 pandas 예제로 확인하고, 한 행의 단위·키의 유일성·미연결 기록을 검사하는 업무 기준을 제안한다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/checking-row-grain-before-ai-joins-tables-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"AI가 표를 합칠 때 한 행의 뜻을 지키는 법","description":"AI가 작성한 표 결합 코드에서 중복 키가 행과 합계를 늘리는 과정을 pandas 예제로 확인하고, 한 행의 단위·키의 유일성·미연결 기록을 검사하는 업무 기준을 제안한다.","image":"https://dexa.art/blog/images/checking-row-grain-before-ai-joins-tables-cover.png","datePublished":"2026-11-23","dateModified":"2026-11-23","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/checking-row-grain-before-ai-joins-tables/"},"articleSection":"AI · AX","keywords":"AI, data-analysis, automation, data-quality"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">AI · AX</span>
+                    <span class="dx-date">Article · 2026.11.23</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>AI가 표를 합칠 때 한 행의 뜻을 지키는 법</h1>
+                <p style="color:var(--muted);font-size:17px;">AI가 작성한 표 결합 코드에서 중복 키가 행과 합계를 늘리는 과정을 pandas 예제로 확인하고, 한 행의 단위·키의 유일성·미연결 기록을 검사하는 업무 기준을 제안한다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">AI</span><span class="dx-tag-chip">data-analysis</span><span class="dx-tag-chip">automation</span><span class="dx-tag-chip">data-quality</span></div>
+<p><img src="/blog/images/checking-row-grain-before-ai-joins-tables-cover.png" alt="두 줄의 도자기 타일이 황동 연결부를 지나며 반복된 배열로 이어지는 모습" loading="lazy"></p>
+<p><em>정보를 연결하며 생기는 반복을 표현한 생성 이미지다. 타일 개수는 실제 데이터의 결합 결과를 나타내지 않는다.</em></p>
+<p>AI에게 주문 내역과 고객 정보를 합쳐 보고서를 만들어 달라고 했다고 하자. 코드는 오류 없이 실행되고, 보고서의 문장도 자연스럽다. 그런데 주문 합계가 원본보다 커졌다. 주문을 새로 받은 적은 없는데, 표를 합친 뒤 같은 주문이 여러 행에 나타난 것이다.</p>
+<p>이 문제는 AI의 계산 능력만으로 설명하기 어렵다. 결합에 쓴 고객 정보가 고객별 한 행인지, 연락처별 한 행인지 먼저 정하지 않았을 수 있다. 코드가 실행됐다는 사실은 그 코드가 업무에서 의도한 단위를 지켰다는 뜻까지 포함하지 않는다.</p>
+<p>AI가 데이터 분석 코드를 작성하는 환경에서는 <strong>결합 전후의 한 행이 무엇을 뜻하는지</strong>를 완료 기준에 넣어야 한다. 이 글은 pandas 3.1.1에서 직접 실행한 가상 예제로 행이 늘어나는 원리를 살펴보고, 보고서 작성 전에 둘 수 있는 검사를 제안한다. 실제 회사 데이터나 특정 AI 모델의 오류율을 측정한 결과는 아니다.</p>
+<h2>주문 한 건이 연락처 두 개를 만나면</h2>
+<p>주문 표에 고객 C1의 주문 O1과 O2가 있고, 금액은 각각 10,000원과 20,000원이라고 하자. 고객 C2의 주문 O3는 5,000원이다. 원본은 3행이며 합계는 35,000원이다.</p>
+<p>여기에 고객별 연락 수단을 기록한 표를 붙인다. C1은 이메일과 전화 두 행, C2는 이메일 한 행을 가지고 있다. 고객 번호가 같다는 이유로 결합하면 C1의 각 주문은 연락 수단 두 개와 각각 연결된다.</p>
+<div class="table-scroll"><table><thead><tr><th>주문</th><th>고객</th><th>주문 금액</th><th>연결된 연락 수단</th></tr></thead><tbody><tr><td>O1</td><td>C1</td><td>10,000원</td><td>이메일</td></tr><tr><td>O1</td><td>C1</td><td>10,000원</td><td>전화</td></tr><tr><td>O2</td><td>C1</td><td>20,000원</td><td>이메일</td></tr><tr><td>O2</td><td>C1</td><td>20,000원</td><td>전화</td></tr><tr><td>O3</td><td>C2</td><td>5,000원</td><td>이메일</td></tr></tbody></table></div>
+<p>이 5행의 금액을 그대로 더하면 65,000원이 된다. 연락 수단별 주문 조합을 만드는 작업이라면 이런 결과가 필요할 수도 있다. 그러나 주문별 금액 보고서라면 같은 주문을 반복해서 집계하게 된다. 결합 후의 한 행은 주문 한 건이 아니라 주문과 연락 수단의 조합이 됐다.</p>
+<p>아래 코드는 이 가상 사례를 재현한다. 금액은 정수 원 단위로 두었다.</p>
+<pre><code class="language-python">import pandas as pd
+
+orders = pd.DataFrame({
+    &quot;order_id&quot;: [&quot;O1&quot;, &quot;O2&quot;, &quot;O3&quot;],
+    &quot;customer_id&quot;: [&quot;C1&quot;, &quot;C1&quot;, &quot;C2&quot;],
+    &quot;amount&quot;: [10000, 20000, 5000],
+})
+contacts = pd.DataFrame({
+    &quot;customer_id&quot;: [&quot;C1&quot;, &quot;C1&quot;, &quot;C2&quot;],
+    &quot;channel&quot;: [&quot;email&quot;, &quot;phone&quot;, &quot;email&quot;],
+})
+joined = orders.merge(
+    contacts, on=&quot;customer_id&quot;, how=&quot;left&quot;, indicator=True
+)
+print(len(joined), joined[&quot;amount&quot;].sum())
+# 5 65000</code></pre>
+<p>여기서 왼쪽 결합은 왼쪽 표의 키를 보존하지만, 왼쪽의 각 행이 결과에서도 정확히 한 번만 나타나도록 보장하지는 않는다. 오른쪽에서 같은 키가 여러 번 발견되면 대응하는 조합들이 생긴다. pandas의 공식 API 예제에서도 중복 키에 연결된 값들이 여러 행으로 나타나는 동작을 확인할 수 있다. <a href="https://pandas.pydata.org/docs/reference/api/pandas.merge.html">pandas.merge 문서</a></p>
+<h2>관계를 검사하되 뜻까지 검사했다고 여기지 않는다</h2>
+<p>주문에 고객별 분류를 붙이려는 목적이라면, 주문 표에서는 고객 번호가 반복돼도 되지만 오른쪽 고객 기준표에서는 고객 번호가 하나씩만 있어야 한다. pandas에서는 이 기대를 <code>validate=&quot;many_to_one&quot;</code>으로 검사할 수 있다. 앞의 연락처 표를 그대로 사용하면 오른쪽 키가 유일하지 않아 <code>MergeError</code>가 발생한다.</p>
+<p>공식 문서는 <code>one_to_one</code>을 양쪽 키의 유일성 검사, <code>one_to_many</code>를 왼쪽 검사, <code>many_to_one</code>을 오른쪽 검사로 설명한다. 반면 <code>many_to_many</code>는 다대다 결합을 허용할 뿐 해당 유일성 검사를 수행하지 않는다. 이 구분은 현재 기본 브랜치의 구현에서도 확인된다. <a href="https://pandas.pydata.org/docs/reference/api/pandas.merge.html">API의 validate 설명</a>, <a href="https://github.com/pandas-dev/pandas/blob/717bcd3eda554a0b2e826889f9e30efbd88f00cd/pandas/core/reshape/merge.py">확인한 구현</a></p>
+<p>실제로 같은 가상 데이터에 <code>many_to_many</code>를 지정하면 5행 결과가 그대로 나온다. 따라서 AI가 검증 오류를 없애려고 이 값으로 바꿨다면, 문제가 해결됐는지보다 원래 요구한 관계를 포기했는지 먼저 봐야 한다. 오류가 사라진 것과 분석 목적을 충족한 것은 따로 확인해야 한다.</p>
+<p>유일성 검사가 통과해도 의미가 맞는지는 남는다. 고객 번호와 공급자 번호처럼 서로 다른 대상을 가리키는 열을 연결했을 때 값이 우연히 겹칠 수도 있다. 코드에 쓰일 키뿐 아니라 그 키가 어떤 대상을 식별하는지, 어느 시점의 기록을 연결하는지 사람이 정해야 한다.</p>
+<p>같은 고객의 과거 주소와 현재 주소가 함께 있는 경우도 단순한 중복이라고 지울 수 없다. 주문 당시 주소가 필요한지 현재 주소가 필요한지에 따라 선택 기준이 달라진다. 첫 행만 남기는 방식은 행 수를 줄일 수는 있어도 올바른 주소를 선택했다는 근거가 되지는 않는다.</p>
+<h2>AI에게 표와 함께 넘길 결합 조건</h2>
+<p>다음은 AI 보조 분석을 업무에 적용할 때 사용할 수 있는 요청 방식이다. pandas의 공식 업무 절차가 아니라, 앞의 동작을 바탕으로 제안하는 기준이다.</p>
+<p>“두 표를 합쳐 줘”에 더해 결과의 단위를 적는다. 예를 들어 “결과 한 행은 주문 한 건이며, 주문 번호는 중복되지 않아야 한다. 고객별 분류를 붙이고, 고객 기준표에 없는 주문은 따로 표시한다”라고 쓴다. 이 문장은 어떤 코드를 써야 하는지뿐 아니라 무엇이 달라지면 멈춰야 하는지도 알려 준다.</p>
+<p>주문별 보고서라면 먼저 원본 주문 번호가 유일한지 확인한다. 주문 표가 실제로는 품목별 내역이라면 주문 번호가 반복되는 것이 정상일 수 있다. 이때 주문 번호만으로 중복을 판정하면 올바른 품목을 없앨 수 있으므로, 주문·품목 조합이나 별도 행 식별자를 기준으로 다시 정의해야 한다.</p>
+<p>고객 기준표를 연결할 때는 오른쪽 키의 유일성을 검사하고, 결과의 행 수와 주문 식별자가 유지됐는지 본다. 금액을 바꾸지 않는 결합이라면 결합 전후 합계도 비교할 수 있다. 다만 합계 하나만 맞는다고 통과시키지는 않는다. 빠진 금액과 반복된 금액이 우연히 상쇄되면 전체 합계가 같아도 개별 기록은 틀릴 수 있기 때문이다.</p>
+<p>미연결 기록은 별도로 다룬다. <code>indicator=True</code>는 각 행의 키가 어느 표에 있었는지 표시한다. 왼쪽 결합에서 오른쪽에 대응하는 키가 없으면 <code>left_only</code>로 확인할 수 있다. 앞의 예제는 모든 행이 <code>both</code>인데도 합계가 부풀었다. 연결 여부와 중복 여부가 다른 검사라는 뜻이다. <a href="https://pandas.pydata.org/docs/reference/api/pandas.merge.html">indicator의 공식 설명</a></p>
+<p>결측 키도 결합 전에 처리 기준을 정해야 한다. pandas는 양쪽 키가 결측값인 행을 서로 연결할 수 있으며, 공식 문서도 일반적인 SQL 결합과 다른 점으로 경고한다. 고객 번호가 비어 있다는 공통점만으로 같은 고객이라고 판단해서는 안 된다. 결측 기록을 보류할지, 다른 식별 근거로 보완할지는 업무 규칙으로 정하고 검사 결과에 남긴다.</p>
+<h2>검사를 통과한 표에서 보고서를 시작한다</h2>
+<p>가상 사례에서 연락처 표 대신 고객별 분류가 한 행씩 있는 기준표를 사용하자 <code>many_to_one</code> 검사가 통과했고, 결과는 3행·35,000원을 유지했다. 기준표에서 C2를 제외한 경우에는 주문 O3가 <code>left_only</code>로 나타났다. 이 작은 확인은 라이브러리의 동작을 보여 주지만 실제 회사의 키 체계나 합계 정의를 검증해 주지는 않는다.</p>
+<p>업무에서는 데이터 담당자가 기대하는 관계를 정하고, AI가 작성한 코드에 그 조건을 검사하도록 요청할 수 있다. 실패하면 곧바로 요약문을 고치는 대신 어떤 키에서 행이 늘거나 빠졌는지 확인한다. 입력 표의 단위가 다르면 표를 고르거나 집계 순서를 바꿔야 하고, 실제 다대다 관계가 필요하다면 반복되는 금액을 어떻게 집계할지도 함께 설계해야 한다.</p>
+<p>여기서 검토 순서가 중요하다. 먼저 표를 만들고 검사를 끝낸 다음 그 표로 요약과 차트를 만든다. 검사가 실패한 표에서 이미 작성된 보고서는 근거 데이터가 바뀐 뒤 다시 확인해야 한다. 문장이 자연스럽다는 이유로 앞 단계의 오류가 치유되지는 않는다.</p>
+<p>팀에 남길 기록은 입력 파일, 사용한 키, 결합 방식, 기대한 행의 단위, 검사 결과다. 민감한 원본을 불필요하게 복제할 필요는 없지만, 같은 질문을 받았을 때 어떤 자료와 규칙으로 숫자를 만들었는지는 다시 찾을 수 있어야 한다.</p>
+<p>AI에게 표를 맡길 때 가장 짧고 유용한 조건은 “끝나면 결과 한 행은 무엇이어야 하는가”다. 이 답을 코드의 검사와 연결하면, 실행 성공에서 업무에 쓸 수 있는 결과로 넘어가는 기준이 생긴다.</p>
+            </div>
+            <aside class="panel-card" style="padding:24px;margin-top:40px;" aria-label="AX 실무 읽기 안내">
+                <span class="dx-kicker">AI · AX / NEXT STEP</span>
+                <h2 style="font-size:22px;margin:12px 0;">도구에서 업무 전환으로</h2>
+                <p style="color:var(--muted);line-height:1.7;">이 글의 주제를 업무 설계, 지식 관리, 자동화, 검증과 연결해 보세요. 특정 도구에 한정되지 않는 읽기 경로를 정리했습니다.</p>
+                <a class="btn-ghost" href="/blog/ax/">AX 실무 가이드 보기 →</a>
+            </aside>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/rounding-generative-polygons-with-ai-and-chaikin/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>모서리를 얼마나 남길까, AI와 만드는 차이킨 곡선</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>
