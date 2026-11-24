@@ -1,5 +1,24 @@
 [
   {
+    "slug": "fit-preprocessing-inside-the-ai-evaluation-boundary",
+    "file": "_built/fit-preprocessing-inside-the-ai-evaluation-boundary.md",
+    "title": "AI 분석 코드에서 전처리가 시험 데이터를 미리 보지 않게 하려면",
+    "description": "AI가 작성한 분석 코드의 전처리에서 학습 데이터와 시험 데이터의 경계를 확인하는 방법을 살펴봅니다. 작은 표준화 예제와 교차검증으로 Pipeline의 역할과 한계를 짚습니다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "evaluation",
+      "machine-learning",
+      "data-quality"
+    ],
+    "date": "2026-11-24",
+    "modified": "2026-11-24",
+    "thumbnail": "images/fit-preprocessing-inside-the-ai-evaluation-boundary-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "spacing-dots-along-a-path-with-ai",
     "file": "_built/spacing-dots-along-a-path-with-ai.md",
     "title": "곡선을 따라 같은 간격으로, AI와 만드는 점의 리듬",
