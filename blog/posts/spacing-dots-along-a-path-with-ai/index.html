@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>곡선을 따라 같은 간격으로, AI와 만드는 점의 리듬 | DEXA Blog</title>
+    <meta name="description" content="p5.js와 AI 코딩 보조로 열린 경로 위의 점을 같은 거리 간격으로 재배치한다. 누적 길이와 선형 보간을 구현하고, 입력 점의 밀도가 작품의 리듬에 미치는 영향을 비교한다." />
+    <link rel="canonical" href="https://dexa.art/blog/posts/spacing-dots-along-a-path-with-ai/" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="곡선을 따라 같은 간격으로, AI와 만드는 점의 리듬" />
+    <meta property="og:description" content="p5.js와 AI 코딩 보조로 열린 경로 위의 점을 같은 거리 간격으로 재배치한다. 누적 길이와 선형 보간을 구현하고, 입력 점의 밀도가 작품의 리듬에 미치는 영향을 비교한다." />
+    <meta property="og:url" content="https://dexa.art/blog/posts/spacing-dots-along-a-path-with-ai/" />
+    <meta property="og:image" content="https://dexa.art/blog/images/arc-spacing-cover.png" />
+    <meta property="og:site_name" content="DEXA" />
+    <meta property="article:published_time" content="2026-11-24" />
+    <meta property="article:modified_time" content="2026-11-24" />
+    <meta property="article:author" content="육대근" />
+    <meta property="article:tag" content="media-art" />
+    <meta property="article:tag" content="generative-art" />
+    <meta property="article:tag" content="creative-coding" />
+    <meta property="article:tag" content="p5js" />
+    <meta property="article:tag" content="AI" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="곡선을 따라 같은 간격으로, AI와 만드는 점의 리듬" />
+    <meta name="twitter:description" content="p5.js와 AI 코딩 보조로 열린 경로 위의 점을 같은 거리 간격으로 재배치한다. 누적 길이와 선형 보간을 구현하고, 입력 점의 밀도가 작품의 리듬에 미치는 영향을 비교한다." />
+    <meta name="twitter:image" content="https://dexa.art/blog/images/arc-spacing-cover.png" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","inLanguage":"ko-KR","headline":"곡선을 따라 같은 간격으로, AI와 만드는 점의 리듬","description":"p5.js와 AI 코딩 보조로 열린 경로 위의 점을 같은 거리 간격으로 재배치한다. 누적 길이와 선형 보간을 구현하고, 입력 점의 밀도가 작품의 리듬에 미치는 영향을 비교한다.","image":"https://dexa.art/blog/images/arc-spacing-cover.png","datePublished":"2026-11-24","dateModified":"2026-11-24","author":{"@type":"Person","name":"육대근"},"publisher":{"@type":"Organization","name":"DEXA","logo":{"@type":"ImageObject","url":"https://dexa.art/dexa_logo.jpg"}},"mainEntityOfPage":{"@type":"WebPage","@id":"https://dexa.art/blog/posts/spacing-dots-along-a-path-with-ai/"},"articleSection":"Media Art","keywords":"media-art, generative-art, creative-coding, p5js, AI"}</script>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+    <link rel="stylesheet" href="/dexa-theme.css" />
+</head>
+<body>
+    <!-- SHARED_NAV_START -->
+<nav class="dx-nav">
+        <a href="/" class="dx-nav-brand">
+            <svg viewBox="4 4 112 98" width="34" height="30" aria-hidden="true">
+                <g stroke-linejoin="round">
+                    <path d="M60 10 109 95H11Z" fill="none" stroke="#17181B" stroke-width="5.5"></path>
+                    <path d="M60 20 79 53H41Z" fill="#17181B"></path>
+                    <path d="M36 57 55 90H17Z" fill="#17181B"></path>
+                    <path d="M84 57 103 90H65Z" fill="#FF5A1F"></path>
+                    <path d="M60 51 79 84H41Z" fill="#F5F1E6" stroke="#17181B" stroke-width="3.5"></path>
+                </g>
+            </svg>
+            <span class="wordmark">DEXA<span class="dot">.</span></span>
+            <span class="dx-nav-tag">AI × MEDIA ART STUDIO</span>
+        </a>
+        <div class="dx-nav-links">
+            <a href="/">HOME</a>
+            <a href="/#studio">STUDIO</a>
+            <a href="/#solutions">SOLUTIONS</a>
+            <a href="/blog/" class="active" aria-current="page">BLOG</a>
+            <a href="/about-deck.html">ABOUT</a>
+            <a href="/#contact">CONTACT</a>
+        </div>
+        <button id="mobile-menu-btn" class="dx-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                <path d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </nav>
+    <!-- Mobile Navigation -->
+    <nav id="mobile-menu" class="dx-mobile-menu hidden">
+        <a href="/">HOME</a>
+        <a href="/#studio">STUDIO</a>
+        <a href="/#solutions">SOLUTIONS</a>
+        <a href="/blog/" class="active" aria-current="page">BLOG</a>
+        <a href="/about-deck.html">ABOUT</a>
+        <a href="/#contact">CONTACT</a>
+    </nav>
+    <!-- SHARED_NAV_END -->
+    <main style="padding:128px 24px 96px;">
+        <article style="max-width:720px;margin:0 auto;">
+            <div style="margin-bottom:40px;">
+                <a href="/blog/" class="btn-ghost" style="padding-left:0;">← Back to Blog</a>
+                <div class="dx-meta" style="margin-top:20px;">
+                    <span class="dx-badge">Media Art</span>
+                    <span class="dx-date">Article · 2026.11.24</span>
+                </div>
+            </div>
+            <div class="prose">
+                <h1>곡선을 따라 같은 간격으로, AI와 만드는 점의 리듬</h1>
+                <p style="color:var(--muted);font-size:17px;">p5.js와 AI 코딩 보조로 열린 경로 위의 점을 같은 거리 간격으로 재배치한다. 누적 길이와 선형 보간을 구현하고, 입력 점의 밀도가 작품의 리듬에 미치는 영향을 비교한다.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin:24px 0 8px;"><span class="dx-tag-chip">media-art</span><span class="dx-tag-chip">generative-art</span><span class="dx-tag-chip">creative-coding</span><span class="dx-tag-chip">p5js</span><span class="dx-tag-chip">AI</span></div>
+<p><img src="/blog/images/arc-spacing-cover.png" alt="물결치는 선 위에서 점의 밀도와 간격이 달라지는 모습을 표현한 개념 표지" loading="lazy"></p>
+<p><em>표지는 GPT Image 2로 생성한 개념 이미지다. 아래 실습 화면은 코드로 직접 그린 결과다.</em></p>
+<p>선 위에 점을 찍었는데 한쪽은 덩어리처럼 뭉치고 다른 쪽은 휑하다. 점의 크기와 색은 같은데 리듬이 다르다. 입력 좌표가 불균일하게 놓여 있다면, 배열에서 같은 개수씩 건너뛰어 점을 골라도 화면의 간격은 고르지 않다. 손으로 그린 궤적을 장식하거나 곡선을 따라 작은 빛을 배열할 때 마주치는 문제다.</p>
+<p>이번에는 <strong>경로를 따라 이동한 거리가 같은 지점에 점을 놓는다.</strong> 입력 선과 점 개수는 유지하고, 위치를 고르는 기준만 바꾼다. 결과는 같은 물결 모양 위에 놓인 두 개의 점 드로잉이다. 왼쪽에는 입력 좌표를 그대로, 오른쪽에는 경로의 누적 길이를 기준으로 재배치한 좌표를 표시한다.</p>
+<p>AI는 이 거리 계산을 작은 함수로 나누고 경계 조건을 검사하는 코딩 보조로 쓸 수 있다. 실제 점의 위치는 아래 공개된 규칙으로 계산한다. 생성형 AI가 매번 점의 좌표를 추측하는 방식은 아니다. 같은 코드와 입력이면 같은 결과를 만드는 알고리즘 기반 제너러티브 작업이다.</p>
+<h2>배열의 순서에서 선을 따라 잰 거리로</h2>
+<p>두 좌표 사이의 길이를 차례로 더하면 시작점에서 각 꼭짓점까지의 누적 거리가 생긴다. 전체 길이가 <code>L</code>이고 양 끝을 포함해 <code>N</code>개 점을 놓는다면 목표 간격은 <code>L / (N - 1)</code>이다. 각 목표 거리가 어느 선분 안에 있는지 찾고, 그 선분의 두 끝점을 선형 보간한다.</p>
+<p>가령 경로가 <code>(0, 0) → (3, 0) → (3, 4)</code>라면 전체 길이는 7이다. 점 3개를 배치할 목표 거리는 0, 3.5, 7이다. 가운데 점은 첫 선분을 지나 두 번째 선분으로 0.5만큼 들어간 <code>(3, 0.5)</code>가 된다. 시작점과 가운데 점의 직선거리는 3.5보다 짧다. <strong>여기서 같은 것은 꺾인 경로를 따라 잰 거리이며, 점과 점 사이의 직선거리가 아니다.</strong> 모서리 부근에서 점이 조금 더 가까워 보여도 이 조건을 위반한 것은 아니다.</p>
+<p>이 작업은 곡선을 부드럽게 만드는 처리와도 다르다. <a href="https://dexa.art/blog/posts/rounding-generative-polygons-with-ai-and-chaikin/">차이킨 곡선 실습</a>은 모서리를 잘라 윤곽을 바꿨다. 이번 함수는 입력 선분 위에서 표시할 위치를 찾는다. 출력 점만 다시 직선으로 연결하면 중간 꼭짓점을 건너뛰어 모서리를 자를 수 있으므로, 비교 화면의 가는 선은 두 패널 모두 원래 경로로 그린다.</p>
+<p>AI에게 요청할 때도 이 차이를 먼저 적으면 도움이 된다.</p>
+<pre><code class="language-text">p5.js에서 쓸 열린 2차원 폴리라인 재샘플링 함수를 작성해 줘.
+입력은 유한한 [x, y] 좌표 배열과 양 끝을 포함한 점 개수다.
+누적 선분 길이에 따라 같은 경로 거리 간격으로 점을 배치하고,
+입력 배열을 바꾸지 마. 연속 중복 좌표는 건너뛰어 줘.
+빈 배열은 빈 배열, 움직임이 없는 경로는 점 하나를 반환해 줘.
+그리기와 거리 계산을 분리하고, 꺾인 경로의 손계산 예제로 검증해 줘.
+보간으로 원래 곡선의 곡률을 복원했다고 설명하지 마.</code></pre>
+<p>프롬프트는 요구 조건이다. AI가 돌려준 함수가 그 조건을 만족하는지는 작은 숫자로 먼저 확인한다. 위의 직각 경로에서 가운데 점이 <code>(1.5, 2)</code>로 나오면 양 끝을 곧장 보간한 것이고, <code>(3, 0)</code>으로 나오면 거리 대신 입력 배열의 가운데 원소를 고른 것이다.</p>
+<h2>같은 경로에 점 41개를 놓아 보기</h2>
+<p>이 예제는 브라우저와 p5.js만 사용한다. <a href="https://p5js.org/download/">공식 다운로드 페이지</a>에서 확인한 p5.js 2.4.0을 고정했다. 아래 세 파일을 같은 폴더에 저장한다. CDN으로 라이브러리를 읽으므로 처음 실행할 때 인터넷 연결이 필요하다. 마우스 입력 UI는 포함하지 않고, 불균일하게 샘플링한 물결 좌표를 코드로 만들어 비교한다.</p>
+<p>먼저 <code>index.html</code>이다.</p>
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html lang=&quot;ko&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1&quot;&gt;
+&lt;title&gt;곡선을 따라 점 배치하기&lt;/title&gt;
+&lt;style&gt;body{margin:0;background:#111b25}canvas{display:block;max-width:100%;height:auto!important}&lt;/style&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/p5@2.4.0/lib/p5.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;resample.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;sketch.js&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p>다음은 <code>resample.js</code>다. 연속해서 같은 좌표가 들어오면 길이가 0인 선분을 제거한다. 사용할 점 개수는 2부터 5000까지로 제한했다. 빈 경로와 위치가 하나뿐인 경로에서는 요청한 개수를 억지로 채우지 않는다.</p>
+<pre><code class="language-javascript">function resample(points, count) {
+  if (!Number.isInteger(count) || count &lt; 2 || count &gt; 5000) {
+    throw new RangeError('count must be an integer from 2 to 5000');
+  }
+  if (!Array.isArray(points)) {
+    throw new TypeError('points must be an array');
+  }
+  for (const p of points) {
+    if (!Array.isArray(p) || p.length !== 2 ||
+      !Number.isFinite(p[0]) || !Number.isFinite(p[1])) {
+      throw new TypeError('points must contain finite [x, y] pairs');
+    }
+  }
+  const p = points.filter((v, i) =&gt; i === 0 ||
+    v[0] !== points[i - 1][0] || v[1] !== points[i - 1][1]);
+  if (p.length &lt; 2) return p.map(v =&gt; [...v]);
+  const lengths = [0];
+  for (let i = 1; i &lt; p.length; i++) {
+    lengths.push(lengths[i - 1] + Math.hypot(
+      p[i][0] - p[i - 1][0], p[i][1] - p[i - 1][1]));
+  }
+  const total = lengths[lengths.length - 1];
+  if (!Number.isFinite(total) || total === 0) {
+    throw new RangeError('path length is outside the usable numeric range');
+  }
+  const out = [[...p[0]]];
+  let j = 1;
+  for (let k = 1; k &lt; count - 1; k++) {
+    const distance = total * (k / (count - 1));
+    while (j &lt; p.length - 1 &amp;&amp; lengths[j] &lt; distance) j++;
+    const t = (distance - lengths[j - 1]) /
+      (lengths[j] - lengths[j - 1]);
+    out.push([
+      p[j - 1][0] + t * (p[j][0] - p[j - 1][0]),
+      p[j - 1][1] + t * (p[j][1] - p[j - 1][1])
+    ]);
+  }
+  out.push([...p[p.length - 1]]);
+  return out;
+}</code></pre>
+<p>마지막은 <code>sketch.js</code>다. 입력 좌표의 매개변수에 제곱을 적용해 시작 쪽을 촘촘하게 만들었다. 양쪽의 가는 선은 동일한 입력 좌표로 그리며, 오른쪽 점만 <code>resample()</code>의 결과를 쓴다. <a href="https://p5js.org/reference/p5/beginShape/">beginShape() 공식 문서</a>에 설명된 꼭짓점 경로 그리기를 사용한다.</p>
+<pre><code class="language-javascript">const COUNT = 41;
+let original, spaced;
+function setup() {
+  createCanvas(960, 540);
+  pixelDensity(1);
+  noLoop();
+  original = Array.from({ length: COUNT }, (_, i) =&gt; {
+    const u = (i / (COUNT - 1)) ** 2;
+    return [-175 + 350 * u,
+      75 * Math.sin(2 * Math.PI * u) + 22 * Math.sin(6 * Math.PI * u)];
+  });
+  spaced = resample(original, COUNT);
+  describe('The same wavy open path shown twice: clustered coral dots on the left and evenly path-spaced teal dots on the right.');
+}
+function draw() {
+  background('#111b25');
+  stroke('#314250');
+  line(480, 80, 480, 460);
+  panel(240, original, '#ff997f', 'INPUT SAMPLES');
+  panel(720, spaced, '#78dfcf', 'EQUAL PATH DISTANCE');
+}
+function panel(cx, dots, ink, label) {
+  push();
+  translate(cx, 270);
+  noFill();
+  stroke('#536271');
+  strokeWeight(1);
+  beginShape();
+  for (const p of original) vertex(p[0], p[1]);
+  endShape();
+  noStroke();
+  fill(ink);
+  for (const p of dots) circle(p[0], p[1], 6);
+  textAlign(CENTER, CENTER);
+  textSize(13);
+  text(label, 0, -165);
+  fill('#b9c7d2');
+  text(`${dots.length} marks / same open path`, 0, 165);
+  pop();
+}
+function keyPressed() {
+  if (key === 's' || key === 'S') saveCanvas('arc-spacing', 'png');
+}</code></pre>
+<p>파일을 둔 폴더에서 로컬 서버를 실행한다. 아래 명령은 Python 3가 설치된 환경을 전제로 한다.</p>
+<pre><code class="language-bash">python3 -m http.server 8000 --bind 127.0.0.1</code></pre>
+<p>브라우저에서 <code>http://127.0.0.1:8000/</code>을 연다. 그림을 한 번 클릭한 뒤 <code>S</code>를 누르면 <code>arc-spacing.png</code>가 저장된다. <a href="https://p5js.org/reference/p5/saveCanvas/">saveCanvas() 공식 문서</a>의 PNG 저장 방식을 사용했다. 브라우저의 다운로드 설정에 따라 저장 확인 창이 나타날 수 있다.</p>
+<p><img src="/blog/images/arc-spacing-frame.png" alt="같은 물결 경로의 왼쪽에는 불균일한 입력 점 41개, 오른쪽에는 경로 거리를 기준으로 재배치한 점 41개가 놓인 실제 실행 화면" loading="lazy"></p>
+<p>위 화면은 p5.js 2.4.0에서 직접 실행한 960×540 결과다. 입력 경로의 길이는 약 522.506이며, 오른쪽의 목표 간격은 약 13.063이다. 왼쪽 시작 부분은 점이 겹치고 끝으로 갈수록 벌어진다. 오른쪽은 점의 지름과 개수를 바꾸지 않아도 선을 따라 반복되는 박자가 더 일정해진다.</p>
+<p>직선·직각 경로, 중복 좌표, 빈 경로와 정지 경로, 잘못된 입력, 같은 선분을 다르게 나눈 입력을 다루는 테스트 6개를 통과했다. 브라우저에서는 양쪽 점 개수, 양 끝점, 960×540 출력과 <code>S</code> 저장을 확인했다. 직접 저장한 PNG와 새로고침 후 PNG의 해시도 같았다. 손그림 입력 장치나 실제 전시장 출력을 시험한 것은 아니다.</p>
+<h2>고른 박자를 어디까지 유지할 것인가</h2>
+<p>간격을 고르게 하면 입력 장치나 매개변수의 우연한 밀도 차이를 줄일 수 있다. 빛의 작은 단위가 같은 보폭으로 이동하는 인상을 만들거나, 선을 따라 놓는 반복 무늬의 기준점을 정할 때 유용하다. 반대로 원래 좌표가 손의 속도를 담은 기록이라면 재배치 과정에서 그 밀도 정보가 사라진다. 왼쪽의 뭉침이 긴장이나 머뭇거림으로 읽힌다면, 그것을 남기는 편이 작품에 더 맞을 수 있다.</p>
+<p>이 예제의 <code>COUNT</code>를 바꾸면 입력 경로의 샘플 수도 함께 달라진다. 재배치할 점의 밀도만 비교하려면 입력은 그대로 두고 <code>spaced = resample(original, 81)</code>처럼 두 번째 인자만 바꾼다. 점을 많이 놓을수록 매끈한 선처럼 보이고, 적게 놓을수록 각각의 위치와 사이의 빈 공간이 두드러진다. 점의 크기를 키워 겹치게 만들기 전에 간격과 지름의 관계부터 살펴보는 편이 좋다.</p>
+<p>입력 좌표가 성긴 경우에는 점을 많이 추가해도 잃어버린 곡선이 돌아오지 않는다. 함수는 입력 폴리라인의 길이를 계산한다. 그 뒤에 있다고 상상하는 매끈한 원곡선의 정확한 호 길이를 구한 것은 아니다. 먼저 입력을 충분히 촘촘하게 만들지, 각진 흔적을 그대로 쓸지 결정해야 한다. 닫힌 고리에서는 마지막 점과 첫 점 사이의 길이, 시작점 중복 여부까지 별도로 정해야 하므로 이 열린 경로 예제를 그대로 적용하지 않는다.</p>
+<p>AI에게 다음 변형을 맡긴다면 색이나 효과를 한꺼번에 추가하기보다, 같은 거리 간격의 점을 작은 획으로 바꾸고 각 획을 경로의 진행 방향에 맞춰 회전시키는 것부터 시도할 수 있다. 그때는 모서리에서 방향을 어떻게 정할지가 새로운 선택이 된다. 이번 결과에서 먼저 볼 것은 점의 개수가 아니라, 어떤 거리 기준을 선택했을 때 선의 리듬이 작품의 의도에 가까워지는가이다.</p>
+            </div>
+            <nav class="spec-list" style="margin-top:64px;" aria-label="Post navigation">
+                <a id="prev-post" href="/blog/posts/checking-row-grain-before-ai-joins-tables/" class="spec-row" style="text-decoration:none;"><span class="k">← PREV</span><span>AI가 표를 합칠 때 한 행의 뜻을 지키는 법</span></a>
+                <span></span>
+            </nav>
+        </article>
+    </main>
+    <!-- SHARED_FOOTER_START -->
+<footer class="dx-footer">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:32px;">
+            <img src="/dexa_logo_light.svg" alt="DEXA" style="height:48px;width:auto;">
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:32px;border-top:1px solid var(--line);padding-top:32px;margin-bottom:32px;">
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Sitemap</h4>
+                <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;font-size:14px;color:var(--muted);">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/#studio">Studio</a></li>
+                    <li><a href="/#solutions">Solutions</a></li>
+                    <li><a href="/blog/">Blog</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="mono" style="font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;margin:0 0 16px;">Legal</h4>
+                <ul style="list-style:none;margin:0;padding:0;">
+                    <!-- Placeholders -->
+                </ul>
+            </div>
+        </div>
+        <p class="dx-footer-note" style="margin:0;">
+            Where AI Meets Art.<br />
+            © 2025 DEXA. All rights reserved.<br />
+            (formerly ADX Worklab)
+        </p>
+    </footer>
+    <!-- SHARED_FOOTER_END -->
+    <script src="/blog/blog.js"></script>
+</body>
+</html>
