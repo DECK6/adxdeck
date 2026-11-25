@@ -1,5 +1,34 @@
 [
   {
+    "slug": "building-a-point-sphere-with-ai-and-threejs",
+    "file": "_built/building-a-point-sphere-with-ai-and-threejs.md",
+    "title": "점으로 남긴 구의 안쪽, AI와 Three.js로 만드는 입자 조형",
+    "description": "Three.js Points로 2,400개의 점을 구면에 배치하고, 점 크기와 카메라 시점으로 입자 조형의 밀도를 바꾼다. AI 제작 명세, 피보나치 구면 좌표, 실행 코드와 PNG 저장까지 연결한다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "threejs",
+      "AI"
+    ],
+    "date": "2026-11-26",
+    "modified": "2026-11-26",
+    "thumbnail": "images/point-sphere-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "threejs",
+      "AI"
+    ]
+  },
+  {
     "slug": "building-a-wave-of-columns-with-ai-and-threejs",
     "file": "_built/building-a-wave-of-columns-with-ai-and-threejs.md",
     "title": "400개의 기둥으로 만드는 파동, AI와 Three.js 인스턴싱",
