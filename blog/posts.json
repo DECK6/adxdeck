@@ -29,6 +29,25 @@
     ]
   },
   {
+    "slug": "making-room-for-different-evidence-in-rag-retrieval",
+    "file": "_built/making-room-for-different-evidence-in-rag-retrieval.md",
+    "title": "RAG 검색 결과에 다른 근거가 들어갈 자리를 남기는 법",
+    "description": "비슷한 문서가 RAG 검색 결과를 채울 때 MMR이 관련성과 중복도를 함께 고려하는 방식을 살펴본다. 가상 벡터 예제로 후보 범위·다양성 조절·출처 검증의 경계를 짚는다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "RAG",
+      "retrieval",
+      "knowledge-management"
+    ],
+    "date": "2026-11-25",
+    "modified": "2026-11-25",
+    "thumbnail": "images/making-room-for-different-evidence-in-rag-retrieval-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "fit-preprocessing-inside-the-ai-evaluation-boundary",
     "file": "_built/fit-preprocessing-inside-the-ai-evaluation-boundary.md",
     "title": "AI 분석 코드에서 전처리가 시험 데이터를 미리 보지 않게 하려면",
