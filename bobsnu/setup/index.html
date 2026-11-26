@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>준비 · BOBSNU Claude 업무 실습</title>
+<link rel="stylesheet" href="../site.css">
+</head>
+<body>
+<nav class="top"><div><b>BOBSNU 실습</b><a href="../">처음</a><a href="../setup/" class=on>준비</a><a href="../slides/">슬라이드</a><a href="../materials/">공통 자료</a><a href="../fields/">분야별 과제</a><a href="../skills/">스킬</a></div></nav>
+<main>
+
+<div class="kicker">준비</div>
+<h1>Claude 데스크탑 앱과 실습 폴더</h1>
+<p class="lead">오늘 실습은 브라우저가 아니라 데스크탑 앱에서 합니다. 앱이 내 컴퓨터의 실습 폴더를 직접 읽고 고칩니다.</p>
+<div class="toc"><a href="#s1">1 앱 설치</a><a href="#s2">2 실습 폴더</a><a href="#s3">3 폴더 연결</a><a href="#s4">4 지침 넣기</a><a href="#s5">지킬 것</a><a href="#s6">막혔을 때</a></div>
+
+<h2 id="s1">1 · 앱 설치와 로그인</h2>
+<ol><li><a href="https://claude.com/download" target="_blank" rel="noopener">claude.com/download</a>에서 내 컴퓨터에 맞는 설치 파일을 받습니다. macOS 13 이상, Windows 10 이상에서 됩니다.</li><li>설치 파일을 실행합니다. Windows에서 "이 앱이 디바이스를 변경하도록 허용하시겠습니까?"가 뜨면 허용합니다.</li><li>앱을 열어 본인 계정으로 로그인합니다.</li></ol>
+<div class="note"><b>Windows 회사 PC</b>는 관리자 권한으로 설치해야 폴더 연결 기능을 쓸 수 있습니다. 권한이 없으면 전산 담당자에게 미리 설치를 요청해 주세요. 폴더 연결은 유료 요금제(Pro, Max, Team, Enterprise) 계정에서 됩니다.</div>
+
+<h2 id="s2">2 · 실습 폴더 받기</h2>
+<p>본인 분야의 폴더 하나를 받아 압축을 풀고, 바탕화면처럼 찾기 쉬운 곳에 둡니다.</p>
+<ul class="dl"><li><a href="../files/starter/bobsnu-agent-rd.zip" download>R&amp;D 실습 폴더 <small>bobsnu-agent-rd.zip</small></a></li><li><a href="../files/starter/bobsnu-agent-finance.zip" download>재무회계 실습 폴더 <small>bobsnu-agent-finance.zip</small></a></li><li><a href="../files/starter/bobsnu-agent-cs.zip" download>고객상담 실습 폴더 <small>bobsnu-agent-cs.zip</small></a></li><li><a href="../files/starter/bobsnu-agent-sales.zip" download>영업 실습 폴더 <small>bobsnu-agent-sales.zip</small></a></li></ul>
+<div class="copy"><button type="button">복사</button><pre>bobsnu-agent/
+  CLAUDE.md      지침 파일
+  index.md       목록표
+  terms.md       용어·기준
+  fix-log.md     정정 기록
+  sources/       원자료
+  examples/      예시
+  outputs/       결과물
+  01-practice/   모듈 01 자료
+  next/          모듈 05 새 자료
+  skills/        제공 스킬 10개
+  templates/     요청문·검수표 양식</pre></div>
+
+<h2 id="s3">3 · 폴더 연결</h2>
+<ol><li>앱에서 새 대화를 엽니다.</li><li>입력창에서 폴더를 고르는 버튼을 누릅니다. 이름은 <code>Work in a folder</code>입니다. 입력창에 <code>Cowork</code> 선택지가 따로 보이면 그것을 먼저 고릅니다.</li><li><code>bobsnu-agent</code> 폴더를 고릅니다. 접근을 묻는 창이 뜨면 폴더 경로가 맞는지 읽고 승인합니다.</li><li>아래 문장을 보내 파일 목록이 나오는지 확인합니다.</li></ol>
+<div class="copy"><button type="button">복사</button><pre>이 폴더에 어떤 파일이 있는지 목록으로 알려 줘. 아직 아무것도 고치지 마.</pre></div>
+<p class="muted">앱 버전에 따라 버튼의 이름과 위치가 조금 다를 수 있습니다. 한 번 허용한 폴더는 <code>Settings → Trusted folders</code>에서 볼 수 있습니다.</p>
+
+<h2 id="s4">4 · 지침 넣기 (모듈 02에서 합니다)</h2>
+<ol><li>폴더의 <code>CLAUDE.md</code>를 메모장으로 열어 내 규칙 3개를 넣고 저장합니다.</li><li>앱의 <code>Customize → Folder instructions</code>에 같은 내용을 붙여 넣습니다.</li><li>이 메뉴가 보이지 않으면, 요청할 때 첫 줄에 아래 문장을 적습니다.</li></ol>
+<div class="copy"><button type="button">복사</button><pre>먼저 CLAUDE.md를 읽고 그 규칙대로 해 줘.</pre></div>
+
+<h2 id="s5">지킬 것</h2>
+<div class="tw"><table><tr><th>하는 것</th><th>하지 않는 것</th></tr><tr><td>받은 실습 폴더 하나만 연결합니다.</td><td>바탕화면, 문서 폴더, 공유 드라이브 전체를 연결하지 않습니다.</td></tr><tr><td>연결할 때 뜨는 폴더 경로를 읽고 승인합니다.</td><td>사내 문서, 고객 정보, 공개 전 제품·가격 정보를 폴더에 넣지 않습니다.</td></tr><tr><td>파일을 지워도 되는지 물으면 읽고 나서 누릅니다.</td><td>시키지 않은 일을 하려 할 때 그대로 두지 않습니다. 멈춥니다.</td></tr></table></div>
+<div class="note">폴더를 연결하면 Claude가 그 안의 파일을 읽고, 고치고, 새로 만들 수 있습니다. 연결한 파일의 내용은 답을 만들기 위해 Anthropic 서버로 전송됩니다.</div>
+
+<h2 id="s6">막혔을 때</h2>
+<div class="tw"><table><tr><th>증상</th><th>할 일</th></tr><tr><td>폴더를 고르는 버튼이 없다</td><td>무료 계정이거나 관리자 권한 없이 설치한 경우입니다. 실습 폴더의 파일을 대화에 직접 첨부해 진행합니다.</td></tr><tr><td>회사 계정인데 기능이 꺼져 있다</td><td>조직 관리자가 꺼 둔 경우입니다. 강사에게 알려 주세요.</td></tr><tr><td><code>Customize</code>에 Folder instructions가 없다</td><td>요청 첫 줄에 "먼저 CLAUDE.md를 읽고 그 규칙대로 해 줘"를 적습니다.</td></tr><tr><td>스킬 올리기가 막혀 있다</td><td>"skills/review-check/SKILL.md 절차대로 해 줘"라고 요청합니다.</td></tr></table></div>
+
+</main>
+<footer>2026. 11. 27. BOBSNU 맞춤형 AI 교육 실습 자료. 공개 자료는 2026-11-26에 옮긴 사본이고, 가상이라고 적힌 자료의 숫자와 거래처는 지어낸 것입니다.</footer>
+<script>
+document.querySelectorAll('.copy button').forEach(b=>b.addEventListener('click',async()=>{
+  const t=b.parentElement.querySelector('pre').textContent;
+  try{await navigator.clipboard.writeText(t)}catch(e){const r=document.createRange();r.selectNodeContents(b.parentElement.querySelector('pre'));const s=getSelection();s.removeAllRanges();s.addRange(r);document.execCommand('copy');s.removeAllRanges()}
+  b.textContent='복사됨';setTimeout(()=>b.textContent='복사',1200)}));
+</script>
+</body>
+</html>

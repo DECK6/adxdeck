@@ -8,14 +8,14 @@
 <link rel="stylesheet" href="../site.css">
 </head>
 <body>
-<nav class="top"><div><b>BOBSNU 실습</b><a href="../">처음</a><a href="../slides/">슬라이드</a><a href="../materials/">공통 자료</a><a href="../fields/" class=on>분야별 과제</a><a href="../skills/">스킬</a></div></nav>
+<nav class="top"><div><b>BOBSNU 실습</b><a href="../">처음</a><a href="../setup/">준비</a><a href="../slides/">슬라이드</a><a href="../materials/">공통 자료</a><a href="../fields/" class=on>분야별 과제</a><a href="../skills/">스킬</a></div></nav>
 <main>
 
 <div class="kicker">분야별 과제</div>
 <h1>내 분야의 에이전트 하나를 만듭니다</h1>
-<p class="lead">에이전트는 지침 파일, 지식 파일, 스킬을 묶은 Claude 프로젝트입니다. 본인 분야로 이동해 진행합니다.</p>
+<p class="lead">에이전트는 지침 파일, 지식 파일, 스킬을 묶은 작업 폴더입니다. 아래 자료는 <a href="../setup/">실습 폴더</a>의 <code>sources</code>에 이미 들어 있습니다.</p>
 <div class="toc"><a href="#rd">R&amp;D</a><a href="#fin">재무회계</a><a href="#cs">고객상담</a><a href="#sales">영업</a></div>
-<div class="card"><b>03의 순서</b><ol><li>입력 자료를 <code>원자료</code>에 넣고 <code>목록표</code>에 한 줄씩 적습니다.</li><li>답을 아는 질문 3건과 예상 답을 미리 적어 둡니다.</li><li>요청문 다섯 칸을 채워 1차 초안을 만듭니다.</li><li>추가 조건을 반영해 새 대화에서 다시 실행합니다.</li><li>질문 3건을 던지고, 예상과 다르면 <code>정정 기록</code>에 한 줄을 적습니다.</li></ol></div>
+<div class="card"><b>03의 순서</b><ol><li><code>sources</code>의 자료를 읽혀 <code>index.md</code>를 채우고, 기준일을 직접 확인합니다.</li><li>답을 아는 질문 3건과 예상 답을 미리 적어 둡니다.</li><li>요청문 다섯 칸을 채워 1차 초안을 만들고 <code>outputs</code>에 저장하게 합니다.</li><li>추가 조건을 반영해 새 대화에서 다시 실행합니다.</li><li>질문 3건을 던지고, 예상과 다르면 <code>fix-log.md</code>에 한 줄을 적게 합니다.</li></ol></div>
 <div class="note">기본 결과물의 모든 줄에 근거 위치와 상태가 달려 있으면 심화로 넘어갑니다.</div>
 
 <h2 id="rd">R&amp;D · 근거 검토 에이전트</h2>
@@ -23,13 +23,13 @@
 <h3>입력 자료</h3>
 <p><span class="tag t-pub">공개 자료</span> 주소를 직접 열어 초록이나 원문을 저장한 뒤 <code>원자료</code>에 넣습니다. 열어서 확인한 것만 넣습니다.</p><div class="tw"><table><tr><th>#</th><th>자료</th><th>발행처</th><th>유형</th><th>원문</th></tr><tr><td>1</td><td>약콩(Yak-Kong) 페놀 성분 분석</td><td>Food Chemistry 2017</td><td>성분·세포</td><td><a href="https://doi.org/10.1016/j.foodchem.2017.05.012" target="_blank" rel="noopener">원문</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/28551265/" target="_blank" rel="noopener">초록</a></td></tr><tr><td>6</td><td>검정콩 두유 추출·살균 조건과 안토시아닌·이소플라본</td><td>J Food Nutr Res 2022</td><td>가공 실험</td><td><a href="https://doi.org/10.12691/jfnr-10-7-9" target="_blank" rel="noopener">원문</a> · <a href="https://pubs.sciepub.com/jfnr/10/7/9/index.html" target="_blank" rel="noopener">초록</a></td></tr><tr><td>12</td><td>왕느릅나무 줄기껍질 추출물과 난소절제 마우스</td><td>J Ethnopharmacol 2024</td><td>세포·동물</td><td><a href="https://doi.org/10.1016/j.jep.2023.117285" target="_blank" rel="noopener">원문</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/37839769/" target="_blank" rel="noopener">초록</a></td></tr><tr><td>13</td><td>유근피 추출물 조성물 특허 10-0567371</td><td>대한민국 특허</td><td>특허</td><td><a href="https://patents.google.com/patent/KR100567371B1/ko" target="_blank" rel="noopener">원문</a></td></tr><tr><td>15</td><td>우유를 두유로 대체한 RCT 메타분석</td><td>BMC Medicine 2024</td><td>사람·메타분석</td><td><a href="https://doi.org/10.1186/s12916-024-03524-7" target="_blank" rel="noopener">원문</a> · <a href="https://pubmed.ncbi.nlm.nih.gov/39169353/" target="_blank" rel="noopener">초록</a></td></tr><tr><td>20</td><td>기능성 표시·광고 규정 일부개정 제2026-70호</td><td>식품의약품안전처 2026</td><td>공식문서</td><td><a href="https://www.mfds.go.kr/brd/m_207/view.do?seq=15199" target="_blank" rel="noopener">원문</a></td></tr></table></div><ul class="dl"><li><a href="../files/rd-source-list.csv" download>목록표 시작본 <small>rd-source-list.csv</small></a></li></ul>
 <h3>분야 지침</h3>
-<p>지침 파일의 답변 규칙 칸에 더합니다.</p>
+<p>실습 폴더의 <code>CLAUDE.md</code>에 이미 들어 있습니다.</p>
 <div class="copy"><button type="button">복사</button><pre>논문마다 연구 유형, 대상, 용량, 기간, 결론을 구분해 적는다.
 원문이 말한 결론과 내가 추론한 내용을 구분한다.
 논문끼리 조건이 다르면 직접 비교하지 말고 차이를 먼저 적는다.</pre></div>
 <h3>요청문 예시</h3>
 <div class="copy"><button type="button">복사</button><pre>[목적]      제품기획 회의에 낼 근거 검토표
-[입력자료]  지식 파일의 논문·특허·고시 6건 (목록표에 기준일과 DOI)
+[입력자료]  sources 폴더의 논문·특허·고시 6건 (index.md에 기준일과 DOI)
 [완료 기준] 자료마다 연구 유형, 대상, 조건, 결론, 한계가 있다
 [출력 형식] 표 1개. 칸마다 자료 이름과 위치
 [검증 규칙] 원문 결론과 추론을 구분한다.
@@ -47,14 +47,14 @@
 <h3>입력 자료</h3>
 <p><span class="tag t-fic">가상</span> 채널별 월 매출 표는 지어낸 숫자입니다. 밥스누의 실제 수치가 아닙니다. <span class="tag t-pub">공개 자료</span> 연간 실적은 NICE 기업정보 기준입니다.</p><ul class="dl"><li><a href="../files/finance-monthly.csv" download>채널별 월 매출 (가상) <small>finance-monthly.csv</small></a></li><li><a href="../files/finance-annual.txt" download>연간 실적 3개년 <small>finance-annual.txt</small></a></li><li><a href="../files/finance-terms.txt" download>용어·기준 <small>finance-terms.txt</small></a></li></ul>
 <h3>분야 지침</h3>
-<p>지침 파일의 답변 규칙 칸에 더합니다.</p>
+<p>실습 폴더의 <code>CLAUDE.md</code>에 이미 들어 있습니다.</p>
 <div class="copy"><button type="button">복사</button><pre>숫자를 쓸 때는 표의 행과 열을 함께 적는다.
 합계와 증감률은 계산 과정을 보여 준다.
 단위나 기간이 다른 값은 비교하기 전에 먼저 알린다.
 이상값은 고치지 말고 표시만 한다.</pre></div>
 <h3>요청문 예시</h3>
 <div class="copy"><button type="button">복사</button><pre>[목적]      10월 월간 보고에 쓸 검산표와 보고 초안
-[입력자료]  finance-monthly.csv (2026-05~10, 단위 천원, 가상)
+[입력자료]  sources/finance-monthly.csv (2026-05~10, 단위 천원, 가상)
 [완료 기준] 월별 합계 재계산, 전월 대비 증감률, 이상값 표시가 있다
 [출력 형식] 검산표 1개 + 보고 초안
 [검증 규칙] 숫자마다 행과 열을 적는다. 계산 과정을 보여 준다.
@@ -72,13 +72,13 @@
 <h3>입력 자료</h3>
 <p><span class="tag t-pub">공개 자료</span> 공식몰에 공개된 문구입니다. 구 FAQ는 일부러 함께 넣습니다. 에이전트가 기준일을 구분하는지 보기 위해서입니다.</p><ul class="dl"><li><a href="../files/faq-current-20261126.txt" download>현행 FAQ 11개 <small>faq-current-20261126.txt</small></a></li><li><a href="../files/returns-20261126.txt" download>교환·반품 안내 <small>returns-20261126.txt</small></a></li><li><a href="../files/label-original-20261126.txt" download>오리지널 라벨 <small>label-original-20261126.txt</small></a></li><li><a href="../files/label-calmadi-20261126.txt" download>칼마디 라벨 <small>label-calmadi-20261126.txt</small></a></li><li><a href="../files/faq-old-20200703.txt" download>구 배송비 FAQ <small>faq-old-20200703.txt</small></a></li><li><a href="../files/cs-inquiries-10.txt" download>문의 목록 10건 <small>cs-inquiries-10.txt</small></a></li></ul>
 <h3>분야 지침</h3>
-<p>지침 파일의 답변 규칙 칸에 더합니다.</p>
+<p>실습 폴더의 <code>CLAUDE.md</code>에 이미 들어 있습니다.</p>
 <div class="copy"><button type="button">복사</button><pre>답변마다 근거 문서와 기준일을 붙인다.
 효능, 건강 관련 표현은 승인된 문구만 그대로 쓴다.
 근거가 없으면 답을 만들지 말고 담당자 확인 목록에서 넘길 사람을 찾아 적는다.</pre></div>
 <h3>요청문 예시</h3>
 <div class="copy"><button type="button">복사</button><pre>[목적]      고객 문의 10건에 보낼 답변 초안
-[입력자료]  현행 FAQ, 교환·반품 안내 (2026-11-26), 라벨 2종, 구 FAQ (2020-07-03)
+[입력자료]  sources 폴더의 현행 FAQ, 교환·반품 안내 (2026-11-26), 라벨 2종, 구 FAQ (2020-07-03)
 [완료 기준] 문의마다 답변, 근거 문서와 기준일, 상태가 있다
 [출력 형식] 표: 문의 / 답변 / 근거 / 상태(답변·확인 필요·조건 충돌·담당자 확인)
 [검증 규칙] 근거가 없으면 답을 만들지 않는다.
@@ -104,13 +104,13 @@
 6. 예상 물량은 월 3,000팩.
 7. 공급가 15% 할인과 지역 독점 공급을 원한다.</pre></div>
 <h3>분야 지침</h3>
-<p>지침 파일의 답변 규칙 칸에 더합니다.</p>
+<p>실습 폴더의 <code>CLAUDE.md</code>에 이미 들어 있습니다.</p>
 <div class="copy"><button type="button">복사</button><pre>제안 문장마다 제품 특징표의 근거를 붙인다.
 거래처 카드의 요구 항목을 하나도 빠뜨리지 않는다.
 가격, 납기, 할인, 독점 조건은 쓰지 말고 확인사항 목록으로 보낸다.</pre></div>
 <h3>요청문 예시</h3>
 <div class="copy"><button type="button">복사</button><pre>[목적]      카페 온결에 보낼 제안 초안
-[입력자료]  제품 특징표 (2026-11-26), 공개 실적과 사용 조건, 거래처 메모
+[입력자료]  sources 폴더의 제품 특징표 (2026-11-26), 공개 실적과 사용 조건, 거래처 메모
 [완료 기준] 요구 7개가 모두 다뤄졌다
 [출력 형식] 제안 초안 + 확인사항 목록
 [검증 규칙] 문장마다 특징표의 근거를 붙인다.
