@@ -1,5 +1,34 @@
 [
   {
+    "slug": "turning-a-profile-into-form-with-ai-and-threejs",
+    "file": "_built/turning-a-profile-into-form-with-ai-and-threejs.md",
+    "title": "단면 하나를 돌려 만든 부피감, AI와 Three.js 회전면 조형",
+    "description": "Three.js LatheGeometry로 단면을 회전시켜 열린 조형을 만든다. AI 제작 명세와 실행 코드, 부풀기 조절, 조명과 양면 재질, PNG 저장을 연결하고 화면의 부피감과 실제 두께를 구분한다.",
+    "category": "Article",
+    "track": "media-art",
+    "trackLabel": "Media Art",
+    "tags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "threejs",
+      "AI"
+    ],
+    "date": "2026-11-27",
+    "modified": "2026-11-27",
+    "thumbnail": "images/lathe-profile-cover.png",
+    "author": "육대근",
+    "mediaArtCategory": "기술·제작",
+    "mediaArtCategorySlug": "technology-making",
+    "mediaArtTags": [
+      "media-art",
+      "generative-art",
+      "creative-coding",
+      "threejs",
+      "AI"
+    ]
+  },
+  {
     "slug": "building-a-point-sphere-with-ai-and-threejs",
     "file": "_built/building-a-point-sphere-with-ai-and-threejs.md",
     "title": "점으로 남긴 구의 안쪽, AI와 Three.js로 만드는 입자 조형",
