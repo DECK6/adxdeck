@@ -1,5 +1,24 @@
 [
   {
+    "slug": "late-events-must-not-rewind-ai-workflows",
+    "file": "_built/late-events-must-not-rewind-ai-workflows.md",
+    "title": "늦게 도착한 이벤트가 AI 자동화를 과거로 되돌리지 않게 하려면",
+    "description": "이벤트를 중복 처리하지 않아도 늦게 도착한 과거 상태가 최신 기록을 덮어쓸 수 있다. 공식 웹훅 문서와 가상 SQLite 예제로 이벤트 식별자·개정 번호·조건부 갱신의 역할과 한계를 살펴본다.",
+    "category": "Article",
+    "track": "ai-ax",
+    "trackLabel": "AI · AX",
+    "tags": [
+      "AI",
+      "automation",
+      "data-integrity",
+      "event-processing"
+    ],
+    "date": "2026-11-27",
+    "modified": "2026-11-27",
+    "thumbnail": "images/late-events-must-not-rewind-ai-workflows-cover.png",
+    "author": "육대근"
+  },
+  {
     "slug": "turning-a-profile-into-form-with-ai-and-threejs",
     "file": "_built/turning-a-profile-into-form-with-ai-and-threejs.md",
     "title": "단면 하나를 돌려 만든 부피감, AI와 Three.js 회전면 조형",
