@@ -1211,6 +1211,104 @@ description: AI가 쓴 초안을 첨부한 원자료와
   <div class="note">오늘 고친 한 줄이 다음 달의 같은 실수를 막습니다.</div>
 </section>
 
+<!-- 회사 지식베이스 -->
+<section class="slide dense tight">
+  <span class="mode see">보기</span>
+  <div class="kicker">수업 뒤 · 회사 지식베이스</div>
+  <h2>경량 AKM으로 회사 지식베이스를 만드는 순서</h2>
+  <div class="grid g2" style="flex:none;grid-template-columns:1fr 1.7fr">
+    <pre>bobsnu-kb/
+  common/          회사 공통
+    CLAUDE.md      공통 지침 네 줄
+    terms.md       회사 공통 용어·표기
+    skills/        공통 스킬 두 개
+  rd/              분야마다 같은 다섯 칸
+    CLAUDE.md  index.md  terms.md
+    fix-log.md  sources/  examples/
+  finance/         (같은 구조)
+  cs/              (같은 구조)
+  sales/           (같은 구조)</pre>
+    <table>
+      <tr><th class="c">순서</th><th>하는 일</th><th>끝난 기준</th></tr>
+      <tr><td class="c">1</td><td><b>반복 업무 하나를 고릅니다.</b> 매주·매월 같은 자료로 같은 형식을 만드는 일</td><td>업무 이름과 최종 확인자가 적혀 있다</td></tr>
+      <tr><td class="c">2</td><td><b>오늘 받은 폴더를 복사해 비웁니다.</b> 다섯 칸과 지침 틀만 남깁니다.</td><td>폴더 이름이 분야 이름이다</td></tr>
+      <tr><td class="c">3</td><td><b>원자료 5~10건만 넣습니다.</b> 직접 열어 확인한 것만, 파일 이름에 기준일</td><td>목록표에 건마다 한 줄이 있다</td></tr>
+      <tr><td class="c">4</td><td><b>답을 아는 질문 3건으로 시험합니다.</b> 정상, 누락, 경계</td><td>누락 질문에 "확인 필요"가 나온다</td></tr>
+      <tr><td class="c">5</td><td><b>한 달 동안 틀린 답을 적습니다.</b> 두 번 나온 실수는 지침이나 용어·기준으로 옮깁니다.</td><td>정정 기록에 날짜와 고친 곳이 있다</td></tr>
+      <tr><td class="c">6</td><td><b>분야 폴더를 하나씩 늘립니다.</b> 여러 분야가 같이 쓰는 말은 <code>common</code>으로 올립니다.</td><td>같은 용어가 두 폴더에 따로 적혀 있지 않다</td></tr>
+    </table>
+  </div>
+  <div class="note"><b>칸마다 주인을 정합니다.</b> 용어·기준과 지침은 분야 담당자 한 명이 고칩니다. <b>작게 시작합니다.</b> 답하지 못한 자료만 그때 넣습니다. <b>넣기 전에 확인합니다.</b> 사내 자료의 범위와 폴더 위치는 회사 보안정책이 먼저입니다.</div>
+</section>
+
+<section class="slide dense tight">
+  <span class="mode see">보기</span>
+  <div class="kicker">수업 뒤 · 회사 지식베이스 · R&amp;D</div>
+  <h2>연구 근거 지식베이스: 논문 한 편에 목록표 한 줄</h2>
+  <div class="grid g2" style="flex:none;grid-template-columns:1.25fr 1fr">
+    <table>
+      <tr><th>칸</th><th>R&amp;D에서 넣는 것</th></tr>
+      <tr><td><b>목록표</b></td><td>서지 목록: 제목, 저자, 연도, 학술지, DOI, 연구 유형, 직접 확인 여부</td></tr><tr><td><b>원자료</b></td><td>논문 초록이나 원문, 특허 요약, 고시 원문. 고치지 않습니다.</td></tr><tr><td style="white-space:nowrap"><b>용어·기준</b></td><td>성분·지표 용어, 단위 표기, 연구 유형별로 근거를 어디까지 쓸지</td></tr><tr><td><b>지침</b></td><td>연구 유형·대상·용량·기간·결론을 구분한다. 원문의 결론과 추론을 구분한다.</td></tr><tr><td><b>스킬</b></td><td><code>paper-collect</code> 범위를 잠근 수집 · <code>evidence-table</code> 근거 비교표</td></tr><tr><td><b>예시</b></td><td>완성된 비교·검토표. 같은 주제는 새 표를 만들지 않고 행을 더합니다.</td></tr><tr><td><b>정정 기록</b></td><td>조건을 잘못 옮긴 사례, 원문에 없는 결론을 덧붙인 사례</td></tr>
+    </table>
+    <div style="display:flex;flex-direction:column;gap:.6rem">
+      <div class="card"><h3>첫 주에 넣을 것</h3><ol><li>지금 진행 중인 주제 하나의 핵심 논문 5~10편</li><li>연구 유형 구분표 (사람·동물·세포, 메타분석)</li><li>지난번에 만든 비교표 한 건</li></ol></div>
+      <div class="card"><h3>이럴 때 한 줄씩 쌓습니다</h3><ul><li>새 논문을 찾았다: DOI를 열어 확인한 뒤 넣습니다.</li><li>고시나 기준이 바뀌었다: 새 파일을 넣고 옛 것은 "대체됨"</li><li>검토 회의에서 해석이 정해졌다: 용어·기준에 한 줄</li></ul></div>
+    </div>
+  </div>
+  <div class="note"><b>넣지 않는 것</b>: 공개 전 실험 데이터와 출원 전 발명 내용은 보안정책 확인 전에는 넣지 않습니다. <b>사람이 승인</b>: 연구 결론의 해석, 사람 효능으로 옮긴 문장, 특허 판단.</div>
+</section>
+
+<section class="slide dense tight">
+  <span class="mode see">보기</span>
+  <div class="kicker">수업 뒤 · 회사 지식베이스 · 재무회계</div>
+  <h2>숫자 지식베이스: 달마다 표 하나, 기준은 한 곳에</h2>
+  <div class="grid g2" style="flex:none;grid-template-columns:1.25fr 1fr">
+    <table>
+      <tr><th>칸</th><th>재무회계에서 넣는 것</th></tr>
+      <tr><td><b>목록표</b></td><td>어느 달 표가 들어 있는지, 마감 확정 여부, 넣은 날</td></tr><tr><td><b>원자료</b></td><td>월별 매출·비용 표. 파일 이름에 연월을 붙이고 고치지 않습니다.</td></tr><tr><td style="white-space:nowrap"><b>용어·기준</b></td><td>계정과목 정의, 단위(원·천원), 회계 기간, 이상값으로 볼 변동 폭</td></tr><tr><td><b>지침</b></td><td>숫자에는 행과 열을 함께 적는다. 계산 과정을 보여 준다. 이상값은 고치지 않고 표시한다.</td></tr><tr><td><b>스킬</b></td><td><code>monthly-check</code> 합계·증감 검산 · <code>monthly-report</code> 월간 보고 초안</td></tr><tr><td><b>예시</b></td><td>지난 월간 보고서와 검산표. 담당자가 고친 뒤의 것을 넣습니다.</td></tr><tr><td><b>정정 기록</b></td><td>단위를 섞은 사례, 빠진 달을 0으로 읽은 사례</td></tr>
+    </table>
+    <div style="display:flex;flex-direction:column;gap:.6rem">
+      <div class="card"><h3>첫 주에 넣을 것</h3><ol><li>최근 석 달의 마감 확정 표</li><li>단위와 회계 기간, 이상값 기준 세 줄</li><li>지난달 보고서 한 건</li></ol></div>
+      <div class="card"><h3>이럴 때 한 줄씩 쌓습니다</h3><ul><li>월 마감이 끝났다: 그 달 표를 넣고 목록표에 "확정"</li><li>이상값의 원인을 확인했다: 용어·기준에 사유 한 줄</li><li>보고 문장을 담당자가 고쳤다: 고친 보고서를 예시에</li></ul></div>
+    </div>
+  </div>
+  <div class="note"><b>넣지 않는 것</b>: 개인별 급여, 계좌번호, 거래처의 비공개 조건. <b>사람이 승인</b>: 보고에 들어가는 모든 숫자. 에이전트가 낸 합계는 스프레드시트로 한 번 더 계산해 대조합니다.</div>
+</section>
+
+<section class="slide dense tight">
+  <span class="mode see">보기</span>
+  <div class="kicker">수업 뒤 · 회사 지식베이스 · 고객상담</div>
+  <h2>응대 지식베이스: 넘긴 질문이 다음 FAQ가 됩니다</h2>
+  <div class="grid g2" style="flex:none;grid-template-columns:1.25fr 1fr">
+    <table>
+      <tr><th>칸</th><th>고객상담에서 넣는 것</th></tr>
+      <tr><td><b>목록표</b></td><td>제품 문서와 공지 목록, 기준일, 대체 여부</td></tr><tr><td><b>원자료</b></td><td>승인된 제품 정보, 라벨, 배송·교환 안내, 변경 공지, 행사 공지</td></tr><tr><td style="white-space:nowrap"><b>용어·기준</b></td><td>쓰는 표현과 쓰지 않는 표현, 응대 문체, 질문 유형별로 넘길 담당자</td></tr><tr><td><b>지침</b></td><td>답변마다 근거 문서와 기준일을 붙인다. 근거가 없으면 답을 만들지 않고 넘긴다.</td></tr><tr><td><b>스킬</b></td><td><code>faq-answer</code> 근거를 붙인 답변 · <code>faq-add</code> 승인된 답을 FAQ 형식으로</td></tr><tr><td><b>예시</b></td><td>담당자가 승인한 FAQ 모음</td></tr><tr><td><b>정정 기록</b></td><td>옛 기준으로 답한 사례, 근거 없이 답한 사례</td></tr>
+    </table>
+    <div style="display:flex;flex-direction:column;gap:.6rem">
+      <div class="card"><h3>첫 주에 넣을 것</h3><ol><li>현행 FAQ와 배송·교환 안내</li><li>주력 제품 두세 개의 라벨 정보</li><li>넘길 담당자 목록 (건강·환불·대량 주문)</li></ol></div>
+      <div class="card"><h3>이럴 때 한 줄씩 쌓습니다</h3><ul><li>"확인 필요"로 넘긴 질문에 담당자 답이 왔다: FAQ 모음에 추가</li><li>공지가 새로 나왔다: 넣고, 바뀐 옛 문서는 "대체됨"</li><li>같은 문의가 세 번 왔다: FAQ 후보로 올립니다.</li></ul></div>
+    </div>
+  </div>
+  <div class="note"><b>넣지 않는 것</b>: 고객 이름, 연락처, 주소, 주문번호. 문의는 개인정보를 지운 뒤에만 넣습니다. <b>사람이 승인</b>: 효능·건강·질환·임신 관련 답변, 문서끼리 다른 항목, 대외 발송.</div>
+</section>
+
+<section class="slide dense tight">
+  <span class="mode see">보기</span>
+  <div class="kicker">수업 뒤 · 회사 지식베이스 · 영업</div>
+  <h2>거래처 지식베이스: 에이전트는 하나, 카드만 늘어납니다</h2>
+  <div class="grid g2" style="flex:none;grid-template-columns:1.25fr 1fr">
+    <table>
+      <tr><th>칸</th><th>영업에서 넣는 것</th></tr>
+      <tr><td><b>목록표</b></td><td>거래처 카드와 제품 자료 목록, 마지막 갱신일</td></tr><tr><td><b>원자료</b></td><td>제품 특징표, 공개 실적, 거래처 카드(요구, 거래 조건, 미팅 메모)</td></tr><tr><td style="white-space:nowrap"><b>용어·기준</b></td><td>승인이 필요한 항목 목록, 쓸 수 있는 표현과 쓰지 않는 표현</td></tr><tr><td><b>지침</b></td><td>제안 문장마다 특징표의 근거를 붙인다. 가격·납기·할인·독점은 확인사항 목록으로 보낸다.</td></tr><tr><td><b>스킬</b></td><td><code>proposal-draft</code> 제안 초안과 확인사항 · <code>meeting-note</code> 미팅 메모를 카드 형식으로</td></tr><tr><td><b>예시</b></td><td>채택된 제안서</td></tr><tr><td><b>정정 기록</b></td><td>근거 없는 장점을 쓴 사례, 승인 없는 조건을 넣은 사례</td></tr>
+    </table>
+    <div style="display:flex;flex-direction:column;gap:.6rem">
+      <div class="card"><h3>첫 주에 넣을 것</h3><ol><li>제품 특징표와 쓸 수 있는 실적 문구</li><li>거래처 카드 두세 장</li><li>승인이 필요한 항목 목록</li></ol></div>
+      <div class="card"><h3>이럴 때 한 줄씩 쌓습니다</h3><ul><li>미팅이 끝났다: 카드에 날짜와 함께 메모를 더합니다.</li><li>제안이 채택됐다: 예시에 넣습니다.</li><li>제안이 거절됐다: 사유를 카드에 적습니다.</li></ul></div>
+    </div>
+  </div>
+  <div class="note"><b>넣지 않는 것</b>: 거래처 담당자의 이름과 연락처, 확정되지 않은 단가. <b>사람이 승인</b>: 가격, 납기, 할인, 독점, 인증서 제공, 수상·판매 실적 문구.</div>
+</section>
+
 <!-- 마무리 -->
 <section class="slide">
   <span class="mode solo">혼자</span>
